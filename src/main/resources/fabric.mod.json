@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "phantasm",
+	"version": "${version}",
+	"name": "End's Phantasm",
+	"description": "The vanilla friendly End update we where all waiting for",
+	"authors": [
+		"Lyof"
+	],
+	"contact": {
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/phantasm",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/phantasm/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.lyof.phantasm.Phantasm"
+		],
+		"fabric-datagen": [
+			"net.lyof.phantasm.ModDataGenerator"
+		]
+	},
+	"mixins": [
+		"phantasm.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.22",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

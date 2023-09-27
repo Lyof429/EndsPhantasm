@@ -2,6 +2,9 @@ package net.lyof.phantasm;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.lyof.phantasm.item.ModItemGroups;
+import net.lyof.phantasm.item.ModItems;
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,11 +14,12 @@ public class Phantasm implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
+		ModItems.register();
+		ModItemGroups.register();
+	}
 
-		LOGGER.info("Hello Fabric world!");
+	public static Identifier makeID(String id) {
+		return new Identifier(MOD_ID, id);
 	}
 
 	public static <T> T log(T message) {

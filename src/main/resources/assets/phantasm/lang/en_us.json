@@ -1,5 +1,7 @@
 {
-  "itemgroup.phantasm": "End's Phantasm",
+  "block.phantasm.fallen_star": "Fallen Star",
 
-  "item.phantasm.pream_berry": "Pream Berry"
+  "item.phantasm.pream_berry": "Pream Berry",
+
+  "itemgroup.phantasm": "End's Phantasm"
 }

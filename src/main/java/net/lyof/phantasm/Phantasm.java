@@ -1,7 +1,6 @@
 package net.lyof.phantasm;
 
 import net.fabricmc.api.ModInitializer;
-
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.item.ModItemGroups;
 import net.lyof.phantasm.item.ModItems;

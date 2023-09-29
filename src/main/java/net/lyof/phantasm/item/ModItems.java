@@ -2,6 +2,7 @@ package net.lyof.phantasm.item;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.lyof.phantasm.ModRegistry;
 import net.lyof.phantasm.Phantasm;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -27,10 +28,10 @@ public class ModItems {
 
 
 
-    public static final Item PREAM_BERRY = register("pream_berry",
+    public static final Item PREAM_BERRY = ModRegistry.ofItem("pream_berry",
             new Item(new FabricItemSettings()
                     .food(new FoodComponent.Builder().alwaysEdible().hunger(4).statusEffect(
                             new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 0, true, false),
                             1)
-                    .build())));
+                    .build()))).build();
 }

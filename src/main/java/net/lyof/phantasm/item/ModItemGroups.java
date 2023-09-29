@@ -1,10 +1,8 @@
 package net.lyof.phantasm.item;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.lyof.phantasm.ModRegistry;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;

@@ -20,9 +20,9 @@ public class ModBlocks {
             .drop().model().build();
 
     public static final Block POLISHED_OBSIDIAN = ModRegistry.ofBlock("polished_obsidian",
-            new Block(FabricBlockSettings.copyOf(Blocks.OBSIDIAN).hardness(3)))
+            new Block(FabricBlockSettings.copyOf(Blocks.OBSIDIAN).hardness(5)))
             .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe").drop().model().build();
     public static final Block POLISHED_OBSIDIAN_BRICKS = ModRegistry.ofBlock("polished_obsidian_bricks",
-                    new Block(FabricBlockSettings.copyOf(Blocks.OBSIDIAN).hardness(3)))
+            new Block(FabricBlockSettings.copyOf(Blocks.OBSIDIAN).hardness(5)))
             .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe").drop().model().build();
 }

@@ -2,6 +2,7 @@ package net.lyof.phantasm;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
+import net.minecraft.data.client.Model;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -40,6 +41,16 @@ public class ModRegistry {
             BLOCK_TAGS.get(tagname).add(this.block);
             return this;
         }
+
+        public BlockBuilder model() {
+            return this.model(Models.CUBE);
+        }
+
+        public BlockBuilder model(Models model) {
+            if (model == Models.CUBE)
+                BLOCK_MODELS_CUBES.add(this.block);
+            return this;
+        }
     }
 
 
@@ -62,11 +73,21 @@ public class ModRegistry {
             ITEM_TAGS.get(tagname).add(this.item);
             return this;
         }
+
+        public ItemBuilder model(Model model) {
+            ITEM_MODELS.put(this.item, model);
+            return this;
+        }
     }
 
 
     public static class RecipeBuilder {
         protected RecipeBuilder() {}
+    }
+
+
+    public enum Models {
+        CUBE
     }
 
 
@@ -82,7 +103,9 @@ public class ModRegistry {
     public static List<Block> BLOCKS = new ArrayList<>();
     public static Map<TagKey<Block>, List<Block>> BLOCK_TAGS = new HashMap<>();
     public static List<Block> BLOCK_AUTODROPS = new ArrayList<>();
+    public static List<Block> BLOCK_MODELS_CUBES = new ArrayList<>();
 
     public static List<Item> ITEMS = new ArrayList<>();
     public static Map<TagKey<Item>, List<Item>> ITEM_TAGS = new HashMap<>();
+    public static Map<Item, Model> ITEM_MODELS = new HashMap<>();
 }

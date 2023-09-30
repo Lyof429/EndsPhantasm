@@ -16,5 +16,5 @@ public class ModBlocks {
     public static final Block FALLEN_STAR = ModRegistry.ofBlock("fallen_star",
             new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK).luminance(15)))
             .tag(BlockTags.DRAGON_IMMUNE).tag(BlockTags.WITHER_IMMUNE).tag(BlockTags.PICKAXE_MINEABLE).tag(BlockTags.NEEDS_STONE_TOOL)
-            .drop().build();
+            .drop().model().build();
 }

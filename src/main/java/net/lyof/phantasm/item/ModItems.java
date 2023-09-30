@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.lyof.phantasm.ModRegistry;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
+import net.minecraft.data.client.Models;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
@@ -30,5 +31,5 @@ public class ModItems {
                     .food(new FoodComponent.Builder().alwaysEdible().hunger(4).statusEffect(
                             new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 0, true, false),
                             1)
-                    .build()))).build();
+                    .build()))).model(Models.GENERATED).build();
 }

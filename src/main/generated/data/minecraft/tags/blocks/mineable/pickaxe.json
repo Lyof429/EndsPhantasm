@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "phantasm:fallen_star"
+    "phantasm:fallen_star",
+    "phantasm:polished_obsidian",
+    "phantasm:polished_obsidian_bricks"
   ]
 }

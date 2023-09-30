@@ -3,17 +3,18 @@ package net.lyof.phantasm;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.data.client.Model;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ModRegistry {
     public static class BlockBuilder {
@@ -39,6 +40,22 @@ public class ModRegistry {
         public BlockBuilder tag(TagKey<Block> tagname) {
             BLOCK_TAGS.putIfAbsent(tagname, new ArrayList<>());
             BLOCK_TAGS.get(tagname).add(this.block);
+            return this;
+        }
+
+        public BlockBuilder tool(String tool_material) {
+            String[] needed = tool_material.split("_");
+
+            if (needed[0].equals("stone")) this.tag(BlockTags.NEEDS_STONE_TOOL);
+            if (needed[0].equals("iron")) this.tag(BlockTags.NEEDS_IRON_TOOL);
+            if (needed[0].equals("diamond")) this.tag(BlockTags.NEEDS_DIAMOND_TOOL);
+
+            if (needed[1].equals("pickaxe")) this.tag(BlockTags.PICKAXE_MINEABLE);
+            if (needed[1].equals("axe")) this.tag(BlockTags.AXE_MINEABLE);
+            if (needed[1].equals("shovel")) this.tag(BlockTags.SHOVEL_MINEABLE);
+            if (needed[1].equals("hoe")) this.tag(BlockTags.HOE_MINEABLE);
+            if (needed[1].equals("sword")) this.tag(BlockTags.SWORD_EFFICIENT);
+
             return this;
         }
 
@@ -88,6 +105,12 @@ public class ModRegistry {
 
     public enum Models {
         CUBE
+    }
+
+    public static class Foods {
+        public static final FoodComponent PREAM_BERRY = new FoodComponent.Builder().alwaysEdible().hunger(4).statusEffect(
+                        new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 0, true, false),
+                        1).build();
     }
 
 

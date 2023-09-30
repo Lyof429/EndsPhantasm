@@ -1,7 +1,9 @@
 {
   "block.phantasm.fallen_star": "Fallen Star",
+  "block.phantasm.polished_obsidian": "Polished Obsidian",
+  "block.phantasm.polished_obsidian_bricks": "Polished Obsidian Bricks",
 
   "item.phantasm.pream_berry": "Pream Berry",
 
-  "itemgroup.phantasm": "End's Phantasm"
+  "itemgroup.phantasm": "Phantasm"
 }

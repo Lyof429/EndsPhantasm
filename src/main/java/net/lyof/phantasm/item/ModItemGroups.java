@@ -1,9 +1,12 @@
 package net.lyof.phantasm.item;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -21,6 +24,8 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.FALLEN_STAR);
                         entries.add(ModItems.PREAM_BERRY);
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN);
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS);
 
                     })
                     .build());
@@ -32,5 +37,18 @@ public class ModItemGroups {
 
     public static void register() {
         Phantasm.log("Registering ItemGroups for modid : " + Phantasm.MOD_ID);
+
+
+        if (false) return;
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
+            entries.add(ModItems.PREAM_BERRY);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
+            entries.add(ModBlocks.FALLEN_STAR);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
+            entries.add(ModBlocks.POLISHED_OBSIDIAN);
+            entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS);
+        });
     }
 }

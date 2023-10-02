@@ -66,6 +66,13 @@ public class ModRegistry {
         public BlockBuilder model(Models model) {
             if (model == Models.CUBE)
                 BLOCK_MODELS_CUBES.add(this.block);
+            //if (model == Models.SPIKE) TODO: CRYSTAL SPIKE MODEL BASED ON DRIPSTONE
+
+            return this;
+        }
+
+        public BlockBuilder model(Model model) {
+            ITEM_MODELS.put(this.block.asItem(), model);
             return this;
         }
     }
@@ -104,7 +111,8 @@ public class ModRegistry {
 
 
     public enum Models {
-        CUBE
+        CUBE,
+        SPIKE
     }
 
     public static class Foods {

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "is_tip=false,direction=down": {
+      "model": "phantasm:block/void_crystal_shard_base"
+    },
+    "is_tip=false,direction=up": {
+      "model": "phantasm:block/void_crystal_shard_base"
+    },
+    "is_tip=true,direction=down": {
+      "model": "phantasm:block/void_crystal_shard_down_tip"
+    },
+    "is_tip=true,direction=up": {
+      "model": "phantasm:block/void_crystal_shard_up_tip"
+    }
+  }
+}

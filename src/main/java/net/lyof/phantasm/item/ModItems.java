@@ -1,13 +1,10 @@
 package net.lyof.phantasm.item;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.lyof.phantasm.ModRegistry;
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.block.ModBlocks;
 import net.minecraft.data.client.Models;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
 
 public class ModItems {
     public static void register() {

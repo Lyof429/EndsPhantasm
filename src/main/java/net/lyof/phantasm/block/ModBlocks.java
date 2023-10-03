@@ -31,5 +31,8 @@ public class ModBlocks {
 
     public static final Block CRYSTAL_SHARD = ModRegistry.ofBlock("crystal_shard",
             new CrystalShardBlock(FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE).luminance(7).sounds(BlockSoundGroup.GLASS)))
-            .model(Models.GENERATED).tool("_pickaxe").drop().build();
+            .model(Models.GENERATED).tool("_pickaxe").drop().cutout().build();
+    public static final Block VOID_CRYSTAL_SHARD = ModRegistry.ofBlock("void_crystal_shard",
+                    new CrystalShardBlock(FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE).luminance(4).sounds(BlockSoundGroup.GLASS)))
+            .model(Models.GENERATED).tool("_pickaxe").drop().cutout().build();
 }

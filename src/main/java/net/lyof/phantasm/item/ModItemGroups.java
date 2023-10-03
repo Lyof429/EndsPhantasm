@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
@@ -23,7 +22,12 @@ public class ModItemGroups {
                         //    entries.add(item);
 
                         entries.add(ModBlocks.FALLEN_STAR);
+
                         entries.add(ModItems.PREAM_BERRY);
+
+                        entries.add(ModBlocks.CRYSTAL_SHARD);
+                        entries.add(ModBlocks.VOID_CRYSTAL_SHARD);
+
                         entries.add(ModBlocks.POLISHED_OBSIDIAN);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS);
 
@@ -45,6 +49,9 @@ public class ModItemGroups {
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             entries.add(ModBlocks.FALLEN_STAR);
+
+            entries.add(ModBlocks.CRYSTAL_SHARD);
+            entries.add(ModBlocks.VOID_CRYSTAL_SHARD);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
             entries.add(ModBlocks.POLISHED_OBSIDIAN);

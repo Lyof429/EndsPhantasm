@@ -14,7 +14,10 @@ import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ModRegistry {
     public static class BlockBuilder {
@@ -73,6 +76,11 @@ public class ModRegistry {
 
         public BlockBuilder model(Model model) {
             ITEM_MODELS.put(this.block.asItem(), model);
+            return this;
+        }
+
+        public BlockBuilder cutout() {
+            BLOCK_CUTOUT.add(this.block);
             return this;
         }
     }
@@ -135,6 +143,7 @@ public class ModRegistry {
     public static Map<TagKey<Block>, List<Block>> BLOCK_TAGS = new HashMap<>();
     public static List<Block> BLOCK_AUTODROPS = new ArrayList<>();
     public static List<Block> BLOCK_MODELS_CUBES = new ArrayList<>();
+    public static List<Block> BLOCK_CUTOUT = new ArrayList<>();
 
     public static List<Item> ITEMS = new ArrayList<>();
     public static Map<TagKey<Item>, List<Item>> ITEM_TAGS = new HashMap<>();

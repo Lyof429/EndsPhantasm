@@ -45,11 +45,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(Consumer<RecipeJsonProvider> exporter) {
         for (List<ItemConvertible> pool : getStoneCuttingRecipes()) {
-            for (ItemConvertible a : pool) {
-                for (ItemConvertible b : pool) {
-                    if (a != b && !(b instanceof SlabBlock))
-                        offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, a, b,
-                                a instanceof SlabBlock ? 2 : 1);
+            for (ItemConvertible out : pool) {
+                for (ItemConvertible in : pool) {
+                    if (out != in && !(in instanceof SlabBlock))
+                        offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, out, in,
+                                out instanceof SlabBlock ? 2 : 1);
                 }
             }
         }

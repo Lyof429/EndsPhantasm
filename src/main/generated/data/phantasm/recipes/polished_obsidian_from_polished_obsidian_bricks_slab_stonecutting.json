@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "phantasm:polished_obsidian_bricks_slab"
-  },
-  "result": "phantasm:polished_obsidian"
-}

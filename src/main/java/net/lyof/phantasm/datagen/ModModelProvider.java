@@ -22,7 +22,6 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator generator) {
         BlockStateModelGenerator.BlockTexturePool pool;
 
-        Phantasm.log(ModRegistry.BLOCK_MODELS);
         for (Block block : ModRegistry.BLOCK_MODELS.get(ModRegistry.Models.CUBE))
             generator.registerSimpleCubeAll(block);
         for (Block block : ModRegistry.BLOCK_MODELS.get(ModRegistry.Models.PILLAR))

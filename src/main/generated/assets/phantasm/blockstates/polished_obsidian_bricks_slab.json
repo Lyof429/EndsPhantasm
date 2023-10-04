@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "phantasm:block/polished_obsidian_bricks_slab"
+    },
+    "type=double": {
+      "model": "phantasm:block/polished_obsidian_bricks"
+    },
+    "type=top": {
+      "model": "phantasm:block/polished_obsidian_bricks_slab_top"
+    }
+  }
+}

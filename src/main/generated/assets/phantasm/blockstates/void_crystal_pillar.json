@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "phantasm:block/void_crystal_pillar_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "phantasm:block/void_crystal_pillar"
+    },
+    "axis=z": {
+      "model": "phantasm:block/void_crystal_pillar_horizontal",
+      "x": 90
+    }
+  }
+}

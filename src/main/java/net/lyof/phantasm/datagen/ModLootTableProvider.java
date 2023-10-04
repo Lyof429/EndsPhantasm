@@ -12,6 +12,11 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-        for (Block block : ModRegistry.BLOCK_AUTODROPS) addDrop(block);
+        for (Block block : ModRegistry.BLOCK_AUTODROPS) {
+            if (ModRegistry.BLOCK_MODELS.get(ModRegistry.Models.SLAB).contains(block))
+                addDrop(block, slabDrops(block));
+            else
+                addDrop(block);
+        }
     }
 }

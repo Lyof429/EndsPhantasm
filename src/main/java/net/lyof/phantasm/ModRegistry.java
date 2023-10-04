@@ -13,6 +13,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,16 +68,20 @@ public class ModRegistry {
         }
 
         public BlockBuilder model(Models model) {
-            if (model == Models.CUBE)
-                BLOCK_MODELS_CUBES.add(this.block);
-            //if (model == Models.SPIKE) TODO: CRYSTAL SPIKE MODEL BASED ON DRIPSTONE
-
+            BLOCK_MODELS.putIfAbsent(model, new ArrayList<>());
+            BLOCK_MODELS.get(model).add(this.block);
             return this;
         }
 
         public BlockBuilder model(Model model) {
             ITEM_MODELS.put(this.block.asItem(), model);
             return this;
+        }
+
+        public BlockBuilder model(Models model, Block parent) {
+            BLOCK_STAIRS_SLABS.putIfAbsent(parent, new ArrayList<>());
+            BLOCK_STAIRS_SLABS.get(parent).add(new Pair<>(this.block, model));
+            return this.model(model);
         }
 
         public BlockBuilder cutout() {
@@ -120,7 +125,9 @@ public class ModRegistry {
 
     public enum Models {
         CUBE,
-        SPIKE
+        PILLAR,
+        STAIRS,
+        SLAB
     }
 
     public static class Foods {
@@ -142,7 +149,8 @@ public class ModRegistry {
     public static List<Block> BLOCKS = new ArrayList<>();
     public static Map<TagKey<Block>, List<Block>> BLOCK_TAGS = new HashMap<>();
     public static List<Block> BLOCK_AUTODROPS = new ArrayList<>();
-    public static List<Block> BLOCK_MODELS_CUBES = new ArrayList<>();
+    public static Map<Models, List<Block>> BLOCK_MODELS = new HashMap<>();
+    public static Map<Block, List<Pair<Block, Models>>> BLOCK_STAIRS_SLABS = new HashMap<>();
     public static List<Block> BLOCK_CUTOUT = new ArrayList<>();
 
     public static List<Item> ITEMS = new ArrayList<>();

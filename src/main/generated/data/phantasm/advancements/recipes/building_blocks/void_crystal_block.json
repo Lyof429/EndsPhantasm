@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "phantasm:void_crystal_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_void_crystal_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "phantasm:void_crystal_shard"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_void_crystal_shard",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "phantasm:void_crystal_block"
+    ]
+  },
+  "sends_telemetry_event": false
+}

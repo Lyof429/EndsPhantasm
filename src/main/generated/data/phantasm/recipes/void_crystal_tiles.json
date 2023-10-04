@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "void_crystal_tiles",
+  "key": {
+    "A": {
+      "item": "phantasm:void_crystal_shard"
+    },
+    "B": {
+      "item": "minecraft:end_stone"
+    }
+  },
+  "pattern": [
+    "AB",
+    "BA"
+  ],
+  "result": {
+    "item": "phantasm:void_crystal_tiles"
+  },
+  "show_notification": true
+}

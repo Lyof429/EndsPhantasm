@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_crystal_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "phantasm:crystal_shard"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_end_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:end_stone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "phantasm:crystal_tiles"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_crystal_shard",
+      "has_end_stone",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "phantasm:crystal_tiles"
+    ]
+  },
+  "sends_telemetry_event": false
+}

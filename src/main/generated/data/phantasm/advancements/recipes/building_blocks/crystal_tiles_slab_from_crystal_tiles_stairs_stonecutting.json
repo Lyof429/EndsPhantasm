@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_crystal_tiles_stairs": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "phantasm:crystal_tiles_stairs"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:crystal_tiles_slab_from_crystal_tiles_stairs_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_crystal_tiles_stairs",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:crystal_tiles_slab_from_crystal_tiles_stairs_stonecutting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

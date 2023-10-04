@@ -23,7 +23,7 @@ public class CrystalShardBlock extends Block implements Waterloggable {
     public static final BooleanProperty WATERLOGGED = BooleanProperty.of("waterlogged");
 
     public CrystalShardBlock(Settings settings) {
-        super(settings.emissiveLighting((a, b, c) -> true).nonOpaque());
+        super(settings.nonOpaque());
         this.setDefaultState(this.getDefaultState()
                 .with(IS_TIP, true)
                 .with(DIRECTION, Direction.UP)

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:void_crystal_tiles_slab_from_void_crystal_tiles_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_void_crystal_tiles": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "phantasm:void_crystal_tiles"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_void_crystal_tiles",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:void_crystal_tiles_slab_from_void_crystal_tiles_stonecutting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "crystal_tiles",
+  "key": {
+    "A": {
+      "item": "phantasm:crystal_shard"
+    },
+    "B": {
+      "item": "minecraft:end_stone"
+    }
+  },
+  "pattern": [
+    "AB",
+    "BA"
+  ],
+  "result": {
+    "item": "phantasm:crystal_tiles"
+  },
+  "show_notification": true
+}

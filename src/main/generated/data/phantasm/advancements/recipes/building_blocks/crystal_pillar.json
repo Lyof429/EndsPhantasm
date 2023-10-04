@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_crystal_tiles_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "phantasm:crystal_tiles_slab"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "phantasm:crystal_pillar"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_crystal_tiles_slab",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "phantasm:crystal_pillar"
+    ]
+  },
+  "sends_telemetry_event": false
+}

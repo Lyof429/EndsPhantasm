@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "phantasm:block/void_crystal_tiles",
+    "side": "phantasm:block/void_crystal_tiles",
+    "top": "phantasm:block/void_crystal_tiles"
+  }
+}

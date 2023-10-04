@@ -4,6 +4,17 @@
   "block.phantasm.crystal_shard": "Crystal Shard",
   "block.phantasm.void_crystal_shard": "Void Crystal Shard",
 
+  "block.phantasm.crystal_block": "Crystal Block",
+  "block.phantasm.crystal_tiles": "Crystal Tiles",
+  "block.phantasm.crystal_tiles_stairs": "Crystal Tiles Stairs",
+  "block.phantasm.crystal_tiles_slab": "Crystal Tiles Slab",
+  "block.phantasm.crystal_pillar": "Crystal Pillar",
+  "block.phantasm.void_crystal_block": "Void Crystal Block",
+  "block.phantasm.void_crystal_tiles": "Void Crystal Tiles",
+  "block.phantasm.void_crystal_tiles_stairs": "Void Crystal Tiles Stairs",
+  "block.phantasm.void_crystal_tiles_slab": "Void Crystal Tiles Slab",
+  "block.phantasm.void_crystal_pillar": "Void Crystal Pillar",
+
   "block.phantasm.polished_obsidian": "Polished Obsidian",
   "block.phantasm.polished_obsidian_bricks": "Polished Obsidian Bricks",
 

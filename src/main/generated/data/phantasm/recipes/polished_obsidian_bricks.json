@@ -3,13 +3,13 @@
   "category": "building",
   "group": "polished_obsidian",
   "key": {
-    "O": {
+    "S": {
       "item": "phantasm:polished_obsidian"
     }
   },
   "pattern": [
-    "OO",
-    "OO"
+    "SS",
+    "SS"
   ],
   "result": {
     "count": 4,

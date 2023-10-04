@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "phantasm:block/crystal_tiles_slab"
+    },
+    "type=double": {
+      "model": "phantasm:block/crystal_tiles"
+    },
+    "type=top": {
+      "model": "phantasm:block/crystal_tiles_slab_top"
+    }
+  }
+}

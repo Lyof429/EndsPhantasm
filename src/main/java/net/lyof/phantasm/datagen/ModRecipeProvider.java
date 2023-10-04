@@ -47,7 +47,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         for (List<ItemConvertible> pool : getStoneCuttingRecipes()) {
             for (ItemConvertible a : pool) {
                 for (ItemConvertible b : pool) {
-                    if (a != b)
+                    if (a != b && !(b instanceof SlabBlock))
                         offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, a, b,
                                 a instanceof SlabBlock ? 2 : 1);
                 }

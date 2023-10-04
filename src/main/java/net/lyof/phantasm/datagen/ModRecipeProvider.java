@@ -2,8 +2,10 @@ package net.lyof.phantasm.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.lyof.phantasm.ModRegistry;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
@@ -13,6 +15,7 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,22 +33,35 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 ModBlocks.CRYSTAL_TILES_SLAB, ModBlocks.CRYSTAL_PILLAR);
         List<ItemConvertible> void_crystal = List.of(ModBlocks.VOID_CRYSTAL_TILES, ModBlocks.VOID_CRYSTAL_TILES_STAIRS,
                 ModBlocks.VOID_CRYSTAL_TILES_SLAB, ModBlocks.VOID_CRYSTAL_PILLAR);
+        List<ItemConvertible> polished_obsidian = List.of(ModBlocks.POLISHED_OBSIDIAN, ModBlocks.POLISHED_OBSIDIAN_BRICKS,
+                ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS, ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
 
         result.add(crystal);
         result.add(void_crystal);
+        result.add(polished_obsidian);
         return result;
     }
 
     @Override
     public void generate(Consumer<RecipeJsonProvider> exporter) {
-        List<List<ItemConvertible>> STONE_CUTTABLE = getStoneCuttingRecipes();
-        for (List<ItemConvertible> pool : STONE_CUTTABLE) {
+        for (List<ItemConvertible> pool : getStoneCuttingRecipes()) {
             for (ItemConvertible a : pool) {
                 for (ItemConvertible b : pool) {
                     if (a != b)
                         offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, a, b,
                                 a instanceof SlabBlock ? 2 : 1);
                 }
+            }
+        }
+
+        for (Block parent : ModRegistry.BLOCK_STAIRS_SLABS.keySet()) {
+            for (Pair<Block, ModRegistry.Models> entry : ModRegistry.BLOCK_STAIRS_SLABS.get(parent)) {
+                if (entry.getRight() == ModRegistry.Models.STAIRS)
+                    createStairsRecipe(entry.getLeft(), Ingredient.ofItems(parent))
+                            .criterion(hasItem(parent), conditionsFromItem(parent))
+                            .offerTo(exporter);
+                if (entry.getRight() == ModRegistry.Models.SLAB)
+                    offerSlabRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, entry.getLeft(), parent);
             }
         }
 
@@ -71,12 +87,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYSTAL_BLOCK, ModBlocks.CRYSTAL_SHARD);
         // Crystal Pillar
         offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYSTAL_PILLAR, ModBlocks.CRYSTAL_TILES_SLAB);
-        // Crystal Tiles Slab
-        offerSlabRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYSTAL_TILES_SLAB, ModBlocks.CRYSTAL_TILES);
-        // Crystal Tiles Stairs
-        createStairsRecipe(ModBlocks.CRYSTAL_TILES_STAIRS, Ingredient.ofItems(ModBlocks.CRYSTAL_TILES))
-                .criterion(hasItem(ModBlocks.CRYSTAL_TILES), conditionsFromItem(ModBlocks.CRYSTAL_TILES))
-                .offerTo(exporter);
 
 
         // Void Crystal Tiles
@@ -90,11 +100,5 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.VOID_CRYSTAL_BLOCK, ModBlocks.VOID_CRYSTAL_SHARD);
         // Void Crystal Pillar
         offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.VOID_CRYSTAL_PILLAR, ModBlocks.VOID_CRYSTAL_TILES_SLAB);
-        // Void Crystal Tiles Slab
-        offerSlabRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.VOID_CRYSTAL_TILES_SLAB, ModBlocks.VOID_CRYSTAL_TILES);
-        // Void Crystal Tiles Stairs
-        createStairsRecipe(ModBlocks.VOID_CRYSTAL_TILES_STAIRS, Ingredient.ofItems(ModBlocks.VOID_CRYSTAL_TILES))
-                .criterion(hasItem(ModBlocks.VOID_CRYSTAL_TILES), conditionsFromItem(ModBlocks.VOID_CRYSTAL_TILES))
-                .offerTo(exporter);
     }
 }

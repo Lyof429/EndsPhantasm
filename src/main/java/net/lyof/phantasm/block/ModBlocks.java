@@ -16,6 +16,8 @@ public class ModBlocks {
 
     private static final FabricBlockSettings CrystalMaterial = 
             FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE).luminance(4).emissiveLighting((a, b, c) -> true);
+    private static final FabricBlockSettings PolishedObsidianMaterial =
+            FabricBlockSettings.copyOf(Blocks.OBSIDIAN).hardness(5);
 
 
     public static final Block FALLEN_STAR = ModRegistry.ofBlock("fallen_star",
@@ -24,31 +26,38 @@ public class ModBlocks {
             .drop().model().build();
 
     public static final Block POLISHED_OBSIDIAN = ModRegistry.ofBlock("polished_obsidian",
-            new Block(FabricBlockSettings.copyOf(Blocks.OBSIDIAN).hardness(5)))
+            new Block(PolishedObsidianMaterial))
             .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe").drop().model().build();
+    public static final Block POLISHED_OBSIDIAN_BRICKS_STAIRS = ModRegistry.ofBlock("polished_obsidian_bricks_stairs",
+                    new StairsBlock(POLISHED_OBSIDIAN.getDefaultState(), PolishedObsidianMaterial))
+            .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe").drop().cutout().build();
+    public static final Block POLISHED_OBSIDIAN_BRICKS_SLAB = ModRegistry.ofBlock("polished_obsidian_bricks_slab",
+                    new SlabBlock(PolishedObsidianMaterial))
+            .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe").drop().cutout().build();
     public static final Block POLISHED_OBSIDIAN_BRICKS = ModRegistry.ofBlock("polished_obsidian_bricks",
-            new Block(FabricBlockSettings.copyOf(Blocks.OBSIDIAN).hardness(5)))
-            .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe").drop().model().build();
+            new Block(PolishedObsidianMaterial))
+            .tag(BlockTags.DRAGON_IMMUNE)
+            .stairs_slabs(POLISHED_OBSIDIAN_BRICKS_STAIRS, POLISHED_OBSIDIAN_BRICKS_SLAB).tool("iron_pickaxe").drop().build();
 
     public static final Block CRYSTAL_SHARD = ModRegistry.ofBlock("crystal_shard",
-                    new CrystalShardBlock(CrystalMaterial.luminance(7).sounds(BlockSoundGroup.GLASS)))
+                    new CrystalShardBlock(FabricBlockSettings.copyOf(CrystalMaterial).luminance(7).sounds(BlockSoundGroup.GLASS)))
             .model(Models.GENERATED).tool("_pickaxe").drop().cutout().build();
     public static final Block VOID_CRYSTAL_SHARD = ModRegistry.ofBlock("void_crystal_shard",
-                    new CrystalShardBlock(CrystalMaterial.sounds(BlockSoundGroup.GLASS)))
+                    new CrystalShardBlock(FabricBlockSettings.copyOf(CrystalMaterial).sounds(BlockSoundGroup.GLASS)))
             .model(Models.GENERATED).tool("_pickaxe").drop().cutout().build();
 
     public static final Block CRYSTAL_BLOCK = ModRegistry.ofBlock("crystal_block",
                     new Block(CrystalMaterial))
             .model().tool("_pickaxe").drop().build();
-    public static final Block CRYSTAL_TILES = ModRegistry.ofBlock("crystal_tiles",
-                    new Block(CrystalMaterial))
-            .tool("_pickaxe").drop().build();
     public static final Block CRYSTAL_TILES_STAIRS = ModRegistry.ofBlock("crystal_tiles_stairs",
                     new StairsBlock(CRYSTAL_BLOCK.getDefaultState(), CrystalMaterial))
-            .model(ModRegistry.Models.STAIRS, CRYSTAL_TILES).tool("_pickaxe").drop().cutout().build();
+            .tool("_pickaxe").drop().cutout().build();
     public static final Block CRYSTAL_TILES_SLAB = ModRegistry.ofBlock("crystal_tiles_slab",
                     new SlabBlock(CrystalMaterial))
-            .model(ModRegistry.Models.SLAB, CRYSTAL_TILES).tool("_pickaxe").drop().cutout().build();
+            .tool("_pickaxe").drop().cutout().build();
+    public static final Block CRYSTAL_TILES = ModRegistry.ofBlock("crystal_tiles",
+                    new Block(CrystalMaterial))
+            .stairs_slabs(CRYSTAL_TILES_STAIRS, CRYSTAL_TILES_SLAB).tool("_pickaxe").drop().build();
     public static final Block CRYSTAL_PILLAR = ModRegistry.ofBlock("crystal_pillar",
                     new PillarBlock(CrystalMaterial))
             .model(ModRegistry.Models.PILLAR).tool("_pickaxe").drop().build();
@@ -56,15 +65,15 @@ public class ModBlocks {
     public static final Block VOID_CRYSTAL_BLOCK = ModRegistry.ofBlock("void_crystal_block",
                     new Block(CrystalMaterial))
             .model().tool("_pickaxe").drop().build();
-    public static final Block VOID_CRYSTAL_TILES = ModRegistry.ofBlock("void_crystal_tiles",
-                    new Block(CrystalMaterial))
-            .tool("_pickaxe").drop().build();
     public static final Block VOID_CRYSTAL_TILES_STAIRS = ModRegistry.ofBlock("void_crystal_tiles_stairs",
                     new StairsBlock(CRYSTAL_BLOCK.getDefaultState(), CrystalMaterial))
-            .model(ModRegistry.Models.STAIRS, VOID_CRYSTAL_TILES).tool("_pickaxe").drop().cutout().build();
+            .tool("_pickaxe").drop().cutout().build();
     public static final Block VOID_CRYSTAL_TILES_SLAB = ModRegistry.ofBlock("void_crystal_tiles_slab",
                     new SlabBlock(CrystalMaterial))
-            .model(ModRegistry.Models.SLAB, VOID_CRYSTAL_TILES).tool("_pickaxe").drop().cutout().build();
+            .tool("_pickaxe").drop().cutout().build();
+    public static final Block VOID_CRYSTAL_TILES = ModRegistry.ofBlock("void_crystal_tiles",
+                    new Block(CrystalMaterial))
+            .stairs_slabs(VOID_CRYSTAL_TILES_STAIRS, VOID_CRYSTAL_TILES_SLAB).tool("_pickaxe").drop().build();
     public static final Block VOID_CRYSTAL_PILLAR = ModRegistry.ofBlock("void_crystal_pillar",
                     new PillarBlock(CrystalMaterial))
             .model(ModRegistry.Models.PILLAR).tool("_pickaxe").drop().build();

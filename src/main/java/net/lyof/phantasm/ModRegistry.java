@@ -77,11 +77,23 @@ public class ModRegistry {
             ITEM_MODELS.put(this.block.asItem(), model);
             return this;
         }
-
+/*
         public BlockBuilder model(Models model, Block parent) {
             BLOCK_STAIRS_SLABS.putIfAbsent(parent, new ArrayList<>());
             BLOCK_STAIRS_SLABS.get(parent).add(new Pair<>(this.block, model));
             return this.model(model);
+        }*/
+
+        public BlockBuilder stairs_slabs(Block stairs, Block slab) {
+            BLOCK_STAIRS_SLABS.putIfAbsent(this.block, new ArrayList<>());
+            BLOCK_STAIRS_SLABS.get(this.block).add(new Pair<>(stairs, Models.STAIRS));
+            BLOCK_STAIRS_SLABS.get(this.block).add(new Pair<>(slab, Models.SLAB));
+
+            BLOCK_MODELS.putIfAbsent(Models.STAIRS, new ArrayList<>());
+            BLOCK_MODELS.putIfAbsent(Models.SLAB, new ArrayList<>());
+            BLOCK_MODELS.get(Models.STAIRS).add(stairs);
+            BLOCK_MODELS.get(Models.SLAB).add(slab);
+            return this;
         }
 
         public BlockBuilder cutout() {

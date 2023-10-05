@@ -1,6 +1,7 @@
-package net.lyof.phantasm;
+package net.lyof.phantasm.setup;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.lyof.phantasm.Phantasm;
 import net.minecraft.block.Block;
 import net.minecraft.data.client.Model;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -77,24 +78,6 @@ public class ModRegistry {
             ITEM_MODELS.put(this.block.asItem(), model);
             return this;
         }
-/*
-        public BlockBuilder model(Models model, Block parent) {
-            BLOCK_STAIRS_SLABS.putIfAbsent(parent, new ArrayList<>());
-            BLOCK_STAIRS_SLABS.get(parent).add(new Pair<>(this.block, model));
-            return this.model(model);
-        }*/
-
-        public BlockBuilder stairs_slabs(Block stairs, Block slab) {
-            BLOCK_STAIRS_SLABS.putIfAbsent(this.block, new ArrayList<>());
-            BLOCK_STAIRS_SLABS.get(this.block).add(new Pair<>(stairs, Models.STAIRS));
-            BLOCK_STAIRS_SLABS.get(this.block).add(new Pair<>(slab, Models.SLAB));
-
-            BLOCK_MODELS.putIfAbsent(Models.STAIRS, new ArrayList<>());
-            BLOCK_MODELS.putIfAbsent(Models.SLAB, new ArrayList<>());
-            BLOCK_MODELS.get(Models.STAIRS).add(stairs);
-            BLOCK_MODELS.get(Models.SLAB).add(slab);
-            return this;
-        }
 
         public BlockBuilder cutout() {
             BLOCK_CUTOUT.add(this.block);
@@ -155,6 +138,18 @@ public class ModRegistry {
 
     public static ItemBuilder ofItem(String id, Item item) {
         return new ItemBuilder(Phantasm.makeID(id), item);
+    }
+
+
+    public static void registerStairsAndSlab(Block parent, Block stairs, Block slab) {
+        BLOCK_STAIRS_SLABS.putIfAbsent(parent, new ArrayList<>());
+        BLOCK_STAIRS_SLABS.get(parent).add(new Pair<>(stairs, Models.STAIRS));
+        BLOCK_STAIRS_SLABS.get(parent).add(new Pair<>(slab, Models.SLAB));
+
+        BLOCK_MODELS.putIfAbsent(Models.STAIRS, new ArrayList<>());
+        BLOCK_MODELS.putIfAbsent(Models.SLAB, new ArrayList<>());
+        BLOCK_MODELS.get(Models.STAIRS).add(stairs);
+        BLOCK_MODELS.get(Models.SLAB).add(slab);
     }
 
 

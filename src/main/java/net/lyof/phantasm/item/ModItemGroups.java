@@ -42,6 +42,8 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.POLISHED_OBSIDIAN);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS);
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS);
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
 
                     })
                     .build());

@@ -3,20 +3,20 @@
   "values": [
     "phantasm:fallen_star",
     "phantasm:polished_obsidian",
+    "phantasm:polished_obsidian_bricks",
     "phantasm:polished_obsidian_bricks_stairs",
     "phantasm:polished_obsidian_bricks_slab",
-    "phantasm:polished_obsidian_bricks",
     "phantasm:crystal_shard",
     "phantasm:void_crystal_shard",
     "phantasm:crystal_block",
+    "phantasm:crystal_tiles",
     "phantasm:crystal_tiles_stairs",
     "phantasm:crystal_tiles_slab",
-    "phantasm:crystal_tiles",
     "phantasm:crystal_pillar",
     "phantasm:void_crystal_block",
+    "phantasm:void_crystal_tiles",
     "phantasm:void_crystal_tiles_stairs",
     "phantasm:void_crystal_tiles_slab",
-    "phantasm:void_crystal_tiles",
     "phantasm:void_crystal_pillar"
   ]
 }

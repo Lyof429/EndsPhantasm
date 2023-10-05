@@ -2,7 +2,7 @@ package net.lyof.phantasm.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.lyof.phantasm.ModRegistry;
+import net.lyof.phantasm.setup.ModRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.TagKey;

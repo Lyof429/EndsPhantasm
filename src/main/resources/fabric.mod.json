@@ -19,10 +19,10 @@
 			"net.lyof.phantasm.Phantasm"
 		],
 		"client": [
-			"net.lyof.phantasm.ModClientSetup"
+			"net.lyof.phantasm.setup.ModClientSetup"
 		],
 		"fabric-datagen": [
-			"net.lyof.phantasm.ModDataGenerator"
+			"net.lyof.phantasm.setup.ModDataGenerator"
 		]
 	},
 	"mixins": [

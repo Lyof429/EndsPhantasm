@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
-    "phantasm:crystalline_pickaxe"
+    "phantasm:crystalline_shovel",
+    "phantasm:crystalline_pickaxe",
+    "phantasm:crystalline_axe",
+    "phantasm:crystalline_hoe",
+    "phantasm:crystalline_sword"
   ]
 }

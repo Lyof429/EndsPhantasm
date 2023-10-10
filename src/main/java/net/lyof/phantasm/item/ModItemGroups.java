@@ -29,12 +29,21 @@ public class ModItemGroups {
                         entries.add(ModBlocks.VOID_CRYSTAL_SHARD);
 
                         entries.add(ModBlocks.CRYSTAL_BLOCK);
+                        entries.add(ModBlocks.VOID_CRYSTAL_BLOCK);
+
+
+                        entries.add(ModItems.CRYSTALLINE_SWORD);
+                        entries.add(ModItems.CRYSTALLINE_SHOVEL);
+                        entries.add(ModItems.CRYSTALLINE_PICKAXE);
+                        entries.add(ModItems.CRYSTALLINE_AXE);
+                        entries.add(ModItems.CRYSTALLINE_HOE);
+
+
                         entries.add(ModBlocks.CRYSTAL_TILES);
                         entries.add(ModBlocks.CRYSTAL_TILES_STAIRS);
                         entries.add(ModBlocks.CRYSTAL_TILES_SLAB);
                         entries.add(ModBlocks.CRYSTAL_PILLAR);
 
-                        entries.add(ModBlocks.VOID_CRYSTAL_BLOCK);
                         entries.add(ModBlocks.VOID_CRYSTAL_TILES);
                         entries.add(ModBlocks.VOID_CRYSTAL_TILES_STAIRS);
                         entries.add(ModBlocks.VOID_CRYSTAL_TILES_SLAB);
@@ -79,6 +88,15 @@ public class ModItemGroups {
 
             entries.add(ModBlocks.POLISHED_OBSIDIAN);
             entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
+            entries.add(ModItems.CRYSTALLINE_SHOVEL);
+            entries.add(ModItems.CRYSTALLINE_PICKAXE);
+            entries.add(ModItems.CRYSTALLINE_AXE);
+            entries.add(ModItems.CRYSTALLINE_HOE);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
+            entries.add(ModItems.CRYSTALLINE_SWORD);
         });
     }
 }

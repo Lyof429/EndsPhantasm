@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "phantasm:polished_obsidian_slab",
+    "phantasm:crystal_tiles_slab",
+    "phantasm:void_crystal_tiles_slab"
+  ]
+}

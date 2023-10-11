@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "phantasm:block/pream_slab"
+    },
+    "type=double": {
+      "model": "phantasm:block/pream_planks"
+    },
+    "type=top": {
+      "model": "phantasm:block/pream_slab_top"
+    }
+  }
+}

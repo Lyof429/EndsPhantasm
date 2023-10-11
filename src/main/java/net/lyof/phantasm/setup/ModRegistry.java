@@ -9,6 +9,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.tag.BlockTags;
@@ -23,10 +24,11 @@ import java.util.Map;
 
 public class ModRegistry {
     public static class BlockBuilder {
-        protected BlockBuilder(Identifier id, Block block) {
+        protected BlockBuilder(Identifier id, Block block, boolean item) {
             this.id = id;
             this.block = Registry.register(Registries.BLOCK, id, block);
-            ModRegistry.ofItem(id.getPath(), new BlockItem(block, new FabricItemSettings())).build();
+            if (item)
+                ModRegistry.ofItem(id.getPath(), new BlockItem(block, new FabricItemSettings())).build();
         }
 
         public Block build() {
@@ -45,6 +47,28 @@ public class ModRegistry {
         public BlockBuilder tag(TagKey<Block> tagname) {
             BLOCK_TAGS.putIfAbsent(tagname, new ArrayList<>());
             BLOCK_TAGS.get(tagname).add(this.block);
+            return this;
+        }
+
+        @SafeVarargs
+        public final BlockBuilder tag(TagKey<Block>... tags) {
+            for (TagKey<Block> tagname : tags) {
+                this.tag(tagname);
+            }
+            return this;
+        }
+
+        public BlockBuilder tagitem(TagKey<Item> tagname) {
+            ITEM_TAGS.putIfAbsent(tagname, new ArrayList<>());
+            ITEM_TAGS.get(tagname).add(this.block.asItem());
+            return this;
+        }
+
+        @SafeVarargs
+        public final BlockBuilder tagitem(TagKey<Item>... tags) {
+            for (TagKey<Item> tagname : tags) {
+                this.tagitem(tagname);
+            }
             return this;
         }
 
@@ -83,6 +107,21 @@ public class ModRegistry {
             BLOCK_CUTOUT.add(this.block);
             return this;
         }
+
+        public BlockBuilder fuel(int duration) {
+            ITEM_BURNABLE.put(this.block, duration);
+            return this;
+        }
+
+        public BlockBuilder flammable(int duration, int spread) {
+            BLOCK_FLAMMABLE.put(this.block, new Pair<>(duration, spread));
+            return this;
+        }
+
+        public BlockBuilder strip(Block stripped) {
+            BLOCK_STRIPPED.putIfAbsent(this.block, stripped);
+            return this;
+        }
     }
 
 
@@ -106,21 +145,30 @@ public class ModRegistry {
             return this;
         }
 
+        @SafeVarargs
+        public final ItemBuilder tag(TagKey<Item>... tags) {
+            for (TagKey<Item> tagname : tags) {
+                this.tag(tagname);
+            }
+            return this;
+        }
+
         public ItemBuilder model(Model model) {
             ITEM_MODELS.put(this.item, model);
             return this;
         }
-    }
 
-
-    public static class RecipeBuilder {
-        protected RecipeBuilder() {}
+        public ItemBuilder fuel(int duration) {
+            ITEM_BURNABLE.put(this.item, duration);
+            return this;
+        }
     }
 
 
     public enum Models {
         CUBE,
         PILLAR,
+        WOOD,
         STAIRS,
         SLAB
     }
@@ -133,7 +181,11 @@ public class ModRegistry {
 
 
     public static BlockBuilder ofBlock(String id, Block block) {
-        return new BlockBuilder(Phantasm.makeID(id), block);
+        return ModRegistry.ofBlock(id, block, true);
+    }
+
+    public static BlockBuilder ofBlock(String id, Block block, boolean item) {
+        return new BlockBuilder(Phantasm.makeID(id), block, item);
     }
 
     public static ItemBuilder ofItem(String id, Item item) {
@@ -142,25 +194,32 @@ public class ModRegistry {
 
 
     public static void registerStairsAndSlab(Block parent, Block stairs, Block slab) {
-        BLOCK_STAIRS_SLABS.putIfAbsent(parent, new ArrayList<>());
-        BLOCK_STAIRS_SLABS.get(parent).add(new Pair<>(stairs, Models.STAIRS));
-        BLOCK_STAIRS_SLABS.get(parent).add(new Pair<>(slab, Models.SLAB));
+        registerSet(parent, Map.of(
+                Models.STAIRS, stairs,
+                Models.SLAB, slab
+        ));
+    }
 
-        BLOCK_MODELS.putIfAbsent(Models.STAIRS, new ArrayList<>());
-        BLOCK_MODELS.putIfAbsent(Models.SLAB, new ArrayList<>());
-        BLOCK_MODELS.get(Models.STAIRS).add(stairs);
-        BLOCK_MODELS.get(Models.SLAB).add(slab);
+    public static void registerSet(Block parent, Map<Models, Block> set) {
+        BLOCK_SETS.putIfAbsent(parent, set);
+        for (Models model : set.keySet()) {
+            BLOCK_MODELS.putIfAbsent(model, new ArrayList<>());
+            BLOCK_MODELS.get(model).add(set.get(model));
+        }
     }
 
 
     public static List<Block> BLOCKS = new ArrayList<>();
     public static Map<TagKey<Block>, List<Block>> BLOCK_TAGS = new HashMap<>();
     public static List<Block> BLOCK_AUTODROPS = new ArrayList<>();
+    public static Map<Block, Block> BLOCK_STRIPPED = new HashMap<>();
+    public static Map<Block, Map<Models, Block>> BLOCK_SETS = new HashMap<>();
     public static Map<Models, List<Block>> BLOCK_MODELS = new HashMap<>();
-    public static Map<Block, List<Pair<Block, Models>>> BLOCK_STAIRS_SLABS = new HashMap<>();
     public static List<Block> BLOCK_CUTOUT = new ArrayList<>();
+    public static Map<Block, Pair<Integer, Integer>> BLOCK_FLAMMABLE = new HashMap<>();
 
     public static List<Item> ITEMS = new ArrayList<>();
     public static Map<TagKey<Item>, List<Item>> ITEM_TAGS = new HashMap<>();
     public static Map<Item, Model> ITEM_MODELS = new HashMap<>();
+    public static Map<ItemConvertible, Integer> ITEM_BURNABLE = new HashMap<>();
 }

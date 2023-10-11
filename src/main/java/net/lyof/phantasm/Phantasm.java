@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.item.ModItemGroups;
 import net.lyof.phantasm.item.ModItems;
+import net.lyof.phantasm.setup.ModDataGenerator;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,10 @@ public class Phantasm implements ModInitializer {
 		ModItems.register();
 		ModItemGroups.register();
 		ModBlocks.register();
+
+		ModDataGenerator.registerBurnable();
+		ModDataGenerator.registerFuels();
+		ModDataGenerator.registerStripped();
 	}
 
 	public static Identifier makeID(String id) {

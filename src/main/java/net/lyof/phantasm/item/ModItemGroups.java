@@ -18,10 +18,17 @@ public class ModItemGroups {
                     .entries((displayContext, entries) -> {
                         if (false) return;
 
-                        //for (Item item : ModRegistry.ITEMS)
-                        //    entries.add(item);
 
                         entries.add(ModBlocks.FALLEN_STAR);
+
+                        entries.add(ModBlocks.PREAM_LOG);
+                        entries.add(ModBlocks.PREAM_WOOD);
+                        entries.add(ModBlocks.STRIPPED_PREAM_LOG);
+                        entries.add(ModBlocks.STRIPPED_PREAM_WOOD);
+
+                        entries.add(ModBlocks.PREAM_PLANKS);
+                        entries.add(ModBlocks.PREAM_STAIRS);
+                        entries.add(ModBlocks.PREAM_SLAB);
 
                         entries.add(ModItems.PREAM_BERRY);
 
@@ -51,9 +58,12 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.POLISHED_OBSIDIAN);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS);
-                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS);
-                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN_STAIRS);
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN_SLAB);
 
+
+                        //for (Item item : ModRegistry.ITEMS)
+                        //    entries.add(item);
                     })
                     .build());
 

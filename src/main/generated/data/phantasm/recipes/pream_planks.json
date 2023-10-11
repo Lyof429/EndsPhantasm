@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "phantasm:pream_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "phantasm:pream_planks"
+  }
+}

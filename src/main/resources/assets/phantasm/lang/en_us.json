@@ -1,6 +1,17 @@
 {
   "block.phantasm.fallen_star": "Fallen Star",
 
+  "block.phantasm.pream_log": "Pream Log",
+  "block.phantasm.pream_wood": "Pream Wood",
+  "block.phantasm.stripped_pream_log": "Stripped Pream Log",
+  "block.phantasm.stripped_pream_wood": "Stripped Pream Wood",
+
+  "block.phantasm.pream_planks": "Pream Planks",
+  "block.phantasm.pream_stairs": "Pream Stairs",
+  "block.phantasm.pream_slab": "Pream Slab",
+
+  "item.phantasm.pream_berry": "Pream Berry",
+
   "block.phantasm.crystal_shard": "Crystal Shard",
   "block.phantasm.void_crystal_shard": "Void Crystal Shard",
 
@@ -26,8 +37,6 @@
   "block.phantasm.polished_obsidian_bricks": "Polished Obsidian Bricks",
   "block.phantasm.polished_obsidian_bricks_stairs": "Polished Obsidian Bricks Stairs",
   "block.phantasm.polished_obsidian_bricks_slab": "Polished Obsidian Bricks Slab",
-
-  "item.phantasm.pream_berry": "Pream Berry",
 
   "itemgroup.phantasm": "Phantasm",
 

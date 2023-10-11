@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "phantasm:block/pream_log",
+    "side": "phantasm:block/pream_log"
+  }
+}

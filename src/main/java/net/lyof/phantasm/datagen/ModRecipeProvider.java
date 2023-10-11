@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SlabBlock;
@@ -15,10 +16,10 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
-import net.minecraft.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 public class ModRecipeProvider extends FabricRecipeProvider {
@@ -34,7 +35,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         List<ItemConvertible> void_crystal = List.of(ModBlocks.VOID_CRYSTAL_TILES, ModBlocks.VOID_CRYSTAL_TILES_STAIRS,
                 ModBlocks.VOID_CRYSTAL_TILES_SLAB, ModBlocks.VOID_CRYSTAL_PILLAR);
         List<ItemConvertible> polished_obsidian = List.of(ModBlocks.POLISHED_OBSIDIAN, ModBlocks.POLISHED_OBSIDIAN_BRICKS,
-                ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS, ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
+                ModBlocks.POLISHED_OBSIDIAN_STAIRS, ModBlocks.POLISHED_OBSIDIAN_SLAB);
 
         result.add(crystal);
         result.add(void_crystal);
@@ -54,14 +55,15 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             }
         }
 
-        for (Block parent : ModRegistry.BLOCK_STAIRS_SLABS.keySet()) {
-            for (Pair<Block, ModRegistry.Models> entry : ModRegistry.BLOCK_STAIRS_SLABS.get(parent)) {
-                if (entry.getRight() == ModRegistry.Models.STAIRS)
-                    createStairsRecipe(entry.getLeft(), Ingredient.ofItems(parent))
+        for (Block parent : ModRegistry.BLOCK_SETS.keySet()) {
+            for (Map.Entry<ModRegistry.Models, Block> entry : ModRegistry.BLOCK_SETS.get(parent).entrySet()) {
+                if (entry.getKey() == ModRegistry.Models.STAIRS) {
+                    createStairsRecipe(entry.getValue(), Ingredient.ofItems(parent))
                             .criterion(hasItem(parent), conditionsFromItem(parent))
                             .offerTo(exporter);
-                if (entry.getRight() == ModRegistry.Models.SLAB)
-                    offerSlabRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, entry.getLeft(), parent);
+                }
+                if (entry.getKey() == ModRegistry.Models.SLAB)
+                    offerSlabRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, entry.getValue(), parent);
             }
         }
 
@@ -100,5 +102,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.VOID_CRYSTAL_BLOCK, ModBlocks.VOID_CRYSTAL_SHARD);
         // Void Crystal Pillar
         offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.VOID_CRYSTAL_PILLAR, ModBlocks.VOID_CRYSTAL_TILES_SLAB);
+
+        // Pream Planks
+        offerPlanksRecipe(exporter, ModBlocks.PREAM_PLANKS, ModTags.Items.PREAM_LOGS, 4);
     }
 }

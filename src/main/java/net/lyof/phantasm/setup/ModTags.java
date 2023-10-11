@@ -10,6 +10,7 @@ import net.minecraft.registry.tag.TagKey;
 public class ModTags {
     public static class Items {
         public static final TagKey<Item> XP_BOOSTED = create("gets_xp_speed_boost");
+        public static final TagKey<Item> PREAM_LOGS = create("pream_logs");
 
 
         private static TagKey<Item> create(String id) {

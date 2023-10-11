@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "phantasm:stripped_pream_log",
+    "phantasm:pream_log",
+    "phantasm:stripped_pream_wood",
+    "phantasm:pream_wood"
+  ]
+}

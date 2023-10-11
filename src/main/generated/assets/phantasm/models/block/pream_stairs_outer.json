@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "phantasm:block/pream_planks",
+    "side": "phantasm:block/pream_planks",
+    "top": "phantasm:block/pream_planks"
+  }
+}

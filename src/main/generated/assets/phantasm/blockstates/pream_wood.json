@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "phantasm:block/pream_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "phantasm:block/pream_wood"
+    },
+    "axis=z": {
+      "model": "phantasm:block/pream_wood",
+      "x": 90
+    }
+  }
+}

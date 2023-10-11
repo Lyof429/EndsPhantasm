@@ -7,6 +7,10 @@
     "phantasm:pream_wood",
     "phantasm:pream_planks",
     "phantasm:pream_stairs",
-    "phantasm:pream_slab"
+    "phantasm:pream_slab",
+    "phantasm:pream_pressure_plate",
+    "phantasm:pream_button",
+    "phantasm:pream_fence",
+    "phantasm:pream_fence_gate"
   ]
 }

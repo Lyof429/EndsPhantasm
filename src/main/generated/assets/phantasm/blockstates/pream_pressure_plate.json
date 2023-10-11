@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "phantasm:block/pream_pressure_plate"
+    },
+    "powered=true": {
+      "model": "phantasm:block/pream_pressure_plate_down"
+    }
+  }
+}

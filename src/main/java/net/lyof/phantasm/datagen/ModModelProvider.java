@@ -46,6 +46,14 @@ public class ModModelProvider extends FabricModelProvider {
                         pool.stairs(entry.getValue());
                     if (entry.getKey() == ModRegistry.Models.SLAB)
                         pool.slab(entry.getValue());
+                    if (entry.getKey() == ModRegistry.Models.BUTTON)
+                        pool.button(entry.getValue());
+                    if (entry.getKey() == ModRegistry.Models.PRESSURE_PLATE)
+                        pool.pressurePlate(entry.getValue());
+                    if (entry.getKey() == ModRegistry.Models.FENCE)
+                        pool.fence(entry.getValue());
+                    if (entry.getKey() == ModRegistry.Models.FENCE_GATE)
+                        pool.fenceGate(entry.getValue());
                 }
             }
         }

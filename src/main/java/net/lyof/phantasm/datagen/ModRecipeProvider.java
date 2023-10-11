@@ -57,13 +57,29 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
         for (Block parent : ModRegistry.BLOCK_SETS.keySet()) {
             for (Map.Entry<ModRegistry.Models, Block> entry : ModRegistry.BLOCK_SETS.get(parent).entrySet()) {
-                if (entry.getKey() == ModRegistry.Models.STAIRS) {
+                if (entry.getKey() == ModRegistry.Models.STAIRS)
                     createStairsRecipe(entry.getValue(), Ingredient.ofItems(parent))
                             .criterion(hasItem(parent), conditionsFromItem(parent))
                             .offerTo(exporter);
-                }
+
                 if (entry.getKey() == ModRegistry.Models.SLAB)
                     offerSlabRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, entry.getValue(), parent);
+
+                if (entry.getKey() == ModRegistry.Models.PRESSURE_PLATE)
+                    offerPressurePlateRecipe(exporter, entry.getValue(), parent);
+
+                if (entry.getKey() == ModRegistry.Models.BUTTON)
+                    offerSingleOutputShapelessRecipe(exporter, entry.getValue(), parent, "pream_button");
+
+                if (entry.getKey() == ModRegistry.Models.FENCE)
+                    createFenceRecipe(entry.getValue(), Ingredient.ofItems(parent))
+                            .criterion(hasItem(parent), conditionsFromItem(parent))
+                            .offerTo(exporter);
+
+                if (entry.getKey() == ModRegistry.Models.FENCE_GATE)
+                    createFenceGateRecipe(entry.getValue(), Ingredient.ofItems(parent))
+                            .criterion(hasItem(parent), conditionsFromItem(parent))
+                            .offerTo(exporter);
             }
         }
 

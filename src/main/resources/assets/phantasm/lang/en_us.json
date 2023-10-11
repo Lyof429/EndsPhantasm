@@ -10,6 +10,11 @@
   "block.phantasm.pream_stairs": "Pream Stairs",
   "block.phantasm.pream_slab": "Pream Slab",
 
+  "block.phantasm.pream_fence": "Pream Fence",
+  "block.phantasm.pream_fence_gate": "Pream Fence Gate",
+  "block.phantasm.pream_pressure_plate": "Pream Pressure Plate",
+  "block.phantasm.pream_button": "Pream Button",
+
   "item.phantasm.pream_berry": "Pream Berry",
 
   "block.phantasm.crystal_shard": "Crystal Shard",

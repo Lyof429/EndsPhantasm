@@ -170,7 +170,11 @@ public class ModRegistry {
         PILLAR,
         WOOD,
         STAIRS,
-        SLAB
+        SLAB,
+        BUTTON,
+        PRESSURE_PLATE,
+        FENCE,
+        FENCE_GATE
     }
 
     public static class Foods {

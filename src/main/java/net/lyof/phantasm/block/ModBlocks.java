@@ -1,6 +1,7 @@
 package net.lyof.phantasm.block;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.custom.CrystalShardBlock;
@@ -25,7 +26,11 @@ public class ModBlocks {
         ModRegistry.registerSet(STRIPPED_PREAM_LOG, Map.of(ModRegistry.Models.WOOD, STRIPPED_PREAM_WOOD));
         ModRegistry.registerSet(PREAM_PLANKS, Map.of(
                 ModRegistry.Models.STAIRS, PREAM_STAIRS,
-                ModRegistry.Models.SLAB, PREAM_SLAB
+                ModRegistry.Models.SLAB, PREAM_SLAB,
+                ModRegistry.Models.BUTTON, PREAM_BUTTON,
+                ModRegistry.Models.PRESSURE_PLATE, PREAM_PRESSURE_PLATE,
+                ModRegistry.Models.FENCE, PREAM_FENCE,
+                ModRegistry.Models.FENCE_GATE, PREAM_FENCE_GATE
         ));
     }
 
@@ -145,15 +150,27 @@ public class ModBlocks {
             .tool("_axe")
             .tag(BlockTags.WOODEN_SLABS).tagitem(ItemTags.WOODEN_SLABS)
             .flammable(5, 20).fuel(300).drop().build();
-/*
-    public static final Block PREAM_WOOD = ModRegistry.ofBlock("pream_wood",
-                    new PillarBlock(PreamWoodMaterial))
-            .tool("_axe").strip(STRIPPED_PREAM_WOOD)
-            .tag(BlockTags.LOGS_THAT_BURN).tagitem(ItemTags.LOGS_THAT_BURN)
+
+    public static final Block PREAM_PRESSURE_PLATE = ModRegistry.ofBlock("pream_pressure_plate",
+                    new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, PreamPlankMaterial, BlockSetType.OAK))
+            .tool("_axe")
+            .tag(BlockTags.WOODEN_PRESSURE_PLATES, BlockTags.WALL_POST_OVERRIDE).tagitem(ItemTags.WOODEN_PRESSURE_PLATES)
+            .fuel(300).drop().build();
+    public static final Block PREAM_BUTTON = ModRegistry.ofBlock("pream_button",
+                    new ButtonBlock(PreamPlankMaterial, BlockSetType.OAK, 10, true))
+            .tool("_axe")
+            .tag(BlockTags.WOODEN_BUTTONS).tagitem(ItemTags.WOODEN_BUTTONS)
+            .fuel(100).drop().build();
+
+    public static final Block PREAM_FENCE = ModRegistry.ofBlock("pream_fence",
+                    new FenceBlock(PreamPlankMaterial))
+            .tool("_axe")
+            .tag(BlockTags.WOODEN_FENCES).tagitem(ItemTags.WOODEN_FENCES)
             .flammable(5, 5).fuel(300).drop().build();
-    public static final Block PREAM_WOOD = ModRegistry.ofBlock("pream_wood",
-                    new PillarBlock(PreamWoodMaterial))
-            .tool("_axe").strip(STRIPPED_PREAM_WOOD)
-            .tag(BlockTags.LOGS_THAT_BURN).tagitem(ItemTags.LOGS_THAT_BURN)
-            .flammable(5, 5).fuel(300).drop().build();*/
+    public static final Block PREAM_FENCE_GATE = ModRegistry.ofBlock("pream_fence_gate",
+                    new FenceGateBlock(PreamPlankMaterial, WoodType.OAK))
+            .tool("_axe")
+            .tag(BlockTags.WOODEN_FENCES, BlockTags.FENCE_GATES, BlockTags.UNSTABLE_BOTTOM_CENTER)
+            .tagitem(ItemTags.WOODEN_FENCES, ItemTags.FENCE_GATES)
+            .flammable(5, 5).fuel(300).drop().build();
 }

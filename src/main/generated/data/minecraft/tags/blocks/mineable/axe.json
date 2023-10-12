@@ -11,6 +11,10 @@
     "phantasm:pream_pressure_plate",
     "phantasm:pream_button",
     "phantasm:pream_fence",
-    "phantasm:pream_fence_gate"
+    "phantasm:pream_fence_gate",
+    "phantasm:pream_sign",
+    "phantasm:pream_wall_sign",
+    "phantasm:pream_hanging_sign",
+    "phantasm:pream_wall_hanging_sign"
   ]
 }

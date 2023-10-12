@@ -10,6 +10,7 @@ import net.minecraft.block.*;
 import net.minecraft.data.client.Models;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.BlockSoundGroup;
 
 import java.util.Map;
@@ -30,7 +31,11 @@ public class ModBlocks {
                 ModRegistry.Models.BUTTON, PREAM_BUTTON,
                 ModRegistry.Models.PRESSURE_PLATE, PREAM_PRESSURE_PLATE,
                 ModRegistry.Models.FENCE, PREAM_FENCE,
-                ModRegistry.Models.FENCE_GATE, PREAM_FENCE_GATE
+                ModRegistry.Models.FENCE_GATE, PREAM_FENCE_GATE,
+                ModRegistry.Models.SIGN, PREAM_SIGN,
+                ModRegistry.Models.WALL_SIGN, PREAM_WALL_SIGN,
+                ModRegistry.Models.HANGING_SIGN, PREAM_HANGING_SIGN,
+                ModRegistry.Models.WALL_HANGING_SIGN, PREAM_WALL_HANGING_SIGN
         ));
     }
 
@@ -45,6 +50,8 @@ public class ModBlocks {
             FabricBlockSettings.copyOf(Blocks.OAK_LOG).mapColor(MapColor.BROWN);
     private static final FabricBlockSettings PreamPlankMaterial =
             FabricBlockSettings.copyOf(Blocks.OAK_PLANKS).mapColor(MapColor.TERRACOTTA_YELLOW);
+    private static final FabricBlockSettings PreamPassableMaterial =
+            FabricBlockSettings.copyOf(Blocks.OAK_SIGN);
     //
 
 
@@ -152,12 +159,12 @@ public class ModBlocks {
             .flammable(5, 20).fuel(300).drop().build();
 
     public static final Block PREAM_PRESSURE_PLATE = ModRegistry.ofBlock("pream_pressure_plate",
-                    new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, PreamPlankMaterial, BlockSetType.OAK))
+                    new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, PreamPassableMaterial, BlockSetType.OAK))
             .tool("_axe")
             .tag(BlockTags.WOODEN_PRESSURE_PLATES, BlockTags.WALL_POST_OVERRIDE).tagitem(ItemTags.WOODEN_PRESSURE_PLATES)
             .fuel(300).drop().build();
     public static final Block PREAM_BUTTON = ModRegistry.ofBlock("pream_button",
-                    new ButtonBlock(PreamPlankMaterial, BlockSetType.OAK, 10, true))
+                    new ButtonBlock(PreamPassableMaterial, BlockSetType.OAK, 10, true))
             .tool("_axe")
             .tag(BlockTags.WOODEN_BUTTONS).tagitem(ItemTags.WOODEN_BUTTONS)
             .fuel(100).drop().build();
@@ -173,4 +180,22 @@ public class ModBlocks {
             .tag(BlockTags.WOODEN_FENCES, BlockTags.FENCE_GATES, BlockTags.UNSTABLE_BOTTOM_CENTER)
             .tagitem(ItemTags.WOODEN_FENCES, ItemTags.FENCE_GATES)
             .flammable(5, 5).fuel(300).drop().build();
+
+    public static final Block PREAM_SIGN = ModRegistry.ofBlock("pream_sign",
+                    new SignBlock(PreamPassableMaterial, WoodType.OAK), false)
+            .tag(BlockTags.SIGNS, BlockTags.STANDING_SIGNS, BlockTags.WALL_POST_OVERRIDE)
+            .tool("_axe").build();
+    public static final Block PREAM_WALL_SIGN = ModRegistry.ofBlock("pream_wall_sign",
+                    new WallSignBlock(PreamPassableMaterial, WoodType.OAK), false)
+            .tag(BlockTags.SIGNS, BlockTags.WALL_SIGNS, BlockTags.WALL_POST_OVERRIDE)
+            .tool("_axe").build();
+
+    public static final Block PREAM_HANGING_SIGN = ModRegistry.ofBlock("pream_hanging_sign",
+                    new HangingSignBlock(PreamPassableMaterial, WoodType.OAK), false)
+            .tag(BlockTags.ALL_HANGING_SIGNS, BlockTags.CEILING_HANGING_SIGNS)
+            .tool("_axe").build();
+    public static final Block PREAM_WALL_HANGING_SIGN = ModRegistry.ofBlock("pream_wall_hanging_sign",
+                    new WallHangingSignBlock(PreamPassableMaterial, WoodType.OAK), false)
+            .tag(BlockTags.ALL_HANGING_SIGNS, BlockTags.WALL_HANGING_SIGNS)
+            .tool("_axe").build();
 }

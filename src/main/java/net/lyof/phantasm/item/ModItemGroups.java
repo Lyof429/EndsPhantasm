@@ -32,8 +32,11 @@ public class ModItemGroups {
                         entries.add(ModBlocks.PREAM_SLAB);
                         entries.add(ModBlocks.PREAM_FENCE);
                         entries.add(ModBlocks.PREAM_FENCE_GATE);
+
                         entries.add(ModBlocks.PREAM_PRESSURE_PLATE);
                         entries.add(ModBlocks.PREAM_BUTTON);
+                        entries.add(ModItems.PREAM_SIGN);
+                        entries.add(ModItems.PREAM_HANGING_SIGN);
 
                         entries.add(ModItems.PREAM_BERRY);
 
@@ -120,6 +123,10 @@ public class ModItemGroups {
             entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS);
             entries.add(ModBlocks.POLISHED_OBSIDIAN_STAIRS);
             entries.add(ModBlocks.POLISHED_OBSIDIAN_SLAB);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
+            entries.addAfter(Items.WARPED_SIGN, ModItems.PREAM_SIGN);
+            entries.addAfter(ModItems.PREAM_SIGN, ModItems.PREAM_HANGING_SIGN);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             entries.add(ModItems.CRYSTALLINE_SHOVEL);

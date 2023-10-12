@@ -1,6 +1,7 @@
 package net.lyof.phantasm.item;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.setup.ModTags;
@@ -31,4 +32,13 @@ public class ModItems {
     public static final Item CRYSTALLINE_SWORD = ModRegistry.ofItem("crystalline_sword",
                     new SwordItem(ModTiers.CRYSTALLINE, 2, 1f, new FabricItemSettings()))
             .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED).build();
+
+    public static final Item PREAM_SIGN = ModRegistry.ofItem("pream_sign",
+                    new SignItem(new FabricItemSettings(), ModBlocks.PREAM_SIGN, ModBlocks.PREAM_WALL_SIGN))
+            .fuel(200)
+            .build();
+    public static final Item PREAM_HANGING_SIGN = ModRegistry.ofItem("pream_hanging_sign",
+                    new HangingSignItem(ModBlocks.PREAM_HANGING_SIGN, ModBlocks.PREAM_WALL_HANGING_SIGN, new FabricItemSettings()))
+            .fuel(200)
+            .build();
 }

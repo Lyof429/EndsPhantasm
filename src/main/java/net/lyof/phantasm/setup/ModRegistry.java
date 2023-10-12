@@ -174,7 +174,11 @@ public class ModRegistry {
         BUTTON,
         PRESSURE_PLATE,
         FENCE,
-        FENCE_GATE
+        FENCE_GATE,
+        SIGN,
+        WALL_SIGN,
+        HANGING_SIGN,
+        WALL_HANGING_SIGN
     }
 
     public static class Foods {

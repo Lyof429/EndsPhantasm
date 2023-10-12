@@ -80,6 +80,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     createFenceGateRecipe(entry.getValue(), Ingredient.ofItems(parent))
                             .criterion(hasItem(parent), conditionsFromItem(parent))
                             .offerTo(exporter);
+
+                if (entry.getKey() == ModRegistry.Models.SIGN)
+                    createSignRecipe(entry.getValue(), Ingredient.ofItems(parent))
+                            .criterion(hasItem(parent), conditionsFromItem(parent))
+                            .offerTo(exporter);
+
+                if (entry.getKey() == ModRegistry.Models.HANGING_SIGN)
+                    offerHangingSignRecipe(exporter, entry.getValue(), parent);
             }
         }
 

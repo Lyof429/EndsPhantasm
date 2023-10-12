@@ -3,12 +3,14 @@ package net.lyof.phantasm.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Model;
 import net.minecraft.data.client.Models;
+import net.minecraft.data.family.BlockFamily;
 import net.minecraft.item.Item;
 import net.minecraft.util.Pair;
 
@@ -29,6 +31,8 @@ public class ModModelProvider extends FabricModelProvider {
             generator.registerSimpleCubeAll(block);
         for (Block block : ModRegistry.BLOCK_MODELS.get(ModRegistry.Models.PILLAR))
             generator.registerLog(block).log(block);
+
+        //generator.registerHangingSign();
 
         for (Block block : ModRegistry.BLOCK_SETS.keySet()) {
             if (ModRegistry.BLOCK_SETS.get(block).containsKey(ModRegistry.Models.WOOD)) {
@@ -54,6 +58,13 @@ public class ModModelProvider extends FabricModelProvider {
                         pool.fence(entry.getValue());
                     if (entry.getKey() == ModRegistry.Models.FENCE_GATE)
                         pool.fenceGate(entry.getValue());
+                    if (entry.getKey() == ModRegistry.Models.SIGN)
+                        pool.family(new BlockFamily.Builder(block)
+                                .sign(entry.getValue(), ModRegistry.BLOCK_SETS.get(block).get(ModRegistry.Models.WALL_SIGN))
+                                .build());
+                    if (entry.getKey() == ModRegistry.Models.HANGING_SIGN)
+                        generator.registerHangingSign(ModBlocks.STRIPPED_PREAM_LOG,
+                                entry.getValue(), ModRegistry.BLOCK_SETS.get(block).get(ModRegistry.Models.WALL_HANGING_SIGN));
                 }
             }
         }

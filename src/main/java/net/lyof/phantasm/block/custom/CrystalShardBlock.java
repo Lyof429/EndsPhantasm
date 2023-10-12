@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Waterloggable;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -38,6 +40,11 @@ public class CrystalShardBlock extends Block implements Waterloggable {
     }
 
     @Override
+    public FluidState getFluidState(BlockState state) {
+        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+    }
+
+    @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         return isValidPos(world, pos.up(), Direction.DOWN) || isValidPos(world, pos.down(), Direction.UP);
     }
@@ -47,6 +54,8 @@ public class CrystalShardBlock extends Block implements Waterloggable {
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         World world = ctx.getWorld();
         BlockPos pos = ctx.getBlockPos();
+        BlockState state = this.getDefaultState()
+                .with(WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).isOf(Fluids.WATER));;
 
         boolean down = world.getBlockState(pos.up()).isSideSolidFullSquare(world, pos, Direction.DOWN)
                 || world.getBlockState(pos.up()).getBlock() == this.asBlock();
@@ -54,17 +63,21 @@ public class CrystalShardBlock extends Block implements Waterloggable {
                 || world.getBlockState(pos.down()).getBlock() == this.asBlock();
 
         if (down && up) {
-            if (ctx.getSide() == Direction.DOWN) return this.getDefaultState().with(DIRECTION, Direction.DOWN);
+            if (ctx.getSide() == Direction.DOWN) return state.with(DIRECTION, Direction.DOWN);
         }
         else if (down)
-            return this.getDefaultState().with(DIRECTION, Direction.DOWN);
+            return state.with(DIRECTION, Direction.DOWN);
 
-        return super.getPlacementState(ctx);
+        return state;
     }
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world,
                                                 BlockPos pos, BlockPos neighborPos) {
+
+        if (state.get(WATERLOGGED)) {
+            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+        }
 
         if (isValidPos(world, neighborPos, direction.getOpposite())) {
             if (direction == state.get(DIRECTION))

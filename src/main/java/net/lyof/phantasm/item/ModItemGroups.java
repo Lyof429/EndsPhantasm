@@ -125,17 +125,18 @@ public class ModItemGroups {
             entries.add(ModBlocks.POLISHED_OBSIDIAN_SLAB);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
-            entries.addAfter(Items.WARPED_SIGN, ModItems.PREAM_SIGN);
+            entries.addAfter(Items.WARPED_HANGING_SIGN, ModItems.PREAM_SIGN);
             entries.addAfter(ModItems.PREAM_SIGN, ModItems.PREAM_HANGING_SIGN);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
-            entries.add(ModItems.CRYSTALLINE_SHOVEL);
-            entries.add(ModItems.CRYSTALLINE_PICKAXE);
-            entries.add(ModItems.CRYSTALLINE_AXE);
-            entries.add(ModItems.CRYSTALLINE_HOE);
+            entries.addAfter(Items.IRON_HOE, ModItems.CRYSTALLINE_SHOVEL);
+            entries.addAfter(ModItems.CRYSTALLINE_SHOVEL, ModItems.CRYSTALLINE_PICKAXE);
+            entries.addAfter(ModItems.CRYSTALLINE_PICKAXE, ModItems.CRYSTALLINE_AXE);
+            entries.addAfter(ModItems.CRYSTALLINE_AXE, ModItems.CRYSTALLINE_HOE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
-            entries.add(ModItems.CRYSTALLINE_SWORD);
+            entries.addAfter(Items.IRON_SWORD, ModItems.CRYSTALLINE_SWORD);
+            entries.addAfter(Items.IRON_AXE, ModItems.CRYSTALLINE_AXE);
         });
     }
 }

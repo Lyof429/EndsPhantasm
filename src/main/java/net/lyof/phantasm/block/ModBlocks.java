@@ -52,6 +52,8 @@ public class ModBlocks {
             FabricBlockSettings.copyOf(Blocks.OAK_PLANKS).mapColor(MapColor.TERRACOTTA_YELLOW);
     private static final FabricBlockSettings PreamPassableMaterial =
             FabricBlockSettings.copyOf(Blocks.OAK_SIGN);
+
+    public static final WoodType PREAM = new WoodTypeBuilder().register(Phantasm.makeID("pream"), BlockSetType.OAK);
     //
 
 
@@ -175,27 +177,27 @@ public class ModBlocks {
             .tag(BlockTags.WOODEN_FENCES).tagitem(ItemTags.WOODEN_FENCES)
             .flammable(5, 5).fuel(300).drop().build();
     public static final Block PREAM_FENCE_GATE = ModRegistry.ofBlock("pream_fence_gate",
-                    new FenceGateBlock(PreamPlankMaterial, WoodType.OAK))
+                    new FenceGateBlock(PreamPlankMaterial, PREAM))
             .tool("_axe")
             .tag(BlockTags.WOODEN_FENCES, BlockTags.FENCE_GATES, BlockTags.UNSTABLE_BOTTOM_CENTER)
             .tagitem(ItemTags.WOODEN_FENCES, ItemTags.FENCE_GATES)
             .flammable(5, 5).fuel(300).drop().build();
 
     public static final Block PREAM_SIGN = ModRegistry.ofBlock("pream_sign",
-                    new SignBlock(PreamPassableMaterial, WoodType.OAK), false)
+                    new SignBlock(PreamPassableMaterial, PREAM), false)
             .tag(BlockTags.SIGNS, BlockTags.STANDING_SIGNS, BlockTags.WALL_POST_OVERRIDE)
             .tool("_axe").build();
     public static final Block PREAM_WALL_SIGN = ModRegistry.ofBlock("pream_wall_sign",
-                    new WallSignBlock(PreamPassableMaterial, WoodType.OAK), false)
+                    new WallSignBlock(PreamPassableMaterial, PREAM), false)
             .tag(BlockTags.SIGNS, BlockTags.WALL_SIGNS, BlockTags.WALL_POST_OVERRIDE)
             .tool("_axe").build();
 
     public static final Block PREAM_HANGING_SIGN = ModRegistry.ofBlock("pream_hanging_sign",
-                    new HangingSignBlock(PreamPassableMaterial, WoodType.OAK), false)
+                    new HangingSignBlock(PreamPassableMaterial, PREAM), false)
             .tag(BlockTags.ALL_HANGING_SIGNS, BlockTags.CEILING_HANGING_SIGNS)
             .tool("_axe").build();
     public static final Block PREAM_WALL_HANGING_SIGN = ModRegistry.ofBlock("pream_wall_hanging_sign",
-                    new WallHangingSignBlock(PreamPassableMaterial, WoodType.OAK), false)
+                    new WallHangingSignBlock(PreamPassableMaterial, PREAM), false)
             .tag(BlockTags.ALL_HANGING_SIGNS, BlockTags.WALL_HANGING_SIGNS)
             .tool("_axe").build();
 }

@@ -2,9 +2,10 @@ package net.lyof.phantasm.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.item.ModItems;
+import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -16,6 +17,7 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.tag.ItemTags;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +102,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         createCondensingRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_OBSIDIAN_BRICKS,
                     Ingredient.ofItems(ModBlocks.POLISHED_OBSIDIAN))
                 .criterion(hasItem(ModBlocks.POLISHED_OBSIDIAN), conditionsFromItem(ModBlocks.POLISHED_OBSIDIAN))
-                .group("polished_obsidian").offerTo(exporter, Phantasm.makeID("polished_obsidian_bricks"));
+                .group("polished_obsidian_bricks").offerTo(exporter, Phantasm.makeID("polished_obsidian_bricks"));
 
         // Crystal Tiles
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYSTAL_TILES)
@@ -126,6 +128,62 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.VOID_CRYSTAL_BLOCK, ModBlocks.VOID_CRYSTAL_SHARD);
         // Void Crystal Pillar
         offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.VOID_CRYSTAL_PILLAR, ModBlocks.VOID_CRYSTAL_TILES_SLAB);
+
+        // Crystalline Sword
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.CRYSTALLINE_SWORD)
+                .pattern("C")
+                .pattern("V")
+                .pattern("S")
+                .input('C', ModBlocks.CRYSTAL_BLOCK).input('V', ModBlocks.VOID_CRYSTAL_BLOCK)
+                .input('S', Items.STICK)
+                .criterion(hasItem(ModBlocks.CRYSTAL_BLOCK), conditionsFromItem(ModBlocks.CRYSTAL_BLOCK))
+                .criterion(hasItem(ModBlocks.VOID_CRYSTAL_BLOCK), conditionsFromItem(ModBlocks.VOID_CRYSTAL_BLOCK))
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+                .group("crystalline_sword").offerTo(exporter, Phantasm.makeID("crystalline_sword"));
+        // Crystalline Shovel
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.CRYSTALLINE_SHOVEL)
+                .pattern("V")
+                .pattern("S")
+                .pattern("S")
+                .input('V', ModBlocks.VOID_CRYSTAL_BLOCK)
+                .input('S', Items.STICK)
+                .criterion(hasItem(ModBlocks.CRYSTAL_BLOCK), conditionsFromItem(ModBlocks.CRYSTAL_BLOCK))
+                .criterion(hasItem(ModBlocks.VOID_CRYSTAL_BLOCK), conditionsFromItem(ModBlocks.VOID_CRYSTAL_BLOCK))
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+                .group("crystalline_shovel").offerTo(exporter, Phantasm.makeID("crystalline_shovel"));
+        // Crystalline Pickaxe
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.CRYSTALLINE_PICKAXE)
+                .pattern("CVC")
+                .pattern(" S ")
+                .pattern(" S ")
+                .input('C', ModBlocks.CRYSTAL_BLOCK).input('V', ModBlocks.VOID_CRYSTAL_BLOCK)
+                .input('S', Items.STICK)
+                .criterion(hasItem(ModBlocks.CRYSTAL_BLOCK), conditionsFromItem(ModBlocks.CRYSTAL_BLOCK))
+                .criterion(hasItem(ModBlocks.VOID_CRYSTAL_BLOCK), conditionsFromItem(ModBlocks.VOID_CRYSTAL_BLOCK))
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+                .group("crystalline_pickaxe").offerTo(exporter, Phantasm.makeID("crystalline_pickaxe"));
+        // Crystalline Axe
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.CRYSTALLINE_AXE)
+                .pattern("CV")
+                .pattern("CS")
+                .pattern(" S")
+                .input('C', ModBlocks.CRYSTAL_BLOCK).input('V', ModBlocks.VOID_CRYSTAL_BLOCK)
+                .input('S', Items.STICK)
+                .criterion(hasItem(ModBlocks.CRYSTAL_BLOCK), conditionsFromItem(ModBlocks.CRYSTAL_BLOCK))
+                .criterion(hasItem(ModBlocks.VOID_CRYSTAL_BLOCK), conditionsFromItem(ModBlocks.VOID_CRYSTAL_BLOCK))
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+                .group("crystalline_axe").offerTo(exporter, Phantasm.makeID("crystalline_axe"));
+        // Crystalline Hoe
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.CRYSTALLINE_HOE)
+                .pattern("CV")
+                .pattern(" S")
+                .pattern(" S")
+                .input('C', ModBlocks.CRYSTAL_BLOCK).input('V', ModBlocks.VOID_CRYSTAL_BLOCK)
+                .input('S', Items.STICK)
+                .criterion(hasItem(ModBlocks.CRYSTAL_BLOCK), conditionsFromItem(ModBlocks.CRYSTAL_BLOCK))
+                .criterion(hasItem(ModBlocks.VOID_CRYSTAL_BLOCK), conditionsFromItem(ModBlocks.VOID_CRYSTAL_BLOCK))
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+                .group("crystalline_hoe").offerTo(exporter, Phantasm.makeID("crystalline_hoe"));
 
         // Pream Planks
         offerPlanksRecipe(exporter, ModBlocks.PREAM_PLANKS, ModTags.Items.PREAM_LOGS, 4);

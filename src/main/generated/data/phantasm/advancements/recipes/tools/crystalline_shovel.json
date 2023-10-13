@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_crystal_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "phantasm:crystal_block"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_stick": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:stick"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "phantasm:crystalline_shovel"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_void_crystal_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "phantasm:void_crystal_block"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_crystal_block",
+      "has_void_crystal_block",
+      "has_stick",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "phantasm:crystalline_shovel"
+    ]
+  },
+  "sends_telemetry_event": false
+}

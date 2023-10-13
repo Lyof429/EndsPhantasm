@@ -4,7 +4,6 @@ import net.lyof.phantasm.Phantasm;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 
 public class ModTags {
@@ -19,7 +18,7 @@ public class ModTags {
     }
 
     public static class Blocks {
-
+        public static final TagKey<Block> PREAM_BLOCKS = create("pream_blocks");
 
 
         private static TagKey<Block> create(String id) {

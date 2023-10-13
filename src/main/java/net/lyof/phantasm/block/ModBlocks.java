@@ -2,15 +2,14 @@ package net.lyof.phantasm.block;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
-import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.custom.CrystalShardBlock;
+import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.data.client.Models;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.BlockSoundGroup;
 
 import java.util.Map;
@@ -44,7 +43,7 @@ public class ModBlocks {
             FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE).luminance(4).emissiveLighting((a, b, c) -> true);
 
     private static final FabricBlockSettings PolishedObsidianMaterial =
-            FabricBlockSettings.copyOf(Blocks.OBSIDIAN).hardness(5);
+            FabricBlockSettings.copyOf(Blocks.OBSIDIAN).hardness(8);
 
     private static final FabricBlockSettings PreamWoodMaterial =
             FabricBlockSettings.copyOf(Blocks.OAK_LOG).mapColor(MapColor.BROWN);
@@ -64,7 +63,7 @@ public class ModBlocks {
 
     // Polished Obsidian Blockset
     public static final Block POLISHED_OBSIDIAN = ModRegistry.ofBlock("polished_obsidian",
-            new Block(PolishedObsidianMaterial))
+                    new Block(PolishedObsidianMaterial))
             .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe").drop().model().build();
     public static final Block POLISHED_OBSIDIAN_BRICKS = ModRegistry.ofBlock("polished_obsidian_bricks",
                     new Block(PolishedObsidianMaterial))
@@ -125,67 +124,68 @@ public class ModBlocks {
     public static final Block STRIPPED_PREAM_LOG = ModRegistry.ofBlock("stripped_pream_log",
                     new PillarBlock(PreamWoodMaterial))
             .tool("_axe")
-            .tag(BlockTags.LOGS_THAT_BURN).tagitem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
+            .tag(BlockTags.LOGS_THAT_BURN, ModTags.Blocks.PREAM_BLOCKS).tagitem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
             .flammable(5, 5).fuel(300).drop().build();
     public static final Block PREAM_LOG = ModRegistry.ofBlock("pream_log",
                     new PillarBlock(PreamWoodMaterial))
             .tool("_axe").strip(STRIPPED_PREAM_LOG)
-            .tag(BlockTags.LOGS_THAT_BURN).tagitem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
+            .tag(BlockTags.LOGS_THAT_BURN, ModTags.Blocks.PREAM_BLOCKS).tagitem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
             .flammable(5, 5).fuel(300).drop().build();
 
     public static final Block STRIPPED_PREAM_WOOD = ModRegistry.ofBlock("stripped_pream_wood",
                     new PillarBlock(PreamWoodMaterial))
             .tool("_axe")
-            .tag(BlockTags.LOGS_THAT_BURN).tagitem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
+            .tag(BlockTags.LOGS_THAT_BURN, ModTags.Blocks.PREAM_BLOCKS).tagitem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
             .flammable(5, 5).fuel(300).drop().build();
     public static final Block PREAM_WOOD = ModRegistry.ofBlock("pream_wood",
                     new PillarBlock(PreamWoodMaterial))
             .tool("_axe").strip(STRIPPED_PREAM_WOOD)
-            .tag(BlockTags.LOGS_THAT_BURN).tagitem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
+            .tag(BlockTags.LOGS_THAT_BURN, ModTags.Blocks.PREAM_BLOCKS).tagitem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
             .flammable(5, 5).fuel(300).drop().build();
 
     public static final Block PREAM_PLANKS = ModRegistry.ofBlock("pream_planks",
                     new Block(PreamPlankMaterial))
             .tool("_axe")
-            .tag(BlockTags.PLANKS).tagitem(ItemTags.PLANKS)
+            .tag(BlockTags.PLANKS, ModTags.Blocks.PREAM_BLOCKS).tagitem(ItemTags.PLANKS)
             .flammable(5, 20).fuel(300).drop().build();
     public static final Block PREAM_STAIRS = ModRegistry.ofBlock("pream_stairs",
                     new StairsBlock(PREAM_PLANKS.getDefaultState(), PreamPlankMaterial))
             .tool("_axe")
-            .tag(BlockTags.WOODEN_STAIRS).tagitem(ItemTags.WOODEN_STAIRS)
+            .tag(BlockTags.WOODEN_STAIRS, ModTags.Blocks.PREAM_BLOCKS).tagitem(ItemTags.WOODEN_STAIRS)
             .flammable(5, 20).fuel(300).drop().build();
     public static final Block PREAM_SLAB = ModRegistry.ofBlock("pream_slab",
                     new SlabBlock(PreamPlankMaterial))
             .tool("_axe")
-            .tag(BlockTags.WOODEN_SLABS).tagitem(ItemTags.WOODEN_SLABS)
+            .tag(BlockTags.WOODEN_SLABS, ModTags.Blocks.PREAM_BLOCKS).tagitem(ItemTags.WOODEN_SLABS)
             .flammable(5, 20).fuel(300).drop().build();
 
     public static final Block PREAM_PRESSURE_PLATE = ModRegistry.ofBlock("pream_pressure_plate",
                     new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, PreamPassableMaterial, BlockSetType.OAK))
             .tool("_axe")
-            .tag(BlockTags.WOODEN_PRESSURE_PLATES, BlockTags.WALL_POST_OVERRIDE).tagitem(ItemTags.WOODEN_PRESSURE_PLATES)
+            .tag(BlockTags.WOODEN_PRESSURE_PLATES, BlockTags.WALL_POST_OVERRIDE, ModTags.Blocks.PREAM_BLOCKS)
+            .tagitem(ItemTags.WOODEN_PRESSURE_PLATES)
             .fuel(300).drop().build();
     public static final Block PREAM_BUTTON = ModRegistry.ofBlock("pream_button",
                     new ButtonBlock(PreamPassableMaterial, BlockSetType.OAK, 10, true))
             .tool("_axe")
-            .tag(BlockTags.WOODEN_BUTTONS).tagitem(ItemTags.WOODEN_BUTTONS)
+            .tag(BlockTags.WOODEN_BUTTONS, ModTags.Blocks.PREAM_BLOCKS).tagitem(ItemTags.WOODEN_BUTTONS)
             .fuel(100).drop().build();
 
     public static final Block PREAM_FENCE = ModRegistry.ofBlock("pream_fence",
                     new FenceBlock(PreamPlankMaterial))
             .tool("_axe")
-            .tag(BlockTags.WOODEN_FENCES).tagitem(ItemTags.WOODEN_FENCES)
+            .tag(BlockTags.WOODEN_FENCES, ModTags.Blocks.PREAM_BLOCKS).tagitem(ItemTags.WOODEN_FENCES)
             .flammable(5, 5).fuel(300).drop().build();
     public static final Block PREAM_FENCE_GATE = ModRegistry.ofBlock("pream_fence_gate",
                     new FenceGateBlock(PreamPlankMaterial, PREAM))
             .tool("_axe")
-            .tag(BlockTags.WOODEN_FENCES, BlockTags.FENCE_GATES, BlockTags.UNSTABLE_BOTTOM_CENTER)
+            .tag(BlockTags.WOODEN_FENCES, BlockTags.FENCE_GATES, BlockTags.UNSTABLE_BOTTOM_CENTER, ModTags.Blocks.PREAM_BLOCKS)
             .tagitem(ItemTags.WOODEN_FENCES, ItemTags.FENCE_GATES)
             .flammable(5, 5).fuel(300).drop().build();
 
     public static final Block PREAM_SIGN = ModRegistry.ofBlock("pream_sign",
                     new SignBlock(PreamPassableMaterial, PREAM), false)
-            .tag(BlockTags.SIGNS, BlockTags.STANDING_SIGNS, BlockTags.WALL_POST_OVERRIDE)
+            .tag(BlockTags.SIGNS, BlockTags.STANDING_SIGNS, BlockTags.WALL_POST_OVERRIDE, ModTags.Blocks.PREAM_BLOCKS)
             .tool("_axe").build();
     public static final Block PREAM_WALL_SIGN = ModRegistry.ofBlock("pream_wall_sign",
                     new WallSignBlock(PreamPassableMaterial, PREAM), false)
@@ -194,10 +194,10 @@ public class ModBlocks {
 
     public static final Block PREAM_HANGING_SIGN = ModRegistry.ofBlock("pream_hanging_sign",
                     new HangingSignBlock(PreamPassableMaterial, PREAM), false)
-            .tag(BlockTags.ALL_HANGING_SIGNS, BlockTags.CEILING_HANGING_SIGNS)
+            .tag(BlockTags.ALL_HANGING_SIGNS, BlockTags.CEILING_HANGING_SIGNS, ModTags.Blocks.PREAM_BLOCKS)
             .tool("_axe").build();
     public static final Block PREAM_WALL_HANGING_SIGN = ModRegistry.ofBlock("pream_wall_hanging_sign",
                     new WallHangingSignBlock(PreamPassableMaterial, PREAM), false)
-            .tag(BlockTags.ALL_HANGING_SIGNS, BlockTags.WALL_HANGING_SIGNS)
+            .tag(BlockTags.ALL_HANGING_SIGNS, BlockTags.WALL_HANGING_SIGNS, ModTags.Blocks.PREAM_BLOCKS)
             .tool("_axe").build();
 }

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "crystalline_pickaxe",
+  "key": {
+    "C": {
+      "item": "phantasm:crystal_block"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "V": {
+      "item": "phantasm:void_crystal_block"
+    }
+  },
+  "pattern": [
+    "CVC",
+    " S ",
+    " S "
+  ],
+  "result": {
+    "item": "phantasm:crystalline_pickaxe"
+  },
+  "show_notification": true
+}

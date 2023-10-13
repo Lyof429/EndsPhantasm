@@ -79,6 +79,7 @@ public class ModItemGroups {
         return Registry.register(Registries.ITEM_GROUP, Phantasm.makeID(id), tab);
     }
 
+    @SuppressWarnings("all")
     public static void register() {
         Phantasm.log("Registering ItemGroups for modid : " + Phantasm.MOD_ID);
 

@@ -2,8 +2,12 @@ package net.lyof.phantasm.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemConvertible;
+
+import java.util.Map;
 
 public class ModLootTableProvider extends FabricBlockLootTableProvider {
     public ModLootTableProvider(FabricDataOutput dataOutput) {
@@ -12,11 +16,12 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-        for (Block block : ModRegistry.BLOCK_AUTODROPS) {
-            if (ModRegistry.BLOCK_MODELS.get(ModRegistry.Models.SLAB).contains(block))
-                addDrop(block, slabDrops(block));
+        for (Map.Entry<Block, ItemConvertible> entry : ModRegistry.BLOCK_DROPS.entrySet()) {
+            Phantasm.log(entry);
+            if (ModRegistry.BLOCK_MODELS.get(ModRegistry.Models.SLAB).contains(entry.getKey()))
+                addDrop(entry.getKey(), slabDrops(entry.getKey()));
             else
-                addDrop(block);
+                addDrop(entry.getKey(), entry.getValue());
         }
     }
 }

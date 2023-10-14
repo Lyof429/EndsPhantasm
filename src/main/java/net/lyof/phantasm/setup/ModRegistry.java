@@ -40,7 +40,11 @@ public class ModRegistry {
         protected Block block;
 
         public BlockBuilder drop() {
-            BLOCK_AUTODROPS.add(this.block);
+            return this.drop(this.block);
+        }
+
+        public BlockBuilder drop(ItemConvertible loot) {
+            BLOCK_DROPS.putIfAbsent(this.block, loot);
             return this;
         }
 
@@ -216,10 +220,14 @@ public class ModRegistry {
         }
     }
 
+    public static void addDrop(Block block, ItemConvertible loot) {
+        BLOCK_DROPS.putIfAbsent(block, loot);
+    }
+
 
     public static List<Block> BLOCKS = new ArrayList<>();
     public static Map<TagKey<Block>, List<Block>> BLOCK_TAGS = new HashMap<>();
-    public static List<Block> BLOCK_AUTODROPS = new ArrayList<>();
+    public static Map<Block, ItemConvertible> BLOCK_DROPS = new HashMap<>();
     public static Map<Block, Block> BLOCK_STRIPPED = new HashMap<>();
     public static Map<Block, Map<Models, Block>> BLOCK_SETS = new HashMap<>();
     public static Map<Models, List<Block>> BLOCK_MODELS = new HashMap<>();

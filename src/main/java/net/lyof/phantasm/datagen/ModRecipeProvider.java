@@ -17,7 +17,6 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
-import net.minecraft.registry.tag.ItemTags;
 
 import java.util.ArrayList;
 import java.util.List;

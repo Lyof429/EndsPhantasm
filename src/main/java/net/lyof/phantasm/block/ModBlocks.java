@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.custom.CrystalShardBlock;
+import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.block.*;
@@ -17,6 +18,13 @@ import java.util.Map;
 public class ModBlocks {
     public static void register() {
         Phantasm.log("Registering Blocks for modid : " + Phantasm.MOD_ID);
+
+
+        ModRegistry.addDrop(PREAM_SIGN, ModItems.PREAM_SIGN);
+        ModRegistry.addDrop(PREAM_WALL_SIGN, ModItems.PREAM_SIGN);
+        ModRegistry.addDrop(PREAM_HANGING_SIGN, ModItems.PREAM_HANGING_SIGN);
+        ModRegistry.addDrop(PREAM_WALL_HANGING_SIGN, ModItems.PREAM_HANGING_SIGN);
+
 
         ModRegistry.registerStairsAndSlab(CRYSTAL_TILES, CRYSTAL_TILES_STAIRS, CRYSTAL_TILES_SLAB);
         ModRegistry.registerStairsAndSlab(VOID_CRYSTAL_TILES, VOID_CRYSTAL_TILES_STAIRS, VOID_CRYSTAL_TILES_SLAB);
@@ -43,7 +51,7 @@ public class ModBlocks {
             FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE).luminance(4).emissiveLighting((a, b, c) -> true);
 
     private static final FabricBlockSettings PolishedObsidianMaterial =
-            FabricBlockSettings.copyOf(Blocks.OBSIDIAN).hardness(8);
+            FabricBlockSettings.copyOf(Blocks.OBSIDIAN).hardness(7);
 
     private static final FabricBlockSettings PreamWoodMaterial =
             FabricBlockSettings.copyOf(Blocks.OAK_LOG).mapColor(MapColor.BROWN);
@@ -186,18 +194,18 @@ public class ModBlocks {
     public static final Block PREAM_SIGN = ModRegistry.ofBlock("pream_sign",
                     new SignBlock(PreamPassableMaterial, PREAM), false)
             .tag(BlockTags.SIGNS, BlockTags.STANDING_SIGNS, BlockTags.WALL_POST_OVERRIDE, ModTags.Blocks.PREAM_BLOCKS)
-            .tool("_axe").build();
+            .tool("_axe").drop(ModItems.PREAM_SIGN).build();
     public static final Block PREAM_WALL_SIGN = ModRegistry.ofBlock("pream_wall_sign",
                     new WallSignBlock(PreamPassableMaterial, PREAM), false)
             .tag(BlockTags.SIGNS, BlockTags.WALL_SIGNS, BlockTags.WALL_POST_OVERRIDE)
-            .tool("_axe").build();
+            .tool("_axe").drop(ModItems.PREAM_SIGN).build();
 
     public static final Block PREAM_HANGING_SIGN = ModRegistry.ofBlock("pream_hanging_sign",
                     new HangingSignBlock(PreamPassableMaterial, PREAM), false)
             .tag(BlockTags.ALL_HANGING_SIGNS, BlockTags.CEILING_HANGING_SIGNS, ModTags.Blocks.PREAM_BLOCKS)
-            .tool("_axe").build();
+            .tool("_axe")/*.drop(ModItems.PREAM_HANGING_SIGN)*/.build();
     public static final Block PREAM_WALL_HANGING_SIGN = ModRegistry.ofBlock("pream_wall_hanging_sign",
                     new WallHangingSignBlock(PreamPassableMaterial, PREAM), false)
             .tag(BlockTags.ALL_HANGING_SIGNS, BlockTags.WALL_HANGING_SIGNS, ModTags.Blocks.PREAM_BLOCKS)
-            .tool("_axe").build();
+            .tool("_axe")/*.drop(ModItems.PREAM_HANGING_SIGN)*/.build();
 }

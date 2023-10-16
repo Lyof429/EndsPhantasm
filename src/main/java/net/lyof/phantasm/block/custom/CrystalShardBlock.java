@@ -1,9 +1,6 @@
 package net.lyof.phantasm.block.custom;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.Waterloggable;
+import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
@@ -12,6 +9,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -19,6 +17,7 @@ import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 public class CrystalShardBlock extends Block implements Waterloggable {
+    protected static final VoxelShape SHAPE = Block.createCuboidShape(2, 0, 2, 14, 16, 14);
 
     public static final DirectionProperty DIRECTION = DirectionProperty.of("direction");
     public static final BooleanProperty IS_TIP = BooleanProperty.of("is_tip");
@@ -33,6 +32,11 @@ public class CrystalShardBlock extends Block implements Waterloggable {
         );
     }
 
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE;
+    }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

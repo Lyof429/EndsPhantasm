@@ -4,6 +4,8 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.custom.CrystalShardBlock;
+import net.lyof.phantasm.block.custom.HangingFruitBlock;
+import net.lyof.phantasm.block.custom.HangingPlantBlock;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
@@ -48,7 +50,8 @@ public class ModBlocks {
 
     // Block Settings
     private static final FabricBlockSettings CrystalMaterial = 
-            FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE).luminance(4).emissiveLighting((a, b, c) -> true);
+            FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE).luminance(4).emissiveLighting((a, b, c) -> true)
+                    .nonOpaque();
 
     private static final FabricBlockSettings PolishedObsidianMaterial =
             FabricBlockSettings.copyOf(Blocks.OBSIDIAN).hardness(7);
@@ -58,7 +61,9 @@ public class ModBlocks {
     private static final FabricBlockSettings PreamPlankMaterial =
             FabricBlockSettings.copyOf(Blocks.OAK_PLANKS).mapColor(MapColor.TERRACOTTA_YELLOW);
     private static final FabricBlockSettings PreamPassableMaterial =
-            FabricBlockSettings.copyOf(Blocks.OAK_SIGN);
+            FabricBlockSettings.copyOf(Blocks.OAK_SIGN).mapColor(MapColor.TERRACOTTA_YELLOW);
+    private static final FabricBlockSettings PreamLeafMaterial =
+            FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).mapColor(MapColor.PURPLE);
 
     public static final WoodType PREAM = new WoodTypeBuilder().register(Phantasm.makeID("pream"), BlockSetType.OAK);
     //
@@ -150,6 +155,20 @@ public class ModBlocks {
             .tool("_axe").strip(STRIPPED_PREAM_WOOD)
             .tag(BlockTags.LOGS_THAT_BURN, ModTags.Blocks.PREAM_BLOCKS).tagitem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
             .flammable(5, 5).fuel(300).drop().build();
+
+    public static final Block PREAM_LEAVES = ModRegistry.ofBlock("pream_leaves",
+                    new LeavesBlock(PreamLeafMaterial))
+            .tag(BlockTags.LEAVES, ModTags.Blocks.PREAM_BLOCKS, ModTags.Blocks.HANGING_PREAM_LEAVES_GROWABLE_ON)
+            .tool("_hoe").flammable(5, 30)
+            .model().cutout().build();
+    public static final Block HANGING_PREAM_LEAVES = ModRegistry.ofBlock("hanging_pream_leaves",
+                    new HangingFruitBlock(FabricBlockSettings.copyOf(PreamLeafMaterial).collidable(false),
+                            () -> ModItems.PREAM_BERRY,
+                            ModTags.Blocks.HANGING_PREAM_LEAVES_GROWABLE_ON,
+                            Block.createCuboidShape(0, 8, 0, 16, 16, 16)))
+            .tag(BlockTags.LEAVES, ModTags.Blocks.PREAM_BLOCKS)
+            .tool("_hoe").flammable(5, 30)
+            .cutout().build();
 
     public static final Block PREAM_PLANKS = ModRegistry.ofBlock("pream_planks",
                     new Block(PreamPlankMaterial))

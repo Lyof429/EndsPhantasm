@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "phantasm:block/hanging_pream_leaves"
+  }
+}

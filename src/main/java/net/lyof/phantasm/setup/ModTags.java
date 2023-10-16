@@ -19,6 +19,7 @@ public class ModTags {
 
     public static class Blocks {
         public static final TagKey<Block> PREAM_BLOCKS = create("pream_blocks");
+        public static final TagKey<Block> HANGING_PREAM_LEAVES_GROWABLE_ON = create("hanging_pream_leaves_growable_on");
 
 
         private static TagKey<Block> create(String id) {

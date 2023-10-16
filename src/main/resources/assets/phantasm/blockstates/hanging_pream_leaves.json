@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "has_fruit=false": {
+      "model": "phantasm:block/hanging_pream_leaves"
+    },
+    "has_fruit=true": {
+      "model": "phantasm:block/hanging_pream_berry"
+    }
+  }
+}

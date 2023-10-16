@@ -12,6 +12,7 @@ import net.minecraft.data.client.Model;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.item.Item;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class ModModelProvider extends FabricModelProvider {
@@ -25,12 +26,12 @@ public class ModModelProvider extends FabricModelProvider {
         BlockStateModelGenerator.LogTexturePool poollog;
 
         Phantasm.log(ModRegistry.BLOCK_SETS);
-        for (Block block : ModRegistry.BLOCK_MODELS.get(ModRegistry.Models.CUBE))
+        for (Block block : ModRegistry.BLOCK_MODELS.getOrDefault(ModRegistry.Models.CUBE, new ArrayList<>()))
             generator.registerSimpleCubeAll(block);
-        for (Block block : ModRegistry.BLOCK_MODELS.get(ModRegistry.Models.PILLAR))
+        for (Block block : ModRegistry.BLOCK_MODELS.getOrDefault(ModRegistry.Models.PILLAR, new ArrayList<>()))
             generator.registerLog(block).log(block);
-
-        //generator.registerHangingSign();
+        for (Block block : ModRegistry.BLOCK_MODELS.getOrDefault(ModRegistry.Models.CROSS, new ArrayList<>()))
+            generator.registerTintableCross(block, BlockStateModelGenerator.TintType.NOT_TINTED);
 
         for (Block block : ModRegistry.BLOCK_SETS.keySet()) {
             if (ModRegistry.BLOCK_SETS.get(block).containsKey(ModRegistry.Models.WOOD)) {

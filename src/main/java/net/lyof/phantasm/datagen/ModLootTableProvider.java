@@ -34,7 +34,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
             else
                 addDrop(entry.getKey(), entry.getValue());
         }
-        addDrop(ModBlocks.PREAM_LEAVES, leavesDrops(ModBlocks.PREAM_LEAVES, ModBlocks.PREAM_FENCE, 0.1f));
+        addDrop(ModBlocks.PREAM_LEAVES, leavesDrops(ModBlocks.PREAM_LEAVES, ModBlocks.PREAM_SAPLING, 0.1f));
         addDrop(ModBlocks.HANGING_PREAM_LEAVES, dropsWithSilkTouchOrShears(ModBlocks.HANGING_PREAM_LEAVES,
                 new GroupEntry.Builder()));
         /*addDrop(ModBlocks.HANGING_PREAM_BERRY, dropsWithSilkTouchOrShears(ModBlocks.HANGING_PREAM_BERRY,

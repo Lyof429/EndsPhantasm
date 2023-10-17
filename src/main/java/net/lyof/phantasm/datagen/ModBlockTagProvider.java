@@ -3,7 +3,9 @@ package net.lyof.phantasm.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.lyof.phantasm.setup.ModRegistry;
+import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.TagKey;
 
@@ -22,5 +24,11 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 builder.add(block);
             }
         }
+
+        getOrCreateTagBuilder(ModTags.Blocks.END_PLANTS_GROWABLE_ON)
+                .add(Blocks.END_STONE)
+                .add(Blocks.END_STONE_BRICKS)
+                .add(Blocks.END_STONE_BRICK_STAIRS)
+                .add(Blocks.END_STONE_BRICK_SLAB);
     }
 }

@@ -44,7 +44,8 @@ public class ModConfiguredFeatures {
                 BlockStateProvider.of(ModBlocks.PREAM_LEAVES),
                 new AcaciaFoliagePlacer(UniformIntProvider.create(2, 4), ConstantIntProvider.create(0)),
                 new TwoLayersFeatureSize(1, 0, 2)
-                ).decorators(List.of(
+                ).dirtProvider(BlockStateProvider.of(Blocks.END_STONE))
+                .decorators(List.of(
                         new AttachedToLeavesTreeDecorator(
                                 0.2f,
                                 1,

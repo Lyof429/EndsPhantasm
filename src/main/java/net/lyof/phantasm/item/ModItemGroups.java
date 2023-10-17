@@ -22,14 +22,13 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.FALLEN_STAR);
 
-                        entries.add(ModBlocks.PREAM_SAPLING);
-
                         entries.add(ModBlocks.PREAM_LOG);
                         entries.add(ModBlocks.PREAM_WOOD);
                         entries.add(ModBlocks.STRIPPED_PREAM_LOG);
                         entries.add(ModBlocks.STRIPPED_PREAM_WOOD);
 
                         entries.add(ModBlocks.PREAM_LEAVES);
+                        entries.add(ModBlocks.PREAM_SAPLING);
 
                         entries.add(ModBlocks.PREAM_PLANKS);
                         entries.add(ModBlocks.PREAM_STAIRS);
@@ -94,7 +93,7 @@ public class ModItemGroups {
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             entries.addAfter(Items.FLOWERING_AZALEA_LEAVES, ModBlocks.PREAM_LEAVES);
-            entries.addAfter(Items.CHERRY_SAPLING, ModBlocks.PREAM_SAPLING);
+            entries.addAfter(Items.FLOWERING_AZALEA, ModBlocks.PREAM_SAPLING);
 
             entries.add(ModBlocks.FALLEN_STAR);
 

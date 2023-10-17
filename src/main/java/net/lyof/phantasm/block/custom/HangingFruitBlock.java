@@ -45,10 +45,8 @@ public class HangingFruitBlock extends HangingPlantBlock {
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (state.get(HAS_FRUIT)) return;
 
-        if (random.nextDouble() < 0.05) {
+        if (random.nextDouble() < 0.05)
             world.setBlockState(pos, state.with(HAS_FRUIT, true));
-            Phantasm.log("You've got the fruits");
-        }
     }
 
     @Override

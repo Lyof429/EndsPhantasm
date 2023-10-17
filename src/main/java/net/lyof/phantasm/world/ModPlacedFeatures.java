@@ -44,7 +44,9 @@ public class ModPlacedFeatures {
         var configLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
         register(context, PREAM_PLACED_KEY, configLookup.getOrThrow(ModConfiguredFeatures.PREAM_KEY),
-                VegetationPlacedFeatures.treeModifiers(PlacedFeatures.createCountExtraModifier(1, 0.1f, 2)));
+                VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
+                        PlacedFeatures.createCountExtraModifier(0, 1f, 2),
+                        ModBlocks.PREAM_SAPLING));
     }
 
 

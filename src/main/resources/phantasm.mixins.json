@@ -6,6 +6,7 @@
     "BlockEntityTypeMixin",
     "ExampleMixin",
     "ItemMixin",
+    "PlantBlockMixin",
     "PlayerEntityMixin"
   ],
   "injectors": {

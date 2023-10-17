@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.world.biome.Biome;
 
 public class ModTags {
     public static class Items {
@@ -21,9 +22,21 @@ public class ModTags {
         public static final TagKey<Block> PREAM_BLOCKS = create("pream_blocks");
         public static final TagKey<Block> HANGING_PREAM_LEAVES_GROWABLE_ON = create("hanging_pream_leaves_growable_on");
 
+        public static final TagKey<Block> END_PLANTS = create("end_plants");
+        public static final TagKey<Block> END_PLANTS_GROWABLE_ON = create("end_plants_growable_on");
+
 
         private static TagKey<Block> create(String id) {
             return TagKey.of(RegistryKeys.BLOCK, Phantasm.makeID(id));
+        }
+    }
+
+    public static class Biomes {
+        public static final TagKey<Biome> DREAMING_DEN = create("is_dreaming_den");
+
+
+        private static TagKey<Biome> create(String id) {
+            return TagKey.of(RegistryKeys.BIOME, Phantasm.makeID(id));
         }
     }
 }

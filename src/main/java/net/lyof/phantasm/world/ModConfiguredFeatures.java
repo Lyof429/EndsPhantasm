@@ -38,7 +38,7 @@ public class ModConfiguredFeatures {
     }
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
-        register(context, PREAM_TREE, Feature.TREE, new TreeFeatureConfig.Builder(
+        register(context, PREAM_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(ModBlocks.PREAM_LOG),
                 new StraightTrunkPlacer(5, 6, 3),
                 BlockStateProvider.of(ModBlocks.PREAM_LEAVES),
@@ -61,5 +61,5 @@ public class ModConfiguredFeatures {
 
 
 
-    public static final RegistryKey<ConfiguredFeature<?, ?>> PREAM_TREE = register("pream");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> PREAM_KEY = register("pream");
 }

@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.lyof.phantasm.datagen.*;
 import net.lyof.phantasm.world.ModConfiguredFeatures;
+import net.lyof.phantasm.world.ModPlacedFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.registry.RegistryBuilder;
@@ -31,6 +32,7 @@ public class ModDataGenerator implements DataGeneratorEntrypoint {
 	@Override
 	public void buildRegistry(RegistryBuilder builder) {
 		builder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
+		builder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
 	}
 
 

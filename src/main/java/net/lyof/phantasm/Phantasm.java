@@ -5,6 +5,7 @@ import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.item.ModItemGroups;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModDataGenerator;
+import net.lyof.phantasm.world.gen.ModWorldGeneration;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,8 @@ public class Phantasm implements ModInitializer {
 		ModDataGenerator.registerBurnable();
 		ModDataGenerator.registerFuels();
 		ModDataGenerator.registerStripped();
+
+		ModWorldGeneration.generateWorldGen();
 	}
 
 	public static Identifier makeID(String id) {

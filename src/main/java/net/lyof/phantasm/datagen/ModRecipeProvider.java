@@ -86,9 +86,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     createSignRecipe(entry.getValue(), Ingredient.ofItems(parent))
                             .criterion(hasItem(parent), conditionsFromItem(parent))
                             .offerTo(exporter);
-
-                if (entry.getKey() == ModRegistry.Models.HANGING_SIGN)
-                    offerHangingSignRecipe(exporter, entry.getValue(), parent);
             }
         }
 
@@ -99,7 +96,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.DRAGON_BREATH), conditionsFromItem(Items.DRAGON_BREATH))
                 .group("polished_obsidian").offerTo(exporter, Phantasm.makeID("polished_obsidian"));
         createCondensingRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_OBSIDIAN_BRICKS,
-                    Ingredient.ofItems(ModBlocks.POLISHED_OBSIDIAN))
+                Ingredient.ofItems(ModBlocks.POLISHED_OBSIDIAN))
                 .criterion(hasItem(ModBlocks.POLISHED_OBSIDIAN), conditionsFromItem(ModBlocks.POLISHED_OBSIDIAN))
                 .group("polished_obsidian_bricks").offerTo(exporter, Phantasm.makeID("polished_obsidian_bricks"));
 
@@ -186,5 +183,21 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
         // Pream Planks
         offerPlanksRecipe(exporter, ModBlocks.PREAM_PLANKS, ModTags.Items.PREAM_LOGS, 4);
+        createCondensingRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PREAM_WOOD,
+                Ingredient.ofItems(ModBlocks.PREAM_LOG))
+                .criterion(hasItem(ModBlocks.PREAM_LOG), conditionsFromItem(ModBlocks.PREAM_LOG))
+                .group("pream_wood").offerTo(exporter, Phantasm.makeID("pream_wood"));
+        createCondensingRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STRIPPED_PREAM_WOOD,
+                Ingredient.ofItems(ModBlocks.STRIPPED_PREAM_LOG))
+                .criterion(hasItem(ModBlocks.STRIPPED_PREAM_LOG), conditionsFromItem(ModBlocks.STRIPPED_PREAM_LOG))
+                .group("stripped_pream_wood").offerTo(exporter, Phantasm.makeID("stripped_pream_wood"));
+
+        offerHangingSignRecipe(exporter, ModItems.PREAM_HANGING_SIGN, ModBlocks.STRIPPED_PREAM_LOG);
+        createDoorRecipe(ModBlocks.PREAM_DOOR, Ingredient.ofItems(ModBlocks.PREAM_PLANKS))
+                .criterion(hasItem(ModBlocks.PREAM_PLANKS), conditionsFromItem(ModBlocks.PREAM_PLANKS))
+                .offerTo(exporter);
+        createTrapdoorRecipe(ModBlocks.PREAM_TRAPDOOR, Ingredient.ofItems(ModBlocks.PREAM_PLANKS))
+                .criterion(hasItem(ModBlocks.PREAM_PLANKS), conditionsFromItem(ModBlocks.PREAM_PLANKS))
+                .offerTo(exporter);
     }
 }

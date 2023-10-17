@@ -25,13 +25,16 @@ public class ModModelProvider extends FabricModelProvider {
         BlockStateModelGenerator.BlockTexturePool pool;
         BlockStateModelGenerator.LogTexturePool poollog;
 
-        Phantasm.log(ModRegistry.BLOCK_SETS);
-        for (Block block : ModRegistry.BLOCK_MODELS.getOrDefault(ModRegistry.Models.CUBE, new ArrayList<>()))
+        for (Block block : ModRegistry.getModelList(ModRegistry.Models.CUBE))
             generator.registerSimpleCubeAll(block);
-        for (Block block : ModRegistry.BLOCK_MODELS.getOrDefault(ModRegistry.Models.PILLAR, new ArrayList<>()))
+        for (Block block : ModRegistry.getModelList(ModRegistry.Models.PILLAR))
             generator.registerLog(block).log(block);
-        for (Block block : ModRegistry.BLOCK_MODELS.getOrDefault(ModRegistry.Models.CROSS, new ArrayList<>()))
+        for (Block block : ModRegistry.getModelList(ModRegistry.Models.CROSS))
             generator.registerTintableCross(block, BlockStateModelGenerator.TintType.NOT_TINTED);
+        for (Block block : ModRegistry.getModelList(ModRegistry.Models.DOOR))
+            generator.registerDoor(block);
+        for (Block block : ModRegistry.getModelList(ModRegistry.Models.TRAPDOOR))
+            generator.registerTrapdoor(block);
 
         for (Block block : ModRegistry.BLOCK_SETS.keySet()) {
             if (ModRegistry.BLOCK_SETS.get(block).containsKey(ModRegistry.Models.WOOD)) {
@@ -45,6 +48,7 @@ public class ModModelProvider extends FabricModelProvider {
             else {
                 pool = generator.registerCubeAllModelTexturePool(block);
                 for (Map.Entry<ModRegistry.Models, Block> entry : ModRegistry.BLOCK_SETS.get(block).entrySet()) {
+                    Phantasm.log(entry);
                     if (entry.getKey() == ModRegistry.Models.STAIRS)
                         pool.stairs(entry.getValue());
                     if (entry.getKey() == ModRegistry.Models.SLAB)
@@ -61,12 +65,12 @@ public class ModModelProvider extends FabricModelProvider {
                         pool.family(new BlockFamily.Builder(block)
                                 .sign(entry.getValue(), ModRegistry.BLOCK_SETS.get(block).get(ModRegistry.Models.WALL_SIGN))
                                 .build());
-                    if (entry.getKey() == ModRegistry.Models.HANGING_SIGN)
-                        generator.registerHangingSign(ModBlocks.STRIPPED_PREAM_LOG,
-                                entry.getValue(), ModRegistry.BLOCK_SETS.get(block).get(ModRegistry.Models.WALL_HANGING_SIGN));
                 }
             }
         }
+
+        generator.registerHangingSign(ModBlocks.STRIPPED_PREAM_LOG,
+                ModBlocks.PREAM_HANGING_SIGN, ModBlocks.PREAM_WALL_HANGING_SIGN);
     }
 
     @Override

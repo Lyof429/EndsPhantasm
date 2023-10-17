@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_stripped_logs": {
+    "has_pream_log": {
       "conditions": {
         "items": [
           {
             "items": [
-              "phantasm:stripped_pream_log"
+              "phantasm:pream_log"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "phantasm:pream_hanging_sign"
+        "recipe": "phantasm:pream_wood"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_stripped_logs",
+      "has_pream_log",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "phantasm:pream_hanging_sign"
+      "phantasm:pream_wood"
     ]
   },
   "sends_telemetry_event": false

@@ -12,6 +12,8 @@
     "phantasm:pream_button",
     "phantasm:pream_fence",
     "phantasm:pream_fence_gate",
+    "phantasm:pream_door",
+    "phantasm:pream_trapdoor",
     "phantasm:pream_sign",
     "phantasm:pream_wall_sign",
     "phantasm:pream_hanging_sign",

@@ -31,6 +31,8 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         for (Map.Entry<Block, ItemConvertible> entry : ModRegistry.BLOCK_DROPS.entrySet()) {
             if (ModRegistry.BLOCK_MODELS.get(ModRegistry.Models.SLAB).contains(entry.getKey()))
                 addDrop(entry.getKey(), slabDrops(entry.getKey()));
+            else if (ModRegistry.BLOCK_MODELS.get(ModRegistry.Models.DOOR).contains(entry.getKey()))
+                addDrop(entry.getKey(), doorDrops(entry.getKey()));
             else
                 addDrop(entry.getKey(), entry.getValue());
         }

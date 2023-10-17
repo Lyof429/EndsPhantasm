@@ -180,6 +180,8 @@ public class ModRegistry {
         PRESSURE_PLATE,
         FENCE,
         FENCE_GATE,
+        DOOR,
+        TRAPDOOR,
         SIGN,
         WALL_SIGN,
         HANGING_SIGN,
@@ -205,6 +207,10 @@ public class ModRegistry {
         return new ItemBuilder(Phantasm.makeID(id), item);
     }
 
+
+    public static List<Block> getModelList(Models key) {
+        return BLOCK_MODELS.getOrDefault(key, new ArrayList<>());
+    }
 
     public static void registerStairsAndSlab(Block parent, Block stairs, Block slab) {
         registerSet(parent, Map.of(

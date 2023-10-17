@@ -33,6 +33,8 @@ public class ModItemGroups {
                         entries.add(ModBlocks.PREAM_PLANKS);
                         entries.add(ModBlocks.PREAM_STAIRS);
                         entries.add(ModBlocks.PREAM_SLAB);
+                        entries.add(ModBlocks.PREAM_DOOR);
+                        entries.add(ModBlocks.PREAM_TRAPDOOR);
                         entries.add(ModBlocks.PREAM_FENCE);
                         entries.add(ModBlocks.PREAM_FENCE_GATE);
 
@@ -111,7 +113,9 @@ public class ModItemGroups {
             entries.addAfter(ModBlocks.PREAM_STAIRS, ModBlocks.PREAM_SLAB);
             entries.addAfter(ModBlocks.PREAM_SLAB, ModBlocks.PREAM_FENCE);
             entries.addAfter(ModBlocks.PREAM_FENCE, ModBlocks.PREAM_FENCE_GATE);
-            entries.addAfter(ModBlocks.PREAM_FENCE_GATE, ModBlocks.PREAM_PRESSURE_PLATE);
+            entries.addAfter(ModBlocks.PREAM_FENCE_GATE, ModBlocks.PREAM_DOOR);
+            entries.addAfter(ModBlocks.PREAM_DOOR, ModBlocks.PREAM_TRAPDOOR);
+            entries.addAfter(ModBlocks.PREAM_TRAPDOOR, ModBlocks.PREAM_PRESSURE_PLATE);
             entries.addAfter(ModBlocks.PREAM_PRESSURE_PLATE, ModBlocks.PREAM_BUTTON);
 
             entries.add(ModBlocks.CRYSTAL_BLOCK);

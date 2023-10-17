@@ -1,5 +1,6 @@
 package net.lyof.phantasm.block;
 
+import com.mojang.serialization.RecordBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.lyof.phantasm.Phantasm;
@@ -16,6 +17,7 @@ import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.BlockSoundGroup;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class ModBlocks {
@@ -35,6 +37,7 @@ public class ModBlocks {
 
         ModRegistry.registerSet(PREAM_LOG, Map.of(ModRegistry.Models.WOOD, PREAM_WOOD));
         ModRegistry.registerSet(STRIPPED_PREAM_LOG, Map.of(ModRegistry.Models.WOOD, STRIPPED_PREAM_WOOD));
+
         ModRegistry.registerSet(PREAM_PLANKS, Map.of(
                 ModRegistry.Models.STAIRS, PREAM_STAIRS,
                 ModRegistry.Models.SLAB, PREAM_SLAB,
@@ -219,6 +222,21 @@ public class ModBlocks {
             .tag(BlockTags.WOODEN_FENCES, BlockTags.FENCE_GATES, BlockTags.UNSTABLE_BOTTOM_CENTER, ModTags.Blocks.PREAM_BLOCKS)
             .tagitem(ItemTags.WOODEN_FENCES, ItemTags.FENCE_GATES)
             .flammable(5, 5).fuel(300).drop().build();
+
+    public static final Block PREAM_DOOR = ModRegistry.ofBlock("pream_door",
+            new DoorBlock(copy(Blocks.OAK_DOOR).mapColor(MapColor.TERRACOTTA_YELLOW), BlockSetType.OAK))
+            .tool("_axe")
+            .tag(BlockTags.WOODEN_DOORS, ModTags.Blocks.PREAM_BLOCKS)
+            .tagitem(ItemTags.WOODEN_DOORS)
+            .model(ModRegistry.Models.DOOR).cutout()
+            .drop().build();
+    public static final Block PREAM_TRAPDOOR = ModRegistry.ofBlock("pream_trapdoor",
+            new TrapdoorBlock(copy(Blocks.OAK_TRAPDOOR).mapColor(MapColor.TERRACOTTA_YELLOW), BlockSetType.OAK))
+            .tool("_axe")
+            .tag(BlockTags.WOODEN_TRAPDOORS, ModTags.Blocks.PREAM_BLOCKS)
+            .tagitem(ItemTags.WOODEN_TRAPDOORS)
+            .model(ModRegistry.Models.TRAPDOOR).cutout()
+            .drop().build();
 
     public static final Block PREAM_SIGN = ModRegistry.ofBlock("pream_sign",
             new SignBlock(PreamPassableMaterial, PREAM), false)

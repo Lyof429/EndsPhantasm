@@ -1,12 +1,10 @@
 package net.lyof.phantasm.block;
 
-import com.mojang.serialization.RecordBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.custom.CrystalShardBlock;
 import net.lyof.phantasm.block.custom.HangingFruitBlock;
-import net.lyof.phantasm.block.custom.HangingPlantBlock;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
@@ -17,7 +15,6 @@ import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.BlockSoundGroup;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class ModBlocks {

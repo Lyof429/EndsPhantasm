@@ -24,7 +24,7 @@ public class Phantasm implements ModInitializer {
 		ModDataGenerator.registerFuels();
 		ModDataGenerator.registerStripped();
 
-		ModWorldGeneration.generateWorldGen();
+		ModWorldGeneration.register();
 	}
 
 	public static Identifier makeID(String id) {

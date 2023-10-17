@@ -1,6 +1,5 @@
 package net.lyof.phantasm.mixin;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

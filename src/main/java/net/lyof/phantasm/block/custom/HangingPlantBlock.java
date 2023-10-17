@@ -1,6 +1,5 @@
 package net.lyof.phantasm.block.custom;
 
-import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -12,8 +11,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
-
-import java.util.function.Function;
 
 public class HangingPlantBlock extends Block {
     public TagKey<Block> growableOn;

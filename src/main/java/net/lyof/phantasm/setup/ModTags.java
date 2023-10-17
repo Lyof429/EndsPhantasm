@@ -13,8 +13,8 @@ public class ModTags {
         public static final TagKey<Item> PREAM_LOGS = create("pream_logs");
 
 
-        private static TagKey<Item> create(String id) {
-            return TagKey.of(RegistryKeys.ITEM, Phantasm.makeID(id));
+        private static TagKey<Item> create(String name) {
+            return TagKey.of(RegistryKeys.ITEM, Phantasm.makeID(name));
         }
     }
 
@@ -26,8 +26,8 @@ public class ModTags {
         public static final TagKey<Block> END_PLANTS_GROWABLE_ON = create("end_plants_growable_on");
 
 
-        private static TagKey<Block> create(String id) {
-            return TagKey.of(RegistryKeys.BLOCK, Phantasm.makeID(id));
+        private static TagKey<Block> create(String name) {
+            return TagKey.of(RegistryKeys.BLOCK, Phantasm.makeID(name));
         }
     }
 
@@ -35,8 +35,8 @@ public class ModTags {
         public static final TagKey<Biome> DREAMING_DEN = create("is_dreaming_den");
 
 
-        private static TagKey<Biome> create(String id) {
-            return TagKey.of(RegistryKeys.BIOME, Phantasm.makeID(id));
+        private static TagKey<Biome> create(String name) {
+            return TagKey.of(RegistryKeys.BIOME, Phantasm.makeID(name));
         }
     }
 }

@@ -12,7 +12,6 @@ import net.minecraft.data.client.Model;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.item.Item;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 public class ModModelProvider extends FabricModelProvider {

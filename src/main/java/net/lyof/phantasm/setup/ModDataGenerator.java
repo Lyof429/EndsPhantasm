@@ -6,8 +6,11 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.lyof.phantasm.datagen.*;
+import net.lyof.phantasm.world.ModConfiguredFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemConvertible;
+import net.minecraft.registry.RegistryBuilder;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Pair;
 
 import java.util.Map;
@@ -22,7 +25,14 @@ public class ModDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModLootTableProvider::new);
 		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModRecipeProvider::new);
+		pack.addProvider(ModWorldGenerator::new);
 	}
+
+	@Override
+	public void buildRegistry(RegistryBuilder builder) {
+		builder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
+	}
+
 
 	public static void registerFuels() {
 		for (Map.Entry<ItemConvertible, Integer> entry : ModRegistry.ITEM_BURNABLE.entrySet())

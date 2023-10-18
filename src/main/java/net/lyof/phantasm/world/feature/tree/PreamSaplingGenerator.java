@@ -1,4 +1,4 @@
-package net.lyof.phantasm.world.tree;
+package net.lyof.phantasm.world.feature.tree;
 
 import net.lyof.phantasm.world.ModConfiguredFeatures;
 import net.minecraft.block.sapling.SaplingGenerator;

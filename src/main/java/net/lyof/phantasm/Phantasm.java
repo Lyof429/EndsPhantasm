@@ -9,7 +9,7 @@ import net.lyof.phantasm.world.gen.ModWorldGeneration;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+// 1709 62 74
 public class Phantasm implements ModInitializer {
 	public static final String MOD_ID = "phantasm";
     public static final Logger LOGGER = LoggerFactory.getLogger("End's Phantasm");

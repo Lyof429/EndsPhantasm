@@ -54,9 +54,13 @@ public class ModConfiguredFeatures {
                         )
                 )
         ).build());
+
+        //register(context, CRYSTAL_SPIKE_KEY, new CrystalSpikeFeature(), BlockColumnFeatureConfig.create(
+        //        UniformIntProvider.create(3, 5), BlockStateProvider.of(ModBlocks.CRYSTAL_BLOCK)));
     }
 
 
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> PREAM_KEY = register("pream");
+    //public static final RegistryKey<ConfiguredFeature<?, ?>> CRYSTAL_SPIKE_KEY = register("crystal_spike");
 }

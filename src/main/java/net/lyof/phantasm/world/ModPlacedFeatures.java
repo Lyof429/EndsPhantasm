@@ -11,7 +11,9 @@ import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.feature.PlacedFeatures;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
+import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ModPlacedFeatures {
@@ -36,13 +38,22 @@ public class ModPlacedFeatures {
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
+        List<PlacementModifier> modifiers = new ArrayList<>();
+        modifiers.add(RarityFilterPlacementModifier.of(2));
+        modifiers.addAll(VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
+                PlacedFeatures.createCountExtraModifier(1, 0.5f, 2),
+                ModBlocks.PREAM_SAPLING));
+
+
         register(context, PREAM_PLACED_KEY, configLookup.getOrThrow(ModConfiguredFeatures.PREAM_KEY),
-                VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
-                        PlacedFeatures.createCountExtraModifier(0, 1f, 2),
-                        ModBlocks.PREAM_SAPLING));
+                modifiers);
+
+        //register(context, CRYSTAL_SPIKE_PLACED_KEY, configLookup.getOrThrow(ModConfiguredFeatures.CRYSTAL_SPIKE_KEY),
+        //        modifiers);
     }
 
 
 
     public static final RegistryKey<PlacedFeature> PREAM_PLACED_KEY = register("pream_placed");
+    //public static final RegistryKey<PlacedFeature> CRYSTAL_SPIKE_PLACED_KEY = register("crystal_spike_placed");
 }

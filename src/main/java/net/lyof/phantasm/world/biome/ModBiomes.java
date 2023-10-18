@@ -2,16 +2,17 @@ package net.lyof.phantasm.world.biome;
 
 import net.lyof.phantasm.Phantasm;
 import net.minecraft.client.sound.MusicType;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BiomeMoodSound;
-import net.minecraft.util.collection.Weighted;
-import net.minecraft.world.biome.*;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeEffects;
+import net.minecraft.world.biome.GenerationSettings;
+import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
+import net.minecraft.world.gen.feature.EndPlacedFeatures;
 
 public class ModBiomes {
     public static RegistryKey<Biome> register(String name) {
@@ -22,18 +23,24 @@ public class ModBiomes {
         context.register(DREAMING_DEN, dreamingDen(context));
     }
 
+    public static void endBiome(SpawnSettings.Builder spawns, GenerationSettings.LookupBackedBuilder generation) {
+        DefaultBiomeFeatures.addEndMobs(spawns);
+
+        generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, EndPlacedFeatures.CHORUS_PLANT);
+        generation.feature(GenerationStep.Feature.SURFACE_STRUCTURES, EndPlacedFeatures.END_GATEWAY_RETURN);
+    }
+
 
     public static final RegistryKey<Biome> DREAMING_DEN = register("dreaming_den");
 
     public static Biome dreamingDen(Registerable<Biome> context) {
         SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
-        DefaultBiomeFeatures.addEndMobs(spawnBuilder);
 
         GenerationSettings.LookupBackedBuilder biomeBuilder =
                 new GenerationSettings.LookupBackedBuilder(context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
                         context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER));
-        biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, EndPlacedFeatures.CHORUS_PLANT);
-        biomeBuilder.feature(GenerationStep.Feature.SURFACE_STRUCTURES, EndPlacedFeatures.END_GATEWAY_RETURN);
+
+        endBiome(spawnBuilder, biomeBuilder);
 
         return new Biome.Builder()
                 .precipitation(false)

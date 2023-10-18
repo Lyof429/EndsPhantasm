@@ -11,6 +11,7 @@ import net.minecraft.world.gen.GenerationStep;
 public class ModWorldGeneration {
     public static void register() {
         generateTrees();
+        generateFeatures();
         generateBiomes();
     }
 
@@ -21,7 +22,13 @@ public class ModWorldGeneration {
                 ModPlacedFeatures.PREAM_PLACED_KEY);
     }
 
+    public static void generateFeatures() {
+        /*BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
+                GenerationStep.Feature.TOP_LAYER_MODIFICATION,
+                ModPlacedFeatures.CRYSTAL_SPIKE_PLACED_KEY);*/
+    }
+
     public static void generateBiomes() {
-        TheEndBiomes.addHighlandsBiome(ModBiomes.DREAMING_DEN, 1.0);
+        TheEndBiomes.addHighlandsBiome(ModBiomes.DREAMING_DEN, 2.0);
     }
 }

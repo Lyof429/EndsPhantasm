@@ -1,0 +1,7 @@
+{
+  "type": "phantasm:crystal_spike",
+  "config": {
+    "blockID": "minecraft:netherite_block",
+    "number": 10
+  }
+}

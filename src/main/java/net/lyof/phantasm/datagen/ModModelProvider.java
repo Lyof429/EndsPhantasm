@@ -47,7 +47,6 @@ public class ModModelProvider extends FabricModelProvider {
             else {
                 pool = generator.registerCubeAllModelTexturePool(block);
                 for (Map.Entry<ModRegistry.Models, Block> entry : ModRegistry.BLOCK_SETS.get(block).entrySet()) {
-                    Phantasm.log(entry);
                     if (entry.getKey() == ModRegistry.Models.STAIRS)
                         pool.stairs(entry.getValue());
                     if (entry.getKey() == ModRegistry.Models.SLAB)

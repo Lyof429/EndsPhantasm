@@ -23,9 +23,9 @@ public class ModWorldGeneration {
     }
 
     public static void generateFeatures() {
-        /*BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
-                GenerationStep.Feature.TOP_LAYER_MODIFICATION,
-                ModPlacedFeatures.CRYSTAL_SPIKE_PLACED_KEY);*/
+        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
+                GenerationStep.Feature.VEGETAL_DECORATION,
+                ModPlacedFeatures.CRYSTAL_SPIKE_PLACED_KEY);
     }
 
     public static void generateBiomes() {

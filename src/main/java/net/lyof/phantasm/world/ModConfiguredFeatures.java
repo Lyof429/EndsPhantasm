@@ -2,18 +2,18 @@ package net.lyof.phantasm.world;
 
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.world.feature.CrystalSpikeFeature;
+import net.lyof.phantasm.world.feature.config.CrystalSpikeFeatureConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.TreeFeatureConfig;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
@@ -55,12 +55,12 @@ public class ModConfiguredFeatures {
                 )
         ).build());
 
-        //register(context, CRYSTAL_SPIKE_KEY, new CrystalSpikeFeature(), BlockColumnFeatureConfig.create(
-        //        UniformIntProvider.create(3, 5), BlockStateProvider.of(ModBlocks.CRYSTAL_BLOCK)));
+        register(context, CRYSTAL_SPIKE_KEY, CrystalSpikeFeature.INSTANCE,
+                new CrystalSpikeFeatureConfig(10, new Identifier("minecraft", "netherite_block")));
     }
 
 
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> PREAM_KEY = register("pream");
-    //public static final RegistryKey<ConfiguredFeature<?, ?>> CRYSTAL_SPIKE_KEY = register("crystal_spike");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CRYSTAL_SPIKE_KEY = register("crystal_spike");
 }

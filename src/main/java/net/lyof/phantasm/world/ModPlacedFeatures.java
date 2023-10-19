@@ -12,6 +12,7 @@ import net.minecraft.world.gen.feature.PlacedFeatures;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,12 +49,12 @@ public class ModPlacedFeatures {
         register(context, PREAM_PLACED_KEY, configLookup.getOrThrow(ModConfiguredFeatures.PREAM_KEY),
                 modifiers);
 
-        //register(context, CRYSTAL_SPIKE_PLACED_KEY, configLookup.getOrThrow(ModConfiguredFeatures.CRYSTAL_SPIKE_KEY),
-        //        modifiers);
+        register(context, CRYSTAL_SPIKE_PLACED_KEY, configLookup.getOrThrow(ModConfiguredFeatures.CRYSTAL_SPIKE_KEY),
+                List.of(SquarePlacementModifier.of()));
     }
 
 
 
-    public static final RegistryKey<PlacedFeature> PREAM_PLACED_KEY = register("pream_placed");
-    //public static final RegistryKey<PlacedFeature> CRYSTAL_SPIKE_PLACED_KEY = register("crystal_spike_placed");
+    public static final RegistryKey<PlacedFeature> PREAM_PLACED_KEY = register("pream");
+    public static final RegistryKey<PlacedFeature> CRYSTAL_SPIKE_PLACED_KEY = register("crystal_spike");
 }

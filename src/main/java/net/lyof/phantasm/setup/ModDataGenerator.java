@@ -32,7 +32,6 @@ public class ModDataGenerator implements DataGeneratorEntrypoint {
 
 	@Override
 	public void buildRegistry(RegistryBuilder builder) {
-		//builder.addRegistry(RegistryKeys.FEATURE, ModFeatures::bootstrap); // TODO: This one crashes everything
 		builder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
 		builder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
 		builder.addRegistry(RegistryKeys.BIOME, ModBiomes::bootstrap);

@@ -56,7 +56,8 @@ public class ModConfiguredFeatures {
         ).build());
 
         register(context, CRYSTAL_SPIKE_KEY, CrystalSpikeFeature.INSTANCE,
-                new CrystalSpikeFeatureConfig(10, new Identifier("minecraft", "netherite_block")));
+                new CrystalSpikeFeatureConfig(UniformIntProvider.create(3, 5),
+                        0.3f));
     }
 
 

@@ -1,6 +1,9 @@
 package net.lyof.phantasm.world.feature;
 
 import com.mojang.serialization.Codec;
+import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.block.custom.CrystalShardBlock;
 import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.world.feature.config.CrystalSpikeFeatureConfig;
 import net.minecraft.block.BlockState;
@@ -10,6 +13,8 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -26,40 +31,56 @@ public class CrystalSpikeFeature extends Feature<CrystalSpikeFeatureConfig> {
     @Override
     public boolean generate(FeatureContext<CrystalSpikeFeatureConfig> context) {
         StructureWorldAccess world = context.getWorld();
-        // the origin is the place where the game starts trying to place the feature
         BlockPos origin = context.getOrigin();
-        // we won't use the random here, but we could if we wanted to
         Random random = context.getRandom();
         CrystalSpikeFeatureConfig config = context.getConfig();
 
-        // don't worry about where these come from-- we'll implement these methods soon
-        int number = config.number();
-        Identifier blockID = config.blockId();
+        if (!world.getBiome(origin).isIn(ModTags.Biomes.DREAMING_DEN))
+            return false;
 
-        BlockState blockState = Registries.BLOCK.get(blockID).getDefaultState();
-        // ensure the ID is okay
-        if (blockState == null) throw new IllegalStateException(blockID + " could not be parsed to a valid block identifier!");
+        int size = config.size().get(random);
+        float chance = config.voidChance();
 
-        // find the surface of the world
-        BlockPos testPos = new BlockPos(origin);
-        for (int y = 0; y < world.getHeight(); y++) {
-            testPos = testPos.up();
-            // the tag name is dirt, but includes grass, mud, podzol, etc.
-            if (world.getBlockState(testPos).isIn(ModTags.Blocks.END_PLANTS_GROWABLE_ON)) {
-                if (world.getBlockState(testPos.up()).isOf(Blocks.AIR)) {
-                    for (int i = 0; i < number; i++) {
-                        // create a simple pillar of blocks
-                        world.setBlockState(testPos, blockState, 0x10);
-                        testPos = testPos.up();
+        BlockState top = ModBlocks.CRYSTAL_SHARD.getDefaultState();
+        BlockState bottom = random.nextFloat() < chance
+                ? ModBlocks.VOID_CRYSTAL_SHARD.getDefaultState()
+                : ModBlocks.CRYSTAL_SHARD.getDefaultState();
 
-                        // ensure we don't try to place blocks outside the world
-                        if (testPos.getY() >= world.getTopY()) break;
-                    }
-                    return true;
-                }
-            }
+
+        BlockPos pos = new BlockPos(origin).withY(1);
+        while (pos.getY() < world.getHeight() && !(world.getBlockState(pos).isIn(ModTags.Blocks.END_PLANTS_GROWABLE_ON)
+                && world.getBlockState(pos.up()).isOf(Blocks.AIR))) {
+
+            pos = pos.up();
         }
-        // the game couldn't find a place to put the pillar
-        return false;
+        pos = pos.up();
+        Phantasm.log("Found proper up pos: " + pos);
+
+        for (int i = 0; i < size; i++) {
+            if (pos.getY() >= world.getHeight() - 1)
+                return false;
+
+            world.setBlockState(pos, top.with(CrystalShardBlock.IS_TIP, i == size - 1), 0x10);
+            pos = pos.up();
+        }
+
+
+        pos = new BlockPos(origin).withY(0);
+        while (pos.getY() < world.getHeight() && !(world.getBlockState(pos.up()).isIn(ModTags.Blocks.END_PLANTS_GROWABLE_ON)
+                && world.getBlockState(pos).isOf(Blocks.AIR))) {
+
+            pos = pos.up();
+        }
+        Phantasm.log("Found proper down pos: " + pos);
+
+        for (int i = 0; i < size; i++) {
+            if (pos.getY() <= world.getBottomY() + 1)
+                return false;
+
+            world.setBlockState(pos, bottom.with(CrystalShardBlock.DIRECTION, Direction.DOWN).with(CrystalShardBlock.IS_TIP, i == size - 1), 0x10);
+            pos = pos.down();
+        }
+
+        return true;
     }
 }

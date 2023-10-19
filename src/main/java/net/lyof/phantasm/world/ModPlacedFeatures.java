@@ -50,11 +50,15 @@ public class ModPlacedFeatures {
                 modifiers);
 
         register(context, CRYSTAL_SPIKE_PLACED_KEY, configLookup.getOrThrow(ModConfiguredFeatures.CRYSTAL_SPIKE_KEY),
-                List.of(SquarePlacementModifier.of()));
+                List.of(SquarePlacementModifier.of(), RarityFilterPlacementModifier.of(2)));
+
+        register(context, FALLEN_STAR_PLACED_KEY, configLookup.getOrThrow(ModConfiguredFeatures.FALLEN_STAR_KEY),
+                List.of(SquarePlacementModifier.of(), RarityFilterPlacementModifier.of(3)));
     }
 
 
 
     public static final RegistryKey<PlacedFeature> PREAM_PLACED_KEY = register("pream");
     public static final RegistryKey<PlacedFeature> CRYSTAL_SPIKE_PLACED_KEY = register("crystal_spike");
+    public static final RegistryKey<PlacedFeature> FALLEN_STAR_PLACED_KEY = register("fallen_star");
 }

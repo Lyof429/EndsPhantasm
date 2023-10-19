@@ -3,17 +3,21 @@ package net.lyof.phantasm.world;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.world.feature.CrystalSpikeFeature;
+import net.lyof.phantasm.world.feature.SingleBlockFeature;
 import net.lyof.phantasm.world.feature.config.CrystalSpikeFeatureConfig;
+import net.lyof.phantasm.world.feature.config.SingleBlockFeatureConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.FeatureConfig;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
@@ -56,12 +60,15 @@ public class ModConfiguredFeatures {
         ).build());
 
         register(context, CRYSTAL_SPIKE_KEY, CrystalSpikeFeature.INSTANCE,
-                new CrystalSpikeFeatureConfig(UniformIntProvider.create(3, 5),
-                        0.3f));
+                new CrystalSpikeFeatureConfig(UniformIntProvider.create(3, 5), 0.3f));
+
+        register(context, FALLEN_STAR_KEY, SingleBlockFeature.INSTANCE,
+                new SingleBlockFeatureConfig(UniformIntProvider.create(110, 180), BlockStateProvider.of(ModBlocks.FALLEN_STAR)));
     }
 
 
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> PREAM_KEY = register("pream");
     public static final RegistryKey<ConfiguredFeature<?, ?>> CRYSTAL_SPIKE_KEY = register("crystal_spike");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> FALLEN_STAR_KEY = register("fallen_star");
 }

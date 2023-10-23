@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Model;
+import net.minecraft.data.client.ModelIds;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.item.Item;
 
@@ -68,6 +69,9 @@ public class ModModelProvider extends FabricModelProvider {
 
         generator.registerHangingSign(ModBlocks.STRIPPED_PREAM_LOG,
                 ModBlocks.PREAM_HANGING_SIGN, ModBlocks.PREAM_WALL_HANGING_SIGN);
+
+        generator.blockStateCollector.accept(BlockStateModelGenerator.createBlockStateWithRandomHorizontalRotations(
+                ModBlocks.VIVID_NIHILIUM_BLOCK, ModelIds.getBlockModelId(ModBlocks.VIVID_NIHILIUM_BLOCK)));
     }
 
     @Override

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "phantasm:block/vivid_nihilium_block"
+      },
+      {
+        "model": "phantasm:block/vivid_nihilium_block",
+        "y": 90
+      },
+      {
+        "model": "phantasm:block/vivid_nihilium_block",
+        "y": 180
+      },
+      {
+        "model": "phantasm:block/vivid_nihilium_block",
+        "y": 270
+      }
+    ]
+  }
+}

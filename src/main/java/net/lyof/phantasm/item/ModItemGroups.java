@@ -22,13 +22,15 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.FALLEN_STAR);
 
+                        entries.add(ModBlocks.VIVID_NIHILIUM_BLOCK);
+
+                        entries.add(ModBlocks.PREAM_SAPLING);
+                        entries.add(ModBlocks.PREAM_LEAVES);
+
                         entries.add(ModBlocks.PREAM_LOG);
                         entries.add(ModBlocks.PREAM_WOOD);
                         entries.add(ModBlocks.STRIPPED_PREAM_LOG);
                         entries.add(ModBlocks.STRIPPED_PREAM_WOOD);
-
-                        entries.add(ModBlocks.PREAM_LEAVES);
-                        entries.add(ModBlocks.PREAM_SAPLING);
 
                         entries.add(ModBlocks.PREAM_PLANKS);
                         entries.add(ModBlocks.PREAM_STAIRS);
@@ -96,6 +98,8 @@ public class ModItemGroups {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             entries.addAfter(Items.FLOWERING_AZALEA_LEAVES, ModBlocks.PREAM_LEAVES);
             entries.addAfter(Items.FLOWERING_AZALEA, ModBlocks.PREAM_SAPLING);
+
+            entries.addAfter(Items.END_STONE, ModBlocks.VIVID_NIHILIUM_BLOCK);
 
             entries.add(ModBlocks.FALLEN_STAR);
 

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "phantasm:vivid_nihilium_block",
     "minecraft:end_stone",
     "minecraft:end_stone_bricks",
     "minecraft:end_stone_brick_stairs",

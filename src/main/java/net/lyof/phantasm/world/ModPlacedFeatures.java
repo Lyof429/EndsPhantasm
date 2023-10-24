@@ -40,7 +40,7 @@ public class ModPlacedFeatures {
         var configLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
         List<PlacementModifier> modifiers = new ArrayList<>();
-        modifiers.add(RarityFilterPlacementModifier.of(2));
+        //modifiers.add(RarityFilterPlacementModifier.of(2));
         modifiers.addAll(VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
                 PlacedFeatures.createCountExtraModifier(1, 0.5f, 2),
                 ModBlocks.PREAM_SAPLING));

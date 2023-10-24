@@ -27,11 +27,11 @@ public class ModWorldGeneration {
                 GenerationStep.Feature.VEGETAL_DECORATION,
                 ModPlacedFeatures.CRYSTAL_SPIKE_PLACED_KEY);
         BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
-                GenerationStep.Feature.VEGETAL_DECORATION,
+                GenerationStep.Feature.SURFACE_STRUCTURES,
                 ModPlacedFeatures.FALLEN_STAR_PLACED_KEY);
     }
 
     public static void generateBiomes() {
-        TheEndBiomes.addHighlandsBiome(ModBiomes.DREAMING_DEN, 2.0);
+        TheEndBiomes.addHighlandsBiome(ModBiomes.DREAMING_DEN, 2.5);
     }
 }

@@ -48,7 +48,6 @@ public class CrystalSpikeFeature extends Feature<CrystalSpikeFeatureConfig> {
             pos = pos.up();
         }
         pos = pos.up();
-        Phantasm.log("Found proper up pos: " + pos);
 
         for (int i = 0; i < size; i++) {
             if (pos.getY() >= world.getHeight() - 1)
@@ -65,7 +64,6 @@ public class CrystalSpikeFeature extends Feature<CrystalSpikeFeatureConfig> {
 
             pos = pos.up();
         }
-        Phantasm.log("Found proper down pos: " + pos);
 
         for (int i = 0; i < size; i++) {
             if (pos.getY() <= world.getBottomY() + 1)

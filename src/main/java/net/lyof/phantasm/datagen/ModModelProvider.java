@@ -69,9 +69,6 @@ public class ModModelProvider extends FabricModelProvider {
 
         generator.registerHangingSign(ModBlocks.STRIPPED_PREAM_LOG,
                 ModBlocks.PREAM_HANGING_SIGN, ModBlocks.PREAM_WALL_HANGING_SIGN);
-
-        generator.blockStateCollector.accept(BlockStateModelGenerator.createBlockStateWithRandomHorizontalRotations(
-                ModBlocks.VIVID_NIHILIUM_BLOCK, ModelIds.getBlockModelId(ModBlocks.VIVID_NIHILIUM_BLOCK)));
     }
 
     @Override

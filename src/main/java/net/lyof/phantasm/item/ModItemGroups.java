@@ -24,6 +24,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.FALLEN_STAR);
 
                         entries.add(ModBlocks.VIVID_NIHILIUM_BLOCK);
+                        entries.add(ModBlocks.VIVID_NIHILIUM);
 
                         entries.add(ModBlocks.PREAM_SAPLING);
                         entries.add(ModBlocks.PREAM_LEAVES);
@@ -115,6 +116,8 @@ public class ModItemGroups {
             entries.addAfter(Items.END_STONE, ModBlocks.VIVID_NIHILIUM_BLOCK);
 
             entries.addAfter(ModBlocks.VIVID_NIHILIUM_BLOCK, ModBlocks.RAW_PURPUR);
+
+            entries.add(ModBlocks.VIVID_NIHILIUM);
 
             entries.add(ModBlocks.FALLEN_STAR);
 

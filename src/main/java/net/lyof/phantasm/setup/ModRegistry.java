@@ -47,6 +47,16 @@ public class ModRegistry {
             BLOCK_DROPS.putIfAbsent(this.block, loot);
             return this;
         }
+        /*
+        public BlockBuilder drop_silk(ItemConvertible loot) {
+            BLOCK_SILK_DROPS.putIfAbsent(this.block, loot);
+            return this;
+        }
+
+        public BlockBuilder drop_shears(ItemConvertible loot) {
+            BLOCK_SHEARS_DROPS.putIfAbsent(this.block, loot);
+            return this;
+        }*/
 
         public BlockBuilder tag(TagKey<Block> tagname) {
             BLOCK_TAGS.putIfAbsent(tagname, new ArrayList<>());
@@ -90,6 +100,14 @@ public class ModRegistry {
             if (needed[1].equals("sword")) this.tag(BlockTags.SWORD_EFFICIENT);
 
             return this;
+        }
+
+        public BlockBuilder end_plant() {
+            return this.tag(ModTags.Blocks.END_PLANTS);
+        }
+
+        public BlockBuilder end_soil() {
+            return this.tag(ModTags.Blocks.END_PLANTS_GROWABLE_ON);
         }
 
         public BlockBuilder model() {
@@ -237,12 +255,19 @@ public class ModRegistry {
 
     public static List<Block> BLOCKS = new ArrayList<>();
     public static Map<TagKey<Block>, List<Block>> BLOCK_TAGS = new HashMap<>();
+
     public static Map<Block, ItemConvertible> BLOCK_DROPS = new HashMap<>();
+    //public static Map<Block, ItemConvertible> BLOCK_SILK_DROPS = new HashMap<>();
+    //public static Map<Block, ItemConvertible> BLOCK_SHEARS_DROPS = new HashMap<>();
+
     public static Map<Block, Block> BLOCK_STRIPPED = new HashMap<>();
     public static Map<Block, Map<Models, Block>> BLOCK_SETS = new HashMap<>();
+
     public static Map<Models, List<Block>> BLOCK_MODELS = new HashMap<>();
     public static List<Block> BLOCK_CUTOUT = new ArrayList<>();
+
     public static Map<Block, Pair<Integer, Integer>> BLOCK_FLAMMABLE = new HashMap<>();
+
 
     public static List<Item> ITEMS = new ArrayList<>();
     public static Map<TagKey<Item>, List<Item>> ITEM_TAGS = new HashMap<>();

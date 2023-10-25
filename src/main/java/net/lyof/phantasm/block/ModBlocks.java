@@ -261,14 +261,20 @@ public class ModBlocks {
     public static final Block PREAM_SAPLING = ModRegistry.ofBlock("pream_sapling",
             new SaplingBlock(new PreamSaplingGenerator(), copy(Blocks.OAK_SAPLING).mapColor(MapColor.PURPLE).hardness(0)))
             .model(ModRegistry.Models.CROSS).cutout()
-            .tag(BlockTags.SAPLINGS, ModTags.Blocks.PREAM_BLOCKS, ModTags.Blocks.END_PLANTS).tagitem(ItemTags.SAPLINGS)
-            .fuel(100).drop().build();
+            .tag(BlockTags.SAPLINGS, ModTags.Blocks.PREAM_BLOCKS).tagitem(ItemTags.SAPLINGS)
+            .end_plant().fuel(100).drop().build();
 
 
     // Vivid Nihilium
     public static final Block VIVID_NIHILIUM_BLOCK = ModRegistry.ofBlock("vivid_nihilium_block",
             new NihiliumBlock(copy(Blocks.END_STONE).mapColor(MapColor.TEAL).ticksRandomly()))
-            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_PLANTS_GROWABLE_ON)
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE).end_soil()
+            .cutout().build();
+
+    public static final Block VIVID_NIHILIUM = ModRegistry.ofBlock("vivid_nihilium",
+            new PlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.TEAL)))
+            .tagitem(ItemTags.FLOWERS)
+            .model(ModRegistry.Models.CROSS).end_plant()
             .cutout().build();
 
 

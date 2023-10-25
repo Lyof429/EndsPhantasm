@@ -9,10 +9,8 @@ import net.minecraft.block.Block;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Model;
-import net.minecraft.data.client.ModelIds;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
 
 import java.util.Map;
 

@@ -1,21 +1,16 @@
 package net.lyof.phantasm.block.custom;
 
-import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.setup.ModTags;
-import net.minecraft.block.*;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.Fertilizable;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.chunk.light.ChunkLightProvider;
-import org.jetbrains.annotations.Nullable;
 
 public class NihiliumBlock extends Block implements Fertilizable {
     public NihiliumBlock(Settings settings) {

@@ -5,17 +5,12 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
-import net.minecraft.block.EndPortalBlock;
 import net.minecraft.data.client.Models;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.function.BooleanBiFunction;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.World;
-
-import java.util.Objects;
 
 public class ModItems {
     public static void register() {

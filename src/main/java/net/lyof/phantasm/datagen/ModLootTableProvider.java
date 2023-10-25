@@ -8,7 +8,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
 import net.minecraft.loot.entry.GroupEntry;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
@@ -21,14 +20,14 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         super(dataOutput);
     }
 
+
     public void addDropWithSilkTouchOr(Block self, ItemConvertible loot) {
         addDropWithSilkTouchOr(self, loot, ConstantLootNumberProvider.create(1));
     }
 
     public void addDropWithSilkTouchOr(Block self, ItemConvertible loot, LootNumberProvider amount) {
         addDrop(self, dropsWithSilkTouch(self,
-                new GroupEntry.Builder())
-                .pool(LootPool.builder().conditionally(WITHOUT_SILK_TOUCH)
+                new GroupEntry.Builder()).pool(LootPool.builder().conditionally(WITHOUT_SILK_TOUCH)
                         .rolls(amount)
                         .with(ItemEntry.builder(loot))));
     }

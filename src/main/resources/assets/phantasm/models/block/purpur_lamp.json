@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "minecraft:block/purpur_block",
+    "side": "phantasm:block/purpur_lamp"
+  }
+}

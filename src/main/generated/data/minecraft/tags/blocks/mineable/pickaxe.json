@@ -4,8 +4,8 @@
     "phantasm:fallen_star",
     "phantasm:polished_obsidian",
     "phantasm:polished_obsidian_bricks",
-    "phantasm:polished_obsidian_stairs",
-    "phantasm:polished_obsidian_slab",
+    "phantasm:polished_obsidian_bricks_stairs",
+    "phantasm:polished_obsidian_bricks_slab",
     "phantasm:crystal_shard",
     "phantasm:void_crystal_shard",
     "phantasm:crystal_block",
@@ -18,6 +18,13 @@
     "phantasm:void_crystal_tiles_stairs",
     "phantasm:void_crystal_tiles_slab",
     "phantasm:void_crystal_pillar",
-    "phantasm:vivid_nihilium_block"
+    "phantasm:vivid_nihilium_block",
+    "phantasm:raw_purpur",
+    "phantasm:raw_purpur_bricks",
+    "phantasm:raw_purpur_bricks_stairs",
+    "phantasm:raw_purpur_bricks_slab",
+    "phantasm:raw_purpur_tiles",
+    "phantasm:raw_purpur_pillar",
+    "phantasm:purpur_lamp"
   ]
 }

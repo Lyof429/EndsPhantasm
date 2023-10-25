@@ -192,6 +192,9 @@ public class ModRegistry {
         public static final FoodComponent PREAM_BERRY = new FoodComponent.Builder().alwaysEdible().hunger(4).statusEffect(
                         new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 0, true, false),
                         1).build();
+
+        public static final FoodComponent CHORUS_SALAD = new FoodComponent.Builder().alwaysEdible().hunger(4)
+                .build();
     }
 
 

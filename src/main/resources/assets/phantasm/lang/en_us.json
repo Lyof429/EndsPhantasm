@@ -1,8 +1,10 @@
 {
   "block.phantasm.fallen_star": "Fallen Star",
 
+
   "block.phantasm.vivid_nihilium_block": "Vivid Nihilium",
   "block.phantasm.vivid_nihilium": "Vivid Nihilium",
+
 
   "block.phantasm.pream_log": "Pream Log",
   "block.phantasm.pream_wood": "Pream Wood",
@@ -27,7 +29,11 @@
   "block.phantasm.pream_sign": "Pream Sign",
   "block.phantasm.pream_hanging_sign": "Pream Hanging Sign",
 
+
   "item.phantasm.pream_berry": "Pream Berry",
+
+  "item.phantasm.chorus_fruit_salad": "Chorus Fruit Salad",
+
 
   "block.phantasm.crystal_shard": "Crystal Shard",
   "block.phantasm.void_crystal_shard": "Void Crystal Shard",
@@ -50,10 +56,23 @@
   "block.phantasm.void_crystal_tiles_slab": "Void Crystal Tiles Slab",
   "block.phantasm.void_crystal_pillar": "Void Crystal Pillar",
 
+
   "block.phantasm.polished_obsidian": "Polished Obsidian",
   "block.phantasm.polished_obsidian_bricks": "Polished Obsidian Bricks",
   "block.phantasm.polished_obsidian_bricks_stairs": "Polished Obsidian Bricks Stairs",
   "block.phantasm.polished_obsidian_bricks_slab": "Polished Obsidian Bricks Slab",
+
+
+  "block.phantasm.purpur_lamp": "Purpur Lamp",
+
+  "block.phantasm.raw_purpur": "Raw Purpur",
+  "block.phantasm.raw_purpur_bricks": "Raw Purpur Bricks",
+  "block.phantasm.raw_purpur_bricks_stairs": "Raw Purpur Bricks Stairs",
+  "block.phantasm.raw_purpur_bricks_slab": "Raw Purpur Bricks Slab",
+
+  "block.phantasm.raw_purpur_tiles": "Raw Purpur Tiles",
+  "block.phantasm.raw_purpur_pillar": "Raw Purpur Pillar",
+
 
   "itemgroup.phantasm": "Phantasm",
 

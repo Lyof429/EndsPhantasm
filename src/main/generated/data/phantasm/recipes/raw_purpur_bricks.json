@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "raw_purpur_bricks",
+  "key": {
+    "S": {
+      "item": "phantasm:raw_purpur"
+    }
+  },
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "result": {
+    "count": 4,
+    "item": "phantasm:raw_purpur_bricks"
+  },
+  "show_notification": true
+}

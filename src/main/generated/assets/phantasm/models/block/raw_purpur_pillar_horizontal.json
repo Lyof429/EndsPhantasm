@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "phantasm:block/raw_purpur_pillar_top",
+    "side": "phantasm:block/raw_purpur_pillar"
+  }
+}

@@ -36,11 +36,15 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         List<ItemConvertible> void_crystal = List.of(ModBlocks.VOID_CRYSTAL_TILES, ModBlocks.VOID_CRYSTAL_TILES_STAIRS,
                 ModBlocks.VOID_CRYSTAL_TILES_SLAB, ModBlocks.VOID_CRYSTAL_PILLAR);
         List<ItemConvertible> polished_obsidian = List.of(ModBlocks.POLISHED_OBSIDIAN, ModBlocks.POLISHED_OBSIDIAN_BRICKS,
-                ModBlocks.POLISHED_OBSIDIAN_STAIRS, ModBlocks.POLISHED_OBSIDIAN_SLAB);
+                ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS, ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
+        List<ItemConvertible> raw_purpur = List.of(ModBlocks.RAW_PURPUR, ModBlocks.RAW_PURPUR_BRICKS,
+                ModBlocks.RAW_PURPUR_BRICKS_STAIRS, ModBlocks.RAW_PURPUR_BRICKS_SLAB, ModBlocks.RAW_PURPUR_TILES,
+                ModBlocks.RAW_PURPUR_PILLAR);
 
         result.add(crystal);
         result.add(void_crystal);
         result.add(polished_obsidian);
+        result.add(raw_purpur);
         return result;
     }
 
@@ -90,11 +94,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         }
 
 
+        // Polished Obisidian
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_OBSIDIAN, 8)
                 .input(Blocks.OBSIDIAN, 4).input(Items.DRAGON_BREATH)
                 .criterion(hasItem(Blocks.OBSIDIAN), conditionsFromItem(Blocks.OBSIDIAN))
                 .criterion(hasItem(Items.DRAGON_BREATH), conditionsFromItem(Items.DRAGON_BREATH))
                 .group("polished_obsidian").offerTo(exporter, Phantasm.makeID("polished_obsidian"));
+        // Polished Obsidian Bricks
         createCondensingRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_OBSIDIAN_BRICKS,
                 Ingredient.ofItems(ModBlocks.POLISHED_OBSIDIAN))
                 .criterion(hasItem(ModBlocks.POLISHED_OBSIDIAN), conditionsFromItem(ModBlocks.POLISHED_OBSIDIAN))
@@ -192,12 +198,43 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(ModBlocks.STRIPPED_PREAM_LOG), conditionsFromItem(ModBlocks.STRIPPED_PREAM_LOG))
                 .group("stripped_pream_wood").offerTo(exporter, Phantasm.makeID("stripped_pream_wood"));
 
+        // Pream Hanging Sign
         offerHangingSignRecipe(exporter, ModItems.PREAM_HANGING_SIGN, ModBlocks.STRIPPED_PREAM_LOG);
+        // Pream Door
         createDoorRecipe(ModBlocks.PREAM_DOOR, Ingredient.ofItems(ModBlocks.PREAM_PLANKS))
                 .criterion(hasItem(ModBlocks.PREAM_PLANKS), conditionsFromItem(ModBlocks.PREAM_PLANKS))
                 .offerTo(exporter);
+        //Pream Trapdoor
         createTrapdoorRecipe(ModBlocks.PREAM_TRAPDOOR, Ingredient.ofItems(ModBlocks.PREAM_PLANKS))
                 .criterion(hasItem(ModBlocks.PREAM_PLANKS), conditionsFromItem(ModBlocks.PREAM_PLANKS))
                 .offerTo(exporter);
+
+        // Raw Purpur Bricks
+        createCondensingRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_PURPUR_BRICKS,
+                Ingredient.ofItems(ModBlocks.RAW_PURPUR))
+                .criterion(hasItem(ModBlocks.RAW_PURPUR), conditionsFromItem(ModBlocks.RAW_PURPUR))
+                .group("raw_purpur_bricks").offerTo(exporter, Phantasm.makeID("raw_purpur_bricks"));
+        // Raw Purpur Tiles
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_PURPUR_TILES, 4)
+                .pattern("AB").pattern("BA")
+                .input('A', ModBlocks.RAW_PURPUR).input('B', Blocks.END_STONE)
+                .criterion(hasItem(ModBlocks.RAW_PURPUR), conditionsFromItem(ModBlocks.RAW_PURPUR))
+                .criterion(hasItem(Blocks.END_STONE), conditionsFromItem(Blocks.END_STONE))
+                .group("raw_purpur_tiles").offerTo(exporter, Phantasm.makeID("raw_purpur_tiles"));
+        // Raw Purpur Pillar
+        offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_PURPUR_PILLAR, ModBlocks.RAW_PURPUR_BRICKS_SLAB);
+
+        // Purpur Lamp
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PURPUR_LAMP, 3)
+                .pattern("SSS")
+                .pattern("GRG")
+                .pattern("SSS")
+                .input('S', Blocks.PURPUR_SLAB)
+                .input('G', Blocks.PURPLE_STAINED_GLASS_PANE)
+                .input('R', Blocks.END_ROD)
+                .criterion(hasItem(Blocks.PURPUR_SLAB), conditionsFromItem(Blocks.PURPUR_SLAB))
+                .criterion(hasItem(Blocks.PURPLE_STAINED_GLASS_PANE), conditionsFromItem(Blocks.PURPLE_STAINED_GLASS_PANE))
+                .criterion(hasItem(Blocks.END_ROD), conditionsFromItem(Blocks.END_ROD))
+                .group("purpur_lamp").offerTo(exporter, Phantasm.makeID("purpur_lamp"));
     }
 }

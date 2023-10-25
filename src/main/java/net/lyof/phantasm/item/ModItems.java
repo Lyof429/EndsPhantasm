@@ -5,8 +5,17 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
+import net.minecraft.block.EndPortalBlock;
 import net.minecraft.data.client.Models;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.*;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.function.BooleanBiFunction;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.World;
+
+import java.util.Objects;
 
 public class ModItems {
     public static void register() {
@@ -41,4 +50,21 @@ public class ModItems {
                     new HangingSignItem(ModBlocks.PREAM_HANGING_SIGN, ModBlocks.PREAM_WALL_HANGING_SIGN, new FabricItemSettings()))
             .fuel(200)
             .build();
+
+    public static final Item CHORUS_FRUIT_SALAD = ModRegistry.ofItem("chorus_fruit_salad",
+            new Item(new FabricItemSettings().food(ModRegistry.Foods.CHORUS_SALAD)) {
+                @Override
+                public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+                    if (world instanceof ServerWorld server && user.canUsePortals()) {
+                        RegistryKey<World> registryKey = world.getRegistryKey() == World.END ? World.OVERWORLD : World.END;
+                        ServerWorld serverWorld = server.getServer().getWorld(registryKey);
+                        if (serverWorld == null) {
+                            return super.finishUsing(stack, world, user);
+                        }
+                        user.moveToWorld(serverWorld);
+                    }
+                    return super.finishUsing(stack, world, user);
+                }
+            })
+            .model(Models.GENERATED).build();
 }

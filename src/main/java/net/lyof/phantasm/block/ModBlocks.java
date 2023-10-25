@@ -31,7 +31,8 @@ public class ModBlocks {
 
         ModRegistry.registerStairsAndSlab(CRYSTAL_TILES, CRYSTAL_TILES_STAIRS, CRYSTAL_TILES_SLAB);
         ModRegistry.registerStairsAndSlab(VOID_CRYSTAL_TILES, VOID_CRYSTAL_TILES_STAIRS, VOID_CRYSTAL_TILES_SLAB);
-        ModRegistry.registerStairsAndSlab(POLISHED_OBSIDIAN_BRICKS, POLISHED_OBSIDIAN_STAIRS, POLISHED_OBSIDIAN_SLAB);
+        ModRegistry.registerStairsAndSlab(POLISHED_OBSIDIAN_BRICKS, POLISHED_OBSIDIAN_BRICKS_STAIRS, POLISHED_OBSIDIAN_BRICKS_SLAB);
+        ModRegistry.registerStairsAndSlab(RAW_PURPUR_BRICKS, RAW_PURPUR_BRICKS_STAIRS, RAW_PURPUR_BRICKS_SLAB);
 
         ModRegistry.registerSet(PREAM_LOG, Map.of(ModRegistry.Models.WOOD, PREAM_WOOD));
         ModRegistry.registerSet(STRIPPED_PREAM_LOG, Map.of(ModRegistry.Models.WOOD, STRIPPED_PREAM_WOOD));
@@ -76,6 +77,9 @@ public class ModBlocks {
     private static final FabricBlockSettings PreamLeafMaterial =
             copy(Blocks.OAK_LEAVES).mapColor(MapColor.PURPLE);
 
+    private static final FabricBlockSettings RawPurpurMaterial =
+            copy(Blocks.BLACKSTONE).mapColor(MapColor.TERRACOTTA_PURPLE);
+
     public static final WoodType PREAM = new WoodTypeBuilder().register(Phantasm.makeID("pream"), BlockSetType.OAK);
     //
 
@@ -92,11 +96,11 @@ public class ModBlocks {
     public static final Block POLISHED_OBSIDIAN_BRICKS = ModRegistry.ofBlock("polished_obsidian_bricks",
             new Block(PolishedObsidianMaterial))
             .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe").drop().build();
-    public static final Block POLISHED_OBSIDIAN_STAIRS = ModRegistry.ofBlock("polished_obsidian_stairs",
+    public static final Block POLISHED_OBSIDIAN_BRICKS_STAIRS = ModRegistry.ofBlock("polished_obsidian_bricks_stairs",
             new StairsBlock(POLISHED_OBSIDIAN_BRICKS.getDefaultState(), PolishedObsidianMaterial))
             .tag(BlockTags.DRAGON_IMMUNE, BlockTags.STAIRS).tagitem(ItemTags.STAIRS)
             .tool("iron_pickaxe").drop().cutout().build();
-    public static final Block POLISHED_OBSIDIAN_SLAB = ModRegistry.ofBlock("polished_obsidian_slab",
+    public static final Block POLISHED_OBSIDIAN_BRICKS_SLAB = ModRegistry.ofBlock("polished_obsidian_bricks_slab",
             new SlabBlock(PolishedObsidianMaterial))
             .tag(BlockTags.DRAGON_IMMUNE, BlockTags.SLABS).tagitem(ItemTags.SLABS)
             .tool("iron_pickaxe").drop().cutout().build();
@@ -266,4 +270,44 @@ public class ModBlocks {
             new NihiliumBlock(copy(Blocks.END_STONE).mapColor(MapColor.TEAL).ticksRandomly()))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_PLANTS_GROWABLE_ON)
             .cutout().build();
+
+
+    // Raw Purpur
+    public static final Block RAW_PURPUR = ModRegistry.ofBlock("raw_purpur",
+                    new Block(RawPurpurMaterial))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
+            .tagitem(ItemTags.STONE_CRAFTING_MATERIALS, ItemTags.STONE_TOOL_MATERIALS)
+            .drop()
+            .model().build();
+
+    public static final Block RAW_PURPUR_BRICKS = ModRegistry.ofBlock("raw_purpur_bricks",
+                    new Block(RawPurpurMaterial))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
+            .drop().build();
+    public static final Block RAW_PURPUR_BRICKS_STAIRS = ModRegistry.ofBlock("raw_purpur_bricks_stairs",
+                    new StairsBlock(RAW_PURPUR_BRICKS.getDefaultState(), RawPurpurMaterial))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.STAIRS)
+            .tagitem(ItemTags.STAIRS)
+            .drop().build();
+    public static final Block RAW_PURPUR_BRICKS_SLAB = ModRegistry.ofBlock("raw_purpur_bricks_slab",
+                    new SlabBlock(RawPurpurMaterial))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.SLABS)
+            .tagitem(ItemTags.SLABS)
+            .drop().build();
+
+    public static final Block RAW_PURPUR_TILES = ModRegistry.ofBlock("raw_purpur_tiles",
+                    new Block(RawPurpurMaterial))
+            .model()
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
+            .drop().build();
+    public static final Block RAW_PURPUR_PILLAR = ModRegistry.ofBlock("raw_purpur_pillar",
+                    new PillarBlock(RawPurpurMaterial))
+            .model(ModRegistry.Models.PILLAR)
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
+            .drop().build();
+
+    public static final Block PURPUR_LAMP = ModRegistry.ofBlock("purpur_lamp",
+                    new Block(copy(Blocks.PURPUR_BLOCK).luminance(15)))
+            .tool("_pickaxe")
+            .drop().build();
 }

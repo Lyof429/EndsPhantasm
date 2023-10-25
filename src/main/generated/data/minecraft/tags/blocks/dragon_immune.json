@@ -4,8 +4,14 @@
     "phantasm:fallen_star",
     "phantasm:polished_obsidian",
     "phantasm:polished_obsidian_bricks",
-    "phantasm:polished_obsidian_stairs",
-    "phantasm:polished_obsidian_slab",
-    "phantasm:vivid_nihilium_block"
+    "phantasm:polished_obsidian_bricks_stairs",
+    "phantasm:polished_obsidian_bricks_slab",
+    "phantasm:vivid_nihilium_block",
+    "phantasm:raw_purpur",
+    "phantasm:raw_purpur_bricks",
+    "phantasm:raw_purpur_bricks_stairs",
+    "phantasm:raw_purpur_bricks_slab",
+    "phantasm:raw_purpur_tiles",
+    "phantasm:raw_purpur_pillar"
   ]
 }

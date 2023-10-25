@@ -9,9 +9,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.ServerMetadata;
-import net.minecraft.world.SaveProperties;
-import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.dimension.DimensionOptions;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
@@ -19,9 +16,6 @@ import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
 import net.minecraft.world.gen.noise.NoiseParametersKeys;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
-import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
-import net.minecraft.world.level.LevelInfo;
-import net.minecraft.world.level.storage.LevelStorage;
 
 public class ModMaterialRules {
     private static MaterialRules.MaterialRule block(Block b) {
@@ -29,89 +23,73 @@ public class ModMaterialRules {
     }
 
     private static final MaterialRules.MaterialRule VIVID_NIHILIUM = block(ModBlocks.VIVID_NIHILIUM_BLOCK);
-    private static final MaterialRules.MaterialRule END_STONE = block(Blocks.END_STONE);
+    private static final MaterialRules.MaterialRule RAW_PURPUR = block(ModBlocks.RAW_PURPUR);
 
     public static MaterialRules.MaterialRule createDreamingDenRule() {
         MaterialRules.MaterialCondition dreaming_den = MaterialRules.biome(ModBiomes.DREAMING_DEN);
-        MaterialRules.MaterialCondition noise = MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE_SWAMP, -0.15);
-        //MaterialRules.MaterialCondition surface = MaterialRules.stoneDepth();
+        MaterialRules.MaterialCondition dreaming_den_noise =
+                MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE_SWAMP, -0.2);
 
-        MaterialRules.MaterialRule result = MaterialRules.sequence(
-                //END_STONE,
-                MaterialRules.condition(MaterialRules.biome(ModBiomes.DREAMING_DEN),
-                        MaterialRules.condition(noise,
-                                MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR,
-                                        VIVID_NIHILIUM)
-                        ))
+        MaterialRules.MaterialCondition band_noise =
+                MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE, 0);
+
+        MaterialRules.MaterialCondition band_y_below = MaterialRules.verticalGradient("obsidian_stripes_below1",
+                YOffset.fixed(40), YOffset.fixed(42));
+        MaterialRules.MaterialCondition band_y_above = MaterialRules.not(MaterialRules.verticalGradient("obsidian_stripes_above1",
+                YOffset.fixed(35), YOffset.fixed(37)));
+
+        MaterialRules.MaterialCondition band_y_below2 = MaterialRules.verticalGradient("obsidian_stripes_below2",
+                YOffset.fixed(32), YOffset.fixed(34));
+        MaterialRules.MaterialCondition band_y_above2 = MaterialRules.not(MaterialRules.verticalGradient("obsidian_stripes_above2",
+                YOffset.fixed(27), YOffset.fixed(29)));
+
+        MaterialRules.MaterialCondition band_y_below3 = MaterialRules.verticalGradient("obsidian_stripes_below3",
+                YOffset.fixed(24), YOffset.fixed(26));
+        MaterialRules.MaterialCondition band_y_above3 = MaterialRules.not(MaterialRules.verticalGradient("obsidian_stripes_above3",
+                YOffset.fixed(19), YOffset.fixed(21)));
+
+
+
+        return MaterialRules.sequence(
+                MaterialRules.condition(
+                        band_y_above,
+                        MaterialRules.condition(band_y_below,
+                                MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.VEGETATION, 0.1),
+                                        RAW_PURPUR
+                                )
+                        )
+                ),
+                MaterialRules.condition(
+                        band_y_above2,
+                        MaterialRules.condition(band_y_below2,
+                                MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.CALCITE, 0),
+                                        RAW_PURPUR
+                                )
+                        )
+                ),
+                MaterialRules.condition(
+                        band_y_above3,
+                        MaterialRules.condition(band_y_below3,
+                                MaterialRules.condition(band_noise,
+                                        RAW_PURPUR
+                                )
+                        )
+                ),
+
+                MaterialRules.condition(
+                        dreaming_den,
+                        MaterialRules.condition(
+                                dreaming_den_noise,
+                                MaterialRules.condition(
+                                        MaterialRules.STONE_DEPTH_FLOOR,
+                                        MaterialRules.condition(
+                                                MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
+                                                VIVID_NIHILIUM
+                                        )
+                                )
+                        )
+                )
         );
-/*
-        MaterialRules.sequence(
-                MaterialRules.condition(
-                        MaterialRules.verticalGradient("bedrock_floor", YOffset.getBottom(), YOffset.aboveBottom(5)), BEDROCK),
-                MaterialRules.condition(
-                        MaterialRules.not(
-                                MaterialRules.verticalGradient("bedrock_roof", YOffset.belowTop(5), YOffset.getTop())), BEDROCK),
-                MaterialRules.condition(materialCondition5, NETHERRACK),
-                MaterialRules.condition(MaterialRules.biome(BiomeKeys.BASALT_DELTAS),
-                        MaterialRules.sequence(
-                                MaterialRules.condition(
-                                        MaterialRules.STONE_DEPTH_CEILING_WITH_SURFACE_DEPTH, BASALT),
-                                MaterialRules.condition(
-                                        MaterialRules.STONE_DEPTH_FLOOR_WITH_SURFACE_DEPTH,
-                                        MaterialRules.sequence(materialRule,
-                                                MaterialRules.condition(materialCondition12, BASALT), BLACKSTONE)))),
-                MaterialRules.condition(
-                        MaterialRules.biome(BiomeKeys.SOUL_SAND_VALLEY),
-                        MaterialRules.sequence(
-                                MaterialRules.condition(
-                                        MaterialRules.STONE_DEPTH_CEILING_WITH_SURFACE_DEPTH,
-                                        MaterialRules.sequence(
-                                                MaterialRules.condition(materialCondition12, SOUL_SAND), SOUL_SOIL)),
-                                MaterialRules.condition(
-                                        MaterialRules.STONE_DEPTH_FLOOR_WITH_SURFACE_DEPTH,
-                                        MaterialRules.sequence(materialRule,
-                                                MaterialRules.condition(materialCondition12, SOUL_SAND), SOUL_SOIL)))),
-                MaterialRules.condition(
-                        MaterialRules.STONE_DEPTH_FLOOR,
-                        MaterialRules.sequence(
-                                MaterialRules.condition(
-                                        MaterialRules.not(materialCondition2),
-                                        MaterialRules.condition(materialCondition6, LAVA)),
-                                MaterialRules.condition(
-                                        MaterialRules.biome(BiomeKeys.WARPED_FOREST),
-                                        MaterialRules.condition(
-                                                MaterialRules.not(materialCondition10),
-                                                MaterialRules.condition(materialCondition,
-                                                        MaterialRules.sequence(
-                                                                MaterialRules.condition(materialCondition11, WARPED_WART_BLOCK), WARPED_NYLIUM)))),
-                                MaterialRules.condition(
-                                        MaterialRules.biome(BiomeKeys.CRIMSON_FOREST),
-                                        MaterialRules.condition(
-                                                MaterialRules.not(materialCondition10),
-                                                MaterialRules.condition(materialCondition,
-                                                        MaterialRules.sequence(
-                                                                MaterialRules.condition(materialCondition11, NETHER_WART_BLOCK), CRIMSON_NYLIUM)))))),
-                MaterialRules.condition(
-                        MaterialRules.biome(BiomeKeys.NETHER_WASTES),
-                        MaterialRules.sequence(
-                                MaterialRules.condition(
-                                        MaterialRules.STONE_DEPTH_FLOOR_WITH_SURFACE_DEPTH,
-                                        MaterialRules.condition(materialCondition7,
-                                                MaterialRules.sequence(
-                                                        MaterialRules.condition(
-                                                                MaterialRules.not(materialCondition6),
-                                                                MaterialRules.condition(materialCondition3,
-                                                                        MaterialRules.condition(materialCondition4, SOUL_SAND))), NETHERRACK))),
-                                MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR,
-                                        MaterialRules.condition(materialCondition,
-                                                MaterialRules.condition(materialCondition4,
-                                                        MaterialRules.condition(materialCondition8,
-                                                                MaterialRules.sequence(
-                                                                        MaterialRules.condition(materialCondition2, GRAVEL),
-                                                                        MaterialRules.condition(
-                                                                                MaterialRules.not(materialCondition6), GRAVEL)))))))), NETHERRACK);
-*/
-        return result;
     }
 
     public static void addModMaterialRules(MinecraftServer server, RegistryKey<DimensionOptions> dimensionKey) {

@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
@@ -47,6 +48,17 @@ public class ModItemGroups {
 
                         entries.add(ModItems.PREAM_BERRY);
 
+                        entries.add(ModItems.CHORUS_FRUIT_SALAD);
+
+                        entries.add(ModBlocks.PURPUR_LAMP);
+
+                        entries.add(ModBlocks.RAW_PURPUR);
+                        entries.add(ModBlocks.RAW_PURPUR_BRICKS);
+                        entries.add(ModBlocks.RAW_PURPUR_PILLAR);
+                        entries.add(ModBlocks.RAW_PURPUR_TILES);
+                        entries.add(ModBlocks.RAW_PURPUR_BRICKS_STAIRS);
+                        entries.add(ModBlocks.RAW_PURPUR_BRICKS_SLAB);
+
                         entries.add(ModBlocks.CRYSTAL_SHARD);
                         entries.add(ModBlocks.VOID_CRYSTAL_SHARD);
 
@@ -61,19 +73,19 @@ public class ModItemGroups {
 
 
                         entries.add(ModBlocks.CRYSTAL_TILES);
+                        entries.add(ModBlocks.CRYSTAL_PILLAR);
                         entries.add(ModBlocks.CRYSTAL_TILES_STAIRS);
                         entries.add(ModBlocks.CRYSTAL_TILES_SLAB);
-                        entries.add(ModBlocks.CRYSTAL_PILLAR);
 
                         entries.add(ModBlocks.VOID_CRYSTAL_TILES);
+                        entries.add(ModBlocks.VOID_CRYSTAL_PILLAR);
                         entries.add(ModBlocks.VOID_CRYSTAL_TILES_STAIRS);
                         entries.add(ModBlocks.VOID_CRYSTAL_TILES_SLAB);
-                        entries.add(ModBlocks.VOID_CRYSTAL_PILLAR);
 
                         entries.add(ModBlocks.POLISHED_OBSIDIAN);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS);
-                        entries.add(ModBlocks.POLISHED_OBSIDIAN_STAIRS);
-                        entries.add(ModBlocks.POLISHED_OBSIDIAN_SLAB);
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS);
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
 
 
                         //for (Item item : ModRegistry.ITEMS)
@@ -94,12 +106,15 @@ public class ModItemGroups {
         if (false) return;
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
             entries.add(ModItems.PREAM_BERRY);
+            entries.add(ModItems.CHORUS_FRUIT_SALAD);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             entries.addAfter(Items.FLOWERING_AZALEA_LEAVES, ModBlocks.PREAM_LEAVES);
             entries.addAfter(Items.FLOWERING_AZALEA, ModBlocks.PREAM_SAPLING);
 
             entries.addAfter(Items.END_STONE, ModBlocks.VIVID_NIHILIUM_BLOCK);
+
+            entries.addAfter(ModBlocks.VIVID_NIHILIUM_BLOCK, ModBlocks.RAW_PURPUR);
 
             entries.add(ModBlocks.FALLEN_STAR);
 
@@ -122,22 +137,32 @@ public class ModItemGroups {
             entries.addAfter(ModBlocks.PREAM_TRAPDOOR, ModBlocks.PREAM_PRESSURE_PLATE);
             entries.addAfter(ModBlocks.PREAM_PRESSURE_PLATE, ModBlocks.PREAM_BUTTON);
 
+            entries.addAfter(Items.PURPUR_PILLAR, ModBlocks.PURPUR_LAMP);
+
+            entries.addAfter(Items.PURPUR_SLAB, ModBlocks.RAW_PURPUR);
+            entries.addAfter(ModBlocks.RAW_PURPUR, ModBlocks.RAW_PURPUR_BRICKS);
+            entries.addAfter(ModBlocks.RAW_PURPUR_BRICKS, ModBlocks.RAW_PURPUR_PILLAR);
+            entries.addAfter(ModBlocks.RAW_PURPUR_PILLAR, ModBlocks.RAW_PURPUR_TILES);
+            entries.addAfter(ModBlocks.RAW_PURPUR_TILES, ModBlocks.RAW_PURPUR_BRICKS_STAIRS);
+            entries.addAfter(ModBlocks.RAW_PURPUR_BRICKS_STAIRS, ModBlocks.RAW_PURPUR_BRICKS_SLAB);
+
+            entries.addAfter(ModBlocks.RAW_PURPUR_BRICKS_SLAB, Blocks.OBSIDIAN);
+            entries.addAfter(Blocks.OBSIDIAN, ModBlocks.POLISHED_OBSIDIAN);
+            entries.addAfter(ModBlocks.POLISHED_OBSIDIAN, ModBlocks.POLISHED_OBSIDIAN_BRICKS);
+            entries.addAfter(ModBlocks.POLISHED_OBSIDIAN_BRICKS, ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS);
+            entries.addAfter(ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS, ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
+
             entries.add(ModBlocks.CRYSTAL_BLOCK);
             entries.add(ModBlocks.CRYSTAL_TILES);
+            entries.add(ModBlocks.CRYSTAL_PILLAR);
             entries.add(ModBlocks.CRYSTAL_TILES_STAIRS);
             entries.add(ModBlocks.CRYSTAL_TILES_SLAB);
-            entries.add(ModBlocks.CRYSTAL_PILLAR);
 
             entries.add(ModBlocks.VOID_CRYSTAL_BLOCK);
             entries.add(ModBlocks.VOID_CRYSTAL_TILES);
+            entries.add(ModBlocks.VOID_CRYSTAL_PILLAR);
             entries.add(ModBlocks.VOID_CRYSTAL_TILES_STAIRS);
             entries.add(ModBlocks.VOID_CRYSTAL_TILES_SLAB);
-            entries.add(ModBlocks.VOID_CRYSTAL_PILLAR);
-
-            entries.add(ModBlocks.POLISHED_OBSIDIAN);
-            entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS);
-            entries.add(ModBlocks.POLISHED_OBSIDIAN_STAIRS);
-            entries.add(ModBlocks.POLISHED_OBSIDIAN_SLAB);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
             entries.addAfter(Items.WARPED_HANGING_SIGN, ModItems.PREAM_SIGN);

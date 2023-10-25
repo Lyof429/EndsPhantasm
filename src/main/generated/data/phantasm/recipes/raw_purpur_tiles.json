@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "raw_purpur_tiles",
+  "key": {
+    "A": {
+      "item": "phantasm:raw_purpur"
+    },
+    "B": {
+      "item": "minecraft:end_stone"
+    }
+  },
+  "pattern": [
+    "AB",
+    "BA"
+  ],
+  "result": {
+    "count": 4,
+    "item": "phantasm:raw_purpur_tiles"
+  },
+  "show_notification": true
+}

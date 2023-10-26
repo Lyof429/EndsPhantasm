@@ -266,7 +266,7 @@ public class ModBlocks {
 
 
     // Vivid Nihilium
-    public static final Block VIVID_NIHILIUM_BLOCK = ModRegistry.ofBlock("vivid_nihilium_block",
+    public static final Block VIVID_NIHILIA = ModRegistry.ofBlock("vivid_nihilia",
             new NihiliumBlock(copy(Blocks.END_STONE).mapColor(MapColor.TEAL).ticksRandomly()))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE).end_soil()
             .cutout().build();

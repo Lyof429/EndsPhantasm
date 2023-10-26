@@ -14,10 +14,7 @@ import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.TreeFeatureConfig;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
@@ -64,11 +61,18 @@ public class ModConfiguredFeatures {
 
         register(context, FALLEN_STAR_KEY, SingleBlockFeature.INSTANCE,
                 new SingleBlockFeatureConfig(UniformIntProvider.create(110, 180), BlockStateProvider.of(ModBlocks.FALLEN_STAR)));
+
+        register(context, VIVID_NIHILIUM_KEY, Feature.FLOWER, new RandomPatchFeatureConfig(
+                48, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.VIVID_NIHILIUM)))));
     }
 
 
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> PREAM_KEY = register("pream");
+
     public static final RegistryKey<ConfiguredFeature<?, ?>> CRYSTAL_SPIKE_KEY = register("crystal_spike");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FALLEN_STAR_KEY = register("fallen_star");
+
+    public static final RegistryKey<ConfiguredFeature<?, ?>> VIVID_NIHILIUM_KEY = register("vivid_nihilium");
 }

@@ -10,6 +10,7 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.feature.PlacedFeatures;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
+import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier;
 import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
@@ -50,15 +51,25 @@ public class ModPlacedFeatures {
                 modifiers);
 
         register(context, CRYSTAL_SPIKE_PLACED_KEY, configLookup.getOrThrow(ModConfiguredFeatures.CRYSTAL_SPIKE_KEY),
-                List.of(SquarePlacementModifier.of(), RarityFilterPlacementModifier.of(2)));
+                SquarePlacementModifier.of(),
+                RarityFilterPlacementModifier.of(2));
 
         register(context, FALLEN_STAR_PLACED_KEY, configLookup.getOrThrow(ModConfiguredFeatures.FALLEN_STAR_KEY),
-                List.of(SquarePlacementModifier.of(), RarityFilterPlacementModifier.of(3)));
+                SquarePlacementModifier.of(),
+                RarityFilterPlacementModifier.of(3));
+
+        register(context, VIVID_NIHILIUM_PLACED_KEY, configLookup.getOrThrow(ModConfiguredFeatures.VIVID_NIHILIUM_KEY),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of());
     }
 
 
 
     public static final RegistryKey<PlacedFeature> PREAM_PLACED_KEY = register("pream");
+
     public static final RegistryKey<PlacedFeature> CRYSTAL_SPIKE_PLACED_KEY = register("crystal_spike");
     public static final RegistryKey<PlacedFeature> FALLEN_STAR_PLACED_KEY = register("fallen_star");
+
+    public static final RegistryKey<PlacedFeature> VIVID_NIHILIUM_PLACED_KEY = register("vivid_nihilium");
 }

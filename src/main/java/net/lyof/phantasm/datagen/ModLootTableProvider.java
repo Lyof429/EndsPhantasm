@@ -21,11 +21,11 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
     }
 
 
-    public void addDropWithSilkTouchOr(Block self, ItemConvertible loot) {
-        addDropWithSilkTouchOr(self, loot, ConstantLootNumberProvider.create(1));
+    public void addSelfDropOr(Block self, ItemConvertible loot) {
+        addSelfDropOr(self, loot, ConstantLootNumberProvider.create(1));
     }
 
-    public void addDropWithSilkTouchOr(Block self, ItemConvertible loot, LootNumberProvider amount) {
+    public void addSelfDropOr(Block self, ItemConvertible loot, LootNumberProvider amount) {
         addDrop(self, dropsWithSilkTouch(self,
                 new GroupEntry.Builder()).pool(LootPool.builder().conditionally(WITHOUT_SILK_TOUCH)
                         .rolls(amount)
@@ -49,7 +49,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.HANGING_PREAM_LEAVES, dropsWithSilkTouchOrShears(ModBlocks.HANGING_PREAM_LEAVES,
                 new GroupEntry.Builder()));
 
-        addDropWithSilkTouchOr(ModBlocks.VIVID_NIHILIUM_BLOCK, Items.END_STONE);
+        addSelfDropOr(ModBlocks.VIVID_NIHILIA, Items.END_STONE);
 
         addDrop(ModBlocks.VIVID_NIHILIUM, dropsWithShears(ModBlocks.VIVID_NIHILIUM));
     }

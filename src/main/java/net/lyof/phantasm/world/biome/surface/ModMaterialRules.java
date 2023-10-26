@@ -21,7 +21,7 @@ public class ModMaterialRules {
         return MaterialRules.block(b.getDefaultState());
     }
 
-    private static final MaterialRules.MaterialRule VIVID_NIHILIUM = block(ModBlocks.VIVID_NIHILIUM_BLOCK);
+    private static final MaterialRules.MaterialRule VIVID_NIHILIA = block(ModBlocks.VIVID_NIHILIA);
     private static final MaterialRules.MaterialRule RAW_PURPUR = block(ModBlocks.RAW_PURPUR);
 
     public static MaterialRules.MaterialRule createDreamingDenRule() {
@@ -83,7 +83,7 @@ public class ModMaterialRules {
                                         MaterialRules.STONE_DEPTH_FLOOR,
                                         MaterialRules.condition(
                                                 MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
-                                                VIVID_NIHILIUM
+                                                VIVID_NIHILIA
                                         )
                                 )
                         )

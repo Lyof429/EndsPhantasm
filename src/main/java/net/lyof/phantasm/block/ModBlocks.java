@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.custom.CrystalShardBlock;
 import net.lyof.phantasm.block.custom.HangingFruitBlock;
-import net.lyof.phantasm.block.custom.NihiliaBlock;
+import net.lyof.phantasm.block.custom.NihiliumBlock;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
@@ -264,14 +264,13 @@ public class ModBlocks {
             .tag(BlockTags.SAPLINGS, ModTags.Blocks.PREAM_BLOCKS).tagitem(ItemTags.SAPLINGS)
             .end_plant().fuel(100).drop().build();
 
-
     // Vivid Nihilium
-    public static final Block VIVID_NIHILIA = ModRegistry.ofBlock("vivid_nihilia",
-            new NihiliaBlock(copy(Blocks.END_STONE).mapColor(MapColor.TEAL).ticksRandomly()))
+    public static final Block VIVID_NIHILIUM = ModRegistry.ofBlock("vivid_nihilium",
+            new NihiliumBlock(copy(Blocks.END_STONE).mapColor(MapColor.TEAL).ticksRandomly()))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE).end_soil()
             .cutout().build();
 
-    public static final Block VIVID_NIHILIUM = ModRegistry.ofBlock("vivid_nihilium",
+    public static final Block VIVID_NIHILIS = ModRegistry.ofBlock("vivid_nihilis",
             new PlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.TEAL)))
             .tagitem(ItemTags.FLOWERS)
             .model(ModRegistry.Models.CROSS).end_plant()

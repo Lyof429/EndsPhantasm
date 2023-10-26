@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.dimension.DimensionOptions;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
@@ -21,7 +22,7 @@ public class ModMaterialRules {
         return MaterialRules.block(b.getDefaultState());
     }
 
-    private static final MaterialRules.MaterialRule VIVID_NIHILIA = block(ModBlocks.VIVID_NIHILIA);
+    private static final MaterialRules.MaterialRule VIVID_NIHILIUM = block(ModBlocks.VIVID_NIHILIUM);
     private static final MaterialRules.MaterialRule RAW_PURPUR = block(ModBlocks.RAW_PURPUR);
 
     public static MaterialRules.MaterialRule createDreamingDenRule() {
@@ -50,43 +51,47 @@ public class ModMaterialRules {
 
 
         return MaterialRules.sequence(
-                MaterialRules.condition(
-                        band_y_above,
-                        MaterialRules.condition(band_y_below,
-                                MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.VEGETATION, 0.1),
-                                        RAW_PURPUR
+                MaterialRules.condition(MaterialRules.not(MaterialRules.biome(BiomeKeys.THE_END)),
+                    MaterialRules.sequence(
+                        MaterialRules.condition(
+                            band_y_above,
+                            MaterialRules.condition(band_y_below,
+                                MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.VEGETATION,
+                                        0.1),
+                                    RAW_PURPUR
                                 )
-                        )
-                ),
-                MaterialRules.condition(
-                        band_y_above2,
-                        MaterialRules.condition(band_y_below2,
-                                MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.CALCITE, 0),
-                                        RAW_PURPUR
+                            )
+                        ), MaterialRules.condition(
+                            band_y_above2,
+                            MaterialRules.condition(band_y_below2,
+                                MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.CALCITE,
+                                        0),
+                                    RAW_PURPUR
                                 )
-                        )
-                ),
-                MaterialRules.condition(
-                        band_y_above3,
-                        MaterialRules.condition(band_y_below3,
+                            )
+                        ), MaterialRules.condition(
+                            band_y_above3,
+                            MaterialRules.condition(band_y_below3,
                                 MaterialRules.condition(band_noise,
-                                        RAW_PURPUR
+                                    RAW_PURPUR
                                 )
+                            )
                         )
+                    )
                 ),
 
                 MaterialRules.condition(
-                        dreaming_den,
+                    dreaming_den,
+                    MaterialRules.condition(
+                        dreaming_den_noise,
                         MaterialRules.condition(
-                                dreaming_den_noise,
-                                MaterialRules.condition(
-                                        MaterialRules.STONE_DEPTH_FLOOR,
-                                        MaterialRules.condition(
-                                                MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
-                                                VIVID_NIHILIA
-                                        )
-                                )
+                            MaterialRules.STONE_DEPTH_FLOOR,
+                            MaterialRules.condition(
+                                MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
+                                    VIVID_NIHILIUM
+                            )
                         )
+                    )
                 )
         );
     }

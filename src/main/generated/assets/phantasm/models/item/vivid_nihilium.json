@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "phantasm:block/vivid_nihilium"
-  }
+  "parent": "phantasm:block/vivid_nihilium"
 }

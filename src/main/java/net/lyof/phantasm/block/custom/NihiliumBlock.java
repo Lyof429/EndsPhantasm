@@ -20,8 +20,8 @@ import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 import java.util.List;
 import java.util.Optional;
 
-public class NihiliaBlock extends Block implements Fertilizable {
-    public NihiliaBlock(Settings settings) {
+public class NihiliumBlock extends Block implements Fertilizable {
+    public NihiliumBlock(Settings settings) {
         super(settings);
     }
 
@@ -86,6 +86,7 @@ public class NihiliaBlock extends Block implements Fertilizable {
             if (optional.isEmpty()) return;
             registryEntry = optional.get();
         }
+
         registryEntry.value().generate(world, world.getChunkManager().getChunkGenerator(), random, test);
     }
 }

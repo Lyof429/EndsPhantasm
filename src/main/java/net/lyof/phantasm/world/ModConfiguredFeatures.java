@@ -64,7 +64,7 @@ public class ModConfiguredFeatures {
 
         register(context, VIVID_NIHILIUM_KEY, Feature.FLOWER, new RandomPatchFeatureConfig(
                 48, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
-                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.VIVID_NIHILIUM)))));
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.VIVID_NIHILIS)))));
     }
 
 
@@ -74,5 +74,5 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> CRYSTAL_SPIKE_KEY = register("crystal_spike");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FALLEN_STAR_KEY = register("fallen_star");
 
-    public static final RegistryKey<ConfiguredFeature<?, ?>> VIVID_NIHILIUM_KEY = register("patch_vivid_nihilium");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> VIVID_NIHILIUM_KEY = register("patch_vivid_nihilis");
 }

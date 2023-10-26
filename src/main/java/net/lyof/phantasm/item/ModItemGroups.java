@@ -23,8 +23,8 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.FALLEN_STAR);
 
-                        entries.add(ModBlocks.VIVID_NIHILIA);
                         entries.add(ModBlocks.VIVID_NIHILIUM);
+                        entries.add(ModBlocks.VIVID_NIHILIS);
 
                         entries.add(ModBlocks.PREAM_SAPLING);
                         entries.add(ModBlocks.PREAM_LEAVES);
@@ -113,11 +113,9 @@ public class ModItemGroups {
             entries.addAfter(Items.FLOWERING_AZALEA_LEAVES, ModBlocks.PREAM_LEAVES);
             entries.addAfter(Items.FLOWERING_AZALEA, ModBlocks.PREAM_SAPLING);
 
-            entries.addAfter(Items.END_STONE, ModBlocks.VIVID_NIHILIA);
-
-            entries.addAfter(ModBlocks.VIVID_NIHILIA, ModBlocks.RAW_PURPUR);
-
-            entries.add(ModBlocks.VIVID_NIHILIUM);
+            entries.addAfter(Items.END_STONE, ModBlocks.VIVID_NIHILIUM);
+            entries.addAfter(Items.CHORUS_FLOWER, ModBlocks.VIVID_NIHILIS);
+            entries.addAfter(ModBlocks.VIVID_NIHILIUM, ModBlocks.RAW_PURPUR);
 
             entries.add(ModBlocks.FALLEN_STAR);
 

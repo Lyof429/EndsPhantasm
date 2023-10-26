@@ -71,5 +71,5 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> CRYSTAL_SPIKE_PLACED_KEY = register("crystal_spike");
     public static final RegistryKey<PlacedFeature> FALLEN_STAR_PLACED_KEY = register("fallen_star");
 
-    public static final RegistryKey<PlacedFeature> VIVID_NIHILIUM_PLACED_KEY = register("vivid_nihilium");
+    public static final RegistryKey<PlacedFeature> VIVID_NIHILIUM_PLACED_KEY = register("vivid_nihilis");
 }

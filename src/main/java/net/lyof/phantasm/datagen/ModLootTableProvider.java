@@ -49,8 +49,8 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.HANGING_PREAM_LEAVES, dropsWithSilkTouchOrShears(ModBlocks.HANGING_PREAM_LEAVES,
                 new GroupEntry.Builder()));
 
-        addSelfDropOr(ModBlocks.VIVID_NIHILIA, Items.END_STONE);
+        addSelfDropOr(ModBlocks.VIVID_NIHILIUM, Items.END_STONE);
 
-        addDrop(ModBlocks.VIVID_NIHILIUM, dropsWithShears(ModBlocks.VIVID_NIHILIUM));
+        addDrop(ModBlocks.VIVID_NIHILIS, dropsWithShears(ModBlocks.VIVID_NIHILIS));
     }
 }

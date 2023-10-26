@@ -1,9 +1,10 @@
 package net.lyof.phantasm.block.custom;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.Fertilizable;
+import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.world.ModPlacedFeatures;
+import net.minecraft.block.*;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -11,9 +12,16 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.chunk.light.ChunkLightProvider;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.gen.feature.RandomPatchFeatureConfig;
+import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 
-public class NihiliumBlock extends Block implements Fertilizable {
-    public NihiliumBlock(Settings settings) {
+import java.util.List;
+import java.util.Optional;
+
+public class NihiliaBlock extends Block implements Fertilizable {
+    public NihiliaBlock(Settings settings) {
         super(settings);
     }
 
@@ -50,12 +58,34 @@ public class NihiliumBlock extends Block implements Fertilizable {
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         BlockPos target;
+
         for (int i = 0; i < 6; i++) {
             target = pos.mutableCopy().add(random.nextBetween(-1, 1), random.nextBetween(-1, 1), random.nextBetween(-1, 1));
 
             if (canSurvive(world.getBlockState(target), world, target) && world.getBlockState(target).getBlock() == Blocks.END_STONE)
                 world.setBlockState(target, this.getDefaultState());
-            // TODO: Add plants
         }
+
+        // TODO: Add plants
+
+        Optional<RegistryEntry.Reference<PlacedFeature>> optional = world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE)
+                .getEntry(ModPlacedFeatures.VIVID_NIHILIUM_PLACED_KEY);
+        RegistryEntry<PlacedFeature> registryEntry;
+        BlockPos test = pos.up();
+
+        if (!world.getBlockState(test).isAir())
+            return;
+        if (world.isClient())
+            return;
+
+        if (random.nextInt(2) == 0) {
+            List<ConfiguredFeature<?, ?>> list = world.getBiome(test).value().getGenerationSettings().getFlowerFeatures();
+            if (list.isEmpty()) return;
+            registryEntry = ((RandomPatchFeatureConfig)list.get(0).config()).feature();
+        } else {
+            if (optional.isEmpty()) return;
+            registryEntry = optional.get();
+        }
+        registryEntry.value().generate(world, world.getChunkManager().getChunkGenerator(), random, test);
     }
 }

@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.custom.CrystalShardBlock;
 import net.lyof.phantasm.block.custom.HangingFruitBlock;
-import net.lyof.phantasm.block.custom.NihiliumBlock;
+import net.lyof.phantasm.block.custom.NihiliaBlock;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
@@ -267,7 +267,7 @@ public class ModBlocks {
 
     // Vivid Nihilium
     public static final Block VIVID_NIHILIA = ModRegistry.ofBlock("vivid_nihilia",
-            new NihiliumBlock(copy(Blocks.END_STONE).mapColor(MapColor.TEAL).ticksRandomly()))
+            new NihiliaBlock(copy(Blocks.END_STONE).mapColor(MapColor.TEAL).ticksRandomly()))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE).end_soil()
             .cutout().build();
 

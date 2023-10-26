@@ -74,5 +74,5 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> CRYSTAL_SPIKE_KEY = register("crystal_spike");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FALLEN_STAR_KEY = register("fallen_star");
 
-    public static final RegistryKey<ConfiguredFeature<?, ?>> VIVID_NIHILIUM_KEY = register("vivid_nihilium");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> VIVID_NIHILIUM_KEY = register("patch_vivid_nihilium");
 }

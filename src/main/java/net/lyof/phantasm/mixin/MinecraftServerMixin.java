@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftServer.class)
-public abstract class MinecraftServerMixin {
+public class MinecraftServerMixin {
     @Inject(method = "createWorlds", at = @At("RETURN"))
     private void createEPLevels(WorldGenerationProgressListener worldGenerationProgressListener, CallbackInfo ci) {
         ModMaterialRules.addModMaterialRules((MinecraftServer) (Object) this, DimensionOptions.END);

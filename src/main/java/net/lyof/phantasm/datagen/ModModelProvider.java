@@ -44,6 +44,14 @@ public class ModModelProvider extends FabricModelProvider {
                         poollog.wood(entry.getValue());
                 }
             }
+
+            else if (ModRegistry.BLOCK_SETS.get(block).containsKey(ModRegistry.Models.PANE)) {
+                for (Map.Entry<ModRegistry.Models, Block> entry : ModRegistry.BLOCK_SETS.get(block).entrySet()) {
+                    if (entry.getKey() == ModRegistry.Models.PANE)
+                        generator.registerGlassPane(block, entry.getValue());
+                }
+            }
+
             else {
                 pool = generator.registerCubeAllModelTexturePool(block);
                 for (Map.Entry<ModRegistry.Models, Block> entry : ModRegistry.BLOCK_SETS.get(block).entrySet()) {

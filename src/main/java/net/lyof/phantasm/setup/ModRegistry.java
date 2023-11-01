@@ -203,7 +203,8 @@ public class ModRegistry {
         SIGN,
         WALL_SIGN,
         HANGING_SIGN,
-        WALL_HANGING_SIGN
+        WALL_HANGING_SIGN,
+        PANE
     }
 
     public static class Foods {
@@ -233,10 +234,17 @@ public class ModRegistry {
         return BLOCK_MODELS.getOrDefault(key, new ArrayList<>());
     }
 
+
     public static void registerStairsAndSlab(Block parent, Block stairs, Block slab) {
         registerSet(parent, Map.of(
                 Models.STAIRS, stairs,
                 Models.SLAB, slab
+        ));
+    }
+
+    public static void registerGlass(Block parent, Block pane) {
+        registerSet(parent, Map.of(
+                Models.PANE, pane
         ));
     }
 

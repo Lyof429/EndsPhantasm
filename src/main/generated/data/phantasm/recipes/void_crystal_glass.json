@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "void_crystal_glass",
+  "key": {
+    "A": {
+      "item": "phantasm:void_crystal_shard"
+    },
+    "B": {
+      "item": "minecraft:glass"
+    }
+  },
+  "pattern": [
+    "AB",
+    "BA"
+  ],
+  "result": {
+    "item": "phantasm:void_crystal_glass"
+  },
+  "show_notification": true
+}

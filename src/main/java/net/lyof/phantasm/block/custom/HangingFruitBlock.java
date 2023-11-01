@@ -1,5 +1,6 @@
 package net.lyof.phantasm.block.custom;
 
+import net.lyof.phantasm.Phantasm;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Fertilizable;
@@ -55,6 +56,13 @@ public class HangingFruitBlock extends HangingPlantBlock implements Fertilizable
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (state.get(HAS_FRUIT)) {
+            player.swingHand(hand, true);
+
+            world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this.drop)));
+            world.setBlockState(pos, state.with(HAS_FRUIT, false));
+        }
+
         return super.onUse(state, world, pos, player, hand, hit);
     }
 

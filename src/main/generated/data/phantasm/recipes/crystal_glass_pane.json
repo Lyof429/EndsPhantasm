@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "crystal_glass_pane",
+  "key": {
+    "#": {
+      "item": "phantasm:crystal_glass"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 16,
+    "item": "phantasm:crystal_glass_pane"
+  },
+  "show_notification": true
+}

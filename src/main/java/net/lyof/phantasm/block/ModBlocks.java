@@ -34,6 +34,9 @@ public class ModBlocks {
         ModRegistry.registerStairsAndSlab(POLISHED_OBSIDIAN_BRICKS, POLISHED_OBSIDIAN_BRICKS_STAIRS, POLISHED_OBSIDIAN_BRICKS_SLAB);
         ModRegistry.registerStairsAndSlab(RAW_PURPUR_BRICKS, RAW_PURPUR_BRICKS_STAIRS, RAW_PURPUR_BRICKS_SLAB);
 
+        ModRegistry.registerGlass(CRYSTAL_GLASS, CRYSTAL_GLASS_PANE);
+        ModRegistry.registerGlass(VOID_CRYSTAL_GLASS, VOID_CRYSTAL_GLASS_PANE);
+
         ModRegistry.registerSet(PREAM_LOG, Map.of(ModRegistry.Models.WOOD, PREAM_WOOD));
         ModRegistry.registerSet(STRIPPED_PREAM_LOG, Map.of(ModRegistry.Models.WOOD, STRIPPED_PREAM_WOOD));
 
@@ -64,6 +67,9 @@ public class ModBlocks {
     private static final FabricBlockSettings CrystalMaterial = 
             copy(Blocks.DIAMOND_ORE).luminance(4).emissiveLighting((a, b, c) -> true)
                     .nonOpaque();
+    private static final FabricBlockSettings CrystalGlassMaterial =
+            FabricBlockSettings.create().emissiveLighting((a, b, c) -> true).hardness(0.75f).luminance(4)
+            .nonOpaque().mapColor(MapColor.LIGHT_BLUE).sounds(BlockSoundGroup.GLASS);
 
     private static final FabricBlockSettings PolishedObsidianMaterial =
             copy(Blocks.OBSIDIAN).hardness(7);
@@ -112,6 +118,7 @@ public class ModBlocks {
             new CrystalShardBlock(copy(CrystalMaterial).sounds(BlockSoundGroup.GLASS)))
             .model(Models.GENERATED).tool("_pickaxe").drop().cutout().build();
 
+
     // Crystal Blockset
     public static final Block CRYSTAL_BLOCK = ModRegistry.ofBlock("crystal_block",
             new Block(CrystalMaterial))
@@ -130,6 +137,13 @@ public class ModBlocks {
             new PillarBlock(CrystalMaterial))
             .model(ModRegistry.Models.PILLAR).tool("_pickaxe").drop().build();
 
+    public static final Block CRYSTAL_GLASS = ModRegistry.ofBlock("crystal_glass",
+            new Block(CrystalGlassMaterial))
+            .cutout().drop().build();
+    public static final Block CRYSTAL_GLASS_PANE = ModRegistry.ofBlock("crystal_glass_pane",
+            new PaneBlock(CrystalGlassMaterial))
+            .cutout().model(ModRegistry.Models.PANE).drop().build();
+
     // Void Crystal Blockset
     public static final Block VOID_CRYSTAL_BLOCK = ModRegistry.ofBlock("void_crystal_block",
             new Block(CrystalMaterial))
@@ -147,6 +161,14 @@ public class ModBlocks {
     public static final Block VOID_CRYSTAL_PILLAR = ModRegistry.ofBlock("void_crystal_pillar",
             new PillarBlock(CrystalMaterial))
             .model(ModRegistry.Models.PILLAR).tool("_pickaxe").drop().build();
+
+    public static final Block VOID_CRYSTAL_GLASS = ModRegistry.ofBlock("void_crystal_glass",
+                    new Block(CrystalGlassMaterial))
+            .cutout().drop().build();
+    public static final Block VOID_CRYSTAL_GLASS_PANE = ModRegistry.ofBlock("void_crystal_glass_pane",
+                    new PaneBlock(CrystalGlassMaterial))
+            .cutout().model(ModRegistry.Models.PANE).drop().build();
+
 
     // Pream Blockset
     public static final Block STRIPPED_PREAM_LOG = ModRegistry.ofBlock("stripped_pream_log",
@@ -177,7 +199,7 @@ public class ModBlocks {
             .tool("_hoe").flammable(5, 30)
             .model().cutout().build();
     public static final Block HANGING_PREAM_LEAVES = ModRegistry.ofBlock("hanging_pream_leaves",
-            new HangingFruitBlock(copy(PreamLeafMaterial).collidable(false),
+            new HangingFruitBlock(copy(PreamLeafMaterial).collidable(false).breakInstantly(),
                     () -> ModItems.PREAM_BERRY,
                     ModTags.Blocks.HANGING_PREAM_LEAVES_GROWABLE_ON,
                     Block.createCuboidShape(0, 8, 0, 16, 16, 16)))

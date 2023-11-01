@@ -58,12 +58,18 @@ public class NihiliumBlock extends Block implements Fertilizable {
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         BlockPos target;
+        BlockState block;
 
         for (int i = 0; i < 6; i++) {
             target = pos.mutableCopy().add(random.nextBetween(-1, 1), random.nextBetween(-1, 1), random.nextBetween(-1, 1));
 
-            if (canSurvive(world.getBlockState(target), world, target) && world.getBlockState(target).getBlock() == Blocks.END_STONE)
+            if (canSurvive(world.getBlockState(target), world, target) && world.getBlockState(target).getBlock() == Blocks.END_STONE) {
                 world.setBlockState(target, this.getDefaultState());
+
+                block = world.getBlockState(target);
+                if (random.nextInt(3) == 0)
+                    ((Fertilizable) block.getBlock()).grow(world, random, target, block);
+            }
         }
 
         // TODO: Add plants

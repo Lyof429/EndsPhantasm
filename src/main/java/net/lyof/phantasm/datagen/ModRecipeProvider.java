@@ -11,12 +11,15 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,19 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 public class ModRecipeProvider extends FabricRecipeProvider {
+
+    private static void offerTilesRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible result,
+                                         ItemConvertible a, ItemConvertible b) {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, result)
+                .pattern("AB").pattern("BA")
+                .input('A', a).input('B', b)
+                .criterion(hasItem(a), conditionsFromItem(a))
+                .criterion(hasItem(b), conditionsFromItem(b))
+                .group(Registries.ITEM.getId(result.asItem()).getPath())
+                .offerTo(exporter, Registries.ITEM.getId(result.asItem()));
+    }
+
+
     public ModRecipeProvider(FabricDataOutput output) {
         super(output);
     }
@@ -90,6 +106,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     createSignRecipe(entry.getValue(), Ingredient.ofItems(parent))
                             .criterion(hasItem(parent), conditionsFromItem(parent))
                             .offerTo(exporter);
+
+                if (entry.getKey() == ModRegistry.Models.PANE)
+                    ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, entry.getValue(), 16)
+                            .input('#', parent)
+                            .pattern("###").pattern("###")
+                            .group(Registries.ITEM.getId(entry.getValue().asItem()).getPath())
+                            .criterion(hasItem(parent),conditionsFromItem(parent))
+                            .offerTo(exporter);
             }
         }
 
@@ -106,30 +130,25 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(ModBlocks.POLISHED_OBSIDIAN), conditionsFromItem(ModBlocks.POLISHED_OBSIDIAN))
                 .group("polished_obsidian_bricks").offerTo(exporter, Phantasm.makeID("polished_obsidian_bricks"));
 
+
         // Crystal Tiles
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYSTAL_TILES)
-                .pattern("AB").pattern("BA")
-                .input('A', ModBlocks.CRYSTAL_SHARD).input('B', Blocks.END_STONE)
-                .criterion(hasItem(ModBlocks.CRYSTAL_SHARD), conditionsFromItem(ModBlocks.CRYSTAL_SHARD))
-                .criterion(hasItem(Blocks.END_STONE), conditionsFromItem(Blocks.END_STONE))
-                .group("crystal_tiles").offerTo(exporter, Phantasm.makeID("crystal_tiles"));
+        offerTilesRecipe(exporter, ModBlocks.CRYSTAL_TILES, ModBlocks.CRYSTAL_SHARD, Blocks.END_STONE);
         // Crystal Block
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYSTAL_BLOCK, ModBlocks.CRYSTAL_SHARD);
         // Crystal Pillar
         offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYSTAL_PILLAR, ModBlocks.CRYSTAL_TILES_SLAB);
-
+        // Crystal Glass
+        offerTilesRecipe(exporter, ModBlocks.CRYSTAL_GLASS, ModBlocks.CRYSTAL_SHARD, Blocks.GLASS);
 
         // Void Crystal Tiles
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.VOID_CRYSTAL_TILES)
-                .pattern("AB").pattern("BA")
-                .input('A', ModBlocks.VOID_CRYSTAL_SHARD).input('B', Blocks.END_STONE)
-                .criterion(hasItem(ModBlocks.VOID_CRYSTAL_SHARD), conditionsFromItem(ModBlocks.VOID_CRYSTAL_SHARD))
-                .criterion(hasItem(Blocks.END_STONE), conditionsFromItem(Blocks.END_STONE))
-                .group("void_crystal_tiles").offerTo(exporter, Phantasm.makeID("void_crystal_tiles"));
+        offerTilesRecipe(exporter, ModBlocks.VOID_CRYSTAL_TILES, ModBlocks.VOID_CRYSTAL_SHARD, Blocks.END_STONE);
         // Void Crystal Block
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.VOID_CRYSTAL_BLOCK, ModBlocks.VOID_CRYSTAL_SHARD);
         // Void Crystal Pillar
         offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.VOID_CRYSTAL_PILLAR, ModBlocks.VOID_CRYSTAL_TILES_SLAB);
+        // Void Crystal Glass
+        offerTilesRecipe(exporter, ModBlocks.VOID_CRYSTAL_GLASS, ModBlocks.VOID_CRYSTAL_SHARD, Blocks.GLASS);
+
 
         // Crystalline Sword
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.CRYSTALLINE_SWORD)

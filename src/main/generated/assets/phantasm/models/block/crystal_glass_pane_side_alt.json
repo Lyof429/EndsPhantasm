@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_glass_pane_side_alt",
+  "textures": {
+    "edge": "phantasm:block/crystal_glass_pane_top",
+    "pane": "phantasm:block/crystal_glass"
+  }
+}

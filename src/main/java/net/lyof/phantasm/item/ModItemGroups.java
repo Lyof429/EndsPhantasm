@@ -83,11 +83,15 @@ public class ModItemGroups {
                         entries.add(ModBlocks.VOID_CRYSTAL_TILES_STAIRS);
                         entries.add(ModBlocks.VOID_CRYSTAL_TILES_SLAB);
 
+                        entries.add(ModBlocks.CRYSTAL_GLASS);
+                        entries.add(ModBlocks.CRYSTAL_GLASS_PANE);
+                        entries.add(ModBlocks.VOID_CRYSTAL_GLASS);
+                        entries.add(ModBlocks.VOID_CRYSTAL_GLASS_PANE);
+
                         entries.add(ModBlocks.POLISHED_OBSIDIAN);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
-
 
                         //for (Item item : ModRegistry.ITEMS)
                         //    entries.add(item);
@@ -168,6 +172,12 @@ public class ModItemGroups {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
             entries.addAfter(Items.WARPED_HANGING_SIGN, ModItems.PREAM_SIGN);
             entries.addAfter(ModItems.PREAM_SIGN, ModItems.PREAM_HANGING_SIGN);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register(entries -> {
+            entries.addAfter(Items.PINK_STAINED_GLASS, ModBlocks.CRYSTAL_GLASS);
+            entries.addAfter(ModBlocks.CRYSTAL_GLASS, ModBlocks.VOID_CRYSTAL_GLASS);
+            entries.addAfter(Items.PINK_STAINED_GLASS_PANE, ModBlocks.CRYSTAL_GLASS_PANE);
+            entries.addAfter(ModBlocks.CRYSTAL_GLASS_PANE, ModBlocks.VOID_CRYSTAL_GLASS_PANE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             entries.addAfter(Items.IRON_HOE, ModItems.CRYSTALLINE_SHOVEL);

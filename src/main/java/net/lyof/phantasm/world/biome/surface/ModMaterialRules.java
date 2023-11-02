@@ -3,6 +3,7 @@ package net.lyof.phantasm.world.biome.surface;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.mixin.NoiseGeneratorSettingsAccess;
+import net.lyof.phantasm.setup.config.ModConfig;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKey;
@@ -26,9 +27,9 @@ public class ModMaterialRules {
     private static final MaterialRules.MaterialRule RAW_PURPUR = block(ModBlocks.RAW_PURPUR);
 
     public static MaterialRules.MaterialRule createDreamingDenRule() {
-        MaterialRules.MaterialCondition dreaming_den = MaterialRules.biome(ModBiomes.DREAMING_DEN);
+        MaterialRules.MaterialCondition is_dreaming_den = MaterialRules.biome(ModBiomes.DREAMING_DEN);
         MaterialRules.MaterialCondition dreaming_den_noise =
-                MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE_SWAMP, -0.2);
+                MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE_SWAMP, ModConfig.get().world_gen.dreaming_den.nihilium_noise);
 
         MaterialRules.MaterialCondition band_noise =
                 MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE, 0);
@@ -48,52 +49,58 @@ public class ModMaterialRules {
         MaterialRules.MaterialCondition band_y_above3 = MaterialRules.not(MaterialRules.verticalGradient("obsidian_stripes_above3",
                 YOffset.fixed(19), YOffset.fixed(21)));
 
-
-
-        return MaterialRules.sequence(
+        // RAW PURPUR RULES
+        MaterialRules.MaterialRule raw_purpur_stripes =
                 MaterialRules.condition(MaterialRules.not(MaterialRules.biome(BiomeKeys.THE_END)),
-                    MaterialRules.sequence(
+                        MaterialRules.sequence(
                         MaterialRules.condition(
-                            band_y_above,
-                            MaterialRules.condition(band_y_below,
-                                MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.VEGETATION,
-                                        0.1),
-                                    RAW_PURPUR
+                                band_y_above,
+                                MaterialRules.condition(band_y_below,
+                                        MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.VEGETATION,
+                                                        0.1),
+                                                RAW_PURPUR
+                                        )
                                 )
-                            )
                         ), MaterialRules.condition(
-                            band_y_above2,
-                            MaterialRules.condition(band_y_below2,
-                                MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.CALCITE,
-                                        0),
-                                    RAW_PURPUR
+                                band_y_above2,
+                                MaterialRules.condition(band_y_below2,
+                                        MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.CALCITE,
+                                                        0),
+                                                RAW_PURPUR
+                                        )
                                 )
-                            )
                         ), MaterialRules.condition(
-                            band_y_above3,
-                            MaterialRules.condition(band_y_below3,
-                                MaterialRules.condition(band_noise,
-                                    RAW_PURPUR
+                                band_y_above3,
+                                MaterialRules.condition(band_y_below3,
+                                        MaterialRules.condition(band_noise,
+                                                RAW_PURPUR
+                                        )
                                 )
-                            )
                         )
-                    )
-                ),
-
-                MaterialRules.condition(
-                    dreaming_den,
-                    MaterialRules.condition(
-                        dreaming_den_noise,
-                        MaterialRules.condition(
-                            MaterialRules.STONE_DEPTH_FLOOR,
-                            MaterialRules.condition(
-                                MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
-                                    VIVID_NIHILIUM
-                            )
-                        )
-                    )
                 )
         );
+
+        // DREAMING DEN RULES
+        MaterialRules.MaterialRule dreaming_den = MaterialRules.condition(
+                is_dreaming_den,
+                MaterialRules.condition(
+                        dreaming_den_noise,
+                        MaterialRules.condition(
+                                MaterialRules.STONE_DEPTH_FLOOR,
+                                MaterialRules.condition(
+                                        MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
+                                        VIVID_NIHILIUM
+                                )
+                        )
+                )
+        );
+
+
+        return ModConfig.get().world_gen.do_raw_purpur ?
+                MaterialRules.sequence(
+                        dreaming_den,
+                        raw_purpur_stripes
+                ) : dreaming_den;
     }
 
     public static void addModMaterialRules(MinecraftServer server, RegistryKey<DimensionOptions> dimensionKey) {

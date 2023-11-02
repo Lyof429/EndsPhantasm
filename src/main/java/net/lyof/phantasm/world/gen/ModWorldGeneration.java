@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.lyof.phantasm.setup.ModTags;
+import net.lyof.phantasm.setup.config.ModConfig;
 import net.lyof.phantasm.world.ModPlacedFeatures;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.minecraft.world.gen.GenerationStep;
@@ -31,12 +32,14 @@ public class ModWorldGeneration {
                 GenerationStep.Feature.VEGETAL_DECORATION,
                 ModPlacedFeatures.VIVID_NIHILIUM_PLACED_KEY);
 
-        BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
-                GenerationStep.Feature.SURFACE_STRUCTURES,
-                ModPlacedFeatures.FALLEN_STAR_PLACED_KEY);
+        if (ModConfig.get().world_gen.do_fallen_stars)
+            BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
+                    GenerationStep.Feature.SURFACE_STRUCTURES,
+                    ModPlacedFeatures.FALLEN_STAR_PLACED_KEY);
     }
 
     public static void generateBiomes() {
-        TheEndBiomes.addHighlandsBiome(ModBiomes.DREAMING_DEN, 2.5);
+        if (ModConfig.get().world_gen.dreaming_den.generate)
+            TheEndBiomes.addHighlandsBiome(ModBiomes.DREAMING_DEN, ModConfig.get().world_gen.dreaming_den.weight);
     }
 }

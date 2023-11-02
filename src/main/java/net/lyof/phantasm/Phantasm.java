@@ -1,10 +1,13 @@
 package net.lyof.phantasm;
 
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.item.ModItemGroups;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModDataGenerator;
+import net.lyof.phantasm.setup.config.ModConfig;
 import net.lyof.phantasm.world.ModFeatures;
 import net.lyof.phantasm.world.gen.ModWorldGeneration;
 import net.minecraft.util.Identifier;
@@ -18,6 +21,8 @@ public class Phantasm implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModConfig.register();
+
 		ModItems.register();
 		ModItemGroups.register();
 		ModBlocks.register();

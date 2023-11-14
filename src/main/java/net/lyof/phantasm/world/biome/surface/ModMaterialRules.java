@@ -27,9 +27,13 @@ public class ModMaterialRules {
     private static final MaterialRules.MaterialRule RAW_PURPUR = block(ModBlocks.RAW_PURPUR);
 
     public static MaterialRules.MaterialRule createDreamingDenRule() {
+        double min_noise = -0.4;
+
         MaterialRules.MaterialCondition is_dreaming_den = MaterialRules.biome(ModBiomes.DREAMING_DEN);
-        MaterialRules.MaterialCondition dreaming_den_noise =
-                MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE_SWAMP, -0.2);
+        MaterialRules.MaterialCondition dreaming_den_noise_main =
+                MaterialRules.noiseThreshold(NoiseParametersKeys.AQUIFER_FLUID_LEVEL_SPREAD, min_noise, 0);
+        MaterialRules.MaterialCondition dreaming_den_noise_sub =
+                MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE_SWAMP, -0.1);
 
         MaterialRules.MaterialCondition band_noise =
                 MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE, 0);
@@ -81,16 +85,27 @@ public class ModMaterialRules {
         );
 
         // DREAMING DEN RULES
-        MaterialRules.MaterialRule dreaming_den = MaterialRules.condition(
+        MaterialRules.MaterialRule dreaming_den_nihilium = MaterialRules.condition(
                 is_dreaming_den,
                 MaterialRules.condition(
-                        dreaming_den_noise,
+                    MaterialRules.STONE_DEPTH_FLOOR,
                         MaterialRules.condition(
-                                MaterialRules.STONE_DEPTH_FLOOR,
-                                MaterialRules.condition(
-                                        MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
-                                        VIVID_NIHILIUM
-                                )
+                                MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
+                                VIVID_NIHILIUM
+                        )
+                )
+        );
+
+        MaterialRules.MaterialRule dreaming_den = MaterialRules.sequence(
+                MaterialRules.condition(
+                        dreaming_den_noise_main,
+                        dreaming_den_nihilium
+                ),
+                MaterialRules.condition(
+                        MaterialRules.noiseThreshold(NoiseParametersKeys.AQUIFER_FLUID_LEVEL_SPREAD, min_noise),
+                        MaterialRules.condition(
+                                dreaming_den_noise_sub,
+                                dreaming_den_nihilium
                         )
                 )
         );

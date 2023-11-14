@@ -49,7 +49,7 @@ public class ModPlacedFeatures {
 
         register(context, PREAM, configLookup.getOrThrow(ModConfiguredFeatures.PREAM),
                 modifiers);
-        modifiers.add(RarityFilterPlacementModifier.of(2));
+        modifiers.add(RarityFilterPlacementModifier.of(6));
         register(context, TALL_PREAM, configLookup.getOrThrow(ModConfiguredFeatures.TALL_PREAM),
                 modifiers);
 

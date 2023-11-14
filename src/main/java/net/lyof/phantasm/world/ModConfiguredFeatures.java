@@ -6,6 +6,7 @@ import net.lyof.phantasm.world.feature.CrystalSpikeFeature;
 import net.lyof.phantasm.world.feature.SingleBlockFeature;
 import net.lyof.phantasm.world.feature.config.CrystalSpikeFeatureConfig;
 import net.lyof.phantasm.world.feature.config.SingleBlockFeatureConfig;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.registry.Registerable;
@@ -18,9 +19,13 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
+import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
+import net.minecraft.world.gen.foliage.FoliagePlacer;
+import net.minecraft.world.gen.foliage.JungleFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
-import net.minecraft.world.gen.treedecorator.AttachedToLeavesTreeDecorator;
+import net.minecraft.world.gen.treedecorator.*;
+import net.minecraft.world.gen.trunk.DarkOakTrunkPlacer;
 import net.minecraft.world.gen.trunk.GiantTrunkPlacer;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
@@ -60,9 +65,9 @@ public class ModConfiguredFeatures {
 
         register(context, TALL_PREAM, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(ModBlocks.PREAM_LOG),
-                new GiantTrunkPlacer(12, 6, 3),
+                new GiantTrunkPlacer(18, 6, 3),
                 BlockStateProvider.of(ModBlocks.PREAM_LEAVES.getDefaultState().with(LeavesBlock.PERSISTENT, true)),
-                new AcaciaFoliagePlacer(UniformIntProvider.create(4, 6), ConstantIntProvider.create(0)),
+                new AcaciaFoliagePlacer(UniformIntProvider.create(5, 6), ConstantIntProvider.create(0)),
                 new TwoLayersFeatureSize(1, 0, 2)
         ).dirtProvider(BlockStateProvider.of(Blocks.END_STONE))
                 .decorators(List.of(

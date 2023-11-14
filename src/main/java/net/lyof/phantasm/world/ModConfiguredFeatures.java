@@ -3,8 +3,10 @@ package net.lyof.phantasm.world;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.world.feature.CrystalSpikeFeature;
+import net.lyof.phantasm.world.feature.PurpurCabinFeature;
 import net.lyof.phantasm.world.feature.SingleBlockFeature;
 import net.lyof.phantasm.world.feature.config.CrystalSpikeFeatureConfig;
+import net.lyof.phantasm.world.feature.config.PurpurCabinFeatureConfig;
 import net.lyof.phantasm.world.feature.config.SingleBlockFeatureConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -93,6 +95,9 @@ public class ModConfiguredFeatures {
         register(context, VIVID_NIHILIUM, Feature.FLOWER, new RandomPatchFeatureConfig(
                 48, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.VIVID_NIHILIS)))));
+
+        register(context, RAW_PURPUR_CABIN, PurpurCabinFeature.INSTANCE, new PurpurCabinFeatureConfig(
+                UniformIntProvider.create(6, 9), UniformIntProvider.create(6, 9)));
     }
 
 
@@ -104,4 +109,6 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> FALLEN_STAR = create("fallen_star");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> VIVID_NIHILIUM = create("patch_vivid_nihilis");
+
+    public static final RegistryKey<ConfiguredFeature<?, ?>> RAW_PURPUR_CABIN = create("raw_purpur_cabin");
 }

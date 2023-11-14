@@ -1,0 +1,19 @@
+{
+  "type": "phantasm:raw_purpur_cabin",
+  "config": {
+    "length": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 9,
+        "min_inclusive": 6
+      }
+    },
+    "width": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 9,
+        "min_inclusive": 6
+      }
+    }
+  }
+}

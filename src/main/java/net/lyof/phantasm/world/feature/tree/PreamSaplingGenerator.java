@@ -11,6 +11,6 @@ public class PreamSaplingGenerator extends SaplingGenerator {
     @Nullable
     @Override
     protected RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
-        return ModConfiguredFeatures.PREAM_KEY;
+        return ModConfiguredFeatures.PREAM;
     }
 }

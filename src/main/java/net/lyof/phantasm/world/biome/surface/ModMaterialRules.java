@@ -2,8 +2,8 @@ package net.lyof.phantasm.world.biome.surface;
 
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.mixin.NoiseGeneratorSettingsAccess;
-import net.lyof.phantasm.setup.config.ModConfig;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKey;
@@ -29,24 +29,24 @@ public class ModMaterialRules {
     public static MaterialRules.MaterialRule createDreamingDenRule() {
         MaterialRules.MaterialCondition is_dreaming_den = MaterialRules.biome(ModBiomes.DREAMING_DEN);
         MaterialRules.MaterialCondition dreaming_den_noise =
-                MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE_SWAMP, ModConfig.get().world_gen.dreaming_den.nihilium_noise);
+                MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE_SWAMP, -0.2);
 
         MaterialRules.MaterialCondition band_noise =
                 MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE, 0);
 
-        MaterialRules.MaterialCondition band_y_below = MaterialRules.verticalGradient("obsidian_stripes_below1",
+        MaterialRules.MaterialCondition band_y_below = MaterialRules.verticalGradient("raw_purpur_stripes_below1",
                 YOffset.fixed(40), YOffset.fixed(42));
-        MaterialRules.MaterialCondition band_y_above = MaterialRules.not(MaterialRules.verticalGradient("obsidian_stripes_above1",
+        MaterialRules.MaterialCondition band_y_above = MaterialRules.not(MaterialRules.verticalGradient("raw_purpur_stripes_above1",
                 YOffset.fixed(35), YOffset.fixed(37)));
 
-        MaterialRules.MaterialCondition band_y_below2 = MaterialRules.verticalGradient("obsidian_stripes_below2",
+        MaterialRules.MaterialCondition band_y_below2 = MaterialRules.verticalGradient("raw_purpur_stripes_below2",
                 YOffset.fixed(32), YOffset.fixed(34));
-        MaterialRules.MaterialCondition band_y_above2 = MaterialRules.not(MaterialRules.verticalGradient("obsidian_stripes_above2",
+        MaterialRules.MaterialCondition band_y_above2 = MaterialRules.not(MaterialRules.verticalGradient("raw_purpur_stripes_above2",
                 YOffset.fixed(27), YOffset.fixed(29)));
 
-        MaterialRules.MaterialCondition band_y_below3 = MaterialRules.verticalGradient("obsidian_stripes_below3",
+        MaterialRules.MaterialCondition band_y_below3 = MaterialRules.verticalGradient("raw_purpur_stripes_below3",
                 YOffset.fixed(24), YOffset.fixed(26));
-        MaterialRules.MaterialCondition band_y_above3 = MaterialRules.not(MaterialRules.verticalGradient("obsidian_stripes_above3",
+        MaterialRules.MaterialCondition band_y_above3 = MaterialRules.not(MaterialRules.verticalGradient("raw_purpur_stripes_above3",
                 YOffset.fixed(19), YOffset.fixed(21)));
 
         // RAW PURPUR RULES
@@ -96,7 +96,7 @@ public class ModMaterialRules {
         );
 
 
-        return ModConfig.get().world_gen.do_raw_purpur ?
+        return ConfigEntries.doRawPurpur ?
                 MaterialRules.sequence(
                         dreaming_den,
                         raw_purpur_stripes

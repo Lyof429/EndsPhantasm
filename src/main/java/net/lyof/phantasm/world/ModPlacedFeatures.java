@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModPlacedFeatures {
-    public static RegistryKey<PlacedFeature> register(String name) {
+    public static RegistryKey<PlacedFeature> create(String name) {
         return RegistryKey.of(RegistryKeys.PLACED_FEATURE, Phantasm.makeID(name));
     }
 
@@ -47,18 +47,21 @@ public class ModPlacedFeatures {
                 ModBlocks.PREAM_SAPLING));
 
 
-        register(context, PREAM_PLACED_KEY, configLookup.getOrThrow(ModConfiguredFeatures.PREAM_KEY),
+        register(context, PREAM, configLookup.getOrThrow(ModConfiguredFeatures.PREAM),
+                modifiers);
+        modifiers.add(RarityFilterPlacementModifier.of(2));
+        register(context, TALL_PREAM, configLookup.getOrThrow(ModConfiguredFeatures.TALL_PREAM),
                 modifiers);
 
-        register(context, CRYSTAL_SPIKE_PLACED_KEY, configLookup.getOrThrow(ModConfiguredFeatures.CRYSTAL_SPIKE_KEY),
+        register(context, CRYSTAL_SPIKE, configLookup.getOrThrow(ModConfiguredFeatures.CRYSTAL_SPIKE),
                 SquarePlacementModifier.of(),
                 RarityFilterPlacementModifier.of(2));
 
-        register(context, FALLEN_STAR_PLACED_KEY, configLookup.getOrThrow(ModConfiguredFeatures.FALLEN_STAR_KEY),
+        register(context, FALLEN_STAR, configLookup.getOrThrow(ModConfiguredFeatures.FALLEN_STAR),
                 SquarePlacementModifier.of(),
                 RarityFilterPlacementModifier.of(3));
 
-        register(context, VIVID_NIHILIUM_PLACED_KEY, configLookup.getOrThrow(ModConfiguredFeatures.VIVID_NIHILIUM_KEY),
+        register(context, VIVID_NIHILIUM_PATCH, configLookup.getOrThrow(ModConfiguredFeatures.VIVID_NIHILIUM),
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of());
@@ -66,10 +69,11 @@ public class ModPlacedFeatures {
 
 
 
-    public static final RegistryKey<PlacedFeature> PREAM_PLACED_KEY = register("pream");
+    public static final RegistryKey<PlacedFeature> PREAM = create("pream");
+    public static final RegistryKey<PlacedFeature> TALL_PREAM = create("tall_pream");
 
-    public static final RegistryKey<PlacedFeature> CRYSTAL_SPIKE_PLACED_KEY = register("crystal_spike");
-    public static final RegistryKey<PlacedFeature> FALLEN_STAR_PLACED_KEY = register("fallen_star");
+    public static final RegistryKey<PlacedFeature> CRYSTAL_SPIKE = create("crystal_spike");
+    public static final RegistryKey<PlacedFeature> FALLEN_STAR = create("fallen_star");
 
-    public static final RegistryKey<PlacedFeature> VIVID_NIHILIUM_PLACED_KEY = register("vivid_nihilis");
+    public static final RegistryKey<PlacedFeature> VIVID_NIHILIUM_PATCH = create("patch_vivid_nihilis");
 }

@@ -9,8 +9,7 @@
     "MinecraftServerMixin",
     "NoiseGeneratorSettingsAccess",
     "PlantBlockMixin",
-    "PlayerEntityMixin",
-    "VanillaSurfaceRulesMixin"
+    "PlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

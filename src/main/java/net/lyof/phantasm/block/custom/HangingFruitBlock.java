@@ -1,6 +1,5 @@
 package net.lyof.phantasm.block.custom;
 
-import net.lyof.phantasm.Phantasm;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Fertilizable;

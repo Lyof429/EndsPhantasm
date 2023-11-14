@@ -1,8 +1,10 @@
 package net.lyof.phantasm.block.custom;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.world.ModPlacedFeatures;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.Fertilizable;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
@@ -15,7 +17,6 @@ import net.minecraft.world.chunk.light.ChunkLightProvider;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.feature.RandomPatchFeatureConfig;
-import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 
 import java.util.List;
 import java.util.Optional;
@@ -75,7 +76,7 @@ public class NihiliumBlock extends Block implements Fertilizable {
         // TODO: Add plants
 
         Optional<RegistryEntry.Reference<PlacedFeature>> optional = world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE)
-                .getEntry(ModPlacedFeatures.VIVID_NIHILIUM_PLACED_KEY);
+                .getEntry(ModPlacedFeatures.VIVID_NIHILIUM_PATCH);
         RegistryEntry<PlacedFeature> registryEntry;
         BlockPos test = pos.up();
 

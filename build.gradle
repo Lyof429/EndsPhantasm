@@ -12,8 +12,8 @@ base {
 
 repositories {
 	// THESE TWO
-	maven { url "https://maven.shedaniel.me/" }
-	maven { url "https://maven.terraformersmc.com/releases/" }
+	//maven { url "https://maven.shedaniel.me/" }
+	//maven { url "https://maven.terraformersmc.com/releases/" }
 }
 
 loom {
@@ -51,9 +51,9 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// THAT
-	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
-		exclude(group: "net.fabricmc.fabric-api")
-	}
+	//modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+	//	exclude(group: "net.fabricmc.fabric-api")
+	//}
 
 	// Uncomment the following line to enable the deprecated Fabric API modules. 
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.

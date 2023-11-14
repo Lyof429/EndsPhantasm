@@ -1,14 +1,7 @@
 package net.lyof.phantasm.mixin;
 
-import net.lyof.phantasm.setup.ModTags;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.ChorusPlantBlock;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.WorldView;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ChorusPlantBlock.class)
 public class ChorusPlantBlockMixin {/*

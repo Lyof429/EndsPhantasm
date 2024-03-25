@@ -23,10 +23,10 @@ public class ModWorldGeneration {
                     GenerationStep.Feature.VEGETAL_DECORATION,
                     ModPlacedFeatures.PREAM);
 
-        if (ConfigEntries.doTallPreamTrees)
+        /*if (ConfigEntries.doTallPreamTrees)
             BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
                     GenerationStep.Feature.VEGETAL_DECORATION,
-                    ModPlacedFeatures.TALL_PREAM);
+                    ModPlacedFeatures.TALL_PREAM);*/
 
         /*BiomeModifications.addCarver(BiomeSelectors.foundInTheEnd(),
                 GenerationStep.Carver.AIR,
@@ -48,10 +48,10 @@ public class ModWorldGeneration {
                     GenerationStep.Feature.SURFACE_STRUCTURES,
                     ModPlacedFeatures.FALLEN_STAR);
 
-        if (ConfigEntries.doRawPurpurCabins)
+        /*if (ConfigEntries.doRawPurpurCabins)
             BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
                     GenerationStep.Feature.UNDERGROUND_STRUCTURES,
-                    ModPlacedFeatures.RAW_PURPUR_CABIN);
+                    ModPlacedFeatures.RAW_PURPUR_CABIN);*/
     }
 
     public static void generateBiomes() {

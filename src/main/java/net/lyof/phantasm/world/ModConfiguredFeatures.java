@@ -8,7 +8,8 @@ import net.lyof.phantasm.world.feature.SingleBlockFeature;
 import net.lyof.phantasm.world.feature.config.CrystalSpikeFeatureConfig;
 import net.lyof.phantasm.world.feature.config.PurpurCabinFeatureConfig;
 import net.lyof.phantasm.world.feature.config.SingleBlockFeatureConfig;
-import net.minecraft.block.BlockState;
+import net.lyof.phantasm.world.feature.tree.custom.PreamFoliagePlacer;
+import net.lyof.phantasm.world.feature.tree.custom.PreamTrunkPlacer;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.registry.Registerable;
@@ -21,13 +22,9 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
-import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
-import net.minecraft.world.gen.foliage.FoliagePlacer;
-import net.minecraft.world.gen.foliage.JungleFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.treedecorator.*;
-import net.minecraft.world.gen.trunk.DarkOakTrunkPlacer;
 import net.minecraft.world.gen.trunk.GiantTrunkPlacer;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
@@ -46,9 +43,9 @@ public class ModConfiguredFeatures {
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         register(context, PREAM, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(ModBlocks.PREAM_LOG),
-                new StraightTrunkPlacer(5, 6, 3),
+                new PreamTrunkPlacer(3, 2, 6),
                 BlockStateProvider.of(ModBlocks.PREAM_LEAVES),
-                new AcaciaFoliagePlacer(UniformIntProvider.create(2, 4), ConstantIntProvider.create(0)),
+                new PreamFoliagePlacer(UniformIntProvider.create(3, 5), ConstantIntProvider.create(0)),
                 new TwoLayersFeatureSize(1, 0, 2)
                 ).dirtProvider(BlockStateProvider.of(Blocks.END_STONE))
                 .decorators(List.of(
@@ -67,9 +64,9 @@ public class ModConfiguredFeatures {
 
         register(context, TALL_PREAM, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(ModBlocks.PREAM_LOG),
-                new GiantTrunkPlacer(18, 6, 3),
+                new PreamTrunkPlacer(2, 2, 6),
                 BlockStateProvider.of(ModBlocks.PREAM_LEAVES.getDefaultState().with(LeavesBlock.PERSISTENT, true)),
-                new AcaciaFoliagePlacer(UniformIntProvider.create(5, 6), ConstantIntProvider.create(0)),
+                new PreamFoliagePlacer(UniformIntProvider.create(5, 6), ConstantIntProvider.create(0)),
                 new TwoLayersFeatureSize(1, 0, 2)
         ).dirtProvider(BlockStateProvider.of(Blocks.END_STONE))
                 .decorators(List.of(
@@ -96,8 +93,8 @@ public class ModConfiguredFeatures {
                 48, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.VIVID_NIHILIS)))));
 
-        register(context, RAW_PURPUR_CABIN, PurpurCabinFeature.INSTANCE, new PurpurCabinFeatureConfig(
-                UniformIntProvider.create(6, 9), UniformIntProvider.create(6, 9)));
+        //register(context, RAW_PURPUR_CABIN, PurpurCabinFeature.INSTANCE, new PurpurCabinFeatureConfig(
+        //        UniformIntProvider.create(6, 9), UniformIntProvider.create(6, 9)));
     }
 
 
@@ -110,5 +107,5 @@ public class ModConfiguredFeatures {
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> VIVID_NIHILIUM = create("patch_vivid_nihilis");
 
-    public static final RegistryKey<ConfiguredFeature<?, ?>> RAW_PURPUR_CABIN = create("raw_purpur_cabin");
+    //public static final RegistryKey<ConfiguredFeature<?, ?>> RAW_PURPUR_CABIN = create("raw_purpur_maze");
 }

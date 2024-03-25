@@ -3,7 +3,6 @@ package net.lyof.phantasm.item;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
-import net.lyof.phantasm.item.custom.TestItem;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.data.client.Models;
@@ -18,11 +17,6 @@ public class ModItems {
     public static void register() {
         Phantasm.log("Registering Items for modid : " + Phantasm.MOD_ID);
     }
-
-
-    public static final Item DEBUG_STICK = ModRegistry.ofItem("debug_stick",
-            new TestItem(new FabricItemSettings().rarity(Rarity.EPIC)))
-            .build();
 
 
     public static final Item PREAM_BERRY = ModRegistry.ofItem("pream_berry",

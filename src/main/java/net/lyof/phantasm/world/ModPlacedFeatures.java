@@ -66,11 +66,11 @@ public class ModPlacedFeatures {
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of());
 
-        register(context, RAW_PURPUR_CABIN, configLookup.getOrThrow(ModConfiguredFeatures.RAW_PURPUR_CABIN),
-                SquarePlacementModifier.of(),
-                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP
-                //RarityFilterPlacementModifier.of(3)
-                );
+        //register(context, RAW_PURPUR_CABIN, configLookup.getOrThrow(ModConfiguredFeatures.RAW_PURPUR_CABIN),
+        //        SquarePlacementModifier.of(),
+        //        PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+        //        RarityFilterPlacementModifier.of(10)
+        //        );
     }
 
 
@@ -83,5 +83,5 @@ public class ModPlacedFeatures {
 
     public static final RegistryKey<PlacedFeature> VIVID_NIHILIUM_PATCH = create("patch_vivid_nihilis");
 
-    public static final RegistryKey<PlacedFeature> RAW_PURPUR_CABIN = create("raw_purpur_cabin");
+    //public static final RegistryKey<PlacedFeature> RAW_PURPUR_CABIN = create("raw_purpur_maze");
 }

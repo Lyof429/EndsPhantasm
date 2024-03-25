@@ -5,11 +5,13 @@
   "mixins": [
     "BlockEntityTypeMixin",
     "ChorusPlantBlockMixin",
+    "FoliagePlacerTypeInvoker",
     "ItemMixin",
     "MinecraftServerMixin",
     "NoiseGeneratorSettingsAccess",
     "PlantBlockMixin",
-    "PlayerEntityMixin"
+    "PlayerEntityMixin",
+    "TrunkPlacerTypeInvoker"
   ],
   "injectors": {
     "defaultRequire": 1

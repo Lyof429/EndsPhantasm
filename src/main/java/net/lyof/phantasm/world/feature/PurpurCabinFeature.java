@@ -45,16 +45,12 @@ public class PurpurCabinFeature extends Feature<PurpurCabinFeatureConfig> {
         int width = context.getConfig().width().get(random) / 2;
         int length = context.getConfig().length().get(random) / 2;
 
-        int i = world.getTopY();
-        while (i > world.getBottomY() && !world.getBlockState(origin.down(world.getTopY() - i)).isOf(ModBlocks.RAW_PURPUR)) {
-            i--;
-        }
+        if (world.getBlockState(origin.withY(38)).isOf(ModBlocks.RAW_PURPUR)) origin = origin.withY(38);
+        else if (world.getBlockState(origin.withY(30)).isOf(ModBlocks.RAW_PURPUR)) origin = origin.withY(30);
+        else if (world.getBlockState(origin.withY(22)).isOf(ModBlocks.RAW_PURPUR)) origin = origin.withY(22);
+        else return false;
 
-        origin = origin.withY(i);
-        if (!world.getBlockState(origin).isOf(ModBlocks.RAW_PURPUR))
-            return false;
-
-        origin = origin.withY(closestY(origin.getY()));
+        origin.add(-(origin.getX() % 16), 0, -(origin.getZ() % 16));
 
         for (int sx = -width; sx <= width; sx ++) {
             for (int sz = -length; sz <= length; sz ++) {
@@ -127,7 +123,7 @@ public class PurpurCabinFeature extends Feature<PurpurCabinFeatureConfig> {
     }
 
     static void setLootBarrel(BarrelBlockEntity barrel) {
+        // TODO: custom loot table
         barrel.setLootTable(Identifier.of("minecraft", "chests/end_city_treasure"), RandomSeed.getSeed());
-        //barrel.setStack(0, new ItemStack(Items.IRON_INGOT));
     }
 }

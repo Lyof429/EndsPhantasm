@@ -20,10 +20,6 @@ public class ModItemGroups {
                     .entries((displayContext, entries) -> {
                         if (false) return;
 
-
-                        entries.add(ModItems.DEBUG_STICK);
-
-
                         entries.add(ModBlocks.FALLEN_STAR);
 
                         entries.add(ModBlocks.VIVID_NIHILIUM);

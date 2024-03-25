@@ -7,6 +7,7 @@ import net.lyof.phantasm.item.ModItemGroups;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModDataGenerator;
 import net.lyof.phantasm.world.ModFeatures;
+import net.lyof.phantasm.world.feature.tree.ModTreePlacerTypes;
 import net.lyof.phantasm.world.gen.ModWorldGeneration;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
@@ -24,6 +25,8 @@ public class Phantasm implements ModInitializer {
 		ModItems.register();
 		ModItemGroups.register();
 		ModBlocks.register();
+
+		ModTreePlacerTypes.register();
 
 		ModDataGenerator.registerBurnable();
 		ModDataGenerator.registerFuels();

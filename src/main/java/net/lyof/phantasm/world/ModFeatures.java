@@ -13,6 +13,6 @@ public class ModFeatures {
 
         Registry.register(Registries.FEATURE, Phantasm.makeID("crystal_spike"), CrystalSpikeFeature.INSTANCE);
         Registry.register(Registries.FEATURE, Phantasm.makeID("single_block"), SingleBlockFeature.INSTANCE);
-        Registry.register(Registries.FEATURE, Phantasm.makeID("raw_purpur_cabin"), PurpurCabinFeature.INSTANCE);
+        //Registry.register(Registries.FEATURE, Phantasm.makeID("raw_purpur_maze"), PurpurCabinFeature.INSTANCE);
     }
 }

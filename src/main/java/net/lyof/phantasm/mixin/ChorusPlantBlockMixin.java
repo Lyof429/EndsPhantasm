@@ -1,17 +1,32 @@
 package net.lyof.phantasm.mixin;
 
-import net.minecraft.block.ChorusPlantBlock;
+import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.setup.ModTags;
+import net.minecraft.block.*;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(ChorusPlantBlock.class)
-public class ChorusPlantBlockMixin {/*
-    @Inject(method = "canPlaceAt", at = @At("RETURN"), cancellable = true)
-    public void canPlaceOnNihilium(BlockState state, WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        BlockState down = world.getBlockState(pos.down());
-        boolean bl = !world.getBlockState(pos.up()).isAir() && !down.isAir();
+public class ChorusPlantBlockMixin {
+    @Redirect(method = "canPlaceAt", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z"))
+    public boolean canPlaceAtNihilium(BlockState instance, Block block) {
+        if (block == Blocks.END_STONE)
+            return instance.isIn(ModTags.Blocks.END_PLANTS_GROWABLE_ON);
+        return instance.isOf(block);
+    }
 
-        if (bl) return;
-        if (world.getBlockState(pos.down()).isIn(ModTags.Blocks.END_PLANTS_GROWABLE_ON))
-            cir.setReturnValue(true);
-    }*/
+    @Redirect(method = "getStateForNeighborUpdate", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z"))
+    public boolean getStateForNeighborUpdateNihilium(BlockState instance, Block block) {
+        if (block == Blocks.END_STONE)
+            return instance.isIn(ModTags.Blocks.END_PLANTS_GROWABLE_ON);
+        return instance.isOf(block);
+    }
+
+    @Redirect(method = "withConnectionProperties", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z"))
+    public boolean withConnectionPropertiesNihilium(BlockState instance, Block block) {
+        if (block == Blocks.END_STONE)
+            return instance.isIn(ModTags.Blocks.END_PLANTS_GROWABLE_ON);
+        return instance.isOf(block);
+    }
 }

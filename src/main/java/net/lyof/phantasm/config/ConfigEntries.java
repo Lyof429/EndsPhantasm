@@ -13,6 +13,8 @@ public class ConfigEntries {
 
         doFallenStars = new ConfigEntry<>("world_gen.do_fallen_stars", true).get();
         doRawPurpur = new ConfigEntry<>("world_gen.do_raw_purpur", true).get();
+
+        improveEndSpires = new ConfigEntry<>("world_gen.improve_end_spires", true).get();
     }
 
     public static boolean doDreamingDenBiome;
@@ -24,4 +26,6 @@ public class ConfigEntries {
 
     public static boolean doFallenStars;
     public static boolean doRawPurpur;
+
+    public static boolean improveEndSpires;
 }

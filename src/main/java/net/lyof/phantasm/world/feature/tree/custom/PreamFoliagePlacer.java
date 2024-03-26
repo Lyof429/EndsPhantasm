@@ -36,7 +36,8 @@ public class PreamFoliagePlacer extends FoliagePlacer {
 
         BlockPos origin = treeNode.getCenter().down();
         if (!world.testBlockState(origin.up(), state -> state.isOf(ModBlocks.PREAM_LOG)))
-            radius += 1;
+            radius = random.nextBetween(3, 5);
+        else radius = random.nextBetween(2, 5);
 
         this.generateSquare(world, placer, random, config, origin, radius-1, -1, treeNode.isGiantTrunk());
         this.generateSquare(world, placer, random, config, origin, radius, 0, treeNode.isGiantTrunk());

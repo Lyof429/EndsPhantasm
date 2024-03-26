@@ -5,6 +5,9 @@ import net.lyof.phantasm.mixin.FoliagePlacerTypeInvoker;
 import net.lyof.phantasm.mixin.TrunkPlacerTypeInvoker;
 import net.lyof.phantasm.world.feature.tree.custom.PreamFoliagePlacer;
 import net.lyof.phantasm.world.feature.tree.custom.PreamTrunkPlacer;
+import net.minecraft.entity.boss.dragon.EnderDragonFight;
+import net.minecraft.world.gen.feature.EndIslandFeature;
+import net.minecraft.world.gen.feature.EndPlacedFeatures;
 import net.minecraft.world.gen.foliage.FoliagePlacerType;
 import net.minecraft.world.gen.trunk.TrunkPlacerType;
 

@@ -5,6 +5,7 @@
   "mixins": [
     "BlockEntityTypeMixin",
     "ChorusPlantBlockMixin",
+    "EndSpikeFeatureMixin",
     "FoliagePlacerTypeInvoker",
     "ItemMixin",
     "MinecraftServerMixin",

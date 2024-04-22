@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "phantasm:obsidian_tower",
+      "weight": 10
+    }
+  ],
+  "placement": {
+    "salt": 564604120,
+    "spacing": 18,
+    "separation": 9,
+    "type": "minecraft:random_spread"
+  }
+}

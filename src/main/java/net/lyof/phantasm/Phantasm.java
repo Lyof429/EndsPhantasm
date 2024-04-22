@@ -10,6 +10,8 @@ import net.lyof.phantasm.world.ModFeatures;
 import net.lyof.phantasm.world.feature.tree.ModTreePlacerTypes;
 import net.lyof.phantasm.world.gen.ModWorldGeneration;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.dimension.DimensionTypes;
+import net.minecraft.world.gen.structure.EndCityStructure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -293,7 +293,7 @@ public class ModBlocks {
             .cutout().build();
 
     public static final Block VIVID_NIHILIS = ModRegistry.ofBlock("vivid_nihilis",
-            new PlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.TEAL)))
+            new PlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.TEAL).replaceable()))
             .tagitem(ItemTags.FLOWERS)
             .model(ModRegistry.Models.CROSS).end_plant()
             .cutout().build();

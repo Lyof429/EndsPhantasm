@@ -298,6 +298,11 @@ public class ModBlocks {
             .model(ModRegistry.Models.CROSS).end_plant()
             .cutout().build();
 
+    public static final Block TALL_VIVID_NIHILIS = ModRegistry.ofBlock("tall_vivid_nihilis",
+                    new TallPlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.TEAL).replaceable()))
+            .tagitem(ItemTags.FLOWERS).end_plant()
+            .cutout().build();
+
 
     // Raw Purpur
     public static final Block RAW_PURPUR = ModRegistry.ofBlock("raw_purpur",

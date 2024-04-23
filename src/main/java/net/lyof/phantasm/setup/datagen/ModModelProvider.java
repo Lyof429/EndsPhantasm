@@ -81,6 +81,8 @@ public class ModModelProvider extends FabricModelProvider {
         generator.registerParentedItemModel(ModBlocks.VIVID_NIHILIUM, Phantasm.makeID("block/vivid_nihilium"));
 
         generator.registerParentedItemModel(ModBlocks.PURPUR_LAMP, Phantasm.makeID("block/purpur_lamp"));
+
+        generator.registerDoubleBlock(ModBlocks.TALL_VIVID_NIHILIS, BlockStateModelGenerator.TintType.NOT_TINTED);
     }
 
     @Override

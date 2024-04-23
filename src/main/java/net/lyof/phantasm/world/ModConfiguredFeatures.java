@@ -93,8 +93,9 @@ public class ModConfiguredFeatures {
                 48, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.VIVID_NIHILIS)))));
 
-        //register(context, RAW_PURPUR_CABIN, PurpurCabinFeature.INSTANCE, new PurpurCabinFeatureConfig(
-        //        UniformIntProvider.create(6, 9), UniformIntProvider.create(6, 9)));
+        register(context, TALL_VIVID_NIHILIUM, Feature.FLOWER, new RandomPatchFeatureConfig(
+                20, 10, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.TALL_VIVID_NIHILIS)))));
     }
 
 
@@ -106,6 +107,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> FALLEN_STAR = create("fallen_star");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> VIVID_NIHILIUM = create("patch_vivid_nihilis");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_VIVID_NIHILIUM = create("patch_tall_vivid_nihilis");
 
     //public static final RegistryKey<ConfiguredFeature<?, ?>> RAW_PURPUR_CABIN = create("raw_purpur_maze");
 }

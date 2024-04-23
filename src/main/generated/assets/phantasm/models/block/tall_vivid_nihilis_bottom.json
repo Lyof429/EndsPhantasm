@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "phantasm:block/tall_vivid_nihilis_bottom"
+  }
+}

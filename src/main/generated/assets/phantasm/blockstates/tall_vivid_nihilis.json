@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "phantasm:block/tall_vivid_nihilis_bottom"
+    },
+    "half=upper": {
+      "model": "phantasm:block/tall_vivid_nihilis_top"
+    }
+  }
+}

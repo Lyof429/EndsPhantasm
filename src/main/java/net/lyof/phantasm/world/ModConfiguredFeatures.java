@@ -3,6 +3,7 @@ package net.lyof.phantasm.world;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.world.feature.CrystalSpikeFeature;
+import net.lyof.phantasm.world.feature.ObsidianTowerStructure;
 import net.lyof.phantasm.world.feature.PurpurCabinFeature;
 import net.lyof.phantasm.world.feature.SingleBlockFeature;
 import net.lyof.phantasm.world.feature.config.CrystalSpikeFeatureConfig;
@@ -19,6 +20,7 @@ import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
+import net.minecraft.world.gen.CountConfig;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
@@ -96,6 +98,9 @@ public class ModConfiguredFeatures {
         register(context, TALL_VIVID_NIHILIUM, Feature.FLOWER, new RandomPatchFeatureConfig(
                 20, 10, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.TALL_VIVID_NIHILIS)))));
+
+        register(context, OBSIDIAN_TOWER, ObsidianTowerStructure.INSTANCE,
+                new CountConfig(UniformIntProvider.create(30, 50)));
     }
 
 
@@ -108,6 +113,8 @@ public class ModConfiguredFeatures {
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> VIVID_NIHILIUM = create("patch_vivid_nihilis");
     public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_VIVID_NIHILIUM = create("patch_tall_vivid_nihilis");
+
+    public static final RegistryKey<ConfiguredFeature<?, ?>> OBSIDIAN_TOWER = create("obsidian_tower");
 
     //public static final RegistryKey<ConfiguredFeature<?, ?>> RAW_PURPUR_CABIN = create("raw_purpur_maze");
 }

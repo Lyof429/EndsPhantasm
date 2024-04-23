@@ -51,11 +51,6 @@ public class ModWorldGeneration {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
                     GenerationStep.Feature.SURFACE_STRUCTURES,
                     ModPlacedFeatures.FALLEN_STAR);
-
-        /*if (ConfigEntries.doRawPurpurCabins)
-            BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
-                    GenerationStep.Feature.UNDERGROUND_STRUCTURES,
-                    ModPlacedFeatures.RAW_PURPUR_CABIN);*/
     }
 
     public static void generateBiomes() {

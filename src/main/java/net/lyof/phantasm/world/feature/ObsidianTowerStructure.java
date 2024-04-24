@@ -7,8 +7,11 @@ import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SpawnerBlock;
+import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.loot.LootTables;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
@@ -41,9 +44,9 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
         maxy = maxy + 5 - maxy % 5;
 
         for (int sy = 0; sy <= maxy; sy++) {
-            for (int sx = -7; sx < 8; sx++) {
-                for (int sz = -7; sz < 8; sz++) {
-                    if (sx*sx + sz*sz < 49 && (sx*sx + sz*sz >= 36 || sy % 5 == 0)) {
+            for (int sx = -8; sx < 9; sx++) {
+                for (int sz = -8; sz < 9; sz++) {
+                    if (sx*sx + sz*sz < 64 && (sx*sx + sz*sz >= 49 || sy % 5 == 0)) {
                         Block block = Blocks.OBSIDIAN;
                         double crying = (sy - 60) / (maxy - 60.0);
                         if (Math.random() + 0.1 < crying * crying && crying > 0)
@@ -54,34 +57,37 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
                         world.setBlockState(origin.withY(sy).east(sx).north(sz),
                                 block.getDefaultState(), Block.NOTIFY_NEIGHBORS);
                     }
-                    else if (sx*sx + sz*sz < 36) {
+                    else if (sx*sx + sz*sz < 49) {
                         world.setBlockState(origin.withY(sy).east(sx).north(sz),
                                 Blocks.AIR.getDefaultState(), Block.NOTIFY_NEIGHBORS);
                     }
                 }
             }
-            if (sy % 5 == 0 && sy != maxy) generateRoom(world, origin.withY(sy + 1));
+            if (sy % 5 == 0 && sy != 0) generateRoom(world, origin.withY(sy - 4));
         }
 
         return true;
     }
 
-    public static void generateRoom(WorldAccess world, BlockPos center) {
-        Phantasm.log("generating room at " + center);
-        if (Math.random() < 0.4) {
+    public static void generateRoom(StructureWorldAccess world, BlockPos center) {
+        if (Math.random() < 0.5 || center.getY() == 1) {
             BlockPos door = center.mutableCopy();
-            if (Math.random() <= 0.25) door = door.east(6);
-            else if (Math.random() <= 0.25) door = door.west(6);
-            else if (Math.random() <= 0.25) door = door.north(6);
-            else door = door.south(6);
+            if (Math.random() <= 0.25) door = door.east(7);
+            else if (Math.random() <= 0.25) door = door.west(7);
+            else if (Math.random() <= 0.25) door = door.north(7);
+            else door = door.south(7);
 
             world.setBlockState(door, Blocks.AIR.getDefaultState(), Block.NOTIFY_NEIGHBORS);
             world.setBlockState(door.up(), Blocks.AIR.getDefaultState(), Block.NOTIFY_NEIGHBORS);
         }
 
-        Phantasm.log("Putting spawner at " + center);
-        world.setBlockState(center, Blocks.SPAWNER.getDefaultState(), Block.NOTIFY_NEIGHBORS);
-        if (world.getBlockEntity(center) instanceof MobSpawnerBlockEntity spawner)
-            spawner.setEntityType(EntityType.ZOMBIE, world.getRandom());
+        if (Math.random() < 0.3) {
+            world.setBlockState(center, Blocks.SPAWNER.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+            if (world.getBlockEntity(center) instanceof MobSpawnerBlockEntity spawner)
+                spawner.setEntityType(EntityType.ZOMBIE, world.getRandom());
+            world.setBlockState(center.up(), Blocks.CHEST.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+            if (world.getBlockEntity(center.up()) instanceof ChestBlockEntity chest)
+                chest.setLootTable(LootTables.STRONGHOLD_CORRIDOR_CHEST, world.getRandom().nextLong());
+        }
     }
 }

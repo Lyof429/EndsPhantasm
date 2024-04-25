@@ -74,7 +74,7 @@ public class ModPlacedFeatures {
         register(context, OBSIDIAN_TOWER, configLookup.getOrThrow(ModConfiguredFeatures.OBSIDIAN_TOWER),
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
-                RarityFilterPlacementModifier.of(4));
+                RarityFilterPlacementModifier.of(3));
     }
 
 

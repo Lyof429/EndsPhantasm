@@ -84,6 +84,22 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
                 }
             }
         }
+
+        if (y > 3) {
+            center = center.withY(y - 3);
+
+            if (Math.random() < 0.2 || center.getY() == 1) {
+                BlockPos door = center.mutableCopy();
+                if (y % 4 == 0) door = door.east(7);
+                else if (y % 4 == 2) door = door.west(7);
+                else if (y % 4 == 1) door = door.north(7);
+                else door = door.south(7);
+
+                door = door.up();
+                world.setBlockState(door, Blocks.AIR.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+                world.setBlockState(door.up(), Blocks.AIR.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+            }
+        }
     }
 
     public static void generateRoom(StructureWorldAccess world, BlockPos center) {

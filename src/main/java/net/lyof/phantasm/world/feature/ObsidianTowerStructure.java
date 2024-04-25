@@ -4,12 +4,10 @@ import com.mojang.serialization.Codec;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ConfigEntries;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SpawnerBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
+import net.minecraft.block.enums.SlabType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.loot.LootTables;
 import net.minecraft.util.math.BlockPos;
@@ -46,7 +44,7 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
         for (int sy = 0; sy <= maxy; sy++) {
             for (int sx = -8; sx < 9; sx++) {
                 for (int sz = -8; sz < 9; sz++) {
-                    if (sx*sx + sz*sz < 64 && (sx*sx + sz*sz >= 49 || sy % 5 == 0)) {
+                    if (sx*sx + sz*sz < 64 && (sx*sx + sz*sz >= 49 || sy == maxy)) {
                         Block block = Blocks.OBSIDIAN;
                         double crying = (sy - 60) / (maxy - 60.0);
                         if (Math.random() + 0.1 < crying * crying && crying > 0)
@@ -63,10 +61,29 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
                     }
                 }
             }
-            if (sy % 5 == 0 && sy != 0) generateRoom(world, origin.withY(sy - 4));
+            if (sy != maxy) generateStairs(world, origin.withY(sy));
+            //if (sy % 5 == 0 && sy != 0) generateRoom(world, origin.withY(sy - 4));
         }
 
         return true;
+    }
+
+    public static void generateStairs(StructureWorldAccess world, BlockPos center) {
+        int y = center.getY();
+
+        for (int sx = -7; sx < 8; sx++) {
+            for (int sz = -7; sz < 8; sz++) {
+                if (sx*sx + sz*sz >= 36 && sx*sx + sz*sz < 49) {
+                    if (sx >= 5 && y % 4 == 0
+                            || sx <= -5 && y % 4 == 2
+                            || sz >= 5 && y % 4 == 1
+                            || sz <= -5 && y % 4 == 3)
+                        world.setBlockState(center.east(sx).north(sz),
+                                ModBlocks.RAW_PURPUR_BRICKS_SLAB.getDefaultState().with(SlabBlock.TYPE, SlabType.TOP),
+                                Block.NOTIFY_NEIGHBORS);
+                }
+            }
+        }
     }
 
     public static void generateRoom(StructureWorldAccess world, BlockPos center) {

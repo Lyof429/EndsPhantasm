@@ -142,7 +142,7 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
             }
         }
         else if (roomtype == 3) {
-            center = center.north(world.getRandom().nextBetween(-2, 2)).east(world.getRandom().nextBetween(-2, 2));
+            center = center.north(world.getRandom().nextBetween(-3, 3)).east(world.getRandom().nextBetween(-3, 3));
             BlockPos.iterateInSquare(center, 2, Direction.NORTH, Direction.EAST).forEach(pos ->
                     world.setBlockState(pos, Blocks.OBSIDIAN.getDefaultState(), Block.NOTIFY_NEIGHBORS)
             );

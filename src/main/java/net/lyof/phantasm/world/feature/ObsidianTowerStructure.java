@@ -85,7 +85,7 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
                             || sz >= 5 && y % 4 == 1
                             || sz <= -5 && y % 4 == 3)
                         world.setBlockState(center.east(sx).north(sz),
-                                ModBlocks.RAW_PURPUR_BRICKS_SLAB.getDefaultState().with(SlabBlock.TYPE, SlabType.TOP),
+                                Blocks.PURPUR_SLAB.getDefaultState().with(SlabBlock.TYPE, SlabType.TOP),
                                 Block.NOTIFY_NEIGHBORS);
                 }
             }
@@ -109,7 +109,7 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
             for (int sx = -5; sx < 6; sx++) {
                 for (int sz = -5; sz < 6; sz++) {
                     if (sx * sx + sz * sz < 16) {
-                        world.setBlockState(center.east(sx).north(sz), ModBlocks.RAW_PURPUR_BRICKS.getDefaultState(),
+                        world.setBlockState(center.east(sx).north(sz), Blocks.PURPUR_BLOCK.getDefaultState(),
                                 Block.NOTIFY_NEIGHBORS);
                     }
                 }
@@ -119,7 +119,7 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
             for (int sx = -5; sx < 6; sx++) {
                 for (int sz = -5; sz < 6; sz++) {
                     if (sx * sx + sz * sz < 16) {
-                        world.setBlockState(center.east(sx).north(sz), ModBlocks.RAW_PURPUR_BRICKS.getDefaultState(),
+                        world.setBlockState(center.east(sx).north(sz), Blocks.PURPUR_BLOCK.getDefaultState(),
                                 Block.NOTIFY_NEIGHBORS);
                     }
                 }
@@ -138,7 +138,7 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
                 nbt.remove("SpawnData");
                 Phantasm.log(nbt);
                 spawner.getLogic().readNbt(null, center, nbt);
-                spawner.setEntityType(EntityType.VEX, world.getRandom());  // TODO: Change entity
+                spawner.setEntityType(EntityType.VEX, world.getRandom());
             }
         }
         else if (roomtype == 3) {

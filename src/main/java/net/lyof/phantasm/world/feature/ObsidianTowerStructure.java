@@ -10,6 +10,7 @@ import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.block.enums.SlabType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.loot.LootTables;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -65,8 +66,8 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
                 }
             }
             if (world.getBlockState(origin.withY(sy)).isAir()) world.setBlockState(origin.withY(sy), Blocks.CHAIN.getDefaultState(), Block.NOTIFY_NEIGHBORS);
-            if (sy < maxy) putStairs(world, origin.withY(sy));
-            if (sy % 7 == 0 && sy != maxy) putPlatform(world, origin.withY(sy), random.nextInt(7));
+            if (sy < maxy && sy > 0) putStairs(world, origin.withY(sy));
+            if (sy % 7 == 0 && sy != maxy && sy != 0) putPlatform(world, origin.withY(sy), random.nextInt(7));
             //if (sy % 5 == 0 && sy != 0) generateRoom(world, origin.withY(sy - 4));
         }
 
@@ -129,8 +130,16 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
         }
         else if (roomtype == 2) {
             world.setBlockState(center, Blocks.SPAWNER.getDefaultState(), Block.NOTIFY_NEIGHBORS);
-            if (world.getBlockEntity(center) instanceof MobSpawnerBlockEntity spawner)
+            if (world.getBlockEntity(center) instanceof MobSpawnerBlockEntity spawner) {
+                NbtCompound nbt = spawner.getLogic().writeNbt(new NbtCompound());
+                nbt.putShort("MinSpawnDelay", (short) 200);
+                nbt.putShort("SpawnCount", (short) 1);
+                nbt.putShort("MaxNearbyEntities", (short) 2);
+                nbt.remove("SpawnData");
+                Phantasm.log(nbt);
+                spawner.getLogic().readNbt(null, center, nbt);
                 spawner.setEntityType(EntityType.VEX, world.getRandom());  // TODO: Change entity
+            }
         }
         else if (roomtype == 3) {
             center = center.north(world.getRandom().nextBetween(-2, 2)).east(world.getRandom().nextBetween(-2, 2));

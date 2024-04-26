@@ -11,11 +11,14 @@ import net.minecraft.block.enums.SlabType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.loot.LootTables;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.CountConfig;
+import net.minecraft.world.gen.feature.EndSpikeFeature;
 import net.minecraft.world.gen.feature.EndSpikeFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
@@ -39,12 +42,12 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
         Phantasm.log("Hi " + origin);
 
         int maxy = config.getCount().get(random) + origin.getY();
-        maxy = maxy + 5 - maxy % 5;
+        maxy = maxy + 7 - maxy % 7;
 
-        for (int sy = 0; sy <= maxy; sy++) {
+        for (int sy = maxy; sy >= 0; sy--) {
             for (int sx = -8; sx < 9; sx++) {
                 for (int sz = -8; sz < 9; sz++) {
-                    if (sx*sx + sz*sz < 64 && (sx*sx + sz*sz >= 49 || sy == maxy)) {
+                    if (sx*sx + sz*sz < 64 && (sx*sx + sz*sz >= 49 || sy == maxy || sy == 0)) {
                         Block block = Blocks.OBSIDIAN;
                         double crying = (sy - 60) / (maxy - 60.0);
                         if (Math.random() + 0.1 < crying * crying && crying > 0)
@@ -61,14 +64,16 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
                     }
                 }
             }
-            if (sy != maxy) generateStairs(world, origin.withY(sy));
+            if (world.getBlockState(origin.withY(sy)).isAir()) world.setBlockState(origin.withY(sy), Blocks.CHAIN.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+            if (sy < maxy) putStairs(world, origin.withY(sy));
+            if (sy % 7 == 0 && sy != maxy) putPlatform(world, origin.withY(sy), random.nextInt(7));
             //if (sy % 5 == 0 && sy != 0) generateRoom(world, origin.withY(sy - 4));
         }
 
         return true;
     }
 
-    public static void generateStairs(StructureWorldAccess world, BlockPos center) {
+    public static void putStairs(StructureWorldAccess world, BlockPos center) {
         int y = center.getY();
 
         for (int sx = -7; sx < 8; sx++) {
@@ -85,20 +90,56 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
             }
         }
 
-        if (y > 3) {
-            center = center.withY(y - 3);
+        if (Math.random() < 0.2 || center.getY() == 1) {
+            BlockPos door = center.mutableCopy();
+            if (y % 4 == 0) door = door.east(7);
+            else if (y % 4 == 2) door = door.west(7);
+            else if (y % 4 == 1) door = door.north(7);
+            else door = door.south(7);
 
-            if (Math.random() < 0.2 || center.getY() == 1) {
-                BlockPos door = center.mutableCopy();
-                if (y % 4 == 0) door = door.east(7);
-                else if (y % 4 == 2) door = door.west(7);
-                else if (y % 4 == 1) door = door.north(7);
-                else door = door.south(7);
+            door = door.up();
+            world.setBlockState(door, Blocks.AIR.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+            world.setBlockState(door.up(), Blocks.AIR.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+        }
+    }
 
-                door = door.up();
-                world.setBlockState(door, Blocks.AIR.getDefaultState(), Block.NOTIFY_NEIGHBORS);
-                world.setBlockState(door.up(), Blocks.AIR.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+    public static void putPlatform(ServerWorldAccess world, BlockPos center, int roomtype) {
+        if (roomtype == 0) {
+            for (int sx = -5; sx < 6; sx++) {
+                for (int sz = -5; sz < 6; sz++) {
+                    if (sx * sx + sz * sz < 16) {
+                        world.setBlockState(center.east(sx).north(sz), ModBlocks.RAW_PURPUR_BRICKS.getDefaultState(),
+                                Block.NOTIFY_NEIGHBORS);
+                    }
+                }
             }
+        }
+        else if (roomtype == 1) {
+            for (int sx = -5; sx < 6; sx++) {
+                for (int sz = -5; sz < 6; sz++) {
+                    if (sx * sx + sz * sz < 16) {
+                        world.setBlockState(center.east(sx).north(sz), ModBlocks.RAW_PURPUR_BRICKS.getDefaultState(),
+                                Block.NOTIFY_NEIGHBORS);
+                    }
+                }
+            }
+            world.setBlockState(center.up(), Blocks.CHEST.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+            if (world.getBlockEntity(center.up()) instanceof ChestBlockEntity chest)
+                chest.setLootTable(LootTables.STRONGHOLD_CORRIDOR_CHEST, world.getRandom().nextLong());
+        }
+        else if (roomtype == 2) {
+            world.setBlockState(center, Blocks.SPAWNER.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+            if (world.getBlockEntity(center) instanceof MobSpawnerBlockEntity spawner)
+                spawner.setEntityType(EntityType.VEX, world.getRandom());  // TODO: Change entity
+        }
+        else if (roomtype == 3) {
+            center = center.north(world.getRandom().nextBetween(-2, 2)).east(world.getRandom().nextBetween(-2, 2));
+            BlockPos.iterateInSquare(center, 2, Direction.NORTH, Direction.EAST).forEach(pos ->
+                    world.setBlockState(pos, Blocks.OBSIDIAN.getDefaultState(), Block.NOTIFY_NEIGHBORS)
+            );
+            world.setBlockState(center.up(), Blocks.CHEST.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+            if (world.getBlockEntity(center.up()) instanceof ChestBlockEntity chest)
+                chest.setLootTable(LootTables.END_CITY_TREASURE_CHEST, world.getRandom().nextLong());
         }
     }
 

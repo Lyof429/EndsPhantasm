@@ -2,7 +2,6 @@ package net.lyof.phantasm.world.feature.tree.custom;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.world.feature.tree.ModTreePlacerTypes;
 import net.minecraft.util.math.BlockPos;
@@ -12,10 +11,6 @@ import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.foliage.FoliagePlacer;
 import net.minecraft.world.gen.foliage.FoliagePlacerType;
-import net.minecraft.world.gen.treedecorator.AttachedToLeavesTreeDecorator;
-import net.minecraft.world.gen.treedecorator.TreeDecorator;
-
-import java.util.Set;
 
 public class PreamFoliagePlacer extends FoliagePlacer {
     public static final Codec<PreamFoliagePlacer> CODEC = RecordCodecBuilder.create(instance ->

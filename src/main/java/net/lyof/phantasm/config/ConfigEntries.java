@@ -1,7 +1,5 @@
 package net.lyof.phantasm.config;
 
-import net.lyof.phantasm.Phantasm;
-
 public class ConfigEntries {
     public static void reload() {
         doDreamingDenBiome = new ConfigEntry<>("world_gen.biomes.dreaming_den.generate", true).get();

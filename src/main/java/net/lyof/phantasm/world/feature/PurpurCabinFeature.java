@@ -1,18 +1,13 @@
 package net.lyof.phantasm.world.feature;
 
 import com.mojang.serialization.Codec;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.utils.BlockHelper;
 import net.lyof.phantasm.world.feature.config.PurpurCabinFeatureConfig;
 import net.minecraft.block.BarrelBlock;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BarrelBlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;

@@ -2,7 +2,6 @@ package net.lyof.phantasm.world.feature.tree.custom;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.world.feature.tree.ModTreePlacerTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;

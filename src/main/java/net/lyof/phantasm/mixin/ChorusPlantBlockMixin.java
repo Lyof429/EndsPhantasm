@@ -1,8 +1,10 @@
 package net.lyof.phantasm.mixin;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.setup.ModTags;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.ChorusPlantBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;

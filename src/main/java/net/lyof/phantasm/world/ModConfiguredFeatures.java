@@ -4,10 +4,8 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.world.feature.CrystalSpikeFeature;
 import net.lyof.phantasm.world.feature.ObsidianTowerStructure;
-import net.lyof.phantasm.world.feature.PurpurCabinFeature;
 import net.lyof.phantasm.world.feature.SingleBlockFeature;
 import net.lyof.phantasm.world.feature.config.CrystalSpikeFeatureConfig;
-import net.lyof.phantasm.world.feature.config.PurpurCabinFeatureConfig;
 import net.lyof.phantasm.world.feature.config.SingleBlockFeatureConfig;
 import net.lyof.phantasm.world.feature.tree.custom.PreamFoliagePlacer;
 import net.lyof.phantasm.world.feature.tree.custom.PreamTrunkPlacer;
@@ -23,12 +21,9 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.gen.CountConfig;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
-import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
-import net.minecraft.world.gen.treedecorator.*;
-import net.minecraft.world.gen.trunk.GiantTrunkPlacer;
-import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
+import net.minecraft.world.gen.treedecorator.AttachedToLeavesTreeDecorator;
 
 import java.util.List;
 

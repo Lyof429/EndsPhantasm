@@ -19,7 +19,7 @@ public abstract class EndSpikeFeatureMixin {
     public void randomizeObsidian(EndSpikeFeature spike, ModifiableWorld world, BlockPos pos, BlockState state) {
         double crying = (pos.getY() - 65) / 35d;
         if (state.isOf(Blocks.OBSIDIAN) && ConfigEntries.improveEndSpires) {
-            if (Math.random() < crying * crying)
+            if (crying > 0 && Math.random() < crying * crying)
                 state = Blocks.CRYING_OBSIDIAN.getDefaultState();
             else if (Math.random() < 0.2)
                 state = Math.random() < 0.5 ? ModBlocks.POLISHED_OBSIDIAN.getDefaultState() : ModBlocks.POLISHED_OBSIDIAN_BRICKS.getDefaultState();

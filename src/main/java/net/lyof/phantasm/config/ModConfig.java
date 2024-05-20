@@ -1,6 +1,7 @@
 package net.lyof.phantasm.config;
 
 import com.google.gson.Gson;
+import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.Phantasm;
 import org.apache.commons.io.FileUtils;
 
@@ -24,8 +25,7 @@ public class ModConfig {
     }
 
     public static void register(boolean force) {
-        String path = System.getProperty("user.dir") + File.separator +
-                "config" + File.separator + Phantasm.MOD_ID + ".json";
+        String path = FabricLoader.getInstance().getConfigDir().resolve(Phantasm.MOD_ID + ".json").toString();
 
         Phantasm.log("Loading Configs for Phantasm");
 
@@ -95,7 +95,7 @@ public class ModConfig {
     static final String DEFAULT_CONFIG = """
 {
   "TECHNICAL": {
-    "VERSION_DO_NOT_EDIT": 1,
+    "VERSION_DO_NOT_EDIT": 1.3,
     "FORCE_RESET": false
   },
 
@@ -121,7 +121,9 @@ public class ModConfig {
     // Should Fallen Stars appear in the End's sky
     "do_fallen_stars": true,
     // Should Raw Purpur stripes appear on the islands' sides
-    "do_raw_purpur": true
+    "do_raw_purpur": true,
+    // Should the main island's obsidian spires be prettified
+    "improve_end_spires": true
   }
 }""";
 }

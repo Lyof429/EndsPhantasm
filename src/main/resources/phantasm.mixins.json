@@ -7,13 +7,14 @@
     "ChorusFlowerBlockMixin",
     "ChorusPlantBlockMixin",
     "EndSpikeFeatureMixin",
-    "FoliagePlacerTypeInvoker",
+    "EntityMixin",
     "ItemMixin",
     "MinecraftServerMixin",
-    "NoiseGeneratorSettingsAccess",
     "PlantBlockMixin",
     "PlayerEntityMixin",
-    "TrunkPlacerTypeInvoker"
+    "access.FoliagePlacerTypeInvoker",
+    "access.NoiseGeneratorSettingsAccess",
+    "access.TrunkPlacerTypeInvoker"
   ],
   "injectors": {
     "defaultRequire": 1

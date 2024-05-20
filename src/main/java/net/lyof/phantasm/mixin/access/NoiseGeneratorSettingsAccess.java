@@ -1,4 +1,4 @@
-package net.lyof.phantasm.mixin;
+package net.lyof.phantasm.mixin.access;
 
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;

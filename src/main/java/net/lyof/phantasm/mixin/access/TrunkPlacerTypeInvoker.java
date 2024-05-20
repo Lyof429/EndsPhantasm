@@ -1,4 +1,4 @@
-package net.lyof.phantasm.mixin;
+package net.lyof.phantasm.mixin.access;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.world.gen.trunk.TrunkPlacer;

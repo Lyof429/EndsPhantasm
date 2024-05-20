@@ -36,7 +36,6 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
         CountConfig config = context.getConfig();
         origin = world.getChunk(origin).getPos().getCenterAtY(origin.getY());
 
-        Phantasm.log("Hi " + origin);
 
         int maxy = config.getCount().get(random) + origin.getY();
         maxy = maxy + 7 - maxy % 7;
@@ -132,7 +131,6 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
                 nbt.putShort("SpawnCount", (short) 1);
                 nbt.putShort("MaxNearbyEntities", (short) 2);
                 nbt.remove("SpawnData");
-                Phantasm.log(nbt);
                 spawner.getLogic().readNbt(null, center, nbt);
                 spawner.setEntityType(EntityType.VEX, world.getRandom());
             }

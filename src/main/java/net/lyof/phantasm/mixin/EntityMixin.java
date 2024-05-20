@@ -1,9 +1,13 @@
 package net.lyof.phantasm.mixin;
 
+import net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents;
 import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.block.EndGatewayBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.dragon.EnderDragonFight;
+import net.minecraft.item.FireworkRocketItem;
+import net.minecraft.recipe.FireworkRocketRecipe;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.TeleportTarget;
@@ -18,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class EntityMixin {
     @Inject(method = "getTeleportTarget", at = @At("RETURN"), cancellable = true)
     public void spawnInOuterEnd(ServerWorld destination, CallbackInfoReturnable<TeleportTarget> cir) {
-        if (destination.getRegistryKey() == World.END) {
+        if (destination.getRegistryKey() == World.END && ConfigEntries.outerEndIntegration) {
             TeleportTarget result = cir.getReturnValue();
             result = new TeleportTarget(new Vec3d(1280, 60, 0), result.velocity, result.yaw, result.pitch);
             Phantasm.log(destination.getEnderDragonFight().hasPreviouslyKilled());

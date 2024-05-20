@@ -13,6 +13,8 @@ public class ConfigEntries {
         doRawPurpur = new ConfigEntry<>("world_gen.do_raw_purpur", true).get();
 
         improveEndSpires = new ConfigEntry<>("world_gen.improve_end_spires", true).get();
+
+        outerEndIntegration = new ConfigEntry<>("gameplay.outer_end_in_gameloop", true).get();
     }
 
     public static boolean doDreamingDenBiome;
@@ -26,4 +28,6 @@ public class ConfigEntries {
     public static boolean doRawPurpur;
 
     public static boolean improveEndSpires;
+
+    public static boolean outerEndIntegration;
 }

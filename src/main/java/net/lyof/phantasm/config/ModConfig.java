@@ -124,6 +124,11 @@ public class ModConfig {
     "do_raw_purpur": true,
     // Should the main island's obsidian spires be prettified
     "improve_end_spires": true
+  },
+  
+  // GAMEPLAY
+  "gameplay": {
+    "outer_end_in_gameloop": true
   }
 }""";
 }

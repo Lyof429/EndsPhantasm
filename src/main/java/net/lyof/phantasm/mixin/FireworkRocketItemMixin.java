@@ -18,7 +18,10 @@ public class FireworkRocketItemMixin {
     public boolean cancelBoost(PlayerEntity instance) {
         if (instance instanceof ServerPlayerEntity player) {
             Advancement freetheend = player.getServer().getAdvancementLoader().get(new Identifier(ConfigEntries.elytraBoostAdvancement));
-            return player.getAdvancementTracker().getProgress(freetheend).isDone() && player.isFallFlying();
+            if (player.getAdvancementTracker().getProgress(freetheend).isDone() && player.isFallFlying()) {
+                instance.swingHand(instance.getActiveHand(), true);
+                return true;
+            }
         }
         return false;
     }

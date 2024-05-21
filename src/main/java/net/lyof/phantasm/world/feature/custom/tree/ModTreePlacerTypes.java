@@ -1,10 +1,10 @@
-package net.lyof.phantasm.world.feature.tree;
+package net.lyof.phantasm.world.feature.custom.tree;
 
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.mixin.access.FoliagePlacerTypeInvoker;
 import net.lyof.phantasm.mixin.access.TrunkPlacerTypeInvoker;
-import net.lyof.phantasm.world.feature.tree.custom.PreamFoliagePlacer;
-import net.lyof.phantasm.world.feature.tree.custom.PreamTrunkPlacer;
+import net.lyof.phantasm.world.feature.custom.tree.custom.PreamFoliagePlacer;
+import net.lyof.phantasm.world.feature.custom.tree.custom.PreamTrunkPlacer;
 import net.minecraft.world.gen.foliage.FoliagePlacerType;
 import net.minecraft.world.gen.trunk.TrunkPlacerType;
 

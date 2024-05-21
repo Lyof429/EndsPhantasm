@@ -208,8 +208,8 @@ public class ModRegistry {
     }
 
     public static class Foods {
-        public static final FoodComponent PREAM_BERRY = new FoodComponent.Builder().alwaysEdible().hunger(4).statusEffect(
-                        new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 0, true, false),
+        public static final FoodComponent PREAM_BERRY = new FoodComponent.Builder().alwaysEdible().saturationModifier(2).hunger(4).statusEffect(
+                        new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 2, true, false),
                         1).build();
 
         public static final FoodComponent CHORUS_SALAD = new FoodComponent.Builder().alwaysEdible().hunger(4)

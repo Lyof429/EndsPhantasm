@@ -1,6 +1,6 @@
-package net.lyof.phantasm.world.feature.tree;
+package net.lyof.phantasm.world.feature.custom.tree;
 
-import net.lyof.phantasm.world.ModConfiguredFeatures;
+import net.lyof.phantasm.world.feature.ModConfiguredFeatures;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.math.random.Random;

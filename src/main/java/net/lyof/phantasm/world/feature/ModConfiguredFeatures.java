@@ -1,14 +1,14 @@
-package net.lyof.phantasm.world;
+package net.lyof.phantasm.world.feature;
 
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
-import net.lyof.phantasm.world.feature.CrystalSpikeFeature;
-import net.lyof.phantasm.world.feature.ObsidianTowerStructure;
-import net.lyof.phantasm.world.feature.SingleBlockFeature;
-import net.lyof.phantasm.world.feature.config.CrystalSpikeFeatureConfig;
-import net.lyof.phantasm.world.feature.config.SingleBlockFeatureConfig;
-import net.lyof.phantasm.world.feature.tree.custom.PreamFoliagePlacer;
-import net.lyof.phantasm.world.feature.tree.custom.PreamTrunkPlacer;
+import net.lyof.phantasm.world.feature.custom.CrystalSpikeFeature;
+import net.lyof.phantasm.world.feature.custom.ObsidianTowerStructure;
+import net.lyof.phantasm.world.feature.custom.SingleBlockFeature;
+import net.lyof.phantasm.world.feature.custom.config.CrystalSpikeFeatureConfig;
+import net.lyof.phantasm.world.feature.custom.config.SingleBlockFeatureConfig;
+import net.lyof.phantasm.world.feature.custom.tree.custom.PreamFoliagePlacer;
+import net.lyof.phantasm.world.feature.custom.tree.custom.PreamTrunkPlacer;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.registry.Registerable;

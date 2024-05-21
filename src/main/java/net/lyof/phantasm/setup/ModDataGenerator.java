@@ -6,8 +6,8 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.lyof.phantasm.setup.datagen.*;
-import net.lyof.phantasm.world.ModConfiguredFeatures;
-import net.lyof.phantasm.world.ModPlacedFeatures;
+import net.lyof.phantasm.world.feature.ModConfiguredFeatures;
+import net.lyof.phantasm.world.feature.ModPlacedFeatures;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemConvertible;
@@ -28,6 +28,7 @@ public class ModDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModRecipeProvider::new);
 		pack.addProvider(ModWorldGenProvider::new);
+		pack.addProvider(ModAdvancementProvider::new);
 	}
 
 	@Override

@@ -1,7 +1,7 @@
-package net.lyof.phantasm.world.feature;
+package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
-import net.lyof.phantasm.world.feature.config.SingleBlockFeatureConfig;
+import net.lyof.phantasm.world.feature.custom.config.SingleBlockFeatureConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;

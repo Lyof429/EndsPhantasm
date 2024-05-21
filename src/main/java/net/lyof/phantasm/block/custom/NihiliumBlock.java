@@ -1,6 +1,6 @@
 package net.lyof.phantasm.block.custom;
 
-import net.lyof.phantasm.world.ModPlacedFeatures;
+import net.lyof.phantasm.world.feature.ModPlacedFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

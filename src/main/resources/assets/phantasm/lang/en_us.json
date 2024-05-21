@@ -84,5 +84,9 @@
 
   "biome.phantasm.dreaming_den": "Dreaming Den",
 
-  "tooltip.xp_boosted": "Efficiency increases with experience."
+  "tooltip.xp_boosted": "Efficiency increases with experience.",
+
+
+  "advancement.phantasm.find_dreaming_den": "Dreams Come True",
+  "advancement.phantasm.find_dreaming_den.desc": "Find a Dreaming Den biome"
 }

@@ -1,9 +1,9 @@
-package net.lyof.phantasm.world;
+package net.lyof.phantasm.world.feature;
 
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.world.feature.CrystalSpikeFeature;
-import net.lyof.phantasm.world.feature.ObsidianTowerStructure;
-import net.lyof.phantasm.world.feature.SingleBlockFeature;
+import net.lyof.phantasm.world.feature.custom.CrystalSpikeFeature;
+import net.lyof.phantasm.world.feature.custom.ObsidianTowerStructure;
+import net.lyof.phantasm.world.feature.custom.SingleBlockFeature;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 

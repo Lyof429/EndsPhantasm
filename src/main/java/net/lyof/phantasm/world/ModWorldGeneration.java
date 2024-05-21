@@ -1,11 +1,11 @@
-package net.lyof.phantasm.world.gen;
+package net.lyof.phantasm.world;
 
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.setup.ModTags;
-import net.lyof.phantasm.world.ModPlacedFeatures;
+import net.lyof.phantasm.world.feature.ModPlacedFeatures;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.minecraft.world.gen.GenerationStep;
 

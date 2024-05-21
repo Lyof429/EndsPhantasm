@@ -1,9 +1,9 @@
-package net.lyof.phantasm.world.feature;
+package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.utils.BlockHelper;
-import net.lyof.phantasm.world.feature.config.PurpurCabinFeatureConfig;
+import net.lyof.phantasm.world.feature.custom.config.PurpurCabinFeatureConfig;
 import net.minecraft.block.BarrelBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

@@ -9,7 +9,7 @@ import net.lyof.phantasm.block.custom.NihiliumBlock;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
-import net.lyof.phantasm.world.feature.tree.PreamSaplingGenerator;
+import net.lyof.phantasm.world.feature.custom.tree.PreamSaplingGenerator;
 import net.minecraft.block.*;
 import net.minecraft.data.client.Models;
 import net.minecraft.registry.tag.BlockTags;

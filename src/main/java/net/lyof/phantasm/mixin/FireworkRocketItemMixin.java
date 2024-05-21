@@ -1,5 +1,6 @@
 package net.lyof.phantasm.mixin;
 
+import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementManager;
 import net.minecraft.data.server.advancement.AdvancementProvider;
@@ -16,7 +17,7 @@ public class FireworkRocketItemMixin {
     @Redirect(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;isFallFlying()Z"))
     public boolean cancelBoost(PlayerEntity instance) {
         if (instance instanceof ServerPlayerEntity player) {
-            Advancement freetheend = player.getServer().getAdvancementLoader().get(Identifier.of("minecraft", "end/kill_dragon"));
+            Advancement freetheend = player.getServer().getAdvancementLoader().get(new Identifier(ConfigEntries.elytraBoostAdvancement));
             return player.getAdvancementTracker().getProgress(freetheend).isDone() && player.isFallFlying();
         }
         return false;

@@ -126,9 +126,15 @@ public class ModConfig {
     "improve_end_spires": true
   },
   
-  // GAMEPLAY
+  // CATEGORY: GAMEPLAY
   "gameplay": {
     "outer_end_in_gameloop": true
+  },
+  
+  // CATEGORY: EQUIPMENT
+  "equipment": {
+    // Advancement needed to enable elytra boosting. Leave blank "" to disable the need for one
+    "elytra_boost_advancement": "minecraft:end/kill_dragon"
   }
 }""";
 }

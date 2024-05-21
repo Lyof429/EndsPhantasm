@@ -15,6 +15,8 @@ public class ConfigEntries {
         improveEndSpires = new ConfigEntry<>("world_gen.improve_end_spires", true).get();
 
         outerEndIntegration = new ConfigEntry<>("gameplay.outer_end_in_gameloop", true).get();
+
+        elytraBoostAdvancement = new ConfigEntry<>("equipment.elytra_boost_advancement", "minecraft:end/kill_dragon").get();
     }
 
     public static boolean doDreamingDenBiome;
@@ -30,4 +32,6 @@ public class ConfigEntries {
     public static boolean improveEndSpires;
 
     public static boolean outerEndIntegration;
+
+    public static String elytraBoostAdvancement;
 }

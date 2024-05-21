@@ -6,6 +6,7 @@
     "BlockEntityTypeMixin",
     "ChorusFlowerBlockMixin",
     "ChorusPlantBlockMixin",
+    "EndGatewayBlockEntityMixin",
     "EndSpikeFeatureMixin",
     "EntityMixin",
     "FireworkRocketItemMixin",
@@ -13,6 +14,8 @@
     "MinecraftServerMixin",
     "PlantBlockMixin",
     "PlayerEntityMixin",
+    "ServerPlayerEntityMixin",
+    "access.EndGatewayBlockEntityAccessor",
     "access.FoliagePlacerTypeInvoker",
     "access.NoiseGeneratorSettingsAccess",
     "access.TrunkPlacerTypeInvoker"

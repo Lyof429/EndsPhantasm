@@ -1,0 +1,62 @@
+{
+  "parent": "phantasm:get_crystal",
+  "criteria": {
+    "has_crystal_tool": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "phantasm:crystalline_axe"
+            ]
+          },
+          {
+            "items": [
+              "phantasm:crystalline_sword"
+            ]
+          },
+          {
+            "items": [
+              "phantasm:crystalline_pickaxe"
+            ]
+          },
+          {
+            "items": [
+              "phantasm:crystalline_hoe"
+            ]
+          },
+          {
+            "items": [
+              "phantasm:crystalline_shovel"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.phantasm.get_crystal_tools.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "phantasm:crystalline_pickaxe",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.phantasm.get_crystal_tools"
+    }
+  },
+  "requirements": [
+    [
+      "has_crystal_tool"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}

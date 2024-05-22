@@ -29,7 +29,6 @@ public class ModBlocks {
         ModRegistry.addDrop(PREAM_HANGING_SIGN, ModItems.PREAM_HANGING_SIGN);
         ModRegistry.addDrop(PREAM_WALL_HANGING_SIGN, ModItems.PREAM_HANGING_SIGN);
 
-
         ModRegistry.registerStairsAndSlab(CRYSTAL_TILES, CRYSTAL_TILES_STAIRS, CRYSTAL_TILES_SLAB);
         ModRegistry.registerStairsAndSlab(VOID_CRYSTAL_TILES, VOID_CRYSTAL_TILES_STAIRS, VOID_CRYSTAL_TILES_SLAB);
         ModRegistry.registerStairsAndSlab(POLISHED_OBSIDIAN_BRICKS, POLISHED_OBSIDIAN_BRICKS_STAIRS, POLISHED_OBSIDIAN_BRICKS_SLAB);
@@ -356,11 +355,12 @@ public class ModBlocks {
             .drop()
             .model().build();
     public static final Block OBLIVINE = ModRegistry.ofBlock("oblivine",
-                    new HangingFruitBlock(copy(OblivionMaterial).breakInstantly(),
+                    new HangingFruitBlock(copy(OblivionMaterial).breakInstantly().collidable(false),
                             () -> ModItems.OBLIFRUIT,
                             ModTags.Blocks.OBLIVINE_GROWABLE_ON,
                             Block.createCuboidShape(2, 0, 2, 14, 16, 14)))
             .model(ModRegistry.Models.CROSS).tag(ModTags.Blocks.OBLIVINE_GROWABLE_ON)
-            .drop()
+            .drop().cutout()
+            .tag(BlockTags.CLIMBABLE)
             .build();
 }

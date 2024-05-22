@@ -1,0 +1,45 @@
+{
+  "parent": "phantasm:find_dreaming_den",
+  "criteria": {
+    "is_underisland": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "biome": "phantasm:dreaming_den",
+              "position": {
+                "y": {
+                  "max": 50.0,
+                  "min": 0.0
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.phantasm.find_underisland.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "phantasm:oblivion"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.phantasm.find_underisland"
+    }
+  },
+  "requirements": [
+    [
+      "is_underisland"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

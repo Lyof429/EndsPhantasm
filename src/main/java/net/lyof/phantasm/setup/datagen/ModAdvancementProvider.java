@@ -16,6 +16,7 @@ import net.minecraft.advancement.criterion.TravelCriterion;
 import net.minecraft.data.server.advancement.AdvancementProvider;
 import net.minecraft.loot.condition.LocationCheckLootCondition;
 import net.minecraft.loot.condition.LootCondition;
+import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
 import net.minecraft.predicate.entity.LocationPredicate;
 import net.minecraft.predicate.entity.LootContextPredicate;
@@ -30,14 +31,18 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
     public static class BiomeCriterion extends AbstractCriterionConditions {
         public RegistryKey<Biome> biome;
 
-        private BiomeCriterion(RegistryKey<Biome> biome) {
+        private BiomeCriterion(RegistryKey<Biome> biome, int min, int max) {
             super(Identifier.of("minecraft", "location"),
                     LootContextPredicate.create(LocationCheckLootCondition.builder(
-                            LocationPredicate.Builder.create().biome(biome)).build()));
+                            LocationPredicate.Builder.create().biome(biome).y(NumberRange.FloatRange.between(min, max))).build()));
         }
 
         public static BiomeCriterion of(RegistryKey<Biome> biome) {
-            return new BiomeCriterion(biome);
+            return BiomeCriterion.of(biome, 0, 256);
+        }
+
+        public static BiomeCriterion of(RegistryKey<Biome> biome, int min, int max) {
+            return new BiomeCriterion(biome, min, max);
         }
     }
 
@@ -52,17 +57,17 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
     @Override
     public void generateAdvancement(Consumer<Advancement> consumer) {
         Advancement DREAMING_DEN = Advancement.Builder.create()
-                .display(ModBlocks.PREAM_SAPLING,
+                .display(ModBlocks.PREAM_LOG,
                         Text.translatable(BASE + "find_dreaming_den"),
                         Text.translatable(BASE + "find_dreaming_den" + DESC),
                         null,
                         AdvancementFrame.TASK,
                         true, true, false)
-                .criterion("is_dreaming_den", BiomeCriterion.of(ModBiomes.DREAMING_DEN))
+                .criterion("is_dreaming_den", BiomeCriterion.of(ModBiomes.DREAMING_DEN, 50, 256))
                 .rewards(AdvancementRewards.NONE).build(Phantasm.makeID("find_dreaming_den"));
                 //.build(consumer, "phantasm:find_dreaming_den")
 
-        Advancement.Builder.create()
+        Advancement CRYSTAL_SHARD = Advancement.Builder.create()
                 .display(ModBlocks.CRYSTAL_SHARD,
                         Text.translatable(BASE + "get_crystal"),
                         Text.translatable(BASE + "get_crystal" + DESC),
@@ -71,9 +76,37 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         true, true, false)
                 .criterion("has_crystal", InventoryChangedCriterion.Conditions.items(ModBlocks.CRYSTAL_SHARD))
                 .rewards(AdvancementRewards.NONE)
-                .parent(DREAMING_DEN);
-                //.build(consumer, "phantasm:get_crystal");
+                .parent(DREAMING_DEN)
+                .build(consumer, "phantasm:get_crystal");
 
+        Advancement UNDERISLAND = Advancement.Builder.create()
+                .display(ModBlocks.OBLIVION,
+                        Text.translatable(BASE + "find_underisland"),
+                        Text.translatable(BASE + "find_underisland" + DESC),
+                        null,
+                        AdvancementFrame.GOAL,
+                        true, true, false)
+                .criterion("is_underisland", BiomeCriterion.of(ModBiomes.DREAMING_DEN, 0, 50))
+                .rewards(AdvancementRewards.NONE)
+                .parent(DREAMING_DEN)
+                .build(consumer, "phantasm:find_underisland");
 
+        Advancement CRYSTAL_TOOLS = Advancement.Builder.create()
+                .display(ModItems.CRYSTALLINE_PICKAXE,
+                        Text.translatable(BASE + "get_crystal_tools"),
+                        Text.translatable(BASE + "get_crystal_tools" + DESC),
+                        null,
+                        AdvancementFrame.TASK,
+                        true, true, false)
+                .criterion("has_crystal_tool",
+                        InventoryChangedCriterion.Conditions.items(
+                                ModItems.CRYSTALLINE_AXE,
+                                ModItems.CRYSTALLINE_SWORD,
+                                ModItems.CRYSTALLINE_PICKAXE,
+                                ModItems.CRYSTALLINE_HOE,
+                                ModItems.CRYSTALLINE_SHOVEL))
+                .rewards(AdvancementRewards.Builder.experience(100))
+                .parent(CRYSTAL_SHARD)
+                .build(consumer, "phantasm:get_crystal_tools");
     }
 }

@@ -94,5 +94,9 @@
   "advancement.phantasm.find_dreaming_den": "Dreams Come True",
   "advancement.phantasm.find_dreaming_den.desc": "Find a Dreaming Den biome",
   "advancement.phantasm.get_crystal": "Extra Shiny!",
-  "advancement.phantasm.get_crystal.desc": "Mine Crystal Shards in the End"
+  "advancement.phantasm.get_crystal.desc": "Mine Crystal Shards in the End",
+  "advancement.phantasm.find_underisland": "As Above, So Below",
+  "advancement.phantasm.find_underisland.desc": "Venture into the Underisland, below the Dreaming Den",
+  "advancement.phantasm.get_crystal_tools": "Time to Shine!",
+  "advancement.phantasm.get_crystal_tools.desc": "Get every type of Crystalline tools"
 }

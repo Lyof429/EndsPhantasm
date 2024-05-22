@@ -359,7 +359,7 @@ public class ModBlocks {
                             () -> ModItems.OBLIFRUIT,
                             ModTags.Blocks.OBLIVINE_GROWABLE_ON,
                             Block.createCuboidShape(2, 0, 2, 14, 16, 14)))
-            .model(ModRegistry.Models.CROSS).tag(ModTags.Blocks.OBLIVINE_GROWABLE_ON)
+            .tag(ModTags.Blocks.OBLIVINE_GROWABLE_ON)
             .drop().cutout()
             .tag(BlockTags.CLIMBABLE)
             .build();

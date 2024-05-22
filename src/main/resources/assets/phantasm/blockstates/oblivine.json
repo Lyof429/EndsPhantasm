@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "has_fruit=false": {
+      "model": "phantasm:block/oblivine"
+    },
+    "has_fruit=true": {
+      "model": "phantasm:block/oblivine_fruit"
+    }
+  }
+}

@@ -7,6 +7,7 @@ import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.world.feature.custom.config.CrystalSpikeFeatureConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -65,7 +66,7 @@ public class CrystalSpikeFeature extends Feature<CrystalSpikeFeatureConfig> {
         }
 
         for (int i = 0; i < size; i++) {
-            if (pos.getY() <= world.getBottomY() + 1)
+            if (pos.getY() <= world.getBottomY() + 1 || pos.getY() >= 250)
                 return false;
 
             world.setBlockState(pos, bottom.with(CrystalShardBlock.DIRECTION, Direction.DOWN).with(CrystalShardBlock.IS_TIP, i == size - 1), 0x10);

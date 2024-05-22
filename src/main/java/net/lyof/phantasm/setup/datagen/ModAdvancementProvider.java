@@ -11,6 +11,7 @@ import net.lyof.phantasm.world.biome.ModBiomes;
 import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
 import net.minecraft.advancement.criterion.CriterionConditions;
+import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.advancement.criterion.TravelCriterion;
 import net.minecraft.data.server.advancement.AdvancementProvider;
 import net.minecraft.loot.condition.LocationCheckLootCondition;
@@ -50,7 +51,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
 
     @Override
     public void generateAdvancement(Consumer<Advancement> consumer) {
-        Advancement.Builder.create()
+        Advancement DREAMING_DEN = Advancement.Builder.create()
                 .display(ModBlocks.PREAM_SAPLING,
                         Text.translatable(BASE + "find_dreaming_den"),
                         Text.translatable(BASE + "find_dreaming_den" + DESC),
@@ -58,9 +59,21 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         AdvancementFrame.TASK,
                         true, true, false)
                 .criterion("is_dreaming_den", BiomeCriterion.of(ModBiomes.DREAMING_DEN))
-                .rewards(AdvancementRewards.NONE)
+                .rewards(AdvancementRewards.NONE).build(Phantasm.makeID("find_dreaming_den"));
                 //.build(consumer, "phantasm:find_dreaming_den")
-        ;
+
+        Advancement.Builder.create()
+                .display(ModBlocks.CRYSTAL_SHARD,
+                        Text.translatable(BASE + "get_crystal"),
+                        Text.translatable(BASE + "get_crystal" + DESC),
+                        null,
+                        AdvancementFrame.TASK,
+                        true, true, false)
+                .criterion("has_crystal", InventoryChangedCriterion.Conditions.items(ModBlocks.CRYSTAL_SHARD))
+                .rewards(AdvancementRewards.NONE)
+                .parent(DREAMING_DEN)
+                .build(consumer, "phantasm:get_crystal");
+
 
     }
 }

@@ -88,5 +88,7 @@
 
 
   "advancement.phantasm.find_dreaming_den": "Dreams Come True",
-  "advancement.phantasm.find_dreaming_den.desc": "Find a Dreaming Den biome"
+  "advancement.phantasm.find_dreaming_den.desc": "Find a Dreaming Den biome",
+  "advancement.phantasm.get_crystal": "Extra Shiny!",
+  "advancement.phantasm.get_crystal.desc": "Mine Crystal Shards in the End"
 }

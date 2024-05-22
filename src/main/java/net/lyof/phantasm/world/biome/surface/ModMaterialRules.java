@@ -6,9 +6,11 @@ import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.mixin.access.NoiseGeneratorSettingsAccess;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.VerticalSurfaceType;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.dimension.DimensionOptions;
 import net.minecraft.world.gen.YOffset;
@@ -25,6 +27,7 @@ public class ModMaterialRules {
 
     private static final MaterialRules.MaterialRule VIVID_NIHILIUM = block(ModBlocks.VIVID_NIHILIUM);
     private static final MaterialRules.MaterialRule RAW_PURPUR = block(ModBlocks.RAW_PURPUR);
+    private static final MaterialRules.MaterialRule OBSIDIAN = block(Blocks.OBSIDIAN);
 
     public static MaterialRules.MaterialRule createDreamingDenRule() {
         double min_noise = -0.4;
@@ -52,6 +55,7 @@ public class ModMaterialRules {
                 YOffset.fixed(24), YOffset.fixed(26));
         MaterialRules.MaterialCondition band_y_above3 = MaterialRules.not(MaterialRules.verticalGradient("raw_purpur_stripes_above3",
                 YOffset.fixed(19), YOffset.fixed(21)));
+
 
         // RAW PURPUR RULES
         MaterialRules.MaterialRule raw_purpur_stripes =
@@ -107,7 +111,8 @@ public class ModMaterialRules {
                                 dreaming_den_noise_sub,
                                 dreaming_den_nihilium
                         )
-                )
+                ),
+                MaterialRules.condition(MaterialRules.STONE_DEPTH_CEILING, OBSIDIAN)
         );
 
 

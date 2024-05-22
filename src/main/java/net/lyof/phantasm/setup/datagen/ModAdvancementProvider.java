@@ -71,8 +71,8 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         true, true, false)
                 .criterion("has_crystal", InventoryChangedCriterion.Conditions.items(ModBlocks.CRYSTAL_SHARD))
                 .rewards(AdvancementRewards.NONE)
-                .parent(DREAMING_DEN)
-                .build(consumer, "phantasm:get_crystal");
+                .parent(DREAMING_DEN);
+                //.build(consumer, "phantasm:get_crystal");
 
 
     }

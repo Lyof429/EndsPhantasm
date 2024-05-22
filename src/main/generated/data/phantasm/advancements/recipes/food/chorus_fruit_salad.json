@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_oblifruit": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "phantasm:oblifruit"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_pream_berry": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "phantasm:pream_berry"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "phantasm:chorus_fruit_salad"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_pream_berry",
+      "has_oblifruit",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "phantasm:chorus_fruit_salad"
+    ]
+  },
+  "sends_telemetry_event": false
+}

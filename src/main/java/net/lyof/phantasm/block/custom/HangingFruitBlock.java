@@ -58,7 +58,7 @@ public class HangingFruitBlock extends HangingPlantBlock implements Fertilizable
         if (state.get(HAS_FRUIT)) {
             player.swingHand(hand, true);
 
-            world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this.drop)));
+            world.spawnEntity(new ItemEntity(world, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, new ItemStack(this.drop)));
             world.setBlockState(pos, state.with(HAS_FRUIT, false));
         }
 

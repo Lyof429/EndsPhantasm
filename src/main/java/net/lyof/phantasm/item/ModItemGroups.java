@@ -48,6 +48,10 @@ public class ModItemGroups {
 
                         entries.add(ModItems.PREAM_BERRY);
 
+                        entries.add(ModBlocks.OBLIVION);
+                        entries.add(ModBlocks.OBLIVINE);
+                        entries.add(ModItems.OBLIFRUIT);
+
                         entries.add(ModItems.CHORUS_FRUIT_SALAD);
 
                         entries.add(ModBlocks.PURPUR_LAMP);
@@ -110,6 +114,7 @@ public class ModItemGroups {
         if (false) return;
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
             entries.add(ModItems.PREAM_BERRY);
+            entries.add(ModItems.OBLIFRUIT);
             entries.add(ModItems.CHORUS_FRUIT_SALAD);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
@@ -119,6 +124,9 @@ public class ModItemGroups {
             entries.addAfter(Items.END_STONE, ModBlocks.VIVID_NIHILIUM);
             entries.addAfter(Items.CHORUS_FLOWER, ModBlocks.VIVID_NIHILIS);
             entries.addAfter(ModBlocks.VIVID_NIHILIUM, ModBlocks.RAW_PURPUR);
+
+            entries.add(ModBlocks.OBLIVION);
+            entries.add(ModBlocks.OBLIVINE);
 
             entries.add(ModBlocks.FALLEN_STAR);
 

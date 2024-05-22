@@ -253,5 +253,18 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Blocks.PURPLE_STAINED_GLASS_PANE), conditionsFromItem(Blocks.PURPLE_STAINED_GLASS_PANE))
                 .criterion(hasItem(Blocks.END_ROD), conditionsFromItem(Blocks.END_ROD))
                 .group("purpur_lamp").offerTo(exporter, Phantasm.makeID("purpur_lamp"));
+
+        // Chorus Fruit Salad
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.CHORUS_FRUIT_SALAD)
+                .pattern(" P ")
+                .pattern("COC")
+                .pattern(" B ")
+                .input('P', ModItems.PREAM_BERRY)
+                .input('C', Items.CHORUS_FRUIT)
+                .input('O', ModItems.OBLIFRUIT)
+                .input('B', Items.BOWL)
+                .criterion(hasItem(ModItems.PREAM_BERRY), conditionsFromItem(ModItems.PREAM_BERRY))
+                .criterion(hasItem(ModItems.OBLIFRUIT), conditionsFromItem(ModItems.OBLIFRUIT))
+                .group("chorus_fruit_salad").offerTo(exporter, Phantasm.makeID("chorus_fruit_salad"));
     }
 }

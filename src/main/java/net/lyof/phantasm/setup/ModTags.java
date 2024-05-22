@@ -25,6 +25,8 @@ public class ModTags {
         public static final TagKey<Block> END_PLANTS = create("end_plants");
         public static final TagKey<Block> END_PLANTS_GROWABLE_ON = create("end_plants_growable_on");
 
+        public static final TagKey<Block> OBLIVINE_GROWABLE_ON = create("oblivine_growable_on");
+
 
         private static TagKey<Block> create(String name) {
             return TagKey.of(RegistryKeys.BLOCK, Phantasm.makeID(name));

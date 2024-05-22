@@ -1,0 +1,38 @@
+{
+  "parent": "phantasm:find_dreaming_den",
+  "criteria": {
+    "has_crystal": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "phantasm:crystal_shard"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.phantasm.get_crystal.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "phantasm:crystal_shard"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.phantasm.get_crystal"
+    }
+  },
+  "requirements": [
+    [
+      "has_crystal"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.custom.CrystalShardBlock;
 import net.lyof.phantasm.block.custom.HangingFruitBlock;
+import net.lyof.phantasm.block.custom.HangingPlantBlock;
 import net.lyof.phantasm.block.custom.NihiliumBlock;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModRegistry;
@@ -85,6 +86,9 @@ public class ModBlocks {
 
     private static final FabricBlockSettings RawPurpurMaterial =
             copy(Blocks.BLACKSTONE).mapColor(MapColor.TERRACOTTA_PURPLE);
+
+    private static final FabricBlockSettings OblivionMaterial =
+            copy(Blocks.MOSS_BLOCK).mapColor(MapColor.BLACK);
 
     public static final WoodType PREAM = new WoodTypeBuilder().register(Phantasm.makeID("pream"), BlockSetType.OAK);
     //
@@ -342,4 +346,21 @@ public class ModBlocks {
                     new Block(copy(Blocks.PURPUR_BLOCK).luminance(15)))
             .tool("_pickaxe")
             .drop().build();
+
+
+    // Oblivion
+    public static final Block OBLIVION = ModRegistry.ofBlock("oblivion",
+                    new Block(OblivionMaterial))
+            .tag(ModTags.Blocks.OBLIVINE_GROWABLE_ON)
+            .tool("_hoe")
+            .drop()
+            .model().build();
+    public static final Block OBLIVINE = ModRegistry.ofBlock("oblivine",
+                    new HangingFruitBlock(copy(OblivionMaterial).breakInstantly(),
+                            () -> ModItems.OBLIFRUIT,
+                            ModTags.Blocks.OBLIVINE_GROWABLE_ON,
+                            Block.createCuboidShape(2, 16, 2, 14, 16, 14)))
+            .model(ModRegistry.Models.CROSS).tag(ModTags.Blocks.OBLIVINE_GROWABLE_ON)
+            .drop()
+            .build();
 }

@@ -20,6 +20,8 @@ public class ModItems {
 
     public static final Item PREAM_BERRY = ModRegistry.ofItem("pream_berry",
             new Item(new FabricItemSettings().food(ModRegistry.Foods.PREAM_BERRY))).model(Models.GENERATED).build();
+    public static final Item OBLIFRUIT = ModRegistry.ofItem("oblifruit",
+            new Item(new FabricItemSettings().food(ModRegistry.Foods.OBLIFRUIT))).model(Models.GENERATED).build();
 
     public static final Item CRYSTALLINE_SHOVEL = ModRegistry.ofItem("crystalline_shovel",
                     new ShovelItem(ModTiers.CRYSTALLINE, 2, -3f, new FabricItemSettings()))

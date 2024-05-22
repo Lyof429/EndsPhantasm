@@ -11,6 +11,7 @@
     "EntityMixin",
     "FireworkRocketItemMixin",
     "ItemMixin",
+    "LivingEntityMixin",
     "MinecraftServerMixin",
     "PlantBlockMixin",
     "PlayerEntityMixin",

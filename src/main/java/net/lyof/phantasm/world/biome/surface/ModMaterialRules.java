@@ -27,7 +27,7 @@ public class ModMaterialRules {
 
     private static final MaterialRules.MaterialRule VIVID_NIHILIUM = block(ModBlocks.VIVID_NIHILIUM);
     private static final MaterialRules.MaterialRule RAW_PURPUR = block(ModBlocks.RAW_PURPUR);
-    private static final MaterialRules.MaterialRule OBSIDIAN = block(Blocks.OBSIDIAN);
+    private static final MaterialRules.MaterialRule OBLIVION = block(ModBlocks.OBLIVION);
 
     public static MaterialRules.MaterialRule createDreamingDenRule() {
         double min_noise = -0.4;
@@ -112,7 +112,16 @@ public class ModMaterialRules {
                                 dreaming_den_nihilium
                         )
                 ),
-                MaterialRules.condition(MaterialRules.STONE_DEPTH_CEILING, OBSIDIAN)
+                MaterialRules.condition(
+                        is_dreaming_den,
+                        MaterialRules.condition(
+                                dreaming_den_noise_main,
+                                MaterialRules.condition(
+                                        MaterialRules.STONE_DEPTH_CEILING,
+                                        OBLIVION
+                                )
+                        )
+                )
         );
 
 

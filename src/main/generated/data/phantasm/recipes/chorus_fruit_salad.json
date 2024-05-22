@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "chorus_fruit_salad",
+  "key": {
+    "B": {
+      "item": "minecraft:bowl"
+    },
+    "C": {
+      "item": "minecraft:chorus_fruit"
+    },
+    "O": {
+      "item": "phantasm:oblifruit"
+    },
+    "P": {
+      "item": "phantasm:pream_berry"
+    }
+  },
+  "pattern": [
+    " P ",
+    "COC",
+    " B "
+  ],
+  "result": {
+    "item": "phantasm:chorus_fruit_salad"
+  },
+  "show_notification": true
+}

@@ -3,6 +3,7 @@ package net.lyof.phantasm.world.feature;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.world.feature.custom.CrystalSpikeFeature;
+import net.lyof.phantasm.world.feature.custom.OblivineFeature;
 import net.lyof.phantasm.world.feature.custom.ObsidianTowerStructure;
 import net.lyof.phantasm.world.feature.custom.SingleBlockFeature;
 import net.lyof.phantasm.world.feature.custom.config.CrystalSpikeFeatureConfig;
@@ -96,6 +97,9 @@ public class ModConfiguredFeatures {
 
         register(context, OBSIDIAN_TOWER, ObsidianTowerStructure.INSTANCE,
                 new CountConfig(UniformIntProvider.create(30, 50)));
+
+        register(context, OBLIVINE, OblivineFeature.INSTANCE,
+                BlockColumnFeatureConfig.create(UniformIntProvider.create(5, 8), BlockStateProvider.of(ModBlocks.OBLIVINE)));
     }
 
 
@@ -110,6 +114,8 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_VIVID_NIHILIUM = create("patch_tall_vivid_nihilis");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> OBSIDIAN_TOWER = create("obsidian_tower");
+
+    public static final RegistryKey<ConfiguredFeature<?, ?>> OBLIVINE = create("patch_oblivine");
 
     //public static final RegistryKey<ConfiguredFeature<?, ?>> RAW_PURPUR_CABIN = create("raw_purpur_maze");
 }

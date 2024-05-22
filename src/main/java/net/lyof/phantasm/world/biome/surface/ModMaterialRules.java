@@ -121,6 +121,16 @@ public class ModMaterialRules {
                                         OBLIVION
                                 )
                         )
+                ),
+                MaterialRules.condition(
+                        is_dreaming_den,
+                        MaterialRules.condition(
+                                dreaming_den_noise_sub,
+                                MaterialRules.condition(
+                                        MaterialRules.STONE_DEPTH_CEILING,
+                                        OBLIVION
+                                )
+                        )
                 )
         );
 

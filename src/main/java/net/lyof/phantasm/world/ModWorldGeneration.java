@@ -51,6 +51,10 @@ public class ModWorldGeneration {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
                     GenerationStep.Feature.SURFACE_STRUCTURES,
                     ModPlacedFeatures.FALLEN_STAR);
+
+        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
+                GenerationStep.Feature.VEGETAL_DECORATION,
+                ModPlacedFeatures.OBLIVINE_PATCH);
     }
 
     public static void generateBiomes() {

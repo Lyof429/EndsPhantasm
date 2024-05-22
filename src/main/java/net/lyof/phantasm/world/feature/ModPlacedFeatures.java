@@ -76,6 +76,11 @@ public class ModPlacedFeatures {
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 RarityFilterPlacementModifier.of(3));
+
+        register(context, OBLIVINE_PATCH, configLookup.getOrThrow(ModConfiguredFeatures.OBLIVINE),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.createCountExtraModifier(10, 1, 2),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP);
     }
 
 
@@ -90,6 +95,8 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> TALL_VIVID_NIHILIUM_PATCH = create("patch_tall_vivid_nihilis");
 
     public static final RegistryKey<PlacedFeature> OBSIDIAN_TOWER = create("obsidian_tower");
+
+    public static final RegistryKey<PlacedFeature> OBLIVINE_PATCH = create("patch_oblivine");
 
     //public static final RegistryKey<PlacedFeature> RAW_PURPUR_CABIN = create("raw_purpur_maze");
 }

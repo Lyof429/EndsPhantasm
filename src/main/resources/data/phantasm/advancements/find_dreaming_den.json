@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:end/enter_end_gateway",
+  "criteria": {
+    "is_dreaming_den": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "biome": "phantasm:dreaming_den"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.phantasm.find_dreaming_den.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "phantasm:pream_log"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.phantasm.find_dreaming_den"
+    }
+  },
+  "requirements": [
+    [
+      "is_dreaming_den"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

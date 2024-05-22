@@ -100,6 +100,9 @@ public class ModMaterialRules {
                 )
         );
 
+        MaterialRules.MaterialRule oblivion = MaterialRules.condition(
+                MaterialRules.stoneDepth(2, false, VerticalSurfaceType.CEILING), OBLIVION);
+
         MaterialRules.MaterialRule dreaming_den = MaterialRules.sequence(
                 MaterialRules.condition(
                         dreaming_den_noise_main,
@@ -116,20 +119,14 @@ public class ModMaterialRules {
                         is_dreaming_den,
                         MaterialRules.condition(
                                 dreaming_den_noise_main,
-                                MaterialRules.condition(
-                                        MaterialRules.STONE_DEPTH_CEILING,
-                                        OBLIVION
-                                )
+                                oblivion
                         )
                 ),
                 MaterialRules.condition(
                         is_dreaming_den,
                         MaterialRules.condition(
                                 dreaming_den_noise_sub,
-                                MaterialRules.condition(
-                                        MaterialRules.STONE_DEPTH_CEILING,
-                                        OBLIVION
-                                )
+                                oblivion
                         )
                 )
         );

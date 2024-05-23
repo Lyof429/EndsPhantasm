@@ -10,12 +10,16 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.dragon.EnderDragonFight;
 import net.minecraft.item.FireworkRocketItem;
 import net.minecraft.recipe.FireworkRocketRecipe;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.EndConfiguredFeatures;
 import net.minecraft.world.gen.feature.EndGatewayFeature;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,7 +35,12 @@ public class EntityMixin {
             BlockPos p = new BlockPos(1280, 60, 0);
 
             BlockPos pos = EndGatewayBlockEntityAccessor.getExitPos(destination, p).up(2);
-            Phantasm.log(pos);
+            if (destination.getBlockState(pos.down()).isAir()) {
+                destination.getRegistryManager().getOptional(RegistryKeys.CONFIGURED_FEATURE).flatMap(registry ->
+                        registry.getEntry(EndConfiguredFeatures.END_ISLAND)).ifPresent(reference ->
+                    reference.value().generate(destination, destination.getChunkManager().getChunkGenerator(),
+                            Random.create(pos.asLong()), pos.down(2)));
+            }
 
             result = new TeleportTarget(new Vec3d(pos.getX(), pos.getY(), pos.getZ()), result.velocity, result.yaw, result.pitch);
 

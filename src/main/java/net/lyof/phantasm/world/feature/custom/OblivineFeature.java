@@ -57,7 +57,6 @@ public class OblivineFeature extends Feature<BlockColumnFeatureConfig> {
                             context.getRandom(),
                             context.getOrigin().east(random.nextBetween(-3, 3)).north(random.nextBetween(-3, 3)),
                             config);
-            Phantasm.log(contextnext.getOrigin());
             this.generate(contextnext);
         }
 

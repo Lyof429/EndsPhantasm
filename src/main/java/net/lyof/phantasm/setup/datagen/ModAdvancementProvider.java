@@ -1,23 +1,18 @@
 package net.lyof.phantasm.setup.datagen;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.world.biome.ModBiomes;
-import net.minecraft.advancement.*;
+import net.minecraft.advancement.Advancement;
+import net.minecraft.advancement.AdvancementFrame;
+import net.minecraft.advancement.AdvancementRewards;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.advancement.criterion.CriterionConditions;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
-import net.minecraft.advancement.criterion.TravelCriterion;
-import net.minecraft.data.server.advancement.AdvancementProvider;
 import net.minecraft.loot.condition.LocationCheckLootCondition;
-import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.predicate.NumberRange;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
 import net.minecraft.predicate.entity.LocationPredicate;
 import net.minecraft.predicate.entity.LootContextPredicate;
 import net.minecraft.registry.RegistryKey;

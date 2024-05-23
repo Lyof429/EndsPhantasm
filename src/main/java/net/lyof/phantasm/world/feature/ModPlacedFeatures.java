@@ -2,7 +2,6 @@ package net.lyof.phantasm.world.feature;
 
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
-import net.lyof.phantasm.world.feature.ModConfiguredFeatures;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;

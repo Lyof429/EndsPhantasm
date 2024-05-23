@@ -2,8 +2,6 @@ package net.lyof.phantasm.mixin;
 
 import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.AdvancementManager;
-import net.minecraft.data.server.advancement.AdvancementProvider;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FireworkRocketItem;
 import net.minecraft.server.network.ServerPlayerEntity;

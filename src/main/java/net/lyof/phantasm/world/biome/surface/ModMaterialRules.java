@@ -6,7 +6,6 @@ import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.mixin.access.NoiseGeneratorSettingsAccess;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.MinecraftServer;

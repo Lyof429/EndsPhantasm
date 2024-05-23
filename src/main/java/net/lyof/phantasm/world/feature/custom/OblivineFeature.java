@@ -2,6 +2,7 @@ package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
 import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.block.custom.CrystalShardBlock;
 import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.world.feature.custom.config.CrystalSpikeFeatureConfig;
@@ -30,23 +31,34 @@ public class OblivineFeature extends Feature<BlockColumnFeatureConfig> {
         Random random = context.getRandom();
         BlockColumnFeatureConfig config = context.getConfig();
 
-        int size = world.getRandom().nextBetween(3, 12);
-        Phantasm.log(size);
+        int size = world.getRandom().nextBetween(4, 12);
 
         BlockPos pos = new BlockPos(origin).withY(0);
-        while (pos.getY() < world.getHeight() && !(world.getBlockState(pos.up()).isIn(ModTags.Blocks.OBLIVINE_GROWABLE_ON)
+        while (pos.getY() < world.getHeight() && !(world.getBlockState(pos.up()).isOf(ModBlocks.OBLIVION)
                 && world.getBlockState(pos).isOf(Blocks.AIR))) {
 
             pos = pos.up();
         }
 
         for (int i = 0; i < size; i++) {
-            if (pos.getY() <= size || pos.getY() > 250)
+            if (pos.getY() < world.getBottomY() || pos.getY() > 250)
                 return true;
 
             BlockState state = config.layers().get(0).state().get(random, pos);
             world.setBlockState(pos, state, Block.NOTIFY_NEIGHBORS);
             pos = pos.down();
+        }
+
+        if (Math.random() < 0.3) {
+            FeatureContext<BlockColumnFeatureConfig> contextnext =
+                    new FeatureContext<>(context.getFeature(),
+                            context.getWorld(),
+                            context.getGenerator(),
+                            context.getRandom(),
+                            context.getOrigin().east(random.nextBetween(-3, 3)).north(random.nextBetween(-3, 3)),
+                            config);
+            Phantasm.log(contextnext.getOrigin());
+            this.generate(contextnext);
         }
 
         return true;

@@ -79,7 +79,7 @@ public class ModPlacedFeatures {
 
         register(context, OBLIVINE_PATCH, configLookup.getOrThrow(ModConfiguredFeatures.OBLIVINE),
                 SquarePlacementModifier.of(),
-                PlacedFeatures.createCountExtraModifier(10, 1, 2),
+                PlacedFeatures.createCountExtraModifier(10, 1, 3),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP);
     }
 

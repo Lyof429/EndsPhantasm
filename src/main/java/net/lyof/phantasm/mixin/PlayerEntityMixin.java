@@ -1,5 +1,6 @@
 package net.lyof.phantasm.mixin;
 
+import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,7 +20,7 @@ public class PlayerEntityMixin {
 		if (!stack.isIn(ModTags.Items.XP_BOOSTED) || !stack.getItem().isSuitableFor(block)) return;
 
 		float bonus = 1;
-		bonus += self.experienceLevel / 10 / 10f;
+		bonus += ConfigEntries.crystalXPBoost * self.experienceLevel / 10 / 10f;
 
 		cir.setReturnValue(cir.getReturnValue() * bonus);
 	}

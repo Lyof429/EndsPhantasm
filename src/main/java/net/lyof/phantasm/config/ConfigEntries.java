@@ -17,6 +17,7 @@ public class ConfigEntries {
         outerEndIntegration = new ConfigEntry<>("gameplay.outer_end_in_gameloop", true).get();
 
         elytraBoostAdvancement = new ConfigEntry<>("equipment.elytra_boost_advancement", "minecraft:end/kill_dragon").get();
+        crystalXPBoost = new ConfigEntry<>("equipment.crystal_xp_boost", 3).get();
     }
 
     public static boolean doDreamingDenBiome;
@@ -34,4 +35,5 @@ public class ConfigEntries {
     public static boolean outerEndIntegration;
 
     public static String elytraBoostAdvancement;
+    public static double crystalXPBoost;
 }

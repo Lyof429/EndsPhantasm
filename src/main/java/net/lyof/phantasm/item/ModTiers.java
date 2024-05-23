@@ -7,7 +7,7 @@ import net.minecraft.recipe.Ingredient;
 
 public enum ModTiers implements ToolMaterial {
 
-    CRYSTALLINE(MiningLevels.IRON, 312, 8f, 1f, 17,
+    CRYSTALLINE(MiningLevels.IRON, 612, 8f, 1f, 17,
             Ingredient.ofItems(ModBlocks.CRYSTAL_SHARD, ModBlocks.VOID_CRYSTAL_SHARD))
     ;
 

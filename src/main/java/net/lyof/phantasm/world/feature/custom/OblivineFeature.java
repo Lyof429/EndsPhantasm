@@ -49,7 +49,7 @@ public class OblivineFeature extends Feature<BlockColumnFeatureConfig> {
             pos = pos.down();
         }
 
-        if (Math.random() < 0.3) {
+        if (Math.random() < 0.6) {
             FeatureContext<BlockColumnFeatureConfig> contextnext =
                     new FeatureContext<>(context.getFeature(),
                             context.getWorld(),

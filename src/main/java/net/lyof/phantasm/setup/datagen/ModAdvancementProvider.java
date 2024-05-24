@@ -81,7 +81,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         null,
                         AdvancementFrame.GOAL,
                         true, true, false)
-                .criterion("is_underisland", BiomeCriterion.of(ModBiomes.DREAMING_DEN, 0, 50))
+                .criterion("is_underisland", BiomeCriterion.of(ModBiomes.DREAMING_DEN, 0, 29))
                 .rewards(AdvancementRewards.NONE)
                 .parent(DREAMING_DEN)
                 .build(consumer, "phantasm:find_underisland");

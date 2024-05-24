@@ -8,6 +8,11 @@
             "condition": "minecraft:location_check",
             "predicate": {
               "biome": "phantasm:dreaming_den"
+            },
+            "position": {
+              "y": {
+                "min": 32.0
+              }
             }
           }
         ]

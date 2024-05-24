@@ -100,7 +100,11 @@ public class ModMaterialRules {
         );
 
         MaterialRules.MaterialRule oblivion = MaterialRules.condition(
-                MaterialRules.stoneDepth(2, false, VerticalSurfaceType.CEILING), OBLIVION);
+                MaterialRules.verticalGradient("oblivion_below", YOffset.belowTop(29), YOffset.fixed(29)),
+                MaterialRules.condition(
+                        MaterialRules.stoneDepth(2, false, VerticalSurfaceType.CEILING),
+                        OBLIVION)
+        );
 
         MaterialRules.MaterialRule dreaming_den = MaterialRules.sequence(
                 MaterialRules.condition(

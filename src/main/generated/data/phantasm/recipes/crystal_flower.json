@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "crystal_flower",
+  "ingredients": [
+    {
+      "tag": "phantasm:crystal_flowers"
+    }
+  ],
+  "result": {
+    "item": "phantasm:crystal_shard"
+  }
+}

@@ -1,6 +1,8 @@
 package net.lyof.phantasm;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ModConfig;
 import net.lyof.phantasm.item.ModItemGroups;
@@ -9,11 +11,12 @@ import net.lyof.phantasm.setup.ModDataGenerator;
 import net.lyof.phantasm.world.ModWorldGeneration;
 import net.lyof.phantasm.world.feature.ModFeatures;
 import net.lyof.phantasm.world.feature.custom.tree.ModTreePlacerTypes;
+import net.minecraft.resource.ResourceManager;
+import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// 1709 62 74
 public class Phantasm implements ModInitializer {
 	public static final String MOD_ID = "phantasm";
     public static final Logger LOGGER = LoggerFactory.getLogger("End's Phantasm");
@@ -34,6 +37,18 @@ public class Phantasm implements ModInitializer {
 
 		ModFeatures.register();
 		ModWorldGeneration.register();
+
+		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
+			@Override
+			public Identifier getFabricId() {
+				return makeID("reload_listener");
+			}
+
+			@Override
+			public void reload(ResourceManager manager) {
+				ModConfig.register();
+			}
+		});
 	}
 
 	public static Identifier makeID(String id) {

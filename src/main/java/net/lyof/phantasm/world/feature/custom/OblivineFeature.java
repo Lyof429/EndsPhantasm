@@ -5,6 +5,7 @@ import net.lyof.phantasm.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SporeBlossomBlock;
 import net.minecraft.screen.AnvilScreenHandler;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -44,6 +45,8 @@ public class OblivineFeature extends Feature<BlockColumnFeatureConfig> {
             world.setBlockState(pos, state, Block.NOTIFY_NEIGHBORS);
             pos = pos.down();
         }
+        if (random.nextInt(5) == 0)
+            world.setBlockState(pos, ModBlocks.CRYSTALILY.getDefaultState(), Block.NOTIFY_NEIGHBORS);
 
         if (Math.random() < 0.9) {
             FeatureContext<BlockColumnFeatureConfig> contextnext =
@@ -51,9 +54,10 @@ public class OblivineFeature extends Feature<BlockColumnFeatureConfig> {
                             context.getWorld(),
                             context.getGenerator(),
                             context.getRandom(),
-                            context.getOrigin().east(random.nextBetween(-3, 3)).north(random.nextBetween(-3, 3)),
+                            context.getOrigin().east(random.nextBetween(-5, 5)).north(random.nextBetween(-5, 5)),
                             config);
-            this.generate(contextnext);
+            if (world.isChunkLoaded(contextnext.getOrigin()))
+                this.generate(contextnext);
         }
 
         return true;

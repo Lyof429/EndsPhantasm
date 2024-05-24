@@ -16,9 +16,9 @@ public class HangingPlantBlock extends Block {
     public TagKey<Block> growableOn;
     public VoxelShape shape;
 
-    public HangingPlantBlock(Settings settings, TagKey<Block> growable_on, VoxelShape shape) {
+    public HangingPlantBlock(Settings settings, TagKey<Block> growableOn, VoxelShape shape) {
         super(settings);
-        this.growableOn = growable_on;
+        this.growableOn = growableOn;
         this.shape = shape;
     }
 

@@ -266,5 +266,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(ModItems.PREAM_BERRY), conditionsFromItem(ModItems.PREAM_BERRY))
                 .criterion(hasItem(ModItems.OBLIFRUIT), conditionsFromItem(ModItems.OBLIFRUIT))
                 .group("chorus_fruit_salad").offerTo(exporter, Phantasm.makeID("chorus_fruit_salad"));
+
+        // Crystal Flowers to Shards
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.CRYSTAL_SHARD)
+                .input(Ingredient.fromTag(ModTags.Items.CRYSTAL_FLOWERS))
+                .criterion("has_crystal_flower", conditionsFromTag(ModTags.Items.CRYSTAL_FLOWERS))
+                .group("crystal_flower").offerTo(exporter, Phantasm.makeID("crystal_flower"));
     }
 }

@@ -1,5 +1,6 @@
 package net.lyof.phantasm.block.custom;
 
+import net.lyof.phantasm.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Fertilizable;
@@ -56,10 +57,10 @@ public class HangingFruitBlock extends HangingPlantBlock implements Fertilizable
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (state.get(HAS_FRUIT)) {
-            player.swingHand(hand, true);
-
             world.spawnEntity(new ItemEntity(world, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, new ItemStack(this.drop)));
             world.setBlockState(pos, state.with(HAS_FRUIT, false));
+
+            return ActionResult.SUCCESS;
         }
 
         return super.onUse(state, world, pos, player, hand, hit);
@@ -77,6 +78,12 @@ public class HangingFruitBlock extends HangingPlantBlock implements Fertilizable
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        world.setBlockState(pos, state.with(HAS_FRUIT, true));
+        if (random.nextInt(3) == 0)
+            world.setBlockState(pos, state.with(HAS_FRUIT, true));
+
+        if (state.isOf(ModBlocks.OBLIVINE) && random.nextInt(4) == 0 && world.getBlockState(pos.down()).isAir())
+            world.setBlockState(pos.down(), this.getDefaultState());
+        else if (state.isOf(ModBlocks.OBLIVINE) && random.nextInt(5) == 0 && world.getBlockState(pos.down()).isAir())
+            world.setBlockState(pos.down(), ModBlocks.CRYSTALILY.getDefaultState());
     }
 }

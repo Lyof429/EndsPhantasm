@@ -51,6 +51,8 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.OBLIVION);
                         entries.add(ModBlocks.OBLIVINE);
+                        entries.add(ModBlocks.CRYSTALILY);
+
                         entries.add(ModItems.OBLIFRUIT);
 
                         entries.add(ModItems.CHORUS_FRUIT_SALAD);
@@ -129,6 +131,7 @@ public class ModItemGroups {
 
             entries.add(ModBlocks.OBLIVION);
             entries.add(ModBlocks.OBLIVINE);
+            entries.add(ModBlocks.CRYSTALILY);
 
             entries.add(ModBlocks.FALLEN_STAR);
 

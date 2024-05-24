@@ -78,10 +78,11 @@ public class ModModelProvider extends FabricModelProvider {
         generator.registerHangingSign(ModBlocks.STRIPPED_PREAM_LOG,
                 ModBlocks.PREAM_HANGING_SIGN, ModBlocks.PREAM_WALL_HANGING_SIGN);
 
-        generator.registerParentedItemModel(ModBlocks.VIVID_NIHILIUM, Phantasm.makeID("block/vivid_nihilium"));
-
         generator.registerParentedItemModel(ModBlocks.PURPUR_LAMP, Phantasm.makeID("block/purpur_lamp"));
 
+        generator.registerParentedItemModel(ModBlocks.CRYSTALILY, Phantasm.makeID("block/crystalily"));
+
+        generator.registerParentedItemModel(ModBlocks.VIVID_NIHILIUM, Phantasm.makeID("block/vivid_nihilium"));
         generator.registerDoubleBlock(ModBlocks.TALL_VIVID_NIHILIS, BlockStateModelGenerator.TintType.NOT_TINTED);
     }
 

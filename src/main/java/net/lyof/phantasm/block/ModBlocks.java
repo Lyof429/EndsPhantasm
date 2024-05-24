@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.custom.CrystalShardBlock;
 import net.lyof.phantasm.block.custom.HangingFruitBlock;
+import net.lyof.phantasm.block.custom.HangingPlantBlock;
 import net.lyof.phantasm.block.custom.NihiliumBlock;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModRegistry;
@@ -361,5 +362,12 @@ public class ModBlocks {
             .tag(ModTags.Blocks.OBLIVINE_GROWABLE_ON)
             .drop().cutout()
             .tag(BlockTags.CLIMBABLE)
+            .build();
+    public static final Block CRYSTALILY = ModRegistry.ofBlock("crystalily",
+                    new HangingPlantBlock(copy(OblivionMaterial).mapColor(MapColor.LIGHT_BLUE).breakInstantly().luminance(15).emissiveLighting((a, b, c) -> true),
+                            ModTags.Blocks.OBLIVINE_GROWABLE_ON,
+                            Block.createCuboidShape(0, 8, 0, 16, 16, 16)))
+            .drop().cutout()
+            .tagitem(ModTags.Items.CRYSTAL_FLOWERS)
             .build();
 }

@@ -88,7 +88,7 @@ public class NihiliumBlock extends Block implements Fertilizable {
         if (random.nextInt(2) == 0) {
             List<ConfiguredFeature<?, ?>> list = world.getBiome(test).value().getGenerationSettings().getFlowerFeatures();
             if (list.isEmpty()) return;
-            registryEntry = ((RandomPatchFeatureConfig)list.get(0).config()).feature();
+            registryEntry = ((RandomPatchFeatureConfig) list.get(0).config()).feature();
         } else {
             if (optional.isEmpty()) return;
             registryEntry = optional.get();

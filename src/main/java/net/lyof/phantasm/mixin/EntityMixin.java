@@ -34,7 +34,6 @@ public class EntityMixin {
 
             result = new TeleportTarget(new Vec3d(pos.getX(), pos.getY(), pos.getZ()), result.velocity, result.yaw, result.pitch);
 
-
             cir.setReturnValue(result);
         }
     }

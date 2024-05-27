@@ -1,9 +1,10 @@
 package net.lyof.phantasm.block.custom;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.world.feature.ModPlacedFeatures;
-import net.minecraft.block.*;
-import net.minecraft.item.SuspiciousStewItem;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.Fertilizable;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;

@@ -9,9 +9,9 @@ import net.minecraft.data.client.Models;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.structure.EndCityStructure;
 
 public class ModItems {
     public static void register() {
@@ -26,19 +26,19 @@ public class ModItems {
 
     public static final Item CRYSTALLINE_SHOVEL = ModRegistry.ofItem("crystalline_shovel",
                     new ShovelItem(ModTiers.CRYSTALLINE, 2, -3f, new FabricItemSettings()))
-            .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED).build();
+            .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED, ItemTags.SHOVELS).build();
     public static final Item CRYSTALLINE_PICKAXE = ModRegistry.ofItem("crystalline_pickaxe",
             new PickaxeItem(ModTiers.CRYSTALLINE, 2, -2.8f, new FabricItemSettings()))
-            .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED).build();
+            .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED, ItemTags.PICKAXES).build();
     public static final Item CRYSTALLINE_AXE = ModRegistry.ofItem("crystalline_axe",
                     new AxeItem(ModTiers.CRYSTALLINE, 7, -3f, new FabricItemSettings()))
-            .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED).build();
+            .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED, ItemTags.AXES).build();
     public static final Item CRYSTALLINE_HOE = ModRegistry.ofItem("crystalline_hoe",
                     new HoeItem(ModTiers.CRYSTALLINE, 0, -3f, new FabricItemSettings()))
-            .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED).build();
+            .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED, ItemTags.HOES).build();
     public static final Item CRYSTALLINE_SWORD = ModRegistry.ofItem("crystalline_sword",
                     new SwordItem(ModTiers.CRYSTALLINE, 4, -2.4f, new FabricItemSettings()))
-            .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED).build();
+            .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED, ItemTags.SWORDS).build();
 
     public static final Item PREAM_SIGN = ModRegistry.ofItem("pream_sign",
                     new SignItem(new FabricItemSettings(), ModBlocks.PREAM_SIGN, ModBlocks.PREAM_WALL_SIGN))

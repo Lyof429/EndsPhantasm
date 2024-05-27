@@ -1,6 +1,5 @@
 package net.lyof.phantasm.world.biome.surface;
 
-import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ConfigEntries;

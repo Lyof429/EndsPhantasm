@@ -19,5 +19,5 @@ public class ModEntities {
 
     public static final EntityType<CrystieEntity> CRYSTIE = Registry.register(Registries.ENTITY_TYPE,
             Phantasm.makeID("crystie"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, CrystieEntity::new)
-                    .dimensions(EntityDimensions.fixed(1f, 1f)).build());
+                    .dimensions(EntityDimensions.fixed(0.5f, 0.5f)).build());
 }

@@ -91,7 +91,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         Text.translatable(BASE + "get_crystal_tools"),
                         Text.translatable(BASE + "get_crystal_tools" + DESC),
                         null,
-                        AdvancementFrame.TASK,
+                        AdvancementFrame.CHALLENGE,
                         true, true, false)
                 .criterion("has_crystal_tool",
                         InventoryChangedCriterion.Conditions.items(

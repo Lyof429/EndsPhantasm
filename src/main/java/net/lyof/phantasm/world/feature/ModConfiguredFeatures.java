@@ -95,6 +95,10 @@ public class ModConfiguredFeatures {
                 20, 10, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.TALL_VIVID_NIHILIS)))));
 
+        register(context, STARFLOWER, Feature.FLOWER, new RandomPatchFeatureConfig(
+                8, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.STARFLOWER)))));
+
         register(context, OBSIDIAN_TOWER, ObsidianTowerStructure.INSTANCE,
                 new CountConfig(UniformIntProvider.create(30, 50)));
 
@@ -112,6 +116,8 @@ public class ModConfiguredFeatures {
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> VIVID_NIHILIUM = create("patch_vivid_nihilis");
     public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_VIVID_NIHILIUM = create("patch_tall_vivid_nihilis");
+
+    public static final RegistryKey<ConfiguredFeature<?, ?>> STARFLOWER = create("patch_starflower");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> OBSIDIAN_TOWER = create("obsidian_tower");
 

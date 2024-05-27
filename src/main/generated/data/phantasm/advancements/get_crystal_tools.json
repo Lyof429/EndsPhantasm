@@ -39,7 +39,7 @@
     "description": {
       "translate": "advancement.phantasm.get_crystal_tools.desc"
     },
-    "frame": "task",
+    "frame": "challenge",
     "hidden": false,
     "icon": {
       "item": "phantasm:crystalline_pickaxe",

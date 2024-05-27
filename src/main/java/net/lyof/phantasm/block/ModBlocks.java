@@ -13,6 +13,7 @@ import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.world.feature.custom.tree.PreamSaplingGenerator;
 import net.minecraft.block.*;
 import net.minecraft.data.client.Models;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.BlockSoundGroup;
@@ -306,6 +307,13 @@ public class ModBlocks {
             .tagitem(ItemTags.FLOWERS).end_plant()
             .cutout().build();
 
+    public static final Block STARFLOWER = ModRegistry.ofBlock("starflower",
+                    new FlowerBlock(StatusEffects.NIGHT_VISION, 100, copy(Blocks.WARPED_ROOTS).mapColor(MapColor.LIGHT_BLUE).breakInstantly().luminance(5).emissiveLighting((a, b, c) -> true)))
+            .drop().cutout()
+            .tagitem(ModTags.Items.CRYSTAL_FLOWERS)
+            .end_plant()
+            .build();
+
 
     // Raw Purpur
     public static final Block RAW_PURPUR = ModRegistry.ofBlock("raw_purpur",
@@ -354,6 +362,7 @@ public class ModBlocks {
             .tool("_hoe")
             .drop()
             .model().build();
+
     public static final Block OBLIVINE = ModRegistry.ofBlock("oblivine",
                     new HangingFruitBlock(copy(OblivionMaterial).breakInstantly().collidable(false),
                             () -> ModItems.OBLIFRUIT,
@@ -363,8 +372,9 @@ public class ModBlocks {
             .drop().cutout()
             .tag(BlockTags.CLIMBABLE)
             .build();
+
     public static final Block CRYSTALILY = ModRegistry.ofBlock("crystalily",
-                    new HangingPlantBlock(copy(OblivionMaterial).mapColor(MapColor.LIGHT_BLUE).breakInstantly().luminance(15).emissiveLighting((a, b, c) -> true),
+                    new HangingPlantBlock(copy(OblivionMaterial).mapColor(MapColor.LIGHT_BLUE).breakInstantly().luminance(7).emissiveLighting((a, b, c) -> true),
                             ModTags.Blocks.OBLIVINE_GROWABLE_ON,
                             Block.createCuboidShape(0, 8, 0, 16, 16, 16)))
             .drop().cutout()

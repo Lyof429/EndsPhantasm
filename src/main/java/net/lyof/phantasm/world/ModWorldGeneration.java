@@ -47,6 +47,10 @@ public class ModWorldGeneration {
                 GenerationStep.Feature.VEGETAL_DECORATION,
                 ModPlacedFeatures.TALL_VIVID_NIHILIUM_PATCH);
 
+        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
+                GenerationStep.Feature.VEGETAL_DECORATION,
+                ModPlacedFeatures.STARFLOWER_PATCH);
+
         if (ConfigEntries.doFallenStars)
             BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
                     GenerationStep.Feature.SURFACE_STRUCTURES,

@@ -11,6 +11,7 @@ import net.minecraft.item.*;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.structure.EndCityStructure;
 
 public class ModItems {
     public static void register() {

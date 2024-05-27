@@ -1,5 +1,6 @@
 package net.lyof.phantasm.world.biome.surface;
 
+import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ConfigEntries;
@@ -100,7 +101,7 @@ public class ModMaterialRules {
         );
 
         MaterialRules.MaterialRule oblivion = MaterialRules.condition(
-                MaterialRules.verticalGradient("oblivion_below", YOffset.belowTop(29), YOffset.fixed(29)),
+                MaterialRules.aboveY(YOffset.belowTop(220), 0),
                 MaterialRules.condition(
                         MaterialRules.stoneDepth(2, false, VerticalSurfaceType.CEILING),
                         OBLIVION)

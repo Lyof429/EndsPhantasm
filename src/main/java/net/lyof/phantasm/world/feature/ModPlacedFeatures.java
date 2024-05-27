@@ -71,6 +71,11 @@ public class ModPlacedFeatures {
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of());
 
+        register(context, STARFLOWER_PATCH, configLookup.getOrThrow(ModConfiguredFeatures.STARFLOWER),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of());
+
         register(context, OBSIDIAN_TOWER, configLookup.getOrThrow(ModConfiguredFeatures.OBSIDIAN_TOWER),
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
@@ -92,6 +97,8 @@ public class ModPlacedFeatures {
 
     public static final RegistryKey<PlacedFeature> VIVID_NIHILIUM_PATCH = create("patch_vivid_nihilis");
     public static final RegistryKey<PlacedFeature> TALL_VIVID_NIHILIUM_PATCH = create("patch_tall_vivid_nihilis");
+
+    public static final RegistryKey<PlacedFeature> STARFLOWER_PATCH = create("patch_starflower");
 
     public static final RegistryKey<PlacedFeature> OBSIDIAN_TOWER = create("obsidian_tower");
 

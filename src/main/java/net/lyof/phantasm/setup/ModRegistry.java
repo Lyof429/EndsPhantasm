@@ -215,7 +215,7 @@ public class ModRegistry {
         public static final FoodComponent OBLIFRUIT = new FoodComponent.Builder().hunger(6).saturationModifier(1.2f)
                 .build();
 
-        public static final FoodComponent CHORUS_SALAD = new FoodComponent.Builder().alwaysEdible().hunger(4)
+        public static final FoodComponent CHORUS_SALAD = new FoodComponent.Builder().alwaysEdible().hunger(6).saturationModifier(1.5f)
                 .build();
     }
 

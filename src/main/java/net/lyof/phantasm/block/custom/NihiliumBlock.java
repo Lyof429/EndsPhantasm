@@ -3,6 +3,7 @@ package net.lyof.phantasm.block.custom;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.world.feature.ModPlacedFeatures;
 import net.minecraft.block.*;
+import net.minecraft.item.SuspiciousStewItem;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;

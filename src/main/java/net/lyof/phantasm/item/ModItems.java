@@ -50,10 +50,10 @@ public class ModItems {
             .build();
 
     public static final Item CHORUS_FRUIT_SALAD = ModRegistry.ofItem("chorus_fruit_salad",
-            new Item(new FabricItemSettings().food(ModRegistry.Foods.CHORUS_SALAD)) {
+            new Item(new FabricItemSettings().food(ModRegistry.Foods.CHORUS_SALAD).recipeRemainder(Items.BOWL).maxCount(1)) {
                 @Override
                 public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-                    if (world instanceof ServerWorld server && user.canUsePortals()) {
+                    if (world instanceof ServerWorld server && user.canUsePortals() && !user.isSneaking()) {
                         RegistryKey<World> registryKey = world.getRegistryKey() == World.END ? World.OVERWORLD : World.END;
                         ServerWorld serverWorld = server.getServer().getWorld(registryKey);
                         if (serverWorld == null) {
@@ -61,7 +61,8 @@ public class ModItems {
                         }
                         user.moveToWorld(serverWorld);
                     }
-                    return super.finishUsing(stack, world, user);
+                    if (super.finishUsing(stack, world, user).isEmpty()) return this.getRecipeRemainder(stack);
+                    return stack;
                 }
             })
             .model(Models.GENERATED).build();

@@ -1,12 +1,10 @@
 package net.lyof.phantasm.entity.custom;
 
 import net.lyof.phantasm.entity.ModEntities;
+import net.lyof.phantasm.entity.goal.FlyRandomlyGoal;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.FlyGoal;
-import net.minecraft.entity.ai.goal.FollowMobGoal;
-import net.minecraft.entity.ai.goal.LookAroundGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.FlyingEntity;
@@ -22,6 +20,8 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class CrystieEntity extends AnimalEntity {
+    public boolean isAngry = false;
+
     public CrystieEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -31,6 +31,7 @@ public class CrystieEntity extends AnimalEntity {
         this.goalSelector.add(0, new FlyGoal(this, 1));
         this.goalSelector.add(1, new TemptGoal(this, 0.1, Ingredient.fromTag(ModTags.Items.CRYSTAL_FLOWERS), false));
         this.goalSelector.add(2, new LookAroundGoal(this));
+        //this.goalSelector.add(3, );
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {

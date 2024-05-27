@@ -3,6 +3,7 @@ package net.lyof.phantasm.item;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.data.client.Models;
@@ -66,4 +67,8 @@ public class ModItems {
                 }
             })
             .model(Models.GENERATED).build();
+
+    public static final Item CRYSTIE_SPAWN_EGG = ModRegistry.ofItem("crystie_spawn_egg",
+            new SpawnEggItem(ModEntities.CRYSTIE, 0xfaf0ff, 0xa0a0ff, new FabricItemSettings()))
+            .build();
 }

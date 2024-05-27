@@ -4,15 +4,16 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.data.client.BlockStateModelGenerator;
-import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.Model;
+import net.minecraft.data.client.*;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.item.Item;
+import net.minecraft.util.Identifier;
 
 import java.util.Map;
+import java.util.Optional;
 
 public class ModModelProvider extends FabricModelProvider {
     public ModModelProvider(FabricDataOutput output) {
@@ -91,5 +92,8 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator generator) {
         for (Map.Entry<Item, Model> entry : ModRegistry.ITEM_MODELS.entrySet())
             generator.register(entry.getKey(), entry.getValue());
+
+        generator.register(ModItems.CRYSTIE_SPAWN_EGG, new Model(Optional.of(Identifier.of("minecraft", "item/template_spawn_egg")),
+                Optional.empty()));
     }
 }

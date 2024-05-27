@@ -99,6 +99,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
 
+                        entries.add(ModItems.CRYSTIE_SPAWN_EGG);
                         //for (Item item : ModRegistry.ITEMS)
                         //    entries.add(item);
                     })
@@ -200,6 +201,9 @@ public class ModItemGroups {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
             entries.addAfter(Items.IRON_SWORD, ModItems.CRYSTALLINE_SWORD);
             entries.addAfter(Items.IRON_AXE, ModItems.CRYSTALLINE_AXE);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> {
+            entries.add(ModItems.CRYSTIE_SPAWN_EGG);
         });
     }
 }

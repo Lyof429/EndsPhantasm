@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ModConfig;
+import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.item.ModItemGroups;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModDataGenerator;
@@ -28,6 +29,8 @@ public class Phantasm implements ModInitializer {
 		ModItems.register();
 		ModItemGroups.register();
 		ModBlocks.register();
+
+		ModEntities.register();
 
 		ModTreePlacerTypes.register();
 

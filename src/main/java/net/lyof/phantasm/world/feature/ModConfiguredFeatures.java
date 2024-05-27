@@ -96,7 +96,7 @@ public class ModConfiguredFeatures {
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.TALL_VIVID_NIHILIS)))));
 
         register(context, STARFLOWER, Feature.FLOWER, new RandomPatchFeatureConfig(
-                8, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                4, 4, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.STARFLOWER)))));
 
         register(context, OBSIDIAN_TOWER, ObsidianTowerStructure.INSTANCE,

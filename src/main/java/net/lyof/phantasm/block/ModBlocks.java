@@ -310,7 +310,7 @@ public class ModBlocks {
     public static final Block STARFLOWER = ModRegistry.ofBlock("starflower",
                     new FlowerBlock(StatusEffects.NIGHT_VISION, 100, copy(Blocks.WARPED_ROOTS).mapColor(MapColor.LIGHT_BLUE).breakInstantly().luminance(5).emissiveLighting((a, b, c) -> true)))
             .drop().cutout()
-            .tagitem(ModTags.Items.CRYSTAL_FLOWERS)
+            .tagitem(ModTags.Items.CRYSTAL_FLOWERS, ItemTags.SMALL_FLOWERS)
             .end_plant()
             .build();
 

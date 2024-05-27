@@ -4,9 +4,12 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.client.ModModelLayers;
 import net.lyof.phantasm.entity.client.model.CrystieModel;
 import net.lyof.phantasm.entity.custom.CrystieEntity;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
+import net.minecraft.client.render.entity.feature.EyesFeatureRenderer;
+import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
@@ -15,6 +18,12 @@ public class CrystieRenderer extends MobEntityRenderer<CrystieEntity, CrystieMod
 
     public CrystieRenderer(EntityRendererFactory.Context context) {
         super(context, new CrystieModel<>(context.getPart(ModModelLayers.CRYSTIE)), 0.6f);
+        this.addFeature(new EyesFeatureRenderer<>(this) {
+            @Override
+            public RenderLayer getEyesTexture() {
+                return RenderLayer.getEyes(TEXTURE);
+            }
+        });
     }
 
     @Override

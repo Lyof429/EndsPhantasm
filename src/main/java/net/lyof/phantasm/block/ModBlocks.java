@@ -16,7 +16,10 @@ import net.minecraft.data.client.Models;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 
 import java.util.Map;
 
@@ -296,16 +299,23 @@ public class ModBlocks {
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE).end_soil()
             .cutout().build();
 
-    public static final Block VIVID_NIHILIS = ModRegistry.ofBlock("vivid_nihilis",
-            new PlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.TEAL).replaceable()))
-            .tagitem(ItemTags.FLOWERS)
-            .model(ModRegistry.Models.CROSS).end_plant()
-            .cutout().build();
-
     public static final Block TALL_VIVID_NIHILIS = ModRegistry.ofBlock("tall_vivid_nihilis",
                     new TallPlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.TEAL).replaceable()))
             .tagitem(ItemTags.FLOWERS).end_plant()
             .cutout().build();
+
+    public static final Block VIVID_NIHILIS = ModRegistry.ofBlock("vivid_nihilis",
+            new FernBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.TEAL).replaceable()) {
+                @Override
+                public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+                    if (TALL_VIVID_NIHILIS.getDefaultState().canPlaceAt(world, pos) && world.isAir(pos.up()))
+                        TallPlantBlock.placeAt(world, TALL_VIVID_NIHILIS.getDefaultState(), pos, 2);
+                }
+            })
+            .tagitem(ItemTags.FLOWERS)
+            .model(ModRegistry.Models.CROSS).end_plant()
+            .cutout().build();
+
 
     public static final Block STARFLOWER = ModRegistry.ofBlock("starflower",
                     new FlowerBlock(StatusEffects.NIGHT_VISION, 100, copy(Blocks.WARPED_ROOTS).mapColor(MapColor.LIGHT_BLUE).breakInstantly().luminance(5).emissiveLighting((a, b, c) -> true)))

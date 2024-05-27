@@ -209,7 +209,7 @@ public class ModRegistry {
 
     public static class Foods {
         public static final FoodComponent PREAM_BERRY = new FoodComponent.Builder().alwaysEdible().saturationModifier(2).hunger(4).statusEffect(
-                        new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 2, true, false),
+                        new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 1, true, false),
                         1).build();
 
         public static final FoodComponent OBLIFRUIT = new FoodComponent.Builder().hunger(6).saturationModifier(1.2f)

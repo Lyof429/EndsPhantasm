@@ -104,7 +104,8 @@ public class ModMaterialRules {
                 MaterialRules.aboveY(YOffset.belowTop(220), 0),
                 MaterialRules.condition(
                         MaterialRules.stoneDepth(2, false, VerticalSurfaceType.CEILING),
-                        OBLIVION)
+                        OBLIVION
+                )
         );
 
         MaterialRules.MaterialRule dreaming_den = MaterialRules.sequence(

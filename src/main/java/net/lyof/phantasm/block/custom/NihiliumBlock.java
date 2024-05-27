@@ -1,10 +1,8 @@
 package net.lyof.phantasm.block.custom;
 
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.world.feature.ModPlacedFeatures;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.Fertilizable;
+import net.minecraft.block.*;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
@@ -88,7 +86,7 @@ public class NihiliumBlock extends Block implements Fertilizable {
         if (random.nextInt(2) == 0) {
             List<ConfiguredFeature<?, ?>> list = world.getBiome(test).value().getGenerationSettings().getFlowerFeatures();
             if (list.isEmpty()) return;
-            registryEntry = ((RandomPatchFeatureConfig) list.get(0).config()).feature();
+            registryEntry = ((RandomPatchFeatureConfig) list.get(random.nextInt(list.size())).config()).feature();
         } else {
             if (optional.isEmpty()) return;
             registryEntry = optional.get();

@@ -31,16 +31,17 @@ public class FlyAroundGoal extends Goal {
     public void start() {
         Phantasm.log("starting flying goal");
         Vec3d vec3d = this.getRandomLocation();
-        if (vec3d != null) {
-            self.getNavigation().startMovingAlong(self.getNavigation().findPathTo(BlockPos.ofFloored(vec3d), 1), 1.0);
-        }
+        self.getNavigation().startMovingTo(vec3d.x, vec3d.y, vec3d.z, 1);
     }
 
-    @Nullable
     private Vec3d getRandomLocation() {
-        Vec3d vec3d2 = self.getRotationVec(0.0F);
+        Vec3d view = self.getRotationVec(0.0F);
 
-        Vec3d vec3d3 = AboveGroundTargeting.find(self, 8, 7, vec3d2.x, vec3d2.z, 1.5707964F, 3, 1);
-        return vec3d3 != null ? vec3d3 : NoPenaltySolidTargeting.find(self, 8, 4, -2, vec3d2.x, vec3d2.z, 1.5707963705062866);
+        Vec3d vec3d3 = AboveGroundTargeting.find(self, 8, 7, view.x, view.z, 1.5707964F, 3, 1);
+        Phantasm.log(vec3d3);
+        if (vec3d3 != null && vec3d3.distanceTo(self.getPos()) > 4) return vec3d3;
+
+        Phantasm.log("weirding out");
+        return self.getPos().add(view.multiply(4)).addRandom(self.getRandom(), 1);
     }
 }

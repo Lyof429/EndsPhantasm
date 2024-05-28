@@ -21,13 +21,14 @@ public class AvoidGroundGoal extends Goal {
 
     @Override
     public boolean shouldContinue() {
-        return false;
+        return this.canStart();
     }
 
     @Override
     public void start() {
         Phantasm.log("avoiding ground");
-        self.getNavigation().startMovingTo(self.getX(), self.getY() + 1, self.getZ(), 1);
+        self.getNavigation().startMovingTo(self.getX(), self.getY() + 3, self.getZ(), 1);
+        Phantasm.log(self.getNavigation().getTargetPos());
         //self.setVelocity(self.getVelocity().add(0, 0.1, 0));
     }
 

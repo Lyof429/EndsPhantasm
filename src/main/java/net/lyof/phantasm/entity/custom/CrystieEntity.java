@@ -9,6 +9,7 @@ import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.control.FlightMoveControl;
+import net.minecraft.entity.ai.goal.FlyGoal;
 import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -16,12 +17,15 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
 
 public class CrystieEntity extends AnimalEntity {
     public boolean isAngry = false;
@@ -34,10 +38,10 @@ public class CrystieEntity extends AnimalEntity {
     @Override
     protected void initGoals() {
         //this.goalSelector.add(0, new DiveBombGoal(this));
-        this.goalSelector.add(0, new FlyAroundGoal(this));
+        this.goalSelector.add(0, new LookAroundGoal(this));
+        this.goalSelector.add(1, new FlyGoal(this, 1));
         this.goalSelector.add(2, new TemptGoal(this, 1, Ingredient.fromTag(ModTags.Items.CRYSTAL_FLOWERS), false));
-        this.goalSelector.add(4, new AvoidGroundGoal(this));
-        this.goalSelector.add(6, new LookAroundGoal(this));
+        //this.goalSelector.add(4, new AvoidGroundGoal(this));
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
@@ -51,6 +55,14 @@ public class CrystieEntity extends AnimalEntity {
     @Override
     public AnimalEntity createChild(ServerWorld world, PassiveEntity entity) {
         return ModEntities.CRYSTIE.create(world);
+    }
+
+    @Override
+    public float getPathfindingFavor(BlockPos pos, WorldView world) {
+        if (pos == this.getBlockPos()) return -10;
+        if (world.getBlockState(pos).isAir())
+            return 10;
+        return 0;
     }
 
     public void explode() {
@@ -79,7 +91,7 @@ public class CrystieEntity extends AnimalEntity {
 
     @Override
     public void tick() {
-        if (this.age % 40 == 0)
+        if (this.age % 40 == 0 && !this.getWorld().isClient())
             Phantasm.log(this.getNavigation().getTargetPos());
         super.tick();
     }

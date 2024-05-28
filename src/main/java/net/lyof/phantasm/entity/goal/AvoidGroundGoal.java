@@ -34,6 +34,6 @@ public class AvoidGroundGoal extends Goal {
     @Override
     public void stop() {
         super.stop();
-        self.getNavigation().stop();
+        //self.getNavigation().stop();
     }
 }

@@ -1,5 +1,6 @@
 package net.lyof.phantasm.entity.goal;
 
+import net.lyof.phantasm.Phantasm;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.mob.PathAwareEntity;
 
@@ -24,12 +25,15 @@ public class AvoidGroundGoal extends Goal {
     }
 
     @Override
-    public void tick() {
-        self.setVelocity(self.getVelocity().add(0, 0.3, 0));
+    public void start() {
+        Phantasm.log("avoiding ground");
+        self.getNavigation().startMovingTo(self.getX(), self.getY() + 1, self.getZ(), 1);
+        //self.setVelocity(self.getVelocity().add(0, 0.1, 0));
     }
 
     @Override
     public void stop() {
         super.stop();
+        self.getNavigation().stop();
     }
 }

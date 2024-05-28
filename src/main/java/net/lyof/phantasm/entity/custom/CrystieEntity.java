@@ -1,5 +1,6 @@
 package net.lyof.phantasm.entity.custom;
 
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.goal.AvoidGroundGoal;
 import net.lyof.phantasm.entity.goal.DiveBombGoal;
@@ -33,10 +34,10 @@ public class CrystieEntity extends AnimalEntity {
     @Override
     protected void initGoals() {
         //this.goalSelector.add(0, new DiveBombGoal(this));
-        this.goalSelector.add(0, new AvoidGroundGoal(this));
-        this.goalSelector.add(1, new TemptGoal(this, 1, Ingredient.fromTag(ModTags.Items.CRYSTAL_FLOWERS), false));
-        this.goalSelector.add(2, new FlyAroundGoal(this));
-        this.goalSelector.add(3, new LookAroundGoal(this));
+        this.goalSelector.add(0, new FlyAroundGoal(this));
+        this.goalSelector.add(2, new TemptGoal(this, 1, Ingredient.fromTag(ModTags.Items.CRYSTAL_FLOWERS), false));
+        this.goalSelector.add(4, new AvoidGroundGoal(this));
+        this.goalSelector.add(6, new LookAroundGoal(this));
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
@@ -74,5 +75,12 @@ public class CrystieEntity extends AnimalEntity {
         boolean result = super.tryAttack(target);
         if (result) this.explode();
         return result;
+    }
+
+    @Override
+    public void tick() {
+        if (this.age % 40 == 0)
+            Phantasm.log(this.getNavigation().getTargetPos());
+        super.tick();
     }
 }

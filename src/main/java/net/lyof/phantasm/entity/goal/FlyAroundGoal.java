@@ -1,5 +1,6 @@
 package net.lyof.phantasm.entity.goal;
 
+import net.lyof.phantasm.Phantasm;
 import net.minecraft.entity.ai.AboveGroundTargeting;
 import net.minecraft.entity.ai.NoPenaltySolidTargeting;
 import net.minecraft.entity.ai.goal.Goal;
@@ -28,6 +29,7 @@ public class FlyAroundGoal extends Goal {
     }
 
     public void start() {
+        Phantasm.log("starting flying goal");
         Vec3d vec3d = this.getRandomLocation();
         if (vec3d != null) {
             self.getNavigation().startMovingAlong(self.getNavigation().findPathTo(BlockPos.ofFloored(vec3d), 1), 1.0);

@@ -8,10 +8,11 @@ import net.lyof.phantasm.entity.goal.FlyAroundGoal;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.control.FlightMoveControl;
-import net.minecraft.entity.ai.goal.FlyGoal;
-import net.minecraft.entity.ai.goal.LookAroundGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.pathing.BirdNavigation;
+import net.minecraft.entity.ai.pathing.EntityNavigation;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -24,8 +25,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+
+import java.util.EnumSet;
 
 public class CrystieEntity extends AnimalEntity {
     public boolean isAngry = false;
@@ -33,14 +37,59 @@ public class CrystieEntity extends AnimalEntity {
     public CrystieEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
         this.moveControl = new FlightMoveControl(this, 100, true);
+        this.setNoGravity(true);
+    }
+
+    @Override
+    public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
+        return false;
     }
 
     @Override
     protected void initGoals() {
-        //this.goalSelector.add(0, new DiveBombGoal(this));
-        this.goalSelector.add(0, new LookAroundGoal(this));
-        this.goalSelector.add(1, new FlyGoal(this, 1));
-        this.goalSelector.add(2, new TemptGoal(this, 1, Ingredient.fromTag(ModTags.Items.CRYSTAL_FLOWERS), false));
+        this.goalSelector.add(0, new Goal() {
+            {
+                this.setControls(EnumSet.of(Goal.Control.MOVE));
+            }
+
+            @Override
+            public boolean shouldContinue() {
+                return CrystieEntity.this.getMoveControl().isMoving() && CrystieEntity.this.getTarget() != null && CrystieEntity.this.getTarget().isAlive();
+            }
+
+            @Override
+            public boolean canStart() {
+                return CrystieEntity.this.getTarget() != null && !CrystieEntity.this.getMoveControl().isMoving();
+            }
+
+            @Override
+            public void start() {
+                LivingEntity livingentity = CrystieEntity.this.getTarget();
+                Vec3d vec3d = livingentity.getEyePos();
+                CrystieEntity.this.moveControl.moveTo(vec3d.x, vec3d.y, vec3d.z, 3);
+            }
+            @Override
+            public void tick() {
+                LivingEntity livingentity = CrystieEntity.this.getTarget();
+                if (CrystieEntity.this.getBoundingBox().intersects(livingentity.getBoundingBox())) {
+                    CrystieEntity.this.tryAttack(livingentity);
+                } else {
+                    double d0 = CrystieEntity.this.distanceTo(livingentity);
+                    if (d0 < 32) {
+                        Vec3d vec3d = livingentity.getEyePos();
+                        CrystieEntity.this.moveControl.moveTo(vec3d.x, vec3d.y, vec3d.z, 3);
+                    }
+                }
+            }
+        });
+        this.goalSelector.add(1, new FlyGoal(this, 20));
+        this.targetSelector.add(2, new ActiveTargetGoal(this, PlayerEntity.class, false, true){
+            @Override
+            public boolean canStart() {
+                return super.canStart() && CrystieEntity.this.isAngry;
+            }
+        });
+        this.goalSelector.add(3, new TemptGoal(this, 1, Ingredient.fromTag(ModTags.Items.CRYSTAL_FLOWERS), false));
         //this.goalSelector.add(4, new AvoidGroundGoal(this));
     }
 
@@ -55,6 +104,11 @@ public class CrystieEntity extends AnimalEntity {
     @Override
     public AnimalEntity createChild(ServerWorld world, PassiveEntity entity) {
         return ModEntities.CRYSTIE.create(world);
+    }
+
+    @Override
+    protected EntityNavigation createNavigation(World world) {
+        return new BirdNavigation(this,world);
     }
 
     @Override

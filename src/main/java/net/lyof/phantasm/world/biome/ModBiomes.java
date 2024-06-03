@@ -1,7 +1,10 @@
 package net.lyof.phantasm.world.biome;
 
 import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.entity.ModEntities;
 import net.minecraft.client.sound.MusicType;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -35,7 +38,6 @@ public class ModBiomes {
 
     public static Biome dreamingDen(Registerable<Biome> context) {
         SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
-
         GenerationSettings.LookupBackedBuilder biomeBuilder =
                 new GenerationSettings.LookupBackedBuilder(context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
                         context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER));

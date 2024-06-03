@@ -6,6 +6,7 @@ import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.control.FlightMoveControl;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.BirdNavigation;
@@ -23,6 +24,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
 import java.util.EnumSet;
@@ -45,7 +47,7 @@ public class CrystieEntity extends AnimalEntity {
     protected void initGoals() {
         this.goalSelector.add(0, new DiveBombGoal(this));
         this.goalSelector.add(1, new FlyGoal(this, 20));
-        this.targetSelector.add(2, new ActiveTargetGoal(this, PlayerEntity.class, false, true){
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, false, true) {
             @Override
             public boolean canStart() {
                 return super.canStart() && CrystieEntity.this.isAngry;
@@ -69,12 +71,15 @@ public class CrystieEntity extends AnimalEntity {
 
     @Override
     protected EntityNavigation createNavigation(World world) {
-        return new BirdNavigation(this,world);
+        return new BirdNavigation(this, world);
     }
 
     @Override
     public float getPathfindingFavor(BlockPos pos, WorldView world) {
-        if (pos == this.getBlockPos()) return -10;
+        if (world.getBlockState(pos.down()).isIn(ModTags.Blocks.END_PLANTS_GROWABLE_ON))
+            return 2;
+        if (pos == this.getBlockPos())
+            return -10;
         if (world.getBlockState(pos).isAir())
             return 10;
         return 0;

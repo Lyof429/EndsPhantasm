@@ -5,8 +5,6 @@ import net.lyof.phantasm.entity.goal.DiveBombGoal;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.control.FlightMoveControl;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.BirdNavigation;
@@ -15,22 +13,28 @@ import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtInt;
+import net.minecraft.nbt.NbtIntArray;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
-import java.util.EnumSet;
+import java.util.List;
 
 public class CrystieEntity extends AnimalEntity {
     public boolean isAngry = false;
+    public static ItemStack FIREWORK = getFirework();
 
     public CrystieEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
@@ -85,9 +89,61 @@ public class CrystieEntity extends AnimalEntity {
         return 0;
     }
 
+    @Override
+    public boolean isBreedingItem(ItemStack stack) {
+        return stack.isIn(ModTags.Items.CRYSTAL_FLOWERS);
+    }
+
+    @Override
+    public int getXpToDrop() {
+        return Monster.NORMAL_MONSTER_XP;
+    }
+
+    public static ItemStack getFirework() {
+        ItemStack stack = Items.FIREWORK_ROCKET.getDefaultStack();
+        NbtCompound tag = stack.getOrCreateSubNbt("Fireworks");
+
+        NbtList list = new NbtList();
+        NbtCompound explosion = new NbtCompound();
+        explosion.putByte("Type", (byte) 0);
+        explosion.putByte("Trail", (byte) 1);
+
+        NbtIntArray colors = new NbtIntArray(List.of(
+                2651799,
+                11250603,
+                6719955,
+                15790320
+        ));
+        explosion.put("Colors", colors);
+
+        NbtIntArray fadecolors = new NbtIntArray(List.of(
+                8073150,
+                11250603,
+                12801229
+        ));
+        explosion.put("FadeColors", fadecolors);
+
+        list.add(explosion);
+        /* Explosions:[
+                {
+                    Type:0,
+                    Trail:1,
+                    Colors:[I;2651799,11250603,6719955,15790320],
+                    FadeColors:[I;8073150,2651799,11250603,6719955,12801229,15790320]
+                }
+            ]
+        */
+
+        tag.put("Explosions", list);
+        tag.putByte("Flight", (byte) -2);
+        return stack;
+    }
+
     public void explode() {
-        this.getWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), 2, World.ExplosionSourceType.MOB);
-        this.kill();
+        FireworkRocketEntity firework = new FireworkRocketEntity(this.getWorld(), FIREWORK, this);
+        this.getWorld().spawnEntity(firework);
+
+        if (!this.isDead()) this.discard();
     }
 
     @Override
@@ -98,14 +154,15 @@ public class CrystieEntity extends AnimalEntity {
     }
 
     @Override
-    public boolean isBreedingItem(ItemStack stack) {
-        return stack.isIn(ModTags.Items.CRYSTAL_FLOWERS);
+    public boolean tryAttack(Entity target) {
+        //boolean result = super.tryAttack(target);
+        this.explode();
+        return true;
     }
 
     @Override
-    public boolean tryAttack(Entity target) {
-        boolean result = super.tryAttack(target);
-        if (result) this.explode();
-        return result;
+    public void onDeath(DamageSource damageSource) {
+        super.onDeath(damageSource);
+        this.explode();
     }
 }

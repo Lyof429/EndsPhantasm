@@ -155,9 +155,9 @@ public class CrystieEntity extends AnimalEntity {
 
     @Override
     public boolean tryAttack(Entity target) {
-        //boolean result = super.tryAttack(target);
-        this.explode();
-        return true;
+        boolean result = super.tryAttack(target);
+        if (result) this.explode();
+        return result;
     }
 
     @Override

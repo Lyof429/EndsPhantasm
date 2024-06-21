@@ -3,6 +3,7 @@ package net.lyof.phantasm.entity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.entity.custom.BehemothEntity;
 import net.lyof.phantasm.entity.custom.CrystieEntity;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
@@ -15,9 +16,14 @@ public class ModEntities {
         Phantasm.log("Registering Entities for modid : " + Phantasm.MOD_ID);
 
         FabricDefaultAttributeRegistry.register(CRYSTIE, CrystieEntity.createAttributes());
+        FabricDefaultAttributeRegistry.register(BEHEMOTH, BehemothEntity.createAttributes());
     }
 
     public static final EntityType<CrystieEntity> CRYSTIE = Registry.register(Registries.ENTITY_TYPE,
             Phantasm.makeID("crystie"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, CrystieEntity::new)
                     .dimensions(EntityDimensions.fixed(0.5f, 0.5f)).build());
+
+    public static final EntityType<BehemothEntity> BEHEMOTH = Registry.register(Registries.ENTITY_TYPE,
+            Phantasm.makeID("behemoth"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, BehemothEntity::new)
+                    .dimensions(EntityDimensions.fixed(1.5f, 3.5f)).build());
 }

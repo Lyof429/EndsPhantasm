@@ -102,6 +102,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
 
                         entries.add(ModItems.CRYSTIE_SPAWN_EGG);
+                        entries.add(ModItems.BEHEMOTH_SPAWN_EGG);
                         //for (Item item : ModRegistry.ITEMS)
                         //    entries.add(item);
                     })
@@ -207,6 +208,7 @@ public class ModItemGroups {
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> {
             entries.add(ModItems.CRYSTIE_SPAWN_EGG);
+            entries.add(ModItems.BEHEMOTH_SPAWN_EGG);
         });
     }
 }

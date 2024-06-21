@@ -68,6 +68,11 @@ public class ModItems {
             })
             .model(Models.GENERATED).build();
 
+    public static final Item BEHEMOTH_MEAT = ModRegistry.ofItem("behemoth_meat",
+            new Item(new FabricItemSettings().food(ModRegistry.Foods.BEHEMOTH_MEAT))).model(Models.GENERATED).build();
+    public static final Item BEHEMOTH_STEAK = ModRegistry.ofItem("behemoth_steak",
+            new Item(new FabricItemSettings().food(ModRegistry.Foods.BEHEMOTH_STEAK))).model(Models.GENERATED).build();
+
     public static final Item CRYSTIE_SPAWN_EGG = ModRegistry.ofItem("crystie_spawn_egg",
             new SpawnEggItem(ModEntities.CRYSTIE, 0xfaf0ff, 0xa0a0ff, new FabricItemSettings()))
             .build();

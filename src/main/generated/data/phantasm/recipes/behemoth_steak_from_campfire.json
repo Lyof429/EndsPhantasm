@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 500,
+  "experience": 5.0,
+  "ingredient": {
+    "item": "phantasm:behemoth_meat"
+  },
+  "result": "phantasm:behemoth_steak"
+}

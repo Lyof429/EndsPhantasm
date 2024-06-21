@@ -101,6 +101,9 @@ public class ModItemGroups {
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
 
+                        entries.add(ModItems.BEHEMOTH_MEAT);
+                        entries.add(ModItems.BEHEMOTH_STEAK);
+
                         entries.add(ModItems.CRYSTIE_SPAWN_EGG);
                         entries.add(ModItems.BEHEMOTH_SPAWN_EGG);
                         //for (Item item : ModRegistry.ITEMS)
@@ -123,6 +126,9 @@ public class ModItemGroups {
             entries.add(ModItems.PREAM_BERRY);
             entries.add(ModItems.OBLIFRUIT);
             entries.add(ModItems.CHORUS_FRUIT_SALAD);
+
+            entries.add(ModItems.BEHEMOTH_MEAT);
+            entries.add(ModItems.BEHEMOTH_STEAK);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             entries.addAfter(Items.FLOWERING_AZALEA_LEAVES, ModBlocks.PREAM_LEAVES);

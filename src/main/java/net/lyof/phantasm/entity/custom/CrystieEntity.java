@@ -4,6 +4,7 @@ import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.goal.DiveBombGoal;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.control.FlightMoveControl;
 import net.minecraft.entity.ai.goal.*;
@@ -87,6 +88,11 @@ public class CrystieEntity extends AnimalEntity {
         if (world.getBlockState(pos).isAir())
             return 10;
         return 0;
+    }
+
+    @Override
+    public float getEyeHeight(EntityPose pose) {
+        return (float) (this.getDimensions(pose).height * 0.45);
     }
 
     @Override

@@ -15,6 +15,7 @@ import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.CookingRecipeSerializer;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.Registries;
@@ -272,5 +273,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input(Ingredient.fromTag(ModTags.Items.CRYSTAL_FLOWERS))
                 .criterion("has_crystal_flower", conditionsFromTag(ModTags.Items.CRYSTAL_FLOWERS))
                 .group("crystal_flower").offerTo(exporter, Phantasm.makeID("crystal_flower"));
+
+        // Behemoth Meat Cooking
+        offerFoodCookingRecipe(exporter, "furnace", CookingRecipeSerializer.SMELTING, 200,
+                ModItems.BEHEMOTH_MEAT, ModItems.BEHEMOTH_STEAK, 5);
+        offerFoodCookingRecipe(exporter, "smoker", CookingRecipeSerializer.SMOKING, 100,
+                ModItems.BEHEMOTH_MEAT, ModItems.BEHEMOTH_STEAK, 5);
+        offerFoodCookingRecipe(exporter, "campfire", CookingRecipeSerializer.CAMPFIRE_COOKING, 500,
+                ModItems.BEHEMOTH_MEAT, ModItems.BEHEMOTH_STEAK, 5);
     }
 }

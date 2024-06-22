@@ -89,6 +89,12 @@
   "item.phantasm.crystie_spawn_egg": "Crystie Spawn Egg",
   "entity.phantasm.crystie": "Crystie",
 
+  "item.phantasm.behemoth_spawn_egg": "Behemoth Spawn Egg",
+  "entity.phantasm.behemoth": "Behemoth",
+
+  "item.phantasm.behemoth_meat": "Behemoth Meat",
+  "item.phantasm.behemoth_steak": "Behemoth Steak",
+
 
   "itemgroup.phantasm": "Phantasm",
 

@@ -95,5 +95,7 @@ public class ModModelProvider extends FabricModelProvider {
 
         generator.register(ModItems.CRYSTIE_SPAWN_EGG, new Model(Optional.of(Identifier.of("minecraft", "item/template_spawn_egg")),
                 Optional.empty()));
+        generator.register(ModItems.BEHEMOTH_SPAWN_EGG, new Model(Optional.of(Identifier.of("minecraft", "item/template_spawn_egg")),
+                Optional.empty()));
     }
 }

@@ -1,10 +1,7 @@
 package net.lyof.phantasm.world.biome;
 
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.entity.ModEntities;
 import net.minecraft.client.sound.MusicType;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;

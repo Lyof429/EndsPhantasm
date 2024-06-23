@@ -1,6 +1,5 @@
 package net.lyof.phantasm.entity.custom;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.goal.SleepGoal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;

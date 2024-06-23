@@ -69,7 +69,8 @@ public class ModItems {
             .model(Models.GENERATED).build();
 
     public static final Item BEHEMOTH_MEAT = ModRegistry.ofItem("behemoth_meat",
-            new Item(new FabricItemSettings().food(ModRegistry.Foods.BEHEMOTH_MEAT))).model(Models.GENERATED).build();
+            new Item(new FabricItemSettings().food(ModRegistry.Foods.BEHEMOTH_MEAT)))
+            .model(Models.GENERATED).build();
     public static final Item BEHEMOTH_STEAK = ModRegistry.ofItem("behemoth_steak",
             new Item(new FabricItemSettings().food(ModRegistry.Foods.BEHEMOTH_STEAK))).model(Models.GENERATED).build();
 

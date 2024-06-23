@@ -9,7 +9,6 @@ import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.lyof.phantasm.world.feature.ModPlacedFeatures;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.world.gen.GenerationStep;
 
 public class ModWorldGeneration {

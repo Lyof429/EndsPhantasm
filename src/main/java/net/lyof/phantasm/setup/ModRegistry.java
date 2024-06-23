@@ -223,6 +223,7 @@ public class ModRegistry {
                         1)
                 .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 1, true, true),
                         1)
+                .meat()
                 .build();
 
         public static final FoodComponent BEHEMOTH_STEAK = new FoodComponent.Builder().alwaysEdible().hunger(10)
@@ -230,6 +231,7 @@ public class ModRegistry {
                         1)
                 .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300, 1, true, true),
                         1)
+                .meat()
                 .build();
     }
 

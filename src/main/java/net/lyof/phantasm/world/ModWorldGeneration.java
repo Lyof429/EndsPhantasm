@@ -66,11 +66,11 @@ public class ModWorldGeneration {
         BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
                 SpawnGroup.MONSTER,
                 ModEntities.CRYSTIE,
-                6, 4, 4);
+                10, 4, 4);
 
         BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
                 SpawnGroup.MONSTER,
                 ModEntities.BEHEMOTH,
-                4, 1, 1);
+                7, 1, 1);
     }
 }

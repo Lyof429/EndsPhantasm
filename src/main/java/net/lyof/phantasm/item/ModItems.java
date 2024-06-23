@@ -77,6 +77,6 @@ public class ModItems {
             new SpawnEggItem(ModEntities.CRYSTIE, 0xfaf0ff, 0xa0a0ff, new FabricItemSettings()))
             .build();
     public static final Item BEHEMOTH_SPAWN_EGG = ModRegistry.ofItem("behemoth_spawn_egg",
-                    new SpawnEggItem(ModEntities.BEHEMOTH, 0x0f000f, 0xafa0ff, new FabricItemSettings()))
+                    new SpawnEggItem(ModEntities.BEHEMOTH, 0xafa0ff, 0x0f000f, new FabricItemSettings()))
             .build();
 }

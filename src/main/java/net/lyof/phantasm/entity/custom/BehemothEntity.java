@@ -1,22 +1,17 @@
 package net.lyof.phantasm.entity.custom;
 
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.entity.goal.AngerGoal;
 import net.lyof.phantasm.entity.goal.SleepGoal;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.AttackGoal;
-import net.minecraft.entity.ai.goal.WanderAroundGoal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
-import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 public class BehemothEntity extends HostileEntity implements Monster {
     public int angryTicks = 0;
@@ -28,13 +23,13 @@ public class BehemothEntity extends HostileEntity implements Monster {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SleepGoal(this));
-        this.goalSelector.add(1, new AttackGoal(this));
+        this.goalSelector.add(1, new MeleeAttackGoal(this, 1, true));
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 40)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 10)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 60)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 15)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 10);
     }
@@ -63,9 +58,19 @@ public class BehemothEntity extends HostileEntity implements Monster {
         super.tick();
         if (this.angryTicks > 0) this.angryTicks--;
         else if (this.isAngry()) this.setTarget(null);
-        if (this.getTarget() != null && this.getTarget().distanceTo(this) > 16) this.setTarget(null);
+        else if (this.age % 20 == 0) {
+            PlayerEntity player = this.getWorld().getClosestPlayer(this, 4);
+            if (player != null && !player.isCreative() && !player.isSpectator()) {
+                this.setTarget(player);
+                this.angryTicks = 600;
+            }
+        }
+        if (this.getTarget() != null && (this.getTarget().distanceTo(this) > 16 || !this.getTarget().isAlive())) {
+            this.setTarget(null);
+            this.angryTicks = 0;
+        }
 
         if (this.age % 20 == 0)
-            Phantasm.log(this.isAngry() + " " + this.getWorld().isClient());
+            Phantasm.log(this.getTarget() + " " + this.getWorld().isClient());
     }
 }

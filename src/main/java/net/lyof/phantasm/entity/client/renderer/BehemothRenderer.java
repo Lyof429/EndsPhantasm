@@ -3,14 +3,10 @@ package net.lyof.phantasm.entity.client.renderer;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.client.ModModelLayers;
 import net.lyof.phantasm.entity.client.model.BehemothModel;
-import net.lyof.phantasm.entity.client.model.CrystieModel;
 import net.lyof.phantasm.entity.custom.BehemothEntity;
-import net.lyof.phantasm.entity.custom.CrystieEntity;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.client.render.entity.feature.EyesFeatureRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 

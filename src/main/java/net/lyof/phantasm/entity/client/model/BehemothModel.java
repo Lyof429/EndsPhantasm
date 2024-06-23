@@ -1,7 +1,6 @@
 package net.lyof.phantasm.entity.client.model;
 
 import net.lyof.phantasm.entity.custom.BehemothEntity;
-import net.lyof.phantasm.entity.custom.CrystieEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;

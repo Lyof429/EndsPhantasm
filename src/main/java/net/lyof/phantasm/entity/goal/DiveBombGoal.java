@@ -1,15 +1,9 @@
 package net.lyof.phantasm.entity.goal;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.custom.CrystieEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.mob.PathAwareEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
 
 import java.util.EnumSet;
 

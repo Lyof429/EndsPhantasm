@@ -1,6 +1,5 @@
 package net.lyof.phantasm.entity.client.model;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.custom.CrystieEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;

@@ -69,8 +69,5 @@ public class BehemothEntity extends HostileEntity implements Monster {
             this.setTarget(null);
             this.angryTicks = 0;
         }
-
-        if (this.age % 20 == 0)
-            Phantasm.log(this.getTarget() + " " + this.getWorld().isClient());
     }
 }

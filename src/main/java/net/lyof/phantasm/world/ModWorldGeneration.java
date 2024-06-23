@@ -67,5 +67,10 @@ public class ModWorldGeneration {
                 SpawnGroup.MONSTER,
                 ModEntities.CRYSTIE,
                 6, 4, 4);
+
+        BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
+                SpawnGroup.MONSTER,
+                ModEntities.BEHEMOTH,
+                4, 1, 1);
     }
 }

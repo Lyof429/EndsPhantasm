@@ -18,6 +18,8 @@ public class ConfigEntries {
 
         elytraBoostAdvancement = new ConfigEntry<>("equipment.elytra_boost_advancement", "minecraft:end/kill_dragon").get();
         crystalXPBoost = new ConfigEntry<>("equipment.crystal_xp_boost", 3).get();
+
+        voidEyeDurability = new ConfigEntry<>("equipment.void_eye_durability", 4).get();
     }
 
     public static boolean doDreamingDenBiome;
@@ -36,4 +38,6 @@ public class ConfigEntries {
 
     public static String elytraBoostAdvancement;
     public static double crystalXPBoost;
+
+    public static int voidEyeDurability;
 }

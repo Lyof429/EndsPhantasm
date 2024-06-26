@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.entity.ModEntities;
+import net.lyof.phantasm.item.custom.VoidEyeItem;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.data.client.Models;
@@ -69,15 +70,19 @@ public class ModItems {
             .model(Models.GENERATED).build();
 
     public static final Item BEHEMOTH_MEAT = ModRegistry.ofItem("behemoth_meat",
-            new Item(new FabricItemSettings().food(ModRegistry.Foods.BEHEMOTH_MEAT)))
+                new Item(new FabricItemSettings().food(ModRegistry.Foods.BEHEMOTH_MEAT)))
             .model(Models.GENERATED).build();
     public static final Item BEHEMOTH_STEAK = ModRegistry.ofItem("behemoth_steak",
             new Item(new FabricItemSettings().food(ModRegistry.Foods.BEHEMOTH_STEAK))).model(Models.GENERATED).build();
 
+    public static final Item EYE_OF_THE_VOID = ModRegistry.ofItem("eye_of_the_void",
+                new VoidEyeItem(new FabricItemSettings()))
+            .model(Models.GENERATED).build();
+
     public static final Item CRYSTIE_SPAWN_EGG = ModRegistry.ofItem("crystie_spawn_egg",
-            new SpawnEggItem(ModEntities.CRYSTIE, 0xfaf0ff, 0xa0a0ff, new FabricItemSettings()))
+                new SpawnEggItem(ModEntities.CRYSTIE, 0xfaf0ff, 0xa0a0ff, new FabricItemSettings()))
             .build();
     public static final Item BEHEMOTH_SPAWN_EGG = ModRegistry.ofItem("behemoth_spawn_egg",
-                    new SpawnEggItem(ModEntities.BEHEMOTH, 0xafa0ff, 0x0f000f, new FabricItemSettings()))
+                new SpawnEggItem(ModEntities.BEHEMOTH, 0xafa0ff, 0x0f000f, new FabricItemSettings()))
             .build();
 }

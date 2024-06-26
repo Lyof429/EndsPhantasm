@@ -89,7 +89,7 @@ public class VoidEyeItem extends Item {
                 stack.damage(1, player, playerEntity -> playerEntity.sendEquipmentBreakStatus(
                         user.getActiveHand() == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND));
             }
-            user.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1, 2);
+            user.playSound(SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, 1, 2);
         }
         return super.finishUsing(stack, world, user);
     }

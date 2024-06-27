@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.entity.ModEntities;
-import net.lyof.phantasm.item.custom.VoidEyeItem;
+import net.lyof.phantasm.item.custom.ShatteredPendantItem;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.data.client.Models;
@@ -75,8 +75,8 @@ public class ModItems {
     public static final Item BEHEMOTH_STEAK = ModRegistry.ofItem("behemoth_steak",
             new Item(new FabricItemSettings().food(ModRegistry.Foods.BEHEMOTH_STEAK))).model(Models.GENERATED).build();
 
-    public static final Item EYE_OF_THE_VOID = ModRegistry.ofItem("eye_of_the_void",
-                new VoidEyeItem(new FabricItemSettings()))
+    public static final Item SHATTERED_PENDANT = ModRegistry.ofItem("shattered_pendant",
+                new ShatteredPendantItem(new FabricItemSettings()))
             .model(Models.GENERATED).build();
 
     public static final Item CRYSTIE_SPAWN_EGG = ModRegistry.ofItem("crystie_spawn_egg",

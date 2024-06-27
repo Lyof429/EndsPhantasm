@@ -26,8 +26,8 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
 
-public class VoidEyeItem extends Item {
-    public VoidEyeItem(Settings settings) {
+public class ShatteredPendantItem extends Item {
+    public ShatteredPendantItem(Settings settings) {
         super(settings.rarity(Rarity.RARE).maxCount(1).maxDamage(ConfigEntries.voidEyeDurability).fireproof());
     }
 

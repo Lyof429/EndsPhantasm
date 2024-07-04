@@ -218,7 +218,7 @@ public class ModRegistry {
         public static final FoodComponent CHORUS_SALAD = new FoodComponent.Builder().alwaysEdible().hunger(6).saturationModifier(1.5f)
                 .build();
 
-        public static final FoodComponent BEHEMOTH_MEAT = new FoodComponent.Builder().alwaysEdible().hunger(6)
+        public static final FoodComponent BEHEMOTH_MEAT = new FoodComponent.Builder().alwaysEdible().hunger(6).saturationModifier(1.1f)
                 .statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 100, 0, true, true),
                         1)
                 .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 1, true, true),
@@ -226,7 +226,7 @@ public class ModRegistry {
                 .meat()
                 .build();
 
-        public static final FoodComponent BEHEMOTH_STEAK = new FoodComponent.Builder().alwaysEdible().hunger(10)
+        public static final FoodComponent BEHEMOTH_STEAK = new FoodComponent.Builder().alwaysEdible().hunger(10).saturationModifier(1.1f)
                 .statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 300, 0, true, true),
                         1)
                 .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300, 1, true, true),

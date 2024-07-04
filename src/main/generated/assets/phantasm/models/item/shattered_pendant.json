@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "phantasm:item/eye_of_the_void"
+    "layer0": "phantasm:item/shattered_pendant"
   }
 }

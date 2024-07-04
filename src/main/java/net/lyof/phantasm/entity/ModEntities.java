@@ -25,5 +25,5 @@ public class ModEntities {
 
     public static final EntityType<BehemothEntity> BEHEMOTH = Registry.register(Registries.ENTITY_TYPE,
             Phantasm.makeID("behemoth"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, BehemothEntity::new)
-                    .dimensions(EntityDimensions.fixed(1.5f, 3.5f)).build());
+                    .dimensions(EntityDimensions.changing(1f, 2f)).build());
 }

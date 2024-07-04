@@ -3,10 +3,7 @@ package net.lyof.phantasm.entity.custom;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.animation.BehemothAnimation;
 import net.lyof.phantasm.entity.goal.SleepGoal;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityPose;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -14,7 +11,9 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
+import net.minecraft.entity.passive.CamelEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -23,6 +22,8 @@ public class BehemothEntity extends HostileEntity implements Monster {
     public int animTime = 0;
     public BehemothAnimation animation = BehemothAnimation.SLEEPING;
     public static int ANGRY_TIME = 600;
+
+    public AnimationState sleepingAnimationState = new AnimationState();
 
     public BehemothEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -38,19 +39,13 @@ public class BehemothEntity extends HostileEntity implements Monster {
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 60)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 15)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.28)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 10);
     }
 
     @Override
     public float getStepHeight() {
         return 1f;
-    }
-
-    @Override
-    public EntityDimensions getDimensions(EntityPose pose) {
-        return this.animation == BehemothAnimation.SLEEPING ?
-                EntityDimensions.changing(1.5f, 1) : super.getDimensions(pose);
     }
 
     @Override

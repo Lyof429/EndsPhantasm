@@ -1,6 +1,7 @@
 package net.lyof.phantasm.entity.client.model;
 
 import net.lyof.phantasm.entity.animation.BehemothAnimation;
+import net.lyof.phantasm.entity.animation.ModAnimations;
 import net.lyof.phantasm.entity.custom.BehemothEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
@@ -8,11 +9,13 @@ import net.minecraft.client.render.entity.ZombieEntityRenderer;
 import net.minecraft.client.render.entity.animation.WardenAnimations;
 import net.minecraft.client.render.entity.model.CreeperEntityModel;
 import net.minecraft.client.render.entity.model.EntityModel;
+import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.render.entity.model.ZombieEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
+import org.joml.Vector3f;
 
-public class BehemothModel<T extends BehemothEntity> extends EntityModel<T> {
+public class BehemothModel<T extends BehemothEntity> extends SinglePartEntityModel<T> {
 	public static final float rad = (float) Math.PI / 180f;
 
 	private final ModelPart body;
@@ -59,17 +62,25 @@ public class BehemothModel<T extends BehemothEntity> extends EntityModel<T> {
 				this.body.zScale = (float) (1 + Math.sin(entity.animTime * rad) * 0.1);
 			}
 			case WAKING_UP -> {
-				this.body.pitch = MathHelper.cos(rad * entity.animTime * 4.5f);
+				this.body.pitch = MathHelper.cos(rad * entity.animTime * 4.5f) * rad * 90;
 				this.body.zScale = 1;
 			}
 			case WAKING_DOWN -> {
-				this.body.pitch = MathHelper.sin(rad * entity.animTime * 4.5f);
+				this.body.pitch = MathHelper.sin(rad * entity.animTime * 4.5f) * rad * 90;
 			}
 		}
+		//this.getPart().traverse().forEach(ModelPart::resetTransform);
+
+		//this.updateAnimation(entity.sleepingAnimationState, ModAnimations.Behemoth.SLEEPING, ageInTicks);
 	}
 
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
 		body.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+	}
+
+	@Override
+	public ModelPart getPart() {
+		return this.body;
 	}
 }

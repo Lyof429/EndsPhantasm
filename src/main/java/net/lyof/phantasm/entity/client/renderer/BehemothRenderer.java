@@ -26,7 +26,7 @@ public class BehemothRenderer extends MobEntityRenderer<BehemothEntity, Behemoth
     }
 
     @Override
-    public void render(BehemothEntity mobEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
-        super.render(mobEntity, f, g, matrixStack, vertexConsumerProvider, i);
+    public void render(BehemothEntity entity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
+        super.render(entity, f, g, matrixStack, vertexConsumerProvider, i);
     }
 }

@@ -3,7 +3,9 @@ package net.lyof.phantasm.entity.custom;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.animation.BehemothAnimation;
 import net.lyof.phantasm.entity.goal.SleepGoal;
-import net.minecraft.entity.*;
+import net.minecraft.entity.AnimationState;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -11,9 +13,10 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
-import net.minecraft.entity.passive.CamelEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.Box;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,13 +42,23 @@ public class BehemothEntity extends HostileEntity implements Monster {
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 60)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 15)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.28)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 10);
     }
 
     @Override
     public float getStepHeight() {
         return 1f;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return super.getHurtSound(source);
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return super.getDeathSound();
     }
 
     @Override
@@ -70,7 +83,10 @@ public class BehemothEntity extends HostileEntity implements Monster {
     @Override
     public void setTarget(@Nullable LivingEntity target) {
         if (target == null && this.isAngry()) this.setAnimation(BehemothAnimation.WAKING_DOWN);
-        else if (target != null && !this.isAngry()) this.setAnimation(BehemothAnimation.WAKING_UP);
+        else if (target != null && !this.isAngry()) {
+            this.setAnimation(BehemothAnimation.WAKING_UP);
+            this.playSound(SoundEvents.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
+        }
 
         super.setTarget(target);
 
@@ -99,11 +115,18 @@ public class BehemothEntity extends HostileEntity implements Monster {
         if (this.angryTicks > 0) this.angryTicks--;
         else if (this.isAngry()) this.setTarget(null);
         else if (this.age % 20 == 0) {
-            PlayerEntity player = this.getWorld().getClosestPlayer(this, 4);
+            PlayerEntity player = this.getWorld().getClosestPlayer(this, 8);
             if (player != null && !player.isCreative() && !player.isSpectator())
                 this.setTarget(player);
         }
         if (this.getTarget() != null && (this.getTarget().distanceTo(this) > 16 || !this.getTarget().isAlive()))
             this.setTarget(null);
+
+        if (this.getWorld().isClient() && this.animation == BehemothAnimation.SLEEPING && this.age % 20 == 0) {
+            this.getWorld().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
+                    this.getX() - Math.sin(-this.getYaw() * Math.PI / 180), this.getY() + 0.1,
+                    this.getZ() - Math.cos(this.getYaw() * Math.PI / 180), 0, 0.05, 0);
+            this.playSound(SoundEvents.ENTITY_SNIFFER_SNIFFING, 10, 1);
+        }
     }
 }

@@ -19,7 +19,7 @@
 			"net.lyof.phantasm.Phantasm"
 		],
 		"client": [
-			"net.lyof.phantasm.setup.ModClientSetup"
+			"net.lyof.phantasm.PhantasmClient"
 		],
 		"fabric-datagen": [
 			"net.lyof.phantasm.setup.ModDataGenerator"

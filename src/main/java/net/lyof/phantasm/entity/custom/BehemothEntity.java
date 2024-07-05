@@ -2,6 +2,7 @@ package net.lyof.phantasm.entity.custom;
 
 import net.lyof.phantasm.entity.animation.BehemothAnimation;
 import net.lyof.phantasm.entity.goal.SleepGoal;
+import net.lyof.phantasm.particle.ModParticles;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -122,9 +123,9 @@ public class BehemothEntity extends HostileEntity implements Monster {
 
         if (!this.isAngry() && this.age % 20 == 0) {
             this.playSound(SoundEvents.ENTITY_SNIFFER_SNIFFING, 2, 1);
-            if (this.getWorld().isClient())
-                this.getWorld().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
-                        this.getX() - Math.sin(-this.getYaw() * Math.PI / 180), this.getY() + 0.1,
+            if (this.getWorld().isClient() && this.getRandom().nextInt(2) == 0)
+                this.getWorld().addParticle(ModParticles.ZZZ,
+                        this.getX() - Math.sin(-this.getYaw() * Math.PI / 180), this.getY() + 0.3,
                         this.getZ() - Math.cos(this.getYaw() * Math.PI / 180), 0, 0.05, 0);
         }
     }

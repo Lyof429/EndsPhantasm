@@ -1,6 +1,7 @@
 package net.lyof.phantasm.entity.custom;
 
 import net.lyof.phantasm.entity.animation.BehemothAnimation;
+import net.lyof.phantasm.entity.goal.BehemothAttackGoal;
 import net.lyof.phantasm.entity.goal.SleepGoal;
 import net.lyof.phantasm.particle.ModParticles;
 import net.minecraft.entity.*;
@@ -24,8 +25,6 @@ public class BehemothEntity extends HostileEntity implements Monster {
     public BehemothAnimation animation = BehemothAnimation.SLEEPING;
     public static int MAX_ANGRY_TICKS = 600;
 
-    public AnimationState sleepingAnimationState = new AnimationState();
-
     public BehemothEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -33,7 +32,7 @@ public class BehemothEntity extends HostileEntity implements Monster {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SleepGoal(this));
-        this.goalSelector.add(1, new MeleeAttackGoal(this, 1, true));
+        this.goalSelector.add(1, new BehemothAttackGoal(this, 1, true));
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {

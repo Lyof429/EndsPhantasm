@@ -1,11 +1,8 @@
 package net.lyof.phantasm.entity.custom;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.animation.BehemothAnimation;
 import net.lyof.phantasm.entity.goal.SleepGoal;
-import net.minecraft.entity.AnimationState;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -22,9 +19,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class BehemothEntity extends HostileEntity implements Monster {
     public int angryTicks = 0;
-    public int animTime = 0;
+    public int animTicks = 0;
     public BehemothAnimation animation = BehemothAnimation.SLEEPING;
-    public static int ANGRY_TIME = 600;
+    public static int MAX_ANGRY_TICKS = 600;
 
     public AnimationState sleepingAnimationState = new AnimationState();
 
@@ -73,9 +70,9 @@ public class BehemothEntity extends HostileEntity implements Monster {
     @Override
     public boolean damage(DamageSource source, float amount) {
         if (source.isIndirect()) return false;
-        if (source.getAttacker() instanceof PlayerEntity player) {
+        if (source.getAttacker() instanceof PlayerEntity player && !player.isCreative() && !player.isSpectator()) {
             this.setTarget(player);
-            this.angryTicks = ANGRY_TIME;
+            this.angryTicks = MAX_ANGRY_TICKS;
         }
         return super.damage(source, amount);
     }
@@ -91,11 +88,11 @@ public class BehemothEntity extends HostileEntity implements Monster {
         super.setTarget(target);
 
         if (target == null) this.angryTicks = 0;
-        else this.angryTicks = ANGRY_TIME;
+        else this.angryTicks = MAX_ANGRY_TICKS;
     }
 
     public void setAnimation(BehemothAnimation anim) {
-        if (anim != this.animation) this.animTime = 0;
+        if (anim != this.animation) this.animTicks = 0;
         this.animation = anim;
     }
 
@@ -103,30 +100,32 @@ public class BehemothEntity extends HostileEntity implements Monster {
     public void tick() {
         super.tick();
 
-        this.animTime++;
-        if (this.animation.maxTime > 0 && this.animTime > this.animation.maxTime) {
-            if (this.animation == BehemothAnimation.WAKING_UP)
+        this.animTicks++;
+        if (this.animation.maxTime > 0 && this.animTicks > this.animation.maxTime) {
+            if (this.isAngry())
                 this.setAnimation(BehemothAnimation.WALKING);
-            else if (this.animation == BehemothAnimation.WAKING_DOWN)
+            else
                 this.setAnimation(BehemothAnimation.SLEEPING);
-            else this.setAnimation(BehemothAnimation.IDLE);
+            //else this.setAnimation(BehemothAnimation.IDLE);
         }
 
         if (this.angryTicks > 0) this.angryTicks--;
         else if (this.isAngry()) this.setTarget(null);
         else if (this.age % 20 == 0) {
-            PlayerEntity player = this.getWorld().getClosestPlayer(this, 8);
-            if (player != null && !player.isCreative() && !player.isSpectator())
+            PlayerEntity player = this.getWorld().getClosestPlayer(this, 6);
+            if (player != null && !player.isCreative() && !player.isSpectator()
+                    && (!player.isSneaking() || this.distanceTo(player) < 4))
                 this.setTarget(player);
         }
         if (this.getTarget() != null && (this.getTarget().distanceTo(this) > 16 || !this.getTarget().isAlive()))
             this.setTarget(null);
 
-        if (this.getWorld().isClient() && this.animation == BehemothAnimation.SLEEPING && this.age % 20 == 0) {
-            this.getWorld().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
-                    this.getX() - Math.sin(-this.getYaw() * Math.PI / 180), this.getY() + 0.1,
-                    this.getZ() - Math.cos(this.getYaw() * Math.PI / 180), 0, 0.05, 0);
-            this.playSound(SoundEvents.ENTITY_SNIFFER_SNIFFING, 10, 1);
+        if (!this.isAngry() && this.age % 20 == 0) {
+            this.playSound(SoundEvents.ENTITY_SNIFFER_SNIFFING, 2, 1);
+            if (this.getWorld().isClient())
+                this.getWorld().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
+                        this.getX() - Math.sin(-this.getYaw() * Math.PI / 180), this.getY() + 0.1,
+                        this.getZ() - Math.cos(this.getYaw() * Math.PI / 180), 0, 0.05, 0);
         }
     }
 }

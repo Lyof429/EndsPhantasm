@@ -1,6 +1,5 @@
 package net.lyof.phantasm.entity.client.model;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.custom.BehemothEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
@@ -49,23 +48,25 @@ public class BehemothModel<T extends BehemothEntity> extends SinglePartEntityMod
 	public void setAngles(BehemothEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		switch (entity.animation) {
 			case WALKING -> {
-				this.body.pitch = MathHelper.sin(entity.animTime * 3 * rad) * 0.1f;
+				this.body.pitch = MathHelper.sin(entity.animTicks * 3 * rad) * 0.1f;
 				this.left_leg.pitch = MathHelper.cos(limbSwing * 0.6662f + (float) Math.PI) * 1.4f * limbSwingAmount;
 				this.right_leg.pitch = MathHelper.cos(limbSwing * 0.6662f) * 1.4f * limbSwingAmount;
 			}
 			case SLEEPING -> {
 				this.body.pitch = rad * -90;
-				this.body.zScale = (float) (1 + Math.sin(entity.animTime * rad) * 0.1);
+				this.body.zScale = (float) (1 + Math.sin(entity.animTicks * rad) * 0.1);
+				this.left_horn.zScale = 1;
+				this.right_horn.zScale = 1;
 
 				//this.zzz.pivotY = (entity.animTime % 40) * 0.5f;
 				//Phantasm.log(this.zzz.pivotY);
 			}
 			case WAKING_UP -> {
-				this.body.pitch = MathHelper.cos(rad * entity.animTime * 4.5f) * rad * -90;
+				this.body.pitch = MathHelper.cos(rad * entity.animTicks * 4.5f) * rad * -90;
 				this.body.zScale = 1;
 			}
 			case WAKING_DOWN -> {
-				this.body.pitch = MathHelper.sin(rad * entity.animTime * 4.5f) * rad * -90;
+				this.body.pitch = MathHelper.sin(rad * entity.animTicks * 4.5f) * rad * -90;
 			}
 		}
 		//this.getPart().traverse().forEach(ModelPart::resetTransform);

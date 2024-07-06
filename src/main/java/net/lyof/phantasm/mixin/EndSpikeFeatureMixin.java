@@ -19,8 +19,10 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public abstract class EndSpikeFeatureMixin {
     @Redirect(method = "generateSpike", at = @At(value = "INVOKE", target =
             "Lnet/minecraft/world/gen/feature/EndSpikeFeature;setBlockState(Lnet/minecraft/world/ModifiableWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V"))
-    public void randomizeObsidian(EndSpikeFeature spike, ModifiableWorld world, BlockPos pos, BlockState state, ServerWorldAccess serverworld, Random random, EndSpikeFeatureConfig config, EndSpikeFeature.Spike spikedata) {
-        double crying = (pos.getY() - 60) / (spikedata.getHeight() -60d);
+    public void randomizeObsidian(EndSpikeFeature spike, ModifiableWorld world, BlockPos pos, BlockState state,
+                                  ServerWorldAccess serverworld, Random random, EndSpikeFeatureConfig config,
+                                  EndSpikeFeature.Spike spikedata) {
+        double crying = (pos.getY() - 60) / (spikedata.getHeight() - 60d);
         if (state.isOf(Blocks.OBSIDIAN) && ConfigEntries.improveEndSpires) {
             if (crying > 0 && Math.random() < crying * crying)
                 state = Blocks.CRYING_OBSIDIAN.getDefaultState();

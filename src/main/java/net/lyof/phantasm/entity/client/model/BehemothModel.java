@@ -1,5 +1,6 @@
 package net.lyof.phantasm.entity.client.model;
 
+import net.lyof.phantasm.entity.animation.BehemothAnimation;
 import net.lyof.phantasm.entity.custom.BehemothEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
@@ -57,16 +58,14 @@ public class BehemothModel<T extends BehemothEntity> extends SinglePartEntityMod
 				this.body.zScale = (float) (1 + Math.sin(entity.animTicks * rad) * 0.1);
 				this.left_horn.zScale = 1;
 				this.right_horn.zScale = 1;
-
-				//this.zzz.pivotY = (entity.animTime % 40) * 0.5f;
-				//Phantasm.log(this.zzz.pivotY);
 			}
 			case WAKING_UP -> {
-				this.body.pitch = MathHelper.cos(rad * entity.animTicks * 4.5f) * rad * -90;
-				this.body.zScale = 1;
+				this.getPart().traverse().forEach(ModelPart::resetTransform);
+				this.body.pitch = MathHelper.cos(rad * entity.animTicks * 90f / BehemothAnimation.WAKING_UP.maxTime) * rad * -90;
 			}
 			case WAKING_DOWN -> {
-				this.body.pitch = MathHelper.sin(rad * entity.animTicks * 4.5f) * rad * -90;
+				this.getPart().traverse().forEach(ModelPart::resetTransform);
+				this.body.pitch = MathHelper.sin(rad * entity.animTicks * 90f / BehemothAnimation.WAKING_DOWN.maxTime) * rad * -90;
 			}
 		}
 		//this.getPart().traverse().forEach(ModelPart::resetTransform);
@@ -76,7 +75,7 @@ public class BehemothModel<T extends BehemothEntity> extends SinglePartEntityMod
 
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
-		body.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+		this.getPart().render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
 	}
 
 	@Override

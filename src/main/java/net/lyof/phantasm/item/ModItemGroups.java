@@ -24,6 +24,7 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.VIVID_NIHILIUM);
                         entries.add(ModBlocks.VIVID_NIHILIS);
+                        entries.add(ModBlocks.TALL_VIVID_NIHILIS);
 
                         entries.add(ModBlocks.STARFLOWER);
 
@@ -104,7 +105,7 @@ public class ModItemGroups {
                         entries.add(ModItems.BEHEMOTH_MEAT);
                         entries.add(ModItems.BEHEMOTH_STEAK);
 
-                        entries.add(ModItems.SHATTERED_PENDANT);
+                        //entries.add(ModItems.SHATTERED_PENDANT);
 
                         entries.add(ModItems.CRYSTIE_SPAWN_EGG);
                         entries.add(ModItems.BEHEMOTH_SPAWN_EGG);
@@ -139,7 +140,9 @@ public class ModItemGroups {
 
             entries.addAfter(Items.END_STONE, ModBlocks.VIVID_NIHILIUM);
             entries.addAfter(Items.CHORUS_FLOWER, ModBlocks.VIVID_NIHILIS);
-            entries.addAfter(ModBlocks.VIVID_NIHILIS, ModBlocks.STARFLOWER);
+            entries.addAfter(ModBlocks.VIVID_NIHILIS, ModBlocks.TALL_VIVID_NIHILIS);
+            entries.addAfter(ModBlocks.TALL_VIVID_NIHILIS, ModBlocks.STARFLOWER);
+
             entries.addAfter(ModBlocks.STARFLOWER, ModBlocks.RAW_PURPUR);
 
             entries.addAfter(ModBlocks.RAW_PURPUR, ModBlocks.OBLIVION);

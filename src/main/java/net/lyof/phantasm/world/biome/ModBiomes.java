@@ -56,4 +56,28 @@ public class ModBiomes {
                         .music(MusicType.END).build()
                 ).build();
     }
+
+    public static Biome acidburntAbysses(Registerable<Biome> context) {
+        SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
+        GenerationSettings.LookupBackedBuilder biomeBuilder =
+                new GenerationSettings.LookupBackedBuilder(context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
+                        context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER));
+
+        endBiome(spawnBuilder, biomeBuilder);
+
+        return new Biome.Builder()
+                .precipitation(false)
+                .downfall(0.5f)
+                .temperature(0.5f)
+                .generationSettings(biomeBuilder.build())
+                .spawnSettings(spawnBuilder.build())
+                .effects(new BiomeEffects.Builder()
+                        .waterColor(4159204)
+                        .waterFogColor(329011)
+                        .skyColor(0xb21d49)
+                        .fogColor(0xca2656)
+                        .moodSound(BiomeMoodSound.CAVE)
+                        .music(MusicType.END).build()
+                ).build();
+    }
 }

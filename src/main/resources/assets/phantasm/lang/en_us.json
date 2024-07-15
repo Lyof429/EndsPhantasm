@@ -1,13 +1,11 @@
 {
   "block.phantasm.fallen_star": "Fallen Star",
 
-
   "block.phantasm.vivid_nihilium": "Vivid Nihilium",
   "block.phantasm.vivid_nihilis": "Vivid Nihilis",
   "block.phantasm.tall_vivid_nihilis": "Tall Vivid Nihilis",
 
   "block.phantasm.starflower": "Starflower",
-
 
   "block.phantasm.pream_log": "Pream Log",
   "block.phantasm.pream_wood": "Pream Wood",
@@ -32,7 +30,6 @@
   "block.phantasm.pream_sign": "Pream Sign",
   "block.phantasm.pream_hanging_sign": "Pream Hanging Sign",
 
-
   "block.phantasm.oblivion": "Oblivion",
   "block.phantasm.oblivine": "Oblivine",
   "block.phantasm.crystalily": "Crystalily",
@@ -41,7 +38,6 @@
   "item.phantasm.oblifruit": "Oblifruit",
 
   "item.phantasm.chorus_fruit_salad": "Chorus Fruit Salad",
-
 
   "block.phantasm.crystal_shard": "Crystal Shard",
   "block.phantasm.void_crystal_shard": "Void Crystal Shard",
@@ -70,12 +66,10 @@
   "block.phantasm.void_crystal_glass": "Void Crystal Glass",
   "block.phantasm.void_crystal_glass_pane": "Void Crystal Glass Pane",
 
-
   "block.phantasm.polished_obsidian": "Polished Obsidian",
   "block.phantasm.polished_obsidian_bricks": "Polished Obsidian Bricks",
   "block.phantasm.polished_obsidian_bricks_stairs": "Polished Obsidian Bricks Stairs",
   "block.phantasm.polished_obsidian_bricks_slab": "Polished Obsidian Bricks Slab",
-
 
   "block.phantasm.purpur_lamp": "Purpur Lamp",
 

@@ -2,6 +2,7 @@ package net.lyof.phantasm.world.biome;
 
 import net.lyof.phantasm.Phantasm;
 import net.minecraft.client.sound.MusicType;
+import net.minecraft.item.EnderEyeItem;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;

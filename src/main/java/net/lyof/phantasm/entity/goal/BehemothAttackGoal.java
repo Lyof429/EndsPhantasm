@@ -3,7 +3,6 @@ package net.lyof.phantasm.entity.goal;
 import net.lyof.phantasm.entity.animation.BehemothAnimation;
 import net.lyof.phantasm.entity.custom.BehemothEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.mob.PathAwareEntity;
 
 public class BehemothAttackGoal extends MeleeAttackGoal {
     public BehemothEntity self;

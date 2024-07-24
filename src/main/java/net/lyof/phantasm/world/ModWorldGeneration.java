@@ -9,6 +9,9 @@ import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.lyof.phantasm.world.feature.ModPlacedFeatures;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.SpawnRestriction;
+import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.gen.GenerationStep;
 
 public class ModWorldGeneration {
@@ -18,6 +21,7 @@ public class ModWorldGeneration {
         generateBiomes();
 
         generateSpawns();
+        registerRestrictions();
     }
 
 
@@ -71,5 +75,8 @@ public class ModWorldGeneration {
                 SpawnGroup.MONSTER,
                 ModEntities.BEHEMOTH,
                 7, 1, 1);
+    }
+    public static void registerRestrictions(){
+        SpawnRestriction.register(ModEntities.BEHEMOTH,SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,MobEntity::canMobSpawn);
     }
 }

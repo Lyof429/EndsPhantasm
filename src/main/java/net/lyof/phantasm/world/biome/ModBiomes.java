@@ -22,6 +22,7 @@ public class ModBiomes {
 
     public static void bootstrap(Registerable<Biome> context) {
         context.register(DREAMING_DEN, dreamingDen(context));
+
     }
 
     public static void endBiome(SpawnSettings.Builder spawns, GenerationSettings.LookupBackedBuilder generation) {

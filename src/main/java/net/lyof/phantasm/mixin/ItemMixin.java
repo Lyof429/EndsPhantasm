@@ -25,8 +25,11 @@ public class ItemMixin {
             tooltip.add(Text.translatable("tooltip.xp_boosted").formatted(Formatting.GREEN));
     }
 
-    @Inject(method = "canRepair", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "canRepair", at = @At("HEAD"), cancellable = true)
     public void universalRepair(ItemStack stack, ItemStack ingredient, CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(cir.getReturnValue() || ingredient.isOf(ModBlocks.OBLIVION.asItem()));
+        if (ingredient.isOf(ModBlocks.OBLIVION.asItem())) {
+            cir.setReturnValue(true);
+            cir.cancel();
+        }
     }
 }

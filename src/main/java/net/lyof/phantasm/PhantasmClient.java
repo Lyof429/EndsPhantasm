@@ -23,7 +23,6 @@ public class PhantasmClient implements ClientModInitializer {
         for (Block block : ModRegistry.BLOCK_CUTOUT)
             BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getCutout());
 
-
         EntityRendererRegistry.register(ModEntities.CRYSTIE, CrystieRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.CRYSTIE, CrystieModel::getTexturedModelData);
 

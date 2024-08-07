@@ -20,9 +20,7 @@ public class BehemothRenderer extends MobEntityRenderer<BehemothEntity, Behemoth
 
     @Override
     public Identifier getTexture(BehemothEntity entity) {
-        if (entity.isAngry())
-            return TEXTURE_ANGRY;
-        return TEXTURE;
+        return entity.isAngry() ? TEXTURE_ANGRY : TEXTURE;
     }
 
     @Override

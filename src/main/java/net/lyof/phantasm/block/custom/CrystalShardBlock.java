@@ -6,7 +6,6 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -67,7 +66,7 @@ public class CrystalShardBlock extends Block implements Waterloggable {
                 || world.getBlockState(pos.down()).getBlock() == this.asBlock();
 
         if (down && up) {
-            if (ctx.getSide() == Direction.DOWN) return state.with(IS_UP, false);
+            if (ctx.getVerticalPlayerLookDirection() == Direction.UP) return state.with(IS_UP, false);
         }
         else if (down)
             return state.with(IS_UP, false);

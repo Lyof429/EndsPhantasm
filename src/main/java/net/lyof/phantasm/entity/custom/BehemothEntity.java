@@ -5,7 +5,10 @@ import net.lyof.phantasm.entity.animation.BehemothAnimation;
 import net.lyof.phantasm.entity.goal.BehemothAttackGoal;
 import net.lyof.phantasm.entity.goal.SleepGoal;
 import net.lyof.phantasm.particle.ModParticles;
-import net.minecraft.entity.*;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityPose;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -16,12 +19,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
 public class BehemothEntity extends HostileEntity implements Monster {
-    public static final EntityDimensions STANDARD_DIMENSIONS = EntityDimensions.changing(1F, 2F);
-    public static final EntityDimensions SLEEPING_DIMENSIONS = EntityDimensions.changing(2.5F, 1f);
+    public static final EntityDimensions STANDARD_DIMENSIONS = EntityDimensions.changing(0.95f, 1.95f);
+    public static final EntityDimensions SLEEPING_DIMENSIONS = EntityDimensions.changing(1.5f, 1f);
     public int angryTicks = 0;
     public int animTicks = 0;
     public BehemothAnimation animation = BehemothAnimation.SLEEPING;
@@ -106,6 +108,7 @@ public class BehemothEntity extends HostileEntity implements Monster {
 
     @Override
     public void tick() {
+        if (this.firstUpdate) this.calculateDimensions();
         super.tick();
 
         this.animTicks++;

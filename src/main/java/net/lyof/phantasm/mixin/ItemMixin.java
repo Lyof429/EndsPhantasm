@@ -29,7 +29,6 @@ public class ItemMixin {
     public void universalRepair(ItemStack stack, ItemStack ingredient, CallbackInfoReturnable<Boolean> cir) {
         if (ingredient.isOf(ModBlocks.OBLIVION.asItem())) {
             cir.setReturnValue(true);
-            cir.cancel();
         }
     }
 }

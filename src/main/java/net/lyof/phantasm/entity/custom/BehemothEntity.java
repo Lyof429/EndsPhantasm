@@ -4,10 +4,7 @@ import net.lyof.phantasm.entity.animation.BehemothAnimation;
 import net.lyof.phantasm.entity.goal.BehemothAttackGoal;
 import net.lyof.phantasm.entity.goal.SleepGoal;
 import net.lyof.phantasm.particle.ModParticles;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityPose;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -18,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
 public class BehemothEntity extends HostileEntity implements Monster {
@@ -102,13 +100,13 @@ public class BehemothEntity extends HostileEntity implements Monster {
     public void setAnimation(BehemothAnimation anim) {
         if (anim != this.animation) this.animTicks = 0;
         this.animation = anim;
+        this.calculateDimensions();
     }
 
     @Override
     public void tick() {
         super.tick();
-        if (this.age % 20 == 0)
-            calculateDimensions();
+
         this.animTicks++;
         if (this.animation.maxTime > 0 && this.animTicks > this.animation.maxTime) {
             if (this.isAngry())

@@ -21,7 +21,7 @@ public class ModWorldGeneration {
         generateBiomes();
 
         generateSpawns();
-        registerRestrictions();
+        generateSpawnRestrictions();
     }
 
 
@@ -76,7 +76,8 @@ public class ModWorldGeneration {
                 ModEntities.BEHEMOTH,
                 7, 1, 1);
     }
-    public static void registerRestrictions(){
-        SpawnRestriction.register(ModEntities.BEHEMOTH,SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,MobEntity::canMobSpawn);
+
+    public static void generateSpawnRestrictions(){
+        SpawnRestriction.register(ModEntities.BEHEMOTH, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
     }
 }

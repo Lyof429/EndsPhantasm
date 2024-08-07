@@ -1,15 +1,15 @@
 {
   "variants": {
-    "is_tip=false,direction=down": {
+    "is_tip=false,is_up=false": {
       "model": "phantasm:block/crystal_shard_base"
     },
-    "is_tip=false,direction=up": {
+    "is_tip=false,is_up=true": {
       "model": "phantasm:block/crystal_shard_base"
     },
-    "is_tip=true,direction=down": {
+    "is_tip=true,is_up=false": {
       "model": "phantasm:block/crystal_shard_down_tip"
     },
-    "is_tip=true,direction=up": {
+    "is_tip=true,is_up=true": {
       "model": "phantasm:block/crystal_shard_up_tip"
     }
   }

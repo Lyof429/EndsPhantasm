@@ -68,7 +68,7 @@ public class CrystalSpikeFeature extends Feature<CrystalSpikeFeatureConfig> {
             if (pos.getY() <= world.getBottomY() + 1 || pos.getY() >= 250)
                 return false;
 
-            world.setBlockState(pos, bottom.with(CrystalShardBlock.DIRECTION, Direction.DOWN).with(CrystalShardBlock.IS_TIP, i == size - 1), 0x10);
+            world.setBlockState(pos, bottom.with(CrystalShardBlock.IS_UP, false).with(CrystalShardBlock.IS_TIP, i == size - 1), 0x10);
             pos = pos.down();
         }
 

@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 public class CrystalShardBlock extends Block implements Waterloggable {
     protected static final VoxelShape SHAPE = Block.createCuboidShape(2, 0, 2, 14, 16, 14);
 
-    public static final DirectionProperty DIRECTION = DirectionProperty.of("direction");
+    public static final BooleanProperty IS_UP = BooleanProperty.of("is_up");
     public static final BooleanProperty IS_TIP = BooleanProperty.of("is_tip");
     public static final BooleanProperty WATERLOGGED = BooleanProperty.of("waterlogged");
 
@@ -27,7 +27,7 @@ public class CrystalShardBlock extends Block implements Waterloggable {
         super(settings.nonOpaque());
         this.setDefaultState(this.getDefaultState()
                 .with(IS_TIP, true)
-                .with(DIRECTION, Direction.UP)
+                .with(IS_UP, true)
                 .with(WATERLOGGED, false)
         );
     }
@@ -40,7 +40,7 @@ public class CrystalShardBlock extends Block implements Waterloggable {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(IS_TIP).add(DIRECTION).add(WATERLOGGED);
+        builder.add(IS_TIP).add(IS_UP).add(WATERLOGGED);
     }
 
     @Override
@@ -67,10 +67,10 @@ public class CrystalShardBlock extends Block implements Waterloggable {
                 || world.getBlockState(pos.down()).getBlock() == this.asBlock();
 
         if (down && up) {
-            if (ctx.getSide() == Direction.DOWN) return state.with(DIRECTION, Direction.DOWN);
+            if (ctx.getSide() == Direction.DOWN) return state.with(IS_UP, false);
         }
         else if (down)
-            return state.with(DIRECTION, Direction.DOWN);
+            return state.with(IS_UP, false);
 
         return state;
     }
@@ -84,15 +84,15 @@ public class CrystalShardBlock extends Block implements Waterloggable {
         }
 
         if (isValidPos(world, neighborPos, direction.getOpposite())) {
-            if (direction == state.get(DIRECTION))
+            if (direction == getDirection(state.get(IS_UP)))
                 return state.with(IS_TIP, false);
         }
 
-        else if (direction == state.get(DIRECTION).getOpposite()) {
+        else if (direction == getDirection(state.get(IS_UP)).getOpposite()) {
             return Blocks.AIR.getDefaultState();
         }
 
-        if (direction == state.get(DIRECTION))
+        if (direction == getDirection(state.get(IS_UP)))
             return state.with(IS_TIP, true);
 
         return state;
@@ -101,5 +101,9 @@ public class CrystalShardBlock extends Block implements Waterloggable {
     public boolean isValidPos(BlockView world, BlockPos pos, Direction direction) {
         BlockState state = world.getBlockState(pos);
         return state.isSideSolidFullSquare(world, pos, direction) || state.getBlock() == this.asBlock();
+    }
+
+    public static Direction getDirection(boolean up) {
+        return up ? Direction.UP : Direction.DOWN;
     }
 }

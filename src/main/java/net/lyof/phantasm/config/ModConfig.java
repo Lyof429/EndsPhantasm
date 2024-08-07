@@ -128,7 +128,15 @@ public class ModConfig {
   
   // CATEGORY: GAMEPLAY
   "gameplay": {
-    "outer_end_in_gameloop": true
+    // Should End portals teleport to the outer islands instead of the Dragon's
+    "outer_end_in_gameloop": true,
+    
+    "behemoth": {
+      // Distance (in blocks) at which walking close to a Behemoth will aggro it
+      "aggro_range": 6,
+      // Distance (in blocks) at which walking close to a Behemoth while sneaking will aggro it
+      "aggro_range_sneaking": 0
+    }
   },
   
   // CATEGORY: EQUIPMENT

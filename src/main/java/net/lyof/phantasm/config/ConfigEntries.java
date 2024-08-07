@@ -16,6 +16,9 @@ public class ConfigEntries {
 
         outerEndIntegration = new ConfigEntry<>("gameplay.outer_end_in_gameloop", true).get();
 
+        behemothAggroRange = new ConfigEntry<>("gameplay.behemoth.aggro_range", 6).get();
+        behemothAggroRangeSneaking = new ConfigEntry<>("gameplay.behemoth.aggro_range_sneaking", 0).get();
+
         elytraBoostAdvancement = new ConfigEntry<>("equipment.elytra_boost_advancement", "minecraft:end/kill_dragon").get();
         crystalXPBoost = new ConfigEntry<>("equipment.crystal_xp_boost", 3).get();
 
@@ -36,7 +39,10 @@ public class ConfigEntries {
 
     public static boolean outerEndIntegration;
 
-    public static String elytraBoostAdvancement;
+    public static int behemothAggroRange;
+    public static int behemothAggroRangeSneaking;
+
+    public static String elytraBoostAdvancement = "";
     public static double crystalXPBoost;
 
     public static int voidEyeDurability = 4;

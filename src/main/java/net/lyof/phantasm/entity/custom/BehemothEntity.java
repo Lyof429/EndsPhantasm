@@ -1,5 +1,6 @@
 package net.lyof.phantasm.entity.custom;
 
+import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.animation.BehemothAnimation;
 import net.lyof.phantasm.entity.goal.BehemothAttackGoal;
 import net.lyof.phantasm.entity.goal.SleepGoal;
@@ -119,9 +120,9 @@ public class BehemothEntity extends HostileEntity implements Monster {
         if (this.angryTicks > 0) this.angryTicks--;
         else if (this.isAngry()) this.setTarget(null);
         else if (this.age % 20 == 0) {
-            PlayerEntity player = this.getWorld().getClosestPlayer(this, 6);
+            PlayerEntity player = this.getWorld().getClosestPlayer(this, ConfigEntries.behemothAggroRange);
             if (player != null && !player.isCreative() && !player.isSpectator()
-                    && (!player.isSneaking() || this.distanceTo(player) < 4))
+                    && (!player.isSneaking() || this.distanceTo(player) < ConfigEntries.behemothAggroRangeSneaking))
                 this.setTarget(player);
         }
         if (this.getTarget() != null && (this.getTarget().distanceTo(this) > 16 || !this.getTarget().isAlive()))

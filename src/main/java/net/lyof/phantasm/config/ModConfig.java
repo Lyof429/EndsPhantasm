@@ -144,7 +144,9 @@ public class ModConfig {
     // Advancement needed to enable elytra boosting. Leave blank "" to disable the need for one
     "elytra_boost_advancement": "minecraft:end/kill_dragon",
     // Crystalline tools boost ratio
-    "crystal_xp_boost": 3
+    "crystal_xp_boost": 3,
+    // Should eating a Chorus Fruit Salad teleport in/out of the End
+    "chorus_fruit_salad_teleportation": true
   }
 }""";
 }

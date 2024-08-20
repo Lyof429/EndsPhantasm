@@ -3,6 +3,7 @@ package net.lyof.phantasm.item;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.item.custom.ShatteredPendantItem;
 import net.lyof.phantasm.setup.ModRegistry;
@@ -55,7 +56,7 @@ public class ModItems {
             new Item(new FabricItemSettings().food(ModRegistry.Foods.CHORUS_SALAD).recipeRemainder(Items.BOWL).maxCount(1)) {
                 @Override
                 public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-                    if (world instanceof ServerWorld server && user.canUsePortals() && !user.isSneaking()) {
+                    if (world instanceof ServerWorld server && user.canUsePortals() && !user.isSneaking() && ConfigEntries.chorusSaladTp) {
                         RegistryKey<World> registryKey = world.getRegistryKey() == World.END ? World.OVERWORLD : World.END;
                         ServerWorld serverWorld = server.getServer().getWorld(registryKey);
                         if (serverWorld == null) {

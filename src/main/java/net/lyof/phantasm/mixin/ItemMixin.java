@@ -5,6 +5,7 @@ import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.AnvilScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
@@ -23,12 +24,5 @@ public class ItemMixin {
     public void showCrystalBonus(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {
         if (stack.isIn(ModTags.Items.XP_BOOSTED))
             tooltip.add(Text.translatable("tooltip.xp_boosted").formatted(Formatting.GREEN));
-    }
-
-    @Inject(method = "canRepair", at = @At("HEAD"), cancellable = true)
-    public void universalRepair(ItemStack stack, ItemStack ingredient, CallbackInfoReturnable<Boolean> cir) {
-        if (ingredient.isOf(ModBlocks.OBLIVION.asItem())) {
-            cir.setReturnValue(true);
-        }
     }
 }

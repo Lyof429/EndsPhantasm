@@ -146,7 +146,9 @@ public class ModConfig {
     // Crystalline tools boost ratio
     "crystal_xp_boost": 3,
     // Should eating a Chorus Fruit Salad teleport in/out of the End
-    "chorus_fruit_salad_teleportation": true
+    "chorus_fruit_salad_teleportation": true,
+    // Max Chorus Fruit Salad stack size
+    "chorus_fruit_salad_stack_size": 1
   }
 }""";
 }

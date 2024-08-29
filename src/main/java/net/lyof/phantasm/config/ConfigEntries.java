@@ -22,6 +22,7 @@ public class ConfigEntries {
         elytraBoostAdvancement = new ConfigEntry<>("equipment.elytra_boost_advancement", "minecraft:end/kill_dragon").get();
         crystalXPBoost = new ConfigEntry<>("equipment.crystal_xp_boost", 3).get();
         chorusSaladTp = new ConfigEntry<>("equipment.chorus_fruit_salad_teleportation", true).get();
+        chorusSaladStack = new ConfigEntry<>("equipment.chorus_fruit_salad_stack_size", 1).get();
 
         //voidEyeDurability = new ConfigEntry<>("equipment.void_eye_durability", 4).get();
     }
@@ -46,6 +47,7 @@ public class ConfigEntries {
     public static String elytraBoostAdvancement = "";
     public static double crystalXPBoost;
     public static boolean chorusSaladTp;
+    public static int chorusSaladStack;
 
     public static int voidEyeDurability = 4;
 }

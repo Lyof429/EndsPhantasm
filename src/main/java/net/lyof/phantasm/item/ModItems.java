@@ -10,6 +10,7 @@ import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.data.client.Models;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.tag.ItemTags;
@@ -53,7 +54,7 @@ public class ModItems {
             .build();
 
     public static final Item CHORUS_FRUIT_SALAD = ModRegistry.ofItem("chorus_fruit_salad",
-            new Item(new FabricItemSettings().food(ModRegistry.Foods.CHORUS_SALAD).recipeRemainder(Items.BOWL).maxCount(1)) {
+            new Item(new FabricItemSettings().food(ModRegistry.Foods.CHORUS_SALAD).recipeRemainder(Items.BOWL).maxCount(ConfigEntries.chorusSaladStack)) {
                 @Override
                 public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
                     if (world instanceof ServerWorld server && user.canUsePortals() && !user.isSneaking() && ConfigEntries.chorusSaladTp) {
@@ -64,7 +65,18 @@ public class ModItems {
                         }
                         user.moveToWorld(serverWorld);
                     }
-                    if (super.finishUsing(stack, world, user).isEmpty()) return this.getRecipeRemainder(stack);
+
+                    super.finishUsing(stack, world, user);
+                    if (user instanceof PlayerEntity player) {
+                        if (stack.isEmpty()) {
+                            if (player.getInventory().contains(this.getRecipeRemainder(stack)))
+                                player.giveItemStack(this.getRecipeRemainder(stack));
+                            else
+                                return this.getRecipeRemainder(stack);
+                        }
+                        else
+                            player.giveItemStack(this.getRecipeRemainder(stack));
+                    }
                     return stack;
                 }
             })

@@ -1,0 +1,10 @@
+{
+  "parent": "block/grass_block",
+  "textures": {
+    "bottom": "minecraft:block/end_stone",
+    "top": "phantasm:block/acidic_nihilium_top",
+    "side": "minecraft:block/end_stone",
+    "overlay": "phantasm:block/acidic_nihilium_side_overlay",
+    "particle": "phantasm:block/acidic_nihilium_side"
+  }
+}

@@ -390,4 +390,20 @@ public class ModBlocks {
             .drop().cutout()
             .tagitem(ModTags.Items.CRYSTAL_FLOWERS)
             .build();
+
+
+
+    // Acidic Nihilium
+    public static final Block ACIDIC_NIHILIUM = ModRegistry.ofBlock("acidic_nihilium",
+                    new NihiliumBlock(copy(Blocks.END_STONE).mapColor(MapColor.DARK_DULL_PINK).ticksRandomly()))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE).end_soil()
+            .cutout().build();
+
+    public static final Block ACIDIC_NIHILIS = ModRegistry.ofBlock("acidic_nihilis",
+                    new FernBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.DARK_DULL_PINK).replaceable()))
+            .tagitem(ItemTags.FLOWERS)
+            .model(ModRegistry.Models.CROSS).end_plant()
+            .cutout().build();
+
+    
 }

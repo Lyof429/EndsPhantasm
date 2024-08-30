@@ -13,11 +13,15 @@ public class ConfigEntries {
         doRawPurpur = new ConfigEntry<>("world_gen.do_raw_purpur", true).get();
 
         improveEndSpires = new ConfigEntry<>("world_gen.improve_end_spires", true).get();
+        noCrystalCages = new ConfigEntry<>("world_gen.no_crystal_cages", true).get();
 
         outerEndIntegration = new ConfigEntry<>("gameplay.outer_end_in_gameloop", true).get();
 
         behemothAggroRange = new ConfigEntry<>("gameplay.behemoth.aggro_range", 6).get();
         behemothAggroRangeSneaking = new ConfigEntry<>("gameplay.behemoth.aggro_range_sneaking", 0).get();
+
+        explosiveDragonFireballs = new ConfigEntry<>("gameplay.dragon.explosive_fireballs", true).get();
+        noEndermenFight = new ConfigEntry<>("gameplay.dragon.no_pesky_endermen", false).get();
 
         elytraBoostAdvancement = new ConfigEntry<>("equipment.elytra_boost_advancement", "minecraft:end/kill_dragon").get();
         crystalXPBoost = new ConfigEntry<>("equipment.crystal_xp_boost", 3).get();
@@ -38,11 +42,15 @@ public class ConfigEntries {
     public static boolean doRawPurpur;
 
     public static boolean improveEndSpires;
+    public static boolean noCrystalCages;
 
     public static boolean outerEndIntegration;
 
     public static int behemothAggroRange;
     public static int behemothAggroRangeSneaking;
+
+    public static boolean explosiveDragonFireballs;
+    public static boolean noEndermenFight;
 
     public static String elytraBoostAdvancement = "";
     public static double crystalXPBoost;

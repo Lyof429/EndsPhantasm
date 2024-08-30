@@ -95,7 +95,7 @@ public class ModConfig {
     static final String DEFAULT_CONFIG = """
 {
   "TECHNICAL": {
-    "VERSION_DO_NOT_EDIT": 1.3,
+    "VERSION_DO_NOT_EDIT": 1.4,
     "FORCE_RESET": false
   },
 
@@ -122,14 +122,24 @@ public class ModConfig {
     "do_fallen_stars": true,
     // Should Raw Purpur stripes appear on the islands' sides
     "do_raw_purpur": true,
+    
     // Should the main island's obsidian spires be prettified
-    "improve_end_spires": true
+    "improve_end_spires": true,
+    // Should the main island's obsidian spires never have iron bars around the End Crystal
+    "no_crystal_cages": true
   },
   
   // CATEGORY: GAMEPLAY
   "gameplay": {
     // Should End portals teleport to the outer islands instead of the Dragon's
     "outer_end_in_gameloop": true,
+    
+    "dragon": {
+      // Should the Dragon's Fireballs create a firey explosion on impact
+      "explosive_fireballs": true,
+      // Should Endermen not be aggroed when looked at during the fight
+      "no_pesky_endermen": false
+    },
     
     "behemoth": {
       // Distance (in blocks) at which walking close to a Behemoth will aggro it

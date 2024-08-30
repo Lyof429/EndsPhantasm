@@ -5,6 +5,7 @@ import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.projectile.DragonFireballEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.ModifiableWorld;
@@ -22,6 +23,9 @@ public abstract class EndSpikeFeatureMixin {
     public void randomizeObsidian(EndSpikeFeature spike, ModifiableWorld world, BlockPos pos, BlockState state,
                                   ServerWorldAccess serverworld, Random random, EndSpikeFeatureConfig config,
                                   EndSpikeFeature.Spike spikedata) {
+        if (state.isOf(Blocks.IRON_BARS) && ConfigEntries.noCrystalCages)
+            return;
+
         double crying = (pos.getY() - 60) / (spikedata.getHeight() - 60d);
         if (state.isOf(Blocks.OBSIDIAN) && ConfigEntries.improveEndSpires) {
             if (crying > 0 && Math.random() < crying * crying)

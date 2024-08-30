@@ -74,7 +74,7 @@ public class ModItems {
                             else
                                 return this.getRecipeRemainder(stack);
                         }
-                        else
+                        else if (!player.isCreative())
                             player.giveItemStack(this.getRecipeRemainder(stack));
                     }
                     return stack;

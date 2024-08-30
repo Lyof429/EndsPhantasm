@@ -21,7 +21,7 @@ public class ModBiomes {
 
     public static void bootstrap(Registerable<Biome> context) {
         context.register(DREAMING_DEN, dreamingDen(context));
-
+        context.register(ACIDBURNT_ABYSSES, acidburntAbysses(context));
     }
 
     public static void endBiome(SpawnSettings.Builder spawns, GenerationSettings.LookupBackedBuilder generation) {
@@ -33,6 +33,7 @@ public class ModBiomes {
 
 
     public static final RegistryKey<Biome> DREAMING_DEN = register("dreaming_den");
+    public static final RegistryKey<Biome> ACIDBURNT_ABYSSES = register("acidburnt_abysses");
 
     public static Biome dreamingDen(Registerable<Biome> context) {
         SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();

@@ -109,13 +109,17 @@ public class ModConfig {
       // DEAMING DEN
       "dreaming_den": {
         "generate": true,
-        "generation_weight": 2.5,
+        "generation_weight": 2,
         // Should Pream Trees appear in the biome
         "do_pream_trees": true,
-        // Should Tall Pream Trees appear in the biome
-        "do_tall_pream_trees": true,
         // Should Crystal Spikes appear in the biome
         "do_crystal_spikes": true
+      },
+      
+      // ACIDBURNT ABYSSES
+      "aciburnt_abysses": {
+        "generate": true,
+        "generation_weight": 2
       }
     },
     // Should Fallen Stars appear in the End's sky

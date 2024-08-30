@@ -63,6 +63,9 @@ public class ModWorldGeneration {
     public static void generateBiomes() {
         if (ConfigEntries.doDreamingDenBiome)
             TheEndBiomes.addHighlandsBiome(ModBiomes.DREAMING_DEN, ConfigEntries.dreamingDenWeight);
+
+        if (ConfigEntries.doAcidburntAbyssesBiome)
+            TheEndBiomes.addHighlandsBiome(ModBiomes.ACIDBURNT_ABYSSES, ConfigEntries.acidburntAbyssesWeight);
     }
 
     public static void generateSpawns() {
@@ -77,7 +80,7 @@ public class ModWorldGeneration {
                 7, 1, 1);
     }
 
-    public static void generateSpawnRestrictions(){
+    public static void generateSpawnRestrictions() {
         SpawnRestriction.register(ModEntities.BEHEMOTH, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
     }
 }

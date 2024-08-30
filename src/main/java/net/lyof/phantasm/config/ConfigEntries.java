@@ -7,7 +7,9 @@ public class ConfigEntries {
 
         doCrystalSpikes = new ConfigEntry<>("world_gen.biomes.dreaming_den.do_crystal_spikes", true).get();
         doPreamTrees = new ConfigEntry<>("world_gen.biomes.dreaming_den.do_pream_trees", true).get();
-        doTallPreamTrees = new ConfigEntry<>("world_gen.biomes.dreaming_den.do_tall_pream_trees", true).get();
+
+        doAcidburntAbyssesBiome = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.generate", true).get();
+        acidburntAbyssesWeight = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.generation_weight", 2.5).get();
 
         doFallenStars = new ConfigEntry<>("world_gen.do_fallen_stars", true).get();
         doRawPurpur = new ConfigEntry<>("world_gen.do_raw_purpur", true).get();
@@ -36,7 +38,9 @@ public class ConfigEntries {
 
     public static boolean doCrystalSpikes;
     public static boolean doPreamTrees;
-    public static boolean doTallPreamTrees;
+
+    public static boolean doAcidburntAbyssesBiome;
+    public static double acidburntAbyssesWeight;
 
     public static boolean doFallenStars;
     public static boolean doRawPurpur;

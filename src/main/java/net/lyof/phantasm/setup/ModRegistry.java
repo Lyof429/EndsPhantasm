@@ -204,7 +204,8 @@ public class ModRegistry {
         WALL_SIGN,
         HANGING_SIGN,
         WALL_HANGING_SIGN,
-        PANE
+        PANE,
+        ROTATABLE
     }
 
     public static class Foods {

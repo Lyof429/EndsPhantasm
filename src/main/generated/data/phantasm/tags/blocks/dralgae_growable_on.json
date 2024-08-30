@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "phantasm:dralgae",
+    "#phantasm:end_plants_growable_on"
+  ]
+}

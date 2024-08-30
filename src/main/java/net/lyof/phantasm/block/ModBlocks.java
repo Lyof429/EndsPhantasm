@@ -3,10 +3,7 @@ package net.lyof.phantasm.block;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.block.custom.CrystalShardBlock;
-import net.lyof.phantasm.block.custom.HangingFruitBlock;
-import net.lyof.phantasm.block.custom.HangingPlantBlock;
-import net.lyof.phantasm.block.custom.NihiliumBlock;
+import net.lyof.phantasm.block.custom.*;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
@@ -392,6 +389,8 @@ public class ModBlocks {
             .build();
 
 
+    private static final FabricBlockSettings AcidicMassMaterial =
+            copy(Blocks.MOSS_BLOCK).mapColor(MapColor.DARK_DULL_PINK).strength(1);
 
     // Acidic Nihilium
     public static final Block ACIDIC_NIHILIUM = ModRegistry.ofBlock("acidic_nihilium",
@@ -405,5 +404,17 @@ public class ModBlocks {
             .model(ModRegistry.Models.CROSS).end_plant()
             .cutout().build();
 
-    
+    public static final Block ACIDIC_MASS = ModRegistry.ofBlock("acidic_mass",
+                    new Block(AcidicMassMaterial))
+            .tool("_hoe").tag(BlockTags.DRAGON_IMMUNE).end_soil()
+            .model(ModRegistry.Models.ROTATABLE).drop().build();
+
+
+    public static final Block DRALGAE = ModRegistry.ofBlock("dralgae",
+                    new PillaringPlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.DARK_CRIMSON),
+                            ModTags.Blocks.DRALGAE_GROWABLE_ON,
+                            Block.createCuboidShape(5, 0, 5, 11, 16, 11)))
+            .model(ModRegistry.Models.CROSS).drop()
+            .tag(ModTags.Blocks.DRALGAE_GROWABLE_ON, BlockTags.CLIMBABLE)
+            .cutout().build();
 }

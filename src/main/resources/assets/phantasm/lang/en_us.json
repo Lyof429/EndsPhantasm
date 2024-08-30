@@ -92,10 +92,17 @@
 
   "item.phantasm.shattered_pendant": "Shattered Pendant",
 
+  "block.phantasm.acidic_nihilium": "Acidic Nihilium",
+  "block.phantasm.acidic_nihilis": "Acidic Nihilis",
+  "block.phantasm.acidic_mass": "Acidic Mass",
+
+  "block.phantasm.dralgae": "Dralgae",
+
 
   "itemgroup.phantasm": "Phantasm",
 
   "biome.phantasm.dreaming_den": "Dreaming Den",
+  "biome.phantasm.acidburnt_abysses": "Acidburnt Abysses",
 
   "tooltip.xp_boosted": "Efficiency increases with experience.",
 
@@ -110,5 +117,8 @@
   "advancement.phantasm.find_underisland.desc": "Venture into the Underisland, below the Dreaming Den",
 
   "advancement.phantasm.get_crystal_tools": "Time to Shine!",
-  "advancement.phantasm.get_crystal_tools.desc": "Get every type of Crystalline tools"
+  "advancement.phantasm.get_crystal_tools.desc": "Get every type of Crystalline tools",
+
+  "advancement.phantasm.find_acidburnt_abysses": "See the World Pink",
+  "advancement.phantasm.find_acidburnt_abysses.desc": "Find an Acidburnt Abysses biome"
 }

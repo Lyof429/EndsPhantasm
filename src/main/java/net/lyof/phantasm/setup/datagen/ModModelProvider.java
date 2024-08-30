@@ -29,6 +29,8 @@ public class ModModelProvider extends FabricModelProvider {
 
         for (Block block : ModRegistry.getModelList(ModRegistry.Models.CUBE))
             generator.registerSimpleCubeAll(block);
+        for (Block block : ModRegistry.getModelList(ModRegistry.Models.ROTATABLE))
+            generator.registerRotatable(block);
         for (Block block : ModRegistry.getModelList(ModRegistry.Models.PILLAR))
             generator.registerLog(block).log(block);
         for (Block block : ModRegistry.getModelList(ModRegistry.Models.CROSS))

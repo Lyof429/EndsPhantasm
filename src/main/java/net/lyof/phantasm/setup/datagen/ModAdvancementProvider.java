@@ -52,7 +52,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
     @Override
     public void generateAdvancement(Consumer<Advancement> consumer) {
         Advancement DREAMING_DEN = Advancement.Builder.create()
-                .display(ModBlocks.PREAM_LOG,
+                .display(ModBlocks.VIVID_NIHILIUM,
                         Text.translatable(BASE + "find_dreaming_den"),
                         Text.translatable(BASE + "find_dreaming_den" + DESC),
                         null,
@@ -103,5 +103,16 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 .rewards(AdvancementRewards.Builder.experience(100))
                 .parent(CRYSTAL_SHARD)
                 .build(consumer, "phantasm:get_crystal_tools");
+
+        Advancement ACIDBURNT_ABYSSES = Advancement.Builder.create()
+                .display(ModBlocks.ACIDIC_NIHILIUM,
+                        Text.translatable(BASE + "find_acidburnt_abysses"),
+                        Text.translatable(BASE + "find_acidburnt_abysses" + DESC),
+                        null,
+                        AdvancementFrame.TASK,
+                        true, true, false)
+                .criterion("is_acidburnt_abysses", BiomeCriterion.of(ModBiomes.ACIDBURNT_ABYSSES, 50, 256))
+                .rewards(AdvancementRewards.NONE).build(Phantasm.makeID("find_dreaming_den"));
+                //.build(consumer, "phantasm:find_acidburnt_abysses");
     }
 }

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "phantasm:block/acidic_mass"
+      },
+      {
+        "model": "phantasm:block/acidic_mass",
+        "y": 90
+      },
+      {
+        "model": "phantasm:block/acidic_mass",
+        "y": 180
+      },
+      {
+        "model": "phantasm:block/acidic_mass",
+        "y": 270
+      }
+    ]
+  }
+}

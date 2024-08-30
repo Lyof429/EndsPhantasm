@@ -109,6 +109,14 @@ public class ModItemGroups {
 
                         entries.add(ModItems.CRYSTIE_SPAWN_EGG);
                         entries.add(ModItems.BEHEMOTH_SPAWN_EGG);
+
+
+                        entries.add(ModBlocks.ACIDIC_NIHILIUM);
+                        entries.add(ModBlocks.ACIDIC_NIHILIS);
+
+                        entries.add(ModBlocks.DRALGAE);
+                        entries.add(ModBlocks.ACIDIC_MASS);
+
                         //for (Item item : ModRegistry.ITEMS)
                         //    entries.add(item);
                     })

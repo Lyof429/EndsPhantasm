@@ -1,18 +1,18 @@
 {
   "parent": "minecraft:end/enter_end_gateway",
   "criteria": {
-    "is_dreaming_den": {
+    "is_acidburnt_abysses": {
       "conditions": {
         "player": [
           {
             "condition": "minecraft:location_check",
             "predicate": {
-              "biome": "phantasm:dreaming_den"
-            },
-            "position": {
-              "y": {
-                "min": 32.0,
-                "max": 255.0
+              "biome": "phantasm:acidburnt_abysses",
+              "position": {
+                "y": {
+                  "max": 256.0,
+                  "min": 50.0
+                }
               }
             }
           }
@@ -24,21 +24,21 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "advancement.phantasm.find_dreaming_den.desc"
+      "translate": "advancement.phantasm.find_acidburnt_abysses.desc"
     },
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "phantasm:vivid_nihilium"
+      "item": "phantasm:acidic_nihilium"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancement.phantasm.find_dreaming_den"
+      "translate": "advancement.phantasm.find_acidburnt_abysses"
     }
   },
   "requirements": [
     [
-      "is_dreaming_den"
+      "is_acidburnt_abysses"
     ]
   ],
   "sends_telemetry_event": true

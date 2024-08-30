@@ -50,7 +50,10 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
                 new GroupEntry.Builder()));
 
         addSelfDropOr(ModBlocks.VIVID_NIHILIUM, Items.END_STONE);
+        addSelfDropOr(ModBlocks.ACIDIC_NIHILIUM, Items.END_STONE);
 
         addDrop(ModBlocks.VIVID_NIHILIS, dropsWithShears(ModBlocks.VIVID_NIHILIS));
+        addDrop(ModBlocks.TALL_VIVID_NIHILIS, dropsWithShears(ModBlocks.TALL_VIVID_NIHILIS));
+        addDrop(ModBlocks.ACIDIC_NIHILIS, dropsWithShears(ModBlocks.ACIDIC_NIHILIS));
     }
 }

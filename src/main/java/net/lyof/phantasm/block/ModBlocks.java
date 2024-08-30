@@ -417,4 +417,9 @@ public class ModBlocks {
             .model(ModRegistry.Models.CROSS).drop()
             .tag(ModTags.Blocks.DRALGAE_GROWABLE_ON, BlockTags.CLIMBABLE)
             .cutout().build();
+
+    public static final Block SOURFRUIT = ModRegistry.ofBlock("sourfruit",
+                    new SourfruitBlock(AcidicMassMaterial))
+            .tool("_axe").tag(BlockTags.DRAGON_IMMUNE)
+            .build();
 }

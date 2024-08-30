@@ -115,6 +115,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.ACIDIC_NIHILIS);
 
                         entries.add(ModBlocks.DRALGAE);
+                        entries.add(ModBlocks.SOURFRUIT);
                         entries.add(ModBlocks.ACIDIC_MASS);
 
                         //for (Item item : ModRegistry.ITEMS)

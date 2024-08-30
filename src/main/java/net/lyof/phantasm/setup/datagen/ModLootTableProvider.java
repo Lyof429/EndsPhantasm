@@ -3,6 +3,7 @@ package net.lyof.phantasm.setup.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemConvertible;
@@ -12,6 +13,7 @@ import net.minecraft.loot.entry.GroupEntry;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.LootNumberProvider;
+import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 
 import java.util.Map;
 
@@ -55,5 +57,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.VIVID_NIHILIS, dropsWithShears(ModBlocks.VIVID_NIHILIS));
         addDrop(ModBlocks.TALL_VIVID_NIHILIS, dropsWithShears(ModBlocks.TALL_VIVID_NIHILIS));
         addDrop(ModBlocks.ACIDIC_NIHILIS, dropsWithShears(ModBlocks.ACIDIC_NIHILIS));
+
+        addSelfDropOr(ModBlocks.SOURFRUIT, Items.MELON_SLICE, UniformLootNumberProvider.create(3, 6));
     }
 }

@@ -92,6 +92,9 @@ public class ModItems {
                 new ShatteredPendantItem(new FabricItemSettings()))
             .model(Models.GENERATED).build();
 
+    public static final Item POME_SLICE = ModRegistry.ofItem("pome_slice",
+            new Item(new FabricItemSettings().food(ModRegistry.Foods.POME_SLICE))).model(Models.GENERATED).build();
+
     public static final Item CRYSTIE_SPAWN_EGG = ModRegistry.ofItem("crystie_spawn_egg",
                 new SpawnEggItem(ModEntities.CRYSTIE, 0xfaf0ff, 0xa0a0ff, new FabricItemSettings()))
             .build();

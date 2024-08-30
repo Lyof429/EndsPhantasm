@@ -1,5 +1,6 @@
 package net.lyof.phantasm.block.custom;
 
+import net.lyof.phantasm.block.ModBlocks;
 import net.minecraft.block.*;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.world.ServerWorld;
@@ -44,6 +45,9 @@ public class PillaringPlantBlock extends PlantBlock implements Fertilizable {
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        world.setBlockState(pos.up(), this.getDefaultState());
+        if (state.isOf(ModBlocks.DRALGAE) && random.nextInt(10) == 0)
+            world.setBlockState(pos.up(), ModBlocks.POME.getDefaultState());
+        else
+            world.setBlockState(pos.up(), this.getDefaultState());
     }
 }

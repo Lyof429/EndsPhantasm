@@ -10,6 +10,9 @@ import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.world.feature.custom.tree.PreamSaplingGenerator;
 import net.minecraft.block.*;
 import net.minecraft.data.client.Models;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
@@ -17,6 +20,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.World;
 
 import java.util.Map;
 
@@ -390,6 +394,9 @@ public class ModBlocks {
 
 
     private static final FabricBlockSettings AcidicMassMaterial =
+            copy(Blocks.MOSS_BLOCK).mapColor(MapColor.DARK_DULL_PINK).strength(1.3f);
+
+    private static final FabricBlockSettings PomeMaterial =
             copy(Blocks.MOSS_BLOCK).mapColor(MapColor.DARK_DULL_PINK).strength(1);
 
     // Acidic Nihilium
@@ -405,7 +412,17 @@ public class ModBlocks {
             .cutout().build();
 
     public static final Block ACIDIC_MASS = ModRegistry.ofBlock("acidic_mass",
-                    new Block(AcidicMassMaterial))
+                    new Block(AcidicMassMaterial) {
+                        @Override
+                        public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
+                            if (!entity.bypassesSteppingEffects()) {
+                                entity.setVelocity(entity.getVelocity().multiply(0.4, 1, 0.4));
+                                if (entity instanceof LivingEntity living)
+                                    living.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0, true, false));
+                            }
+                            super.onSteppedOn(world, pos, state, entity);
+                        }
+                    })
             .tool("_hoe").tag(BlockTags.DRAGON_IMMUNE).end_soil()
             .model(ModRegistry.Models.ROTATABLE).drop().build();
 
@@ -418,8 +435,8 @@ public class ModBlocks {
             .tag(ModTags.Blocks.DRALGAE_GROWABLE_ON, BlockTags.CLIMBABLE)
             .cutout().build();
 
-    public static final Block SOURFRUIT = ModRegistry.ofBlock("sourfruit",
-                    new SourfruitBlock(AcidicMassMaterial))
+    public static final Block POME = ModRegistry.ofBlock("pome",
+                    new PomeBlock(PomeMaterial))
             .tool("_axe").tag(BlockTags.DRAGON_IMMUNE)
             .build();
 }

@@ -58,6 +58,6 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.TALL_VIVID_NIHILIS, dropsWithShears(ModBlocks.TALL_VIVID_NIHILIS));
         addDrop(ModBlocks.ACIDIC_NIHILIS, dropsWithShears(ModBlocks.ACIDIC_NIHILIS));
 
-        addSelfDropOr(ModBlocks.SOURFRUIT, Items.MELON_SLICE, UniformLootNumberProvider.create(3, 6));
+        addSelfDropOr(ModBlocks.POME, ModItems.POME_SLICE, UniformLootNumberProvider.create(3, 6));
     }
 }

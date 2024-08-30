@@ -234,6 +234,10 @@ public class ModRegistry {
                         1)
                 .meat()
                 .build();
+
+        public static final FoodComponent POME_SLICE = new FoodComponent.Builder().hunger(4).saturationModifier(1.5f)
+                .snack()
+                .build();
     }
 
 

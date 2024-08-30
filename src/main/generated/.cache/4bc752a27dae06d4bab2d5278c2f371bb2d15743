@@ -1,11 +1,10 @@
-// 1.20.1	2024-08-30T18:40:24.8255653	End's Phantasm/Block Loot Tables
+// 1.20.1	2024-08-30T22:01:23.2638319	End's Phantasm/Block Loot Tables
 84f0b6e2d7cfb187d5d5de6b2dcc825ca0643ce8 data\phantasm\loot_tables\blocks\crystal_pillar.json
 754842e402287f059b390347065830e05894ada6 data\phantasm\loot_tables\blocks\void_crystal_tiles.json
 cc6a49458b3dafc8ea5dfa00fbdf025b095aaf0d data\phantasm\loot_tables\blocks\pream_wall_sign.json
 e53347f0c93e7ad475f4fc4d19fac2bc50a3bafd data\phantasm\loot_tables\blocks\acidic_nihilium.json
 038e79c592f883ff39922e7df84da44ca3bb3073 data\phantasm\loot_tables\blocks\void_crystal_tiles_stairs.json
 c9637f48a5cd275826b71d7367541afa866c1b6e data\phantasm\loot_tables\blocks\crystal_tiles_stairs.json
-1594913a8a0cc633e8fba8c60ce57719db20dada data\phantasm\loot_tables\blocks\sourfruit.json
 df371f3301ef0930e18fd5bbf97a578b0beb3717 data\phantasm\loot_tables\blocks\fallen_star.json
 011bb33c760be0ceeb8f7567face0c9140f8b5ac data\phantasm\loot_tables\blocks\polished_obsidian_bricks_slab.json
 f0805353ada6899909565c62305f6e9f89d6c9d6 data\phantasm\loot_tables\blocks\raw_purpur_pillar.json
@@ -19,6 +18,7 @@ bfbddeb8473e4958ed4cd3ceb4364183fd6f883c data\phantasm\loot_tables\blocks\pream_
 8cfdc5451dacef1c78b92621ecb65d9d14826d0d data\phantasm\loot_tables\blocks\crystal_glass.json
 ddf95ef4b2fc4de5a811250267b5d875f042932c data\phantasm\loot_tables\blocks\acidic_mass.json
 cae383fa04756c0469426fef36624338b242bc59 data\phantasm\loot_tables\blocks\crystal_shard.json
+b4f5c4f5f1cd1c0941b8de4a12793f2e2df2a18f data\phantasm\loot_tables\blocks\pome.json
 59631400fa7c77a4abb2d70ed85f779c707d9bc6 data\phantasm\loot_tables\blocks\polished_obsidian_bricks.json
 2a16809cd5ca0306e69d838a6a9c9a51e1086770 data\phantasm\loot_tables\blocks\hanging_pream_leaves.json
 c2f31acd4598ce2c5599c98ee0bdb726d93980f6 data\phantasm\loot_tables\blocks\polished_obsidian_bricks_stairs.json

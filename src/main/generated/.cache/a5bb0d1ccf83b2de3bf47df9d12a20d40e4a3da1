@@ -1,4 +1,4 @@
-// 1.20.1	2024-08-30T18:40:24.8245685	End's Phantasm/Tags for minecraft:item
+// 1.20.1	2024-08-30T22:01:23.262835	End's Phantasm/Tags for minecraft:item
 3c7b4eb0c2d8eb33519bf4571bf742336fafa5e9 data\minecraft\tags\items\planks.json
 5d1270eb9e4788b0604ec4a19166e9cec3aa0b71 data\minecraft\tags\items\wooden_trapdoors.json
 e33ea2b4205eff8c602d37342bbda6ae0fc9e29f data\minecraft\tags\items\stone_crafting_materials.json
@@ -17,8 +17,8 @@ e9b179adc932a9775a25d8959fb6546f3b3f18b5 data\minecraft\tags\items\shovels.json
 142861b7bb99ff1cd71eb5e451e6cd005e8f3f98 data\minecraft\tags\items\fence_gates.json
 10070d307ed46b9dbe8dc8479ec55bf4ec4d5c25 data\minecraft\tags\items\slabs.json
 d448ae873ff7427c0425485f2ddb044a4211944a data\minecraft\tags\items\stairs.json
-eae18e31557daa7af68aa1010038bd6d430c5886 data\minecraft\tags\items\hoes.json
 ec0cc05330bcc36ecae4846e703e00642fc521c2 data\minecraft\tags\items\wooden_doors.json
+eae18e31557daa7af68aa1010038bd6d430c5886 data\minecraft\tags\items\hoes.json
 e33ea2b4205eff8c602d37342bbda6ae0fc9e29f data\minecraft\tags\items\stone_tool_materials.json
 82e989363d624a4c0449f7ad365163723138e11a data\minecraft\tags\items\wooden_stairs.json
 54c697faf80766563cfeb8d01616a51f303a2521 data\minecraft\tags\items\saplings.json

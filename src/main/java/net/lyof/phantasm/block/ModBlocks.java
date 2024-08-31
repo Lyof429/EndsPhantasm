@@ -429,7 +429,7 @@ public class ModBlocks {
 
 
     public static final Block DRALGAE = ModRegistry.ofBlock("dralgae",
-                    new PillaringPlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.DARK_CRIMSON),
+                    new PillaringPlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.DARK_CRIMSON).offset(AbstractBlock.OffsetType.NONE),
                             ModTags.Blocks.DRALGAE_GROWABLE_ON,
                             Block.createCuboidShape(5, 0, 5, 11, 16, 11)))
             .model(ModRegistry.Models.CROSS).drop()

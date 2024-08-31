@@ -63,6 +63,10 @@ public class ModWorldGeneration {
         BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
                 GenerationStep.Feature.VEGETAL_DECORATION,
                 ModPlacedFeatures.ACIDIC_NIHILIS);
+
+        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
+                GenerationStep.Feature.VEGETAL_DECORATION,
+                ModPlacedFeatures.DRALGAE);
     }
 
     public static void generateBiomes() {

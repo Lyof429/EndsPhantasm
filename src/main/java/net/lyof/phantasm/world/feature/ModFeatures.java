@@ -1,10 +1,7 @@
 package net.lyof.phantasm.world.feature;
 
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.world.feature.custom.CrystalSpikeFeature;
-import net.lyof.phantasm.world.feature.custom.OblivineFeature;
-import net.lyof.phantasm.world.feature.custom.ObsidianTowerStructure;
-import net.lyof.phantasm.world.feature.custom.SingleBlockFeature;
+import net.lyof.phantasm.world.feature.custom.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
@@ -16,5 +13,6 @@ public class ModFeatures {
         Registry.register(Registries.FEATURE, Phantasm.makeID("single_block"), SingleBlockFeature.INSTANCE);
         Registry.register(Registries.FEATURE, Phantasm.makeID("obsidian_tower"), ObsidianTowerStructure.INSTANCE);
         Registry.register(Registries.FEATURE, Phantasm.makeID("oblivine"), OblivineFeature.INSTANCE);
+        Registry.register(Registries.FEATURE, Phantasm.makeID("dralgae"), DralgaeFeature.INSTANCE);
     }
 }

@@ -40,14 +40,11 @@ public class ModPlacedFeatures {
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
-        //modifiers.add(RarityFilterPlacementModifier.of(2));
-        List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
-                PlacedFeatures.createCountExtraModifier(1, 0.5f, 2),
-                ModBlocks.PREAM_SAPLING));
-
 
         register(context, PREAM, configLookup.getOrThrow(ModConfiguredFeatures.PREAM),
-                modifiers);
+                VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
+                        PlacedFeatures.createCountExtraModifier(1, 0.5f, 2),
+                        ModBlocks.PREAM_SAPLING));
 
         register(context, CRYSTAL_SPIKE, configLookup.getOrThrow(ModConfiguredFeatures.CRYSTAL_SPIKE),
                 SquarePlacementModifier.of(),
@@ -86,6 +83,12 @@ public class ModPlacedFeatures {
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of());
+
+        register(context, DRALGAE, configLookup.getOrThrow(ModConfiguredFeatures.DRALGAE),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of(),
+                PlacedFeatures.createCountExtraModifier(10, 1, 5));
     }
 
 
@@ -105,4 +108,5 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> OBLIVINE_PATCH = create("patch_oblivine");
 
     public static final RegistryKey<PlacedFeature> ACIDIC_NIHILIS = create("patch_acidic_nihilis");
+    public static final RegistryKey<PlacedFeature> DRALGAE = create("patch_dralgae");
 }

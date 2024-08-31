@@ -2,11 +2,9 @@ package net.lyof.phantasm.world.feature;
 
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
-import net.lyof.phantasm.world.feature.custom.CrystalSpikeFeature;
-import net.lyof.phantasm.world.feature.custom.OblivineFeature;
-import net.lyof.phantasm.world.feature.custom.ObsidianTowerStructure;
-import net.lyof.phantasm.world.feature.custom.SingleBlockFeature;
+import net.lyof.phantasm.world.feature.custom.*;
 import net.lyof.phantasm.world.feature.custom.config.CrystalSpikeFeatureConfig;
+import net.lyof.phantasm.world.feature.custom.config.DralgaeFeatureConfig;
 import net.lyof.phantasm.world.feature.custom.config.SingleBlockFeatureConfig;
 import net.lyof.phantasm.world.feature.custom.tree.custom.PreamFoliagePlacer;
 import net.lyof.phantasm.world.feature.custom.tree.custom.PreamTrunkPlacer;
@@ -18,6 +16,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
+import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.gen.CountConfig;
 import net.minecraft.world.gen.feature.*;
@@ -87,6 +86,10 @@ public class ModConfiguredFeatures {
         register(context, ACIDIC_NIHILIS, Feature.FLOWER, new RandomPatchFeatureConfig(
                 48, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ACIDIC_NIHILIS)))));
+
+        register(context, DRALGAE, DralgaeFeature.INSTANCE,
+                new DralgaeFeatureConfig(UniformIntProvider.create(10, 30), BlockStateProvider.of(ModBlocks.DRALGAE),
+                        BlockStateProvider.of(ModBlocks.POME)));
     }
 
 
@@ -105,5 +108,7 @@ public class ModConfiguredFeatures {
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> OBLIVINE = create("patch_oblivine");
 
+
     public static final RegistryKey<ConfiguredFeature<?, ?>> ACIDIC_NIHILIS = create("patch_acidic_nihilis");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DRALGAE = create("patch_dralgae");
 }

@@ -100,6 +100,11 @@
   "block.phantasm.pome": "Pome",
   "item.phantasm.pome_slice": "Pome Slice",
 
+  "block.phantasm.cirite": "Cirite",
+  "block.phantasm.cirite_bricks": "Cirite Bricks",
+  "block.phantasm.cirite_bricks_stairs": "Cirite Bricks Stairs",
+  "block.phantasm.cirite_bricks_slab": "Cirite Bricks Slab",
+
   "item.minecraft.potion.effect.corrosion": "Potion of Corrosion",
   "item.minecraft.splash_potion.effect.corrosion": "Splash Potion of Corrosion",
   "item.minecraft.lingering_potion.effect.corrosion": "Lingering Potion of Corrosion",

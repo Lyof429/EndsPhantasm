@@ -1,4 +1,4 @@
-// 1.20.1	2024-08-31T18:43:28.5033423	End's Phantasm/Model Definitions
+// 1.20.1	2024-08-31T19:09:50.1521654	End's Phantasm/Model Definitions
 1dfe08bcfe8ebc76bda5c21fb3b3253d6d029360 assets\phantasm\blockstates\polished_obsidian_bricks.json
 880b909c6d952907ca6f94c0bd5ea7cf9f5bd179 assets\phantasm\models\block\pream_door_bottom_left.json
 2967964315fe0f2678c44d11527da347a2ab9b39 assets\phantasm\models\block\crystal_glass.json
@@ -111,8 +111,8 @@ b72c4e61fa0f43e7c9de04337b701f45ff9db8c1 assets\phantasm\models\block\cirite_bri
 6dcce1e960571f4561100d3c8602d6ebbf0327ca assets\phantasm\models\block\acidic_mass.json
 bf191eb236b6d9aeeee02b4c6c47665344efc316 assets\phantasm\blockstates\pream_fence.json
 e683c5311d3c8b4f772f59d6150beca2c8295cb1 assets\phantasm\models\block\pream_sapling.json
-a00a2ddcd4931e35b31d0eca7f66b67dfefe5d84 assets\phantasm\models\item\void_crystal_tiles.json
 674ee3e2ee1912fe2465efc16706bf38524fb2c5 assets\phantasm\models\block\pream_log_horizontal.json
+a00a2ddcd4931e35b31d0eca7f66b67dfefe5d84 assets\phantasm\models\item\void_crystal_tiles.json
 1ab84f7500aa538e172ff22d45d228448f2c70b2 assets\phantasm\models\block\void_crystal_tiles.json
 48858bc8e2330366f1705da937e7904104d58456 assets\phantasm\blockstates\void_crystal_tiles_slab.json
 c1ad0b3536041faae0fac76ea3c6bd8c0d071cb4 assets\phantasm\blockstates\tall_vivid_nihilis.json
@@ -199,8 +199,8 @@ f69dd3f23de7faec48bf01ca5d7da52090d8f9cf assets\phantasm\models\item\void_crysta
 9c2bb9681231d72231565e13cd459d17815c45bd assets\phantasm\models\item\crystal_tiles_stairs.json
 5c1895b3f5c8274814de34bd16f2cf3fba0f647b assets\phantasm\models\block\polished_obsidian_bricks_slab.json
 0ef25be482936b8755a5ff4de7edd1deea714022 assets\phantasm\blockstates\cirite_bricks.json
-17a38beea54c9a545b23b0024ee01899df64f11a assets\phantasm\models\item\vivid_nihilium.json
 f9cba22695f259b74f9b8cb149930ca73717feea assets\phantasm\models\block\tall_vivid_nihilis_bottom.json
+17a38beea54c9a545b23b0024ee01899df64f11a assets\phantasm\models\item\vivid_nihilium.json
 6b228392a95269063c7d75ef503d45ee1f066a7f assets\phantasm\blockstates\polished_obsidian.json
 4885ad5f2ed82535bb728d456bb436888f882771 assets\phantasm\models\block\polished_obsidian_bricks_stairs_inner.json
 76a0578a1e37d116189dc1bf7326502c92fdc929 assets\phantasm\models\block\pream_pressure_plate_down.json
@@ -209,8 +209,8 @@ f9cba22695f259b74f9b8cb149930ca73717feea assets\phantasm\models\block\tall_vivid
 965e520a4ff423f209d3688c2f3068e56ae0ee37 assets\phantasm\models\item\polished_obsidian.json
 167a659803a29215061db61ca3e3055d780e20d9 assets\phantasm\models\block\polished_obsidian_bricks_stairs.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets\phantasm\models\item\crystie_spawn_egg.json
-0a72f532ca8df9712c7cc43a854359f708a5b922 assets\phantasm\blockstates\crystal_pillar.json
 eb8f6b71d3f302f93577b246def1e002f79128c1 assets\phantasm\blockstates\cirite.json
+0a72f532ca8df9712c7cc43a854359f708a5b922 assets\phantasm\blockstates\crystal_pillar.json
 39c4996421c51c3f1ff3d730c55787d9e24ed9cb assets\phantasm\models\item\polished_obsidian_bricks_slab.json
 9e103efe4c58892ca48dddb55068a0f55c00c04d assets\phantasm\models\block\pream_trapdoor_bottom.json
 97ffa6013464c99056167a7f94681c0b7dcd5e5c assets\phantasm\models\item\pream_pressure_plate.json

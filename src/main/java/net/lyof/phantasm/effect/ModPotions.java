@@ -1,14 +1,23 @@
 package net.lyof.phantasm.effect;
 
+import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistry;
 import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.item.ModItems;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
+import net.minecraft.potion.Potions;
+import net.minecraft.recipe.BrewingRecipeRegistry;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
 public class ModPotions {
     public static void register() {
         Phantasm.log("Registering Potions for modid : " + Phantasm.MOD_ID);
+
+        BrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, ModItems.POME_SLICE, CORROSION);
+        BrewingRecipeRegistry.registerPotionRecipe(CORROSION, Items.REDSTONE, LONG_CORROSION);
+        BrewingRecipeRegistry.registerPotionRecipe(CORROSION, Items.GLOWSTONE_DUST, STRONG_CORROSION);
     }
 
 

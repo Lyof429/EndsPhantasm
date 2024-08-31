@@ -1,4 +1,4 @@
-// 1.20.1	2024-08-31T19:13:00.0672788	End's Phantasm/Model Definitions
+// 1.20.1	2024-08-31T19:28:11.2540005	End's Phantasm/Model Definitions
 1dfe08bcfe8ebc76bda5c21fb3b3253d6d029360 assets\phantasm\blockstates\polished_obsidian_bricks.json
 880b909c6d952907ca6f94c0bd5ea7cf9f5bd179 assets\phantasm\models\block\pream_door_bottom_left.json
 2967964315fe0f2678c44d11527da347a2ab9b39 assets\phantasm\models\block\crystal_glass.json
@@ -190,8 +190,8 @@ f8fa9c6f3d3f3e206c64d3f5b8f906932a8ffcf8 assets\phantasm\models\block\dralgae.js
 7691746c612aefe023e29b6f7918530172503cc3 assets\phantasm\blockstates\pream_leaves.json
 e474d42f4c2542d5c766ad8ee06147acd47962ca assets\phantasm\blockstates\crystal_tiles_stairs.json
 cf9094d1f5b9881e15d82f6a08e1546e0544a0e8 assets\phantasm\models\item\oblivion.json
-0d6ff360c49f5b11eafdd3b7062ed4b0bf7bd349 assets\phantasm\models\item\acidic_nihilium.json
 8657c8e16a9859ecc1096ce50cc08f43508ca604 assets\phantasm\models\block\pream_stairs_outer.json
+0d6ff360c49f5b11eafdd3b7062ed4b0bf7bd349 assets\phantasm\models\item\acidic_nihilium.json
 cf4122d7b40ba11aaac33abfee8d9a2529d8122c assets\phantasm\models\item\crystal_glass_pane.json
 b30956490d7c5e93f430ca7722edbfce542c714d assets\phantasm\models\item\crystalline_hoe.json
 b5c7a422ee44e205378df2b2472d3d760c12301e assets\phantasm\models\block\acidic_nihilis.json
@@ -209,11 +209,11 @@ f9cba22695f259b74f9b8cb149930ca73717feea assets\phantasm\models\block\tall_vivid
 965e520a4ff423f209d3688c2f3068e56ae0ee37 assets\phantasm\models\item\polished_obsidian.json
 167a659803a29215061db61ca3e3055d780e20d9 assets\phantasm\models\block\polished_obsidian_bricks_stairs.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets\phantasm\models\item\crystie_spawn_egg.json
-eb8f6b71d3f302f93577b246def1e002f79128c1 assets\phantasm\blockstates\cirite.json
 0a72f532ca8df9712c7cc43a854359f708a5b922 assets\phantasm\blockstates\crystal_pillar.json
+eb8f6b71d3f302f93577b246def1e002f79128c1 assets\phantasm\blockstates\cirite.json
 39c4996421c51c3f1ff3d730c55787d9e24ed9cb assets\phantasm\models\item\polished_obsidian_bricks_slab.json
-9e103efe4c58892ca48dddb55068a0f55c00c04d assets\phantasm\models\block\pream_trapdoor_bottom.json
 97ffa6013464c99056167a7f94681c0b7dcd5e5c assets\phantasm\models\item\pream_pressure_plate.json
+9e103efe4c58892ca48dddb55068a0f55c00c04d assets\phantasm\models\block\pream_trapdoor_bottom.json
 7c0c1f11f1ac119cb79a8001049d7c8f390574e3 assets\phantasm\models\item\stripped_pream_log.json
 7f9054e35f5fb07a6a2116b0c258d3b71f14fa5d assets\phantasm\models\block\pream_wood.json
 00e31babb7eca97e114527782dfe742f1d2cbc1d assets\phantasm\models\block\pream_slab.json

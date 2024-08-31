@@ -39,7 +39,7 @@ public class DralgaeFeature extends Feature<DralgaeFeatureConfig> {
             this.setBlockState(world, origin.up(i), config.stem().get(random, origin.up(i)));
         }
 
-        if (size >= 15)
+        if (random.nextInt(2) == 0)
             this.setBlockState(world, origin.up(size), config.fruit().get(random, origin.up(size)));
         return true;
     }

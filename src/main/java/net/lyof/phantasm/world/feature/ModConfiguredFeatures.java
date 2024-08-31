@@ -88,7 +88,7 @@ public class ModConfiguredFeatures {
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ACIDIC_NIHILIS)))));
 
         register(context, DRALGAE, DralgaeFeature.INSTANCE,
-                new DralgaeFeatureConfig(UniformIntProvider.create(10, 30), BlockStateProvider.of(ModBlocks.DRALGAE),
+                new DralgaeFeatureConfig(UniformIntProvider.create(5, 20), BlockStateProvider.of(ModBlocks.DRALGAE),
                         BlockStateProvider.of(ModBlocks.POME)));
     }
 

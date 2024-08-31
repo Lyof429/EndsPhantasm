@@ -1,4 +1,4 @@
-// 1.20.1	2024-08-31T19:13:00.0742618	End's Phantasm/Tags for minecraft:block
+// 1.20.1	2024-08-31T19:28:11.2599875	End's Phantasm/Tags for minecraft:block
 593f2e2c9ff290a18e174aea8667161f9cb47660 data\minecraft\tags\blocks\ceiling_hanging_signs.json
 8afaea6518ecce65a2bf69d17d90c0d475e537d4 data\minecraft\tags\blocks\needs_stone_tool.json
 f34a2d455efee4155abdcc02cd584f6766a2d7ea data\minecraft\tags\blocks\mineable\axe.json
@@ -6,11 +6,11 @@ cbf5c483fc1c97b74e51b8eacc052777718698b3 data\minecraft\tags\blocks\mineable\hoe
 3b0dbbdffd6ecd1316cc22f8f94fd877112c8a7c data\minecraft\tags\blocks\logs_that_burn.json
 142861b7bb99ff1cd71eb5e451e6cd005e8f3f98 data\minecraft\tags\blocks\unstable_bottom_center.json
 5d1270eb9e4788b0604ec4a19166e9cec3aa0b71 data\minecraft\tags\blocks\wooden_trapdoors.json
-82621f4ca0344ea4ab8255328d9fffbdfd4bb4be data\minecraft\tags\blocks\needs_iron_tool.json
 1bce35e05d924292ab2b92d722af40bfed52332c data\minecraft\tags\blocks\stairs.json
+82621f4ca0344ea4ab8255328d9fffbdfd4bb4be data\minecraft\tags\blocks\needs_iron_tool.json
 e99484c17e3311dcf3e166bf110e6109c008512c data\minecraft\tags\blocks\wooden_fences.json
-b5f28ecd537e305f42afdaf85e271c17f87abed2 data\minecraft\tags\blocks\wall_signs.json
 96f4242b90f0735561a15a7144033e6bb7c67f0f data\minecraft\tags\blocks\leaves.json
+b5f28ecd537e305f42afdaf85e271c17f87abed2 data\minecraft\tags\blocks\wall_signs.json
 7b0fdffa51e3e22de725a93b54c7e5cbba446ecf data\minecraft\tags\blocks\dragon_immune.json
 2b431b749bab272812de7bd378c157d562ea2ba8 data\phantasm\tags\blocks\dralgae_growable_on.json
 30b320a1736e697c80dc2818ac56ab474ee384df data\phantasm\tags\blocks\hanging_pream_leaves_growable_on.json

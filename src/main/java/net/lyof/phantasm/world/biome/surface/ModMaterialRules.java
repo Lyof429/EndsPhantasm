@@ -29,6 +29,7 @@ public class ModMaterialRules {
     private static final MaterialRules.MaterialRule OBLIVION = block(ModBlocks.OBLIVION);
 
     private static final MaterialRules.MaterialRule ACIDIC_NIHILIUM = block(ModBlocks.ACIDIC_NIHILIUM);
+    private static final MaterialRules.MaterialRule ACIDIC_MASS = block(ModBlocks.ACIDIC_MASS);
 
     public static MaterialRules.MaterialRule createDreamingDenRule() {
         double min_noise = -0.4;
@@ -139,7 +140,7 @@ public class ModMaterialRules {
                 )
         );
 
-        // ACDIBURNT ABYSSES RULES
+        // ACIDBURNT ABYSSES RULES
         MaterialRules.MaterialRule acidburnt_abysses_nihilium = MaterialRules.condition(
                 is_acidburnt_abysses,
                 MaterialRules.condition(
@@ -151,7 +152,23 @@ public class ModMaterialRules {
                 )
         );
 
+        MaterialRules.MaterialRule acidburnt_abysses_mass = MaterialRules.condition(
+                is_acidburnt_abysses,
+                MaterialRules.condition(
+                        MaterialRules.STONE_DEPTH_FLOOR,
+                        MaterialRules.condition(
+                                MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
+                                ACIDIC_MASS
+                        )
+                )
+        );
+
+
         MaterialRules.MaterialRule acidburnt_abysses = MaterialRules.sequence(
+                MaterialRules.condition(
+                        MaterialRules.noiseThreshold(NoiseParametersKeys.BADLANDS_PILLAR, 0.1),
+                        acidburnt_abysses_mass
+                ),
                 MaterialRules.condition(
                         nihilium_noise_main,
                         acidburnt_abysses_nihilium

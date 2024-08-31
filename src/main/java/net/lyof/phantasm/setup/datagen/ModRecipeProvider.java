@@ -255,6 +255,9 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Blocks.END_ROD), conditionsFromItem(Blocks.END_ROD))
                 .group("purpur_lamp").offerTo(exporter, Phantasm.makeID("purpur_lamp"));
 
+        // Oblivine to Oblivion
+        offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.OBLIVION, ModBlocks.OBLIVINE);
+
         // Chorus Fruit Salad
         ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.CHORUS_FRUIT_SALAD)
                 .pattern(" P ")

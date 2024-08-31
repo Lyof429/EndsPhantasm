@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "phantasm:block/cirite_bricks_slab"
+    },
+    "type=double": {
+      "model": "phantasm:block/cirite_bricks"
+    },
+    "type=top": {
+      "model": "phantasm:block/cirite_bricks_slab_top"
+    }
+  }
+}

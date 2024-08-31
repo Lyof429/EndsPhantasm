@@ -61,12 +61,12 @@ public class ModPlacedFeatures {
                 SquarePlacementModifier.of(),
                 RarityFilterPlacementModifier.of(3));
 
-        register(context, VIVID_NIHILIUM_PATCH, configLookup.getOrThrow(ModConfiguredFeatures.VIVID_NIHILIUM),
+        register(context, VIVID_NIHILIS, configLookup.getOrThrow(ModConfiguredFeatures.VIVID_NIHILIS),
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of());
 
-        register(context, TALL_VIVID_NIHILIUM_PATCH, configLookup.getOrThrow(ModConfiguredFeatures.TALL_VIVID_NIHILIUM),
+        register(context, TALL_VIVID_NIHILIS, configLookup.getOrThrow(ModConfiguredFeatures.TALL_VIVID_NIHILIS),
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of());
@@ -85,6 +85,11 @@ public class ModPlacedFeatures {
                 SquarePlacementModifier.of(),
                 PlacedFeatures.createCountExtraModifier(10, 1, 3),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP);
+
+        register(context, ACIDIC_NIHILIS, configLookup.getOrThrow(ModConfiguredFeatures.ACIDIC_NIHILIS),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of());
     }
 
 
@@ -95,8 +100,8 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> CRYSTAL_SPIKE = create("crystal_spike");
     public static final RegistryKey<PlacedFeature> FALLEN_STAR = create("fallen_star");
 
-    public static final RegistryKey<PlacedFeature> VIVID_NIHILIUM_PATCH = create("patch_vivid_nihilis");
-    public static final RegistryKey<PlacedFeature> TALL_VIVID_NIHILIUM_PATCH = create("patch_tall_vivid_nihilis");
+    public static final RegistryKey<PlacedFeature> VIVID_NIHILIS = create("patch_vivid_nihilis");
+    public static final RegistryKey<PlacedFeature> TALL_VIVID_NIHILIS = create("patch_tall_vivid_nihilis");
 
     public static final RegistryKey<PlacedFeature> STARFLOWER_PATCH = create("patch_starflower");
 
@@ -104,5 +109,5 @@ public class ModPlacedFeatures {
 
     public static final RegistryKey<PlacedFeature> OBLIVINE_PATCH = create("patch_oblivine");
 
-    //public static final RegistryKey<PlacedFeature> RAW_PURPUR_CABIN = create("raw_purpur_maze");
+    public static final RegistryKey<PlacedFeature> ACIDIC_NIHILIS = create("patch_acidic_nihilis");
 }

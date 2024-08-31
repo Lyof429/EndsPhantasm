@@ -1,5 +1,6 @@
 package net.lyof.phantasm.block.custom;
 
+import net.fabricmc.fabric.mixin.biome.TheEndBiomeSourceMixin;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.effect.ModEffects;

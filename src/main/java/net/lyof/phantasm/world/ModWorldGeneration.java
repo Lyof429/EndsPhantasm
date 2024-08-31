@@ -40,11 +40,11 @@ public class ModWorldGeneration {
 
         BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
                 GenerationStep.Feature.VEGETAL_DECORATION,
-                ModPlacedFeatures.VIVID_NIHILIUM_PATCH);
+                ModPlacedFeatures.VIVID_NIHILIS);
 
         BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
                 GenerationStep.Feature.VEGETAL_DECORATION,
-                ModPlacedFeatures.TALL_VIVID_NIHILIUM_PATCH);
+                ModPlacedFeatures.TALL_VIVID_NIHILIS);
 
         BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
                 GenerationStep.Feature.VEGETAL_DECORATION,
@@ -58,6 +58,11 @@ public class ModWorldGeneration {
         BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
                 GenerationStep.Feature.VEGETAL_DECORATION,
                 ModPlacedFeatures.OBLIVINE_PATCH);
+
+
+        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
+                GenerationStep.Feature.VEGETAL_DECORATION,
+                ModPlacedFeatures.ACIDIC_NIHILIS);
     }
 
     public static void generateBiomes() {

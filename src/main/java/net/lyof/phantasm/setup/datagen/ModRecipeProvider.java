@@ -281,5 +281,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 ModItems.BEHEMOTH_MEAT, ModItems.BEHEMOTH_STEAK, 5);
         offerFoodCookingRecipe(exporter, "campfire", CookingRecipeSerializer.CAMPFIRE_COOKING, 500,
                 ModItems.BEHEMOTH_MEAT, ModItems.BEHEMOTH_STEAK, 5);
+
+        // Cirite Bricks
+        createCondensingRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CIRITE_BRICKS,
+                Ingredient.ofItems(ModBlocks.CIRITE))
+                .criterion(hasItem(ModBlocks.CIRITE), conditionsFromItem(ModBlocks.CIRITE))
+                .group("cirite_bricks").offerTo(exporter, Phantasm.makeID("cirite_bricks"));
     }
 }

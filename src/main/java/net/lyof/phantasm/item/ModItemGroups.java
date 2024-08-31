@@ -120,6 +120,11 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.ACIDIC_MASS);
 
+                        entries.add(ModBlocks.CIRITE);
+                        entries.add(ModBlocks.CIRITE_BRICKS);
+                        entries.add(ModBlocks.CIRITE_BRICKS_STAIRS);
+                        entries.add(ModBlocks.CIRITE_BRICKS_SLAB);
+
                         //for (Item item : ModRegistry.ITEMS)
                         //    entries.add(item);
                     })

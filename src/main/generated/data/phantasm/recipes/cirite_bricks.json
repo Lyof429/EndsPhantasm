@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "cirite_bricks",
+  "key": {
+    "S": {
+      "item": "phantasm:cirite"
+    }
+  },
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "result": {
+    "count": 4,
+    "item": "phantasm:cirite_bricks"
+  },
+  "show_notification": true
+}

@@ -39,6 +39,7 @@ public class ModBlocks {
         ModRegistry.registerStairsAndSlab(VOID_CRYSTAL_TILES, VOID_CRYSTAL_TILES_STAIRS, VOID_CRYSTAL_TILES_SLAB);
         ModRegistry.registerStairsAndSlab(POLISHED_OBSIDIAN_BRICKS, POLISHED_OBSIDIAN_BRICKS_STAIRS, POLISHED_OBSIDIAN_BRICKS_SLAB);
         ModRegistry.registerStairsAndSlab(RAW_PURPUR_BRICKS, RAW_PURPUR_BRICKS_STAIRS, RAW_PURPUR_BRICKS_SLAB);
+        ModRegistry.registerStairsAndSlab(CIRITE_BRICKS, CIRITE_BRICKS_STAIRS, CIRITE_BRICKS_SLAB);
 
         ModRegistry.registerGlass(CRYSTAL_GLASS, CRYSTAL_GLASS_PANE);
         ModRegistry.registerGlass(VOID_CRYSTAL_GLASS, VOID_CRYSTAL_GLASS_PANE);
@@ -400,6 +401,9 @@ public class ModBlocks {
     private static final FabricBlockSettings pomeMaterial =
             copy(Blocks.MELON).mapColor(MapColor.DARK_DULL_PINK).strength(1);
 
+    private static final FabricBlockSettings ciriteMaterial =
+            copy(Blocks.SANDSTONE).strength(1.9f).resistance(0.2f).slipperiness(1);
+
     // Acidic Nihilium
     public static final Block ACIDIC_NIHILIUM = ModRegistry.ofBlock("acidic_nihilium",
                     new NihiliumBlock(copy(Blocks.END_STONE).mapColor(MapColor.DARK_DULL_PINK).ticksRandomly()))
@@ -440,4 +444,27 @@ public class ModBlocks {
                     new PomeBlock(pomeMaterial))
             .tool("_axe")
             .build();
+
+
+    public static final Block CIRITE = ModRegistry.ofBlock("cirite",
+                    new Block(ciriteMaterial))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
+            .tagitem(ItemTags.STONE_CRAFTING_MATERIALS, ItemTags.STONE_TOOL_MATERIALS)
+            .drop()
+            .model().build();
+
+    public static final Block CIRITE_BRICKS = ModRegistry.ofBlock("cirite_bricks",
+                    new Block(ciriteMaterial))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
+            .drop().build();
+    public static final Block CIRITE_BRICKS_STAIRS = ModRegistry.ofBlock("cirite_bricks_stairs",
+                    new StairsBlock(CIRITE_BRICKS.getDefaultState(), ciriteMaterial))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.STAIRS)
+            .tagitem(ItemTags.STAIRS)
+            .drop().build();
+    public static final Block CIRITE_BRICKS_SLAB = ModRegistry.ofBlock("cirite_bricks_slab",
+                    new SlabBlock(ciriteMaterial))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.SLABS)
+            .tagitem(ItemTags.SLABS)
+            .drop().build();
 }

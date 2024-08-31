@@ -28,13 +28,17 @@ public class ModMaterialRules {
     private static final MaterialRules.MaterialRule RAW_PURPUR = block(ModBlocks.RAW_PURPUR);
     private static final MaterialRules.MaterialRule OBLIVION = block(ModBlocks.OBLIVION);
 
+    private static final MaterialRules.MaterialRule ACIDIC_NIHILIUM = block(ModBlocks.ACIDIC_NIHILIUM);
+
     public static MaterialRules.MaterialRule createDreamingDenRule() {
         double min_noise = -0.4;
 
         MaterialRules.MaterialCondition is_dreaming_den = MaterialRules.biome(ModBiomes.DREAMING_DEN);
-        MaterialRules.MaterialCondition dreaming_den_noise_main =
+        MaterialRules.MaterialCondition is_acidburnt_abysses = MaterialRules.biome(ModBiomes.ACIDBURNT_ABYSSES);
+
+        MaterialRules.MaterialCondition nihilium_noise_main =
                 MaterialRules.noiseThreshold(NoiseParametersKeys.AQUIFER_FLUID_LEVEL_SPREAD, min_noise, 0);
-        MaterialRules.MaterialCondition dreaming_den_noise_sub =
+        MaterialRules.MaterialCondition nihilium_den_noise_sub =
                 MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE_SWAMP, -0.1);
 
         MaterialRules.MaterialCondition band_noise =
@@ -109,28 +113,54 @@ public class ModMaterialRules {
 
         MaterialRules.MaterialRule dreaming_den = MaterialRules.sequence(
                 MaterialRules.condition(
-                        dreaming_den_noise_main,
+                        nihilium_noise_main,
                         dreaming_den_nihilium
                 ),
                 MaterialRules.condition(
                         MaterialRules.noiseThreshold(NoiseParametersKeys.AQUIFER_FLUID_LEVEL_SPREAD, min_noise),
                         MaterialRules.condition(
-                                dreaming_den_noise_sub,
+                                nihilium_den_noise_sub,
                                 dreaming_den_nihilium
                         )
                 ),
                 MaterialRules.condition(
                         is_dreaming_den,
                         MaterialRules.condition(
-                                dreaming_den_noise_main,
+                                nihilium_noise_main,
                                 oblivion
                         )
                 ),
                 MaterialRules.condition(
                         is_dreaming_den,
                         MaterialRules.condition(
-                                dreaming_den_noise_sub,
+                                nihilium_den_noise_sub,
                                 oblivion
+                        )
+                )
+        );
+
+        // ACDIBURNT ABYSSES RULES
+        MaterialRules.MaterialRule acidburnt_abysses_nihilium = MaterialRules.condition(
+                is_acidburnt_abysses,
+                MaterialRules.condition(
+                        MaterialRules.STONE_DEPTH_FLOOR,
+                        MaterialRules.condition(
+                                MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
+                                ACIDIC_NIHILIUM
+                        )
+                )
+        );
+
+        MaterialRules.MaterialRule acidburnt_abysses = MaterialRules.sequence(
+                MaterialRules.condition(
+                        nihilium_noise_main,
+                        acidburnt_abysses_nihilium
+                ),
+                MaterialRules.condition(
+                        MaterialRules.noiseThreshold(NoiseParametersKeys.AQUIFER_FLUID_LEVEL_SPREAD, min_noise),
+                        MaterialRules.condition(
+                                nihilium_den_noise_sub,
+                                acidburnt_abysses_nihilium
                         )
                 )
         );
@@ -139,8 +169,12 @@ public class ModMaterialRules {
         return ConfigEntries.doRawPurpur ?
                 MaterialRules.sequence(
                         dreaming_den,
+                        acidburnt_abysses,
                         raw_purpur_stripes
-                ) : dreaming_den;
+                ) : MaterialRules.sequence(
+                        dreaming_den,
+                        acidburnt_abysses
+        );
     }
 
     public static void addModMaterialRules(MinecraftServer server, RegistryKey<DimensionOptions> dimensionKey) {

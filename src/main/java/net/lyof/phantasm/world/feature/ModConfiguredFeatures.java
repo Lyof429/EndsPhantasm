@@ -87,11 +87,11 @@ public class ModConfiguredFeatures {
         register(context, FALLEN_STAR, SingleBlockFeature.INSTANCE,
                 new SingleBlockFeatureConfig(UniformIntProvider.create(110, 180), BlockStateProvider.of(ModBlocks.FALLEN_STAR)));
 
-        register(context, VIVID_NIHILIUM, Feature.FLOWER, new RandomPatchFeatureConfig(
+        register(context, VIVID_NIHILIS, Feature.FLOWER, new RandomPatchFeatureConfig(
                 48, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.VIVID_NIHILIS)))));
 
-        register(context, TALL_VIVID_NIHILIUM, Feature.FLOWER, new RandomPatchFeatureConfig(
+        register(context, TALL_VIVID_NIHILIS, Feature.FLOWER, new RandomPatchFeatureConfig(
                 20, 10, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.TALL_VIVID_NIHILIS)))));
 
@@ -104,6 +104,10 @@ public class ModConfiguredFeatures {
 
         register(context, OBLIVINE, OblivineFeature.INSTANCE,
                 BlockColumnFeatureConfig.create(UniformIntProvider.create(5, 8), BlockStateProvider.of(ModBlocks.OBLIVINE)));
+
+        register(context, ACIDIC_NIHILIS, Feature.FLOWER, new RandomPatchFeatureConfig(
+                48, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ACIDIC_NIHILIS)))));
     }
 
 
@@ -114,8 +118,8 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> CRYSTAL_SPIKE = create("crystal_spike");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FALLEN_STAR = create("fallen_star");
 
-    public static final RegistryKey<ConfiguredFeature<?, ?>> VIVID_NIHILIUM = create("patch_vivid_nihilis");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_VIVID_NIHILIUM = create("patch_tall_vivid_nihilis");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> VIVID_NIHILIS = create("patch_vivid_nihilis");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_VIVID_NIHILIS = create("patch_tall_vivid_nihilis");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> STARFLOWER = create("patch_starflower");
 
@@ -123,5 +127,5 @@ public class ModConfiguredFeatures {
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> OBLIVINE = create("patch_oblivine");
 
-    //public static final RegistryKey<ConfiguredFeature<?, ?>> RAW_PURPUR_CABIN = create("raw_purpur_maze");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ACIDIC_NIHILIS = create("patch_acidic_nihilis");
 }

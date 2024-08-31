@@ -3,13 +3,13 @@ package net.lyof.phantasm.config;
 public class ConfigEntries {
     public static void reload() {
         doDreamingDenBiome = new ConfigEntry<>("world_gen.biomes.dreaming_den.generate", true).get();
-        dreamingDenWeight = new ConfigEntry<>("world_gen.biomes.dreaming_den.generation_weight", 2.5).get();
+        dreamingDenWeight = new ConfigEntry<>("world_gen.biomes.dreaming_den.generation_weight", 1.5).get();
 
         doCrystalSpikes = new ConfigEntry<>("world_gen.biomes.dreaming_den.do_crystal_spikes", true).get();
         doPreamTrees = new ConfigEntry<>("world_gen.biomes.dreaming_den.do_pream_trees", true).get();
 
         doAcidburntAbyssesBiome = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.generate", true).get();
-        acidburntAbyssesWeight = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.generation_weight", 2.5).get();
+        acidburntAbyssesWeight = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.generation_weight", 1.5).get();
 
         doFallenStars = new ConfigEntry<>("world_gen.do_fallen_stars", true).get();
         doRawPurpur = new ConfigEntry<>("world_gen.do_raw_purpur", true).get();

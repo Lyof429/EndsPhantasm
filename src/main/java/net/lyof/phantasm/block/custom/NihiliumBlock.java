@@ -76,7 +76,7 @@ public class NihiliumBlock extends Block implements Fertilizable {
         // TODO: Add plants
 
         Optional<RegistryEntry.Reference<PlacedFeature>> optional = world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE)
-                .getEntry(ModPlacedFeatures.VIVID_NIHILIUM_PATCH);
+                .getEntry(ModPlacedFeatures.VIVID_NIHILIS);
         RegistryEntry<PlacedFeature> registryEntry;
         BlockPos test = pos.up();
 

@@ -37,6 +37,7 @@ public class ModTags {
 
     public static class Biomes {
         public static final TagKey<Biome> DREAMING_DEN = create("is_dreaming_den");
+        public static final TagKey<Biome> ACIDBURNT_ABYSSES = create("is_acidburnt_abysses");
 
 
         private static TagKey<Biome> create(String name) {

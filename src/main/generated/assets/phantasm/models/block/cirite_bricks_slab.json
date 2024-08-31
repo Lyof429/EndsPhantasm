@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "phantasm:block/cirite_bricks",
+    "side": "phantasm:block/cirite_bricks",
+    "top": "phantasm:block/cirite_bricks"
+  }
+}

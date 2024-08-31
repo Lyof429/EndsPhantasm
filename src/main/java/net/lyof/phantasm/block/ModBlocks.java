@@ -398,7 +398,7 @@ public class ModBlocks {
             copy(Blocks.MOSS_BLOCK).mapColor(MapColor.DARK_DULL_PINK).strength(1.3f);
 
     private static final FabricBlockSettings pomeMaterial =
-            copy(Blocks.MOSS_BLOCK).mapColor(MapColor.DARK_DULL_PINK).strength(1);
+            copy(Blocks.MELON).mapColor(MapColor.DARK_DULL_PINK).strength(1);
 
     // Acidic Nihilium
     public static final Block ACIDIC_NIHILIUM = ModRegistry.ofBlock("acidic_nihilium",

@@ -60,27 +60,6 @@ public class ModConfiguredFeatures {
                 )
         ).build());
 
-        register(context, TALL_PREAM, Feature.TREE, new TreeFeatureConfig.Builder(
-                BlockStateProvider.of(ModBlocks.PREAM_LOG),
-                new PreamTrunkPlacer(2, 2, 6),
-                BlockStateProvider.of(ModBlocks.PREAM_LEAVES.getDefaultState().with(LeavesBlock.PERSISTENT, true)),
-                new PreamFoliagePlacer(UniformIntProvider.create(5, 6), ConstantIntProvider.create(0)),
-                new TwoLayersFeatureSize(1, 0, 2)
-        ).dirtProvider(BlockStateProvider.of(Blocks.END_STONE))
-                .decorators(List.of(
-                                new AttachedToLeavesTreeDecorator(
-                                        0.2f,
-                                        1,
-                                        0,
-                                        new WeightedBlockStateProvider(
-                                                DataPool.of(ModBlocks.HANGING_PREAM_LEAVES.getDefaultState())
-                                        ),
-                                        1,
-                                        List.of(Direction.DOWN)
-                                )
-                        )
-                ).build());
-
         register(context, CRYSTAL_SPIKE, CrystalSpikeFeature.INSTANCE,
                 new CrystalSpikeFeatureConfig(UniformIntProvider.create(3, 5), 0.3f));
 
@@ -113,7 +92,6 @@ public class ModConfiguredFeatures {
 
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> PREAM = create("pream");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_PREAM = create("tall_pream");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> CRYSTAL_SPIKE = create("crystal_spike");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FALLEN_STAR = create("fallen_star");

@@ -40,17 +40,13 @@ public class ModPlacedFeatures {
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
-        List<PlacementModifier> modifiers = new ArrayList<>();
         //modifiers.add(RarityFilterPlacementModifier.of(2));
-        modifiers.addAll(VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
+        List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
                 PlacedFeatures.createCountExtraModifier(1, 0.5f, 2),
                 ModBlocks.PREAM_SAPLING));
 
 
         register(context, PREAM, configLookup.getOrThrow(ModConfiguredFeatures.PREAM),
-                modifiers);
-        modifiers.add(RarityFilterPlacementModifier.of(6));
-        register(context, TALL_PREAM, configLookup.getOrThrow(ModConfiguredFeatures.TALL_PREAM),
                 modifiers);
 
         register(context, CRYSTAL_SPIKE, configLookup.getOrThrow(ModConfiguredFeatures.CRYSTAL_SPIKE),
@@ -95,7 +91,6 @@ public class ModPlacedFeatures {
 
 
     public static final RegistryKey<PlacedFeature> PREAM = create("pream");
-    public static final RegistryKey<PlacedFeature> TALL_PREAM = create("tall_pream");
 
     public static final RegistryKey<PlacedFeature> CRYSTAL_SPIKE = create("crystal_spike");
     public static final RegistryKey<PlacedFeature> FALLEN_STAR = create("fallen_star");

@@ -1,5 +1,6 @@
 package net.lyof.phantasm.block.custom;
 
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -7,6 +8,7 @@ import net.minecraft.block.FallingBlock;
 import net.minecraft.block.LandingBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.FallingBlockEntity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -42,6 +44,8 @@ public class PomeBlock extends FallingBlock {
                 entity.setVelocity(entity.getPos().add(0, 0.5, 0).subtract(pos.toCenterPos()).normalize().multiply(3));
             }
         }
+
+        world.addBlockBreakParticles(pos, this.getDefaultState());
         super.onDestroyedOnLanding(world, pos, fallingBlockEntity);
     }
 }

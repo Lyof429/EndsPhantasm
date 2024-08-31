@@ -6,7 +6,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,11 +18,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
     @Shadow @Nullable public abstract StatusEffectInstance getStatusEffect(StatusEffect effect);
-
     @Shadow public abstract boolean hasStatusEffect(StatusEffect effect);
 
     @Redirect(method = "eatFood", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;decrement(I)V"))
-    public void oblifruitKeep(ItemStack instance, int amount) {
+    public void keepOblifruit(ItemStack instance, int amount) {
         if (instance.isOf(ModItems.OBLIFRUIT) && Math.random() < 0.05 && instance.getCount() < instance.getMaxCount()) {
             instance.increment(1);
             return;
@@ -34,8 +32,9 @@ public abstract class LivingEntityMixin {
 
     @Inject(method = "modifyAppliedDamage", at = @At("RETURN"), cancellable = true)
     public void applyVulnerability(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
-        if (!this.hasStatusEffect(ModEffects.CORRODED)) return;
+        if (!this.hasStatusEffect(ModEffects.CORROSION)) return;
 
-        int i = this.getStatusEffect(ModEffects.CORRODED).getAmplifier() + 1;
+        int i = this.getStatusEffect(ModEffects.CORROSION).getAmplifier() + 1;
+        cir.setReturnValue(amount * (1 + 0.2f * i));
     }
 }

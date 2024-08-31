@@ -12,6 +12,6 @@ public class ModEffects {
     }
 
 
-    public static final StatusEffect CORRODED = Registry.register(Registries.STATUS_EFFECT, "corroded",
+    public static final StatusEffect CORROSION = Registry.register(Registries.STATUS_EFFECT, Phantasm.makeID("corrosion"),
             new CorrodedStatusEffect());
 }

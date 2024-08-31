@@ -419,7 +419,7 @@ public class ModBlocks {
                             if (!entity.bypassesSteppingEffects()) {
                                 entity.setVelocity(entity.getVelocity().multiply(0.4, 1, 0.4));
                                 if (entity instanceof LivingEntity living)
-                                    living.addStatusEffect(new StatusEffectInstance(ModEffects.CORRODED, 100, 0, true, false));
+                                    living.addStatusEffect(new StatusEffectInstance(ModEffects.CORROSION, 100, 0));
                             }
                             super.onSteppedOn(world, pos, state, entity);
                         }

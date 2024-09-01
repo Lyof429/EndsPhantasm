@@ -40,13 +40,13 @@ public class BoulderFeature extends Feature<BoulderFeatureConfig> {
         Direction primary = Direction.fromHorizontal(random.nextInt(4));
         Direction secondary = random.nextBoolean() ? primary.rotateYClockwise() : primary.rotateYCounterclockwise();
 
-        this.spike(toPlace, pos, 0);
+        this.spike(toPlace, pos, 1);
         pos = this.move(pos, primary, secondary, random, world);
         for (int i = 0; i < size; i++) {
-            this.spike(toPlace, pos, 1);
+            this.spike(toPlace, pos, 2);
             pos = this.move(pos, primary, secondary, random, world);
         }
-        this.spike(toPlace, pos, 0);
+        this.spike(toPlace, pos, 1);
 
         for (BlockPos place : toPlace)
             this.setBlockStateIf(world, place, config.block().get(random, place), block -> block.isTransparent(world, place));
@@ -72,13 +72,10 @@ public class BoulderFeature extends Feature<BoulderFeatureConfig> {
     public void spike(List<BlockPos> world, BlockPos pos, int layer) {
         if (layer <= 0) {
             world.add(pos);
-            for (Direction dir : Direction.values())
-                if (!world.contains(pos.offset(dir))) world.add(pos.offset(dir));
             return;
         }
 
-        for (Direction dir : Direction.values()) {
+        for (Direction dir : Direction.values())
             this.spike(world, pos.offset(dir), layer - 1);
-        }
     }
 }

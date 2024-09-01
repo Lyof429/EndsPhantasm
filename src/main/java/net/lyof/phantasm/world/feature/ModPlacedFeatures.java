@@ -100,6 +100,11 @@ public class ModPlacedFeatures {
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of());
+
+        register(context, CIRITE, configLookup.getOrThrow(ModConfiguredFeatures.CIRITE),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of());
     }
 
 
@@ -123,4 +128,6 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> DRALGAE = create("dralgae");
     public static final RegistryKey<PlacedFeature> TALL_DRALGAE = create("tall_dralgae");
     public static final RegistryKey<PlacedFeature> HUGE_DRALGAE = create("huge_dralgae");
+
+    public static final RegistryKey<PlacedFeature> CIRITE = create("cirite_boulder");
 }

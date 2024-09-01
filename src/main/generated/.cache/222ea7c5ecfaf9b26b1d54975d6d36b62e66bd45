@@ -1,11 +1,13 @@
-// 1.20.1	2024-09-01T20:30:50.3476059	End's Phantasm/World Gen
+// 1.20.1	2024-09-01T22:38:13.901754	End's Phantasm/World Gen
 630914225ca292f6710852efbe8e5938a2a77bfa data\phantasm\worldgen\configured_feature\obsidian_tower.json
 c3f096bf8dcfa29224be557ff555348136df5400 data\phantasm\worldgen\configured_feature\crystal_spike.json
 22a8781f6b23a4285917a57d437abdc426c9d625 data\phantasm\worldgen\biome\dreaming_den.json
 20f0fe1197b1ccaaaca1c0eb00569f84ddfed11b data\phantasm\worldgen\placed_feature\fallen_star.json
 e1159fde3dc5444c7a6328fa905521aca13830d3 data\phantasm\worldgen\placed_feature\obsidian_tower.json
 c8fbb58208b8fc78c35895f7ea15850170689292 data\phantasm\worldgen\placed_feature\patch_vivid_nihilis.json
+b97af77676ad5a52c9d964b6afb53dc61be34c38 data\phantasm\worldgen\placed_feature\cirite_boulder.json
 f3cbb3e87ef69839a6959d37da1c5935fa2be644 data\phantasm\worldgen\configured_feature\patch_vivid_nihilis.json
+2da81127e3aead222af5ebfc2a27bbcf820dbfee data\phantasm\worldgen\configured_feature\cirite_boulder.json
 6900d06f932bee16bfa2b52a6ea77c4a9d411bd3 data\phantasm\worldgen\configured_feature\patch_oblivine.json
 39246f2f509ea9642ff6db1234c4af4cb9389f4b data\phantasm\worldgen\configured_feature\patch_acidic_nihilis.json
 3f13a7a1bb711bc7db6f3b95ee48038adb32f800 data\phantasm\worldgen\configured_feature\tall_dralgae.json

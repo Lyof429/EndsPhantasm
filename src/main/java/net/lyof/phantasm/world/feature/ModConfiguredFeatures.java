@@ -3,6 +3,7 @@ package net.lyof.phantasm.world.feature;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.world.feature.custom.*;
+import net.lyof.phantasm.world.feature.custom.config.BoulderFeatureConfig;
 import net.lyof.phantasm.world.feature.custom.config.CrystalSpikeFeatureConfig;
 import net.lyof.phantasm.world.feature.custom.config.DralgaeFeatureConfig;
 import net.lyof.phantasm.world.feature.custom.config.SingleBlockFeatureConfig;
@@ -96,8 +97,11 @@ public class ModConfiguredFeatures {
                         BlockStateProvider.of(ModBlocks.POME)));
 
         register(context, HUGE_DRALGAE, HugeDralgaeFeature.INSTANCE,
-                new DralgaeFeatureConfig(UniformIntProvider.create(10, 25), BlockStateProvider.of(Blocks.OBSIDIAN),
+                new DralgaeFeatureConfig(UniformIntProvider.create(15, 30), BlockStateProvider.of(Blocks.OBSIDIAN),
                         BlockStateProvider.of(ModBlocks.ACIDIC_MASS)));
+
+        register(context, CIRITE, BoulderFeature.INSTANCE,
+                new BoulderFeatureConfig(UniformIntProvider.create(3, 7), BlockStateProvider.of(ModBlocks.CIRITE)));
     }
 
 
@@ -122,4 +126,6 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> DRALGAE = create("dralgae");
     public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_DRALGAE = create("tall_dralgae");
     public static final RegistryKey<ConfiguredFeature<?, ?>> HUGE_DRALGAE = create("huge_dralgae");
+
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CIRITE = create("cirite_boulder");
 }

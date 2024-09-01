@@ -88,8 +88,16 @@ public class ModConfiguredFeatures {
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ACIDIC_NIHILIS)))));
 
         register(context, DRALGAE, DralgaeFeature.INSTANCE,
+                new DralgaeFeatureConfig(UniformIntProvider.create(5, 10), BlockStateProvider.of(ModBlocks.DRALGAE),
+                        BlockStateProvider.of(ModBlocks.DRALGAE)));
+
+        register(context, TALL_DRALGAE, DralgaeFeature.INSTANCE,
                 new DralgaeFeatureConfig(UniformIntProvider.create(5, 20), BlockStateProvider.of(ModBlocks.DRALGAE),
                         BlockStateProvider.of(ModBlocks.POME)));
+
+        register(context, HUGE_DRALGAE, HugeDralgaeFeature.INSTANCE,
+                new DralgaeFeatureConfig(UniformIntProvider.create(10, 25), BlockStateProvider.of(Blocks.OBSIDIAN),
+                        BlockStateProvider.of(ModBlocks.ACIDIC_MASS)));
     }
 
 
@@ -110,5 +118,8 @@ public class ModConfiguredFeatures {
 
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> ACIDIC_NIHILIS = create("patch_acidic_nihilis");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> DRALGAE = create("patch_dralgae");
+
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DRALGAE = create("dralgae");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_DRALGAE = create("tall_dralgae");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> HUGE_DRALGAE = create("huge_dralgae");
 }

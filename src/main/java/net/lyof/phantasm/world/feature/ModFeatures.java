@@ -14,5 +14,6 @@ public class ModFeatures {
         Registry.register(Registries.FEATURE, Phantasm.makeID("obsidian_tower"), ObsidianTowerStructure.INSTANCE);
         Registry.register(Registries.FEATURE, Phantasm.makeID("oblivine"), OblivineFeature.INSTANCE);
         Registry.register(Registries.FEATURE, Phantasm.makeID("dralgae"), DralgaeFeature.INSTANCE);
+        Registry.register(Registries.FEATURE, Phantasm.makeID("huge_dralgae"), HugeDralgaeFeature.INSTANCE);
     }
 }

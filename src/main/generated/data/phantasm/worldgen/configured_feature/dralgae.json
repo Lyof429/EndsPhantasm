@@ -1,0 +1,24 @@
+{
+  "type": "phantasm:dralgae",
+  "config": {
+    "fruit": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "phantasm:dralgae"
+      }
+    },
+    "size": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 10,
+        "min_inclusive": 5
+      }
+    },
+    "stem": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "phantasm:dralgae"
+      }
+    }
+  }
+}

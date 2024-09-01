@@ -1,0 +1,24 @@
+{
+  "type": "phantasm:huge_dralgae",
+  "config": {
+    "fruit": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "phantasm:acidic_mass"
+      }
+    },
+    "size": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 25,
+        "min_inclusive": 10
+      }
+    },
+    "stem": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:obsidian"
+      }
+    }
+  }
+}

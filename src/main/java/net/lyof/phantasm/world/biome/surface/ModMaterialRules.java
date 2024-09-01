@@ -166,7 +166,7 @@ public class ModMaterialRules {
 
         MaterialRules.MaterialRule acidburnt_abysses = MaterialRules.sequence(
                 MaterialRules.condition(
-                        MaterialRules.noiseThreshold(NoiseParametersKeys.BADLANDS_PILLAR, 0.1),
+                        MaterialRules.noiseThreshold(NoiseParametersKeys.BADLANDS_PILLAR, 0.2),
                         acidburnt_abysses_mass
                 ),
                 MaterialRules.condition(

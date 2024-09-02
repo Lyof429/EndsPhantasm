@@ -72,6 +72,8 @@ public class BoulderFeature extends Feature<BoulderFeatureConfig> {
     public void spike(List<BlockPos> world, BlockPos pos, int layer) {
         if (layer <= 0) {
             world.add(pos);
+            world.add(pos.up());
+            world.add(pos.down());
             return;
         }
 

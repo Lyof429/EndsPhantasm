@@ -104,7 +104,8 @@ public class ModPlacedFeatures {
         register(context, CIRITE, configLookup.getOrThrow(ModConfiguredFeatures.CIRITE),
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
-                BiomePlacementModifier.of());
+                BiomePlacementModifier.of(),
+                RarityFilterPlacementModifier.of(2));
     }
 
 

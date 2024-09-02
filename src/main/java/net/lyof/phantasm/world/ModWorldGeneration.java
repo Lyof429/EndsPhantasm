@@ -14,6 +14,8 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.gen.GenerationStep;
 
+// 6246 62 34477
+// -3454909900679182839
 public class ModWorldGeneration {
     public static void register() {
         generateTrees();

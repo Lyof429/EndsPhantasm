@@ -30,16 +30,14 @@ public class HugeDralgaeFeature extends Feature<DralgaeFeatureConfig> {
         int size = config.size().get(random);
         Direction dir = Direction.random(random);
         if (dir.getAxis() == Direction.Axis.Y) dir = dir.rotateClockwise(Direction.Axis.X);
-        boolean rot = random.nextBoolean();
 
         for (int i = 0; i < size; i++) {
             if (originy + i > world.getTopY() || !world.getBlockState(origin.up(i)).isAir()) return true;
 
             this.setBlockState(world, origin.up(i), config.stem().get(random, origin.up(i)));
-            if (i >= 3 && i % 2 == 0 && i <= size - 3) {
+            if (i >= 3 && i % 2 == 0 && i < size - 3) {
                 this.setBlockState(world, origin.up(i).offset(dir), config.fruit().get(random, origin.up(i)));
-                this.setBlockState(world, origin.up(i).offset(dir.getOpposite()), config.fruit().get(random, origin.up(i)));
-                dir = rot ? dir.rotateYClockwise() : dir.rotateYCounterclockwise();
+                dir = dir.getOpposite();
             }
         }
 

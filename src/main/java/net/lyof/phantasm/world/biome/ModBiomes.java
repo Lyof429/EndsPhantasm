@@ -24,10 +24,10 @@ public class ModBiomes {
         context.register(ACIDBURNT_ABYSSES, acidburntAbysses(context));
     }
 
-    public static void endBiome(SpawnSettings.Builder spawns, GenerationSettings.LookupBackedBuilder generation) {
+    public static void endBiome(SpawnSettings.Builder spawns, GenerationSettings.LookupBackedBuilder generation, boolean chorus) {
         DefaultBiomeFeatures.addEndMobs(spawns);
 
-        generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, EndPlacedFeatures.CHORUS_PLANT);
+        if (chorus) generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, EndPlacedFeatures.CHORUS_PLANT);
         generation.feature(GenerationStep.Feature.SURFACE_STRUCTURES, EndPlacedFeatures.END_GATEWAY_RETURN);
     }
 
@@ -41,7 +41,7 @@ public class ModBiomes {
                 new GenerationSettings.LookupBackedBuilder(context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
                         context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER));
 
-        endBiome(spawnBuilder, biomeBuilder);
+        endBiome(spawnBuilder, biomeBuilder, true);
 
         return new Biome.Builder()
                 .precipitation(false)
@@ -65,7 +65,7 @@ public class ModBiomes {
                 new GenerationSettings.LookupBackedBuilder(context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
                         context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER));
 
-        endBiome(spawnBuilder, biomeBuilder);
+        endBiome(spawnBuilder, biomeBuilder, false);
 
         return new Biome.Builder()
                 .precipitation(false)

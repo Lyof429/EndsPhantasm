@@ -38,6 +38,7 @@ public class HugeDralgaeFeature extends Feature<DralgaeFeatureConfig> {
             this.setBlockState(world, origin.up(i), config.stem().get(random, origin.up(i)));
             if (i >= 3 && i % 2 == 0 && i <= size - 3) {
                 this.setBlockState(world, origin.up(i).offset(dir), config.fruit().get(random, origin.up(i)));
+                this.setBlockState(world, origin.up(i).offset(dir.getOpposite()), config.fruit().get(random, origin.up(i)));
                 dir = rot ? dir.rotateYClockwise() : dir.rotateYCounterclockwise();
             }
         }

@@ -10,8 +10,8 @@
     "size": {
       "type": "minecraft:uniform",
       "value": {
-        "max_inclusive": 25,
-        "min_inclusive": 10
+        "max_inclusive": 30,
+        "min_inclusive": 15
       }
     },
     "stem": {

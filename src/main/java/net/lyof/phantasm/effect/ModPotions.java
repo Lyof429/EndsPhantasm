@@ -21,12 +21,12 @@ public class ModPotions {
     }
 
 
-    public static final Potion CORROSION = Registry.register(Registries.POTION, "corrosion",
+    public static final Potion CORROSION = Registry.register(Registries.POTION, Phantasm.makeID("corrosion"),
             new Potion(new StatusEffectInstance(ModEffects.CORROSION, 3600)));
 
-    public static final Potion LONG_CORROSION = Registry.register(Registries.POTION, "long_corrosion",
+    public static final Potion LONG_CORROSION = Registry.register(Registries.POTION, Phantasm.makeID("long_corrosion"),
             new Potion("corrosion", new StatusEffectInstance(ModEffects.CORROSION, 9600)));
 
-    public static final Potion STRONG_CORROSION = Registry.register(Registries.POTION, "strong_corrosion",
+    public static final Potion STRONG_CORROSION = Registry.register(Registries.POTION, Phantasm.makeID("strong_corrosion"),
             new Potion("corrosion", new StatusEffectInstance(ModEffects.CORROSION, 1800, 1)));
 }

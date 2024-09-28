@@ -84,6 +84,11 @@ public class ModPlacedFeatures {
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of());
 
+        register(context, TALL_ACIDIC_NIHILIS, configLookup.getOrThrow(ModConfiguredFeatures.TALL_ACIDIC_NIHILIS),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of());
+
         register(context, DRALGAE, configLookup.getOrThrow(ModConfiguredFeatures.DRALGAE),
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
@@ -99,7 +104,8 @@ public class ModPlacedFeatures {
         register(context, HUGE_DRALGAE, configLookup.getOrThrow(ModConfiguredFeatures.HUGE_DRALGAE),
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
-                BiomePlacementModifier.of());
+                BiomePlacementModifier.of(),
+                RarityFilterPlacementModifier.of(2));
 
         register(context, CIRITE, configLookup.getOrThrow(ModConfiguredFeatures.CIRITE),
                 SquarePlacementModifier.of(),
@@ -125,6 +131,7 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> OBLIVINE_PATCH = create("patch_oblivine");
 
     public static final RegistryKey<PlacedFeature> ACIDIC_NIHILIS = create("patch_acidic_nihilis");
+    public static final RegistryKey<PlacedFeature> TALL_ACIDIC_NIHILIS = create("patch_tall_acidic_nihilis");
 
     public static final RegistryKey<PlacedFeature> DRALGAE = create("dralgae");
     public static final RegistryKey<PlacedFeature> TALL_DRALGAE = create("tall_dralgae");

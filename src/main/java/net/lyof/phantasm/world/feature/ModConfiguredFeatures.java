@@ -9,6 +9,7 @@ import net.lyof.phantasm.world.feature.custom.config.DralgaeFeatureConfig;
 import net.lyof.phantasm.world.feature.custom.config.SingleBlockFeatureConfig;
 import net.lyof.phantasm.world.feature.custom.tree.custom.PreamFoliagePlacer;
 import net.lyof.phantasm.world.feature.custom.tree.custom.PreamTrunkPlacer;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.registry.Registerable;
@@ -88,6 +89,10 @@ public class ModConfiguredFeatures {
                 48, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ACIDIC_NIHILIS)))));
 
+        register(context, TALL_ACIDIC_NIHILIS, Feature.FLOWER, new RandomPatchFeatureConfig(
+                20, 10, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.TALL_ACIDIC_NIHILIS)))));
+
         register(context, DRALGAE, DralgaeFeature.INSTANCE,
                 new DralgaeFeatureConfig(UniformIntProvider.create(5, 10), BlockStateProvider.of(ModBlocks.DRALGAE),
                         BlockStateProvider.of(ModBlocks.DRALGAE)));
@@ -101,7 +106,9 @@ public class ModConfiguredFeatures {
                         BlockStateProvider.of(ModBlocks.ACIDIC_MASS)));
 
         register(context, CIRITE, BoulderFeature.INSTANCE,
-                new BoulderFeatureConfig(UniformIntProvider.create(3, 7), BlockStateProvider.of(ModBlocks.CIRITE)));
+                new BoulderFeatureConfig(UniformIntProvider.create(3, 7), new WeightedBlockStateProvider(
+                        DataPool.<BlockState>builder().add(ModBlocks.CIRITE.getDefaultState(), 7)
+                                .add(ModBlocks.CIRITE_IRON_ORE.getDefaultState(), 1))));
     }
 
 
@@ -122,6 +129,7 @@ public class ModConfiguredFeatures {
 
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> ACIDIC_NIHILIS = create("patch_acidic_nihilis");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_ACIDIC_NIHILIS = create("patch_tall_acidic_nihilis");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> DRALGAE = create("dralgae");
     public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_DRALGAE = create("tall_dralgae");

@@ -113,6 +113,7 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.ACIDIC_NIHILIUM);
                         entries.add(ModBlocks.ACIDIC_NIHILIS);
+                        entries.add(ModBlocks.TALL_ACIDIC_NIHILIS);
 
                         entries.add(ModBlocks.DRALGAE);
                         entries.add(ModBlocks.POME);
@@ -121,6 +122,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.ACIDIC_MASS);
 
                         entries.add(ModBlocks.CIRITE);
+                        entries.add(ModBlocks.CIRITE_IRON_ORE);
                         entries.add(ModBlocks.CIRITE_BRICKS);
                         entries.add(ModBlocks.CIRITE_BRICKS_STAIRS);
                         entries.add(ModBlocks.CIRITE_BRICKS_SLAB);

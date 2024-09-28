@@ -94,6 +94,7 @@
 
   "block.phantasm.acidic_nihilium": "Acidic Nihilium",
   "block.phantasm.acidic_nihilis": "Acidic Nihilis",
+  "block.phantasm.tall_acidic_nihilis": "Tall Acidic Nihilis",
   "block.phantasm.acidic_mass": "Acidic Mass",
 
   "block.phantasm.dralgae": "Dralgae",
@@ -101,6 +102,7 @@
   "item.phantasm.pome_slice": "Pome Slice",
 
   "block.phantasm.cirite": "Cirite",
+  "block.phantasm.cirite_iron_ore": "Cirite Iron Ore",
   "block.phantasm.cirite_bricks": "Cirite Bricks",
   "block.phantasm.cirite_bricks_stairs": "Cirite Bricks Stairs",
   "block.phantasm.cirite_bricks_slab": "Cirite Bricks Slab",

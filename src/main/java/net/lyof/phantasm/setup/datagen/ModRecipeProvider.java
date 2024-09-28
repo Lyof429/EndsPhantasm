@@ -290,5 +290,23 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 Ingredient.ofItems(ModBlocks.CIRITE))
                 .criterion(hasItem(ModBlocks.CIRITE), conditionsFromItem(ModBlocks.CIRITE))
                 .group("cirite_bricks").offerTo(exporter, Phantasm.makeID("cirite_bricks"));
+
+        // Cirite Iron Ore
+        offerFoodCookingRecipe(exporter, "furnace", CookingRecipeSerializer.SMELTING, 200,
+                ModBlocks.CIRITE_IRON_ORE, Items.IRON_INGOT, 5);
+        offerFoodCookingRecipe(exporter, "blast_furnace", CookingRecipeSerializer.BLASTING, 100,
+                ModBlocks.CIRITE_IRON_ORE, Items.IRON_INGOT, 5);
+
+        // Dralgae to Acidic Mass or Obsidian
+        offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.ACIDIC_MASS, ModBlocks.DRALGAE);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.OBSIDIAN, 2)
+                .pattern("###")
+                .pattern("#O#")
+                .pattern("###")
+                .input('#', ModBlocks.DRALGAE)
+                .input('O', Blocks.OBSIDIAN)
+                .criterion(hasItem(ModBlocks.DRALGAE), conditionsFromItem(ModBlocks.DRALGAE))
+                .criterion(hasItem(Blocks.OBSIDIAN), conditionsFromItem(Blocks.OBSIDIAN))
+                .group("obsidian").offerTo(exporter, Phantasm.makeID("obsidian"));
     }
 }

@@ -20,6 +20,7 @@ import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
@@ -402,7 +403,7 @@ public class ModBlocks {
             copy(Blocks.MELON).mapColor(MapColor.DARK_DULL_PINK).strength(1);
 
     private static final FabricBlockSettings ciriteMaterial =
-            copy(Blocks.SANDSTONE).strength(1.9f).resistance(0.2f).slipperiness(1);
+            copy(Blocks.SANDSTONE).strength(1.4f).resistance(0.2f).slipperiness(1);
 
     // Acidic Nihilium
     public static final Block ACIDIC_NIHILIUM = ModRegistry.ofBlock("acidic_nihilium",
@@ -411,9 +412,20 @@ public class ModBlocks {
             .cutout().build();
 
     public static final Block ACIDIC_NIHILIS = ModRegistry.ofBlock("acidic_nihilis",
-                    new FernBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.DARK_DULL_PINK).replaceable()))
+                    new FernBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.DARK_DULL_PINK).replaceable()) {
+                        @Override
+                        public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+                            if (TALL_ACIDIC_NIHILIS.getDefaultState().canPlaceAt(world, pos) && world.isAir(pos.up()))
+                                TallPlantBlock.placeAt(world, TALL_ACIDIC_NIHILIS.getDefaultState(), pos, 2);
+                        }
+                    })
             .tagitem(ItemTags.FLOWERS)
             .model(ModRegistry.Models.CROSS).end_plant()
+            .cutout().build();
+
+    public static final Block TALL_ACIDIC_NIHILIS = ModRegistry.ofBlock("tall_acidic_nihilis",
+                    new TallPlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.DARK_DULL_PINK).replaceable()))
+            .tagitem(ItemTags.FLOWERS).end_plant()
             .cutout().build();
 
     public static final Block ACIDIC_MASS = ModRegistry.ofBlock("acidic_mass",
@@ -451,6 +463,12 @@ public class ModBlocks {
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
             .tagitem(ItemTags.STONE_CRAFTING_MATERIALS, ItemTags.STONE_TOOL_MATERIALS)
             .drop()
+            .model().build();
+
+    public static final Block CIRITE_IRON_ORE = ModRegistry.ofBlock("cirite_iron_ore",
+                    new ExperienceDroppingBlock(ciriteMaterial, UniformIntProvider.create(1, 4)) )
+            .tool("stone_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.IRON_ORES)
+            .tagitem(ItemTags.IRON_ORES)
             .model().build();
 
     public static final Block CIRITE_BRICKS = ModRegistry.ofBlock("cirite_bricks",

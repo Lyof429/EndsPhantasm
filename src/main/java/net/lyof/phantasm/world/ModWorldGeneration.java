@@ -68,6 +68,10 @@ public class ModWorldGeneration {
 
         BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
                 GenerationStep.Feature.VEGETAL_DECORATION,
+                ModPlacedFeatures.TALL_ACIDIC_NIHILIS);
+
+        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
+                GenerationStep.Feature.VEGETAL_DECORATION,
                 ModPlacedFeatures.DRALGAE);
 
         BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
@@ -95,7 +99,7 @@ public class ModWorldGeneration {
         BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
                 SpawnGroup.MONSTER,
                 ModEntities.CRYSTIE,
-                10, 4, 4);
+                10, 2, 4);
 
         BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
                 SpawnGroup.MONSTER,

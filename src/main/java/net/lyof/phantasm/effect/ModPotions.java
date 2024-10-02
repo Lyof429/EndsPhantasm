@@ -18,6 +18,9 @@ public class ModPotions {
         BrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, ModItems.POME_SLICE, CORROSION);
         BrewingRecipeRegistry.registerPotionRecipe(CORROSION, Items.REDSTONE, LONG_CORROSION);
         BrewingRecipeRegistry.registerPotionRecipe(CORROSION, Items.GLOWSTONE_DUST, STRONG_CORROSION);
+
+        //BrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, ModItems.POME_SLICE, FLOATATION);
+        BrewingRecipeRegistry.registerPotionRecipe(FLOATATION, Items.REDSTONE, LONG_FLOATATION);
     }
 
 
@@ -29,4 +32,11 @@ public class ModPotions {
 
     public static final Potion STRONG_CORROSION = Registry.register(Registries.POTION, Phantasm.makeID("strong_corrosion"),
             new Potion("corrosion", new StatusEffectInstance(ModEffects.CORROSION, 1800, 1)));
+
+
+    public static final Potion FLOATATION = Registry.register(Registries.POTION, Phantasm.makeID("floatation"),
+            new Potion(new StatusEffectInstance(ModEffects.FLOATATION, 3600)));
+
+    public static final Potion LONG_FLOATATION = Registry.register(Registries.POTION, Phantasm.makeID("long_floatation"),
+            new Potion("floatation", new StatusEffectInstance(ModEffects.FLOATATION, 9600)));
 }

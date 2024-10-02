@@ -485,4 +485,10 @@ public class ModBlocks {
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.SLABS)
             .tagitem(ItemTags.SLABS)
             .drop().build();
+
+    public static final Block GRAVITY_CORE = ModRegistry.ofBlock("gravity_core",
+                    new GravityCoreBlock(ciriteMaterial))
+            .tool("iron_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
+            .drop()
+            .model().build();
 }

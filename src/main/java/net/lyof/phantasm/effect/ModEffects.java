@@ -1,8 +1,9 @@
 package net.lyof.phantasm.effect;
 
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.effect.custom.CorrodedStatusEffect;
+import net.lyof.phantasm.effect.custom.ModStatusEffect;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
@@ -13,5 +14,8 @@ public class ModEffects {
 
 
     public static final StatusEffect CORROSION = Registry.register(Registries.STATUS_EFFECT, Phantasm.makeID("corrosion"),
-            new CorrodedStatusEffect());
+            new ModStatusEffect(StatusEffectCategory.HARMFUL, 0xca2656));
+
+    public static final StatusEffect FLOATATION = Registry.register(Registries.STATUS_EFFECT, Phantasm.makeID("floatation"),
+            new ModStatusEffect(StatusEffectCategory.NEUTRAL, 0x2422a4));
 }

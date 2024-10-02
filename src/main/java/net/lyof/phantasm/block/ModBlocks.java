@@ -405,6 +405,9 @@ public class ModBlocks {
     private static final FabricBlockSettings ciriteMaterial =
             copy(Blocks.SANDSTONE).strength(1.4f).resistance(0.2f).slipperiness(1);
 
+    private static final FabricBlockSettings gravityCoreMaterial =
+            FabricBlockSettings.create().nonOpaque().strength(1).resistance(4);
+
     // Acidic Nihilium
     public static final Block ACIDIC_NIHILIUM = ModRegistry.ofBlock("acidic_nihilium",
                     new NihiliumBlock(copy(Blocks.END_STONE).mapColor(MapColor.DARK_DULL_PINK).ticksRandomly()))
@@ -487,8 +490,8 @@ public class ModBlocks {
             .drop().build();
 
     public static final Block GRAVITY_CORE = ModRegistry.ofBlock("gravity_core",
-                    new GravityCoreBlock(ciriteMaterial))
+                    new GravityCoreBlock(gravityCoreMaterial))
             .tool("iron_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
-            .drop()
+            .drop().cutout()
             .model().build();
 }

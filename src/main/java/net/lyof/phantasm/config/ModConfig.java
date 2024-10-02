@@ -95,7 +95,7 @@ public class ModConfig {
     static final String DEFAULT_CONFIG = """
 {
   "TECHNICAL": {
-    "VERSION_DO_NOT_EDIT": 1.4,
+    "VERSION_DO_NOT_EDIT": 1.5,
     "FORCE_RESET": false
   },
 
@@ -159,10 +159,14 @@ public class ModConfig {
     "elytra_boost_advancement": "minecraft:end/kill_dragon",
     // Crystalline tools boost ratio
     "crystal_xp_boost": 3,
+    
     // Should eating a Chorus Fruit Salad teleport in/out of the End
     "chorus_fruit_salad_teleportation": true,
     // Max Chorus Fruit Salad stack size
-    "chorus_fruit_salad_stack_size": 1
+    "chorus_fruit_salad_stack_size": 1,
+    
+    // Radius (in blocks) in which Gravity Cores provides the Floatation effect
+    "gravity_core_range": 16
   }
 }""";
 }

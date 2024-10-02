@@ -13,11 +13,11 @@ public class GravityCoreBlockEntity extends BlockEntity {
         super(ModBlockEntities.GRAVITY_CORE, pos, state);
     }
 
-    public static void clientTick(World world, BlockPos pos, BlockState state, ConduitBlockEntity blockEntity) {
+    public static void clientTick(World world, BlockPos pos, BlockState state, GravityCoreBlockEntity blockEntity) {
 
     }
 
-    public static void serverTick(World world, BlockPos pos, BlockState state, ConduitBlockEntity blockEntity) {
+    public static void serverTick(World world, BlockPos pos, BlockState state, GravityCoreBlockEntity blockEntity) {
 
     }
 }

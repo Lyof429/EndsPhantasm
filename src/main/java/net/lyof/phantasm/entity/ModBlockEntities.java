@@ -1,5 +1,6 @@
 package net.lyof.phantasm.entity;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.lyof.phantasm.Phantasm;
@@ -21,5 +22,6 @@ public class ModBlockEntities {
     }
 
     public static final BlockEntityType<GravityCoreBlockEntity> GRAVITY_CORE = Registry.register(Registries.BLOCK_ENTITY_TYPE,
-            Phantasm.makeID("gravity_core"), BlockEntityType.Builder.create(GravityCoreBlockEntity::new, ModBlocks.GRAVITY_CORE));
+            Phantasm.makeID("gravity_core"),
+            FabricBlockEntityTypeBuilder.create(GravityCoreBlockEntity::new, ModBlocks.GRAVITY_CORE).build());
 }

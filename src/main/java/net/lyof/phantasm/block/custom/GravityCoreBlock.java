@@ -1,6 +1,7 @@
 package net.lyof.phantasm.block.custom;
 
 import net.lyof.phantasm.block.entity.GravityCoreBlockEntity;
+import net.lyof.phantasm.entity.ModBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
@@ -24,7 +25,7 @@ public class GravityCoreBlock extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, BlockEntityType.CONDUIT,
+        return checkType(type, ModBlockEntities.GRAVITY_CORE,
                 world.isClient ? GravityCoreBlockEntity::clientTick : GravityCoreBlockEntity::serverTick);
     }
 }

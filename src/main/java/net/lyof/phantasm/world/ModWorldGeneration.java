@@ -72,6 +72,10 @@ public class ModWorldGeneration {
 
         BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
                 GenerationStep.Feature.VEGETAL_DECORATION,
+                ModPlacedFeatures.DRAGON_MINT);
+
+        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
+                GenerationStep.Feature.VEGETAL_DECORATION,
                 ModPlacedFeatures.DRALGAE);
 
         BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),

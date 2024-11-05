@@ -93,6 +93,10 @@ public class ModConfiguredFeatures {
                 20, 10, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.TALL_ACIDIC_NIHILIS)))));
 
+        register(context, DRAGON_MINT, Feature.FLOWER, new RandomPatchFeatureConfig(
+                4, 2, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.DRAGON_MINT)))));
+
         register(context, DRALGAE, DralgaeFeature.INSTANCE,
                 new DralgaeFeatureConfig(UniformIntProvider.create(5, 10), BlockStateProvider.of(ModBlocks.DRALGAE),
                         BlockStateProvider.of(ModBlocks.DRALGAE)));
@@ -130,6 +134,7 @@ public class ModConfiguredFeatures {
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> ACIDIC_NIHILIS = create("patch_acidic_nihilis");
     public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_ACIDIC_NIHILIS = create("patch_tall_acidic_nihilis");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DRAGON_MINT = create("patch_dragon_mint");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> DRALGAE = create("dralgae");
     public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_DRALGAE = create("tall_dralgae");

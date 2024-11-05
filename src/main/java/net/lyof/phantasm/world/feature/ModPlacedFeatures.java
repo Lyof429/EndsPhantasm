@@ -89,6 +89,11 @@ public class ModPlacedFeatures {
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of());
 
+        register(context, DRAGON_MINT, configLookup.getOrThrow(ModConfiguredFeatures.DRAGON_MINT),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of());
+
         register(context, DRALGAE, configLookup.getOrThrow(ModConfiguredFeatures.DRALGAE),
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
@@ -132,6 +137,8 @@ public class ModPlacedFeatures {
 
     public static final RegistryKey<PlacedFeature> ACIDIC_NIHILIS = create("patch_acidic_nihilis");
     public static final RegistryKey<PlacedFeature> TALL_ACIDIC_NIHILIS = create("patch_tall_acidic_nihilis");
+
+    public static final RegistryKey<PlacedFeature> DRAGON_MINT = create("patch_dragon_mint");
 
     public static final RegistryKey<PlacedFeature> DRALGAE = create("dralgae");
     public static final RegistryKey<PlacedFeature> TALL_DRALGAE = create("tall_dralgae");

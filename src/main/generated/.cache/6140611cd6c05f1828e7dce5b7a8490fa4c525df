@@ -1,4 +1,4 @@
-// 1.20.1	2024-11-05T20:41:52.5508242	End's Phantasm/Tags for minecraft:block
+// 1.20.1	2024-11-05T20:55:13.8718355	End's Phantasm/Tags for minecraft:block
 593f2e2c9ff290a18e174aea8667161f9cb47660 data\minecraft\tags\blocks\ceiling_hanging_signs.json
 cce5be4750f254b2a6e75ad28e64f784441816e6 data\minecraft\tags\blocks\needs_stone_tool.json
 f34a2d455efee4155abdcc02cd584f6766a2d7ea data\minecraft\tags\blocks\mineable\axe.json
@@ -7,8 +7,8 @@ cbf5c483fc1c97b74e51b8eacc052777718698b3 data\minecraft\tags\blocks\mineable\hoe
 ee2b68b93c4bc63121f34941a506a93255e12423 data\minecraft\tags\blocks\iron_ores.json
 142861b7bb99ff1cd71eb5e451e6cd005e8f3f98 data\minecraft\tags\blocks\unstable_bottom_center.json
 1bce35e05d924292ab2b92d722af40bfed52332c data\minecraft\tags\blocks\stairs.json
-5d1270eb9e4788b0604ec4a19166e9cec3aa0b71 data\minecraft\tags\blocks\wooden_trapdoors.json
 6bff7c64492243976d094e431adcc737410422fe data\minecraft\tags\blocks\needs_iron_tool.json
+5d1270eb9e4788b0604ec4a19166e9cec3aa0b71 data\minecraft\tags\blocks\wooden_trapdoors.json
 e99484c17e3311dcf3e166bf110e6109c008512c data\minecraft\tags\blocks\wooden_fences.json
 96f4242b90f0735561a15a7144033e6bb7c67f0f data\minecraft\tags\blocks\leaves.json
 b5f28ecd537e305f42afdaf85e271c17f87abed2 data\minecraft\tags\blocks\wall_signs.json
@@ -18,11 +18,11 @@ b4e7882e8781b2b53ff142e357cf7827287414e1 data\minecraft\tags\blocks\dragon_immun
 e1b3d52094e3d00fdae6c2f184de2a9de7d4bc36 data\minecraft\tags\blocks\wooden_pressure_plates.json
 9186e809f8702ab2319ab030d765ca6caa177f3c data\phantasm\tags\blocks\oblivine_growable_on.json
 e24dbe1c9664831024aebbf6a50ea74c4f362c23 data\minecraft\tags\blocks\all_hanging_signs.json
-dbbe33fb70d358ad4785f391765888b25192f97b data\phantasm\tags\blocks\end_plants.json
+34d58ef5ce47347306142f4f47150026a7ab57cf data\phantasm\tags\blocks\end_plants.json
 142861b7bb99ff1cd71eb5e451e6cd005e8f3f98 data\minecraft\tags\blocks\fence_gates.json
 f7ad7f9c897c95d5593306012efdfb0b21b43828 data\minecraft\tags\blocks\mineable\pickaxe.json
-36c0f2ad2eb268ac5abb647293d0143b881dc38b data\minecraft\tags\blocks\wall_hanging_signs.json
 83ef4ac3fc3f92df8001f22c81d9a59791790eae data\minecraft\tags\blocks\standing_signs.json
+36c0f2ad2eb268ac5abb647293d0143b881dc38b data\minecraft\tags\blocks\wall_hanging_signs.json
 8afaea6518ecce65a2bf69d17d90c0d475e537d4 data\minecraft\tags\blocks\wither_immune.json
 1630e4d054b9ede48e6a46a71483fa12a3dc0cc8 data\phantasm\tags\blocks\end_plants_growable_on.json
 82e989363d624a4c0449f7ad365163723138e11a data\minecraft\tags\blocks\wooden_stairs.json

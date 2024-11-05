@@ -114,6 +114,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.ACIDIC_NIHILIUM);
                         entries.add(ModBlocks.ACIDIC_NIHILIS);
                         entries.add(ModBlocks.TALL_ACIDIC_NIHILIS);
+                        entries.add(ModBlocks.DRAGON_MINT);
 
                         entries.add(ModBlocks.DRALGAE);
                         entries.add(ModBlocks.POME);
@@ -126,6 +127,9 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CIRITE_BRICKS);
                         entries.add(ModBlocks.CIRITE_BRICKS_STAIRS);
                         entries.add(ModBlocks.CIRITE_BRICKS_SLAB);
+
+                        entries.add(ModBlocks.CHORAL_BLOCK);
+                        entries.add(ModBlocks.CHORAL_FAN);
 
                         //for (Item item : ModRegistry.ITEMS)
                         //    entries.add(item);

@@ -1,0 +1,29 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "phantasm:block/choral_fan"
+    },
+    "facing=up": {
+      "model": "phantasm:block/choral_fan",
+      "x": 180
+    },
+    "facing=north": {
+      "model": "phantasm:block/choral_fan",
+      "x": -90
+    },
+    "facing=south": {
+      "model": "phantasm:block/choral_fan",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "phantasm:block/choral_fan",
+      "x": -90,
+      "y": 90
+    },
+    "facing=west": {
+      "model": "phantasm:block/choral_fan",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

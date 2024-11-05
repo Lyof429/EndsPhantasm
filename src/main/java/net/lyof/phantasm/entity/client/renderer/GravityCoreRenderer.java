@@ -29,7 +29,7 @@ public class GravityCoreRenderer<T extends GravityCoreBlockEntity> implements Bl
         matrices.push();
 
         matrices.translate(0, MathHelper.sin(entity.ticks * 0.05f) * 0.1f, 0);
-        matrices.multiply((new Quaternionf()).rotationY(entity.ticks * 0.02f));
+        matrices.multiply(new Quaternionf().rotationY(entity.ticks * 0.02f));
         VertexConsumer vertex = vertexConsumers.getBuffer(RenderLayer.getEntityCutout(TEXTURE));
         this.model.render(matrices, vertex, light, overlay);
 

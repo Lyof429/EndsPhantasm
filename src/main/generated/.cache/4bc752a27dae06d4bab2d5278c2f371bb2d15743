@@ -1,6 +1,7 @@
-// 1.20.1	2024-09-28T19:01:07.8909425	End's Phantasm/Block Loot Tables
+// 1.20.1	2024-11-05T20:41:52.5488299	End's Phantasm/Block Loot Tables
 84f0b6e2d7cfb187d5d5de6b2dcc825ca0643ce8 data\phantasm\loot_tables\blocks\crystal_pillar.json
 754842e402287f059b390347065830e05894ada6 data\phantasm\loot_tables\blocks\void_crystal_tiles.json
+ff960fb1a6d27fe2dcd3db93cbdb5c9546cca75d data\phantasm\loot_tables\blocks\choral_fan.json
 cc6a49458b3dafc8ea5dfa00fbdf025b095aaf0d data\phantasm\loot_tables\blocks\pream_wall_sign.json
 e53347f0c93e7ad475f4fc4d19fac2bc50a3bafd data\phantasm\loot_tables\blocks\acidic_nihilium.json
 038e79c592f883ff39922e7df84da44ca3bb3073 data\phantasm\loot_tables\blocks\void_crystal_tiles_stairs.json
@@ -21,6 +22,7 @@ cae383fa04756c0469426fef36624338b242bc59 data\phantasm\loot_tables\blocks\crysta
 b4f5c4f5f1cd1c0941b8de4a12793f2e2df2a18f data\phantasm\loot_tables\blocks\pome.json
 59631400fa7c77a4abb2d70ed85f779c707d9bc6 data\phantasm\loot_tables\blocks\polished_obsidian_bricks.json
 2a16809cd5ca0306e69d838a6a9c9a51e1086770 data\phantasm\loot_tables\blocks\hanging_pream_leaves.json
+ae0c2e60bb8cfcd717277274890639f46a380d25 data\phantasm\loot_tables\blocks\gravity_core.json
 c2f31acd4598ce2c5599c98ee0bdb726d93980f6 data\phantasm\loot_tables\blocks\polished_obsidian_bricks_stairs.json
 eedfd1bf412fb84f3ecb9b73684d3513c1b807a7 data\phantasm\loot_tables\blocks\pream_button.json
 cb4a8dac9ee3246b9629296a6f3566da0a961bdb data\phantasm\loot_tables\blocks\crystal_glass_pane.json
@@ -30,6 +32,7 @@ aa2ca3d0fc21a136bc8d7ce1ef037df342810f96 data\phantasm\loot_tables\blocks\raw_pu
 4d64fd660c8d86d04504b69fee39b8dd85b3cabf data\phantasm\loot_tables\blocks\vivid_nihilium.json
 7a04c9d87b9325f65589d5a25d67cbda333f1735 data\phantasm\loot_tables\blocks\pream_wall_hanging_sign.json
 57a30f6474a29bc1fa138f1c6238fda90ca62a99 data\phantasm\loot_tables\blocks\stripped_pream_log.json
+2fafa4b9aac0d06b7a6a0346993ef54424ee8980 data\phantasm\loot_tables\blocks\choral_block.json
 88bb147cf853329e191d97c3c1620721db8b4e4e data\phantasm\loot_tables\blocks\cirite.json
 783d201f8918ce06d2cd3c4b586e484c415b73e2 data\phantasm\loot_tables\blocks\raw_purpur_tiles.json
 5057b9ae205301d19e908f39826564e2e445320e data\phantasm\loot_tables\blocks\void_crystal_glass_pane.json

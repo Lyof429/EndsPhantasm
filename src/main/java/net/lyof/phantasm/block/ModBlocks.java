@@ -431,6 +431,11 @@ public class ModBlocks {
             .tagitem(ItemTags.FLOWERS).end_plant()
             .cutout().build();
 
+    public static final Block DRAGON_MINT = ModRegistry.ofBlock("dragon_mint",
+                    new TallPlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.DULL_PINK)))
+            .tagitem(ItemTags.FLOWERS).end_plant()
+            .cutout().build();
+
     public static final Block ACIDIC_MASS = ModRegistry.ofBlock("acidic_mass",
                     new Block(acidicMassMaterial) {
                         @Override
@@ -494,4 +499,16 @@ public class ModBlocks {
             .tool("iron_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
             .drop().cutout()
             .model().build();
+
+
+    // Choral
+    public static final Block CHORAL_BLOCK = ModRegistry.ofBlock("choral_block",
+                    new Block(copy(Blocks.BRAIN_CORAL_BLOCK).mapColor(MapColor.WHITE)))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
+            .model().drop().build();
+
+    public static final Block CHORAL_FAN = ModRegistry.ofBlock("choral_fan",
+                    new DirectionalBlock(copy(Blocks.BRAIN_CORAL_FAN).mapColor(MapColor.WHITE)))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
+            .drop().build();
 }

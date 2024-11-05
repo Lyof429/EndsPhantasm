@@ -1,0 +1,45 @@
+{
+  "parent": "phantasm:find_dreaming_den",
+  "criteria": {
+    "is_choral_riff": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "biome": "phantasm:acidburnt_abysses",
+              "position": {
+                "y": {
+                  "max": 29.0,
+                  "min": 0.0
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.phantasm.find_choral_riff.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "phantasm:choral_block"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.phantasm.find_choral_riff"
+    }
+  },
+  "requirements": [
+    [
+      "is_choral_riff"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

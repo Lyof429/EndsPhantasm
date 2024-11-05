@@ -114,5 +114,17 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 .criterion("is_acidburnt_abysses", BiomeCriterion.of(ModBiomes.ACIDBURNT_ABYSSES, 50, 256))
                 .rewards(AdvancementRewards.NONE).build(Phantasm.makeID("find_dreaming_den"));
                 //.build(consumer, "phantasm:find_acidburnt_abysses");
+
+        Advancement CHORAL_RIFF = Advancement.Builder.create()
+                .display(ModBlocks.CHORAL_BLOCK,
+                        Text.translatable(BASE + "find_choral_riff"),
+                        Text.translatable(BASE + "find_choral_riff" + DESC),
+                        null,
+                        AdvancementFrame.GOAL,
+                        true, true, false)
+                .criterion("is_choral_riff", BiomeCriterion.of(ModBiomes.ACIDBURNT_ABYSSES, 0, 29))
+                .rewards(AdvancementRewards.NONE)
+                .parent(ACIDBURNT_ABYSSES)
+                .build(consumer, "phantasm:find_choral_riff");
     }
 }

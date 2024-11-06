@@ -11,6 +11,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.gen.feature.BlockColumnFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
@@ -41,6 +42,19 @@ public class DralgaeFeature extends Feature<DralgaeFeatureConfig> {
 
         if (random.nextInt(2) == 0)
             this.setBlockState(world, origin.up(size), config.fruit().get(random, origin.up(size)));
+
+        if (Math.random() < 0.7) {
+            FeatureContext<DralgaeFeatureConfig> contextnext =
+                    new FeatureContext<>(context.getFeature(),
+                            context.getWorld(),
+                            context.getGenerator(),
+                            context.getRandom(),
+                            context.getOrigin().east(random.nextBetween(-5, 5)).north(random.nextBetween(-5, 5)),
+                            config);
+            if (world.isChunkLoaded(contextnext.getOrigin()))
+                this.generate(contextnext);
+        }
+
         return true;
     }
 }

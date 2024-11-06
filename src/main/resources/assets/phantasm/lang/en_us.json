@@ -95,6 +95,7 @@
   "block.phantasm.acidic_nihilium": "Acidic Nihilium",
   "block.phantasm.acidic_nihilis": "Acidic Nihilis",
   "block.phantasm.tall_acidic_nihilis": "Tall Acidic Nihilis",
+  "block.phantasm.dragon_mint": "Dragon Mint",
   "block.phantasm.acidic_mass": "Acidic Mass",
 
   "block.phantasm.dralgae": "Dralgae",
@@ -106,6 +107,9 @@
   "block.phantasm.cirite_bricks": "Cirite Bricks",
   "block.phantasm.cirite_bricks_stairs": "Cirite Bricks Stairs",
   "block.phantasm.cirite_bricks_slab": "Cirite Bricks Slab",
+
+  "block.phantasm.choral_block": "Choral Block",
+  "block.phantasm.choral_fan": "Choral Fan",
 
   "block.phantasm.gravity_core": "Gravity Core",
 
@@ -141,5 +145,8 @@
   "advancement.phantasm.get_crystal_tools.desc": "Get every type of Crystalline tools",
 
   "advancement.phantasm.find_acidburnt_abysses": "See the World Pink",
-  "advancement.phantasm.find_acidburnt_abysses.desc": "Find an Acidburnt Abysses biome"
+  "advancement.phantasm.find_acidburnt_abysses.desc": "Find an Acidburnt Abysses biome",
+
+  "advancement.phantasm.find_choral_riff": "Symphony of the Void",
+  "advancement.phantasm.find_choral_riff.desc": "Venture down the Choral Riff"
 }

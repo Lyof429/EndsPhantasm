@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "half=lower,has_fruit=false": {
+      "model": "phantasm:block/tall_vivid_nihilis_bottom"
+    },
+    "half=lower,has_fruit=true": {
+      "model": "phantasm:block/tall_acidic_nihilis_bottom"
+    },
+    "half=upper,has_fruit=false": {
+      "model": "phantasm:block/tall_vivid_nihilis_top"
+    },
+    "half=upper,has_fruit=true": {
+      "model": "phantasm:block/tall_acidic_nihilis_top"
+    }
+  }
+}

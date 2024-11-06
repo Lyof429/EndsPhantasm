@@ -10,7 +10,8 @@
             "state": {
               "Name": "phantasm:dragon_mint",
               "Properties": {
-                "half": "lower"
+                "half": "lower",
+                "has_fruit": "true"
               }
             }
           }
@@ -26,8 +27,8 @@
         }
       ]
     },
-    "tries": 8,
-    "xz_spread": 6,
+    "tries": 4,
+    "xz_spread": 2,
     "y_spread": 2
   }
 }

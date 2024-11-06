@@ -432,7 +432,8 @@ public class ModBlocks {
             .cutout().build();
 
     public static final Block DRAGON_MINT = ModRegistry.ofBlock("dragon_mint",
-                    new DragonMintBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.DULL_PINK)))
+                    new DragonMintBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.DULL_PINK).sounds(BlockSoundGroup.CHERRY_LEAVES)
+                            .offset(AbstractBlock.OffsetType.NONE).ticksRandomly()))
             .tagitem(ItemTags.FLOWERS).end_plant()
             .cutout().build();
 

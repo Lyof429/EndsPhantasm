@@ -112,7 +112,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         AdvancementFrame.TASK,
                         true, true, false)
                 .criterion("is_acidburnt_abysses", BiomeCriterion.of(ModBiomes.ACIDBURNT_ABYSSES, 50, 256))
-                .rewards(AdvancementRewards.NONE).build(Phantasm.makeID("find_dreaming_den"));
+                .rewards(AdvancementRewards.NONE).build(Phantasm.makeID("find_acidburnt_abysses"));
                 //.build(consumer, "phantasm:find_acidburnt_abysses");
 
         Advancement CHORAL_RIFF = Advancement.Builder.create()

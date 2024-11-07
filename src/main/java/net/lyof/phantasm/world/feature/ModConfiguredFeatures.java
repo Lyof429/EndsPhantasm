@@ -24,6 +24,7 @@ import net.minecraft.world.gen.CountConfig;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.treedecorator.AttachedToLeavesTreeDecorator;
 
@@ -113,6 +114,9 @@ public class ModConfiguredFeatures {
                 new BoulderFeatureConfig(UniformIntProvider.create(3, 7), new WeightedBlockStateProvider(
                         DataPool.<BlockState>builder().add(ModBlocks.CIRITE.getDefaultState(), 7)
                                 .add(ModBlocks.CIRITE_IRON_ORE.getDefaultState(), 1))));
+
+        register(context, CHORAL_RIFF, CeilingBoulderFeature.INSTANCE,
+                new BoulderFeatureConfig(UniformIntProvider.create(4, 9), SimpleBlockStateProvider.of(ModBlocks.CHORAL_BLOCK)));
     }
 
 
@@ -141,4 +145,5 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> HUGE_DRALGAE = create("huge_dralgae");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> CIRITE = create("cirite_boulder");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CHORAL_RIFF = create("choral_riff");
 }

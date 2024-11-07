@@ -15,6 +15,9 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public class DirectionalBlock extends Block {
@@ -63,5 +66,16 @@ public class DirectionalBlock extends Block {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPES.get(state.get(FACING));
+    }
+
+    public BlockState getPlacementState(WorldView world, BlockPos pos) {
+        List<Direction> possible = new ArrayList<>();
+        for (Direction dir : Direction.values()) {
+            if (this.canPlaceAt(this.getDefaultState().with(FACING, dir), world, pos))
+                possible.add(dir);
+        }
+        Collections.shuffle(possible);
+        if (possible.isEmpty()) return Blocks.AIR.getDefaultState();
+        return this.getDefaultState().with(FACING, possible.get(0));
     }
 }

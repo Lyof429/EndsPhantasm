@@ -8,6 +8,7 @@ import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.item.custom.ShatteredPendantItem;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
+import net.lyof.phantasm.sound.ModSounds;
 import net.minecraft.data.client.Models;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,6 +16,7 @@ import net.minecraft.item.*;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Rarity;
 import net.minecraft.world.World;
 
 public class ModItems {
@@ -24,9 +26,9 @@ public class ModItems {
 
 
     public static final Item PREAM_BERRY = ModRegistry.ofItem("pream_berry",
-            new Item(new FabricItemSettings().food(ModRegistry.Foods.PREAM_BERRY))).model(Models.GENERATED).build();
+            new Item(new FabricItemSettings().food(ModRegistry.Foods.PREAM_BERRY))).model().build();
     public static final Item OBLIFRUIT = ModRegistry.ofItem("oblifruit",
-            new Item(new FabricItemSettings().food(ModRegistry.Foods.OBLIFRUIT))).model(Models.GENERATED).build();
+            new Item(new FabricItemSettings().food(ModRegistry.Foods.OBLIFRUIT))).model().build();
 
     public static final Item CRYSTALLINE_SHOVEL = ModRegistry.ofItem("crystalline_shovel",
                     new ShovelItem(ModTiers.CRYSTALLINE, 2, -3f, new FabricItemSettings()))
@@ -80,20 +82,25 @@ public class ModItems {
                     return stack;
                 }
             })
-            .model(Models.GENERATED).build();
+            .model().build();
 
     public static final Item BEHEMOTH_MEAT = ModRegistry.ofItem("behemoth_meat",
-                new Item(new FabricItemSettings().food(ModRegistry.Foods.BEHEMOTH_MEAT)))
-            .model(Models.GENERATED).build();
+            new Item(new FabricItemSettings().food(ModRegistry.Foods.BEHEMOTH_MEAT)))
+            .model().build();
     public static final Item BEHEMOTH_STEAK = ModRegistry.ofItem("behemoth_steak",
-            new Item(new FabricItemSettings().food(ModRegistry.Foods.BEHEMOTH_STEAK))).model(Models.GENERATED).build();
+            new Item(new FabricItemSettings().food(ModRegistry.Foods.BEHEMOTH_STEAK)))
+            .model().build();
 
     public static final Item SHATTERED_PENDANT = ModRegistry.ofItem("shattered_pendant",
                 new ShatteredPendantItem(new FabricItemSettings()))
-            .model(Models.GENERATED).build();
+            .model().build();
 
     public static final Item POME_SLICE = ModRegistry.ofItem("pome_slice",
-            new Item(new FabricItemSettings().food(ModRegistry.Foods.POME_SLICE))).model(Models.GENERATED).build();
+            new Item(new FabricItemSettings().food(ModRegistry.Foods.POME_SLICE))).model().build();
+
+    public static final Item ABRUPTION_MUSIC_DISC = ModRegistry.ofItem("abruption_music_disc",
+            new MusicDiscItem(4, ModSounds.MUSIC_DISC_ABRUPTION, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 239))
+            .model().tag(ItemTags.MUSIC_DISCS).build();
 
     public static final Item CRYSTIE_SPAWN_EGG = ModRegistry.ofItem("crystie_spawn_egg",
                 new SpawnEggItem(ModEntities.CRYSTIE, 0xfaf0ff, 0xa0a0ff, new FabricItemSettings()))

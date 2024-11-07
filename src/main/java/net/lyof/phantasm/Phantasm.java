@@ -13,6 +13,7 @@ import net.lyof.phantasm.item.ModItemGroups;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.setup.ModDataGenerator;
+import net.lyof.phantasm.sound.ModSounds;
 import net.lyof.phantasm.world.ModWorldGeneration;
 import net.lyof.phantasm.world.feature.ModFeatures;
 import net.lyof.phantasm.world.feature.custom.tree.ModTreePlacerTypes;
@@ -36,7 +37,9 @@ public class Phantasm implements ModInitializer {
 
 		ModEntities.register();
 		ModBlockEntities.register();
+
 		ModParticles.register();
+		ModSounds.register();
 
 		ModEffects.register();
 		ModPotions.register();

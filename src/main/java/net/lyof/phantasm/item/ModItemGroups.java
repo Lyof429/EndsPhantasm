@@ -131,6 +131,8 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CHORAL_BLOCK);
                         entries.add(ModBlocks.CHORAL_FAN);
 
+                        entries.add(ModItems.ABRUPTION_MUSIC_DISC);
+
                         //for (Item item : ModRegistry.ITEMS)
                         //    entries.add(item);
                     })
@@ -154,6 +156,8 @@ public class ModItemGroups {
 
             entries.add(ModItems.BEHEMOTH_MEAT);
             entries.add(ModItems.BEHEMOTH_STEAK);
+
+            entries.add(ModItems.POME_SLICE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             entries.addAfter(Items.FLOWERING_AZALEA_LEAVES, ModBlocks.PREAM_LEAVES);
@@ -175,6 +179,22 @@ public class ModItemGroups {
 
             entries.add(ModBlocks.CRYSTAL_SHARD);
             entries.add(ModBlocks.VOID_CRYSTAL_SHARD);
+
+            entries.addAfter(ModBlocks.STARFLOWER, ModBlocks.ACIDIC_NIHILIUM);
+            entries.addAfter(ModBlocks.ACIDIC_NIHILIUM, ModBlocks.ACIDIC_NIHILIS);
+            entries.addAfter(ModBlocks.ACIDIC_NIHILIS, ModBlocks.TALL_ACIDIC_NIHILIS);
+            entries.addAfter(ModBlocks.TALL_ACIDIC_NIHILIS, ModBlocks.DRAGON_MINT);
+
+            entries.addAfter(ModBlocks.DRAGON_MINT, ModBlocks.DRALGAE);
+            entries.addAfter(ModBlocks.DRALGAE, ModBlocks.POME);
+
+            entries.addAfter(ModBlocks.POME, ModBlocks.ACIDIC_MASS);
+
+            entries.addAfter(ModBlocks.ACIDIC_MASS, ModBlocks.CIRITE);
+            entries.addAfter(ModBlocks.CIRITE, ModBlocks.CIRITE_IRON_ORE);
+
+            entries.addAfter(Blocks.HORN_CORAL, ModBlocks.CHORAL_BLOCK);
+            entries.addAfter(Blocks.HORN_CORAL_WALL_FAN, ModBlocks.CHORAL_FAN);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
             entries.addAfter(Items.WARPED_BUTTON, ModBlocks.PREAM_LOG);
@@ -218,6 +238,10 @@ public class ModItemGroups {
             entries.add(ModBlocks.VOID_CRYSTAL_PILLAR);
             entries.add(ModBlocks.VOID_CRYSTAL_TILES_STAIRS);
             entries.add(ModBlocks.VOID_CRYSTAL_TILES_SLAB);
+
+            entries.add(ModBlocks.CIRITE_BRICKS);
+            entries.add(ModBlocks.CIRITE_BRICKS_STAIRS);
+            entries.add(ModBlocks.CIRITE_BRICKS_SLAB);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
             entries.addAfter(Items.WARPED_HANGING_SIGN, ModItems.PREAM_SIGN);
@@ -234,7 +258,10 @@ public class ModItemGroups {
             entries.addAfter(ModItems.CRYSTALLINE_SHOVEL, ModItems.CRYSTALLINE_PICKAXE);
             entries.addAfter(ModItems.CRYSTALLINE_PICKAXE, ModItems.CRYSTALLINE_AXE);
             entries.addAfter(ModItems.CRYSTALLINE_AXE, ModItems.CRYSTALLINE_HOE);
+
             entries.add(ModItems.SHATTERED_PENDANT);
+
+            entries.add(ModItems.ABRUPTION_MUSIC_DISC);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
             entries.addAfter(Items.IRON_SWORD, ModItems.CRYSTALLINE_SWORD);

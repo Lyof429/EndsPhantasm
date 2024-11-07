@@ -1,0 +1,10 @@
+{
+  "music_disc_abruption": {
+    "sounds": [
+      {
+        "name": "phantasm:music_disc_abruption",
+        "stream": true
+      }
+    ]
+  }
+}

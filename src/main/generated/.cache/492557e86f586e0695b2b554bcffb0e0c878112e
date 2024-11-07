@@ -1,5 +1,5 @@
-// 1.20.1	2024-11-06T18:36:20.8867826	End's Phantasm/Advancements
-d1598fa4639bc3d0c9423ffa3c11183c32b35e90 data\phantasm\advancements\get_crystal_tools.json
-5d493298e494e2084ab1ce1efc48cf359c37c41f data\phantasm\advancements\find_underisland.json
-265cdd305f0f0370ebb455826067f94975a6f6d3 data\phantasm\advancements\find_choral_riff.json
-e3c083dcc112388a1b26a8cc56b16ef11aa80b7f data\phantasm\advancements\get_crystal.json
+// 1.20.1	2024-11-07T09:51:34.510524638	End's Phantasm/Advancements
+5d493298e494e2084ab1ce1efc48cf359c37c41f data/phantasm/advancements/find_underisland.json
+e3c083dcc112388a1b26a8cc56b16ef11aa80b7f data/phantasm/advancements/get_crystal.json
+d1598fa4639bc3d0c9423ffa3c11183c32b35e90 data/phantasm/advancements/get_crystal_tools.json
+bf2761682bb698e839f383aab21092209278c0f0 data/phantasm/advancements/find_choral_riff.json

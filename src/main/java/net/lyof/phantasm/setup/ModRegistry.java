@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.lyof.phantasm.Phantasm;
 import net.minecraft.block.Block;
 import net.minecraft.data.client.Model;
+import net.minecraft.data.client.Models;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
@@ -173,6 +174,10 @@ public class ModRegistry {
                 this.tag(tagname);
             }
             return this;
+        }
+
+        public ItemBuilder model() {
+            return this.model(net.minecraft.data.client.Models.GENERATED);
         }
 
         public ItemBuilder model(Model model) {

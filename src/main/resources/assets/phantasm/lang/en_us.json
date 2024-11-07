@@ -111,6 +111,10 @@
   "block.phantasm.choral_block": "Choral Block",
   "block.phantasm.choral_fan": "Choral Fan",
 
+  "item.phantasm.abruption_music_disc": "Music Disc",
+  "item.phantasm.abruption_music_disc.desc": "Dylanvhs - Abruption",
+  "sounds.phantasm.music_disc_abruption": "Abruption playing",
+
   "block.phantasm.gravity_core": "Gravity Core",
 
   "item.minecraft.potion.effect.corrosion": "Potion of Corrosion",

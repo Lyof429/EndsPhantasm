@@ -11,7 +11,7 @@
               "Name": "phantasm:dragon_mint",
               "Properties": {
                 "half": "lower",
-                "has_fruit": "true"
+                "has_fruit": "false"
               }
             }
           }

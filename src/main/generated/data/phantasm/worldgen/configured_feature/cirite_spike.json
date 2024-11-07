@@ -1,0 +1,29 @@
+{
+  "type": "phantasm:ceiling_spike",
+  "config": {
+    "block": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "phantasm:cirite"
+          },
+          "weight": 7
+        },
+        {
+          "data": {
+            "Name": "phantasm:cirite_iron_ore"
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "size": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 8,
+        "min_inclusive": 5
+      }
+    }
+  }
+}

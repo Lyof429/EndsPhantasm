@@ -30,6 +30,7 @@ public class ModMaterialRules {
 
     private static final MaterialRules.MaterialRule ACIDIC_NIHILIUM = block(ModBlocks.ACIDIC_NIHILIUM);
     private static final MaterialRules.MaterialRule ACIDIC_MASS = block(ModBlocks.ACIDIC_MASS);
+    private static final MaterialRules.MaterialRule CIRITE = block(ModBlocks.CIRITE);
 
     public static MaterialRules.MaterialRule createDreamingDenRule() {
         double min_noise = -0.4;
@@ -39,7 +40,7 @@ public class ModMaterialRules {
 
         MaterialRules.MaterialCondition nihilium_noise_main =
                 MaterialRules.noiseThreshold(NoiseParametersKeys.AQUIFER_FLUID_LEVEL_SPREAD, min_noise, 0);
-        MaterialRules.MaterialCondition nihilium_den_noise_sub =
+        MaterialRules.MaterialCondition nihilium_noise_sub =
                 MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE_SWAMP, -0.1);
 
         MaterialRules.MaterialCondition band_noise =
@@ -120,7 +121,7 @@ public class ModMaterialRules {
                 MaterialRules.condition(
                         MaterialRules.noiseThreshold(NoiseParametersKeys.AQUIFER_FLUID_LEVEL_SPREAD, min_noise),
                         MaterialRules.condition(
-                                nihilium_den_noise_sub,
+                                nihilium_noise_sub,
                                 dreaming_den_nihilium
                         )
                 ),
@@ -134,7 +135,7 @@ public class ModMaterialRules {
                 MaterialRules.condition(
                         is_dreaming_den,
                         MaterialRules.condition(
-                                nihilium_den_noise_sub,
+                                nihilium_noise_sub,
                                 oblivion
                         )
                 )
@@ -163,6 +164,17 @@ public class ModMaterialRules {
                 )
         );
 
+        MaterialRules.MaterialRule acidburnt_abysses_cirite = MaterialRules.condition(
+                is_acidburnt_abysses,
+                MaterialRules.condition(
+                        MaterialRules.aboveY(YOffset.belowTop(220), 0),
+                        MaterialRules.condition(
+                                MaterialRules.stoneDepth(2, false, VerticalSurfaceType.CEILING),
+                                CIRITE
+                        )
+                )
+        );
+
 
         MaterialRules.MaterialRule acidburnt_abysses = MaterialRules.sequence(
                 MaterialRules.condition(
@@ -176,9 +188,17 @@ public class ModMaterialRules {
                 MaterialRules.condition(
                         MaterialRules.noiseThreshold(NoiseParametersKeys.AQUIFER_FLUID_LEVEL_SPREAD, min_noise),
                         MaterialRules.condition(
-                                nihilium_den_noise_sub,
+                                nihilium_noise_sub,
                                 acidburnt_abysses_nihilium
                         )
+                ),
+                MaterialRules.condition(
+                        nihilium_noise_main,
+                        acidburnt_abysses_cirite
+                ),
+                MaterialRules.condition(
+                        nihilium_noise_sub,
+                        acidburnt_abysses_cirite
                 )
         );
 

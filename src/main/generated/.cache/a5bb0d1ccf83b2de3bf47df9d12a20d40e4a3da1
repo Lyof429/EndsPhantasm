@@ -1,4 +1,4 @@
-// 1.20.1	2024-11-07T14:14:23.328816552	End's Phantasm/Tags for minecraft:item
+// 1.20.1	2024-11-07T17:42:32.365975468	End's Phantasm/Tags for minecraft:item
 3c7b4eb0c2d8eb33519bf4571bf742336fafa5e9 data/minecraft/tags/items/planks.json
 142861b7bb99ff1cd71eb5e451e6cd005e8f3f98 data/minecraft/tags/items/fence_gates.json
 d620076ce910ed88021272b48177a735d1c2b32a data/phantasm/tags/items/gets_xp_speed_boost.json
@@ -13,8 +13,8 @@ d620076ce910ed88021272b48177a735d1c2b32a data/phantasm/tags/items/gets_xp_speed_
 4cfee21bde5372d30a6aec5ba137b3fe88f2a9b3 data/minecraft/tags/items/wooden_buttons.json
 e9b179adc932a9775a25d8959fb6546f3b3f18b5 data/minecraft/tags/items/shovels.json
 78ce86e4980e4d30d2b64c314f0751deb9c50ce0 data/minecraft/tags/items/wooden_slabs.json
-3b0dbbdffd6ecd1316cc22f8f94fd877112c8a7c data/minecraft/tags/items/logs_that_burn.json
 ec0cc05330bcc36ecae4846e703e00642fc521c2 data/minecraft/tags/items/wooden_doors.json
+3b0dbbdffd6ecd1316cc22f8f94fd877112c8a7c data/minecraft/tags/items/logs_that_burn.json
 e99484c17e3311dcf3e166bf110e6109c008512c data/minecraft/tags/items/wooden_fences.json
 5d1270eb9e4788b0604ec4a19166e9cec3aa0b71 data/minecraft/tags/items/wooden_trapdoors.json
 3b0dbbdffd6ecd1316cc22f8f94fd877112c8a7c data/phantasm/tags/items/pream_logs.json

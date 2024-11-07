@@ -15,7 +15,6 @@ import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier;
 import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ModPlacedFeatures {
@@ -112,7 +111,13 @@ public class ModPlacedFeatures {
                 BiomePlacementModifier.of(),
                 RarityFilterPlacementModifier.of(2));
 
-        register(context, CIRITE, configLookup.getOrThrow(ModConfiguredFeatures.CIRITE),
+        register(context, CIRITE_BOULDER, configLookup.getOrThrow(ModConfiguredFeatures.CIRITE_BOULDER),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of(),
+                RarityFilterPlacementModifier.of(2));
+
+        register(context, CIRITE_SPIKE, configLookup.getOrThrow(ModConfiguredFeatures.CIRITE_SPIKE),
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of(),
@@ -155,7 +160,8 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> TALL_DRALGAE = create("tall_dralgae");
     public static final RegistryKey<PlacedFeature> HUGE_DRALGAE = create("huge_dralgae");
 
-    public static final RegistryKey<PlacedFeature> CIRITE = create("cirite_boulder");
+    public static final RegistryKey<PlacedFeature> CIRITE_BOULDER = create("cirite_boulder");
+    public static final RegistryKey<PlacedFeature> CIRITE_SPIKE = create("cirite_spike");
 
     public static final RegistryKey<PlacedFeature> CHORAL_RIFF = create("choral_riff");
     public static final RegistryKey<PlacedFeature> CHORAL_FAN = create("patch_choral_fan");

@@ -11,14 +11,12 @@ import net.lyof.phantasm.world.feature.custom.tree.custom.PreamFoliagePlacer;
 import net.lyof.phantasm.world.feature.custom.tree.custom.PreamTrunkPlacer;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.LeavesBlock;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
-import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.gen.CountConfig;
 import net.minecraft.world.gen.feature.*;
@@ -110,8 +108,13 @@ public class ModConfiguredFeatures {
                 new DralgaeFeatureConfig(UniformIntProvider.create(15, 30), BlockStateProvider.of(Blocks.OBSIDIAN),
                         BlockStateProvider.of(ModBlocks.ACIDIC_MASS)));
 
-        register(context, CIRITE, BoulderFeature.INSTANCE,
+        register(context, CIRITE_BOULDER, BoulderFeature.INSTANCE,
                 new BoulderFeatureConfig(UniformIntProvider.create(3, 7), new WeightedBlockStateProvider(
+                        DataPool.<BlockState>builder().add(ModBlocks.CIRITE.getDefaultState(), 7)
+                                .add(ModBlocks.CIRITE_IRON_ORE.getDefaultState(), 1))));
+
+        register(context, CIRITE_SPIKE, CeilingSpikeFeature.INSTANCE,
+                new BoulderFeatureConfig(UniformIntProvider.create(7, 12), new WeightedBlockStateProvider(
                         DataPool.<BlockState>builder().add(ModBlocks.CIRITE.getDefaultState(), 7)
                                 .add(ModBlocks.CIRITE_IRON_ORE.getDefaultState(), 1))));
 
@@ -147,7 +150,8 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_DRALGAE = create("tall_dralgae");
     public static final RegistryKey<ConfiguredFeature<?, ?>> HUGE_DRALGAE = create("huge_dralgae");
 
-    public static final RegistryKey<ConfiguredFeature<?, ?>> CIRITE = create("cirite_boulder");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CIRITE_BOULDER = create("cirite_boulder");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CIRITE_SPIKE = create("cirite_spike");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> CHORAL_RIFF = create("choral_riff");
     public static final RegistryKey<ConfiguredFeature<?, ?>> CHORAL_FAN = create("patch_choral_fan");

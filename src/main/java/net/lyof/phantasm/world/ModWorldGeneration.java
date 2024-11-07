@@ -88,7 +88,11 @@ public class ModWorldGeneration {
 
         BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
                 GenerationStep.Feature.SURFACE_STRUCTURES,
-                ModPlacedFeatures.CIRITE);
+                ModPlacedFeatures.CIRITE_BOULDER);
+
+        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
+                GenerationStep.Feature.SURFACE_STRUCTURES,
+                ModPlacedFeatures.CIRITE_SPIKE);
 
         BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
                 GenerationStep.Feature.VEGETAL_DECORATION,

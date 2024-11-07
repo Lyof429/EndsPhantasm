@@ -9,7 +9,7 @@ import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 public record BoulderFeatureConfig(IntProvider size, BlockStateProvider block) implements FeatureConfig {
     public static Codec<BoulderFeatureConfig> CODEC = RecordCodecBuilder.create(
             instance -> instance.group(
-                    IntProvider.POSITIVE_CODEC.fieldOf("size").forGetter(BoulderFeatureConfig::size),
+                    IntProvider.NON_NEGATIVE_CODEC.fieldOf("size").forGetter(BoulderFeatureConfig::size),
                     BlockStateProvider.TYPE_CODEC.fieldOf("block").forGetter(BoulderFeatureConfig::block)
             ).apply(instance, BoulderFeatureConfig::new));
 }

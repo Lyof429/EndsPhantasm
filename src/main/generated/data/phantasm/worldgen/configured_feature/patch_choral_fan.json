@@ -1,0 +1,12 @@
+{
+  "type": "phantasm:ceiling_boulder",
+  "config": {
+    "block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "phantasm:choral_block"
+      }
+    },
+    "size": 0
+  }
+}

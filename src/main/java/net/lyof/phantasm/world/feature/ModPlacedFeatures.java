@@ -122,6 +122,12 @@ public class ModPlacedFeatures {
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of());
+
+        register(context, CHORAL_FAN, configLookup.getOrThrow(ModConfiguredFeatures.CHORAL_FAN),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of(),
+                PlacedFeatures.createCountExtraModifier(10, 1, 5));
     }
 
 
@@ -150,5 +156,7 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> HUGE_DRALGAE = create("huge_dralgae");
 
     public static final RegistryKey<PlacedFeature> CIRITE = create("cirite_boulder");
+
     public static final RegistryKey<PlacedFeature> CHORAL_RIFF = create("choral_riff");
+    public static final RegistryKey<PlacedFeature> CHORAL_FAN = create("patch_choral_fan");
 }

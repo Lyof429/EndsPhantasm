@@ -56,7 +56,8 @@ public class CeilingBoulderFeature extends Feature<BoulderFeatureConfig> {
         this.spike(fans, pos, 2);
 
         for (BlockPos place : toPlace)
-            this.setBlockStateIf(world, place, config.block().get(random, place), block -> block.isTransparent(world, place));
+            this.setBlockStateIf(world, place, config.block().get(random, place),
+                    block -> size > 0 && block.isTransparent(world, place));
         for (BlockPos place : fans)
             this.setBlockStateIf(world, place, ModBlocks.CHORAL_FAN.getPlacementState(world, place),
                     block -> random.nextInt(4) == 0 && block.isTransparent(world, place));

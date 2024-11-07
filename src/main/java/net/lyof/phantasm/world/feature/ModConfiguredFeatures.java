@@ -117,6 +117,9 @@ public class ModConfiguredFeatures {
 
         register(context, CHORAL_RIFF, CeilingBoulderFeature.INSTANCE,
                 new BoulderFeatureConfig(UniformIntProvider.create(4, 9), SimpleBlockStateProvider.of(ModBlocks.CHORAL_BLOCK)));
+
+        register(context, CHORAL_FAN, CeilingBoulderFeature.INSTANCE,
+                new BoulderFeatureConfig(ConstantIntProvider.create(0), SimpleBlockStateProvider.of(ModBlocks.CHORAL_BLOCK)));
     }
 
 
@@ -145,5 +148,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> HUGE_DRALGAE = create("huge_dralgae");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> CIRITE = create("cirite_boulder");
+
     public static final RegistryKey<ConfiguredFeature<?, ?>> CHORAL_RIFF = create("choral_riff");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CHORAL_FAN = create("patch_choral_fan");
 }

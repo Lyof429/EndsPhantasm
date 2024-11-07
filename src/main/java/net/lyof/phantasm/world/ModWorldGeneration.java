@@ -93,6 +93,10 @@ public class ModWorldGeneration {
         BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
                 GenerationStep.Feature.VEGETAL_DECORATION,
                 ModPlacedFeatures.CHORAL_RIFF);
+
+        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
+                GenerationStep.Feature.VEGETAL_DECORATION,
+                ModPlacedFeatures.CHORAL_FAN);
     }
 
     public static void generateBiomes() {

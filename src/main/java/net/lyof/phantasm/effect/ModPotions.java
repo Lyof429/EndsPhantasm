@@ -2,6 +2,7 @@ package net.lyof.phantasm.effect;
 
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistry;
 import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.item.ModItems;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.Items;
@@ -19,7 +20,7 @@ public class ModPotions {
         BrewingRecipeRegistry.registerPotionRecipe(CORROSION, Items.REDSTONE, LONG_CORROSION);
         BrewingRecipeRegistry.registerPotionRecipe(CORROSION, Items.GLOWSTONE_DUST, STRONG_CORROSION);
 
-        //BrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, ModItems.POME_SLICE, FLOATATION);
+        BrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, ModBlocks.FALLEN_STAR.asItem(), FLOATATION);
         BrewingRecipeRegistry.registerPotionRecipe(FLOATATION, Items.REDSTONE, LONG_FLOATATION);
     }
 

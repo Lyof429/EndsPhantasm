@@ -6,6 +6,8 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -50,6 +52,11 @@ public class ShatteredPendantItem extends Item {
             stack.getOrCreateNbt().putInt("SavedZ", entity.getBlockZ());
             stack.getOrCreateNbt().putString("SavedDim", world.getRegistryKey().toString());
         }
+        else if (entity instanceof LivingEntity living && entity.age % 20 == 0 && entity.getY() <= 0
+                && world.getRegistryKey().getValue().toString().equals("minecraft:the_end")) {
+            living.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 20, 0, true, false));
+            this.finishUsing(stack, world, living);
+        }
     }
 
     @Override
@@ -71,10 +78,8 @@ public class ShatteredPendantItem extends Item {
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         NbtCompound nbt = stack.getOrCreateNbt();
-        if (nbt.getInt("SavedX") == 0 && nbt.getInt("SavedY") == 0 && nbt.getInt("SavedZ") == 0) {
-            Phantasm.log("naah");
+        if (nbt.getInt("SavedX") == 0 && nbt.getInt("SavedY") == 0 && nbt.getInt("SavedZ") == 0)
             return super.finishUsing(stack, world, user);
-        }
 
         if (world.getRegistryKey().toString().equals(nbt.getString("SavedDim"))) {
             user.fallDistance = 0;
@@ -92,7 +97,9 @@ public class ShatteredPendantItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
-        tooltip.add(Text.literal("In development").formatted(Formatting.ITALIC));
+        String[] txt = Text.translatable("item.phantasm.shattered_pendant.desc").getString().split("\\n");
+        for (String t : txt)
+            tooltip.add(Text.literal(t));
     }
 
     @Override
@@ -101,8 +108,6 @@ public class ShatteredPendantItem extends Item {
 
         float sin = (float) Math.sin(remainingUseTicks * Math.PI / 10);
         float cos = (float) Math.cos(remainingUseTicks * Math.PI / 10);
-        //Phantasm.log(sin +" " + cos);
-        //world.setBlockState(user.getBlockPos().add(Math.round(sin * 5), 0, Math.round(cos * 5)), ModBlocks.PREAM_WOOD.getDefaultState(), 0);
         world.addParticle(ParticleTypes.END_ROD, user.getX() + sin, user.getEyeY() - 0.5, user.getZ() + cos, 0, 0, 0);
     }
 }

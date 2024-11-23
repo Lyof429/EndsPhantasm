@@ -91,6 +91,7 @@
   "item.phantasm.behemoth_steak": "Behemoth Steak",
 
   "item.phantasm.shattered_pendant": "Shattered Pendant",
+  "item.phantasm.shattered_pendant.desc": "Allows teleporting back to your last safe place.\nAuto activates when falling in the void",
 
   "block.phantasm.acidic_nihilium": "Acidic Nihilium",
   "block.phantasm.acidic_nihilis": "Acidic Nihilis",

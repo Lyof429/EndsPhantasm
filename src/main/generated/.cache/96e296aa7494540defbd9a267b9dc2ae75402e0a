@@ -1,4 +1,4 @@
-// 1.20.1	2024-11-23T12:08:23.5068674	End's Phantasm/Model Definitions
+// 1.20.1	2024-11-23T17:39:38.2999403	End's Phantasm/Model Definitions
 1dfe08bcfe8ebc76bda5c21fb3b3253d6d029360 assets\phantasm\blockstates\polished_obsidian_bricks.json
 b4eab81ee68092960c6944c0ebfdda04688ad103 assets\phantasm\blockstates\choral_block.json
 994a74681a2b1e631beb59e14945be860f82fa3d assets\phantasm\models\block\choral_block.json
@@ -10,8 +10,8 @@ af95ca28b06341258ae6268c070944d50d698587 assets\phantasm\blockstates\raw_purpur.
 5aedc20622fea0140d68b7533f005d0a59ca0d5a assets\phantasm\blockstates\pream_planks.json
 10c595e3244787114b093b5f32619dd0564e6980 assets\phantasm\models\item\crystal_pillar.json
 1e63338dde52a4daef5d830b5591f40efaae6546 assets\phantasm\blockstates\cirite_iron_ore.json
-c1447aa7622ff92912b8f0b1c7646f7a4a28a424 assets\phantasm\models\item\cirite_bricks_stairs.json
 b9339e1b681fd27c3ae82e522bfb4f7b5d2d2776 assets\phantasm\models\block\pream_pressure_plate.json
+c1447aa7622ff92912b8f0b1c7646f7a4a28a424 assets\phantasm\models\item\cirite_bricks_stairs.json
 59371e6391dd1d78a121b5a510be4197f121bd1f assets\phantasm\models\item\pream_sapling.json
 1d29cb90cd99f188d5cad52e50efb48a2337e0db assets\phantasm\models\item\void_crystal_pillar.json
 dd36d6040d7063ea77a3e5b50c370cad4a8ba60f assets\phantasm\blockstates\dralgae.json

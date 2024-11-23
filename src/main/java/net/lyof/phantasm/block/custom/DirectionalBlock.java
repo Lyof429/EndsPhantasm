@@ -17,7 +17,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -61,7 +60,6 @@ public class DirectionalBlock extends Block {
         return this.canPlaceAt(state, world, pos) ? result : Blocks.AIR.getDefaultState();
     }
 
-    @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
         return this.getDefaultState().with(FACING, context.getSide().getOpposite());

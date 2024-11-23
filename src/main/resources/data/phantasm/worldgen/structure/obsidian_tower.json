@@ -6,7 +6,7 @@
   "biomes": "#phantasm:has_structure/obsidian_tower",
   "step": "surface_structures",
   "start_height": {
-    "absolute": 0
+    "absolute": 60
   },
   "project_start_to_heightmap": "WORLD_SURFACE_WG",
   "use_expansion_hack": false,

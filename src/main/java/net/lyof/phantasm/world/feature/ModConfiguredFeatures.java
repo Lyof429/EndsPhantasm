@@ -114,9 +114,9 @@ public class ModConfiguredFeatures {
                                 .add(ModBlocks.CIRITE_IRON_ORE.getDefaultState(), 1))));
 
         register(context, CIRITE_SPIKE, CeilingSpikeFeature.INSTANCE,
-                new BoulderFeatureConfig(UniformIntProvider.create(10, 16), new WeightedBlockStateProvider(
+                new BoulderFeatureConfig(UniformIntProvider.create(7, 13), new WeightedBlockStateProvider(
                         DataPool.<BlockState>builder().add(ModBlocks.CIRITE.getDefaultState(), 7)
-                                .add(ModBlocks.CIRITE_IRON_ORE.getDefaultState(), 1))));
+                                .add(ModBlocks.CIRITE_IRON_ORE.getDefaultState(), 2))));
 
         register(context, CHORAL_RIFF, CeilingBoulderFeature.INSTANCE,
                 new BoulderFeatureConfig(UniformIntProvider.create(4, 9), SimpleBlockStateProvider.of(ModBlocks.CHORAL_BLOCK)));

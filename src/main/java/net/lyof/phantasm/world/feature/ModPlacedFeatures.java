@@ -69,9 +69,7 @@ public class ModPlacedFeatures {
                 BiomePlacementModifier.of());
 
         register(context, OBSIDIAN_TOWER, configLookup.getOrThrow(ModConfiguredFeatures.OBSIDIAN_TOWER),
-                SquarePlacementModifier.of(),
-                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
-                RarityFilterPlacementModifier.of(3));
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP);
 
         register(context, OBLIVINE_PATCH, configLookup.getOrThrow(ModConfiguredFeatures.OBLIVINE),
                 SquarePlacementModifier.of(),

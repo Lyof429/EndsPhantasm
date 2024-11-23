@@ -14,15 +14,15 @@
           "data": {
             "Name": "phantasm:cirite_iron_ore"
           },
-          "weight": 1
+          "weight": 2
         }
       ]
     },
     "size": {
       "type": "minecraft:uniform",
       "value": {
-        "max_inclusive": 16,
-        "min_inclusive": 10
+        "max_inclusive": 13,
+        "min_inclusive": 7
       }
     }
   }

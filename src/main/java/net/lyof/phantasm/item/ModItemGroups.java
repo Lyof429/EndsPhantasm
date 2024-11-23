@@ -105,7 +105,7 @@ public class ModItemGroups {
                         entries.add(ModItems.BEHEMOTH_MEAT);
                         entries.add(ModItems.BEHEMOTH_STEAK);
 
-                        //entries.add(ModItems.SHATTERED_PENDANT);
+                        entries.add(ModItems.SHATTERED_PENDANT);
 
                         entries.add(ModItems.CRYSTIE_SPAWN_EGG);
                         entries.add(ModItems.BEHEMOTH_SPAWN_EGG);

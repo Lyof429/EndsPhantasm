@@ -1,6 +1,7 @@
 package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -42,7 +43,7 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
         for (int sy = maxy; sy >= 0; sy--) {
             for (int sx = -8; sx < 9; sx++) {
                 for (int sz = -8; sz < 9; sz++) {
-                    if (sx*sx + sz*sz < 64 && (sx*sx + sz*sz >= 49 || sy == maxy || sy == 0)) {
+                    if (sx*sx + sz*sz < 64 && (sx*sx + sz*sz >= 49 || sy == maxy)) {
                         Block block = Blocks.OBSIDIAN;
                         double crying = (sy - 60) / (maxy - 60.0);
                         if (Math.random() + 0.1 < crying * crying && crying > 0)
@@ -50,25 +51,29 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
                         else if (Math.random() < 0.2)
                             block = Math.random() < 0.5 ? ModBlocks.POLISHED_OBSIDIAN : ModBlocks.POLISHED_OBSIDIAN_BRICKS;
 
-                        world.setBlockState(origin.withY(sy).east(sx).north(sz),
-                                block.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+                        this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
+                                block.getDefaultState());
+                    }
+                    else if (sx*sx + sz*sz < 64 && sy == 0) {
+                        this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
+                                Blocks.END_PORTAL.getDefaultState());
                     }
                     else if (sx*sx + sz*sz < 49) {
-                        world.setBlockState(origin.withY(sy).east(sx).north(sz),
-                                Blocks.AIR.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+                        this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
+                                Blocks.AIR.getDefaultState());
                     }
                 }
             }
-            if (world.getBlockState(origin.withY(sy)).isAir()) world.setBlockState(origin.withY(sy), Blocks.CHAIN.getDefaultState(), Block.NOTIFY_NEIGHBORS);
-            if (sy < maxy && sy > 0) putStairs(world, origin.withY(sy));
-            if (sy % 7 == 0 && sy != maxy && sy != 0) putPlatform(world, origin.withY(sy), random.nextInt(7));
+            if (world.getBlockState(origin.withY(sy)).isAir()) this.setBlockState(world, origin.withY(sy), Blocks.CHAIN.getDefaultState());
+            if (sy < maxy && sy > 0) this.putStairs(world, origin.withY(sy));
+            if (sy % 7 == 0 && sy != maxy && sy != 0) this.putPlatform(world, origin.withY(sy), random.nextInt(7));
             //if (sy % 5 == 0 && sy != 0) generateRoom(world, origin.withY(sy - 4));
         }
 
         return true;
     }
 
-    public static void putStairs(StructureWorldAccess world, BlockPos center) {
+    public void putStairs(StructureWorldAccess world, BlockPos center) {
         int y = center.getY();
 
         for (int sx = -7; sx < 8; sx++) {
@@ -78,9 +83,8 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
                             || sx <= -5 && y % 4 == 2
                             || sz >= 5 && y % 4 == 1
                             || sz <= -5 && y % 4 == 3)
-                        world.setBlockState(center.east(sx).north(sz),
-                                Blocks.PURPUR_SLAB.getDefaultState().with(SlabBlock.TYPE, SlabType.TOP),
-                                Block.NOTIFY_NEIGHBORS);
+                        this.setBlockState(world, center.east(sx).north(sz),
+                                Blocks.PURPUR_SLAB.getDefaultState().with(SlabBlock.TYPE, SlabType.TOP));
                 }
             }
         }
@@ -93,18 +97,17 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
             else door = door.south(7);
 
             door = door.up();
-            world.setBlockState(door, Blocks.AIR.getDefaultState(), Block.NOTIFY_NEIGHBORS);
-            world.setBlockState(door.up(), Blocks.AIR.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+            this.setBlockState(world, door, Blocks.AIR.getDefaultState());
+            this.setBlockState(world, door.up(), Blocks.AIR.getDefaultState());
         }
     }
 
-    public static void putPlatform(ServerWorldAccess world, BlockPos center, int roomtype) {
+    public void putPlatform(ServerWorldAccess world, BlockPos center, int roomtype) {
         if (roomtype == 0) {
             for (int sx = -5; sx < 6; sx++) {
                 for (int sz = -5; sz < 6; sz++) {
                     if (sx * sx + sz * sz < 16) {
-                        world.setBlockState(center.east(sx).north(sz), Blocks.PURPUR_BLOCK.getDefaultState(),
-                                Block.NOTIFY_NEIGHBORS);
+                        this.setBlockState(world, center.east(sx).north(sz), Blocks.PURPUR_BLOCK.getDefaultState());
                     }
                 }
             }
@@ -113,17 +116,16 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
             for (int sx = -5; sx < 6; sx++) {
                 for (int sz = -5; sz < 6; sz++) {
                     if (sx * sx + sz * sz < 16) {
-                        world.setBlockState(center.east(sx).north(sz), Blocks.PURPUR_BLOCK.getDefaultState(),
-                                Block.NOTIFY_NEIGHBORS);
+                        this.setBlockState(world, center.east(sx).north(sz), Blocks.PURPUR_BLOCK.getDefaultState());
                     }
                 }
             }
-            world.setBlockState(center.up(), Blocks.CHEST.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+            this.setBlockState(world, center.up(), Blocks.CHEST.getDefaultState());
             if (world.getBlockEntity(center.up()) instanceof ChestBlockEntity chest)
-                chest.setLootTable(LootTables.STRONGHOLD_CORRIDOR_CHEST, world.getRandom().nextLong());
+                chest.setLootTable(Phantasm.makeID("chests/obsidian_tower"), world.getRandom().nextLong());
         }
         else if (roomtype == 2) {
-            world.setBlockState(center, Blocks.SPAWNER.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+            this.setBlockState(world, center, Blocks.SPAWNER.getDefaultState());
             if (world.getBlockEntity(center) instanceof MobSpawnerBlockEntity spawner) {
                 NbtCompound nbt = spawner.getLogic().writeNbt(new NbtCompound());
                 nbt.putShort("MinSpawnDelay", (short) 200);
@@ -137,9 +139,9 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
         else if (roomtype == 3) {
             center = center.north(world.getRandom().nextBetween(-3, 3)).east(world.getRandom().nextBetween(-3, 3));
             BlockPos.iterateInSquare(center, 2, Direction.NORTH, Direction.EAST).forEach(pos ->
-                    world.setBlockState(pos, Blocks.OBSIDIAN.getDefaultState(), Block.NOTIFY_NEIGHBORS)
+                    this.setBlockState(world, pos, Blocks.OBSIDIAN.getDefaultState())
             );
-            world.setBlockState(center.up(), Blocks.CHEST.getDefaultState(), Block.NOTIFY_NEIGHBORS);
+            this.setBlockState(world, center.up(), Blocks.CHEST.getDefaultState());
             if (world.getBlockEntity(center.up()) instanceof ChestBlockEntity chest)
                 chest.setLootTable(LootTables.END_CITY_TREASURE_CHEST, world.getRandom().nextLong());
         }

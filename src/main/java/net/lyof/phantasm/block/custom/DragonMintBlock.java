@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Fertilizable;
 import net.minecraft.block.TallPlantBlock;
+import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -27,14 +28,19 @@ public class DragonMintBlock extends TallPlantBlock implements Fertilizable {
         );
     }
 
+    public static BlockState getOtherHalf(WorldView world, BlockPos pos, BlockState state) {
+        return state.get(TallPlantBlock.HALF) == DoubleBlockHalf.LOWER ?
+                world.getBlockState(pos.up()) : world.getBlockState(pos.down());
+    }
+
     @Override
     public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
-        return !state.get(HangingFruitBlock.HAS_FRUIT);
+        return !state.get(HangingFruitBlock.HAS_FRUIT) && !getOtherHalf(world, pos, state).get(HangingFruitBlock.HAS_FRUIT);
     }
 
     @Override
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
-        return !state.get(HangingFruitBlock.HAS_FRUIT);
+        return !state.get(HangingFruitBlock.HAS_FRUIT) && !getOtherHalf(world, pos, state).get(HangingFruitBlock.HAS_FRUIT);
     }
 
     @Override

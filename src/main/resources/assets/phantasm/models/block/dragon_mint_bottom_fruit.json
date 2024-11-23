@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "phantasm:block/dragon_mint_bottom_fruit"
+  }
+}

@@ -60,7 +60,7 @@ public class CeilingBoulderFeature extends Feature<BoulderFeatureConfig> {
                     block -> size > 0 && block.isTransparent(world, place));
         for (BlockPos place : fans)
             this.setBlockStateIf(world, place, ModBlocks.CHORAL_FAN.getPlacementState(world, place),
-                    block -> random.nextInt(4) == 0 && block.isTransparent(world, place));
+                    block -> random.nextInt(5) == 0 && block.isTransparent(world, place));
 
         return true;
     }

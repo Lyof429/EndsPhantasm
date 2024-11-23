@@ -511,5 +511,5 @@ public class ModBlocks {
     public static final DirectionalBlock CHORAL_FAN = (DirectionalBlock) ModRegistry.ofBlock("choral_fan",
                     new DirectionalBlock(copy(Blocks.BRAIN_CORAL_FAN).mapColor(MapColor.WHITE)))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
-            .drop().build();
+            .drop().cutout().build();
 }

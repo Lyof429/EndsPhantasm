@@ -114,7 +114,7 @@ public class ModConfiguredFeatures {
                                 .add(ModBlocks.CIRITE_IRON_ORE.getDefaultState(), 1))));
 
         register(context, CIRITE_SPIKE, CeilingSpikeFeature.INSTANCE,
-                new BoulderFeatureConfig(UniformIntProvider.create(7, 12), new WeightedBlockStateProvider(
+                new BoulderFeatureConfig(UniformIntProvider.create(10, 16), new WeightedBlockStateProvider(
                         DataPool.<BlockState>builder().add(ModBlocks.CIRITE.getDefaultState(), 7)
                                 .add(ModBlocks.CIRITE_IRON_ORE.getDefaultState(), 1))));
 

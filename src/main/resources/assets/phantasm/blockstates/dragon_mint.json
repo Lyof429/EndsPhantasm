@@ -1,16 +1,16 @@
 {
   "variants": {
     "half=lower,has_fruit=false": {
-      "model": "phantasm:block/tall_vivid_nihilis_bottom"
+      "model": "phantasm:block/dragon_mint_bottom"
     },
     "half=lower,has_fruit=true": {
-      "model": "phantasm:block/tall_acidic_nihilis_bottom"
+      "model": "phantasm:block/dragon_mint_bottom_fruit"
     },
     "half=upper,has_fruit=false": {
-      "model": "phantasm:block/tall_vivid_nihilis_top"
+      "model": "phantasm:block/dragon_mint_top"
     },
     "half=upper,has_fruit=true": {
-      "model": "phantasm:block/tall_acidic_nihilis_top"
+      "model": "phantasm:block/dragon_mint_top_fruit"
     }
   }
 }

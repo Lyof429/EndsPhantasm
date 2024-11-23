@@ -30,7 +30,6 @@ public class ModMaterialRules {
 
     private static final MaterialRules.MaterialRule ACIDIC_NIHILIUM = block(ModBlocks.ACIDIC_NIHILIUM);
     private static final MaterialRules.MaterialRule ACIDIC_MASS = block(ModBlocks.ACIDIC_MASS);
-    private static final MaterialRules.MaterialRule CIRITE = block(ModBlocks.CIRITE);
 
     public static MaterialRules.MaterialRule createDreamingDenRule() {
         double min_noise = -0.4;
@@ -164,17 +163,6 @@ public class ModMaterialRules {
                 )
         );
 
-        MaterialRules.MaterialRule acidburnt_abysses_cirite = MaterialRules.condition(
-                is_acidburnt_abysses,
-                MaterialRules.condition(
-                        MaterialRules.aboveY(YOffset.belowTop(220), 0),
-                        MaterialRules.condition(
-                                MaterialRules.stoneDepth(2, false, VerticalSurfaceType.CEILING),
-                                CIRITE
-                        )
-                )
-        );
-
 
         MaterialRules.MaterialRule acidburnt_abysses = MaterialRules.sequence(
                 MaterialRules.condition(
@@ -191,14 +179,6 @@ public class ModMaterialRules {
                                 nihilium_noise_sub,
                                 acidburnt_abysses_nihilium
                         )
-                ),
-                MaterialRules.condition(
-                        nihilium_noise_main,
-                        acidburnt_abysses_cirite
-                ),
-                MaterialRules.condition(
-                        nihilium_noise_sub,
-                        acidburnt_abysses_cirite
                 )
         );
 

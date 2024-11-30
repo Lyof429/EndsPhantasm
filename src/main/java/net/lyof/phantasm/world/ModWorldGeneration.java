@@ -11,11 +11,12 @@ import net.lyof.phantasm.world.feature.ModPlacedFeatures;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.registry.RegistryEntryLookup;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.Heightmap;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
 
-// 6246 62 34477
-// -3454909900679182839
 public class ModWorldGeneration {
     public static void register() {
         generateTrees();
@@ -27,14 +28,24 @@ public class ModWorldGeneration {
     }
 
 
-    public static void generateTrees() {
+    public static RegistryEntryLookup<Biome> LOOKUP;
+
+    public static void register(RegistryEntryLookup<Biome> lookup) {
+        LOOKUP = lookup;
+
+        //DREAMING_DEN = lookup.getOrThrow(ModBiomes.DREAMING_DEN);
+        //ACIDBURNT_ABYSSES = lookup.getOrThrow(ModBiomes.ACIDBURNT_ABYSSES);
+    }
+
+
+    private static void generateTrees() {
         if (ConfigEntries.doPreamTrees)
             BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
                     GenerationStep.Feature.VEGETAL_DECORATION,
                     ModPlacedFeatures.PREAM);
     }
 
-    public static void generateFeatures() {
+    private static void generateFeatures() {
         if (ConfigEntries.doCrystalSpikes)
             BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
                     GenerationStep.Feature.VEGETAL_DECORATION,
@@ -103,7 +114,7 @@ public class ModWorldGeneration {
                 ModPlacedFeatures.CHORAL_FAN);
     }
 
-    public static void generateBiomes() {
+    private static void generateBiomes() {
         if (ConfigEntries.doDreamingDenBiome)
             TheEndBiomes.addHighlandsBiome(ModBiomes.DREAMING_DEN, ConfigEntries.dreamingDenWeight);
 
@@ -111,7 +122,7 @@ public class ModWorldGeneration {
             TheEndBiomes.addHighlandsBiome(ModBiomes.ACIDBURNT_ABYSSES, ConfigEntries.acidburntAbyssesWeight);
     }
 
-    public static void generateSpawns() {
+    private static void generateSpawns() {
         BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
                 SpawnGroup.MONSTER,
                 ModEntities.CRYSTIE,
@@ -123,7 +134,7 @@ public class ModWorldGeneration {
                 7, 1, 1);
     }
 
-    public static void generateSpawnRestrictions() {
+    private static void generateSpawnRestrictions() {
         SpawnRestriction.register(ModEntities.BEHEMOTH, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
     }
 }

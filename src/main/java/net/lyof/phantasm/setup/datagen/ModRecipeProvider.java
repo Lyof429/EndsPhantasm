@@ -308,5 +308,18 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(ModBlocks.DRALGAE), conditionsFromItem(ModBlocks.DRALGAE))
                 .criterion(hasItem(Blocks.OBSIDIAN), conditionsFromItem(Blocks.OBSIDIAN))
                 .group("obsidian").offerTo(exporter, Phantasm.makeID("obsidian"));
+
+        // Choral Blocks
+        offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHORAL_BLOCK, ModBlocks.CHORAL_FAN);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.SUBWOOFER_BLOCK, 1)
+                .pattern("F##")
+                .pattern("FO#")
+                .pattern("F##")
+                .input('#', ModBlocks.CHORAL_BLOCK)
+                .input('F', ModBlocks.CHORAL_FAN)
+                .input('O', Blocks.NOTE_BLOCK)
+                .criterion(hasItem(ModBlocks.CHORAL_BLOCK), conditionsFromItem(ModBlocks.CHORAL_BLOCK))
+                .criterion(hasItem(ModBlocks.CHORAL_FAN), conditionsFromItem(ModBlocks.CHORAL_FAN))
+                .group("subwoofer_block").offerTo(exporter, Phantasm.makeID("subwoofer_block"));
     }
 }

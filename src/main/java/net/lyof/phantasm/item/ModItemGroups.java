@@ -130,6 +130,7 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.CHORAL_BLOCK);
                         entries.add(ModBlocks.CHORAL_FAN);
+                        entries.add(ModBlocks.SUBWOOFER_BLOCK);
 
                         entries.add(ModItems.ABRUPTION_MUSIC_DISC);
 
@@ -246,6 +247,8 @@ public class ModItemGroups {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
             entries.addAfter(Items.WARPED_HANGING_SIGN, ModItems.PREAM_SIGN);
             entries.addAfter(ModItems.PREAM_SIGN, ModItems.PREAM_HANGING_SIGN);
+
+            entries.addAfter(Items.JUKEBOX, ModBlocks.SUBWOOFER_BLOCK);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register(entries -> {
             entries.addAfter(Items.PINK_STAINED_GLASS, ModBlocks.CRYSTAL_GLASS);

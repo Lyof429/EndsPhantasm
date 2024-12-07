@@ -513,4 +513,8 @@ public class ModBlocks {
                     new DirectionalBlock(copy(Blocks.BRAIN_CORAL_FAN).mapColor(MapColor.WHITE)))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
             .drop().cutout().build();
+
+    public static final Block SUBWOOFER_BLOCK = ModRegistry.ofBlock("subwoofer_block",
+                    new SubwooferBlock(copy(Blocks.NOTE_BLOCK).mapColor(MapColor.WHITE)))
+            .tool("_axe").drop().build();
 }

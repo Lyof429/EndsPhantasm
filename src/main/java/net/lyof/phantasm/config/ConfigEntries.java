@@ -32,6 +32,7 @@ public class ConfigEntries {
         chorusSaladStack = new ConfigEntry<>("equipment.chorus_fruit_salad_stack_size", 1).get();
 
         gravityCoreRange = new ConfigEntry<>("equipment.gravity_core_range", 16).get();
+        subwooferRange = new ConfigEntry<>("equipment.subwoofer_range", 6).get();
 
         //voidEyeDurability = new ConfigEntry<>("equipment.void_eye_durability", 4).get();
     }
@@ -65,6 +66,8 @@ public class ConfigEntries {
     public static int chorusSaladStack;
 
     public static int gravityCoreRange;
+
+    public static int subwooferRange;
 
     public static int voidEyeDurability = 4;
 }

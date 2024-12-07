@@ -166,7 +166,10 @@ public class ModConfig {
     "chorus_fruit_salad_stack_size": 1,
     
     // Radius (in blocks) in which Gravity Cores provides the Floatation effect
-    "gravity_core_range": 16
+    "gravity_core_range": 16,
+    
+    // Range (in blocks) for the Subwoofer and Subwoofer Block
+    "subwoofer_range": 6
   }
 }""";
 }

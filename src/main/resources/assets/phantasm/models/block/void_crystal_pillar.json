@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "phantasm:block/void_crystal_pillar_top",
+    "end": "phantasm:block/void_crystal_tiles",
     "side": "phantasm:block/void_crystal_pillar"
   }
 }

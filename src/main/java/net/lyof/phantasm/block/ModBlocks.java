@@ -146,7 +146,7 @@ public class ModBlocks {
             .tag(BlockTags.SLABS).tagitem(ItemTags.SLABS).cutout().build();
     public static final Block CRYSTAL_PILLAR = ModRegistry.ofBlock("crystal_pillar",
             new PillarBlock(crystalMaterial))
-            .model(ModRegistry.Models.PILLAR).tool("_pickaxe").drop().build();
+            .tool("_pickaxe").drop().build();
 
     public static final Block CRYSTAL_GLASS = ModRegistry.ofBlock("crystal_glass",
             new Block(crystalGlassMaterial))
@@ -171,7 +171,7 @@ public class ModBlocks {
             .tag(BlockTags.SLABS).tagitem(ItemTags.SLABS).cutout().build();
     public static final Block VOID_CRYSTAL_PILLAR = ModRegistry.ofBlock("void_crystal_pillar",
             new PillarBlock(crystalMaterial))
-            .model(ModRegistry.Models.PILLAR).tool("_pickaxe").drop().build();
+            .tool("_pickaxe").drop().build();
 
     public static final Block VOID_CRYSTAL_GLASS = ModRegistry.ofBlock("void_crystal_glass",
                     new Block(crystalGlassMaterial))

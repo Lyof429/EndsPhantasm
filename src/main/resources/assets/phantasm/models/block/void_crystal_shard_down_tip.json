@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/pointed_dripstone",
-  "textures": {
-    "cross": "phantasm:block/void_crystal_shard_down_tip"
-  }
-}

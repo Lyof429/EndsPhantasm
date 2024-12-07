@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "phantasm:block/void_crystal_shard_base"
+    "cross": "phantasm:block/void_crystal_shard_tip"
   }
 }

@@ -1,16 +1,18 @@
 {
   "variants": {
     "is_tip=false,is_up=false": {
-      "model": "phantasm:block/crystal_shard_base"
+      "model": "phantasm:block/crystal_shard_base",
+      "x": 180
     },
     "is_tip=false,is_up=true": {
       "model": "phantasm:block/crystal_shard_base"
     },
     "is_tip=true,is_up=false": {
-      "model": "phantasm:block/crystal_shard_down_tip"
+      "model": "phantasm:block/crystal_shard_tip",
+      "x": 180
     },
     "is_tip=true,is_up=true": {
-      "model": "phantasm:block/crystal_shard_up_tip"
+      "model": "phantasm:block/crystal_shard_tip"
     }
   }
 }

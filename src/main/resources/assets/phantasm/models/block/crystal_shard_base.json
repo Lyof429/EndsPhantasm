@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/pointed_dripstone",
+  "parent": "minecraft:block/cross",
   "textures": {
     "cross": "phantasm:block/crystal_shard_base"
   }

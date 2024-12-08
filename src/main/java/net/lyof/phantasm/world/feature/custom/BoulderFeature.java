@@ -1,23 +1,16 @@
 package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
-import net.lyof.phantasm.block.ModBlocks;
-import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.world.feature.custom.config.BoulderFeatureConfig;
-import net.lyof.phantasm.world.feature.custom.config.DralgaeFeatureConfig;
-import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
-import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class BoulderFeature extends Feature<BoulderFeatureConfig> {
     public static final Feature<BoulderFeatureConfig> INSTANCE = new BoulderFeature(BoulderFeatureConfig.CODEC);

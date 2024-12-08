@@ -2,7 +2,6 @@ package net.lyof.phantasm.world.feature.custom.config;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "phantasm:block/subwoofer_block",
+    "up": "phantasm:block/subwoofer_block",
+    "north": "phantasm:block/subwoofer_block_front",
+    "east": "phantasm:block/subwoofer_block",
+    "south": "phantasm:block/subwoofer_block",
+    "west": "phantasm:block/subwoofer_block",
+    "particle": "phantasm:block/subwoofer_block"
+  }
+}

@@ -1,12 +1,9 @@
 package net.lyof.phantasm.entity.client.model;
 
 import net.lyof.phantasm.block.entity.GravityCoreBlockEntity;
-import net.lyof.phantasm.entity.custom.CrystieEntity;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 
 public class GravityCoreModel<T extends GravityCoreBlockEntity> extends Model {

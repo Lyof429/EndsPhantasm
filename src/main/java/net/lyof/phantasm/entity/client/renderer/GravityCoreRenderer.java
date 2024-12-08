@@ -1,7 +1,6 @@
 package net.lyof.phantasm.entity.client.renderer;
 
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.block.custom.GravityCoreBlock;
 import net.lyof.phantasm.block.entity.GravityCoreBlockEntity;
 import net.lyof.phantasm.entity.client.ModModelLayers;
 import net.minecraft.client.model.ModelPart;
@@ -10,7 +9,6 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.block.entity.ConduitBlockEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;

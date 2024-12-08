@@ -194,7 +194,7 @@ public class ModItemGroups {
             entries.addAfter(ModBlocks.ACIDIC_MASS, ModBlocks.CIRITE);
             entries.addAfter(ModBlocks.CIRITE, ModBlocks.CIRITE_IRON_ORE);
 
-            entries.addAfter(Blocks.HORN_CORAL, ModBlocks.CHORAL_BLOCK);
+            entries.addAfter(Blocks.HORN_CORAL_BLOCK, ModBlocks.CHORAL_BLOCK);
             entries.addAfter(Blocks.HORN_CORAL_WALL_FAN, ModBlocks.CHORAL_FAN);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {

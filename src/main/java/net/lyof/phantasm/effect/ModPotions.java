@@ -1,6 +1,5 @@
 package net.lyof.phantasm.effect;
 
-import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistry;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.item.ModItems;

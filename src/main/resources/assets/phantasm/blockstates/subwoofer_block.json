@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "phantasm:block/subwoofer_block"
+    },
+    "facing=up": {
+      "model": "phantasm:block/subwoofer_block",
+      "x": -90
+    },
+    "facing=down": {
+      "model": "phantasm:block/subwoofer_block",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "phantasm:block/subwoofer_block",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "phantasm:block/subwoofer_block",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "phantasm:block/subwoofer_block",
+      "y": -90
+    }
+  }
+}

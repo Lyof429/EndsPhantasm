@@ -1,4 +1,4 @@
-// 1.20.1	2024-12-07T13:51:29.9776301	End's Phantasm/Model Definitions
+// 1.20.1	2024-12-08T11:59:38.1977566	End's Phantasm/Model Definitions
 1dfe08bcfe8ebc76bda5c21fb3b3253d6d029360 assets\phantasm\blockstates\polished_obsidian_bricks.json
 b4eab81ee68092960c6944c0ebfdda04688ad103 assets\phantasm\blockstates\choral_block.json
 994a74681a2b1e631beb59e14945be860f82fa3d assets\phantasm\models\block\choral_block.json
@@ -71,9 +71,9 @@ e7c7e0e0c0f613eefb0510a0e356633726f5fe9e assets\phantasm\models\item\void_crysta
 6a91bfe4e832516c06f365d44c53389402096f84 assets\phantasm\models\item\raw_purpur_pillar.json
 e4c4faae72d6368c63e02fcefaa9566a009bb676 assets\phantasm\models\item\fallen_star.json
 2e3626890b84348a8f7e199562921471ad4434c9 assets\phantasm\models\item\crystal_block.json
-99db81e5b9417762b352413a835214a38fa5fb74 assets\phantasm\models\block\cirite_bricks_slab_top.json
 9d5ec551c945178d859c16ade9f688053fccb0b9 assets\phantasm\models\block\raw_purpur_pillar_horizontal.json
 d95633f16ce9202dd2fac009ec9d3b40fa1188f2 assets\phantasm\models\item\raw_purpur_bricks_slab.json
+99db81e5b9417762b352413a835214a38fa5fb74 assets\phantasm\models\block\cirite_bricks_slab_top.json
 0839f6ffd589e8bae3ffaa24342b511fa4bf1d29 assets\phantasm\models\block\void_crystal_glass_pane_noside_alt.json
 27298f0c61b805405da44977341ae3cb3b57535d assets\phantasm\blockstates\pream_fence_gate.json
 8916d55d9207a7ac518b09a609d847f61c275726 assets\phantasm\blockstates\polished_obsidian_bricks_slab.json
@@ -131,8 +131,8 @@ f8950038868a6c5a6c53a6580942b576d2a17809 assets\phantasm\models\item\pream_trapd
 b3b4ce96cd20d3755de381598522b9b3ab311e91 assets\phantasm\models\block\void_crystal_block.json
 82565cc99f9b77f53f39ecb0590b97c79e2cab88 assets\phantasm\blockstates\pream_sapling.json
 6622c9815db1bb14943c8ff0f58be71a943ca8ad assets\phantasm\blockstates\acidic_mass.json
-8142f49e795d72c31808ae47f1aa800f406ddd5d assets\phantasm\blockstates\stripped_pream_log.json
 c8fe315c6017f24dc840321b2da6f5a0ea9edff7 assets\phantasm\models\block\tall_vivid_nihilis_top.json
+8142f49e795d72c31808ae47f1aa800f406ddd5d assets\phantasm\blockstates\stripped_pream_log.json
 e8ad499538ec544ced674c0ea6e5574697d55b67 assets\phantasm\models\item\pream_planks.json
 7593012a310412ffe88f5464376158a015f40c1c assets\phantasm\blockstates\pream_sign.json
 bfdd8dddec8f4f8bb4388925ad0c65f180db6177 assets\phantasm\models\block\raw_purpur_tiles.json

@@ -1,7 +1,5 @@
 package net.lyof.phantasm.mixin;
 
-import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.BlockState;

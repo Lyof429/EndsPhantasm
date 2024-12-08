@@ -1,7 +1,6 @@
 package net.lyof.phantasm.mixin;
 
 import net.lyof.phantasm.effect.ModEffects;
-import net.lyof.phantasm.effect.custom.ModStatusEffect;
 import net.lyof.phantasm.item.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

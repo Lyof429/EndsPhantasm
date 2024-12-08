@@ -2,7 +2,6 @@ package net.lyof.phantasm.mixin;
 
 import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.projectile.DragonFireballEntity;
 import net.minecraft.entity.projectile.ExplosiveProjectileEntity;
 import net.minecraft.util.hit.EntityHitResult;

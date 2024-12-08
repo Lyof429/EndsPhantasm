@@ -1,4 +1,4 @@
-// 1.20.1	2024-12-07T13:51:29.9816192	End's Phantasm/Block Loot Tables
+// 1.20.1	2024-12-08T11:59:38.2017454	End's Phantasm/Block Loot Tables
 84f0b6e2d7cfb187d5d5de6b2dcc825ca0643ce8 data\phantasm\loot_tables\blocks\crystal_pillar.json
 754842e402287f059b390347065830e05894ada6 data\phantasm\loot_tables\blocks\void_crystal_tiles.json
 ff960fb1a6d27fe2dcd3db93cbdb5c9546cca75d data\phantasm\loot_tables\blocks\choral_fan.json
@@ -11,6 +11,7 @@ df371f3301ef0930e18fd5bbf97a578b0beb3717 data\phantasm\loot_tables\blocks\fallen
 f0805353ada6899909565c62305f6e9f89d6c9d6 data\phantasm\loot_tables\blocks\raw_purpur_pillar.json
 d153932ab218d9f7f409e4d392e11a880a6c4863 data\phantasm\loot_tables\blocks\crystal_tiles_slab.json
 105b1af7d11f03d3faac612bbe7dee000c1394be data\phantasm\loot_tables\blocks\void_crystal_glass.json
+e120fd4187c47cd0bec351d879a50728bf61dfda data\phantasm\loot_tables\blocks\subwoofer_block.json
 d8aeb8ea253f73d36f26231571d07467c9d4639b data\phantasm\loot_tables\blocks\void_crystal_shard.json
 d27d81d4e8132e2f1e5772d981b64cad81c4d750 data\phantasm\loot_tables\blocks\stripped_pream_wood.json
 bfbddeb8473e4958ed4cd3ceb4364183fd6f883c data\phantasm\loot_tables\blocks\pream_log.json

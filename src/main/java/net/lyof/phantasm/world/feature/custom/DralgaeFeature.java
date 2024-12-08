@@ -1,17 +1,11 @@
 package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
-import net.lyof.phantasm.block.ModBlocks;
-import net.lyof.phantasm.block.custom.CrystalShardBlock;
 import net.lyof.phantasm.setup.ModTags;
-import net.lyof.phantasm.world.feature.custom.config.CrystalSpikeFeatureConfig;
 import net.lyof.phantasm.world.feature.custom.config.DralgaeFeatureConfig;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.BlockColumnFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 

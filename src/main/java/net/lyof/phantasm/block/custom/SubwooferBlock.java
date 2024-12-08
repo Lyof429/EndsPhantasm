@@ -1,13 +1,9 @@
 package net.lyof.phantasm.block.custom;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.NoteBlock;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
@@ -20,9 +16,10 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class SubwooferBlock extends Block {
     public static final BooleanProperty POWERED = BooleanProperty.of("powered");
@@ -52,19 +49,21 @@ public class SubwooferBlock extends Block {
 
         if (b != state.get(POWERED)) {
             if (b) {
-                world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.BLOCKS,
-                        1, 1, true);
+                List<UUID> affected = new ArrayList<>();
 
-                for (int i = 2; i < ConfigEntries.subwooferRange; i++) {
+                for (int i = 1; i < ConfigEntries.subwooferRange; i++) {
                     p = pos.mutableCopy().offset(dir, i);
 
                     world.addSyncedBlockEvent(pos, this, dir.getId(), i);
 
-                    List<Entity> entities = world.getOtherEntities(null, new Box(p).expand(1.2), Entity::isAlive);
+                    List<Entity> entities = world.getOtherEntities(null, new Box(p).expand(1.2), e -> e.isAlive() && e.isPushable());
                     for (Entity e : entities) {
+                        if (affected.contains(e.getUuid())) continue;
+
+                        affected.add(e.getUuid());
                         e.setVelocity(new Vec3d(dir.getOffsetX(), dir.getOffsetY() + 0.1, dir.getOffsetZ()));
-                        if (e instanceof PlayerEntity pl)
-                            pl.velocityModified = true;
+                        e.velocityModified = true;
+                        if (dir == Direction.UP) e.fallDistance = 0;
                     }
                 }
             }
@@ -75,6 +74,10 @@ public class SubwooferBlock extends Block {
 
     @Override
     public boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data) {
+        if (data == 1)
+            world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.BLOCKS,
+                    1, 1, true);
+
         BlockPos p = pos.mutableCopy().offset(Direction.byId(type), data);
         world.addImportantParticle(ParticleTypes.SONIC_BOOM, p.getX() + 0.5, p.getY() + 0.5, p.getZ() + 0.5,
                 0, 0, 0);

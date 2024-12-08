@@ -1,20 +1,12 @@
 package net.lyof.phantasm.block.custom;
 
-import net.fabricmc.fabric.mixin.biome.TheEndBiomeSourceMixin;
-import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.effect.ModEffects;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;
-import net.minecraft.block.LandingBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.FallingBlockEntity;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;

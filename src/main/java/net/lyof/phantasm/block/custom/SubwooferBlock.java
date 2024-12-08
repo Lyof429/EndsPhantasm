@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -16,6 +17,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,13 +50,17 @@ public class SubwooferBlock extends Block {
         BlockPos p;
 
         if (b != state.get(POWERED)) {
+            world.setBlockState(pos, state.with(POWERED, b));
+
             if (b) {
                 List<UUID> affected = new ArrayList<>();
 
                 for (int i = 1; i < ConfigEntries.subwooferRange; i++) {
                     p = pos.mutableCopy().offset(dir, i);
+                    if (world.getBlockState(p).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) return;
 
                     world.addSyncedBlockEvent(pos, this, dir.getId(), i);
+                    world.emitGameEvent(null, GameEvent.NOTE_BLOCK_PLAY, pos);
 
                     List<Entity> entities = world.getOtherEntities(null, new Box(p).expand(1.2), e -> e.isAlive() && e.isPushable());
                     for (Entity e : entities) {
@@ -67,8 +73,6 @@ public class SubwooferBlock extends Block {
                     }
                 }
             }
-
-            world.setBlockState(pos, state.with(POWERED, b));
         }
     }
 

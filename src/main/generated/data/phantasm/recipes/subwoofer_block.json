@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "subwoofer_block",
+  "key": {
+    "#": {
+      "item": "phantasm:choral_block"
+    },
+    "F": {
+      "item": "phantasm:choral_fan"
+    },
+    "O": {
+      "item": "minecraft:note_block"
+    }
+  },
+  "pattern": [
+    "F##",
+    "FO#",
+    "F##"
+  ],
+  "result": {
+    "item": "phantasm:subwoofer_block"
+  },
+  "show_notification": true
+}

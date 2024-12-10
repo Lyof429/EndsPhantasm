@@ -28,8 +28,6 @@ public abstract class ServerPlayerEntityMixin extends Entity {
 
     @Shadow public abstract PlayerAdvancementTracker getAdvancementTracker();
 
-    @Shadow private boolean inTeleportationState;
-
     @Shadow private boolean seenCredits;
 
     @Redirect(method = "moveToWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;createEndSpawnPlatform(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;)V"))

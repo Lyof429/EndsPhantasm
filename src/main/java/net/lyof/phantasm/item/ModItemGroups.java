@@ -250,6 +250,9 @@ public class ModItemGroups {
 
             entries.addAfter(Items.JUKEBOX, ModBlocks.SUBWOOFER_BLOCK);
         });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
+            entries.addAfter(Items.NOTE_BLOCK, ModBlocks.SUBWOOFER_BLOCK);
+        });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register(entries -> {
             entries.addAfter(Items.PINK_STAINED_GLASS, ModBlocks.CRYSTAL_GLASS);
             entries.addAfter(ModBlocks.CRYSTAL_GLASS, ModBlocks.VOID_CRYSTAL_GLASS);

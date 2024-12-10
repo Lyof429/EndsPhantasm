@@ -4,6 +4,7 @@ import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.BlockTags;
@@ -40,7 +41,8 @@ public class SubwooferBlock extends Block {
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return super.getPlacementState(ctx).with(FACING, ctx.getPlayerLookDirection().getOpposite());
+        return super.getPlacementState(ctx).with(FACING, ctx.getPlayer() != null && ctx.getPlayer().isSneaking() ?
+                ctx.getPlayerLookDirection().getOpposite() : ctx.getPlayerLookDirection());
     }
 
     @Override
@@ -62,7 +64,8 @@ public class SubwooferBlock extends Block {
                     world.addSyncedBlockEvent(pos, this, dir.getId(), i);
                     world.emitGameEvent(null, GameEvent.NOTE_BLOCK_PLAY, pos);
 
-                    List<Entity> entities = world.getOtherEntities(null, new Box(p).expand(1.2), e -> e.isAlive() && e.isPushable());
+                    List<Entity> entities = world.getOtherEntities(null, new Box(p).expand(1.2), e ->
+                            e.isPushable() || e instanceof ItemEntity);
                     for (Entity e : entities) {
                         if (affected.contains(e.getUuid())) continue;
 

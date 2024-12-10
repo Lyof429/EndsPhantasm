@@ -98,7 +98,7 @@ public class ModItems {
     public static final Item POME_SLICE = ModRegistry.ofItem("pome_slice",
             new Item(new FabricItemSettings().food(ModRegistry.Foods.POME_SLICE))).model().build();
 
-    public static final Item ABRUPTION_MUSIC_DISC = ModRegistry.ofItem("abruption_music_disc",
+    public static final Item MUSIC_DISC_ABRUPTION = ModRegistry.ofItem("music_disc_abruption",
             new MusicDiscItem(4, ModSounds.MUSIC_DISC_ABRUPTION, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 239))
             .model().tag(ItemTags.MUSIC_DISCS).build();
 

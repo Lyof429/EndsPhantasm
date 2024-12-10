@@ -1,4 +1,4 @@
-// 1.20.1	2024-12-08T11:59:38.2017454	End's Phantasm/Block Loot Tables
+// 1.20.1	2024-12-10T18:25:39.5341942	End's Phantasm/Block Loot Tables
 84f0b6e2d7cfb187d5d5de6b2dcc825ca0643ce8 data\phantasm\loot_tables\blocks\crystal_pillar.json
 754842e402287f059b390347065830e05894ada6 data\phantasm\loot_tables\blocks\void_crystal_tiles.json
 ff960fb1a6d27fe2dcd3db93cbdb5c9546cca75d data\phantasm\loot_tables\blocks\choral_fan.json
@@ -10,8 +10,8 @@ df371f3301ef0930e18fd5bbf97a578b0beb3717 data\phantasm\loot_tables\blocks\fallen
 011bb33c760be0ceeb8f7567face0c9140f8b5ac data\phantasm\loot_tables\blocks\polished_obsidian_bricks_slab.json
 f0805353ada6899909565c62305f6e9f89d6c9d6 data\phantasm\loot_tables\blocks\raw_purpur_pillar.json
 d153932ab218d9f7f409e4d392e11a880a6c4863 data\phantasm\loot_tables\blocks\crystal_tiles_slab.json
-105b1af7d11f03d3faac612bbe7dee000c1394be data\phantasm\loot_tables\blocks\void_crystal_glass.json
 e120fd4187c47cd0bec351d879a50728bf61dfda data\phantasm\loot_tables\blocks\subwoofer_block.json
+105b1af7d11f03d3faac612bbe7dee000c1394be data\phantasm\loot_tables\blocks\void_crystal_glass.json
 d8aeb8ea253f73d36f26231571d07467c9d4639b data\phantasm\loot_tables\blocks\void_crystal_shard.json
 d27d81d4e8132e2f1e5772d981b64cad81c4d750 data\phantasm\loot_tables\blocks\stripped_pream_wood.json
 bfbddeb8473e4958ed4cd3ceb4364183fd6f883c data\phantasm\loot_tables\blocks\pream_log.json
@@ -50,8 +50,8 @@ ab08addb711b0c1bfd915bf2aff0c8b04f83fb26 data\phantasm\loot_tables\blocks\raw_pu
 e9539b3c59380e692043a9727a4083d1a98b4ebd data\phantasm\loot_tables\blocks\purpur_lamp.json
 380b43b6f453d453b719225d9004627348adb53d data\phantasm\loot_tables\blocks\oblivine.json
 6889f4d1bcf052261bb463581faa383901199bf9 data\phantasm\loot_tables\blocks\pream_door.json
-b5cf5f8604ab5c5f705ce10475effe21008da1e7 data\phantasm\loot_tables\blocks\vivid_nihilis.json
 6d34be4c81395e191db784a398ffa6182f660ab7 data\phantasm\loot_tables\blocks\pream_fence.json
+b5cf5f8604ab5c5f705ce10475effe21008da1e7 data\phantasm\loot_tables\blocks\vivid_nihilis.json
 a18de08fc5b776ade4e3d5b2b12327b22d2b89db data\phantasm\loot_tables\blocks\void_crystal_pillar.json
 9a13ebd47fe3b2fc750107961799412eb17914a9 data\phantasm\loot_tables\blocks\pream_slab.json
 da6d63d4ecbb350c299d67222fbf8553c157b553 data\phantasm\loot_tables\blocks\pream_pressure_plate.json

@@ -113,8 +113,8 @@
   "block.phantasm.choral_fan": "Choral Fan",
   "block.phantasm.subwoofer_block": "Subwoofer Block",
 
-  "item.phantasm.abruption_music_disc": "Music Disc",
-  "item.phantasm.abruption_music_disc.desc": "Dylanvhs - Abruption",
+  "item.phantasm.music_disc_abruption": "Music Disc",
+  "item.phantasm.music_disc_abruption.desc": "Dylanvhs - Abruption",
   "sounds.phantasm.music_disc_abruption": "Abruption playing",
 
   "block.phantasm.gravity_core": "Gravity Core",

@@ -132,7 +132,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CHORAL_FAN);
                         entries.add(ModBlocks.SUBWOOFER_BLOCK);
 
-                        entries.add(ModItems.ABRUPTION_MUSIC_DISC);
+                        entries.add(ModItems.MUSIC_DISC_ABRUPTION);
 
                         //for (Item item : ModRegistry.ITEMS)
                         //    entries.add(item);
@@ -267,7 +267,7 @@ public class ModItemGroups {
 
             entries.add(ModItems.SHATTERED_PENDANT);
 
-            entries.add(ModItems.ABRUPTION_MUSIC_DISC);
+            entries.add(ModItems.MUSIC_DISC_ABRUPTION);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
             entries.addAfter(Items.IRON_SWORD, ModItems.CRYSTALLINE_SWORD);

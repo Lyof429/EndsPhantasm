@@ -117,11 +117,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "phantasm:shattered_pendant",
-          "weight": 10
-        },
-        {
-          "type": "minecraft:item",
           "name": "minecraft:iron_pickaxe",
           "weight": 5
         },
@@ -156,7 +151,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_otherside"
+          "name": "phantasm:music_disc_abruption"
         },
         {
           "type": "minecraft:item",
@@ -183,6 +178,20 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:eye_armor_trim_smithing_template"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "phantasm:shattered_pendant"
         }
       ]
     }

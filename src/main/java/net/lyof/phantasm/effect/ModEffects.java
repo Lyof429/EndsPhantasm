@@ -18,4 +18,7 @@ public class ModEffects {
 
     public static final StatusEffect FLOATATION = Registry.register(Registries.STATUS_EFFECT, Phantasm.makeID("floatation"),
             new ModStatusEffect(StatusEffectCategory.NEUTRAL, 0x242274));
+
+    public static final StatusEffect CHARM = Registry.register(Registries.STATUS_EFFECT, Phantasm.makeID("charm"),
+            new ModStatusEffect(StatusEffectCategory.HARMFUL, 0xffffaa));
 }

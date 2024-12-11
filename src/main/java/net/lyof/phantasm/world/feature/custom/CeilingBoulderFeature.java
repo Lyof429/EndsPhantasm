@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.gen.feature.BlockColumnFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
@@ -61,6 +62,19 @@ public class CeilingBoulderFeature extends Feature<BoulderFeatureConfig> {
         for (BlockPos place : fans)
             this.setBlockStateIf(world, place, ModBlocks.CHORAL_FAN.getPlacementState(world, place),
                     block -> random.nextInt(5) == 0 && block.isTransparent(world, place));
+
+
+        if (size == 0 && Math.random() < 0.7) {
+            FeatureContext<BoulderFeatureConfig> contextnext =
+                    new FeatureContext<>(context.getFeature(),
+                            context.getWorld(),
+                            context.getGenerator(),
+                            context.getRandom(),
+                            context.getOrigin().east(random.nextBetween(-5, 5)).north(random.nextBetween(-5, 5)),
+                            config);
+            if (world.isChunkLoaded(contextnext.getOrigin()))
+                this.generate(contextnext);
+        }
 
         return true;
     }

@@ -1,8 +1,10 @@
 package net.lyof.phantasm.mixin;
 
 import net.lyof.phantasm.config.ConfigEntries;
+import net.lyof.phantasm.effect.ModEffects;
 import net.lyof.phantasm.mixin.access.EndGatewayBlockEntityAccessor;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -14,6 +16,7 @@ import net.minecraft.world.gen.feature.EndConfiguredFeatures;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Entity.class)
@@ -36,5 +39,11 @@ public class EntityMixin {
 
             cir.setReturnValue(result);
         }
+    }
+
+    @Inject(method = "changeLookDirection", at = @At("HEAD"), cancellable = true)
+    public void charmCursor(double cursorDeltaX, double cursorDeltaY, CallbackInfo ci) {
+        if (((Entity) (Object) this) instanceof LivingEntity living && living.hasStatusEffect(ModEffects.CHARM))
+            ci.cancel();
     }
 }

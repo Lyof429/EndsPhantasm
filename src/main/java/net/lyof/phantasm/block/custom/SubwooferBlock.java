@@ -81,7 +81,7 @@ public class SubwooferBlock extends Block {
 
     @Override
     public boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data) {
-        if (data == 1)
+        if (data == 1 && !world.getBlockState(pos.offset(state.get(FACING).getOpposite())).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS))
             world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.BLOCKS,
                     1, 1, true);
 

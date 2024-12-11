@@ -29,6 +29,8 @@ public abstract class LivingEntityMixin extends Entity {
     @Shadow @Nullable public abstract StatusEffectInstance getStatusEffect(StatusEffect effect);
     @Shadow public abstract boolean hasStatusEffect(StatusEffect effect);
 
+    @Shadow public abstract boolean isFallFlying();
+
     @Redirect(method = "eatFood", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;decrement(I)V"))
     public void keepOblifruit(ItemStack instance, int amount) {
         if (instance.isOf(ModItems.OBLIFRUIT) && Math.random() < 0.05 && instance.getCount() < instance.getMaxCount()) {
@@ -51,7 +53,7 @@ public abstract class LivingEntityMixin extends Entity {
     public void lowGravity(Vec3d movementInput, CallbackInfo ci) {
         Vec3d velocity = this.getVelocity();
         double y = velocity.y;
-        if (y != 0 && !this.hasNoGravity() && this.hasStatusEffect(ModEffects.FLOATATION) && !this.isSneaking()) {
+        if (y != 0 && !this.hasNoGravity() && this.hasStatusEffect(ModEffects.FLOATATION) && !this.isSneaking() && !this.isFallFlying()) {
             y = (y / 0.98) + 0.08 - 0.02;
 
             this.setVelocity(velocity.x, y, velocity.z);
@@ -61,5 +63,21 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "computeFallDamage", at = @At("RETURN"), cancellable = true)
     public void lowGravityFallDamage(float fallDistance, float damageMultiplier, CallbackInfoReturnable<Integer> cir) {
         if (this.hasStatusEffect(ModEffects.FLOATATION)) cir.setReturnValue(cir.getReturnValue() / 4);
+    }
+
+    @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
+    public void cancelDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (source.getAttacker() instanceof LivingEntity attacker && attacker.hasStatusEffect(ModEffects.CHARM))
+            cir.setReturnValue(false);
+    }
+
+    @Inject(method = "getMovementSpeed()F", at = @At("HEAD"), cancellable = true)
+    public void charmMovementSpeed(CallbackInfoReturnable<Float> cir) {
+        if (this.hasStatusEffect(ModEffects.CHARM)) cir.setReturnValue(0f);
+    }
+
+    @Inject(method = "jump", at = @At("HEAD"), cancellable = true)
+    public void charmMovement(CallbackInfo ci) {
+        if (this.hasStatusEffect(ModEffects.CHARM)) ci.cancel();
     }
 }

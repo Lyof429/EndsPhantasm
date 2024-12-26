@@ -16,6 +16,8 @@
     "ItemMixin",
     "LivingEntityMixin",
     "MinecraftServerMixin",
+    "MultiNoiseBiomeSourceParameterListMixin",
+    "MultiNoiseUtilEntriesMixin",
     "PlantBlockMixin",
     "PlayerEntityMixin",
     "ServerPlayerEntityMixin",

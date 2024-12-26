@@ -51,7 +51,7 @@ public class CrystalSpikeFeature extends Feature<CrystalSpikeFeatureConfig> {
             if (pos.getY() >= world.getHeight() - 1)
                 return false;
 
-            world.setBlockState(pos, top.with(CrystalShardBlock.IS_TIP, i == size - 1), 0x10);
+            this.setBlockState(world, pos, top.with(CrystalShardBlock.IS_TIP, i == size - 1));
             pos = pos.up();
         }
 
@@ -67,7 +67,7 @@ public class CrystalSpikeFeature extends Feature<CrystalSpikeFeatureConfig> {
             if (pos.getY() <= world.getBottomY() + 1 || pos.getY() >= 250)
                 return false;
 
-            world.setBlockState(pos, bottom.with(CrystalShardBlock.IS_UP, false).with(CrystalShardBlock.IS_TIP, i == size - 1), 0x10);
+            this.setBlockState(world, pos, bottom.with(CrystalShardBlock.IS_UP, false).with(CrystalShardBlock.IS_TIP, i == size - 1));
             pos = pos.down();
         }
 

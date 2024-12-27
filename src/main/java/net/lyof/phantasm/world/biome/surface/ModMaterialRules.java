@@ -3,7 +3,7 @@ package net.lyof.phantasm.world.biome.surface;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ConfigEntries;
-import net.lyof.phantasm.mixin.access.NoiseGeneratorSettingsAccess;
+import net.lyof.phantasm.mixin.access.ChunkGeneratorSettingsAccessor;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKey;
@@ -208,7 +208,7 @@ public class ModMaterialRules {
         if (hasEndBiomes) {
             if (chunkGenerator instanceof NoiseChunkGenerator noiseGenerator) {
                 ChunkGeneratorSettings settings = noiseGenerator.getSettings().value();
-                ((NoiseGeneratorSettingsAccess) (Object) settings).addSurfaceRule(
+                ((ChunkGeneratorSettingsAccessor) (Object) settings).addSurfaceRule(
                         MaterialRules.sequence(
                             ModMaterialRules.createDreamingDenRule(), settings.surfaceRule()
                         )

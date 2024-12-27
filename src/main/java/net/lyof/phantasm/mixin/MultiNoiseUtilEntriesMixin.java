@@ -2,6 +2,7 @@ package net.lyof.phantasm.mixin;
 
 import com.mojang.datafixers.util.Pair;
 import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.world.ModWorldGeneration;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.minecraft.registry.RegistryKey;
@@ -9,6 +10,7 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
+import net.minecraft.world.gen.noise.NoiseRouter;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -31,27 +33,30 @@ public class MultiNoiseUtilEntriesMixin<T> {
     @Inject(method = "<init>", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/world/biome/source/util/MultiNoiseUtil$SearchTree;create(Ljava/util/List;)Lnet/minecraft/world/biome/source/util/MultiNoiseUtil$SearchTree;"))
     public void addEndBiomes(List<Pair<MultiNoiseUtil.NoiseHypercube, T>> entries, CallbackInfo ci) {
-        List<RegistryKey<Biome>> biomes = new ArrayList<>();
-
         MultiNoiseUtil.NoiseHypercube highlands = null;
         for (Pair<MultiNoiseUtil.NoiseHypercube, T> e : entries) {
             if (e.getSecond() instanceof RegistryEntry r && r.matchesKey(BiomeKeys.END_HIGHLANDS))
                 highlands = e.getFirst();
-            else if (e.getSecond() instanceof RegistryEntry r && r.getKey().get() instanceof RegistryKey k && k.getValue().getNamespace().equals(Phantasm.MOD_ID))
-                biomes.add(k);
         }
 
-        int custom_count = 2;
+        int custom_count = 0;
         if (highlands != null && ModWorldGeneration.LOOKUP != null) {
+            if (ConfigEntries.doDreamingDenBiome) custom_count++;
+            if (ConfigEntries.doAcidburntAbyssesBiome) custom_count++;
+
             // hook the custom biomes in
-            this.endEntries.add(new Pair<>(
-                    splitHypercube(highlands, custom_count, 0),
-                    (T) ModWorldGeneration.LOOKUP.getOrThrow(ModBiomes.DREAMING_DEN)
-            ));
-            this.endEntries.add(new Pair<>(
-                    splitHypercube(highlands, custom_count, 2),
-                    (T) ModWorldGeneration.LOOKUP.getOrThrow(ModBiomes.ACIDBURNT_ABYSSES)
-            ));
+            if (ConfigEntries.doDreamingDenBiome) {
+                this.endEntries.add(new Pair<>(
+                        splitHypercube(highlands, custom_count, 0),
+                        (T) ModWorldGeneration.LOOKUP.getOrThrow(ModBiomes.DREAMING_DEN)
+                ));
+            }
+            if (ConfigEntries.doAcidburntAbyssesBiome) {
+                this.endEntries.add(new Pair<>(
+                        splitHypercube(highlands, custom_count, 2),
+                        (T) ModWorldGeneration.LOOKUP.getOrThrow(ModBiomes.ACIDBURNT_ABYSSES)
+                ));
+            }
 
             // add all the default biomes
             this.endEntries.addAll(entries.stream()
@@ -72,14 +77,45 @@ public class MultiNoiseUtilEntriesMixin<T> {
         biomes = biomes * 2 - 1;
         //i = i * 2;
 
-        return MultiNoiseUtil.createNoiseHypercube(
-                base.temperature(), //splitRange(base.temperature(), biomes, i),
-                base.humidity(), //splitRange(base.humidity(), biomes, i),
-                /*base.continentalness(), //*/splitRange(base.continentalness(), biomes, i),
-                base.erosion(), //splitRange(base.erosion(), biomes, i),
-                base.depth(), //splitRange(base.depth(), biomes, i),
-                base.weirdness(), //splitRange(base.weirdness(), biomes, i),
-                base.offset() / 10000f);
+        if (ConfigEntries.overrideTemperature)
+            return MultiNoiseUtil.createNoiseHypercube(
+                    splitRange(base.temperature(), biomes, i),
+                    base.humidity(),
+                    base.continentalness(),
+                    base.erosion(),
+                    base.depth(),
+                    base.weirdness(),
+                    base.offset() / 10000f);
+
+        else if (Phantasm.getCompatibilityMode().equals("endercon"))
+            return MultiNoiseUtil.createNoiseHypercube(
+                    base.temperature(),
+                    base.humidity(),
+                    splitRange(base.continentalness(), biomes, i),
+                    base.erosion(),
+                    base.depth(),
+                    base.weirdness(),
+                    base.offset() / 10000f);
+
+        else if (Phantasm.getCompatibilityMode().equals("nullscape"))
+            return MultiNoiseUtil.createNoiseHypercube(
+                    base.temperature(),
+                    base.humidity(),
+                    splitRange(base.continentalness(), biomes, i),
+                    base.erosion(),
+                    base.depth(),
+                    base.weirdness(),
+                    base.offset() / 10000f);
+
+        else
+            return MultiNoiseUtil.createNoiseHypercube(
+                    base.temperature(), //splitRange(base.temperature(), biomes, i),
+                    base.humidity(), //splitRange(base.humidity(), biomes, i),
+                    base.continentalness(),
+                    splitRange(base.erosion(), biomes, i),
+                    base.depth(), //splitRange(base.depth(), biomes, i),
+                    base.weirdness(), //splitRange(base.weirdness(), biomes, i),
+                    base.offset() / 10000f);
     }
 
     private static MultiNoiseUtil.ParameterRange splitRange(MultiNoiseUtil.ParameterRange point, int biomes, int i) {
@@ -89,6 +125,8 @@ public class MultiNoiseUtilEntriesMixin<T> {
     }
 
     private static long getRange(MultiNoiseUtil.ParameterRange point) {
+        if (ConfigEntries.overrideTemperature)
+            return MultiNoiseUtil.toLong(0.5625f + 0.84375f);
         return point.max() - point.min();
     }
 

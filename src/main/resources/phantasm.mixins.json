@@ -18,12 +18,13 @@
     "MinecraftServerMixin",
     "MultiNoiseBiomeSourceParameterListMixin",
     "MultiNoiseUtilEntriesMixin",
+    "NoiseRouterMixin",
     "PlantBlockMixin",
     "PlayerEntityMixin",
     "ServerPlayerEntityMixin",
+    "access.ChunkGeneratorSettingsAccessor",
     "access.EndGatewayBlockEntityAccessor",
     "access.FoliagePlacerTypeInvoker",
-    "access.NoiseGeneratorSettingsAccess",
     "access.TrunkPlacerTypeInvoker"
   ],
   "injectors": {

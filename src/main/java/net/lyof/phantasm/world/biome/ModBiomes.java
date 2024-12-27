@@ -1,6 +1,7 @@
 package net.lyof.phantasm.world.biome;
 
 import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.world.feature.ModPlacedFeatures;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -47,7 +48,13 @@ public class ModBiomes {
                 .precipitation(false)
                 .downfall(0.5f)
                 .temperature(0.5f)
-                .generationSettings(biomeBuilder.build())
+                .generationSettings(biomeBuilder
+                        .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.PREAM)
+                        .feature(GenerationStep.Feature.SURFACE_STRUCTURES, ModPlacedFeatures.CRYSTAL_SPIKE)
+                        .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.VIVID_NIHILIS)
+                        .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.TALL_VIVID_NIHILIS)
+                        .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.STARFLOWER_PATCH)
+                        .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.OBLIVINE_PATCH).build())
                 .spawnSettings(spawnBuilder.build())
                 .effects(new BiomeEffects.Builder()
                         .waterColor(4159204)
@@ -71,7 +78,17 @@ public class ModBiomes {
                 .precipitation(false)
                 .downfall(0.5f)
                 .temperature(0.5f)
-                .generationSettings(biomeBuilder.build())
+                .generationSettings(biomeBuilder
+                        .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.ACIDIC_NIHILIS)
+                        .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.TALL_ACIDIC_NIHILIS)
+                        .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.DRAGON_MINT)
+                        .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.DRALGAE)
+                        .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.TALL_DRALGAE)
+                        .feature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, ModPlacedFeatures.HUGE_DRALGAE)
+                        .feature(GenerationStep.Feature.SURFACE_STRUCTURES, ModPlacedFeatures.CIRITE_BOULDER)
+                        .feature(GenerationStep.Feature.SURFACE_STRUCTURES, ModPlacedFeatures.CIRITE_SPIKE)
+                        .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.CHORAL_RIFF)
+                        .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.CHORAL_FAN).build())
                 .spawnSettings(spawnBuilder.build())
                 .effects(new BiomeEffects.Builder()
                         .waterColor(4159204)

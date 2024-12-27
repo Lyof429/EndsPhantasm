@@ -25,14 +25,20 @@
     [],
     [],
     [
-      "minecraft:end_gateway_return"
+      "minecraft:end_gateway_return",
+      "phantasm:crystal_spike"
     ],
     [],
     [],
     [],
     [],
     [
-      "minecraft:chorus_plant"
+      "minecraft:chorus_plant",
+      "phantasm:pream",
+      "phantasm:patch_vivid_nihilis",
+      "phantasm:patch_tall_vivid_nihilis",
+      "phantasm:patch_starflower",
+      "phantasm:patch_oblivine"
     ]
   ],
   "has_precipitation": false,

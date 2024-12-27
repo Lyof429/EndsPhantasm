@@ -18,7 +18,6 @@ import net.minecraft.world.gen.GenerationStep;
 
 public class ModWorldGeneration {
     public static void register() {
-        generateTrees();
         generateFeatures();
         generateBiomes();
 
@@ -37,80 +36,11 @@ public class ModWorldGeneration {
     }
 
 
-    private static void generateTrees() {
-        if (ConfigEntries.doPreamTrees)
-            BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
-                    GenerationStep.Feature.VEGETAL_DECORATION,
-                    ModPlacedFeatures.PREAM);
-    }
-
     private static void generateFeatures() {
-        if (ConfigEntries.doCrystalSpikes)
-            BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
-                    GenerationStep.Feature.VEGETAL_DECORATION,
-                    ModPlacedFeatures.CRYSTAL_SPIKE);
-
-        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
-                GenerationStep.Feature.VEGETAL_DECORATION,
-                ModPlacedFeatures.VIVID_NIHILIS);
-
-        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
-                GenerationStep.Feature.VEGETAL_DECORATION,
-                ModPlacedFeatures.TALL_VIVID_NIHILIS);
-
-        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
-                GenerationStep.Feature.VEGETAL_DECORATION,
-                ModPlacedFeatures.STARFLOWER_PATCH);
-
         if (ConfigEntries.doFallenStars)
             BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
                     GenerationStep.Feature.SURFACE_STRUCTURES,
                     ModPlacedFeatures.FALLEN_STAR);
-
-        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.DREAMING_DEN),
-                GenerationStep.Feature.VEGETAL_DECORATION,
-                ModPlacedFeatures.OBLIVINE_PATCH);
-
-
-        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
-                GenerationStep.Feature.VEGETAL_DECORATION,
-                ModPlacedFeatures.ACIDIC_NIHILIS);
-
-        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
-                GenerationStep.Feature.VEGETAL_DECORATION,
-                ModPlacedFeatures.TALL_ACIDIC_NIHILIS);
-
-        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
-                GenerationStep.Feature.VEGETAL_DECORATION,
-                ModPlacedFeatures.DRAGON_MINT);
-
-        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
-                GenerationStep.Feature.VEGETAL_DECORATION,
-                ModPlacedFeatures.DRALGAE);
-
-        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
-                GenerationStep.Feature.VEGETAL_DECORATION,
-                ModPlacedFeatures.TALL_DRALGAE);
-
-        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
-                GenerationStep.Feature.TOP_LAYER_MODIFICATION,
-                ModPlacedFeatures.HUGE_DRALGAE);
-
-        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
-                GenerationStep.Feature.SURFACE_STRUCTURES,
-                ModPlacedFeatures.CIRITE_BOULDER);
-
-        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
-                GenerationStep.Feature.SURFACE_STRUCTURES,
-                ModPlacedFeatures.CIRITE_SPIKE);
-
-        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
-                GenerationStep.Feature.VEGETAL_DECORATION,
-                ModPlacedFeatures.CHORAL_RIFF);
-
-        BiomeModifications.addFeature(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
-                GenerationStep.Feature.VEGETAL_DECORATION,
-                ModPlacedFeatures.CHORAL_FAN);
     }
 
     private static void generateBiomes() {

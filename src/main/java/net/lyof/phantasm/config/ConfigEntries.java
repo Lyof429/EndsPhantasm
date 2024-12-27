@@ -2,11 +2,11 @@ package net.lyof.phantasm.config;
 
 public class ConfigEntries {
     public static void reload() {
+        dataCompatMode = new ConfigEntry<>("world_gen.biomes.datapack_compatibility", "automatic").get();
+        overrideTemperature = new ConfigEntry<>("world_gen.biomes.override_temperature", true).get();
+
         doDreamingDenBiome = new ConfigEntry<>("world_gen.biomes.dreaming_den.generate", true).get();
         dreamingDenWeight = new ConfigEntry<>("world_gen.biomes.dreaming_den.generation_weight", 1.5).get();
-
-        doCrystalSpikes = new ConfigEntry<>("world_gen.biomes.dreaming_den.do_crystal_spikes", true).get();
-        doPreamTrees = new ConfigEntry<>("world_gen.biomes.dreaming_den.do_pream_trees", true).get();
 
         doAcidburntAbyssesBiome = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.generate", true).get();
         acidburntAbyssesWeight = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.generation_weight", 1.5).get();
@@ -37,11 +37,11 @@ public class ConfigEntries {
         //voidEyeDurability = new ConfigEntry<>("equipment.void_eye_durability", 4).get();
     }
 
+    public static String dataCompatMode = "";
+    public static boolean overrideTemperature;
+
     public static boolean doDreamingDenBiome;
     public static double dreamingDenWeight;
-
-    public static boolean doCrystalSpikes;
-    public static boolean doPreamTrees;
 
     public static boolean doAcidburntAbyssesBiome;
     public static double acidburntAbyssesWeight;

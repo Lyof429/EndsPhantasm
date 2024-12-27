@@ -106,14 +106,23 @@ public class ModConfig {
   // CATEGORY: WORLD GEN
   "world_gen": {
     "biomes": {
+      // Compatibility mode for datapacks modifying the End generation, such as Nullscapes or Endercon
+      // Value must be one of:
+        // "default": Phantasm will replace an even proportion of the End Highlands with its custom biomes, mimicking its noise values
+          // theoretically works with any datapack, but might not be the prettiest
+        // "nullscape": Optimizes noise values to work best with Nullscapes
+        // "endercon": Optimizes noise values to work best with Endercon
+        // "automatic": Same as default, but will work like "nullscape" or "endercon" depending on loaded mods
+          // if using the datapack versions, set this manually
+      "datapack_compatibility": "automatic",
+      // Whether or not to override the temperature noise values in the End, if datapacks are installed
+      // Allows for much better biome placement. Disable this if the datapack you are using behaves weirdly
+      "override_temperature": true,
+    
       // DEAMING DEN
       "dreaming_den": {
         "generate": true,
-        "generation_weight": 1.5,
-        // Should Pream Trees appear in the biome
-        "do_pream_trees": true,
-        // Should Crystal Spikes appear in the biome
-        "do_crystal_spikes": true
+        "generation_weight": 1.5
       },
       
       // ACIDBURNT ABYSSES

@@ -25,7 +25,25 @@
     [],
     [],
     [
-      "minecraft:end_gateway_return"
+      "minecraft:end_gateway_return",
+      "phantasm:cirite_boulder",
+      "phantasm:cirite_spike"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      "phantasm:patch_acidic_nihilis",
+      "phantasm:patch_tall_acidic_nihilis",
+      "phantasm:patch_dragon_mint",
+      "phantasm:dralgae",
+      "phantasm:tall_dralgae",
+      "phantasm:choral_riff",
+      "phantasm:patch_choral_fan"
+    ],
+    [
+      "phantasm:huge_dralgae"
     ]
   ],
   "has_precipitation": false,

@@ -4,6 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.world.ModWorldGeneration;
+import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -39,37 +40,31 @@ public class MultiNoiseUtilEntriesMixin<T> {
                 highlands = e.getFirst();
         }
 
-        int custom_count = 0;
         if (highlands != null && ModWorldGeneration.LOOKUP != null) {
-            if (ConfigEntries.doDreamingDenBiome) custom_count++;
-            if (ConfigEntries.doAcidburntAbyssesBiome) custom_count++;
+            int custom_count = EndDataCompat.getEnabledBiomes().size();
 
             // hook the custom biomes in
-            if (ConfigEntries.doDreamingDenBiome) {
+            int j = 0;
+            for (RegistryKey<Biome> biome : EndDataCompat.getEnabledBiomes()) {
+                Phantasm.log("Adding " + biome.getValue() + " to the End biome source at slice " + (j/2 + 1) + " out of " + custom_count);
                 this.endEntries.add(new Pair<>(
-                        splitHypercube(highlands, custom_count, 0),
-                        (T) ModWorldGeneration.LOOKUP.getOrThrow(ModBiomes.DREAMING_DEN)
+                        splitHypercube(highlands, custom_count, j),
+                        (T) ModWorldGeneration.LOOKUP.getOrThrow(biome)
                 ));
-            }
-            if (ConfigEntries.doAcidburntAbyssesBiome) {
-                this.endEntries.add(new Pair<>(
-                        splitHypercube(highlands, custom_count, 2),
-                        (T) ModWorldGeneration.LOOKUP.getOrThrow(ModBiomes.ACIDBURNT_ABYSSES)
-                ));
+                j += 2;
             }
 
             // add all the default biomes
             this.endEntries.addAll(entries.stream()
                     .filter(p -> p.getSecond() instanceof RegistryEntry r && !r.matchesKey(BiomeKeys.END_HIGHLANDS)
-                            && !(r.getKey().get() instanceof RegistryKey k && k.getValue().getNamespace().equals(Phantasm.MOD_ID))).toList());
+                            && !(r.getKey().get() instanceof RegistryKey k && EndDataCompat.contains(k))).toList());
 
             // add back the end highlands
-            for (int i = 1; i < custom_count; i += 2)
+            for (int i = 1; i <= custom_count; i += 2)
                 this.endEntries.add(new Pair<>(
                         splitHypercube(highlands, custom_count, i),
                         (T) ModWorldGeneration.LOOKUP.getOrThrow(BiomeKeys.END_HIGHLANDS)
                 ));
-            Phantasm.log(this.endEntries);
         }
     }
 
@@ -133,7 +128,7 @@ public class MultiNoiseUtilEntriesMixin<T> {
     @ModifyArg(method = "<init>", index = 0, at = @At(value = "INVOKE",
                target = "Lnet/minecraft/world/biome/source/util/MultiNoiseUtil$SearchTree;create(Ljava/util/List;)Lnet/minecraft/world/biome/source/util/MultiNoiseUtil$SearchTree;"))
     public List<Pair<MultiNoiseUtil.NoiseHypercube, T>> modifyTree(List<Pair<MultiNoiseUtil.NoiseHypercube, T>> entries) {
-        return Phantasm.log(this.endEntries.isEmpty()) ? entries : this.endEntries;
+        return this.endEntries.isEmpty() ? entries : this.endEntries;
     }
 
     @Inject(method = "getEntries", at = @At("HEAD"), cancellable = true)

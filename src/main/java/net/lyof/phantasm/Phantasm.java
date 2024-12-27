@@ -17,6 +17,7 @@ import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.setup.ModDataGenerator;
 import net.lyof.phantasm.sound.ModSounds;
 import net.lyof.phantasm.world.ModWorldGeneration;
+import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.lyof.phantasm.world.feature.ModFeatures;
 import net.lyof.phantasm.world.feature.custom.tree.ModTreePlacerTypes;
 import net.minecraft.resource.ResourceManager;
@@ -54,6 +55,7 @@ public class Phantasm implements ModInitializer {
 
 		ModFeatures.register();
 		ModWorldGeneration.register();
+		EndDataCompat.register();
 
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
 			@Override

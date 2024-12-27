@@ -30,9 +30,6 @@ public class ModWorldGeneration {
 
     public static void register(RegistryEntryLookup<Biome> lookup) {
         LOOKUP = lookup;
-
-        //DREAMING_DEN = lookup.getOrThrow(ModBiomes.DREAMING_DEN);
-        //ACIDBURNT_ABYSSES = lookup.getOrThrow(ModBiomes.ACIDBURNT_ABYSSES);
     }
 
 

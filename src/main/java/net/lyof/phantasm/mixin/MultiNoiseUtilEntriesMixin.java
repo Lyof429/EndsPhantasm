@@ -90,18 +90,18 @@ public class MultiNoiseUtilEntriesMixin<T> {
             return MultiNoiseUtil.createNoiseHypercube(
                     base.temperature(),
                     base.humidity(),
-                    splitRange(base.continentalness(), biomes, i),
+                    base.continentalness(),//splitRange(base.continentalness(), biomes, i),
                     base.erosion(),
                     base.depth(),
-                    base.weirdness(),
+                    splitRange(base.weirdness(), biomes, i),
                     base.offset() / 10000f);
 
         else
             return MultiNoiseUtil.createNoiseHypercube(
                     base.temperature(), //splitRange(base.temperature(), biomes, i),
                     base.humidity(), //splitRange(base.humidity(), biomes, i),
-                    base.continentalness(),
-                    splitRange(base.erosion(), biomes, i),
+                    splitRange(base.continentalness(), biomes, i),
+                    base.erosion(),
                     base.depth(), //splitRange(base.depth(), biomes, i),
                     base.weirdness(), //splitRange(base.weirdness(), biomes, i),
                     base.offset() / 10000f);

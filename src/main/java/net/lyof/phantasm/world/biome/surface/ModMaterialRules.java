@@ -97,10 +97,10 @@ public class ModMaterialRules {
                 is_dreaming_den,
                 MaterialRules.condition(
                     MaterialRules.STONE_DEPTH_FLOOR,
-                        MaterialRules.condition(
-                                MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
+                        //MaterialRules.condition(
+                        //        MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
                                 VIVID_NIHILIUM
-                        )
+                        //)
                 )
         );
 
@@ -145,10 +145,10 @@ public class ModMaterialRules {
                 is_acidburnt_abysses,
                 MaterialRules.condition(
                         MaterialRules.STONE_DEPTH_FLOOR,
-                        MaterialRules.condition(
-                                MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
+                        //MaterialRules.condition(
+                        //        MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
                                 ACIDIC_NIHILIUM
-                        )
+                        //)
                 )
         );
 

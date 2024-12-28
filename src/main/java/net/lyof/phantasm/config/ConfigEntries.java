@@ -3,7 +3,6 @@ package net.lyof.phantasm.config;
 public class ConfigEntries {
     public static void reload() {
         dataCompatMode = new ConfigEntry<>("world_gen.biomes.datapack_compatibility", "automatic").get();
-        overrideTemperature = new ConfigEntry<>("world_gen.biomes.override_temperature", true).get();
 
         doDreamingDenBiome = new ConfigEntry<>("world_gen.biomes.dreaming_den.generate", true).get();
         dreamingDenWeight = new ConfigEntry<>("world_gen.biomes.dreaming_den.generation_weight", 1.5).get();
@@ -38,7 +37,6 @@ public class ConfigEntries {
     }
 
     public static String dataCompatMode = "";
-    public static boolean overrideTemperature;
 
     public static boolean doDreamingDenBiome;
     public static double dreamingDenWeight;

@@ -45,20 +45,21 @@ public class ModMaterialRules {
         MaterialRules.MaterialCondition band_noise =
                 MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE, 0);
 
+        int raw_purpur_offset = Phantasm.getCompatibilityMode().equals("endercon") ? 20 : 0;
         MaterialRules.MaterialCondition band_y_below = MaterialRules.verticalGradient("raw_purpur_stripes_below1",
-                YOffset.fixed(40), YOffset.fixed(42));
+                YOffset.fixed(raw_purpur_offset + 40), YOffset.fixed(raw_purpur_offset + 42));
         MaterialRules.MaterialCondition band_y_above = MaterialRules.not(MaterialRules.verticalGradient("raw_purpur_stripes_above1",
-                YOffset.fixed(35), YOffset.fixed(37)));
+                YOffset.fixed(raw_purpur_offset + 35), YOffset.fixed(raw_purpur_offset + 37)));
 
         MaterialRules.MaterialCondition band_y_below2 = MaterialRules.verticalGradient("raw_purpur_stripes_below2",
-                YOffset.fixed(32), YOffset.fixed(34));
+                YOffset.fixed(raw_purpur_offset + 32), YOffset.fixed(raw_purpur_offset + 34));
         MaterialRules.MaterialCondition band_y_above2 = MaterialRules.not(MaterialRules.verticalGradient("raw_purpur_stripes_above2",
-                YOffset.fixed(27), YOffset.fixed(29)));
+                YOffset.fixed(raw_purpur_offset + 27), YOffset.fixed(raw_purpur_offset + 29)));
 
         MaterialRules.MaterialCondition band_y_below3 = MaterialRules.verticalGradient("raw_purpur_stripes_below3",
-                YOffset.fixed(24), YOffset.fixed(26));
+                YOffset.fixed(raw_purpur_offset + 24), YOffset.fixed(raw_purpur_offset + 26));
         MaterialRules.MaterialCondition band_y_above3 = MaterialRules.not(MaterialRules.verticalGradient("raw_purpur_stripes_above3",
-                YOffset.fixed(19), YOffset.fixed(21)));
+                YOffset.fixed(raw_purpur_offset + 19), YOffset.fixed(raw_purpur_offset + 21)));
 
 
         // RAW PURPUR RULES
@@ -104,8 +105,9 @@ public class ModMaterialRules {
                 )
         );
 
+        int oblivion_y = Phantasm.getCompatibilityMode().equals("default") ? 29 : 42;
         MaterialRules.MaterialRule oblivion = MaterialRules.condition(
-                MaterialRules.aboveY(YOffset.belowTop(220), 0),
+                MaterialRules.not(MaterialRules.aboveY(YOffset.fixed(oblivion_y), 0)),
                 MaterialRules.condition(
                         MaterialRules.stoneDepth(2, false, VerticalSurfaceType.CEILING),
                         OBLIVION

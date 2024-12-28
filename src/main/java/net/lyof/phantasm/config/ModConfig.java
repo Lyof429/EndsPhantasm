@@ -106,18 +106,15 @@ public class ModConfig {
   // CATEGORY: WORLD GEN
   "world_gen": {
     "biomes": {
-      // Compatibility mode for datapacks modifying the End generation, such as Nullscapes or Endercon
+      // Compatibility mode for datapacks modifying the End generation, such as Nullscape or Endercon
       // Value must be one of:
         // "default": Phantasm will replace an even proportion of the End Highlands with its custom biomes, mimicking its noise values
           // theoretically works with any datapack, but might not be the prettiest
-        // "nullscape": Optimizes noise values to work best with Nullscapes
+        // "nullscape": Optimizes noise values to work best with Nullscape
         // "endercon": Optimizes noise values to work best with Endercon
         // "automatic": Same as default, but will work like "nullscape" or "endercon" depending on loaded mods
           // if using the datapack versions, set this manually
       "datapack_compatibility": "automatic",
-      // Whether or not to override the temperature noise values in the End, if datapacks are installed
-      // Allows for much better biome placement. Disable this if the datapack you are using behaves weirdly
-      "override_temperature": true,
     
       // DEAMING DEN
       "dreaming_den": {

@@ -66,21 +66,11 @@ public class MultiNoiseUtilEntriesMixin<T> {
         biomes = biomes * 2 - 1;
         //i = i * 2;
 
-        if (ConfigEntries.overrideTemperature)
+        if (Phantasm.getCompatibilityMode().equals("endercon"))
             return MultiNoiseUtil.createNoiseHypercube(
                     splitRange(base.temperature(), biomes, i),
                     base.humidity(),
                     base.continentalness(),
-                    base.erosion(),
-                    base.depth(),
-                    base.weirdness(),
-                    base.offset() / 10000f);
-
-        else if (Phantasm.getCompatibilityMode().equals("endercon"))
-            return MultiNoiseUtil.createNoiseHypercube(
-                    base.temperature(),
-                    base.humidity(),
-                    splitRange(base.continentalness(), biomes, i),
                     base.erosion(),
                     base.depth(),
                     base.weirdness(),
@@ -114,7 +104,7 @@ public class MultiNoiseUtilEntriesMixin<T> {
     }
 
     private static long getRange(MultiNoiseUtil.ParameterRange point) {
-        if (ConfigEntries.overrideTemperature)
+        if (Phantasm.getCompatibilityMode().equals("endercon"))
             return MultiNoiseUtil.toLong(0.5625f + 0.84375f);
         return point.max() - point.min();
     }

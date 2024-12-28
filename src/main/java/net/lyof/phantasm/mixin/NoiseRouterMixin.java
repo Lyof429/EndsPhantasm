@@ -1,5 +1,6 @@
 package net.lyof.phantasm.mixin;
 
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.world.gen.densityfunction.DensityFunction;
 import net.minecraft.world.gen.densityfunction.DensityFunctionTypes;
@@ -19,7 +20,7 @@ public abstract class NoiseRouterMixin {
 
     @Inject(method = "temperature", at = @At("HEAD"), cancellable = true)
     public void overrideEndTemperature(CallbackInfoReturnable<DensityFunction> cir) {
-        if (ConfigEntries.overrideTemperature
+        if (Phantasm.getCompatibilityMode().equals("endercon")
                 && this.temperature.minValue() == this.temperature.maxValue() && this.temperature.minValue() == 0) {
             cir.setReturnValue(END);
         }

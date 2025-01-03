@@ -16,9 +16,6 @@ public class ModEffects {
     public static final StatusEffect CORROSION = Registry.register(Registries.STATUS_EFFECT, Phantasm.makeID("corrosion"),
             new ModStatusEffect(StatusEffectCategory.HARMFUL, 0xca2656));
 
-    public static final StatusEffect FLOATATION = Registry.register(Registries.STATUS_EFFECT, Phantasm.makeID("floatation"),
-            new ModStatusEffect(StatusEffectCategory.NEUTRAL, 0x242274));
-
     public static final StatusEffect CHARM = Registry.register(Registries.STATUS_EFFECT, Phantasm.makeID("charm"),
             new ModStatusEffect(StatusEffectCategory.HARMFUL, 0xffffaa));
 }

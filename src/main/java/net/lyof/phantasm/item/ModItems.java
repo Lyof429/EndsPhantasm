@@ -95,12 +95,14 @@ public class ModItems {
                 new ShatteredPendantItem(new FabricItemSettings()))
             .model().build();
 
+
     public static final Item POME_SLICE = ModRegistry.ofItem("pome_slice",
             new Item(new FabricItemSettings().food(ModRegistry.Foods.POME_SLICE))).model().build();
 
     public static final Item MUSIC_DISC_ABRUPTION = ModRegistry.ofItem("music_disc_abruption",
             new MusicDiscItem(4, ModSounds.MUSIC_DISC_ABRUPTION, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 239))
             .model().tag(ItemTags.MUSIC_DISCS).build();
+
 
     public static final Item CRYSTIE_SPAWN_EGG = ModRegistry.ofItem("crystie_spawn_egg",
                 new SpawnEggItem(ModEntities.CRYSTIE, 0xfaf0ff, 0xa0a0ff, new FabricItemSettings()))

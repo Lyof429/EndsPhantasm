@@ -9,7 +9,6 @@ import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.config.ModConfig;
 import net.lyof.phantasm.effect.ModEffects;
 import net.lyof.phantasm.effect.ModPotions;
-import net.lyof.phantasm.entity.ModBlockEntities;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.item.ModItemGroups;
 import net.lyof.phantasm.item.ModItems;
@@ -39,7 +38,6 @@ public class Phantasm implements ModInitializer {
 		ModBlocks.register();
 
 		ModEntities.register();
-		ModBlockEntities.register();
 
 		ModParticles.register();
 		ModSounds.register();

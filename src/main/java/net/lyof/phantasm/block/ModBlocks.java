@@ -496,12 +496,6 @@ public class ModBlocks {
             .tagitem(ItemTags.SLABS)
             .drop().build();
 
-    public static final Block GRAVITY_CORE = ModRegistry.ofBlock("gravity_core",
-                    new GravityCoreBlock(gravityCoreMaterial))
-            .tool("iron_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
-            .drop().cutout()
-            .model().build();
-
 
     // Choral
     public static final Block CHORAL_BLOCK = ModRegistry.ofBlock("choral_block",

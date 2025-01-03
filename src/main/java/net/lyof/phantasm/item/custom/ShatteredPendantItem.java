@@ -14,10 +14,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Rarity;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
@@ -55,7 +52,8 @@ public class ShatteredPendantItem extends Item {
             stack.getOrCreateNbt().putString("SavedDim", world.getRegistryKey().toString());
         }
         else if (entity instanceof LivingEntity living && entity.age % 20 == 0 && entity.getY() <= 0
-                && world.getRegistryKey().getValue().toString().equals("minecraft:the_end")) {
+                && world.getRegistryKey().getValue().toString().equals("minecraft:the_end")
+                && (!(entity instanceof PlayerEntity player) || !player.getItemCooldownManager().isCoolingDown(this))) {
             living.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 20, 0, true, false));
             this.finishUsing(stack, world, living);
         }
@@ -101,7 +99,7 @@ public class ShatteredPendantItem extends Item {
         super.appendTooltip(stack, world, tooltip, context);
         String[] txt = Text.translatable("item.phantasm.shattered_pendant.desc").getString().split("\\n");
         for (String t : txt)
-            tooltip.add(Text.literal(t));
+            tooltip.add(Text.literal(t).formatted(Formatting.GRAY));
     }
 
     @Override

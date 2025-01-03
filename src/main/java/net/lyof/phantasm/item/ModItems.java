@@ -5,6 +5,7 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.ModEntities;
+import net.lyof.phantasm.item.custom.HarmonicArrowItem;
 import net.lyof.phantasm.item.custom.ShatteredPendantItem;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
@@ -103,6 +104,9 @@ public class ModItems {
             new MusicDiscItem(4, ModSounds.MUSIC_DISC_ABRUPTION, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 239))
             .model().tag(ItemTags.MUSIC_DISCS).build();
 
+    public static final Item HARMONIC_ARROW = ModRegistry.ofItem("harmonic_arrow",
+            new HarmonicArrowItem(new FabricItemSettings()))
+            .model().tag(ItemTags.ARROWS).build();
 
     public static final Item CRYSTIE_SPAWN_EGG = ModRegistry.ofItem("crystie_spawn_egg",
                 new SpawnEggItem(ModEntities.CRYSTIE, 0xfaf0ff, 0xa0a0ff, new FabricItemSettings()))

@@ -2,7 +2,6 @@ package net.lyof.phantasm.mixin;
 
 import com.mojang.datafixers.util.Pair;
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.world.ModWorldGeneration;
 import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.minecraft.registry.RegistryKey;

@@ -1,7 +1,6 @@
 package net.lyof.phantasm.effect;
 
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.item.ModItems;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.Items;

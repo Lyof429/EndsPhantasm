@@ -102,10 +102,10 @@ public class ModItemGroups {
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
 
+                        entries.add(ModItems.SHATTERED_PENDANT);
+
                         entries.add(ModItems.BEHEMOTH_MEAT);
                         entries.add(ModItems.BEHEMOTH_STEAK);
-
-                        entries.add(ModItems.SHATTERED_PENDANT);
 
                         entries.add(ModItems.CRYSTIE_SPAWN_EGG);
                         entries.add(ModItems.BEHEMOTH_SPAWN_EGG);
@@ -131,6 +131,8 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CHORAL_BLOCK);
                         entries.add(ModBlocks.CHORAL_FAN);
                         entries.add(ModBlocks.SUBWOOFER_BLOCK);
+
+                        entries.add(ModItems.HARMONIC_ARROW);
 
                         entries.add(ModItems.MUSIC_DISC_ABRUPTION);
 
@@ -272,6 +274,8 @@ public class ModItemGroups {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
             entries.addAfter(Items.IRON_SWORD, ModItems.CRYSTALLINE_SWORD);
             entries.addAfter(Items.IRON_AXE, ModItems.CRYSTALLINE_AXE);
+
+            entries.addAfter(Items.SPECTRAL_ARROW, ModItems.HARMONIC_ARROW);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> {
             entries.add(ModItems.CRYSTIE_SPAWN_EGG);

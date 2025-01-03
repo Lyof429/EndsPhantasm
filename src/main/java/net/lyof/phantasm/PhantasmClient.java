@@ -11,6 +11,7 @@ import net.lyof.phantasm.entity.client.model.BehemothModel;
 import net.lyof.phantasm.entity.client.model.CrystieModel;
 import net.lyof.phantasm.entity.client.renderer.BehemothRenderer;
 import net.lyof.phantasm.entity.client.renderer.CrystieRenderer;
+import net.lyof.phantasm.entity.client.renderer.HarmonicArrowRenderer;
 import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.particle.custom.ZzzParticle;
 import net.lyof.phantasm.setup.ModRegistry;
@@ -28,6 +29,8 @@ public class PhantasmClient implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.BEHEMOTH, BehemothRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.BEHEMOTH, BehemothModel::getTexturedModelData);
+
+        EntityRendererRegistry.register(ModEntities.HARMONIC_ARROW, HarmonicArrowRenderer::new);
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.ZZZ, ZzzParticle.Factory::new);
     }

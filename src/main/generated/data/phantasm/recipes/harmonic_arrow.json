@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "harmonic_arrow",
+  "key": {
+    "F": {
+      "item": "phantasm:choral_fan"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    " I ",
+    " F ",
+    " F "
+  ],
+  "result": {
+    "count": 6,
+    "item": "phantasm:harmonic_arrow"
+  },
+  "show_notification": true
+}

@@ -44,7 +44,7 @@ public class HarmonicArrowEntity extends ArrowEntity {
 
     @Override
     public void setVelocity(double x, double y, double z, float speed, float divergence) {
-        super.setVelocity(x, y, z, speed * 0.75f, divergence * 5f);
+        super.setVelocity(x, y, z, speed * 0.75f, divergence * 4f);
     }
 
     @Override

@@ -5,24 +5,40 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.ModEntities;
+import net.lyof.phantasm.entity.custom.HarmonicArrowEntity;
 import net.lyof.phantasm.item.custom.HarmonicArrowItem;
 import net.lyof.phantasm.item.custom.ShatteredPendantItem;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.sound.ModSounds;
+import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.dispenser.DispenserBehavior;
+import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
 import net.minecraft.data.client.Models;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Rarity;
+import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 
 public class ModItems {
     public static void register() {
         Phantasm.log("Registering Items for modid : " + Phantasm.MOD_ID);
+
+        DispenserBlock.registerBehavior(HARMONIC_ARROW, new ProjectileDispenserBehavior() {
+            protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
+                ArrowEntity arrowEntity = new HarmonicArrowEntity(world, position.getX(), position.getY(), position.getZ());
+                arrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
+                return arrowEntity;
+            }
+        });
     }
 
 

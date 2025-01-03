@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.BlockTags;
@@ -45,6 +46,10 @@ public class SubwooferBlock extends Block {
                 ctx.getPlayerLookDirection().getOpposite() : ctx.getPlayerLookDirection());
     }
 
+    public static boolean canPush(Entity e) {
+        return e.isPushable() || e instanceof ItemEntity ||e instanceof ProjectileEntity;
+    }
+
     @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
         boolean b = world.isReceivingRedstonePower(pos);
@@ -64,8 +69,7 @@ public class SubwooferBlock extends Block {
                     world.addSyncedBlockEvent(pos, this, dir.getId(), i);
                     world.emitGameEvent(null, GameEvent.NOTE_BLOCK_PLAY, pos);
 
-                    List<Entity> entities = world.getOtherEntities(null, new Box(p).expand(1.2), e ->
-                            e.isPushable() || e instanceof ItemEntity);
+                    List<Entity> entities = world.getOtherEntities(null, new Box(p).expand(1.2), SubwooferBlock::canPush);
                     for (Entity e : entities) {
                         if (affected.contains(e.getUuid())) continue;
 

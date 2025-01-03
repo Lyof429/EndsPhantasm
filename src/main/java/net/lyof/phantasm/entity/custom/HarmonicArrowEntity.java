@@ -21,9 +21,13 @@ public class HarmonicArrowEntity extends ArrowEntity {
     }
 
     public HarmonicArrowEntity(World world, LivingEntity shooter) {
-        this(ModEntities.HARMONIC_ARROW, world);
+        this(world, shooter.getX(), shooter.getEyeY() - 0.10000000149011612D, shooter.getZ());
         this.setOwner(shooter);
-        this.setPosition(shooter.getX(), shooter.getEyeY() - 0.10000000149011612D, shooter.getZ());
+    }
+
+    public HarmonicArrowEntity(World world, double x, double y, double z) {
+        super(ModEntities.HARMONIC_ARROW, world);
+        this.setPosition(x, y, z);
     }
 
     @Override

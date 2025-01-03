@@ -1,8 +1,11 @@
 package net.lyof.phantasm.entity.custom;
 
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.effect.ModEffects;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.item.ModItems;
+import net.minecraft.block.NoteBlock;
+import net.minecraft.client.particle.NoteParticle;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -19,6 +22,8 @@ public class HarmonicArrowEntity extends ArrowEntity {
     private HarmonicArrowEntity(EntityType<? extends ArrowEntity> type, World world) {
         super(type, world);
     }
+
+    public int lifetime = 0;
 
     public HarmonicArrowEntity(World world, LivingEntity shooter) {
         this(world, shooter.getX(), shooter.getEyeY() - 0.10000000149011612D, shooter.getZ());
@@ -52,12 +57,18 @@ public class HarmonicArrowEntity extends ArrowEntity {
     }
 
     @Override
+    public boolean isCritical() {
+        return false;
+    }
+
+    @Override
     public void tick() {
         super.tick();
         if (this.getWorld().isClient() && !this.inGround) {
             this.getWorld().addParticle(ParticleTypes.NOTE,
                     this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D),
-                    0, 0.1, 0);
+                    this.lifetime / 10f, 0, 0);
         }
+        this.lifetime++;
     }
 }

@@ -1,6 +1,7 @@
 package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.block.custom.CrystalShardBlock;
 import net.lyof.phantasm.setup.ModTags;
@@ -27,9 +28,6 @@ public class CrystalSpikeFeature extends Feature<CrystalSpikeFeatureConfig> {
         Random random = context.getRandom();
         CrystalSpikeFeatureConfig config = context.getConfig();
 
-        if (!world.getBiome(origin).isIn(ModTags.Biomes.DREAMING_DEN))
-            return false;
-
         int size = config.size().get(random);
         float chance = config.voidChance();
 
@@ -38,7 +36,6 @@ public class CrystalSpikeFeature extends Feature<CrystalSpikeFeatureConfig> {
                 ? ModBlocks.VOID_CRYSTAL_SHARD.getDefaultState()
                 : ModBlocks.CRYSTAL_SHARD.getDefaultState();
 
-
         BlockPos pos = new BlockPos(origin).withY(1);
         while (pos.getY() < world.getHeight() && !(world.getBlockState(pos).isIn(ModTags.Blocks.END_PLANTS_GROWABLE_ON)
                 && world.getBlockState(pos.up()).isOf(Blocks.AIR))) {
@@ -46,6 +43,9 @@ public class CrystalSpikeFeature extends Feature<CrystalSpikeFeatureConfig> {
             pos = pos.up();
         }
         pos = pos.up();
+
+        if (!world.getBiome(pos).isIn(ModTags.Biomes.DREAMING_DEN))
+            return false;
 
         for (int i = 0; i < size; i++) {
             if (pos.getY() >= world.getHeight() - 1)

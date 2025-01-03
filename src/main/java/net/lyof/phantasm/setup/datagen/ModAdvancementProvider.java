@@ -4,15 +4,20 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementFrame;
 import net.minecraft.advancement.AdvancementRewards;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
+import net.minecraft.advancement.criterion.Criterion;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
+import net.minecraft.advancement.criterion.OnKilledCriterion;
 import net.minecraft.loot.condition.LocationCheckLootCondition;
 import net.minecraft.predicate.NumberRange;
+import net.minecraft.predicate.entity.DamageSourcePredicate;
+import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.predicate.entity.LocationPredicate;
 import net.minecraft.predicate.entity.LootContextPredicate;
 import net.minecraft.registry.RegistryKey;
@@ -126,5 +131,21 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 .rewards(AdvancementRewards.NONE)
                 .parent(ACIDBURNT_ABYSSES)
                 .build(consumer, "phantasm:find_choral_riff");
+
+        Advancement HARMONIC_ARROW = Advancement.Builder.create()
+                .display(ModItems.HARMONIC_ARROW,
+                        Text.translatable(BASE + "use_harmonic_arrow"),
+                        Text.translatable(BASE + "use_harmonic_arrow" + DESC),
+                        null,
+                        AdvancementFrame.TASK,
+                        true, true, false)
+                .criterion("shot_harmonic_arrow", OnKilledCriterion.Conditions.createPlayerKilledEntity(
+                        EntityPredicate.ANY,
+                        DamageSourcePredicate.Builder.create()
+                                .directEntity(EntityPredicate.Builder.create().type(ModEntities.HARMONIC_ARROW))
+                ))
+                .rewards(AdvancementRewards.NONE)
+                .parent(CHORAL_RIFF)
+                .build(consumer, "phantasm:use_harmonic_arrow");
     }
 }

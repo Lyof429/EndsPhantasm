@@ -113,6 +113,8 @@
   "block.phantasm.choral_fan": "Choral Fan",
   "block.phantasm.subwoofer_block": "Subwoofer Block",
 
+  "item.phantasm.harmonic_arrow": "Harmonic Arrow",
+
   "item.phantasm.music_disc_abruption": "Music Disc",
   "item.phantasm.music_disc_abruption.desc": "Dylanvhs - Abruption",
   "sounds.phantasm.music_disc_abruption": "Abruption playing",
@@ -150,5 +152,8 @@
   "advancement.phantasm.find_acidburnt_abysses.desc": "Find an Acidburnt Abysses biome",
 
   "advancement.phantasm.find_choral_riff": "Symphony of the Void",
-  "advancement.phantasm.find_choral_riff.desc": "Venture down the Choral Riff"
+  "advancement.phantasm.find_choral_riff.desc": "Venture down the Choral Riff",
+
+  "advancement.phantasm.use_harmonic_arrow": "You Hit a Dum Note!",
+  "advancement.phantasm.use_harmonic_arrow.desc": "Charm and kill a monster using an Harmonic Arrow"
 }

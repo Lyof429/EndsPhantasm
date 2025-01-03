@@ -14,6 +14,7 @@ import net.lyof.phantasm.sound.ModSounds;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.DispenserBehavior;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
+import net.minecraft.client.particle.NoteParticle;
 import net.minecraft.data.client.Models;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

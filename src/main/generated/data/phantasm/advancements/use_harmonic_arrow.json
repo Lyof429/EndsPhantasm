@@ -1,0 +1,36 @@
+{
+  "parent": "phantasm:find_choral_riff",
+  "criteria": {
+    "shot_harmonic_arrow": {
+      "conditions": {
+        "killing_blow": {
+          "direct_entity": {
+            "type": "phantasm:harmonic_arrow"
+          }
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.phantasm.use_harmonic_arrow.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "phantasm:harmonic_arrow"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.phantasm.use_harmonic_arrow"
+    }
+  },
+  "requirements": [
+    [
+      "shot_harmonic_arrow"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

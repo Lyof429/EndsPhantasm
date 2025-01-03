@@ -27,7 +27,7 @@ import java.util.List;
 
 public class ShatteredPendantItem extends Item {
     public ShatteredPendantItem(Settings settings) {
-        super(settings.rarity(Rarity.RARE).maxCount(1).maxDamage(ConfigEntries.voidEyeDurability).fireproof());
+        super(settings.rarity(Rarity.RARE).maxCount(1).maxDamage(ConfigEntries.shatteredPendantDurability).fireproof());
     }
 
     @Override

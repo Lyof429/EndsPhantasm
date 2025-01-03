@@ -171,8 +171,8 @@ public class ModConfig {
     // Max Chorus Fruit Salad stack size
     "chorus_fruit_salad_stack_size": 1,
     
-    // Radius (in blocks) in which Gravity Cores provides the Floatation effect
-    "gravity_core_range": 16,
+    // Max uses for Shattered Pendants
+    "shattered_pendant_durability": 4,
     
     // Range (in blocks) for the Subwoofer and Subwoofer Block
     "subwoofer_range": 6

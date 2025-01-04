@@ -5,6 +5,7 @@ import net.minecraft.advancement.Advancement;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FireworkRocketItem;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,6 +20,10 @@ public class FireworkRocketItemMixin {
             if ((freetheend == null || player.getAdvancementTracker().getProgress(freetheend).isDone()) && player.isFallFlying()) {
                 instance.swingHand(instance.getActiveHand(), true);
                 return true;
+            }
+            else if (freetheend != null && player.isFallFlying()) {
+                player.sendMessage(Text.translatable("item.minecraft.firework_rocket.cannot_use", freetheend.toHoverableText()),
+                        true);
             }
         }
         return false;

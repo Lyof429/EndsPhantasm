@@ -183,15 +183,14 @@ public class ModItemGroups {
             entries.add(ModBlocks.CRYSTAL_SHARD);
             entries.add(ModBlocks.VOID_CRYSTAL_SHARD);
 
-            entries.addAfter(ModBlocks.STARFLOWER, ModBlocks.ACIDIC_NIHILIUM);
-            entries.addAfter(ModBlocks.ACIDIC_NIHILIUM, ModBlocks.ACIDIC_NIHILIS);
+            entries.addAfter(ModBlocks.VIVID_NIHILIUM, ModBlocks.ACIDIC_NIHILIUM);
+            entries.addAfter(ModBlocks.ACIDIC_NIHILIUM, ModBlocks.ACIDIC_MASS);
+            entries.addAfter(ModBlocks.CRYSTALILY, ModBlocks.ACIDIC_NIHILIS);
             entries.addAfter(ModBlocks.ACIDIC_NIHILIS, ModBlocks.TALL_ACIDIC_NIHILIS);
             entries.addAfter(ModBlocks.TALL_ACIDIC_NIHILIS, ModBlocks.DRAGON_MINT);
 
             entries.addAfter(ModBlocks.DRAGON_MINT, ModBlocks.DRALGAE);
             entries.addAfter(ModBlocks.DRALGAE, ModBlocks.POME);
-
-            entries.addAfter(ModBlocks.POME, ModBlocks.ACIDIC_MASS);
 
             entries.addAfter(ModBlocks.ACIDIC_MASS, ModBlocks.CIRITE);
             entries.addAfter(ModBlocks.CIRITE, ModBlocks.CIRITE_IRON_ORE);

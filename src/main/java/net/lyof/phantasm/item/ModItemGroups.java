@@ -132,7 +132,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CHORAL_FAN);
                         entries.add(ModBlocks.SUBWOOFER_BLOCK);
 
-                        entries.add(ModItems.HARMONIC_ARROW);
+                        entries.add(ModItems.CHORAL_ARROW);
 
                         entries.add(ModItems.MUSIC_DISC_ABRUPTION);
 
@@ -275,7 +275,7 @@ public class ModItemGroups {
             entries.addAfter(Items.IRON_SWORD, ModItems.CRYSTALLINE_SWORD);
             entries.addAfter(Items.IRON_AXE, ModItems.CRYSTALLINE_AXE);
 
-            entries.addAfter(Items.SPECTRAL_ARROW, ModItems.HARMONIC_ARROW);
+            entries.addAfter(Items.SPECTRAL_ARROW, ModItems.CHORAL_ARROW);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> {
             entries.add(ModItems.CRYSTIE_SPAWN_EGG);

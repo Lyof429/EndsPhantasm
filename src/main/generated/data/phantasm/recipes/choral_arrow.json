@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
-  "group": "harmonic_arrow",
+  "group": "choral_arrow",
   "key": {
     "F": {
       "item": "phantasm:choral_fan"
@@ -17,7 +17,7 @@
   ],
   "result": {
     "count": 6,
-    "item": "phantasm:harmonic_arrow"
+    "item": "phantasm:choral_arrow"
   },
   "show_notification": true
 }

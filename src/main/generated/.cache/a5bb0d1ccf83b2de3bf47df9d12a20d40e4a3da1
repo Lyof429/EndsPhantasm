@@ -1,4 +1,4 @@
-// 1.20.1	2025-01-03T18:19:30.773557	End's Phantasm/Tags for minecraft:item
+// 1.20.1	2025-01-04T16:45:15.9649709	End's Phantasm/Tags for minecraft:item
 5d1270eb9e4788b0604ec4a19166e9cec3aa0b71 data\minecraft\tags\items\wooden_trapdoors.json
 3c7b4eb0c2d8eb33519bf4571bf742336fafa5e9 data\minecraft\tags\items\planks.json
 82c5a7201a689a5885ec8b7fb504152856be1368 data\minecraft\tags\items\stone_crafting_materials.json
@@ -10,8 +10,8 @@ d620076ce910ed88021272b48177a735d1c2b32a data\phantasm\tags\items\gets_xp_speed_
 23aee81744977dfca96fea3c771c84310c63ac7e data\phantasm\tags\items\crystal_flowers.json
 78ce86e4980e4d30d2b64c314f0751deb9c50ce0 data\minecraft\tags\items\wooden_slabs.json
 7cf2c10663cf3f5073d44bc5678a69d1d092145a data\minecraft\tags\items\axes.json
-1824f3e959cf456e8fb6a2c9c46733874af251d5 data\minecraft\tags\items\arrows.json
 0ad37c64477baf7c4ad1cdf16ff7aeeb90ad884c data\minecraft\tags\items\pickaxes.json
+aef1518893a7fb6f277dc7afc515a3bd2d3ae86f data\minecraft\tags\items\arrows.json
 8dc15772c59c47810d2f4f6a5267057bb3b3ee8e data\minecraft\tags\items\music_discs.json
 a21b1362bdfbf7760d44f7e9996de7b2c4e843d6 data\minecraft\tags\items\flowers.json
 e9b179adc932a9775a25d8959fb6546f3b3f18b5 data\minecraft\tags\items\shovels.json

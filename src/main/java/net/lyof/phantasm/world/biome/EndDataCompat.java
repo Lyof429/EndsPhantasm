@@ -1,7 +1,7 @@
 package net.lyof.phantasm.world.biome;
 
 import com.mojang.datafixers.util.Pair;
-import net.lyof.phantasm.Phantasm;
+import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
@@ -15,8 +15,21 @@ public class EndDataCompat {
     public static void register() {
         add(ModBiomes.DREAMING_DEN, () -> ConfigEntries.doDreamingDenBiome);
         add(BiomeKeys.END_HIGHLANDS, () -> ConfigEntries.doDreamingDenBiome && ConfigEntries.doAcidburntAbyssesBiome
-                && Phantasm.getCompatibilityMode().equals("endercon"));
+                && getCompatibilityMode().equals("endercon"));
         add(ModBiomes.ACIDBURNT_ABYSSES, () -> ConfigEntries.doAcidburntAbyssesBiome);
+    }
+
+    public static String getCompatibilityMode() {
+        boolean auto = ConfigEntries.dataCompatMode.equals("automatic");
+        if (auto) {
+            if (FabricLoader.getInstance().isModLoaded("endercon"))
+                return "endercon";
+            else if (FabricLoader.getInstance().isModLoaded("nullscape"))
+                return "nullscape";
+            else return "default";
+        }
+
+        return ConfigEntries.dataCompatMode;
     }
 
 

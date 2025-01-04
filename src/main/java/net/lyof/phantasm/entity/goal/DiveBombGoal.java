@@ -29,7 +29,7 @@ public class DiveBombGoal extends Goal {
     public void start() {
         LivingEntity livingentity = self.getTarget();
         Vec3d vec3d = livingentity.getEyePos();
-        self.getMoveControl().moveTo(vec3d.x, vec3d.y, vec3d.z, 10);
+        self.getMoveControl().moveTo(vec3d.x, vec3d.y, vec3d.z, 20);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class DiveBombGoal extends Goal {
             double d0 = self.distanceTo(livingentity);
             if (d0 < 32) {
                 Vec3d vec3d = livingentity.getEyePos();
-                self.getMoveControl().moveTo(vec3d.x, vec3d.y, vec3d.z, 10);
+                self.getMoveControl().moveTo(vec3d.x, vec3d.y, vec3d.z, 20);
             }
         }
     }

@@ -322,14 +322,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(ModBlocks.CHORAL_FAN), conditionsFromItem(ModBlocks.CHORAL_FAN))
                 .group("subwoofer_block").offerTo(exporter, Phantasm.makeID("subwoofer_block"));
 
-        // Harmonic Arrow
-        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.HARMONIC_ARROW, 6)
+        // Choral Arrow
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.CHORAL_ARROW, 6)
                 .pattern(" I ")
                 .pattern(" F ")
                 .pattern(" F ")
                 .input('I', Items.IRON_INGOT)
                 .input('F', ModBlocks.CHORAL_FAN)
                 .criterion(hasItem(ModBlocks.CHORAL_FAN), conditionsFromItem(ModBlocks.CHORAL_FAN))
-                .group("harmonic_arrow").offerTo(exporter, Phantasm.makeID("harmonic_arrow"));
+                .group("choral_arrow").offerTo(exporter, Phantasm.makeID("choral_arrow"));
     }
 }

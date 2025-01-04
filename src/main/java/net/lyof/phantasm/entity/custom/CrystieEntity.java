@@ -1,5 +1,6 @@
 package net.lyof.phantasm.entity.custom;
 
+import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.goal.DiveBombGoal;
 import net.lyof.phantasm.setup.ModTags;
@@ -15,6 +16,8 @@ import net.minecraft.entity.ai.pathing.EntityNavigation;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -28,6 +31,8 @@ import net.minecraft.nbt.NbtIntArray;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
@@ -171,5 +176,19 @@ public class CrystieEntity extends AnimalEntity {
     public void onDeath(DamageSource damageSource) {
         super.onDeath(damageSource);
         this.explode();
+    }
+
+    @Override
+    public ActionResult interactMob(PlayerEntity player, Hand hand) {
+        ActionResult result = super.interactMob(player, hand);
+
+        ItemStack stack = player.getStackInHand(hand);
+        if (stack.isOf(ModBlocks.VOID_CRYSTAL_GLASS.asItem())) {
+            this.discard();
+            stack.decrement(1);
+            player.giveItemStack(Items.END_CRYSTAL.getDefaultStack());
+            result = ActionResult.SUCCESS;
+        }
+        return result;
     }
 }

@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "phantasm:harmonic_arrow"
+        "recipe": "phantasm:choral_arrow"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "phantasm:harmonic_arrow"
+      "phantasm:choral_arrow"
     ]
   },
   "sends_telemetry_event": false

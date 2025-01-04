@@ -1,11 +1,11 @@
 {
   "parent": "phantasm:find_choral_riff",
   "criteria": {
-    "shot_harmonic_arrow": {
+    "shot_choral_arrow": {
       "conditions": {
         "killing_blow": {
           "direct_entity": {
-            "type": "phantasm:harmonic_arrow"
+            "type": "phantasm:choral_arrow"
           }
         }
       },
@@ -15,21 +15,21 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "advancement.phantasm.use_harmonic_arrow.desc"
+      "translate": "advancement.phantasm.use_choral_arrow.desc"
     },
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "phantasm:harmonic_arrow"
+      "item": "phantasm:choral_arrow"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancement.phantasm.use_harmonic_arrow"
+      "translate": "advancement.phantasm.use_choral_arrow"
     }
   },
   "requirements": [
     [
-      "shot_harmonic_arrow"
+      "shot_choral_arrow"
     ]
   ],
   "sends_telemetry_event": true

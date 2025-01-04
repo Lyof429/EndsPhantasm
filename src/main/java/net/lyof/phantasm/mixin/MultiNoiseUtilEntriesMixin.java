@@ -24,6 +24,7 @@ import java.util.List;
 public class MultiNoiseUtilEntriesMixin<T> {
     @Unique private final List<Pair<MultiNoiseUtil.NoiseHypercube, T>> endEntries = new ArrayList<>();
 
+    @SuppressWarnings("all")
     @Inject(method = "<init>", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/world/biome/source/util/MultiNoiseUtil$SearchTree;create(Ljava/util/List;)Lnet/minecraft/world/biome/source/util/MultiNoiseUtil$SearchTree;"))
     public void addEndBiomes(List<Pair<MultiNoiseUtil.NoiseHypercube, T>> entries, CallbackInfo ci) {
@@ -65,7 +66,7 @@ public class MultiNoiseUtilEntriesMixin<T> {
         biomes = biomes * 2 - 1;
         //i = i * 2;
 
-        if (Phantasm.getCompatibilityMode().equals("endercon"))
+        if (EndDataCompat.getCompatibilityMode().equals("endercon"))
             return MultiNoiseUtil.createNoiseHypercube(
                     splitRange(base.temperature(), biomes, i),
                     base.humidity(),
@@ -75,7 +76,7 @@ public class MultiNoiseUtilEntriesMixin<T> {
                     base.weirdness(),
                     base.offset() / 10000f);
 
-        else if (Phantasm.getCompatibilityMode().equals("nullscape"))
+        else if (EndDataCompat.getCompatibilityMode().equals("nullscape"))
             return MultiNoiseUtil.createNoiseHypercube(
                     base.temperature(),
                     base.humidity(),
@@ -103,7 +104,7 @@ public class MultiNoiseUtilEntriesMixin<T> {
     }
 
     private static long getRange(MultiNoiseUtil.ParameterRange point) {
-        if (Phantasm.getCompatibilityMode().equals("endercon"))
+        if (EndDataCompat.getCompatibilityMode().equals("endercon"))
             return MultiNoiseUtil.toLong(0.5625f + 0.84375f);
         return point.max() - point.min();
     }

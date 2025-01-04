@@ -11,7 +11,6 @@ import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementFrame;
 import net.minecraft.advancement.AdvancementRewards;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.advancement.criterion.Criterion;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.advancement.criterion.OnKilledCriterion;
 import net.minecraft.loot.condition.LocationCheckLootCondition;
@@ -132,20 +131,20 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 .parent(ACIDBURNT_ABYSSES)
                 .build(consumer, "phantasm:find_choral_riff");
 
-        Advancement HARMONIC_ARROW = Advancement.Builder.create()
-                .display(ModItems.HARMONIC_ARROW,
-                        Text.translatable(BASE + "use_harmonic_arrow"),
-                        Text.translatable(BASE + "use_harmonic_arrow" + DESC),
+        Advancement CHORAL_ARROW = Advancement.Builder.create()
+                .display(ModItems.CHORAL_ARROW,
+                        Text.translatable(BASE + "use_choral_arrow"),
+                        Text.translatable(BASE + "use_choral_arrow" + DESC),
                         null,
                         AdvancementFrame.TASK,
                         true, true, false)
-                .criterion("shot_harmonic_arrow", OnKilledCriterion.Conditions.createPlayerKilledEntity(
+                .criterion("shot_choral_arrow", OnKilledCriterion.Conditions.createPlayerKilledEntity(
                         EntityPredicate.ANY,
                         DamageSourcePredicate.Builder.create()
-                                .directEntity(EntityPredicate.Builder.create().type(ModEntities.HARMONIC_ARROW))
+                                .directEntity(EntityPredicate.Builder.create().type(ModEntities.CHORAL_ARROW))
                 ))
                 .rewards(AdvancementRewards.NONE)
                 .parent(CHORAL_RIFF)
-                .build(consumer, "phantasm:use_harmonic_arrow");
+                .build(consumer, "phantasm:use_choral_arrow");
     }
 }

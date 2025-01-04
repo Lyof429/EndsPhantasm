@@ -3,9 +3,7 @@ package net.lyof.phantasm;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.block.ModBlocks;
-import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.config.ModConfig;
 import net.lyof.phantasm.effect.ModEffects;
 import net.lyof.phantasm.effect.ModPotions;
@@ -75,18 +73,5 @@ public class Phantasm implements ModInitializer {
 	public static <T> T log(T message) {
 		LOGGER.info(String.valueOf(message));
 		return message;
-	}
-
-	public static String getCompatibilityMode() {
-		boolean auto = ConfigEntries.dataCompatMode.equals("automatic");
-		if (auto) {
-			if (FabricLoader.getInstance().isModLoaded("endercon"))
-				return "endercon";
-			else if (FabricLoader.getInstance().isModLoaded("nullscape"))
-				return "nullscape";
-			else return "default";
-		}
-
-		return ConfigEntries.dataCompatMode;
 	}
 }

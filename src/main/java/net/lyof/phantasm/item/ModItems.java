@@ -5,16 +5,14 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.ModEntities;
-import net.lyof.phantasm.entity.custom.HarmonicArrowEntity;
-import net.lyof.phantasm.item.custom.HarmonicArrowItem;
+import net.lyof.phantasm.entity.custom.ChoralArrowEntity;
+import net.lyof.phantasm.item.custom.ChoralArrowItem;
 import net.lyof.phantasm.item.custom.ShatteredPendantItem;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.sound.ModSounds;
 import net.minecraft.block.DispenserBlock;
-import net.minecraft.block.dispenser.DispenserBehavior;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
-import net.minecraft.client.particle.NoteParticle;
 import net.minecraft.data.client.Models;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,9 +31,9 @@ public class ModItems {
     public static void register() {
         Phantasm.log("Registering Items for modid : " + Phantasm.MOD_ID);
 
-        DispenserBlock.registerBehavior(HARMONIC_ARROW, new ProjectileDispenserBehavior() {
+        DispenserBlock.registerBehavior(CHORAL_ARROW, new ProjectileDispenserBehavior() {
             protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
-                ArrowEntity arrowEntity = new HarmonicArrowEntity(world, position.getX(), position.getY(), position.getZ());
+                ArrowEntity arrowEntity = new ChoralArrowEntity(world, position.getX(), position.getY(), position.getZ());
                 arrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
                 return arrowEntity;
             }
@@ -121,8 +119,8 @@ public class ModItems {
             new MusicDiscItem(4, ModSounds.MUSIC_DISC_ABRUPTION, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 239))
             .model().tag(ItemTags.MUSIC_DISCS).build();
 
-    public static final Item HARMONIC_ARROW = ModRegistry.ofItem("harmonic_arrow",
-            new HarmonicArrowItem(new FabricItemSettings()))
+    public static final Item CHORAL_ARROW = ModRegistry.ofItem("choral_arrow",
+            new ChoralArrowItem(new FabricItemSettings()))
             .model().tag(ItemTags.ARROWS).build();
 
     public static final Item CRYSTIE_SPAWN_EGG = ModRegistry.ofItem("crystie_spawn_egg",

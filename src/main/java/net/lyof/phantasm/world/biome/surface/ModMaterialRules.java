@@ -4,6 +4,7 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.mixin.access.ChunkGeneratorSettingsAccessor;
+import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKey;
@@ -31,7 +32,7 @@ public class ModMaterialRules {
     private static final MaterialRules.MaterialRule ACIDIC_NIHILIUM = block(ModBlocks.ACIDIC_NIHILIUM);
     private static final MaterialRules.MaterialRule ACIDIC_MASS = block(ModBlocks.ACIDIC_MASS);
 
-    public static MaterialRules.MaterialRule createDreamingDenRule() {
+    public static MaterialRules.MaterialRule createPhantasmRules() {
         double min_noise = -0.4;
 
         MaterialRules.MaterialCondition is_dreaming_den = MaterialRules.biome(ModBiomes.DREAMING_DEN);
@@ -45,7 +46,7 @@ public class ModMaterialRules {
         MaterialRules.MaterialCondition band_noise =
                 MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE, 0);
 
-        int raw_purpur_offset = Phantasm.getCompatibilityMode().equals("endercon") ? 20 : 0;
+        int raw_purpur_offset = EndDataCompat.getCompatibilityMode().equals("endercon") ? 20 : 0;
         MaterialRules.MaterialCondition band_y_below = MaterialRules.verticalGradient("raw_purpur_stripes_below1",
                 YOffset.fixed(raw_purpur_offset + 40), YOffset.fixed(raw_purpur_offset + 42));
         MaterialRules.MaterialCondition band_y_above = MaterialRules.not(MaterialRules.verticalGradient("raw_purpur_stripes_above1",
@@ -105,7 +106,7 @@ public class ModMaterialRules {
                 )
         );
 
-        int oblivion_y = Phantasm.getCompatibilityMode().equals("default") ? 29 : 42;
+        int oblivion_y = EndDataCompat.getCompatibilityMode().equals("default") ? 29 : 42;
         MaterialRules.MaterialRule oblivion = MaterialRules.condition(
                 MaterialRules.not(MaterialRules.aboveY(YOffset.fixed(oblivion_y), 0)),
                 MaterialRules.condition(
@@ -212,7 +213,7 @@ public class ModMaterialRules {
                 ChunkGeneratorSettings settings = noiseGenerator.getSettings().value();
                 ((ChunkGeneratorSettingsAccessor) (Object) settings).addSurfaceRule(
                         MaterialRules.sequence(
-                            ModMaterialRules.createDreamingDenRule(), settings.surfaceRule()
+                            ModMaterialRules.createPhantasmRules(), settings.surfaceRule()
                         )
                 );
                 Phantasm.log("Successfully added Surface Rules for the End");

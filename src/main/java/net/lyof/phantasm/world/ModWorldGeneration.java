@@ -27,7 +27,6 @@ public class ModWorldGeneration {
 
 
     public static RegistryEntryLookup<Biome> LOOKUP;
-
     public static void register(RegistryEntryLookup<Biome> lookup) {
         LOOKUP = lookup;
     }

@@ -1,6 +1,7 @@
 package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
+import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.world.feature.custom.config.BoulderFeatureConfig;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -25,6 +26,9 @@ public class BoulderFeature extends Feature<BoulderFeatureConfig> {
         BlockPos origin = context.getOrigin();
         Random random = context.getRandom();
         BoulderFeatureConfig config = context.getConfig();
+
+        if (!world.getBlockState(origin.down()).isIn(ModTags.Blocks.END_PLANTS_GROWABLE_ON))
+            return false;
 
         List<BlockPos> toPlace = new ArrayList<>();
 

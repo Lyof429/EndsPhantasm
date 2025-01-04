@@ -134,6 +134,7 @@
   "biome.phantasm.acidburnt_abysses": "Acidburnt Abysses",
 
   "tooltip.xp_boosted": "Efficiency increases with experience.",
+  "item.minecraft.firework_rocket.cannot_use": "You must complete %s first!",
 
 
   "advancement.phantasm.find_dreaming_den": "Dreams Come True",

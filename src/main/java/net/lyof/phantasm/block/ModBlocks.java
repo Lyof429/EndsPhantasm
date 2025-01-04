@@ -397,16 +397,13 @@ public class ModBlocks {
 
 
     private static final FabricBlockSettings acidicMassMaterial =
-            copy(Blocks.MOSS_BLOCK).mapColor(MapColor.DARK_DULL_PINK).strength(1.3f);
+            copy(Blocks.MOSS_BLOCK).mapColor(MapColor.DARK_DULL_PINK).strength(1.8f);
 
     private static final FabricBlockSettings pomeMaterial =
-            copy(Blocks.MELON).mapColor(MapColor.DARK_DULL_PINK).strength(1);
+            copy(Blocks.MELON).mapColor(MapColor.DARK_DULL_PINK).strength(1.5f);
 
     private static final FabricBlockSettings ciriteMaterial =
-            copy(Blocks.SANDSTONE).strength(1.4f).resistance(0.2f).slipperiness(1);
-
-    private static final FabricBlockSettings gravityCoreMaterial =
-            FabricBlockSettings.create().nonOpaque().strength(1).resistance(4);
+            copy(Blocks.SANDSTONE).strength(2f).resistance(0.2f).slipperiness(1);
 
     // Acidic Nihilium
     public static final Block ACIDIC_NIHILIUM = ModRegistry.ofBlock("acidic_nihilium",

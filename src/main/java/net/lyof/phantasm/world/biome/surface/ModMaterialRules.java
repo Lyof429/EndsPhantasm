@@ -158,7 +158,7 @@ public class ModMaterialRules {
         MaterialRules.MaterialRule acidburnt_abysses_mass = MaterialRules.condition(
                 is_acidburnt_abysses,
                 MaterialRules.condition(
-                        MaterialRules.STONE_DEPTH_FLOOR,
+                        MaterialRules.stoneDepth(2, false, VerticalSurfaceType.FLOOR),
                         MaterialRules.condition(
                                 MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
                                 ACIDIC_MASS

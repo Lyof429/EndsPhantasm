@@ -57,6 +57,9 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.VIVID_NIHILIS, dropsWithShears(ModBlocks.VIVID_NIHILIS));
         addDrop(ModBlocks.TALL_VIVID_NIHILIS, dropsWithShears(ModBlocks.TALL_VIVID_NIHILIS));
         addDrop(ModBlocks.ACIDIC_NIHILIS, dropsWithShears(ModBlocks.ACIDIC_NIHILIS));
+        addDrop(ModBlocks.TALL_ACIDIC_NIHILIS, dropsWithShears(ModBlocks.TALL_ACIDIC_NIHILIS));
+
+        addDrop(ModBlocks.DRAGON_MINT, dropsWithShears(ModBlocks.DRAGON_MINT));
 
         addSelfDropOr(ModBlocks.POME, ModItems.POME_SLICE, UniformLootNumberProvider.create(3, 6));
 

@@ -95,7 +95,7 @@ public class CeilingBoulderFeature extends Feature<BoulderFeatureConfig> {
 
     public void spike(List<BlockPos> world, BlockPos pos, int layer) {
         if (layer <= 0) {
-            world.add(pos);
+            if (!world.contains(pos)) world.add(pos);
             return;
         }
 

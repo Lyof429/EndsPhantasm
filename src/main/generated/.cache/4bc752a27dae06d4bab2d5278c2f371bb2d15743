@@ -1,4 +1,4 @@
-// 1.20.1	2025-01-04T17:25:14.634426	End's Phantasm/Block Loot Tables
+// 1.20.1	2025-01-04T17:36:51.7326148	End's Phantasm/Block Loot Tables
 84f0b6e2d7cfb187d5d5de6b2dcc825ca0643ce8 data\phantasm\loot_tables\blocks\crystal_pillar.json
 754842e402287f059b390347065830e05894ada6 data\phantasm\loot_tables\blocks\void_crystal_tiles.json
 ff960fb1a6d27fe2dcd3db93cbdb5c9546cca75d data\phantasm\loot_tables\blocks\choral_fan.json
@@ -40,11 +40,13 @@ aa2ca3d0fc21a136bc8d7ce1ef037df342810f96 data\phantasm\loot_tables\blocks\raw_pu
 e26387b61a3852d77e7c7c0527bcb0b5c8e10c29 data\phantasm\loot_tables\blocks\raw_purpur_bricks.json
 0b060e9587a4154b99b3b9a3d17e8611397c4917 data\phantasm\loot_tables\blocks\crystalily.json
 25e0bfa66e64efa52b00b80be6cf73ede65cabcb data\phantasm\loot_tables\blocks\tall_vivid_nihilis.json
+34e574351abffb26fd8f9fef8edcb9dc4a803190 data\phantasm\loot_tables\blocks\dragon_mint.json
 f8e88584cf50507f3d9c573566e5961c9646b4c9 data\phantasm\loot_tables\blocks\pream_fence_gate.json
 5b03520694e6dd0ae791db020ef17f719b5bb176 data\phantasm\loot_tables\blocks\cirite_bricks.json
 60ab1813ddfb7e06f7abdb458bfb40e514165419 data\phantasm\loot_tables\blocks\cirite_iron_ore.json
 1789e50280846d38493e55f3bec5b606127aa371 data\phantasm\loot_tables\blocks\void_crystal_tiles_slab.json
 af1ec9f16672c54ca327bc5978883919040b1f43 data\phantasm\loot_tables\blocks\oblivion.json
+d39262c90a45502057de40d63bcbb932556e3b88 data\phantasm\loot_tables\blocks\tall_acidic_nihilis.json
 ab08addb711b0c1bfd915bf2aff0c8b04f83fb26 data\phantasm\loot_tables\blocks\raw_purpur_bricks_slab.json
 e9539b3c59380e692043a9727a4083d1a98b4ebd data\phantasm\loot_tables\blocks\purpur_lamp.json
 380b43b6f453d453b719225d9004627348adb53d data\phantasm\loot_tables\blocks\oblivine.json

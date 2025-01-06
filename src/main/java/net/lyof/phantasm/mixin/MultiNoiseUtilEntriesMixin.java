@@ -10,6 +10,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -20,8 +21,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mixin(MultiNoiseUtil.Entries.class)
-public class MultiNoiseUtilEntriesMixin<T> {
+@Mixin(value = MultiNoiseUtil.Entries.class, priority = 1004)
+public abstract class MultiNoiseUtilEntriesMixin<T> {
+    @Shadow public abstract List<Pair<MultiNoiseUtil.NoiseHypercube, T>> getEntries();
+
     @Unique private final List<Pair<MultiNoiseUtil.NoiseHypercube, T>> endEntries = new ArrayList<>();
 
     @SuppressWarnings("all")
@@ -112,7 +115,7 @@ public class MultiNoiseUtilEntriesMixin<T> {
     @ModifyArg(method = "<init>", index = 0, at = @At(value = "INVOKE",
                target = "Lnet/minecraft/world/biome/source/util/MultiNoiseUtil$SearchTree;create(Ljava/util/List;)Lnet/minecraft/world/biome/source/util/MultiNoiseUtil$SearchTree;"))
     public List<Pair<MultiNoiseUtil.NoiseHypercube, T>> modifyTree(List<Pair<MultiNoiseUtil.NoiseHypercube, T>> entries) {
-        return this.endEntries.isEmpty() ? entries : this.endEntries;
+        return this.getEntries();
     }
 
     @Inject(method = "getEntries", at = @At("HEAD"), cancellable = true)

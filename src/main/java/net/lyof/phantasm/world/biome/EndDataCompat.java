@@ -22,7 +22,7 @@ public class EndDataCompat {
     public static String getCompatibilityMode() {
         boolean auto = ConfigEntries.dataCompatMode.equals("automatic");
         if (auto) {
-            if (FabricLoader.getInstance().isModLoaded("endercon"))
+            if (FabricLoader.getInstance().isModLoaded("mr_endercon"))
                 return "endercon";
             else if (FabricLoader.getInstance().isModLoaded("nullscape"))
                 return "nullscape";

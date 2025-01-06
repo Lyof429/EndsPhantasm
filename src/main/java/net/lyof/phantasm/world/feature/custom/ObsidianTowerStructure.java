@@ -37,10 +37,11 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
         origin = world.getChunk(origin).getPos().getCenterAtY(origin.getY());
 
 
+        int miny = world.getBottomY();
         int maxy = config.getCount().get(random) + origin.getY();
         maxy = maxy + 7 - maxy % 7;
 
-        for (int sy = maxy; sy >= 0; sy--) {
+        for (int sy = maxy; sy >= miny; sy--) {
             for (int sx = -8; sx < 9; sx++) {
                 for (int sz = -8; sz < 9; sz++) {
                     if (sx*sx + sz*sz < 64 && (sx*sx + sz*sz >= 49 || sy == maxy)) {
@@ -54,7 +55,7 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
                         this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
                                 block.getDefaultState());
                     }
-                    else if (sx*sx + sz*sz < 64 && sy == 0) {
+                    else if (sx*sx + sz*sz < 64 && sy == miny) {
                         this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
                                 Blocks.END_PORTAL.getDefaultState());
                     }
@@ -66,7 +67,7 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
             }
             if (world.getBlockState(origin.withY(sy)).isAir()) this.setBlockState(world, origin.withY(sy), Blocks.CHAIN.getDefaultState());
             if (sy < maxy && sy > 0) this.putStairs(world, origin.withY(sy));
-            if (sy % 7 == 0 && sy != maxy && sy != 0) this.putPlatform(world, origin.withY(sy), random.nextInt(7));
+            if (sy % 7 == 0 && sy != maxy && sy != miny) this.putPlatform(world, origin.withY(sy), random.nextInt(7));
             //if (sy % 5 == 0 && sy != 0) generateRoom(world, origin.withY(sy - 4));
         }
 

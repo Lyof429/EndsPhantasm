@@ -108,7 +108,8 @@ public class ModMaterialRules {
 
         int oblivion_y = EndDataCompat.getCompatibilityMode().equals("default") ? 29 : 42;
         MaterialRules.MaterialRule oblivion = MaterialRules.condition(
-                MaterialRules.not(MaterialRules.aboveY(YOffset.fixed(oblivion_y), 0)),
+                //MaterialRules.not(MaterialRules.aboveY(YOffset.fixed(oblivion_y), 0)),
+                MaterialRules.not(MaterialRules.stoneDepth(16, false, VerticalSurfaceType.FLOOR)),
                 MaterialRules.condition(
                         MaterialRules.stoneDepth(2, false, VerticalSurfaceType.CEILING),
                         OBLIVION

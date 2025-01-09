@@ -47,6 +47,7 @@ public class ModPlacedFeatures {
 
         register(context, CRYSTAL_SPIKE, configLookup.getOrThrow(ModConfiguredFeatures.CRYSTAL_SPIKE),
                 SquarePlacementModifier.of(),
+                BiomePlacementModifier.of(),
                 RarityFilterPlacementModifier.of(2));
 
         register(context, FALLEN_STAR, configLookup.getOrThrow(ModConfiguredFeatures.FALLEN_STAR),
@@ -73,6 +74,7 @@ public class ModPlacedFeatures {
 
         register(context, OBLIVINE_PATCH, configLookup.getOrThrow(ModConfiguredFeatures.OBLIVINE),
                 SquarePlacementModifier.of(),
+                BiomePlacementModifier.of(),
                 PlacedFeatures.createCountExtraModifier(10, 1, 3),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP);
 

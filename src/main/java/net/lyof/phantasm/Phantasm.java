@@ -3,6 +3,7 @@ package net.lyof.phantasm;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
+import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ModConfig;
 import net.lyof.phantasm.effect.ModEffects;
@@ -12,11 +13,13 @@ import net.lyof.phantasm.item.ModItemGroups;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.setup.ModDataGenerator;
+import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.sound.ModSounds;
 import net.lyof.phantasm.world.ModWorldGeneration;
 import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.lyof.phantasm.world.feature.ModFeatures;
 import net.lyof.phantasm.world.feature.custom.tree.ModTreePlacerTypes;
+import net.minecraft.SharedConstants;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
@@ -52,6 +55,9 @@ public class Phantasm implements ModInitializer {
 		ModFeatures.register();
 		ModWorldGeneration.register();
 		EndDataCompat.register();
+
+		if (!FabricLoader.getInstance().isDevelopmentEnvironment())
+			ModRegistry.clear();
 
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
 			@Override

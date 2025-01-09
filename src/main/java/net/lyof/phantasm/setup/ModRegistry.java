@@ -309,4 +309,20 @@ public class ModRegistry {
     public static Map<TagKey<Item>, List<Item>> ITEM_TAGS = new HashMap<>();
     public static Map<Item, Model> ITEM_MODELS = new HashMap<>();
     public static Map<ItemConvertible, Integer> ITEM_BURNABLE = new HashMap<>();
+
+    public static void clear() {
+        BLOCKS.clear();
+        BLOCK_TAGS.clear();
+        BLOCK_DROPS.clear();
+        BLOCK_STRIPPED.clear();
+        BLOCK_SETS.clear();
+        BLOCK_MODELS.clear();
+        BLOCK_CUTOUT.clear();
+        BLOCK_FLAMMABLE.clear();
+
+        ITEMS.clear();
+        ITEM_TAGS.clear();
+        ITEM_MODELS.clear();
+        ITEM_BURNABLE.clear();
+    }
 }

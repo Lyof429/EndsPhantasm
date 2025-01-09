@@ -1,5 +1,6 @@
 package net.lyof.phantasm.mixin;
 
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.minecraft.world.gen.densityfunction.DensityFunction;
 import net.minecraft.world.gen.densityfunction.DensityFunctionTypes;
@@ -13,7 +14,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(NoiseRouter.class)
 public abstract class NoiseRouterMixin {
-    private static final DensityFunction END = DensityFunctionTypes.endIslands(0);
+    private static final DensityFunction END =
+            DensityFunctionTypes.add(
+                    DensityFunctionTypes.mul(
+                            DensityFunctionTypes.add(
+                                    DensityFunctionTypes.endIslands(0),
+                            DensityFunctionTypes.constant(0.84375)),
+                    DensityFunctionTypes.constant(2 / (0.5625 + 0.84375))),
+            DensityFunctionTypes.constant(-1));
 
     @Shadow @Final private DensityFunction temperature;
 

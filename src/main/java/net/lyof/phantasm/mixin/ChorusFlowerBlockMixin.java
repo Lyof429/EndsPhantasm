@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(value = ChorusFlowerBlock.class, priority = 1004)
+@Mixin(value = ChorusFlowerBlock.class, priority = 990)
 public class ChorusFlowerBlockMixin {
     @Redirect(method = "canPlaceAt", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z"))
     public boolean canPlaceAtNihilium(BlockState instance, Block block) {

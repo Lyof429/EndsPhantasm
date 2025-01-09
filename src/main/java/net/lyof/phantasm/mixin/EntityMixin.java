@@ -46,4 +46,10 @@ public class EntityMixin {
         if (((Entity) (Object) this) instanceof LivingEntity living && living.hasStatusEffect(ModEffects.CHARM))
             ci.cancel();
     }
+
+    @Inject(method = "canMoveVoluntarily", at = @At("HEAD"), cancellable = true)
+    public void charmAi(CallbackInfoReturnable<Boolean> cir) {
+        if (((Entity) (Object) this) instanceof LivingEntity living && living.hasStatusEffect(ModEffects.CHARM))
+            cir.setReturnValue(false);
+    }
 }

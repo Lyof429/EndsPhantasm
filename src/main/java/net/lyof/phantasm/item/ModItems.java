@@ -33,7 +33,7 @@ public class ModItems {
 
         DispenserBlock.registerBehavior(CHORAL_ARROW, new ProjectileDispenserBehavior() {
             protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
-                ArrowEntity arrowEntity = new ChoralArrowEntity(world, position.getX(), position.getY(), position.getZ());
+                ArrowEntity arrowEntity = ChoralArrowEntity.create(world, position.getX(), position.getY(), position.getZ());
                 arrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
                 return arrowEntity;
             }

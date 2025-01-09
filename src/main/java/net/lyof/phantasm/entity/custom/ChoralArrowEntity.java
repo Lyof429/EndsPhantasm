@@ -12,24 +12,22 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.world.World;
 
 public class ChoralArrowEntity extends ArrowEntity {
-    public static ChoralArrowEntity create(EntityType<? extends ArrowEntity> type, World world) {
-        return new ChoralArrowEntity(type, world);
-    }
-
-    private ChoralArrowEntity(EntityType<? extends ArrowEntity> type, World world) {
+    public ChoralArrowEntity(EntityType<? extends ArrowEntity> type, World world) {
         super(type, world);
     }
 
     public int lifetime = 0;
 
-    public ChoralArrowEntity(World world, LivingEntity shooter) {
-        this(world, shooter.getX(), shooter.getEyeY() - 0.10000000149011612D, shooter.getZ());
-        this.setOwner(shooter);
+    public static ChoralArrowEntity create(World world, LivingEntity shooter) {
+        ChoralArrowEntity arrow = create(world, shooter.getX(), shooter.getEyeY() - 0.10000000149011612D, shooter.getZ());
+        arrow.setOwner(shooter);
+        return arrow;
     }
 
-    public ChoralArrowEntity(World world, double x, double y, double z) {
-        super(ModEntities.CHORAL_ARROW, world);
-        this.setPosition(x, y, z);
+    public static ChoralArrowEntity create(World world, double x, double y, double z) {
+        ChoralArrowEntity arrow = new ChoralArrowEntity(ModEntities.CHORAL_ARROW, world);
+        arrow.setPosition(x, y, z);
+        return arrow;
     }
 
     @Override

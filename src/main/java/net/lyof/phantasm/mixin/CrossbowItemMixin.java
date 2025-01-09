@@ -2,13 +2,18 @@ package net.lyof.phantasm.mixin;
 
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.impl.screenhandler.Networking;
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.custom.SubwooferBlock;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.custom.ChoralArrowEntity;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSources;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.sound.SoundCategory;
@@ -35,11 +40,13 @@ public class CrossbowItemMixin {
         if (entity instanceof ChoralArrowEntity arrow) {
             Vec3d direction = arrow.getVelocity().normalize();
             Vec3d position = entity.getPos();
-            int range = ConfigEntries.subwooferRange;
+            int range = ConfigEntries.subwooferRange * 2;
 
-            shooter.setVelocity(direction.multiply(2).add(0, 0.1, 0));
-            shooter.velocityModified = true;
-            shooter.fallDistance = 0;
+            if (!shooter.isSneaking()) {
+                shooter.setVelocity(direction.add(0, 0.1, 0));
+                shooter.velocityModified = true;
+                shooter.fallDistance = 0;
+            }
 
             List<UUID> affected = new ArrayList<>();
 
@@ -49,7 +56,8 @@ public class CrossbowItemMixin {
                 List<Entity> entities = world.getOtherEntities(shooter, new Box(pos).expand(1), SubwooferBlock::canPush);
 
                 // TODO: packet mess
-                world.addImportantParticle(ParticleTypes.SONIC_BOOM, position.x, position.y, position.z,
+                world.addImportantParticle(ParticleTypes.SONIC_BOOM,
+                        position.x, position.y, position.z,
                         0, 0, 0);
                 world.playSound(null, pos, SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS);
 
@@ -57,9 +65,9 @@ public class CrossbowItemMixin {
                     if (affected.contains(e.getUuid())) continue;
 
                     affected.add(e.getUuid());
-                    e.setVelocity(direction.multiply(2).add(0, 0.1, 0));
+                    e.damage(shooter.getDamageSources().arrow((PersistentProjectileEntity) entity, shooter), 6);
+                    e.setVelocity(direction.multiply(2.5).add(0, 0.2, 0));
                     e.velocityModified = true;
-                    e.fallDistance = 0;
                 }
 
                 if (world.getBlockState(pos).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) return true;

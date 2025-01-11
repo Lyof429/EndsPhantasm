@@ -1,15 +1,31 @@
 package net.lyof.phantasm.entity.custom;
 
+import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.block.custom.SubwooferBlock;
+import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.effect.ModEffects;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.item.ModItems;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class ChoralArrowEntity extends ArrowEntity {
     public ChoralArrowEntity(EntityType<? extends ArrowEntity> type, World world) {
@@ -17,6 +33,7 @@ public class ChoralArrowEntity extends ArrowEntity {
     }
 
     public int lifetime = 0;
+    public boolean shotByCrossbow = false;
 
     public static ChoralArrowEntity create(World world, LivingEntity shooter) {
         ChoralArrowEntity arrow = create(world, shooter.getX(), shooter.getEyeY() - 0.10000000149011612D, shooter.getZ());
@@ -59,7 +76,59 @@ public class ChoralArrowEntity extends ArrowEntity {
     @Override
     public void tick() {
         super.tick();
-        if (this.getWorld().isClient() && !this.inGround) {
+
+        if (this.lifetime == 0)
+            this.shotByCrossbow = this.getOwner() != null && this.getOwner() instanceof LivingEntity living &&
+                    living.getMainHandStack().getItem() instanceof CrossbowItem;
+        if (this.shotByCrossbow && this.lifetime > 0)
+            this.discard();
+
+        if (this.shotByCrossbow && this.getOwner() != null && this.lifetime == 0) {
+            World world = this.getWorld();
+            Entity shooter = this.getOwner();
+
+            Vec3d direction = this.getVelocity().normalize();
+            Vec3d position = this.getPos();
+            int range = ConfigEntries.subwooferRange * 2;
+
+            List<UUID> affected = new ArrayList<>();
+
+            if (!shooter.isSneaking()) {
+                shooter.setVelocity(direction.multiply(-1.5).add(0, 0.1, 0));
+                shooter.velocityModified = true;
+                shooter.fallDistance = 0;
+                affected.add(shooter.getUuid());
+            }
+
+            BlockPos pos;
+            for (int i = 0; i < range; i++) {
+                pos = new BlockPos((int) Math.round(position.x - 0.5), (int) Math.round(position.y - 0.5), (int) Math.round(position.z - 0.5));
+                List<Entity> entities = world.getOtherEntities(shooter, new Box(pos).expand(1), SubwooferBlock::canPush);
+
+                // TODO: packet mess
+                world.addImportantParticle(ParticleTypes.SONIC_BOOM,
+                        position.x, position.y, position.z,
+                        0, 0, 0);
+                world.playSound(null, pos, SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS);
+
+                for (Entity e : entities) {
+                    if (affected.contains(e.getUuid())) continue;
+
+                    affected.add(e.getUuid());
+                    e.damage(shooter.getDamageSources().arrow(this, shooter), 6);
+                    e.setVelocity(direction.multiply(2.5).add(0, 0.4, 0));
+                    e.velocityModified = true;
+                }
+
+                if (world.getBlockState(pos).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) break;
+
+                position = position.add(direction);
+            }
+
+            //this.discard();
+        }
+
+        if (!this.shotByCrossbow && this.getWorld().isClient() && !this.inGround) {
             this.getWorld().addParticle(ParticleTypes.NOTE,
                     this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D),
                     this.lifetime / 20f, 0, 0);

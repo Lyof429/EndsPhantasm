@@ -21,13 +21,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("all")
 @Mixin(value = MultiNoiseUtil.Entries.class, priority = 1004)
 public abstract class MultiNoiseUtilEntriesMixin<T> {
     @Shadow public abstract List<Pair<MultiNoiseUtil.NoiseHypercube, T>> getEntries();
 
     @Unique private final List<Pair<MultiNoiseUtil.NoiseHypercube, T>> endEntries = new ArrayList<>();
 
-    @SuppressWarnings("all")
     @Inject(method = "<init>", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/world/biome/source/util/MultiNoiseUtil$SearchTree;create(Ljava/util/List;)Lnet/minecraft/world/biome/source/util/MultiNoiseUtil$SearchTree;"))
     public void addEndBiomes(List<Pair<MultiNoiseUtil.NoiseHypercube, T>> entries, CallbackInfo ci) {

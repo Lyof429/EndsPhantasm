@@ -87,7 +87,7 @@ public class SubwooferBlock extends Block {
     public boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data) {
         if (data == 1 && !world.getBlockState(pos.offset(state.get(FACING).getOpposite())).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS))
             world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.BLOCKS,
-                    1, 1, true);
+                    0.2f, 1.5f, true);
 
         BlockPos p = pos.mutableCopy().offset(Direction.byId(type), data);
         world.addImportantParticle(ParticleTypes.SONIC_BOOM, p.getX() + 0.5, p.getY() + 0.5, p.getZ() + 0.5,

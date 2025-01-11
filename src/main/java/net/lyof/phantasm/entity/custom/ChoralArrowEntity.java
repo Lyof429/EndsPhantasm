@@ -49,8 +49,10 @@ public class ChoralArrowEntity extends ArrowEntity {
 
     @Override
     protected void onHit(LivingEntity target) {
-        super.onHit(target);
-        target.addStatusEffect(new StatusEffectInstance(ModEffects.CHARM, 40, 0));
+        if (!this.shotByCrossbow) {
+            super.onHit(target);
+            target.addStatusEffect(new StatusEffectInstance(ModEffects.CHARM, 40, 0));
+        }
     }
 
     @Override
@@ -109,7 +111,7 @@ public class ChoralArrowEntity extends ArrowEntity {
                 world.addImportantParticle(ParticleTypes.SONIC_BOOM,
                         position.x, position.y, position.z,
                         0, 0, 0);
-                world.playSound(null, pos, SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS);
+                world.playSound(null, pos, SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS, 0.2f, 1.5f);
 
                 for (Entity e : entities) {
                     if (affected.contains(e.getUuid())) continue;

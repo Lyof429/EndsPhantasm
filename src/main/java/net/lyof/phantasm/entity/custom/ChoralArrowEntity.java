@@ -77,8 +77,6 @@ public class ChoralArrowEntity extends ArrowEntity {
 
     @Override
     public void tick() {
-        super.tick();
-
         if (this.lifetime == 0)
             this.shotByCrossbow = this.getOwner() != null && this.getOwner() instanceof LivingEntity living &&
                     living.getMainHandStack().getItem() instanceof CrossbowItem;
@@ -126,9 +124,9 @@ public class ChoralArrowEntity extends ArrowEntity {
 
                 position = position.add(direction);
             }
-
-            //this.discard();
         }
+
+        super.tick();
 
         if (!this.shotByCrossbow && this.getWorld().isClient() && !this.inGround) {
             this.getWorld().addParticle(ParticleTypes.NOTE,

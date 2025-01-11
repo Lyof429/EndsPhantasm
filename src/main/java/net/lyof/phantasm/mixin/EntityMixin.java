@@ -14,13 +14,19 @@ import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.EndConfiguredFeatures;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Entity.class)
-public class EntityMixin {
+public abstract class EntityMixin {
+    @Shadow public abstract boolean canMoveVoluntarily();
+
+    @Shadow public abstract World getWorld();
+
     @Inject(method = "getTeleportTarget", at = @At("RETURN"), cancellable = true)
     public void spawnInOuterEnd(ServerWorld destination, CallbackInfoReturnable<TeleportTarget> cir) {
         if (destination.getRegistryKey() == World.END && ConfigEntries.outerEndIntegration) {
@@ -45,11 +51,5 @@ public class EntityMixin {
     public void charmCursor(double cursorDeltaX, double cursorDeltaY, CallbackInfo ci) {
         if (((Entity) (Object) this) instanceof LivingEntity living && living.hasStatusEffect(ModEffects.CHARM))
             ci.cancel();
-    }
-
-    @Inject(method = "canMoveVoluntarily", at = @At("HEAD"), cancellable = true)
-    public void charmAi(CallbackInfoReturnable<Boolean> cir) {
-        if (((Entity) (Object) this) instanceof LivingEntity living && living.hasStatusEffect(ModEffects.CHARM))
-            cir.setReturnValue(false);
     }
 }

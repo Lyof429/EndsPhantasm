@@ -61,9 +61,4 @@ public abstract class LivingEntityMixin extends Entity {
     public void charmMovement(CallbackInfo ci) {
         if (this.hasStatusEffect(ModEffects.CHARM)) ci.cancel();
     }
-
-    @Inject(method = "tickNewAi", at = @At("HEAD"), cancellable = true)
-    public void charmAi(CallbackInfo ci) {
-        if (this.hasStatusEffect(ModEffects.CHARM)) ci.cancel();
-    }
 }

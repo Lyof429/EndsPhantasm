@@ -17,7 +17,7 @@ public class DiveBombGoal extends Goal {
 
     @Override
     public boolean shouldContinue() {
-        return self.getMoveControl().isMoving() && self.getTarget() != null && self.getTarget().isAlive();
+        return /*self.getMoveControl().isMoving() && */self.getTarget() != null && self.getTarget().isAlive();
     }
 
     @Override

@@ -25,6 +25,7 @@ import net.minecraft.world.gen.feature.util.FeatureContext;
 
 public class ObsidianTowerStructure extends Feature<CountConfig> {
     private static final EntityType<?> DRAGLING = Registries.ENTITY_TYPE.get(Identifier.of("unusualend", "dragling"));
+    private static final Identifier LOOT_TABLE = Phantasm.makeID("chests/obsidian_tower");
 
     public static final Feature<CountConfig> INSTANCE = new ObsidianTowerStructure(CountConfig.CODEC);
 
@@ -79,7 +80,7 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
     }
 
     public void putStairs(StructureWorldAccess world, BlockPos center) {
-        int y = center.getY();
+        int y = center.getY() - world.getBottomY();
 
         for (int sx = -7; sx < 8; sx++) {
             for (int sz = -7; sz < 8; sz++) {
@@ -127,7 +128,7 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
             }
             this.setBlockState(world, center.up(), Blocks.CHEST.getDefaultState());
             if (world.getBlockEntity(center.up()) instanceof ChestBlockEntity chest)
-                chest.setLootTable(Phantasm.makeID("chests/obsidian_tower"), world.getRandom().nextLong());
+                chest.setLootTable(LOOT_TABLE, world.getRandom().nextLong());
         }
         else if (roomtype == 2) {
             this.setBlockState(world, center, Blocks.SPAWNER.getDefaultState());
@@ -139,7 +140,7 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
                 nbt.remove("SpawnData");
                 spawner.getLogic().readNbt(null, center, nbt);
 
-                spawner.setEntityType(DRAGLING == null ? EntityType.VEX : DRAGLING, world.getRandom());
+                spawner.setEntityType(DRAGLING == EntityType.PIG ? EntityType.VEX : DRAGLING, world.getRandom());
             }
         }
         else if (roomtype == 3) {

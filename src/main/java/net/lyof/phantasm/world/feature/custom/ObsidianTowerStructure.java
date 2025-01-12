@@ -12,6 +12,8 @@ import net.minecraft.block.enums.SlabType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.loot.LootTables;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -22,6 +24,8 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
 public class ObsidianTowerStructure extends Feature<CountConfig> {
+    private static final EntityType<?> DRAGLING = Registries.ENTITY_TYPE.get(Identifier.of("unusualend", "dragling"));
+
     public static final Feature<CountConfig> INSTANCE = new ObsidianTowerStructure(CountConfig.CODEC);
 
     public ObsidianTowerStructure(Codec<CountConfig> configCodec) {
@@ -66,7 +70,7 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
                 }
             }
             if (world.getBlockState(origin.withY(sy)).isAir()) this.setBlockState(world, origin.withY(sy), Blocks.CHAIN.getDefaultState());
-            if (sy < maxy && sy > 0) this.putStairs(world, origin.withY(sy));
+            if (sy < maxy && sy > miny) this.putStairs(world, origin.withY(sy));
             if (sy % 7 == 0 && sy != maxy && sy != miny) this.putPlatform(world, origin.withY(sy), random.nextInt(7));
             //if (sy % 5 == 0 && sy != 0) generateRoom(world, origin.withY(sy - 4));
         }
@@ -134,7 +138,8 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
                 nbt.putShort("MaxNearbyEntities", (short) 2);
                 nbt.remove("SpawnData");
                 spawner.getLogic().readNbt(null, center, nbt);
-                spawner.setEntityType(EntityType.VEX, world.getRandom());
+
+                spawner.setEntityType(DRAGLING == null ? EntityType.VEX : DRAGLING, world.getRandom());
             }
         }
         else if (roomtype == 3) {

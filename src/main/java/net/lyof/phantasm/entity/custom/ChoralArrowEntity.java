@@ -1,6 +1,5 @@
 package net.lyof.phantasm.entity.custom;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.custom.SubwooferBlock;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.effect.ModEffects;
@@ -11,7 +10,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.projectile.ArrowEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.item.BowItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
@@ -75,11 +74,16 @@ public class ChoralArrowEntity extends ArrowEntity {
         return false;
     }
 
+    public static boolean isUsingCrossbow(LivingEntity shooter) {
+        return shooter.getMainHandStack().getItem() instanceof CrossbowItem
+                || (shooter.getOffHandStack().getItem() instanceof CrossbowItem && !(shooter.getMainHandStack().getItem() instanceof BowItem));
+    }
+
     @Override
     public void tick() {
         if (this.lifetime == 0)
             this.shotByCrossbow = this.getOwner() != null && this.getOwner() instanceof LivingEntity living &&
-                    living.getMainHandStack().getItem() instanceof CrossbowItem;
+                    isUsingCrossbow(living);
         if (this.shotByCrossbow && this.lifetime > 0)
             this.discard();
 
@@ -126,7 +130,8 @@ public class ChoralArrowEntity extends ArrowEntity {
             }
         }
 
-        super.tick();
+        if (!this.shotByCrossbow)
+            super.tick();
 
         if (!this.shotByCrossbow && this.getWorld().isClient() && !this.inGround) {
             this.getWorld().addParticle(ParticleTypes.NOTE,

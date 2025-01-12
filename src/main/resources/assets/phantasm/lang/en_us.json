@@ -114,6 +114,8 @@
   "block.phantasm.subwoofer_block": "Subwoofer Block",
 
   "item.phantasm.choral_arrow": "Choral Arrow",
+  "item.phantasm.choral_arrow.desc.bow": "Bow: Charms enemies",
+  "item.phantasm.choral_arrow.desc.crossbow": "Crossbow: Creates a repulsive sound wave",
 
   "item.phantasm.music_disc_abruption": "Music Disc",
   "item.phantasm.music_disc_abruption.desc": "Dylanvhs - Abruption",

@@ -19,7 +19,6 @@ import net.lyof.phantasm.world.ModWorldGeneration;
 import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.lyof.phantasm.world.feature.ModFeatures;
 import net.lyof.phantasm.world.feature.custom.tree.ModTreePlacerTypes;
-import net.minecraft.SharedConstants;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;

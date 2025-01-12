@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(VexEntityRenderer.class)
-public class VexEntityRenderMixin {
+public class VexEntityRendererMixin {
     private static final Identifier TEXTURE = Phantasm.makeID("textures/entity/ender_vex.png");
     private static final Identifier CHARGING_TEXTURE = Phantasm.makeID("textures/entity/ender_vex_charging.png");
 

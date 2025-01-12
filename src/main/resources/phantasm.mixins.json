@@ -33,6 +33,6 @@
   },
   "client": [
     "MinecraftClientMixin",
-    "VexEntityRenderMixin"
+    "VexEntityRendererMixin"
   ]
 }

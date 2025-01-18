@@ -317,7 +317,7 @@ public class ModRegistry {
         BLOCK_STRIPPED.clear();
         BLOCK_SETS.clear();
         BLOCK_MODELS.clear();
-        BLOCK_CUTOUT.clear();
+        //BLOCK_CUTOUT.clear();
         BLOCK_FLAMMABLE.clear();
 
         ITEMS.clear();

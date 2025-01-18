@@ -77,7 +77,8 @@ public class ModBlocks {
                     .nonOpaque();
     private static final FabricBlockSettings crystalGlassMaterial =
             FabricBlockSettings.create().emissiveLighting((a, b, c) -> true).hardness(0.75f).luminance(4)
-            .nonOpaque().mapColor(MapColor.LIGHT_BLUE).sounds(BlockSoundGroup.GLASS);
+            .nonOpaque().mapColor(MapColor.LIGHT_BLUE).sounds(BlockSoundGroup.GLASS)
+            .allowsSpawning(Blocks::never).solidBlock(Blocks::never).suffocates(Blocks::never).blockVision(Blocks::never);
 
     private static final FabricBlockSettings polishedObsidianMaterial =
             copy(Blocks.OBSIDIAN).hardness(7);
@@ -149,7 +150,7 @@ public class ModBlocks {
             .tool("_pickaxe").drop().build();
 
     public static final Block CRYSTAL_GLASS = ModRegistry.ofBlock("crystal_glass",
-            new Block(crystalGlassMaterial))
+            new GlassBlock(crystalGlassMaterial))
             .cutout().drop().build();
     public static final Block CRYSTAL_GLASS_PANE = ModRegistry.ofBlock("crystal_glass_pane",
             new PaneBlock(crystalGlassMaterial))
@@ -174,7 +175,7 @@ public class ModBlocks {
             .tool("_pickaxe").drop().build();
 
     public static final Block VOID_CRYSTAL_GLASS = ModRegistry.ofBlock("void_crystal_glass",
-                    new Block(crystalGlassMaterial))
+                    new GlassBlock(crystalGlassMaterial))
             .cutout().drop().build();
     public static final Block VOID_CRYSTAL_GLASS_PANE = ModRegistry.ofBlock("void_crystal_glass_pane",
                     new PaneBlock(crystalGlassMaterial))

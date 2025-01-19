@@ -213,17 +213,17 @@ public class ModRegistry {
     }
 
     public static class Foods {
-        public static final FoodComponent PREAM_BERRY = new FoodComponent.Builder().alwaysEdible().saturationModifier(2).hunger(4).statusEffect(
+        public static final FoodComponent PREAM_BERRY = new FoodComponent.Builder().alwaysEdible().saturationModifier(1).hunger(4).statusEffect(
                         new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 1, true, false),
                         1).build();
 
-        public static final FoodComponent OBLIFRUIT = new FoodComponent.Builder().hunger(6).saturationModifier(1.2f)
+        public static final FoodComponent OBLIFRUIT = new FoodComponent.Builder().hunger(6).saturationModifier(1)
                 .build();
 
         public static final FoodComponent CHORUS_SALAD = new FoodComponent.Builder().alwaysEdible().hunger(6).saturationModifier(1.5f)
                 .build();
 
-        public static final FoodComponent BEHEMOTH_MEAT = new FoodComponent.Builder().alwaysEdible().hunger(6).saturationModifier(1.1f)
+        public static final FoodComponent BEHEMOTH_MEAT = new FoodComponent.Builder().alwaysEdible().hunger(6).saturationModifier(0.5f)
                 .statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 100, 0, true, true),
                         1)
                 .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 1, true, true),
@@ -231,7 +231,7 @@ public class ModRegistry {
                 .meat()
                 .build();
 
-        public static final FoodComponent BEHEMOTH_STEAK = new FoodComponent.Builder().alwaysEdible().hunger(10).saturationModifier(1.1f)
+        public static final FoodComponent BEHEMOTH_STEAK = new FoodComponent.Builder().alwaysEdible().hunger(10).saturationModifier(0.8f)
                 .statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 300, 0, true, true),
                         1)
                 .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300, 1, true, true),
@@ -239,7 +239,7 @@ public class ModRegistry {
                 .meat()
                 .build();
 
-        public static final FoodComponent POME_SLICE = new FoodComponent.Builder().hunger(4).saturationModifier(1.5f)
+        public static final FoodComponent POME_SLICE = new FoodComponent.Builder().hunger(4).saturationModifier(1.3f)
                 .snack()
                 .build();
     }

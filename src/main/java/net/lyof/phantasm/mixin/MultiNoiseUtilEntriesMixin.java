@@ -107,8 +107,6 @@ public abstract class MultiNoiseUtilEntriesMixin<T> {
     }
 
     private static long getRange(MultiNoiseUtil.ParameterRange point) {
-        //if (EndDataCompat.getCompatibilityMode().equals("endercon"))
-        //    return MultiNoiseUtil.toLong(0.5625f + 0.84375f);
         return point.max() - point.min();
     }
 

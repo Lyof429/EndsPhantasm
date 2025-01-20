@@ -133,7 +133,7 @@ public class ModConfig {
     // Should Raw Purpur stripes appear on the islands' sides
     "do_raw_purpur": true,
     
-    // Should the main island's obsidian spires be prettified
+    // Should the main island's obsidian spires be prettified with crying obsidian
     "improve_end_spires": true,
     // Should the main island's obsidian spires never have iron bars around the End Crystal
     "no_crystal_cages": true
@@ -172,7 +172,7 @@ public class ModConfig {
     "chorus_fruit_salad_stack_size": 1,
     
     // Max uses for Shattered Pendants
-    "shattered_pendant_durability": 4,
+    "shattered_pendant_durability": 6,
     
     // Range (in blocks) for the Subwoofer and Subwoofer Block
     "subwoofer_range": 6

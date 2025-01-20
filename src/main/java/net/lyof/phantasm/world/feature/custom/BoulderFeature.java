@@ -36,14 +36,15 @@ public class BoulderFeature extends Feature<BoulderFeatureConfig> {
         int size = config.size().get(random);
         Direction primary = Direction.fromHorizontal(random.nextInt(4));
         Direction secondary = random.nextBoolean() ? primary.rotateYClockwise() : primary.rotateYCounterclockwise();
+        boolean tall = random.nextBoolean();
 
-        this.spike(toPlace, pos, 1);
+        this.spike(toPlace, pos, 1, tall);
         pos = this.move(pos, primary, secondary, random, world);
         for (int i = 0; i < size; i++) {
-            this.spike(toPlace, pos, 2);
+            this.spike(toPlace, pos, 2, tall);
             pos = this.move(pos, primary, secondary, random, world);
         }
-        this.spike(toPlace, pos, 1);
+        this.spike(toPlace, pos, 1, tall);
 
         for (BlockPos place : toPlace)
             this.setBlockStateIf(world, place, config.block().get(random, place), block -> block.isTransparent(world, place));
@@ -66,16 +67,16 @@ public class BoulderFeature extends Feature<BoulderFeatureConfig> {
         return pos;
     }
 
-    public void spike(List<BlockPos> world, BlockPos pos, int layer) {
+    public void spike(List<BlockPos> world, BlockPos pos, int layer, boolean tall) {
         if (layer <= 0) {
             if (!world.contains(pos)) world.add(pos);
             if (!world.contains(pos.up())) world.add(pos.up());
-            if (!world.contains(pos.up(2))) world.add(pos.up(2));
+            if (tall && !world.contains(pos.up(2))) world.add(pos.up(2));
             if (!world.contains(pos.down())) world.add(pos.down());
             return;
         }
 
         for (Direction dir : Direction.values())
-            this.spike(world, pos.offset(dir), layer - 1);
+            this.spike(world, pos.offset(dir), layer - 1, tall);
     }
 }

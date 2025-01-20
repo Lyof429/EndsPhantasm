@@ -1,0 +1,162 @@
+{
+  "block.phantasm.fallen_star": "Etoile déchue",
+
+  "block.phantasm.vivid_nihilium": "Nihil vivace",
+  "block.phantasm.vivid_nihilis": "Nihilis vivaces",
+  "block.phantasm.tall_vivid_nihilis": "Hauts nihilis vivaces",
+
+  "block.phantasm.starflower": "Astrefleur",
+
+  "block.phantasm.pream_log": "Bûche de prème",
+  "block.phantasm.pream_wood": "Bois de prème",
+  "block.phantasm.stripped_pream_log": "Bûche de prème écorcée",
+  "block.phantasm.stripped_pream_wood": "Bois de prème écorcé",
+
+  "block.phantasm.pream_leaves": "Feuilles de prème",
+  "block.phantasm.hanging_pream_leaves": "Feuilles de prème pendantes",
+  "block.phantasm.pream_sapling": "Pousse de prème",
+
+  "block.phantasm.pream_planks": "Planches de prème",
+  "block.phantasm.pream_stairs": "Escalier en prème",
+  "block.phantasm.pream_slab": "Dalle en prème",
+
+  "block.phantasm.pream_door": "Porte en prème",
+  "block.phantasm.pream_trapdoor": "Trappe en prème",
+  "block.phantasm.pream_fence": "Barrière en prème",
+  "block.phantasm.pream_fence_gate": "Portillon en prème",
+  "block.phantasm.pream_pressure_plate": "Plaque de pression en prème",
+  "block.phantasm.pream_button": "Bouton en prème",
+
+  "block.phantasm.pream_sign": "Pancarte en prème",
+  "block.phantasm.pream_hanging_sign": "Pancarte suspendue en prème",
+
+  "block.phantasm.oblivion": "Oblivion",
+  "block.phantasm.oblivine": "Obliliane",
+  "block.phantasm.crystalily": "Crystalily",
+
+  "item.phantasm.pream_berry": "Baie de prème",
+  "item.phantasm.oblifruit": "Oblifruit",
+
+  "item.phantasm.chorus_fruit_salad": "Salade de druit de chorus",
+
+  "block.phantasm.crystal_shard": "Eclat de cristal",
+  "block.phantasm.void_crystal_shard": "Eclat de cristal du vide",
+
+  "item.phantasm.crystalline_sword": "Epée cristalline",
+  "item.phantasm.crystalline_shovel": "Pelle cristalline",
+  "item.phantasm.crystalline_pickaxe": "Pioche cristalline",
+  "item.phantasm.crystalline_axe": "Hache cristalline",
+  "item.phantasm.crystalline_hoe": "Houe cristalline",
+
+  "block.phantasm.crystal_block": "Bloc de cristal",
+  "block.phantasm.crystal_tiles": "Tuiles de cristal",
+  "block.phantasm.crystal_tiles_stairs": "Escalier en tuiles de cristal",
+  "block.phantasm.crystal_tiles_slab": "Dalle en tuiles de cristal",
+  "block.phantasm.crystal_pillar": "Pilier en cristal",
+
+  "block.phantasm.crystal_glass": "Verre cristallin",
+  "block.phantasm.crystal_glass_pane": "Vitre cristalline",
+
+  "block.phantasm.void_crystal_block": "Bloc de cristal du vide",
+  "block.phantasm.void_crystal_tiles": "Tuiles de cristal du vide",
+  "block.phantasm.void_crystal_tiles_stairs": "Escalier en cristal du vide",
+  "block.phantasm.void_crystal_tiles_slab": "Dalle en cristal du vide",
+  "block.phantasm.void_crystal_pillar": "Pilier en cristal du vide",
+
+  "block.phantasm.void_crystal_glass": "Verre cristallin du vide",
+  "block.phantasm.void_crystal_glass_pane": "Vitre cristalline du vide",
+
+  "block.phantasm.polished_obsidian": "Obsidienne polie",
+  "block.phantasm.polished_obsidian_bricks": "Obsidienne polie taillée",
+  "block.phantasm.polished_obsidian_bricks_stairs": "Escalier en obisidienne polie taillée",
+  "block.phantasm.polished_obsidian_bricks_slab": "Dalle en obsidienne polie taillée",
+
+  "block.phantasm.purpur_lamp": "Lampe de purpur",
+
+  "block.phantasm.raw_purpur": "Purpur brut",
+  "block.phantasm.raw_purpur_bricks": "Purpur brut taillé",
+  "block.phantasm.raw_purpur_bricks_stairs": "Escalier en purpur brut taillé",
+  "block.phantasm.raw_purpur_bricks_slab": "Dalle en purpur brut taillé",
+
+  "block.phantasm.raw_purpur_tiles": "Briquettes de purpur brut taillé",
+  "block.phantasm.raw_purpur_pillar": "Pilier en purpur brute taillé",
+
+  "item.phantasm.crystie_spawn_egg": "Oeuf d'apparition de Féeclat",
+  "entity.phantasm.crystie": "Féeclat",
+
+  "item.phantasm.behemoth_spawn_egg": "Oeuf d'apparition de Behemoth",
+  "entity.phantasm.behemoth": "Behemoth",
+
+  "item.phantasm.behemoth_meat": "Viande de Behemoth",
+  "item.phantasm.behemoth_steak": "Steak de Behemoth",
+
+  "item.phantasm.shattered_pendant": "Pendentif brisé",
+  "item.phantasm.shattered_pendant.desc": "Permet la téléportation au dernier endroit sécurisé.\nActivation automatique en tombant dans le vide",
+
+  "block.phantasm.acidic_nihilium": "Nihil acide",
+  "block.phantasm.acidic_nihilis": "Nihilis acides",
+  "block.phantasm.tall_acidic_nihilis": "Hauts nihilis acides",
+  "block.phantasm.dragon_mint": "Menthe du dragon",
+  "block.phantasm.acidic_mass": "Masse acide",
+
+  "block.phantasm.dralgae": "Dralgue",
+  "block.phantasm.pome": "Apleux",
+  "item.phantasm.pome_slice": "Tranche d'apleux",
+
+  "block.phantasm.cirite": "Cirite",
+  "block.phantasm.cirite_iron_ore": "Minerai de fer de cirite",
+  "block.phantasm.cirite_bricks": "Cirite taillée",
+  "block.phantasm.cirite_bricks_stairs": "Escalier en cirite taillée",
+  "block.phantasm.cirite_bricks_slab": "Dalle en cirite taillée",
+
+  "block.phantasm.choral_block": "Bloc de chorail",
+  "block.phantasm.choral_fan": "Chorail",
+  "block.phantasm.subwoofer_block": "Enceinte",
+
+  "item.phantasm.choral_arrow": "Flèche de chorail",
+  "item.phantasm.choral_arrow.desc.bow": "Arc: Etourdit les ennemis",
+  "item.phantasm.choral_arrow.desc.crossbow": "Arbalète: Créé une onde sonore répulsive",
+
+  "item.phantasm.music_disc_abruption": "Disque",
+  "item.phantasm.music_disc_abruption.desc": "Dylanvhs - Abruption",
+  "sounds.phantasm.music_disc_abruption": "Joué: Abruption",
+
+  "item.minecraft.potion.effect.corrosion": "Potion de corrosion",
+  "item.minecraft.splash_potion.effect.corrosion": "Potion de corrosion jetable",
+  "item.minecraft.lingering_potion.effect.corrosion": "Potion de corrosion persistante",
+  "effect.phantasm.corrosion": "Corrosion",
+
+  "effect.phantasm.charm": "Séduction",
+
+
+
+  "itemgroup.phantasm": "Phantasm",
+
+  "biome.phantasm.dreaming_den": "Tanière rêveuse",
+  "biome.phantasm.acidburnt_abysses": "Abysses acidebrûlées",
+
+  "tooltip.xp_boosted": "L'efficacité augmente avec l'expérience.",
+  "item.minecraft.firework_rocket.cannot_use": "Vous devez d'abord obtenir %s!",
+
+
+  "advancement.phantasm.find_dreaming_den": "Les rêves sont réels",
+  "advancement.phantasm.find_dreaming_den.desc": "Trouvez une tanière des rêves",
+
+  "advancement.phantasm.get_crystal": "Plus brillant!",
+  "advancement.phantasm.get_crystal.desc": "Minez des éclats de cristal",
+
+  "advancement.phantasm.find_underisland": "L'envers du décor",
+  "advancement.phantasm.find_underisland.desc": "Explorez l'envers, sous la tanière des rêves",
+
+  "advancement.phantasm.get_crystal_tools": "Temps de briller!",
+  "advancement.phantasm.get_crystal_tools.desc": "Obtenez tous les outils cristallins",
+
+  "advancement.phantasm.find_acidburnt_abysses": "Voir la vie en rose",
+  "advancement.phantasm.find_acidburnt_abysses.desc": "Trouvez les abysses acidebrûlées",
+
+  "advancement.phantasm.find_choral_riff": "Echoing Void",
+  "advancement.phantasm.find_choral_riff.desc": "Aventures vous dans la barrière de chorail",
+
+  "advancement.phantasm.use_choral_arrow": "Fausse note!",
+  "advancement.phantasm.use_choral_arrow.desc": "Etourdissez et éliminez un ennemi avec une flèche de chorail"
+}

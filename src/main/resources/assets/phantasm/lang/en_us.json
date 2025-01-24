@@ -116,6 +116,7 @@
   "item.phantasm.choral_arrow": "Choral Arrow",
   "item.phantasm.choral_arrow.desc.bow": "Bow: Charms enemies",
   "item.phantasm.choral_arrow.desc.crossbow": "Crossbow: Creates a repulsive sound wave",
+  "entity.phantasm.choral_arrow": "Choral Arrow",
 
   "item.phantasm.music_disc_abruption": "Music Disc",
   "item.phantasm.music_disc_abruption.desc": "Dylanvhs - Abruption",
@@ -151,7 +152,7 @@
   "advancement.phantasm.get_crystal_tools": "Time to Shine!",
   "advancement.phantasm.get_crystal_tools.desc": "Get every type of Crystalline tools",
 
-  "advancement.phantasm.find_acidburnt_abysses": "See the World Pink",
+  "advancement.phantasm.find_acidburnt_abysses": "Paint it Red",
   "advancement.phantasm.find_acidburnt_abysses.desc": "Find an Acidburnt Abysses biome",
 
   "advancement.phantasm.find_choral_riff": "Echoing Void",

@@ -38,14 +38,14 @@ public abstract class MultiNoiseUtilEntriesMixin<T> {
         }
 
         if (highlands != null && ModWorldGeneration.LOOKUP != null) {
-            int custom_count = EndDataCompat.getEnabledBiomes().size();
+            int customCount = EndDataCompat.getEnabledBiomes().size();
 
             // hook the custom biomes in
             int j = 0;
             for (RegistryKey<Biome> biome : EndDataCompat.getEnabledBiomes()) {
-                Phantasm.log("Adding " + biome.getValue() + " to the End biome source at slice " + (j/2 + 1) + " out of " + custom_count);
+                Phantasm.log("Adding " + biome.getValue() + " to the End biome source at slice " + (j/2 + 1) + " out of " + customCount);
                 this.endEntries.add(new Pair<>(
-                        splitHypercube(highlands, custom_count, j),
+                        splitHypercube(highlands, customCount, j),
                         (T) ModWorldGeneration.LOOKUP.getOrThrow(biome)
                 ));
                 j += 2;
@@ -57,9 +57,9 @@ public abstract class MultiNoiseUtilEntriesMixin<T> {
                             && !(r.getKey().get() instanceof RegistryKey k && EndDataCompat.contains(k))).toList());
 
             // add back the end highlands
-            for (int i = 1; i <= custom_count; i += 2)
+            for (int i = 1; i <= customCount; i += 2)
                 this.endEntries.add(new Pair<>(
-                        splitHypercube(highlands, custom_count, i),
+                        splitHypercube(highlands, customCount, i),
                         (T) ModWorldGeneration.LOOKUP.getOrThrow(BiomeKeys.END_HIGHLANDS)
                 ));
         }

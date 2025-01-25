@@ -125,7 +125,7 @@ public class ModConfig {
       // ACIDBURNT ABYSSES
       "acidburnt_abysses": {
         "generate": true,
-        "generation_weight": 1.5
+        "generation_weight": 2.5
       }
     },
     // Should Fallen Stars appear in the End's sky
@@ -136,7 +136,7 @@ public class ModConfig {
     // Should the main island's obsidian spires be prettified with crying obsidian
     "improve_end_spires": true,
     // Should the main island's obsidian spires never have iron bars around the End Crystal
-    "no_crystal_cages": true
+    "no_crystal_cages": false
   },
   
   // CATEGORY: GAMEPLAY
@@ -174,7 +174,7 @@ public class ModConfig {
     // Max uses for Shattered Pendants
     "shattered_pendant_durability": 6,
     
-    // Range (in blocks) for the Subwoofer and Subwoofer Block
+    // Range (in blocks) for Crossbow Choral Arrows and Subwoofer Blocks
     "subwoofer_range": 6
   }
 }""";

@@ -8,13 +8,13 @@ public class ConfigEntries {
         dreamingDenWeight = new ConfigEntry<>("world_gen.biomes.dreaming_den.generation_weight", 1.5).get();
 
         doAcidburntAbyssesBiome = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.generate", true).get();
-        acidburntAbyssesWeight = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.generation_weight", 1.5).get();
+        acidburntAbyssesWeight = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.generation_weight", 2.5).get();
 
         doFallenStars = new ConfigEntry<>("world_gen.do_fallen_stars", true).get();
         doRawPurpur = new ConfigEntry<>("world_gen.do_raw_purpur", true).get();
 
         improveEndSpires = new ConfigEntry<>("world_gen.improve_end_spires", true).get();
-        noCrystalCages = new ConfigEntry<>("world_gen.no_crystal_cages", true).get();
+        noCrystalCages = new ConfigEntry<>("world_gen.no_crystal_cages", false).get();
 
         outerEndIntegration = new ConfigEntry<>("gameplay.outer_end_in_gameloop", true).get();
 

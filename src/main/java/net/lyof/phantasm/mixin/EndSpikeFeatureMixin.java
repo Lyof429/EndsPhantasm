@@ -22,15 +22,14 @@ public abstract class EndSpikeFeatureMixin {
     public void randomizeObsidian(EndSpikeFeature spike, ModifiableWorld world, BlockPos pos, BlockState state,
                                   ServerWorldAccess serverworld, Random random, EndSpikeFeatureConfig config,
                                   EndSpikeFeature.Spike spikedata) {
-        if (state.isOf(Blocks.IRON_BARS) && ConfigEntries.noCrystalCages)
-            return;
 
         double crying = (pos.getY() - 60) / (spikedata.getHeight() - 60d);
         if (state.isOf(Blocks.OBSIDIAN) && ConfigEntries.improveEndSpires) {
             if (crying > 0 && Math.random() < crying * crying)
                 state = Blocks.CRYING_OBSIDIAN.getDefaultState();
             else if (Math.random() < 0.2)
-                state = Math.random() < 0.5 ? ModBlocks.POLISHED_OBSIDIAN.getDefaultState() : ModBlocks.POLISHED_OBSIDIAN_BRICKS.getDefaultState();
+                state = Math.random() < 0.5 ? ModBlocks.POLISHED_OBSIDIAN.getDefaultState()
+                        : ModBlocks.POLISHED_OBSIDIAN_BRICKS.getDefaultState();
         }
 
         world.setBlockState(pos, state, Block.NOTIFY_ALL);

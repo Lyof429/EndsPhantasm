@@ -115,6 +115,8 @@ public class ModConfig {
         // "automatic": Same as default, but will work like "nullscape" or "endercon" depending on loaded mods
           // if using the datapack versions, set this manually
       "datapack_compatibility": "automatic",
+      // Should the End's biome source be partially overrode so that the main island biome always generate at the center
+      "force_main_island": true,
     
       // DEAMING DEN
       "dreaming_den": {
@@ -132,11 +134,17 @@ public class ModConfig {
     "do_fallen_stars": true,
     // Should Raw Purpur stripes appear on the islands' sides
     "do_raw_purpur": true,
+    // y offset to be added to the Raw Purpur stripes generation
+    "raw_purpur_offset": 0,
     
-    // Should the main island's obsidian spires be prettified with crying obsidian
-    "improve_end_spires": true,
-    // Should the main island's obsidian spires never have iron bars around the End Crystal
-    "no_crystal_cages": false
+    "end_spires": {
+      // Should the main island's obsidian spires be prettified with crying obsidian
+      "beautify": true,
+      // Should the main island's obsidian spires never have iron bars around the End Crystal
+      "no_crystal_cages": false,
+      // Height to be added to the spires, mostly useful in case of datapacks raising the main island level
+      "extra_height": 0
+    }
   },
   
   // CATEGORY: GAMEPLAY

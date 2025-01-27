@@ -3,6 +3,7 @@ package net.lyof.phantasm.config;
 public class ConfigEntries {
     public static void reload() {
         dataCompatMode = new ConfigEntry<>("world_gen.biomes.datapack_compatibility", "automatic").get();
+        forceMainIsland = new ConfigEntry<>("world_gen.biomes.force_main_island", true).get();
 
         doDreamingDenBiome = new ConfigEntry<>("world_gen.biomes.dreaming_den.generate", true).get();
         dreamingDenWeight = new ConfigEntry<>("world_gen.biomes.dreaming_den.generation_weight", 1.5).get();
@@ -12,9 +13,11 @@ public class ConfigEntries {
 
         doFallenStars = new ConfigEntry<>("world_gen.do_fallen_stars", true).get();
         doRawPurpur = new ConfigEntry<>("world_gen.do_raw_purpur", true).get();
+        rawPurpurOffset = new ConfigEntry<>("world_gen.raw_purpur_offset", 0).get();
 
-        improveEndSpires = new ConfigEntry<>("world_gen.improve_end_spires", true).get();
-        noCrystalCages = new ConfigEntry<>("world_gen.no_crystal_cages", false).get();
+        improveEndSpires = new ConfigEntry<>("world_gen.end_spires.beautify", true).get();
+        noCrystalCages = new ConfigEntry<>("world_gen.end_spires.no_crystal_cages", false).get();
+        extraSpiresHeight = new ConfigEntry<>("world_gen.end_spires.extra_height", 0).get();
 
         outerEndIntegration = new ConfigEntry<>("gameplay.outer_end_in_gameloop", true).get();
 
@@ -35,6 +38,7 @@ public class ConfigEntries {
     }
 
     public static String dataCompatMode = "";
+    public static boolean forceMainIsland;
 
     public static boolean doDreamingDenBiome;
     public static double dreamingDenWeight;
@@ -44,9 +48,11 @@ public class ConfigEntries {
 
     public static boolean doFallenStars;
     public static boolean doRawPurpur;
+    public static int rawPurpurOffset;
 
     public static boolean improveEndSpires;
     public static boolean noCrystalCages;
+    public static int extraSpiresHeight;
 
     public static boolean outerEndIntegration;
 

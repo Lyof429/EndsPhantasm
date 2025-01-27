@@ -60,9 +60,13 @@ public class ModConfig {
         CONFIG = new Gson().fromJson(parseJson(configContent), Map.class);
         ConfigEntries.reload();
 
-        if (!force && (RELOAD.get() || VERSION.get() < getVersion())) {
+        if (!force && RELOAD.get()) {
             register(true);
+            return;
         }
+
+        if (getVersion() > VERSION.get())
+            Phantasm.log("Your Phantasm configs are outdated! Consider deleting them so they can refresh");
     }
 
     static String parseJson(String text) {
@@ -127,6 +131,7 @@ public class ModConfig {
       // ACIDBURNT ABYSSES
       "acidburnt_abysses": {
         "generate": true,
+        // Fabric's biome API prioritizes biomes added first, so this one having a higher weight is only to balance that
         "generation_weight": 2.5
       }
     },

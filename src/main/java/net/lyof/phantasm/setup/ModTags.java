@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.event.GameEvent;
 
 public class ModTags {
     public static class Items {
@@ -42,6 +43,14 @@ public class ModTags {
 
         private static TagKey<Biome> create(String name) {
             return TagKey.of(RegistryKeys.BIOME, Phantasm.makeID(name));
+        }
+    }
+
+    public static class GameEvents {
+        public static final TagKey<GameEvent> BEHEMOTH_CAN_LISTEN = create("behemoth_can_listen");
+
+        private static TagKey<GameEvent> create(String name) {
+            return TagKey.of(RegistryKeys.GAME_EVENT, Phantasm.makeID(name));
         }
     }
 }

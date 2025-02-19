@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:step",
+    "minecraft:jukebox_play",
+    "minecraft:jukebox_stop_play",
+    "minecraft:note_block_play"
+  ]
+}

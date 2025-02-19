@@ -1,9 +1,9 @@
 package net.lyof.phantasm.entity.custom;
 
-import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.animation.BehemothAnimation;
 import net.lyof.phantasm.entity.goal.BehemothAttackGoal;
 import net.lyof.phantasm.entity.goal.SleepGoal;
+import net.lyof.phantasm.entity.listener.BehemothEventListener;
 import net.lyof.phantasm.particle.ModParticles;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityPose;
@@ -16,10 +16,14 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
+import net.minecraft.world.event.listener.EntityGameEventHandler;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.function.BiConsumer;
 
 public class BehemothEntity extends HostileEntity implements Monster {
     public static final EntityDimensions STANDARD_DIMENSIONS = EntityDimensions.changing(0.95f, 1.95f);
@@ -29,8 +33,16 @@ public class BehemothEntity extends HostileEntity implements Monster {
     public BehemothAnimation animation = BehemothAnimation.SLEEPING;
     public static int MAX_ANGRY_TICKS = 600;
 
+    public final EntityGameEventHandler<BehemothEventListener> listener = new EntityGameEventHandler<>(new BehemothEventListener(this));
+
     public BehemothEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
+    }
+
+    @Override
+    public void updateEventHandler(BiConsumer<EntityGameEventHandler<?>, ServerWorld> callback) {
+        if (this.getWorld() instanceof ServerWorld serverWorld)
+            callback.accept(this.listener, serverWorld);
     }
 
     @Override
@@ -122,12 +134,6 @@ public class BehemothEntity extends HostileEntity implements Monster {
 
         if (this.angryTicks > 0) this.angryTicks--;
         else if (this.isAngry()) this.setTarget(null);
-        else if (this.age % 20 == 0) {
-            PlayerEntity player = this.getWorld().getClosestPlayer(this, ConfigEntries.behemothAggroRange);
-            if (player != null && !player.isCreative() && !player.isSpectator()
-                    && (!player.isSneaking() || this.distanceTo(player) < ConfigEntries.behemothAggroRangeSneaking))
-                this.setTarget(player);
-        }
         if (this.getTarget() != null && (this.getTarget().distanceTo(this) > 16 || !this.getTarget().isAlive()))
             this.setTarget(null);
 

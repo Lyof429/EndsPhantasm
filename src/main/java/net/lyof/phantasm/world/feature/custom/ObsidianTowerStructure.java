@@ -24,7 +24,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
 public class ObsidianTowerStructure extends Feature<CountConfig> {
-    private static final EntityType<?> DRAGLING = Registries.ENTITY_TYPE.get(Identifier.of("unusualend", "dragling"));
+    private static final Identifier DRAGLING = Identifier.of("unusualend", "dragling");
     private static final Identifier LOOT_TABLE = Phantasm.makeID("chests/obsidian_tower");
 
     public static final Feature<CountConfig> INSTANCE = new ObsidianTowerStructure(CountConfig.CODEC);
@@ -140,7 +140,8 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
                 nbt.remove("SpawnData");
                 spawner.getLogic().readNbt(null, center, nbt);
 
-                spawner.setEntityType(DRAGLING == EntityType.PIG ? EntityType.VEX : DRAGLING, world.getRandom());
+                EntityType<?> dragling =  Registries.ENTITY_TYPE.get(DRAGLING);
+                spawner.setEntityType(dragling == EntityType.PIG ? EntityType.VEX : dragling, world.getRandom());
             }
         }
         else if (roomtype == 3) {

@@ -1,0 +1,163 @@
+{
+  "block.phantasm.fallen_star": "Падающая звезда",
+
+  "block.phantasm.vivid_nihilium": "Яркий нихилий",
+  "block.phantasm.vivid_nihilis": "Яркий нихилис",
+  "block.phantasm.tall_vivid_nihilis": "Высокий яркий нихилис",
+
+  "block.phantasm.starflower": "Звездоцвет",
+
+  "block.phantasm.pream_log": "Примовое бревно",
+  "block.phantasm.pream_wood": "Примовая древесина",
+  "block.phantasm.stripped_pream_log": "Обтёсанное примовое бревно",
+  "block.phantasm.stripped_pream_wood": "Обтёсанная примовая древесина",
+
+  "block.phantasm.pream_leaves": "Примовая листва",
+  "block.phantasm.hanging_pream_leaves": "Свисающая примовая листва",
+  "block.phantasm.pream_sapling": "Примовый саженец",
+
+  "block.phantasm.pream_planks": "Примовые доски",
+  "block.phantasm.pream_stairs": "Примовые ступеньки",
+  "block.phantasm.pream_slab": "Примовая плита",
+
+  "block.phantasm.pream_door": "Примовая дверь",
+  "block.phantasm.pream_trapdoor": "Примовый люк",
+  "block.phantasm.pream_fence": "Примовый забор",
+  "block.phantasm.pream_fence_gate": "Примовая калитка",
+  "block.phantasm.pream_pressure_plate": "Примовая нажимная плита",
+  "block.phantasm.pream_button": "Примовая кнопка",
+
+  "block.phantasm.pream_sign": "Примовая табличка",
+  "block.phantasm.pream_hanging_sign": "Примовая подвесная табличка",
+
+  "block.phantasm.oblivion": "Забвение",
+  "block.phantasm.oblivine": "Забывчивая лоза",
+  "block.phantasm.crystalily": "Кристалилия",
+
+  "item.phantasm.pream_berry": "Примовая ягода",
+  "item.phantasm.oblifruit": "Плод забвения",
+
+  "item.phantasm.chorus_fruit_salad": "Салат из хоруса",
+
+  "block.phantasm.crystal_shard": "Осколок кристалла",
+  "block.phantasm.void_crystal_shard": "Пустотный осколок кристалла",
+
+  "item.phantasm.crystalline_sword": "Кристаллический меч",
+  "item.phantasm.crystalline_shovel": "Кристаллическая лопата",
+  "item.phantasm.crystalline_pickaxe": "Кристаллическая кирка",
+  "item.phantasm.crystalline_axe": "Кристаллический топор",
+  "item.phantasm.crystalline_hoe": "Кристаллическая мотыга",
+
+  "block.phantasm.crystal_block": "Кристаллический блок",
+  "block.phantasm.crystal_tiles": "Кристаллическая плитка",
+  "block.phantasm.crystal_tiles_stairs": "Кристаллические ступеньки из плитки",
+  "block.phantasm.crystal_tiles_slab": "Кристаллическая плита из плитки",
+  "block.phantasm.crystal_pillar": "Кристаллическая колонна",
+
+  "block.phantasm.crystal_glass": "Кристаллическое стекло",
+  "block.phantasm.crystal_glass_pane": "Кристаллическая стеклянная панель",
+
+  "block.phantasm.void_crystal_block": "Пустотный кристаллический блок",
+  "block.phantasm.void_crystal_tiles": "Пустотная кристаллическая плитка",
+  "block.phantasm.void_crystal_tiles_stairs": "Пустотные кристаллические ступеньки из плитки",
+  "block.phantasm.void_crystal_tiles_slab": "Пустотная кристаллическая плита из плитки",
+  "block.phantasm.void_crystal_pillar": "Пустотная кристаллическая колонна",
+
+  "block.phantasm.void_crystal_glass": "Пустотное кристаллическое стекло",
+  "block.phantasm.void_crystal_glass_pane": "Пустотная кристаллическая стеклянная панель",
+
+  "block.phantasm.polished_obsidian": "Полированный обсидиан",
+  "block.phantasm.polished_obsidian_bricks": "Кирпичи из полированного обсидиана",
+  "block.phantasm.polished_obsidian_bricks_stairs": "Кирпичные ступеньки из полированного обсидиана",
+  "block.phantasm.polished_obsidian_bricks_slab": "Кирпичная плита из полированного обсидиана",
+
+  "block.phantasm.purpur_lamp": "Пурпурная лампа",
+
+  "block.phantasm.raw_purpur": "Необработанный пурпур",
+  "block.phantasm.raw_purpur_bricks": "Кирпичи из необработанного пурпура",
+  "block.phantasm.raw_purpur_bricks_stairs": "Кирпичные ступеньки из необработанного пурпура",
+  "block.phantasm.raw_purpur_bricks_slab": "Кирпичная плита из необработанного пурпура",
+
+  "block.phantasm.raw_purpur_tiles": "Плитка из необработанного пурпура",
+  "block.phantasm.raw_purpur_pillar": "Колонна из необработанного пурпура",
+
+  "item.phantasm.crystie_spawn_egg": "Яйцо призыва кристи",
+  "entity.phantasm.crystie": "Кристи",
+
+  "item.phantasm.behemoth_spawn_egg": "Яйцо призыва бегемота",
+  "entity.phantasm.behemoth": "Бегемот",
+
+  "item.phantasm.behemoth_meat": "Мясо бегемота",
+  "item.phantasm.behemoth_steak": "Стейк из бегемота",
+
+  "item.phantasm.shattered_pendant": "Разбитый кулон",
+  "item.phantasm.shattered_pendant.desc": "Позволяет телепортироваться обратно в ваше последнее безопасное место.\nАвтоматически активируется при падении в пустоту",
+
+  "block.phantasm.acidic_nihilium": "Кислотный нихилий",
+  "block.phantasm.acidic_nihilis": "Кислотный нихилис",
+  "block.phantasm.tall_acidic_nihilis": "Высокий кислотный нихилис",
+  "block.phantasm.dragon_mint": "Драконья мята",
+  "block.phantasm.acidic_mass": "Кислотная масса",
+
+  "block.phantasm.dralgae": "Драконья лоза",
+  "block.phantasm.pome": "Пом",
+  "item.phantasm.pome_slice": "Ломтик пома",
+
+  "block.phantasm.cirite": "Цирит",
+  "block.phantasm.cirite_iron_ore": "Циритовая железная руда",
+  "block.phantasm.cirite_bricks": "Циритовые кирпичи",
+  "block.phantasm.cirite_bricks_stairs": "Ступеньки из циритового кирпича",
+  "block.phantasm.cirite_bricks_slab": "Плита из циритового кирпича",
+
+  "block.phantasm.choral_block": "Хоральный блок",
+  "block.phantasm.choral_fan": "Хоральный веер",
+  "block.phantasm.subwoofer_block": "Сабвуфер",
+
+  "item.phantasm.choral_arrow": "Хоральная стрела",
+  "item.phantasm.choral_arrow.desc.bow": "Лук: Очаровывает врагов",
+  "item.phantasm.choral_arrow.desc.crossbow": "Арбалет: Создаёт отталкивающую звуковую волну",
+  "entity.phantasm.choral_arrow": "Хоральная стрела",
+
+  "item.phantasm.music_disc_abruption": "Пластинка",
+  "item.phantasm.music_disc_abruption.desc": "Dylanvhs - Abruption",
+  "sounds.phantasm.music_disc_abruption": "Играет Abruption",
+
+  "item.minecraft.potion.effect.corrosion": "Зелье коррозии",
+  "item.minecraft.splash_potion.effect.corrosion": "Взрывное зелье коррозии",
+  "item.minecraft.lingering_potion.effect.corrosion": "Туманное зелье коррозии",
+  "effect.phantasm.corrosion": "Коррозия",
+
+  "effect.phantasm.charm": "Очарование",
+
+
+
+  "itemgroup.phantasm": "Phantasm",
+
+  "biome.phantasm.dreaming_den": "Грёзовое логово",
+  "biome.phantasm.acidburnt_abysses": "Кислотно-выжженные бездны",
+
+  "tooltip.xp_boosted": "Эффективность увеличивается с опытом.",
+  "item.minecraft.firework_rocket.cannot_use": "Сначала вы должны завершить %s!",
+
+
+  "advancement.phantasm.find_dreaming_den": "Мечты сбываются",
+  "advancement.phantasm.find_dreaming_den.desc": "Откройте Грёзовое логово",
+
+  "advancement.phantasm.get_crystal": "Особенно блестящий!",
+  "advancement.phantasm.get_crystal.desc": "Добудьте осколки кристалла в Крае",
+
+  "advancement.phantasm.find_underisland": "Как наверху, так и внизу",
+  "advancement.phantasm.find_underisland.desc": "Отправьтесь в Подостровье, под Грёзовым логовом",
+
+  "advancement.phantasm.get_crystal_tools": "Время сиять!",
+  "advancement.phantasm.get_crystal_tools.desc": "Получите все виды кристаллических инструментов",
+
+  "advancement.phantasm.find_acidburnt_abysses": "Красные следы на каждом острове",
+  "advancement.phantasm.find_acidburnt_abysses.desc": "Откройте Кислотно-выжженные бездны",
+
+  "advancement.phantasm.find_choral_riff": "Эхо пустоты",
+  "advancement.phantasm.find_choral_riff.desc": "Спуститесь в Хоральный разлом",
+
+  "advancement.phantasm.use_choral_arrow": "Ты взял фальшивую ноту!",
+  "advancement.phantasm.use_choral_arrow.desc": "Очаруйте и убейте монстра с помощью Хоральной стрелы"
+}

@@ -15,6 +15,7 @@
     "EntityMixin",
     "FireworkRocketItemMixin",
     "ItemMixin",
+    "JsonDataLoaderMixin",
     "LivingEntityMixin",
     "MinecraftServerMixin",
     "MobEntityMixin",

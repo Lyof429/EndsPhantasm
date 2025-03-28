@@ -7,8 +7,6 @@ import net.minecraft.registry.Registry;
 
 public class ModFeatures {
     public static void register() {
-        Phantasm.log("Registering Features for modid : " + Phantasm.MOD_ID);
-
         Registry.register(Registries.FEATURE, Phantasm.makeID("crystal_spike"), CrystalSpikeFeature.INSTANCE);
         Registry.register(Registries.FEATURE, Phantasm.makeID("single_block"), SingleBlockFeature.INSTANCE);
         Registry.register(Registries.FEATURE, Phantasm.makeID("obsidian_tower"), ObsidianTowerStructure.INSTANCE);

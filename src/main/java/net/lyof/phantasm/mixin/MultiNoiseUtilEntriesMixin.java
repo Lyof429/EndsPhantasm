@@ -6,6 +6,7 @@ import net.lyof.phantasm.world.ModWorldGeneration;
 import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;

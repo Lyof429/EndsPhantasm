@@ -9,7 +9,6 @@ import net.minecraft.registry.Registry;
 
 public class ModEffects {
     public static void register() {
-        Phantasm.log("Registering Effects for modid : " + Phantasm.MOD_ID);
     }
 
 

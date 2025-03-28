@@ -14,8 +14,6 @@ import net.minecraft.registry.Registry;
 
 public class ModEntities {
     public static void register() {
-        Phantasm.log("Registering Entities for modid : " + Phantasm.MOD_ID);
-
         FabricDefaultAttributeRegistry.register(CRYSTIE, CrystieEntity.createAttributes());
         FabricDefaultAttributeRegistry.register(BEHEMOTH, BehemothEntity.createAttributes());
     }

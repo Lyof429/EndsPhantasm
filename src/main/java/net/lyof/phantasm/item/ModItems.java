@@ -29,8 +29,6 @@ import net.minecraft.world.World;
 
 public class ModItems {
     public static void register() {
-        Phantasm.log("Registering Items for modid : " + Phantasm.MOD_ID);
-
         DispenserBlock.registerBehavior(CHORAL_ARROW, new ProjectileDispenserBehavior() {
             protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
                 ArrowEntity arrowEntity = ChoralArrowEntity.create(world, position.getX(), position.getY(), position.getZ());

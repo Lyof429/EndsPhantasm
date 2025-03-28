@@ -148,9 +148,6 @@ public class ModItemGroups {
 
     @SuppressWarnings("all")
     public static void register() {
-        Phantasm.log("Registering ItemGroups for modid : " + Phantasm.MOD_ID);
-
-
         if (false) return;
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
             entries.add(ModItems.PREAM_BERRY);

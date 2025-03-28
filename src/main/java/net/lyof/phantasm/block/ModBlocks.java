@@ -28,9 +28,6 @@ import java.util.Map;
 
 public class ModBlocks {
     public static void register() {
-        Phantasm.log("Registering Blocks for modid : " + Phantasm.MOD_ID);
-
-
         ModRegistry.addDrop(PREAM_SIGN, ModItems.PREAM_SIGN);
         ModRegistry.addDrop(PREAM_WALL_SIGN, ModItems.PREAM_SIGN);
         ModRegistry.addDrop(PREAM_HANGING_SIGN, ModItems.PREAM_HANGING_SIGN);

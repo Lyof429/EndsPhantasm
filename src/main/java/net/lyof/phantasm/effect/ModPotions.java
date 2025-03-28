@@ -12,8 +12,6 @@ import net.minecraft.registry.Registry;
 
 public class ModPotions {
     public static void register() {
-        Phantasm.log("Registering Potions for modid : " + Phantasm.MOD_ID);
-
         BrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, ModItems.POME_SLICE, CORROSION);
         BrewingRecipeRegistry.registerPotionRecipe(CORROSION, Items.REDSTONE, LONG_CORROSION);
         BrewingRecipeRegistry.registerPotionRecipe(CORROSION, Items.GLOWSTONE_DUST, STRONG_CORROSION);

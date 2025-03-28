@@ -10,7 +10,6 @@ import net.minecraft.world.gen.trunk.TrunkPlacerType;
 
 public class ModTreePlacerTypes {
     public static void register() {
-        Phantasm.log("Registering Trunk and Foliage Placers for modid : " + Phantasm.MOD_ID);
     }
 
 

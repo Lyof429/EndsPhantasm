@@ -1,4 +1,4 @@
-package net.lyof.phantasm.setup.datagen;
+package net.lyof.phantasm.setup.datagen.fabric;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;

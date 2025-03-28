@@ -14,6 +14,7 @@ import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.setup.ModDataGenerator;
 import net.lyof.phantasm.setup.ModRegistry;
+import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
 import net.lyof.phantasm.sound.ModSounds;
 import net.lyof.phantasm.world.ModWorldGeneration;
 import net.lyof.phantasm.world.biome.EndDataCompat;
@@ -32,6 +33,7 @@ public class Phantasm implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModConfig.register();
+		ConfiguredData.register();
 
 		ModItems.register();
 		ModItemGroups.register();

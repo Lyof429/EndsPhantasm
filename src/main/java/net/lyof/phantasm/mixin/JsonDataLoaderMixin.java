@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import io.netty.handler.codec.json.JsonObjectDecoder;
 import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
 import net.minecraft.resource.JsonDataLoader;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
@@ -22,8 +23,18 @@ public class JsonDataLoaderMixin {
     private static void addPhantasmData(ResourceManager manager, String dataType, Gson gson,
                                         Map<Identifier, JsonElement> results, CallbackInfo ci) {
 
-        JsonElement x = gson.fromJson(recipe, JsonElement.class);
-        results.putIfAbsent(Phantasm.makeID("the_awesome_stuff"), x);
+        for (ConfiguredData data : ConfiguredData.INSTANCES) {
+            if (!data.enabled.get()) continue;
+
+            JsonElement original = results.get(data.target);
+
+            if (original == null)
+                results.put(data.target, data.apply(null, gson));
+            else
+                results.replace(data.target, data.apply(original, gson));
+        }
+        //JsonElement x = gson.fromJson(recipe, JsonElement.class);
+        //results.putIfAbsent(Phantasm.makeID("the_awesome_stuff"), x);
     }
 
     private static String recipe = """

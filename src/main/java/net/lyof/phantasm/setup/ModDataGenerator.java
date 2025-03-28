@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
-import net.lyof.phantasm.setup.datagen.*;
+import net.lyof.phantasm.setup.datagen.fabric.*;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.lyof.phantasm.world.feature.ModConfiguredFeatures;
 import net.lyof.phantasm.world.feature.ModPlacedFeatures;

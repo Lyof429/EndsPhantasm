@@ -15,7 +15,7 @@
     "EntityMixin",
     "FireworkRocketItemMixin",
     "ItemMixin",
-    "JsonDataLoaderMixin",
+    "LifecycledResourceManagerImplMixin",
     "LivingEntityMixin",
     "MinecraftServerMixin",
     "MobEntityMixin",

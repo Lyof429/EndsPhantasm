@@ -119,15 +119,165 @@ public class ConfiguredData {
                    }
                  }""");
 
-        register(Identifier.of("minecraft", "worldgen/density_function/end/base_3d_noise.json"), () -> true, json ->
-                """
-                        {
-                          "type": "minecraft:old_blended_noise",
-                          "xz_scale": 0.7,
-                          "y_scale": 1.2,
-                          "xz_factor": 90,
-                          "y_factor": 145,
-                          "smear_scale_multiplier": 8
-                        }""");
+        // Huge thanks to Ice (https://linktr.ee/icycrystal) for these noise values
+        register(Identifier.of("minecraft", "worldgen/noise_settings/end.json"), () -> true, json -> """
+                {
+                  "sea_level": 0,
+                  "disable_mob_generation": true,
+                  "aquifers_enabled": false,
+                  "ore_veins_enabled": false,
+                  "legacy_random_source": false,
+                  "default_block": {
+                    "Name": "minecraft:end_stone"
+                  },
+                  "default_fluid": {
+                    "Name": "minecraft:air"
+                  },
+                  "noise": {
+                    "min_y": 0,
+                    "height": 256,
+                    "size_horizontal": 2,
+                    "size_vertical": 1
+                  },
+                  "noise_router": {
+                    "barrier": 0,
+                    "fluid_level_floodedness": 0,
+                    "fluid_level_spread": 0,
+                    "lava": 0,
+                    "temperature": 0,
+                    "vegetation": 0,
+                    "continents": {
+                      "type": "minecraft:noise",
+                      "noise": "minecraft:temperature",
+                      "xz_scale": 6,
+                      "y_scale": 1
+                    },
+                    "erosion": {
+                      "type": "minecraft:cache_2d",
+                      "argument": {
+                        "type": "minecraft:end_islands"
+                      }
+                    },
+                    "depth": 0,
+                    "ridges": 0,
+                    "initial_density_without_jaggedness": {
+                      "type": "minecraft:add",
+                      "argument1": -0.234375,
+                      "argument2": {
+                        "type": "minecraft:mul",
+                        "argument1": {
+                          "type": "minecraft:y_clamped_gradient",
+                          "from_y": 4,
+                          "to_y": 32,
+                          "from_value": 0,
+                          "to_value": 1
+                        },
+                        "argument2": {
+                          "type": "minecraft:add",
+                          "argument1": 0.234375,
+                          "argument2": {
+                            "type": "minecraft:add",
+                            "argument1": -23.4375,
+                            "argument2": {
+                              "type": "minecraft:mul",
+                              "argument1": {
+                                "type": "minecraft:y_clamped_gradient",
+                                "from_y": 8,
+                                "to_y": 64,
+                                "from_value": 1,
+                                "to_value": 0
+                              },
+                              "argument2": {
+                                "type": "minecraft:add",
+                                "argument1": 23.4375,
+                                "argument2": {
+                                  "type": "minecraft:add",
+                                  "argument1": -0.703125,
+                                  "argument2": {
+                                    "type": "minecraft:cache_2d",
+                                    "argument": {
+                                      "type": "minecraft:end_islands"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "final_density": {
+                      "type": "minecraft:squeeze",
+                      "argument": {
+                        "type": "minecraft:mul",
+                        "argument1": 0.64,
+                        "argument2": {
+                          "type": "minecraft:interpolated",
+                          "argument": {
+                            "type": "minecraft:blend_density",
+                            "argument": {
+                              "type": "minecraft:add",
+                              "argument1": -0.234375,
+                              "argument2": {
+                                "type": "minecraft:mul",
+                                "argument1": {
+                                  "type": "minecraft:y_clamped_gradient",
+                                  "from_y": 12,
+                                  "to_y": 52,
+                                  "from_value": 0.01,
+                                  "to_value": 0.9875
+                                },
+                                "argument2": {
+                                  "type": "minecraft:add",
+                                  "argument1": 0.234375,
+                                  "argument2": {
+                                    "type": "minecraft:add",
+                                    "argument1": -23.4375,
+                                    "argument2": {
+                                      "type": "minecraft:mul",
+                                      "argument1": {
+                                        "type": "minecraft:y_clamped_gradient",
+                                        "from_y": 58,
+                                        "to_y": 160,
+                                        "from_value": 1,
+                                        "to_value": 0.9
+                                      },
+                                      "argument2": {
+                                        "type": "minecraft:add",
+                                        "argument1": 23.4375,
+                                        "argument2": "minecraft:end/sloped_cheese"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "vein_toggle": 0,
+                    "vein_ridged": 0,
+                    "vein_gap": 0
+                  },
+                  "spawn_target": [],
+                  "surface_rule": {
+                    "type": "minecraft:block",
+                    "result_state": {
+                      "Name": "minecraft:end_stone"
+                    }
+                  }
+                }
+                """);
+
+        register(Identifier.of("minecraft", "worldgen/density_function/end/base_3d_noise.json"), () -> true, json -> """
+                {
+                  "type": "minecraft:old_blended_noise",
+                  "xz_scale": 0.7,
+                  "y_scale": 1.2,
+                  "xz_factor": 90,
+                  "y_factor": 145,
+                  "smear_scale_multiplier": 8
+                }""");
     }
 }

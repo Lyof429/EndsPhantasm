@@ -70,12 +70,14 @@ public class LifecycledResourceManagerImplMixin {
                                         CallbackInfoReturnable<Map<Identifier, Resource>> cir) {
 
         for (ConfiguredData data : ConfiguredData.INSTANCES) {
-            if (data.enabled.get() && data.target.getPath().startsWith(startingPath) && allowedPathPredicate.test(data.target)) {
+            if (data.enabled.get() && data.target.getPath().startsWith(startingPath + "/") && allowedPathPredicate.test(data.target)) {
                 if (!cir.getReturnValue().containsKey(data.target)) {
                     cir.getReturnValue().put(data.target, readAndApply(Optional.empty(), data));
                 }
             }
         }
+
+        Phantasm.log(startingPath);
 
         List<Identifier> ids = cir.getReturnValue().keySet().stream().toList();
         for (Identifier id : ids) {

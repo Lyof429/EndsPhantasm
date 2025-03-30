@@ -150,7 +150,8 @@ public class ConfiguredData {
         }
 
         public static String changeNoiseRouter(JsonElement json) {
-            if (EndDataCompat.getCompatibilityMode().equals("endercon")) {
+            if (json.getAsJsonObject().get("noise_router")
+                    .getAsJsonObject().get("temperature").isJsonPrimitive()) {
                 json.getAsJsonObject().get("noise_router")
                         .getAsJsonObject().asMap().replace("temperature", getJson("""
                                 { "type": "minecraft:noise", "noise": "minecraft:temperature", "xz_scale": 1, "y_scale": 1 }"""));

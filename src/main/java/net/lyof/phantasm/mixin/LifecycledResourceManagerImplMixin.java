@@ -1,17 +1,17 @@
 package net.lyof.phantasm.mixin;
 
 import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.config.ModConfig;
 import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
 import net.lyof.phantasm.setup.datagen.config.ConfiguredDataResourcePack;
-import net.minecraft.resource.InputSupplier;
-import net.minecraft.resource.LifecycledResourceManagerImpl;
-import net.minecraft.resource.Resource;
+import net.minecraft.resource.*;
 import net.minecraft.util.Identifier;
 import org.apache.commons.io.input.CharSequenceInputStream;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.io.IOException;
@@ -108,5 +108,10 @@ public class LifecycledResourceManagerImplMixin {
             cir.getReturnValue().replace(id, cir.getReturnValue().get(id).stream()
                     .map(resource -> readAndApply(resource, data)).toList());
         }
+    }
+
+    @Inject(method = "<init>", at = @At("TAIL"))
+    private void reloadConfigs(ResourceType type, List<ResourcePack> packs, CallbackInfo ci) {
+        ModConfig.register();
     }
 }

@@ -24,9 +24,4 @@ public class MinecraftServerMixin {
     private void createEPLevels(WorldGenerationProgressListener worldGenerationProgressListener, CallbackInfo ci) {
         ModMaterialRules.addModMaterialRules((MinecraftServer) (Object) this, DimensionOptions.END);
     }
-
-    @Inject(method = "reloadResources", at = @At("HEAD"))
-    private void reloadConfigs(Collection<String> dataPacks, CallbackInfoReturnable<CompletableFuture<Void>> cir) {
-        ModConfig.register();
-    }
 }

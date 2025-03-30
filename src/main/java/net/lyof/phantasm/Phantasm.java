@@ -60,18 +60,6 @@ public class Phantasm implements ModInitializer {
 
 		if (!FabricLoader.getInstance().isDevelopmentEnvironment())
 			ModRegistry.clear();
-
-		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-			@Override
-			public Identifier getFabricId() {
-				return makeID("reload_listener");
-			}
-
-			@Override
-			public void reload(ResourceManager manager) {
-				ModConfig.register();
-			}
-		});
 	}
 
 	public static Identifier makeID(String id) {

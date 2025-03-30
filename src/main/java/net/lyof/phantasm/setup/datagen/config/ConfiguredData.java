@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
+import net.minecraft.server.command.ReloadCommand;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
@@ -44,8 +45,22 @@ public class ConfiguredData {
         INSTANCES.add(new ConfiguredData(target, enabled, provider));
     }
 
+
     public static void register() {
-        register(Identifier.of("minecraft", "dimension/the_end.json"), () -> ConfigEntries.chorusSaladTp, json -> """
+        register(Identifier.of("minecraft", "dimension/the_end.json"), ConfigEntries.enhanceWorldgen,
+                Instances::changeBiomeSource);
+
+        // Huge thanks to Ice (https://linktr.ee/icycrystal) for these noise values
+        register(Identifier.of("minecraft", "worldgen/noise_settings/end.json"), ConfigEntries.enhanceWorldgen,
+                Instances::changeNoiseRouter);
+
+        register(Identifier.of("minecraft", "worldgen/density_function/end/base_3d_noise.json"), ConfigEntries.enhanceWorldgen,
+                json -> "{ \"type\": \"minecraft:old_blended_noise\", \"xz_scale\": 0.7, \"y_scale\": 1.2, \"xz_factor\": 90, \"y_factor\": 145, \"smear_scale_multiplier\": 8 }");
+    }
+
+    private static class Instances {
+        public static String changeBiomeSource(JsonElement json) {
+            return """
                 {
                    "type": "minecraft:the_end",
                    "generator": {
@@ -117,10 +132,11 @@ public class ConfiguredData {
                      },
                      "settings": "minecraft:end"
                    }
-                 }""");
+                 }""";
+        }
 
-        // Huge thanks to Ice (https://linktr.ee/icycrystal) for these noise values
-        register(Identifier.of("minecraft", "worldgen/noise_settings/end.json"), () -> true, json -> """
+        public static String changeNoiseRouter(JsonElement json) {
+            return """
                 {
                   "sea_level": 0,
                   "disable_mob_generation": true,
@@ -268,16 +284,7 @@ public class ConfiguredData {
                     }
                   }
                 }
-                """);
-
-        register(Identifier.of("minecraft", "worldgen/density_function/end/base_3d_noise.json"), () -> true, json -> """
-                {
-                  "type": "minecraft:old_blended_noise",
-                  "xz_scale": 0.7,
-                  "y_scale": 1.2,
-                  "xz_factor": 90,
-                  "y_factor": 145,
-                  "smear_scale_multiplier": 8
-                }""");
+                """;
+        }
     }
 }

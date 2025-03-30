@@ -1,5 +1,6 @@
 package net.lyof.phantasm.mixin;
 
+import net.lyof.phantasm.config.ModConfig;
 import net.lyof.phantasm.world.biome.surface.ModMaterialRules;
 import net.minecraft.resource.DataConfiguration;
 import net.minecraft.resource.DataPackSettings;
@@ -14,10 +15,18 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Collection;
+import java.util.concurrent.CompletableFuture;
+
 @Mixin(MinecraftServer.class)
 public class MinecraftServerMixin {
     @Inject(method = "createWorlds", at = @At("RETURN"))
     private void createEPLevels(WorldGenerationProgressListener worldGenerationProgressListener, CallbackInfo ci) {
         ModMaterialRules.addModMaterialRules((MinecraftServer) (Object) this, DimensionOptions.END);
+    }
+
+    @Inject(method = "reloadResources", at = @At("HEAD"))
+    private void reloadConfigs(Collection<String> dataPacks, CallbackInfoReturnable<CompletableFuture<Void>> cir) {
+        ModConfig.register();
     }
 }

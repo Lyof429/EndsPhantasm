@@ -70,4 +70,7 @@ public class ConfigEntries {
     public static int subwooferRange;
 
     public static int shatteredPendantDurability;
+
+
+    public static final ConfigEntry<Boolean> enhanceWorldgen = new ConfigEntry<>("world_gen.enhance_end_generation", true);
 }

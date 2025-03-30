@@ -149,7 +149,11 @@ public class ModConfig {
       "no_crystal_cages": false,
       // Height to be added to the spires, mostly useful in case of datapacks raising the main island level
       "extra_height": 0
-    }
+    },
+    
+    // Should the End's island generation be changed using built in datapacks (it's pretty)
+    //    If you set this to false, also set end_spires.extra_height to 0 for the best look
+    "enhance_end_generation": true
   },
   
   // CATEGORY: GAMEPLAY

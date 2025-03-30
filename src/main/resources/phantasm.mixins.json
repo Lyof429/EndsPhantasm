@@ -22,7 +22,6 @@
     "MultiNoiseBiomeSourceMixin",
     "MultiNoiseBiomeSourceParameterListMixin",
     "MultiNoiseUtilEntriesMixin",
-    "NoiseRouterMixin",
     "PlantBlockMixin",
     "PlayerEntityMixin",
     "ServerPlayerEntityMixin",

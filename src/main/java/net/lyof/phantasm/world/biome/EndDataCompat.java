@@ -14,8 +14,8 @@ import java.util.function.Supplier;
 public class EndDataCompat {
     public static void register() {
         add(ModBiomes.DREAMING_DEN, () -> ConfigEntries.doDreamingDenBiome);
-        add(BiomeKeys.END_HIGHLANDS, () -> ConfigEntries.doDreamingDenBiome && ConfigEntries.doAcidburntAbyssesBiome
-                && (getCompatibilityMode().equals("endercon")));
+        //add(BiomeKeys.END_HIGHLANDS, () -> ConfigEntries.doDreamingDenBiome && ConfigEntries.doAcidburntAbyssesBiome
+        //        && (getCompatibilityMode().equals("endercon")));
         add(ModBiomes.ACIDBURNT_ABYSSES, () -> ConfigEntries.doAcidburntAbyssesBiome);
     }
 

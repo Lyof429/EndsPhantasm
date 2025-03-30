@@ -148,7 +148,7 @@ public class ModConfig {
       // Should the main island's obsidian spires never have iron bars around the End Crystal
       "no_crystal_cages": false,
       // Height to be added to the spires, mostly useful in case of datapacks raising the main island level
-      "extra_height": 0
+      "extra_height": 40
     },
     
     // Should the End's island generation be changed using built in datapacks (it's pretty)

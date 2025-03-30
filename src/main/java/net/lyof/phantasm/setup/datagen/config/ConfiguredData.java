@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
+import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.minecraft.server.command.ReloadCommand;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
@@ -53,7 +54,7 @@ public class ConfiguredData {
                 Instances::changeBiomeSource);
 
         // Huge thanks to Ice (https://linktr.ee/icycrystal) for these noise values
-        register(Identifier.of("minecraft", "worldgen/noise_settings/end.json"), () -> ConfigEntries.enhanceWorldgen,
+        register(Identifier.of("minecraft", "worldgen/noise_settings/end.json"), () -> true,
                 Instances::changeNoiseRouter);
 
         register(Identifier.of("minecraft", "worldgen/density_function/end/base_3d_noise.json"), () -> ConfigEntries.enhanceWorldgen,
@@ -149,17 +150,23 @@ public class ConfiguredData {
         }
 
         public static String changeNoiseRouter(JsonElement json) {
-            json.getAsJsonObject().get("noise")
-                    .getAsJsonObject().asMap().replace("height", new JsonPrimitive(256));
+            if (EndDataCompat.getCompatibilityMode().equals("endercon")) {
+                json.getAsJsonObject().get("noise_router")
+                        .getAsJsonObject().asMap().replace("temperature", getJson("""
+                                { "type": "minecraft:noise", "noise": "minecraft:temperature", "xz_scale": 1, "y_scale": 1 }"""));
+            }
+            else if (ConfigEntries.enhanceWorldgen) {
+                json.getAsJsonObject().get("noise")
+                        .getAsJsonObject().asMap().replace("height", new JsonPrimitive(256));
 
-            json.getAsJsonObject().get("noise_router")
-                    .getAsJsonObject().asMap().replace("continents", getJson("""
+                json.getAsJsonObject().get("noise_router")
+                        .getAsJsonObject().asMap().replace("continents", getJson("""
                             { "type": "minecraft:noise", "noise": "minecraft:temperature", "xz_scale": 1, "y_scale": 1 }"""));
-            json.getAsJsonObject().get("noise_router")
-                    .getAsJsonObject().asMap().replace("erosion", getJson("""
+                json.getAsJsonObject().get("noise_router")
+                        .getAsJsonObject().asMap().replace("erosion", getJson("""
                             { "type": "minecraft:cache_2d", "argument": { "type": "minecraft:end_islands" } }"""));
-            json.getAsJsonObject().get("noise_router")
-                    .getAsJsonObject().asMap().replace("initial_density_without_jaggedness", getJson("""
+                json.getAsJsonObject().get("noise_router")
+                        .getAsJsonObject().asMap().replace("initial_density_without_jaggedness", getJson("""
                             {
                               "type": "minecraft:add",
                               "argument1": -0.234375,
@@ -206,8 +213,8 @@ public class ConfiguredData {
                                 }
                               }
                             }"""));
-            json.getAsJsonObject().get("noise_router")
-                    .getAsJsonObject().asMap().replace("final_density", getJson("""
+                json.getAsJsonObject().get("noise_router")
+                        .getAsJsonObject().asMap().replace("final_density", getJson("""
                             {
                               "type": "minecraft:squeeze",
                               "argument": {
@@ -258,6 +265,7 @@ public class ConfiguredData {
                                 }
                               }
                             }"""));
+            }
 
             return json.toString();/*
             return """

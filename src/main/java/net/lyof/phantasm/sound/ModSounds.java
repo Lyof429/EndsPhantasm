@@ -7,9 +7,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
 public class ModSounds {
-    public static void register() {
-        Phantasm.log("Registering Sounds for mod id : " + Phantasm.MOD_ID);
-    }
+    public static void register() {}
 
     public static SoundEvent register(String name) {
         Identifier id = Phantasm.makeID(name);

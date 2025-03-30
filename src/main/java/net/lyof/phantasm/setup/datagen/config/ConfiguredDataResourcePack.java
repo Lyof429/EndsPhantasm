@@ -48,4 +48,9 @@ public class ConfiguredDataResourcePack implements ResourcePack {
     public void close() {
 
     }
+
+    @Override
+    public boolean isAlwaysStable() {
+        return true;
+    }
 }

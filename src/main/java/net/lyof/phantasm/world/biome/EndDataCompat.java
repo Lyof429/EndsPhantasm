@@ -15,20 +15,18 @@ public class EndDataCompat {
     public static void register() {
         add(ModBiomes.DREAMING_DEN, () -> ConfigEntries.doDreamingDenBiome);
         add(BiomeKeys.END_HIGHLANDS, () -> ConfigEntries.doDreamingDenBiome && ConfigEntries.doAcidburntAbyssesBiome
-                && getCompatibilityMode().equals("endercon"));
+                && (getCompatibilityMode().equals("endercon")));
         add(ModBiomes.ACIDBURNT_ABYSSES, () -> ConfigEntries.doAcidburntAbyssesBiome);
     }
 
     public static String getCompatibilityMode() {
-        boolean auto = ConfigEntries.dataCompatMode.equals("automatic");
-        if (auto) {
+        if (ConfigEntries.dataCompatMode.equals("automatic")) {
             if (FabricLoader.getInstance().isModLoaded("mr_endercon"))
                 return "endercon";
             else if (FabricLoader.getInstance().isModLoaded("nullscape"))
                 return "nullscape";
             else return "default";
         }
-
         return ConfigEntries.dataCompatMode;
     }
 

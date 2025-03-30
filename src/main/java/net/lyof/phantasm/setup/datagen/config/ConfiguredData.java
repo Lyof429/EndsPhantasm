@@ -2,6 +2,8 @@ package net.lyof.phantasm.setup.datagen.config;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.server.command.ReloadCommand;
@@ -47,25 +49,37 @@ public class ConfiguredData {
 
 
     public static void register() {
-        register(Identifier.of("minecraft", "dimension/the_end.json"), ConfigEntries.enhanceWorldgen,
+        register(Identifier.of("minecraft", "dimension/the_end.json"), () -> ConfigEntries.enhanceWorldgen,
                 Instances::changeBiomeSource);
 
         // Huge thanks to Ice (https://linktr.ee/icycrystal) for these noise values
-        register(Identifier.of("minecraft", "worldgen/noise_settings/end.json"), ConfigEntries.enhanceWorldgen,
+        register(Identifier.of("minecraft", "worldgen/noise_settings/end.json"), () -> ConfigEntries.enhanceWorldgen,
                 Instances::changeNoiseRouter);
 
-        register(Identifier.of("minecraft", "worldgen/density_function/end/base_3d_noise.json"), ConfigEntries.enhanceWorldgen,
+        register(Identifier.of("minecraft", "worldgen/density_function/end/base_3d_noise.json"), () -> ConfigEntries.enhanceWorldgen,
                 json -> "{ \"type\": \"minecraft:old_blended_noise\", \"xz_scale\": 0.7, \"y_scale\": 1.2, \"xz_factor\": 90, \"y_factor\": 145, \"smear_scale_multiplier\": 8 }");
     }
 
     private static class Instances {
+        private static JsonElement getJson(String string) {
+            return gson.fromJson(string, JsonElement.class);
+        }
+
         public static String changeBiomeSource(JsonElement json) {
-            return """
-                {
-                   "type": "minecraft:the_end",
-                   "generator": {
-                     "type": "minecraft:noise",
-                     "biome_source": {
+            if (json == null) {
+                json = getJson("""
+                        { "type": "minecraft:the_end", "generator": { "type": "minecraft:noise", "biome_source":
+                        { "type": "minecraft:the_end" }, "settings": "minecraft:end" } }""");
+            }
+
+            if (json.getAsJsonObject().get("generator")
+                    .getAsJsonObject().get("biome_source")
+                    .getAsJsonObject().get("type")
+                    .getAsString().equals("minecraft:the_end")) {
+
+                json.getAsJsonObject().get("generator")
+                        .getAsJsonObject().asMap().replace("biome_source", getJson("""
+                     {
                        "biomes": [
                          {
                            "biome": "minecraft:end_highlands",
@@ -115,7 +129,7 @@ public class ConfiguredData {
                              "weirdness": 0
                            }
                          },
-                 		{
+                         {
                            "biome": "minecraft:the_end",
                            "parameters": {
                              "continentalness": 0,
@@ -129,13 +143,123 @@ public class ConfiguredData {
                          }
                        ],
                        "type": "minecraft:multi_noise"
-                     },
-                     "settings": "minecraft:end"
-                   }
-                 }""";
+                     }"""));
+            }
+            return json.toString();
         }
 
         public static String changeNoiseRouter(JsonElement json) {
+            json.getAsJsonObject().get("noise")
+                    .getAsJsonObject().asMap().replace("height", new JsonPrimitive(256));
+
+            json.getAsJsonObject().get("noise_router")
+                    .getAsJsonObject().asMap().replace("continents", getJson("""
+                            { "type": "minecraft:noise", "noise": "minecraft:temperature", "xz_scale": 1, "y_scale": 1 }"""));
+            json.getAsJsonObject().get("noise_router")
+                    .getAsJsonObject().asMap().replace("erosion", getJson("""
+                            { "type": "minecraft:cache_2d", "argument": { "type": "minecraft:end_islands" } }"""));
+            json.getAsJsonObject().get("noise_router")
+                    .getAsJsonObject().asMap().replace("initial_density_without_jaggedness", getJson("""
+                            {
+                              "type": "minecraft:add",
+                              "argument1": -0.234375,
+                              "argument2": {
+                                "type": "minecraft:mul",
+                                "argument1": {
+                                  "type": "minecraft:y_clamped_gradient",
+                                  "from_y": 4,
+                                  "to_y": 32,
+                                  "from_value": 0,
+                                  "to_value": 1
+                                },
+                                "argument2": {
+                                  "type": "minecraft:add",
+                                  "argument1": 0.234375,
+                                  "argument2": {
+                                    "type": "minecraft:add",
+                                    "argument1": -23.4375,
+                                    "argument2": {
+                                      "type": "minecraft:mul",
+                                      "argument1": {
+                                        "type": "minecraft:y_clamped_gradient",
+                                        "from_y": 8,
+                                        "to_y": 64,
+                                        "from_value": 1,
+                                        "to_value": 0
+                                      },
+                                      "argument2": {
+                                        "type": "minecraft:add",
+                                        "argument1": 23.4375,
+                                        "argument2": {
+                                          "type": "minecraft:add",
+                                          "argument1": -0.703125,
+                                          "argument2": {
+                                            "type": "minecraft:cache_2d",
+                                            "argument": {
+                                              "type": "minecraft:end_islands"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }"""));
+            json.getAsJsonObject().get("noise_router")
+                    .getAsJsonObject().asMap().replace("final_density", getJson("""
+                            {
+                              "type": "minecraft:squeeze",
+                              "argument": {
+                                "type": "minecraft:mul",
+                                "argument1": 0.64,
+                                "argument2": {
+                                  "type": "minecraft:interpolated",
+                                  "argument": {
+                                    "type": "minecraft:blend_density",
+                                    "argument": {
+                                      "type": "minecraft:add",
+                                      "argument1": -0.234375,
+                                      "argument2": {
+                                        "type": "minecraft:mul",
+                                        "argument1": {
+                                          "type": "minecraft:y_clamped_gradient",
+                                          "from_y": 12,
+                                          "to_y": 52,
+                                          "from_value": 0.01,
+                                          "to_value": 0.9875
+                                        },
+                                        "argument2": {
+                                          "type": "minecraft:add",
+                                          "argument1": 0.234375,
+                                          "argument2": {
+                                            "type": "minecraft:add",
+                                            "argument1": -23.4375,
+                                            "argument2": {
+                                              "type": "minecraft:mul",
+                                              "argument1": {
+                                                "type": "minecraft:y_clamped_gradient",
+                                                "from_y": 58,
+                                                "to_y": 160,
+                                                "from_value": 1,
+                                                "to_value": 0.9
+                                              },
+                                              "argument2": {
+                                                "type": "minecraft:add",
+                                                "argument1": 23.4375,
+                                                "argument2": "minecraft:end/sloped_cheese"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }"""));
+
+            return json.toString();/*
             return """
                 {
                   "sea_level": 0,
@@ -284,7 +408,7 @@ public class ConfiguredData {
                     }
                   }
                 }
-                """;
+                """;*/
         }
     }
 }

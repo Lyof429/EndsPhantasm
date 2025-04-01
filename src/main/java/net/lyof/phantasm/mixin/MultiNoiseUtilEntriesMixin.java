@@ -70,17 +70,7 @@ public abstract class MultiNoiseUtilEntriesMixin<T> {
         biomes = biomes * 2 - 1;
         //i = i * 2;
 
-        if (EndDataCompat.getCompatibilityMode().equals("endercon"))
-            return MultiNoiseUtil.createNoiseHypercube(
-                    splitRange(base.temperature(), biomes, i),
-                    base.humidity(),
-                    base.continentalness(),
-                    base.erosion(),
-                    base.depth(),
-                    base.weirdness(),
-                    base.offset() / 10000f);
-
-        else if (EndDataCompat.getCompatibilityMode().equals("nullscape"))
+        if (EndDataCompat.getCompatibilityMode().equals("nullscape"))
             return MultiNoiseUtil.createNoiseHypercube(
                     base.temperature(),
                     base.humidity(),
@@ -92,9 +82,9 @@ public abstract class MultiNoiseUtilEntriesMixin<T> {
 
         else
             return MultiNoiseUtil.createNoiseHypercube(
-                    base.temperature(), //splitRange(base.temperature(), biomes, i),
+                    splitRange(base.temperature(), biomes, i), //splitRange(base.temperature(), biomes, i),
                     base.humidity(), //splitRange(base.humidity(), biomes, i),
-                    splitRange(base.continentalness(), biomes, i),
+                    base.continentalness(),
                     base.erosion(),
                     base.depth(), //splitRange(base.depth(), biomes, i),
                     base.weirdness(), //splitRange(base.weirdness(), biomes, i),

@@ -1,14 +1,20 @@
 package net.lyof.phantasm.setup.datagen.config;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
+import com.google.gson.*;
+import com.mojang.datafixers.util.Pair;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
+import net.lyof.phantasm.world.ModWorldGeneration;
 import net.lyof.phantasm.world.biome.EndDataCompat;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.command.ReloadCommand;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import org.jetbrains.annotations.Nullable;
 
 import java.security.Provider;
@@ -20,7 +26,7 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 public class ConfiguredData {
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public final Identifier target;
     public Function<JsonElement, String> provider;
@@ -85,12 +91,12 @@ public class ConfiguredData {
                          {
                            "biome": "minecraft:end_highlands",
                            "parameters": {
-                             "continentalness": [-1, 1],
+                             "continentalness": 0,
                              "depth": 0,
                              "erosion": [0.25, 1],
                              "humidity": 0,
                              "offset": 0,
-                             "temperature": [-1, 1],
+                             "temperature": [-1, 1.2],
                              "weirdness": 0
                            }
                          },
@@ -146,6 +152,7 @@ public class ConfiguredData {
                        "type": "minecraft:multi_noise"
                      }"""));
             }
+
             return json.toString();
         }
 
@@ -156,16 +163,10 @@ public class ConfiguredData {
                         .getAsJsonObject().asMap().replace("temperature", getJson("""
                                 { "type": "minecraft:noise", "noise": "minecraft:temperature", "xz_scale": 1, "y_scale": 1 }"""));
             }
-            else if (ConfigEntries.enhanceWorldgen) {
-                json.getAsJsonObject().get("noise")
-                        .getAsJsonObject().asMap().replace("height", new JsonPrimitive(256));
+            if (ConfigEntries.enhanceWorldgen) {
+                json.getAsJsonObject().asMap().replace("noise", getJson("""
+                        { "min_y": 0, "height": 256, "size_horizontal": 2, "size_vertical": 1 }"""));
 
-                json.getAsJsonObject().get("noise_router")
-                        .getAsJsonObject().asMap().replace("continents", getJson("""
-                            { "type": "minecraft:noise", "noise": "minecraft:temperature", "xz_scale": 1, "y_scale": 1 }"""));
-                json.getAsJsonObject().get("noise_router")
-                        .getAsJsonObject().asMap().replace("erosion", getJson("""
-                            { "type": "minecraft:cache_2d", "argument": { "type": "minecraft:end_islands" } }"""));
                 json.getAsJsonObject().get("noise_router")
                         .getAsJsonObject().asMap().replace("initial_density_without_jaggedness", getJson("""
                             {

@@ -1,7 +1,11 @@
 package net.lyof.phantasm.world.biome;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
 import net.fabricmc.loader.api.FabricLoader;
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;

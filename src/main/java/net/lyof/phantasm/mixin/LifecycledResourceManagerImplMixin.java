@@ -44,13 +44,15 @@ public class LifecycledResourceManagerImplMixin {
 
     @Unique
     private static Resource readAndApply(Resource resource, ConfiguredData data) {
+        if (resource.getPack() instanceof ConfiguredDataResourcePack) return resource;
         return readAndApply(Optional.of(resource), data);
     }
 
     @Inject(method = "getResource", at = @At("RETURN"), cancellable = true)
     public void getConfiguredResource(Identifier id, CallbackInfoReturnable<Optional<Resource>> cir) {
         ConfiguredData data = ConfiguredData.get(id);
-        if (data == null || !data.enabled.get()) return;
+        if (data == null || !data.enabled.get() || (cir.getReturnValue().isPresent() && cir.getReturnValue().get().getPack() instanceof ConfiguredDataResourcePack))
+            return;
 
         cir.setReturnValue(Optional.of(readAndApply(cir.getReturnValue(), data)));
     }

@@ -202,7 +202,7 @@ public class ConfiguredData {
                         .getAsJsonObject().asMap().replace("biomes", endEntries);
             }
 
-            return Phantasm.log(gson.toJson(json));
+            return json.toString();
         }
 
         public static String changeNoiseRouter(JsonElement json) {

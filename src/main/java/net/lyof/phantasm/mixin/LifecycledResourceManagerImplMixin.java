@@ -79,8 +79,6 @@ public class LifecycledResourceManagerImplMixin {
             }
         }
 
-        Phantasm.log(startingPath);
-
         List<Identifier> ids = cir.getReturnValue().keySet().stream().toList();
         for (Identifier id : ids) {
             ConfiguredData data = ConfiguredData.get(id);

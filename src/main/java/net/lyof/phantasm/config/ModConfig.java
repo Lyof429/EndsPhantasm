@@ -112,12 +112,14 @@ public class ModConfig {
     "biomes": {
       // Compatibility mode for datapacks modifying the End generation, such as Nullscape or Endercon
       // Value must be one of:
-        // "default": Phantasm will replace an even proportion of the End Highlands with its custom biomes, mimicking its noise values
-          // theoretically works with any datapack, but might not be the prettiest
+        // "default": The whole terrain generation will be tweaked to have more variated islands and elevation.
+          // To disable this, use the "compatibility" mode without installing datapacks
+        // "compatibility": Other datapacks/vanilla generation will be used, with Phantasm's biomes on top
+          // Phantasm will replace an even proportion of the End Highlands with its custom biomes, mimicking its noise values
+          // Theoretically works with any datapack
         // "nullscape": Optimizes noise values to work best with Nullscape
-        // "endercon": Optimizes noise values to work best with Endercon
-        // "automatic": Same as default, but will work like "nullscape" or "endercon" depending on loaded mods
-          // if using the datapack versions, set this manually
+        // "automatic": Same as default, but will work like "nullscape" if it is loaded loaded as a mod
+          // if using the datapack version, set this manually
       "datapack_compatibility": "automatic",
       // Should the End's biome source be partially overrode so that the main island biome always generate at the center
       "force_main_island": true,
@@ -148,12 +150,9 @@ public class ModConfig {
       // Should the main island's obsidian spires never have iron bars around the End Crystal
       "no_crystal_cages": false,
       // Height to be added to the spires, mostly useful in case of datapacks raising the main island level
+        // Set to 0 to have them be the same height as they are in vanilla
       "extra_height": 40
-    },
-    
-    // Should the End's island generation be changed using built in datapacks (it's pretty)
-    //    If you set this to false, also set end_spires.extra_height to 0 for the best look
-    "enhance_end_generation": true
+    }
   },
   
   // CATEGORY: GAMEPLAY

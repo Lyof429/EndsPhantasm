@@ -26,9 +26,7 @@ public class EndDataCompat {
 
     public static String getCompatibilityMode() {
         if (ConfigEntries.dataCompatMode.equals("automatic")) {
-            if (FabricLoader.getInstance().isModLoaded("mr_endercon"))
-                return "endercon";
-            else if (FabricLoader.getInstance().isModLoaded("nullscape"))
+            if (FabricLoader.getInstance().isModLoaded("nullscape"))
                 return "nullscape";
             else return "default";
         }
@@ -55,9 +53,10 @@ public class EndDataCompat {
         return result;
     }
 
+
     public static JsonElement splitHypercube(JsonObject highlands, int count, int i) {
         count = count * 2 - 1;
-        String noise = "temperature";
+        String noise = getCompatibilityMode().equals("nullscape") ? "weirdness" : "temperature";
         JsonObject result = highlands.deepCopy();
         result.asMap().replace(noise, splitRange(highlands.get(noise), count, i));
         return result;

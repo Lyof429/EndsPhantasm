@@ -56,14 +56,15 @@ public class ConfiguredData {
 
 
     public static void register() {
-        register(Identifier.of("minecraft", "dimension/the_end.json"), () -> ConfigEntries.enhanceWorldgen,
+        register(Identifier.of("minecraft", "dimension/the_end.json"), () -> true,
                 Instances::changeBiomeSource);
 
         // Huge thanks to Ice (https://linktr.ee/icycrystal) for these noise values
         register(Identifier.of("minecraft", "worldgen/noise_settings/end.json"), () -> true,
                 Instances::changeNoiseRouter);
 
-        register(Identifier.of("minecraft", "worldgen/density_function/end/base_3d_noise.json"), () -> ConfigEntries.enhanceWorldgen,
+        register(Identifier.of("minecraft", "worldgen/density_function/end/base_3d_noise.json"),
+                () -> EndDataCompat.getCompatibilityMode().equals("default"),
                 json -> "{ \"type\": \"minecraft:old_blended_noise\", \"xz_scale\": 0.7, \"y_scale\": 1.2, \"xz_factor\": 90, \"y_factor\": 145, \"smear_scale_multiplier\": 8 }");
     }
 
@@ -83,7 +84,7 @@ public class ConfiguredData {
             if (json.getAsJsonObject().get("generator")
                     .getAsJsonObject().get("biome_source")
                     .getAsJsonObject().get("type")
-                    .getAsString().equals("minecraft:the_end")) {
+                    .getAsString().equals("minecraft:the_end") && EndDataCompat.getCompatibilityMode().equals("default")) {
 
                 json.getAsJsonObject().get("generator")
                         .getAsJsonObject().asMap().replace("biome_source", getJson("""
@@ -154,47 +155,52 @@ public class ConfiguredData {
                      }"""));
             }
 
-            // Adds custom biomes to the biome source
-            List<JsonElement> entries = json.getAsJsonObject().get("generator")
-                    .getAsJsonObject().get("biome_source").getAsJsonObject().get("biomes").getAsJsonArray().asList();
-            JsonArray endEntries = new JsonArray();
-            JsonObject highlands = null;
-
-            for (JsonElement e : entries) {
-                if (e.getAsJsonObject().get("biome").getAsString().equals(BiomeKeys.END_HIGHLANDS.getValue().toString()))
-                    highlands = e.getAsJsonObject().get("parameters").getAsJsonObject();
-            }
-
-            if (highlands != null) {
-                int customCount = EndDataCompat.getEnabledBiomes().size();
-
-                // hook the custom biomes in
-                int j = 0;
-                for (Identifier biome : EndDataCompat.getEnabledBiomes()) {
-                    Phantasm.log("Adding " + biome + " to the End biome source at slice " + (j/2 + 1) + " out of " + customCount);
-                    JsonObject result = new JsonObject();
-                    result.addProperty("biome", biome.toString());
-                    result.add("parameters", EndDataCompat.splitHypercube(highlands, customCount, j));
-                    endEntries.add(result);
-                    j += 2;
-                }
-
-                // add all the default biomes
-                endEntries.asList().addAll(entries.stream()
-                        .filter(p -> !p.getAsJsonObject().get("biome").getAsString().equals(BiomeKeys.END_HIGHLANDS.getValue().toString())
-                                && !EndDataCompat.contains(new Identifier(p.getAsJsonObject().get("biome").getAsString()))).toList());
-
-                // add back the end highlands
-                for (int i = 1; i <= customCount; i += 2) {
-                    JsonObject result = new JsonObject();
-                    result.addProperty("biome", BiomeKeys.END_HIGHLANDS.getValue().toString());
-                    result.add("parameters", EndDataCompat.splitHypercube(highlands, customCount, i));
-                    endEntries.add(result);
-                }
-            }
-            json.getAsJsonObject().get("generator")
+            if (json.getAsJsonObject().get("generator")
                     .getAsJsonObject().get("biome_source")
-                    .getAsJsonObject().asMap().replace("biomes", endEntries);
+                    .getAsJsonObject().get("type")
+                    .getAsString().equals("minecraft:multi_noise")) {
+                // Adds custom biomes to the biome source
+                List<JsonElement> entries = json.getAsJsonObject().get("generator")
+                        .getAsJsonObject().get("biome_source").getAsJsonObject().get("biomes").getAsJsonArray().asList();
+                JsonArray endEntries = new JsonArray();
+                JsonObject highlands = null;
+
+                for (JsonElement e : entries) {
+                    if (e.getAsJsonObject().get("biome").getAsString().equals(BiomeKeys.END_HIGHLANDS.getValue().toString()))
+                        highlands = e.getAsJsonObject().get("parameters").getAsJsonObject();
+                }
+
+                if (highlands != null) {
+                    int customCount = EndDataCompat.getEnabledBiomes().size();
+
+                    // hook the custom biomes in
+                    int j = 0;
+                    for (Identifier biome : EndDataCompat.getEnabledBiomes()) {
+                        Phantasm.log("Adding " + biome + " to the End biome source at slice " + (j / 2 + 1) + " out of " + customCount);
+                        JsonObject result = new JsonObject();
+                        result.addProperty("biome", biome.toString());
+                        result.add("parameters", EndDataCompat.splitHypercube(highlands, customCount, j));
+                        endEntries.add(result);
+                        j += 2;
+                    }
+
+                    // add all the default biomes
+                    endEntries.asList().addAll(entries.stream()
+                            .filter(p -> !p.getAsJsonObject().get("biome").getAsString().equals(BiomeKeys.END_HIGHLANDS.getValue().toString())
+                                    && !EndDataCompat.contains(new Identifier(p.getAsJsonObject().get("biome").getAsString()))).toList());
+
+                    // add back the end highlands
+                    for (int i = 1; i <= customCount; i += 2) {
+                        JsonObject result = new JsonObject();
+                        result.addProperty("biome", BiomeKeys.END_HIGHLANDS.getValue().toString());
+                        result.add("parameters", EndDataCompat.splitHypercube(highlands, customCount, i));
+                        endEntries.add(result);
+                    }
+                }
+                json.getAsJsonObject().get("generator")
+                        .getAsJsonObject().get("biome_source")
+                        .getAsJsonObject().asMap().replace("biomes", endEntries);
+            }
 
             return Phantasm.log(gson.toJson(json));
         }
@@ -206,7 +212,7 @@ public class ConfiguredData {
                         .getAsJsonObject().asMap().replace("temperature", getJson("""
                                 { "type": "minecraft:noise", "noise": "minecraft:temperature", "xz_scale": 1, "y_scale": 1 }"""));
             }
-            if (ConfigEntries.enhanceWorldgen) {
+            if (EndDataCompat.getCompatibilityMode().equals("default")) {
                 json.getAsJsonObject().asMap().replace("noise", getJson("""
                         { "min_y": 0, "height": 256, "size_horizontal": 2, "size_vertical": 1 }"""));
 

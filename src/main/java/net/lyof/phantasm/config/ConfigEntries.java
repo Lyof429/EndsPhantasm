@@ -19,8 +19,6 @@ public class ConfigEntries {
         noCrystalCages = new ConfigEntry<>("world_gen.end_spires.no_crystal_cages", false).get();
         extraSpiresHeight = new ConfigEntry<>("world_gen.end_spires.extra_height", 40).get();
 
-        enhanceWorldgen = new ConfigEntry<>("world_gen.enhance_end_generation", true).get();
-
         outerEndIntegration = new ConfigEntry<>("gameplay.outer_end_in_gameloop", true).get();
 
         behemothAggroRange = new ConfigEntry<>("gameplay.behemoth.aggro_range", 6).get();
@@ -55,8 +53,6 @@ public class ConfigEntries {
     public static boolean improveEndSpires;
     public static boolean noCrystalCages;
     public static int extraSpiresHeight;
-
-    public static boolean enhanceWorldgen;
 
     public static boolean outerEndIntegration;
 

@@ -27,7 +27,7 @@ public abstract class MultiNoiseBiomeSourceMixin {
                                 CallbackInfoReturnable<RegistryEntry<Biome>> cir) {
 
         if (!ConfigEntries.forceMainIsland || ModWorldGeneration.LOOKUP == null ||
-                this.getBiomeEntries().getEntries().stream().noneMatch(p -> p.getSecond().matchesKey(BiomeKeys.END_HIGHLANDS)))
+                this.getBiomeEntries().getEntries().stream().noneMatch(p -> p.getSecond().matchesKey(BiomeKeys.THE_END)))
             return;
 
         int i = BiomeCoords.toBlock(x);

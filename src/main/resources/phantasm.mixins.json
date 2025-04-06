@@ -21,7 +21,6 @@
     "MobEntityMixin",
     "MultiNoiseBiomeSourceMixin",
     "MultiNoiseBiomeSourceParameterListMixin",
-    "MultiNoiseUtilEntriesMixin",
     "PlantBlockMixin",
     "PlayerEntityMixin",
     "ServerPlayerEntityMixin",

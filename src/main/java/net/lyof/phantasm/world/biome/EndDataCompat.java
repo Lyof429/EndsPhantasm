@@ -20,8 +20,8 @@ import java.util.function.Supplier;
 
 public class EndDataCompat {
     public static void register() {
-        add(ModBiomes.ACIDBURNT_ABYSSES, () -> ConfigEntries.doAcidburntAbyssesBiome);
-        add(ModBiomes.DREAMING_DEN, () -> ConfigEntries.doDreamingDenBiome);
+        add(ModBiomes.ACIDBURNT_ABYSSES, () -> ConfigEntries.doAcidburntAbyssesBiome ? ConfigEntries.acidburntAbyssesWeight : 0);
+        add(ModBiomes.DREAMING_DEN, () -> ConfigEntries.doDreamingDenBiome ? ConfigEntries.dreamingDenWeight : 0);
     }
 
     public static String getCompatibilityMode() {
@@ -34,21 +34,22 @@ public class EndDataCompat {
     }
 
 
-    private static final List<Pair<Identifier, Supplier<Boolean>>> BIOMES = new ArrayList<>();
+    private static final List<Pair<Identifier, Supplier<Double>>> BIOMES = new ArrayList<>();
 
-    public static void add(RegistryKey<Biome> biome, Supplier<Boolean> condition) {
-        BIOMES.add(new Pair<>(biome.getValue(), condition));
+    public static void add(RegistryKey<Biome> biome, Supplier<Double> weight) {
+        if (!contains(biome.getValue()))
+            BIOMES.add(new Pair<>(biome.getValue(), weight));
     }
 
     public static boolean contains(Identifier biome) {
         return BIOMES.stream().anyMatch(pair -> pair.getFirst() == biome);
     }
 
-    public static List<Identifier> getEnabledBiomes() {
-        List<Identifier> result = new ArrayList<>();
-        for (Pair<Identifier, Supplier<Boolean>> pair : BIOMES) {
-            if (pair.getSecond().get())
-                result.add(pair.getFirst());
+    public static List<Pair<Identifier, Double>> getEnabledBiomes() {
+        List<Pair<Identifier, Double>> result = new ArrayList<>();
+        for (Pair<Identifier, Supplier<Double>> pair : BIOMES) {
+            if (pair.getSecond().get() > 0)
+                result.add(new Pair<>(pair.getFirst(), pair.getSecond().get()));
         }
         return result;
     }

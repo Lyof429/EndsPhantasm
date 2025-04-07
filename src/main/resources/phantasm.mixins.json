@@ -24,6 +24,7 @@
     "PlantBlockMixin",
     "PlayerEntityMixin",
     "ServerPlayerEntityMixin",
+    "TheEndBiomesMixin",
     "access.ChunkGeneratorSettingsAccessor",
     "access.EndGatewayBlockEntityAccessor",
     "access.FoliagePlacerTypeInvoker",

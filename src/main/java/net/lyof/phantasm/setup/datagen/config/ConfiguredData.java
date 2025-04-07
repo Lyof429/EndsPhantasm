@@ -175,13 +175,16 @@ public class ConfiguredData {
                 if (highlands != null && customCount > 0) {
                     // hook the custom biomes in
                     int j = 0;
-                    for (Identifier biome : EndDataCompat.getEnabledBiomes()) {
+                    for (Pair<Identifier, Double> entry : EndDataCompat.getEnabledBiomes()) {
+                        Identifier biome = entry.getFirst();
+
                         Phantasm.log("Adding " + biome + " to the End biome source at slice " + (j / 2 + 1) + " out of " + customCount);
                         JsonObject result = new JsonObject();
                         result.addProperty("biome", biome.toString());
                         result.add("parameters", EndDataCompat.splitHypercube(highlands,
                                 customCount == 1 ? 2 : customCount*2 - 1, j));
                         endEntries.add(result);
+
                         j += 2;
                     }
 

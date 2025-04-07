@@ -121,6 +121,7 @@ public class ModConfig {
         // "automatic": Same as "custom", but will work like "nullscape" if it is loaded as a mod
           // if using the datapack version, set this manually
       "datapack_compatibility": "automatic",
+      // If the above 
       // Should the End's biome source be partially overrode so that the main island biome always generate at the center
       "force_main_island": true,
     

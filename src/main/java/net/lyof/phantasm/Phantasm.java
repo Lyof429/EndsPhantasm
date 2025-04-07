@@ -67,7 +67,7 @@ public class Phantasm implements ModInitializer {
 	}
 
 	public static <T> T log(T message) {
-		LOGGER.info(String.valueOf(message));
+		LOGGER.info("[Phantasm] {}", message);
 		return message;
 	}
 }

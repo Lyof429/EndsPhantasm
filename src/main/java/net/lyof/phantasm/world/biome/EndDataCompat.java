@@ -28,7 +28,7 @@ public class EndDataCompat {
         if (ConfigEntries.dataCompatMode.equals("automatic")) {
             if (FabricLoader.getInstance().isModLoaded("nullscape"))
                 return "nullscape";
-            else return "default";
+            else return "custom";
         }
         return ConfigEntries.dataCompatMode;
     }
@@ -55,7 +55,6 @@ public class EndDataCompat {
 
 
     public static JsonElement splitHypercube(JsonObject highlands, int count, int i) {
-        count = count * 2 - 1;
         String noise = getCompatibilityMode().equals("nullscape") ? "weirdness" : "temperature";
         JsonObject result = highlands.deepCopy();
         result.asMap().replace(noise, splitRange(highlands.get(noise), count, i));
@@ -66,7 +65,6 @@ public class EndDataCompat {
         JsonArray result = new JsonArray();
         double pMin = point.isJsonArray() ? point.getAsJsonArray().get(0).getAsDouble() : -1;
         double pMax = point.isJsonArray() ? point.getAsJsonArray().get(1).getAsDouble() : 1;
-        Phantasm.log(pMin + " " + pMax + " " + point);
 
         result.add((pMax - pMin) / count * i + pMin);
         result.add((pMax - pMin) / count * (i+1) + pMin);

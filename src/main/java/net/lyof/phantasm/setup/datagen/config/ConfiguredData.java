@@ -64,7 +64,7 @@ public class ConfiguredData {
                 Instances::changeNoiseRouter);
 
         register(Identifier.of("minecraft", "worldgen/density_function/end/base_3d_noise.json"),
-                () -> EndDataCompat.getCompatibilityMode().equals("default"),
+                () -> EndDataCompat.getCompatibilityMode().equals("custom"),
                 json -> "{ \"type\": \"minecraft:old_blended_noise\", \"xz_scale\": 0.7, \"y_scale\": 1.2, \"xz_factor\": 90, \"y_factor\": 145, \"smear_scale_multiplier\": 8 }");
     }
 
@@ -84,7 +84,7 @@ public class ConfiguredData {
             if (json.getAsJsonObject().get("generator")
                     .getAsJsonObject().get("biome_source")
                     .getAsJsonObject().get("type")
-                    .getAsString().equals("minecraft:the_end") && EndDataCompat.getCompatibilityMode().equals("default")) {
+                    .getAsString().equals("minecraft:the_end") && EndDataCompat.getCompatibilityMode().equals("custom")) {
 
                 json.getAsJsonObject().get("generator")
                         .getAsJsonObject().asMap().replace("biome_source", getJson("""
@@ -170,16 +170,17 @@ public class ConfiguredData {
                         highlands = e.getAsJsonObject().get("parameters").getAsJsonObject();
                 }
 
-                if (highlands != null) {
-                    int customCount = EndDataCompat.getEnabledBiomes().size();
+                int customCount = EndDataCompat.getEnabledBiomes().size();
 
+                if (highlands != null && customCount > 0) {
                     // hook the custom biomes in
                     int j = 0;
                     for (Identifier biome : EndDataCompat.getEnabledBiomes()) {
                         Phantasm.log("Adding " + biome + " to the End biome source at slice " + (j / 2 + 1) + " out of " + customCount);
                         JsonObject result = new JsonObject();
                         result.addProperty("biome", biome.toString());
-                        result.add("parameters", EndDataCompat.splitHypercube(highlands, customCount, j));
+                        result.add("parameters", EndDataCompat.splitHypercube(highlands,
+                                customCount == 1 ? 2 : customCount*2 - 1, j));
                         endEntries.add(result);
                         j += 2;
                     }
@@ -193,13 +194,15 @@ public class ConfiguredData {
                     for (int i = 1; i <= customCount; i += 2) {
                         JsonObject result = new JsonObject();
                         result.addProperty("biome", BiomeKeys.END_HIGHLANDS.getValue().toString());
-                        result.add("parameters", EndDataCompat.splitHypercube(highlands, customCount, i));
+                        result.add("parameters", EndDataCompat.splitHypercube(highlands,
+                                customCount == 1 ? 2 : customCount*2 - 1, i));
                         endEntries.add(result);
                     }
+
+                    json.getAsJsonObject().get("generator")
+                            .getAsJsonObject().get("biome_source")
+                            .getAsJsonObject().asMap().replace("biomes", endEntries);
                 }
-                json.getAsJsonObject().get("generator")
-                        .getAsJsonObject().get("biome_source")
-                        .getAsJsonObject().asMap().replace("biomes", endEntries);
             }
 
             return json.toString();
@@ -208,11 +211,17 @@ public class ConfiguredData {
         public static String changeNoiseRouter(JsonElement json) {
             if (json.getAsJsonObject().get("noise_router")
                     .getAsJsonObject().get("temperature").isJsonPrimitive()) {
+
+                JsonElement temperature = getJson("""
+                                { "type": "minecraft:noise", "noise": "minecraft:temperature", "xz_scale": 1, "y_scale": 1 }""");
+                int biomes = EndDataCompat.getEnabledBiomes().size();
+                temperature.getAsJsonObject().addProperty("xz_scale",
+                        Phantasm.log(biomes == 0 ? 1 : 1f / biomes));
+
                 json.getAsJsonObject().get("noise_router")
-                        .getAsJsonObject().asMap().replace("temperature", getJson("""
-                                { "type": "minecraft:noise", "noise": "minecraft:temperature", "xz_scale": 1, "y_scale": 1 }"""));
+                        .getAsJsonObject().asMap().replace("temperature", temperature);
             }
-            if (EndDataCompat.getCompatibilityMode().equals("default")) {
+            if (EndDataCompat.getCompatibilityMode().equals("custom")) {
                 json.getAsJsonObject().asMap().replace("noise", getJson("""
                         { "min_y": 0, "height": 256, "size_horizontal": 2, "size_vertical": 1 }"""));
 

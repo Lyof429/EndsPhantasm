@@ -121,7 +121,8 @@ public class ModConfig {
         // "automatic": Same as "custom", but will work like "nullscape" if it is loaded as a mod
           // if using the datapack version, set this manually
       "datapack_compatibility": "automatic",
-      // If the above 
+      // How much of the End Highlands should be replaced with custom biomes. Must be a number between 0 and 1 (0: none, 1: all of it, 0.5: 50%)
+      "custom_biome_weight": 0.5,
       // Should the End's biome source be partially overrode so that the main island biome always generate at the center
       "force_main_island": true,
     

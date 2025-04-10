@@ -4,13 +4,13 @@ public class ConfigEntries {
     public static void reload() {
         dataCompatMode = new ConfigEntry<>("world_gen.biomes.datapack_compatibility", "automatic").get();
         forceMainIsland = new ConfigEntry<>("world_gen.biomes.force_main_island", true).get();
-        customBiomesWeight = new ConfigEntry<>("world_gen.biomes.custom_biomes_weight", 0.5).get();
+        customBiomesWeight = new ConfigEntry<>("world_gen.biomes.custom_biomes_weight", 0.7).get();
 
         doDreamingDenBiome = new ConfigEntry<>("world_gen.biomes.dreaming_den.generate", true).get();
         dreamingDenWeight = new ConfigEntry<>("world_gen.biomes.dreaming_den.generation_weight", 1.5).get();
 
         doAcidburntAbyssesBiome = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.generate", true).get();
-        acidburntAbyssesWeight = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.generation_weight", 2.5).get();
+        acidburntAbyssesWeight = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.generation_weight", 1.2).get();
 
         doFallenStars = new ConfigEntry<>("world_gen.do_fallen_stars", true).get();
         doRawPurpur = new ConfigEntry<>("world_gen.do_raw_purpur", true).get();

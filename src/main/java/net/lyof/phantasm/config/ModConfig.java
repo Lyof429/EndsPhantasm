@@ -122,7 +122,7 @@ public class ModConfig {
           // if using the datapack version, set this manually
       "datapack_compatibility": "automatic",
       // How much of the End Highlands should be replaced with custom biomes. Must be a number between 0 and 1 (0: none, 1: all of it, 0.5: 50%)
-      "custom_biome_weight": 0.5,
+      "custom_biomes_weight": 0.7,
       // Should the End's biome source be partially overrode so that the main island biome always generate at the center
       "force_main_island": true,
     
@@ -135,8 +135,7 @@ public class ModConfig {
       // ACIDBURNT ABYSSES
       "acidburnt_abysses": {
         "generate": true,
-        // Fabric's biome API prioritizes biomes added first, so this one having a higher weight is only to balance that
-        "generation_weight": 2.5
+        "generation_weight": 1.2
       }
     },
     // Should Fallen Stars appear in the End's sky

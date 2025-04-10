@@ -20,8 +20,8 @@ import java.util.function.Supplier;
 
 public class EndDataCompat {
     public static void register() {
-        add(ModBiomes.ACIDBURNT_ABYSSES, () -> ConfigEntries.doAcidburntAbyssesBiome ? ConfigEntries.acidburntAbyssesWeight : 0);
         add(ModBiomes.DREAMING_DEN, () -> ConfigEntries.doDreamingDenBiome ? ConfigEntries.dreamingDenWeight : 0);
+        add(ModBiomes.ACIDBURNT_ABYSSES, () -> ConfigEntries.doAcidburntAbyssesBiome ? ConfigEntries.acidburntAbyssesWeight : 0);
     }
 
     public static String getCompatibilityMode() {
@@ -54,21 +54,16 @@ public class EndDataCompat {
         return result;
     }
 
+    public static JsonElement splitHypercube(Identifier biome, JsonObject highlands, String noise, double min, double max) {
+        JsonArray array = new JsonArray();
+        array.add(min);
+        array.add(max);
+        JsonObject parameters = highlands.deepCopy();
+        parameters.asMap().replace(noise, array);
 
-    public static JsonElement splitHypercube(JsonObject highlands, int count, int i) {
-        String noise = getCompatibilityMode().equals("nullscape") ? "weirdness" : "temperature";
-        JsonObject result = highlands.deepCopy();
-        result.asMap().replace(noise, splitRange(highlands.get(noise), count, i));
-        return result;
-    }
-
-    public static JsonArray splitRange(JsonElement point, int count, int i) {
-        JsonArray result = new JsonArray();
-        double pMin = point.isJsonArray() ? point.getAsJsonArray().get(0).getAsDouble() : -1;
-        double pMax = point.isJsonArray() ? point.getAsJsonArray().get(1).getAsDouble() : 1;
-
-        result.add((pMax - pMin) / count * i + pMin);
-        result.add((pMax - pMin) / count * (i+1) + pMin);
+        JsonObject result = new JsonObject();
+        result.addProperty("biome", biome.toString());
+        result.add("parameters", parameters);
         return result;
     }
 }

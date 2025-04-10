@@ -227,7 +227,15 @@ public class ConfiguredData {
                     .getAsJsonObject().get("temperature").isJsonPrimitive()) {
 
                 JsonElement temperature = getJson("""
-                                { "type": "minecraft:noise", "noise": "minecraft:temperature", "xz_scale": 1, "y_scale": 1 }""");
+                        {
+                          "type": "minecraft:cache_2d",
+                          "argument": {
+                            "type": "minecraft:noise",
+                            "noise": "minecraft:temperature",
+                            "xz_scale": 1,
+                            "y_scale": 1
+                          }
+                        }""");
                 int biomes = EndDataCompat.getEnabledBiomes().size();
                 temperature.getAsJsonObject().addProperty("xz_scale",
                         biomes == 0 ? 1 : 1f / biomes);

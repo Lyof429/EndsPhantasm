@@ -4,7 +4,7 @@ public class ConfigEntries {
     public static void reload() {
         dataCompatMode = new ConfigEntry<>("world_gen.biomes.datapack_compatibility", "automatic").get();
         forceMainIsland = new ConfigEntry<>("world_gen.biomes.force_main_island", true).get();
-        customBiomesWeight = new ConfigEntry<>("world_gen.biomes.custom_biomes_weight", 0.7).get();
+        customBiomesWeight = new ConfigEntry<>("world_gen.biomes.custom_biomes_weight", 0.6).get();
 
         doDreamingDenBiome = new ConfigEntry<>("world_gen.biomes.dreaming_den.generate", true).get();
         dreamingDenWeight = new ConfigEntry<>("world_gen.biomes.dreaming_den.generation_weight", 1.5).get();

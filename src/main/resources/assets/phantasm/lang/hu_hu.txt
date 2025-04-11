@@ -17,8 +17,8 @@
   "block.phantasm.pream_sapling": "Pream csemete",
 
   "block.phantasm.pream_planks": "Pream deszka",
-  "block.phantasm.pream_stairs": "Pream lépcsők",
-  "block.phantasm.pream_slab": "Pream lemez",
+  "block.phantasm.pream_stairs": "Pream lépcső",
+  "block.phantasm.pream_slab": "Pream lépcsőfok",
 
   "block.phantasm.pream_door": "Pream ajtó",
   "block.phantasm.pream_trapdoor": "Pream csapóajtó",
@@ -37,7 +37,7 @@
   "item.phantasm.pream_berry": "Pream bogyó",
   "item.phantasm.oblifruit": "Feledésgyümölcs",
 
-  "item.phantasm.chorus_fruit_salad": "Kóruszgyümölcssaláta",
+  "item.phantasm.chorus_fruit_salad": "Chorus gyümölcssaláta",
 
   "block.phantasm.crystal_shard": "Kristályszilánk",
   "block.phantasm.void_crystal_shard": "Ürességi kristályszilánk",
@@ -50,7 +50,7 @@
 
   "block.phantasm.crystal_block": "Kristályblokk",
   "block.phantasm.crystal_tiles": "Kristálycsempék",
-  "block.phantasm.crystal_tiles_stairs": "Kristálycsempés lépcsők",
+  "block.phantasm.crystal_tiles_stairs": "Kristálycsempés lépcső",
   "block.phantasm.crystal_tiles_slab": "Kristálycsempés lépcsőfok",
   "block.phantasm.crystal_pillar": "Kristályoszlop",
 
@@ -59,7 +59,7 @@
 
   "block.phantasm.void_crystal_block": "Ürességi kristályblokk",
   "block.phantasm.void_crystal_tiles": "Ürességi kristálycsempék",
-  "block.phantasm.void_crystal_tiles_stairs": "Ürességi kristálycsempés lépcsők",
+  "block.phantasm.void_crystal_tiles_stairs": "Ürességi kristálycsempés lépcső",
   "block.phantasm.void_crystal_tiles_slab": "Ürességi kristálycsempés lépcsőfok",
   "block.phantasm.void_crystal_pillar": "Ürességi kristályoszlop",
 
@@ -68,14 +68,14 @@
 
   "block.phantasm.polished_obsidian": "Simított obszidián",
   "block.phantasm.polished_obsidian_bricks": "Simított obszidián téglák",
-  "block.phantasm.polished_obsidian_bricks_stairs": "Simított obszidián téglalépcsők",
+  "block.phantasm.polished_obsidian_bricks_stairs": "Simított obszidián téglalépcső",
   "block.phantasm.polished_obsidian_bricks_slab": "Simított obszidián téglalépcsőfok",
 
   "block.phantasm.purpur_lamp": "Purpurlámpa",
 
   "block.phantasm.raw_purpur": "Nyers purpur",
   "block.phantasm.raw_purpur_bricks": "Nyers purpurtéglák",
-  "block.phantasm.raw_purpur_bricks_stairs": "Nyers purpur téglalépcsők",
+  "block.phantasm.raw_purpur_bricks_stairs": "Nyers purpur téglalépcső",
   "block.phantasm.raw_purpur_bricks_slab": "Nyers purpur téglalépcsőfok",
 
   "block.phantasm.raw_purpur_tiles": "Nyers purpur csempék",
@@ -106,7 +106,7 @@
   "block.phantasm.cirite": "Cirite",
   "block.phantasm.cirite_iron_ore": "Cirite vasérc",
   "block.phantasm.cirite_bricks": "Cirite téglák",
-  "block.phantasm.cirite_bricks_stairs": "Cirite téglalépcsők",
+  "block.phantasm.cirite_bricks_stairs": "Cirite téglalépcső",
   "block.phantasm.cirite_bricks_slab": "Cirite téglalépcsőfok",
 
   "block.phantasm.choral_block": "Choral blokk",

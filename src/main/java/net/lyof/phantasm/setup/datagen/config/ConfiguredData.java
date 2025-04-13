@@ -219,7 +219,7 @@ public class ConfiguredData {
                 }
             }
 
-            return Phantasm.log(gson.toJson(json));
+            return gson.toJson(json);
         }
 
         public static String changeNoiseRouter(JsonElement json) {

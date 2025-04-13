@@ -1,5 +1,7 @@
 package net.lyof.phantasm.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import net.lyof.phantasm.effect.ModEffects;
 import net.lyof.phantasm.item.ModItems;
 import net.minecraft.entity.Entity;
@@ -37,13 +39,19 @@ public abstract class LivingEntityMixin extends Entity {
         if (instance.isOf(ModItems.OBLIFRUIT) && Math.random() < 0.4) return;
         instance.decrement(1);
     }
-
+/*
     @Inject(method = "modifyAppliedDamage", at = @At("RETURN"), cancellable = true)
     public void applyVulnerability(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
         if (!this.hasStatusEffect(ModEffects.CORROSION)) return;
 
         int i = this.getStatusEffect(ModEffects.CORROSION).getAmplifier() + 1;
         cir.setReturnValue(amount * (1 + 0.2f * i));
+    }*/
+
+    @WrapMethod(method = "getArmor")
+    public int applyVulnerability(Operation<Integer> original) {
+        original.call();
+        return 0;
     }
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)

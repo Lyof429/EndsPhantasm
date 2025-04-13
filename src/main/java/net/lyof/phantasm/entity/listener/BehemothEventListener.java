@@ -41,12 +41,6 @@ public class BehemothEventListener implements GameEventListener {
                 } else
                     behemoth.setTarget(player);
             }
-            // TODO: animations needs to be rewritten for triggering behemoth without entity
-//            else {
-//                behemoth.setAnimation(BehemothAnimation.WAKING_UP);
-//                behemoth.playSound(SoundEvents.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
-//                behemoth.angryTicks = 50;
-//            }
             return true;
         }
         return false;

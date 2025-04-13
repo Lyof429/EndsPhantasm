@@ -91,6 +91,8 @@ public class ChoralArrowEntity extends ArrowEntity {
             World world = this.getWorld();
             Entity shooter = this.getOwner();
 
+            if (this.distanceTo(shooter) > 4) return;
+
             Vec3d direction = this.getVelocity().normalize();
             Vec3d position = this.getPos();
             int range = ConfigEntries.subwooferRange * 2;

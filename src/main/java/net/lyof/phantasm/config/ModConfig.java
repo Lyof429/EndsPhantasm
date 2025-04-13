@@ -113,11 +113,13 @@ public class ModConfig {
       // Compatibility mode for datapacks modifying the End generation, such as Nullscape or Endercon
       // Value must be one of:
         // "custom": The whole terrain generation will be tweaked to have more variated islands and elevation.
-          // To disable this, use the "compatibility" mode without installing datapacks
+          // To disable this, use "default" without datapacks or "vanilla"
         // "default": Other datapacks/vanilla generation will be used, with Phantasm's biomes on top
           // Phantasm will replace an even proportion of the End Highlands with its custom biomes, mimicking its noise values
           // Theoretically works with any datapack
+          // If no end datapack is installed, will improve the biome distribution without changing the terrain
         // "nullscape": Optimizes noise values to work best with Nullscape
+        // "vanilla": The terrain will be left untouched, and Fabric's biome distribution will be used
         // "automatic": Same as "custom", but will work like "nullscape" if it is loaded as a mod
           // if using the datapack version, set this manually
       "datapack_compatibility": "automatic",

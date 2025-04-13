@@ -84,7 +84,7 @@ public class ConfiguredData {
             if (json.getAsJsonObject().get("generator")
                     .getAsJsonObject().get("biome_source")
                     .getAsJsonObject().get("type")
-                    .getAsString().equals("minecraft:the_end") && EndDataCompat.getCompatibilityMode().equals("custom")) {
+                    .getAsString().equals("minecraft:the_end") && !EndDataCompat.getCompatibilityMode().equals("vanilla")) {
 
                 json.getAsJsonObject().get("generator")
                         .getAsJsonObject().asMap().replace("biome_source", getJson("""

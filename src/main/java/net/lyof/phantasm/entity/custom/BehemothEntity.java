@@ -1,10 +1,15 @@
 package net.lyof.phantasm.entity.custom;
 
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.animation.BehemothAnimation;
 import net.lyof.phantasm.entity.goal.BehemothAttackGoal;
 import net.lyof.phantasm.entity.goal.SleepGoal;
 import net.lyof.phantasm.entity.listener.BehemothEventListener;
 import net.lyof.phantasm.particle.ModParticles;
+import net.lyof.phantasm.setup.ModPackets;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
@@ -16,6 +21,8 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -100,6 +107,16 @@ public class BehemothEntity extends HostileEntity implements Monster {
 
     @Override
     public void setTarget(@Nullable LivingEntity target) {
+        // Client syncing
+        if (!this.getWorld().isClient()) {
+            PacketByteBuf buf = PacketByteBufs.create();
+            buf.writeInt(this.getId());
+            buf.writeInt(target == null ? 0 : target.getId());
+            for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) this.getWorld(), this.getBlockPos())) {
+                ServerPlayNetworking.send(player, ModPackets.BEHEMOTH_WAKE_UP, buf);
+            }
+        }
+
         if (target == null && this.isAngry()) this.setAnimation(BehemothAnimation.WAKING_DOWN);
         else if (target != null && !this.isAngry()) {
             this.setAnimation(BehemothAnimation.WAKING_UP);

@@ -1,5 +1,6 @@
 package net.lyof.phantasm.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.effect.ModEffects;
 import net.lyof.phantasm.mixin.access.EndGatewayBlockEntityAccessor;
@@ -18,16 +19,15 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin {
     @Shadow public abstract World getWorld();
 
-    @Inject(method = "getTeleportTarget", at = @At("RETURN"), cancellable = true)
-    public void spawnInOuterEnd(ServerWorld destination, CallbackInfoReturnable<TeleportTarget> cir) {
+    @ModifyReturnValue(method = "getTeleportTarget", at = @At("RETURN"))
+    public TeleportTarget spawnInOuterEnd(TeleportTarget original, ServerWorld destination) {
         if (destination.getRegistryKey() == World.END && ConfigEntries.outerEndIntegration) {
-            TeleportTarget result = cir.getReturnValue();
+            TeleportTarget result = original;
             BlockPos p = new BlockPos(1280, 60, 0);
 
             BlockPos pos = EndGatewayBlockEntityAccessor.getExitPos(destination, p).up(2);
@@ -38,10 +38,9 @@ public abstract class EntityMixin {
                             Random.create(pos.asLong()), pos.down(2)));
             }
 
-            result = new TeleportTarget(new Vec3d(pos.getX(), pos.getY(), pos.getZ()), result.velocity, result.yaw, result.pitch);
-
-            cir.setReturnValue(result);
+            original = new TeleportTarget(new Vec3d(pos.getX(), pos.getY(), pos.getZ()), result.velocity, result.yaw, result.pitch);
         }
+        return original;
     }
 
     @Inject(method = "changeLookDirection", at = @At("HEAD"), cancellable = true)

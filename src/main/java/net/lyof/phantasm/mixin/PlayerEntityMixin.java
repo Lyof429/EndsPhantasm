@@ -1,5 +1,6 @@
 package net.lyof.phantasm.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.effect.ModEffects;
 import net.lyof.phantasm.setup.ModTags;
@@ -20,17 +21,16 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 		super(entityType, world);
 	}
 
-	@Inject(at = @At("RETURN"), method = "getBlockBreakingSpeed", cancellable = true)
-	private void modifyBreakSpeed(BlockState block, CallbackInfoReturnable<Float> cir) {
+	@ModifyReturnValue(method = "getBlockBreakingSpeed", at = @At("RETURN"))
+	private float modifyBreakSpeed(float original, BlockState state) {
 		PlayerEntity self = ((PlayerEntity) (Object) this);
 
 		ItemStack stack = self.getMainHandStack();
-		if (!stack.isIn(ModTags.Items.XP_BOOSTED) || !stack.getItem().isSuitableFor(block)) return;
+		if (!stack.isIn(ModTags.Items.XP_BOOSTED) || !stack.getItem().isSuitableFor(state)) return original;
 
-		float bonus = 1;
-		bonus += ConfigEntries.crystalXPBoost * self.experienceLevel / 10 / 10f;
+		float bonus = 1 + (float) ConfigEntries.crystalXPBoost * self.experienceLevel / 100f;
 
-		cir.setReturnValue(cir.getReturnValue() * bonus);
+		return original * bonus;
 	}
 
 	@Inject(method = "getMovementSpeed()F", at = @At("HEAD"), cancellable = true)

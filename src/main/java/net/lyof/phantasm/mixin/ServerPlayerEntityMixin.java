@@ -1,11 +1,10 @@
 package net.lyof.phantasm.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -17,7 +16,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = ServerPlayerEntity.class, priority = 1001)
@@ -36,7 +34,7 @@ public abstract class ServerPlayerEntityMixin extends Entity {
     public void noPlatform(ServerPlayerEntity instance, ServerWorld world, BlockPos centerPos, Operation<Void> original) {
         original.call(instance, world, ServerWorld.END_SPAWN_POS.mutableCopy());
     }
-
+/*
     @Inject(method = "moveToWorld", at = @At("HEAD"))
     public void cancelCreditsHead(ServerWorld destination, CallbackInfoReturnable<Entity> cir) {
         Advancement advancement = this.getServerWorld().getServer().getAdvancementLoader().get(new Identifier("end/kill_dragon"));
@@ -53,5 +51,19 @@ public abstract class ServerPlayerEntityMixin extends Entity {
                 && advancement != null && !this.getAdvancementTracker().getProgress(advancement).isDone()) {
             this.seenCredits = false;
         }
+    }*/
+
+    @WrapMethod(method = "moveToWorld")
+    public Entity cancelCredits(ServerWorld destination, Operation<Entity> original) {
+        Advancement advancement = this.getServerWorld().getServer().getAdvancementLoader().get(new Identifier("end/kill_dragon"));
+        if (this.getServerWorld().getRegistryKey() == World.END && destination.getRegistryKey() == World.OVERWORLD
+                && advancement != null && !this.getAdvancementTracker().getProgress(advancement).isDone()) {
+
+            this.seenCredits = true;
+            Entity result = original.call(destination);
+            this.seenCredits = false;
+            return result;
+        }
+        return original.call(destination);
     }
 }

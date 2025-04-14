@@ -20,7 +20,7 @@ import java.util.concurrent.CompletableFuture;
 
 @Mixin(MinecraftServer.class)
 public class MinecraftServerMixin {
-    @Inject(method = "createWorlds", at = @At("RETURN"))
+    @Inject(method = "createWorlds", at = @At("TAIL"))
     private void createEPLevels(WorldGenerationProgressListener worldGenerationProgressListener, CallbackInfo ci) {
         ModMaterialRules.addModMaterialRules((MinecraftServer) (Object) this, DimensionOptions.END);
     }

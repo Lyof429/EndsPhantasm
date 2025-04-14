@@ -1,5 +1,6 @@
 package net.lyof.phantasm.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.lyof.phantasm.effect.ModEffects;
@@ -17,7 +18,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -40,12 +40,12 @@ public abstract class LivingEntityMixin extends Entity {
         original.call(instance, amount);
     }
 
-    @Inject(method = "modifyAppliedDamage", at = @At("RETURN"), cancellable = true)
-    public void applyVulnerability(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
-        if (!this.hasStatusEffect(ModEffects.CORROSION)) return;
+    @ModifyReturnValue(method = "modifyAppliedDamage", at = @At("RETURN"))
+    public float applyVulnerability(float original) {
+        if (!this.hasStatusEffect(ModEffects.CORROSION)) return original;
 
         int i = this.getStatusEffect(ModEffects.CORROSION).getAmplifier() + 1;
-        cir.setReturnValue(amount * (1 + 0.2f * i));
+        return original * (1 + 0.2f * i);
     }
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)

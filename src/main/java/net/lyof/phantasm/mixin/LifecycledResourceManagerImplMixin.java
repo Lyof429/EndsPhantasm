@@ -1,5 +1,6 @@
 package net.lyof.phantasm.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ModConfig;
 import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
@@ -12,10 +13,8 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.*;
 import java.util.function.Predicate;
@@ -48,66 +47,67 @@ public class LifecycledResourceManagerImplMixin {
         return readAndApply(Optional.of(resource), data);
     }
 
-    @Inject(method = "getResource", at = @At("RETURN"), cancellable = true)
-    public void getConfiguredResource(Identifier id, CallbackInfoReturnable<Optional<Resource>> cir) {
+    @ModifyReturnValue(method = "getResource", at = @At("RETURN"))
+    public Optional<Resource> getConfiguredResource(Optional<Resource> original, Identifier id) {
         ConfiguredData data = ConfiguredData.get(id);
-        if (data == null || !data.enabled.get() || (cir.getReturnValue().isPresent() && cir.getReturnValue().get().getPack() instanceof ConfiguredDataResourcePack))
-            return;
+        if (data == null || !data.enabled.get() || (original.isPresent() && original.get().getPack() instanceof ConfiguredDataResourcePack))
+            return original;
 
-        cir.setReturnValue(Optional.of(readAndApply(cir.getReturnValue(), data)));
+        return Optional.of(readAndApply(original, data));
     }
 
-    @Inject(method = "getAllResources", at = @At("RETURN"), cancellable = true)
-    public void getAllConfiguredResource(Identifier id, CallbackInfoReturnable<List<Resource>> cir) {
+    @ModifyReturnValue(method = "getAllResources", at = @At("RETURN"))
+    public List<Resource> getAllConfiguredResource(List<Resource> original, Identifier id) {
         ConfiguredData data = ConfiguredData.get(id);
-        if (data == null || !data.enabled.get()) return;
+        if (data == null || !data.enabled.get()) return original;
 
-        List<Resource> result = cir.getReturnValue().stream()
+        return original.stream()
                 .map(resource -> readAndApply(resource, data)).toList();
-        cir.setReturnValue(result);
     }
 
-    @Inject(method = "findResources", at = @At("RETURN"), cancellable = true)
-    public void findConfiguredResources(String startingPath, Predicate<Identifier> allowedPathPredicate,
-                                        CallbackInfoReturnable<Map<Identifier, Resource>> cir) {
+    @ModifyReturnValue(method = "findResources", at = @At("RETURN"))
+    public Map<Identifier, Resource> findConfiguredResources(Map<Identifier, Resource> original,
+                                                             String startingPath, Predicate<Identifier> allowedPathPredicate) {
 
         for (ConfiguredData data : ConfiguredData.INSTANCES) {
             if (data.enabled.get() && data.target.getPath().startsWith(startingPath + "/") && allowedPathPredicate.test(data.target)) {
-                if (!cir.getReturnValue().containsKey(data.target)) {
-                    cir.getReturnValue().put(data.target, readAndApply(Optional.empty(), data));
+                if (!original.containsKey(data.target)) {
+                    original.put(data.target, readAndApply(Optional.empty(), data));
                 }
             }
         }
 
-        List<Identifier> ids = cir.getReturnValue().keySet().stream().toList();
+        List<Identifier> ids = original.keySet().stream().toList();
         for (Identifier id : ids) {
             ConfiguredData data = ConfiguredData.get(id);
             if (data == null || !data.enabled.get()) continue;
 
-            cir.getReturnValue().replace(id, readAndApply(cir.getReturnValue().get(id), data));
+            original.replace(id, readAndApply(original.get(id), data));
         }
+        return original;
     }
 
-    @Inject(method = "findAllResources", at = @At("RETURN"), cancellable = true)
-    public void findAllConfiguredResources(String startingPath, Predicate<Identifier> allowedPathPredicate,
-                                           CallbackInfoReturnable<Map<Identifier, List<Resource>>> cir) {
+    @ModifyReturnValue(method = "findAllResources", at = @At("RETURN"))
+    public Map<Identifier, List<Resource>> findAllConfiguredResources(Map<Identifier, List<Resource>> original,
+                                                                      String startingPath, Predicate<Identifier> allowedPathPredicate) {
 
         for (ConfiguredData data : ConfiguredData.INSTANCES) {
             if (data.enabled.get() && data.target.getPath().startsWith(startingPath) && allowedPathPredicate.test(data.target)) {
-                if (!cir.getReturnValue().containsKey(data.target)) {
-                    cir.getReturnValue().put(data.target, List.of(readAndApply(Optional.empty(), data)));
+                if (!original.containsKey(data.target)) {
+                    original.put(data.target, List.of(readAndApply(Optional.empty(), data)));
                 }
             }
         }
 
-        List<Identifier> ids = cir.getReturnValue().keySet().stream().toList();
+        List<Identifier> ids = original.keySet().stream().toList();
         for (Identifier id : ids) {
             ConfiguredData data = ConfiguredData.get(id);
             if (data == null || !data.enabled.get()) continue;
 
-            cir.getReturnValue().replace(id, cir.getReturnValue().get(id).stream()
+            original.replace(id, original.get(id).stream()
                     .map(resource -> readAndApply(resource, data)).toList());
         }
+        return original;
     }
 
     @Inject(method = "<init>", at = @At("TAIL"))

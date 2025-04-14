@@ -35,6 +35,7 @@
   },
   "client": [
     "MinecraftClientMixin",
-    "VexEntityRendererMixin"
+    "VexEntityRendererMixin",
+    "client.InGameHudMixin"
   ]
 }

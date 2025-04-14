@@ -1,5 +1,7 @@
 package net.lyof.phantasm.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.BlockState;
@@ -30,17 +32,9 @@ public abstract class ServerPlayerEntityMixin extends Entity {
 
     @Shadow private boolean seenCredits;
 
-    @Redirect(method = "moveToWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;createEndSpawnPlatform(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;)V"))
-    public void noPlatform(ServerPlayerEntity instance, ServerWorld world, BlockPos centerPos) {
-        BlockPos.Mutable mutable = ServerWorld.END_SPAWN_POS.mutableCopy();
-        for (int i = -2; i <= 2; ++i) {
-            for (int j = -2; j <= 2; ++j) {
-                for (int k = -1; k < 3; ++k) {
-                    BlockState blockState = k == -1 ? Blocks.OBSIDIAN.getDefaultState() : Blocks.AIR.getDefaultState();
-                    world.setBlockState(mutable.set(ServerWorld.END_SPAWN_POS).move(j, k, i), blockState);
-                }
-            }
-        }
+    @WrapOperation(method = "moveToWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;createEndSpawnPlatform(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;)V"))
+    public void noPlatform(ServerPlayerEntity instance, ServerWorld world, BlockPos centerPos, Operation<Void> original) {
+        original.call(instance, world, ServerWorld.END_SPAWN_POS.mutableCopy());
     }
 
     @Inject(method = "moveToWorld", at = @At("HEAD"))

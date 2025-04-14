@@ -1,5 +1,7 @@
 package net.lyof.phantasm.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.block.Block;
@@ -17,13 +19,14 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(EndSpikeFeature.class)
 public abstract class EndSpikeFeatureMixin {
-    @Redirect(method = "generateSpike", at = @At(value = "INVOKE", target =
+    @WrapOperation(method = "generateSpike", at = @At(value = "INVOKE", target =
             "Lnet/minecraft/world/gen/feature/EndSpikeFeature;setBlockState(Lnet/minecraft/world/ModifiableWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V"))
-    public void randomizeObsidian(EndSpikeFeature spike, ModifiableWorld world, BlockPos pos, BlockState state,
-                                  ServerWorldAccess serverworld, Random random, EndSpikeFeatureConfig config,
-                                  EndSpikeFeature.Spike spikedata) {
+    public void randomizeObsidian(EndSpikeFeature instance, ModifiableWorld modifiableWorld, BlockPos pos,
+                                  BlockState state, Operation<Void> original,
+                                  ServerWorldAccess world, Random random, EndSpikeFeatureConfig config,
+                                  EndSpikeFeature.Spike spike) {
 
-        double crying = (pos.getY() - 60) / (spikedata.getHeight() - 60d);
+        double crying = (pos.getY() - 60) / (spike.getHeight() - 60d);
         if (state.isOf(Blocks.OBSIDIAN) && ConfigEntries.improveEndSpires) {
             if (crying > 0 && Math.random() < crying * crying)
                 state = Blocks.CRYING_OBSIDIAN.getDefaultState();
@@ -32,6 +35,6 @@ public abstract class EndSpikeFeatureMixin {
                         : ModBlocks.POLISHED_OBSIDIAN_BRICKS.getDefaultState();
         }
 
-        world.setBlockState(pos, state, Block.NOTIFY_ALL);
+        original.call(instance, modifiableWorld, pos, state);
     }
 }

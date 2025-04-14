@@ -1,5 +1,7 @@
 package net.lyof.phantasm.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,11 +15,11 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(FireworkRocketItem.class)
 public class FireworkRocketItemMixin {
-    @Redirect(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;isFallFlying()Z"))
-    public boolean cancelBoost(PlayerEntity instance) {
+    @WrapOperation(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;isFallFlying()Z"))
+    public boolean cancelBoost(PlayerEntity instance, Operation<Boolean> original) {
         if (instance instanceof ServerPlayerEntity player) {
             Advancement freetheend = player.getServer().getAdvancementLoader().get(new Identifier(ConfigEntries.elytraBoostAdvancement));
-            if ((freetheend == null || player.getAdvancementTracker().getProgress(freetheend).isDone()) && player.isFallFlying()) {
+            if ((freetheend == null || player.getAdvancementTracker().getProgress(freetheend).isDone()) && original.call(instance)) {
                 instance.swingHand(instance.getActiveHand(), true);
                 return true;
             }

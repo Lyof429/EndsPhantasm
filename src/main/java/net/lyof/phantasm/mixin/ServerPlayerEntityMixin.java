@@ -34,24 +34,6 @@ public abstract class ServerPlayerEntityMixin extends Entity {
     public void noPlatform(ServerPlayerEntity instance, ServerWorld world, BlockPos centerPos, Operation<Void> original) {
         original.call(instance, world, ServerWorld.END_SPAWN_POS.mutableCopy());
     }
-/*
-    @Inject(method = "moveToWorld", at = @At("HEAD"))
-    public void cancelCreditsHead(ServerWorld destination, CallbackInfoReturnable<Entity> cir) {
-        Advancement advancement = this.getServerWorld().getServer().getAdvancementLoader().get(new Identifier("end/kill_dragon"));
-        if (this.getServerWorld().getRegistryKey() == World.END && destination.getRegistryKey() == World.OVERWORLD
-                && advancement != null && !this.getAdvancementTracker().getProgress(advancement).isDone()) {
-            this.seenCredits = true;
-        }
-    }
-
-    @Inject(method = "moveToWorld", at = @At("RETURN"))
-    public void cancelCreditsTail(ServerWorld destination, CallbackInfoReturnable<Entity> cir) {
-        Advancement advancement = this.getServerWorld().getServer().getAdvancementLoader().get(new Identifier("end/kill_dragon"));
-        if (this.getServerWorld().getRegistryKey() == World.END && destination.getRegistryKey() == World.OVERWORLD
-                && advancement != null && !this.getAdvancementTracker().getProgress(advancement).isDone()) {
-            this.seenCredits = false;
-        }
-    }*/
 
     @WrapMethod(method = "moveToWorld")
     public Entity cancelCredits(ServerWorld destination, Operation<Entity> original) {

@@ -6,6 +6,8 @@
     "phantasm:polished_obsidian_bricks",
     "phantasm:polished_obsidian_bricks_stairs",
     "phantasm:polished_obsidian_bricks_slab",
+    "phantasm:polished_obsidian_pillar",
+    "phantasm:chiseled_obsidian",
     "phantasm:crystal_shard",
     "phantasm:void_crystal_shard",
     "phantasm:crystal_block",
@@ -32,6 +34,8 @@
     "phantasm:cirite_bricks",
     "phantasm:cirite_bricks_stairs",
     "phantasm:cirite_bricks_slab",
+    "phantasm:cirite_pillar",
+    "phantasm:chiseled_cirite",
     "phantasm:choral_block",
     "phantasm:choral_fan"
   ]

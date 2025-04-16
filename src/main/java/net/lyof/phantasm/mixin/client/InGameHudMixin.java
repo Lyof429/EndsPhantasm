@@ -26,7 +26,7 @@ public abstract class InGameHudMixin {
     public void renderCorrodedArmor(DrawContext instance, Identifier texture, int x, int y, int u, int v, int width, int height, Operation<Void> original) {
         if (v == 9 && (u == 16 || u == 25 || u == 34) && texture.equals(VANILLA_ICONS)
                 && this.getCameraPlayer().hasStatusEffect(ModEffects.CORROSION)) {
-            int offset = (int) Math.round(Math.sin((x + this.getCameraPlayer().getWorld().getTimeOfDay()) / 2f));
+            int offset = (int) Math.round(Math.pow(Math.sin((x + this.getCameraPlayer().getWorld().getTimeOfDay()) / 2f), 2));
             instance.drawTexture(CORROSION_ARMOR, x, y + offset, 0, 0, 9, 9, 9, 9);
         }
         else

@@ -120,6 +120,14 @@ public class ModBlocks {
             .tag(BlockTags.DRAGON_IMMUNE, BlockTags.SLABS).tagitem(ItemTags.SLABS)
             .tool("iron_pickaxe").drop().cutout().build();
 
+    public static final Block POLISHED_OBSIDIAN_PILLAR = ModRegistry.ofBlock("polished_obsidian_pillar",
+                    new PillarBlock(polishedObsidianMaterial))
+            .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe")
+            .model(ModRegistry.Models.PILLAR).drop().build();
+    public static final Block CHISELED_OBSIDIAN = ModRegistry.ofBlock("chiseled_obsidian",
+                    new Block(polishedObsidianMaterial))
+            .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe").drop().build();
+
     public static final Block CRYSTAL_SHARD = ModRegistry.ofBlock("crystal_shard",
             new CrystalShardBlock(copy(crystalMaterial).luminance(7).sounds(BlockSoundGroup.GLASS)))
             .model(Models.GENERATED).tool("_pickaxe").drop().cutout().build();
@@ -490,6 +498,16 @@ public class ModBlocks {
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.SLABS)
             .tagitem(ItemTags.SLABS)
             .drop().build();
+
+    public static final Block CIRITE_PILLAR = ModRegistry.ofBlock("cirite_pillar",
+                    new PillarBlock(ciriteMaterial))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
+            .model(ModRegistry.Models.PILLAR)
+            .drop().build();
+    public static final Block CHISELED_CIRITE = ModRegistry.ofBlock("chiseled_cirite",
+                    new Block(ciriteMaterial))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
+            .model().drop().build();
 
 
     // Choral

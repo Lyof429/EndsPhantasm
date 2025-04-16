@@ -101,6 +101,8 @@ public class ModItemGroups {
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN_PILLAR);
+                        entries.add(ModBlocks.CHISELED_OBSIDIAN);
 
                         entries.add(ModItems.SHATTERED_PENDANT);
 
@@ -127,6 +129,8 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CIRITE_BRICKS);
                         entries.add(ModBlocks.CIRITE_BRICKS_STAIRS);
                         entries.add(ModBlocks.CIRITE_BRICKS_SLAB);
+                        entries.add(ModBlocks.CIRITE_PILLAR);
+                        entries.add(ModBlocks.CHISELED_CIRITE);
 
                         entries.add(ModBlocks.CHORAL_BLOCK);
                         entries.add(ModBlocks.CHORAL_FAN);
@@ -225,6 +229,8 @@ public class ModItemGroups {
             entries.addAfter(ModBlocks.POLISHED_OBSIDIAN, ModBlocks.POLISHED_OBSIDIAN_BRICKS);
             entries.addAfter(ModBlocks.POLISHED_OBSIDIAN_BRICKS, ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS);
             entries.addAfter(ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS, ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
+            entries.addAfter(ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB, ModBlocks.POLISHED_OBSIDIAN_PILLAR);
+            entries.addAfter(ModBlocks.POLISHED_OBSIDIAN_PILLAR, ModBlocks.CHISELED_OBSIDIAN);
 
             entries.add(ModBlocks.CRYSTAL_BLOCK);
             entries.add(ModBlocks.CRYSTAL_TILES);
@@ -241,6 +247,8 @@ public class ModItemGroups {
             entries.add(ModBlocks.CIRITE_BRICKS);
             entries.add(ModBlocks.CIRITE_BRICKS_STAIRS);
             entries.add(ModBlocks.CIRITE_BRICKS_SLAB);
+            entries.add(ModBlocks.CIRITE_PILLAR);
+            entries.add(ModBlocks.CHISELED_CIRITE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
             entries.addAfter(Items.WARPED_HANGING_SIGN, ModItems.PREAM_SIGN);

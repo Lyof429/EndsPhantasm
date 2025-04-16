@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "phantasm:chiseled_obsidian"
+  },
+  "result": "phantasm:polished_obsidian_bricks_stairs"
+}

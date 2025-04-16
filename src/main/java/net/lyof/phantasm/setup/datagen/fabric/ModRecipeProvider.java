@@ -10,6 +10,7 @@ import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
@@ -51,15 +52,20 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         List<ItemConvertible> void_crystal = List.of(ModBlocks.VOID_CRYSTAL_TILES, ModBlocks.VOID_CRYSTAL_TILES_STAIRS,
                 ModBlocks.VOID_CRYSTAL_TILES_SLAB, ModBlocks.VOID_CRYSTAL_PILLAR);
         List<ItemConvertible> polished_obsidian = List.of(ModBlocks.POLISHED_OBSIDIAN, ModBlocks.POLISHED_OBSIDIAN_BRICKS,
-                ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS, ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
+                ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS, ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB,
+                ModBlocks.POLISHED_OBSIDIAN_PILLAR, ModBlocks.CHISELED_OBSIDIAN);
         List<ItemConvertible> raw_purpur = List.of(ModBlocks.RAW_PURPUR, ModBlocks.RAW_PURPUR_BRICKS,
                 ModBlocks.RAW_PURPUR_BRICKS_STAIRS, ModBlocks.RAW_PURPUR_BRICKS_SLAB, ModBlocks.RAW_PURPUR_TILES,
                 ModBlocks.RAW_PURPUR_PILLAR);
+        List<ItemConvertible> cirite = List.of(ModBlocks.CIRITE, ModBlocks.CIRITE_BRICKS,
+                ModBlocks.CIRITE_BRICKS_STAIRS, ModBlocks.CIRITE_BRICKS_SLAB, ModBlocks.CIRITE_PILLAR,
+                ModBlocks.CHISELED_CIRITE);
 
         result.add(crystal);
         result.add(void_crystal);
         result.add(polished_obsidian);
         result.add(raw_purpur);
+        result.add(cirite);
         return result;
     }
 
@@ -68,7 +74,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         for (List<ItemConvertible> pool : getStoneCuttingRecipes()) {
             for (ItemConvertible out : pool) {
                 for (ItemConvertible in : pool) {
-                    if (out != in && !(in instanceof SlabBlock))
+                    if (out != in && !(in instanceof SlabBlock) && !(in instanceof StairsBlock))
                         offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, out, in,
                                 out instanceof SlabBlock ? 2 : 1);
                 }

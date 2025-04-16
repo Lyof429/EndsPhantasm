@@ -1,7 +1,6 @@
 package net.lyof.phantasm.mixin;
 
 import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;

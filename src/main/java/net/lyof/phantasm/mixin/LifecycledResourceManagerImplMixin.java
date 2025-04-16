@@ -5,7 +5,10 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ModConfig;
 import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
 import net.lyof.phantasm.setup.datagen.config.ConfiguredDataResourcePack;
-import net.minecraft.resource.*;
+import net.minecraft.resource.LifecycledResourceManagerImpl;
+import net.minecraft.resource.Resource;
+import net.minecraft.resource.ResourcePack;
+import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
 import org.apache.commons.io.input.CharSequenceInputStream;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,7 +19,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 @Mixin(LifecycledResourceManagerImpl.class)

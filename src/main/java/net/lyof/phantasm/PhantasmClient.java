@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.lyof.phantasm.entity.ModEntities;
-import net.lyof.phantasm.entity.animation.BehemothAnimation;
 import net.lyof.phantasm.entity.client.ModModelLayers;
 import net.lyof.phantasm.entity.client.model.BehemothModel;
 import net.lyof.phantasm.entity.client.model.CrystieModel;

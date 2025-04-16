@@ -9,7 +9,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.ChorusPlantBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(value = ChorusPlantBlock.class, priority = 990)
 public class ChorusPlantBlockMixin {

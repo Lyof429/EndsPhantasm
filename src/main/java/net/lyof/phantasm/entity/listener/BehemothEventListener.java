@@ -1,13 +1,10 @@
 package net.lyof.phantasm.entity.listener;
 
 import net.lyof.phantasm.config.ConfigEntries;
-import net.lyof.phantasm.entity.animation.BehemothAnimation;
 import net.lyof.phantasm.entity.custom.BehemothEntity;
 import net.lyof.phantasm.setup.ModTags;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.event.EntityPositionSource;
 import net.minecraft.world.event.GameEvent;

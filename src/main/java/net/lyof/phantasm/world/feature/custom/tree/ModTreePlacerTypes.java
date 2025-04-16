@@ -1,6 +1,5 @@
 package net.lyof.phantasm.world.feature.custom.tree;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.mixin.access.FoliagePlacerTypeInvoker;
 import net.lyof.phantasm.mixin.access.TrunkPlacerTypeInvoker;
 import net.lyof.phantasm.world.feature.custom.tree.custom.PreamFoliagePlacer;

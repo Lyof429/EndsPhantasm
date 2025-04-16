@@ -7,6 +7,7 @@ import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.custom.ChoralArrowEntity;
 import net.lyof.phantasm.item.custom.ChoralArrowItem;
+import net.lyof.phantasm.item.custom.ChorusFruitSaladItem;
 import net.lyof.phantasm.item.custom.ShatteredPendantItem;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
@@ -70,32 +71,8 @@ public class ModItems {
             .build();
 
     public static final Item CHORUS_FRUIT_SALAD = ModRegistry.ofItem("chorus_fruit_salad",
-            new Item(new FabricItemSettings().food(ModRegistry.Foods.CHORUS_SALAD).recipeRemainder(Items.BOWL).maxCount(ConfigEntries.chorusSaladStack)) {
-                @Override
-                public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-                    if (world instanceof ServerWorld server && user.canUsePortals() && !user.isSneaking() && ConfigEntries.chorusSaladTp) {
-                        RegistryKey<World> registryKey = world.getRegistryKey() == World.END ? World.OVERWORLD : World.END;
-                        ServerWorld serverWorld = server.getServer().getWorld(registryKey);
-                        if (serverWorld == null) {
-                            return super.finishUsing(stack, world, user);
-                        }
-                        user.moveToWorld(serverWorld);
-                    }
-
-                    super.finishUsing(stack, world, user);
-                    if (user instanceof PlayerEntity player) {
-                        if (stack.isEmpty()) {
-                            if (player.getInventory().contains(this.getRecipeRemainder(stack)))
-                                player.giveItemStack(this.getRecipeRemainder(stack));
-                            else
-                                return this.getRecipeRemainder(stack);
-                        }
-                        else if (!player.isCreative())
-                            player.giveItemStack(this.getRecipeRemainder(stack));
-                    }
-                    return stack;
-                }
-            })
+            new ChorusFruitSaladItem(new FabricItemSettings().food(ModRegistry.Foods.CHORUS_SALAD).recipeRemainder(Items.BOWL)
+                    .maxCount(ConfigEntries.chorusSaladStack)))
             .model().build();
 
     public static final Item BEHEMOTH_MEAT = ModRegistry.ofItem("behemoth_meat",

@@ -5,11 +5,12 @@ public class ConfigEntries {
         dataCompatMode = new ConfigEntry<>("world_gen.biomes.datapack_compatibility", "automatic").get();
         forceMainIsland = new ConfigEntry<>("world_gen.biomes.force_main_island", true).get();
         customBiomesWeight = new ConfigEntry<>("world_gen.biomes.custom_biomes_weight", 0.6).get();
+        noiseScale = new ConfigEntry<>("world_gen.biomes.noise_scale", 2).get();
 
-        doDreamingDenBiome = new ConfigEntry<>("world_gen.biomes.dreaming_den.generate", true).get();
+        doDreamingDenBiome = new ConfigEntry<>("world_gen.biomes.dreaming_den.enabled", true).get();
         dreamingDenWeight = new ConfigEntry<>("world_gen.biomes.dreaming_den.generation_weight", 1.5).get();
 
-        doAcidburntAbyssesBiome = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.generate", true).get();
+        doAcidburntAbyssesBiome = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.enabled", true).get();
         acidburntAbyssesWeight = new ConfigEntry<>("world_gen.biomes.acidburnt_abysses.generation_weight", 1.2).get();
 
         doFallenStars = new ConfigEntry<>("world_gen.do_fallen_stars", true).get();
@@ -41,6 +42,7 @@ public class ConfigEntries {
     public static String dataCompatMode = "";
     public static boolean forceMainIsland;
     public static double customBiomesWeight;
+    public static double noiseScale;
 
     public static boolean doDreamingDenBiome;
     public static double dreamingDenWeight;

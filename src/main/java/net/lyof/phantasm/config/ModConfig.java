@@ -125,18 +125,20 @@ public class ModConfig {
       "datapack_compatibility": "automatic",
       // How much of the End Highlands should be replaced with custom biomes. Must be a number between 0 and 1 (0: none, 1: all of it, 0.5: 50%)
       "custom_biomes_weight": 0.6,
+      // Value to scale the End's biome generation with. Higher values mean bigger biomes. Must be greater than 0
+      "noise_scale": 2,
       // Should the End's biome source be partially overrode so that the main island biome always generate at the center
       "force_main_island": true,
     
       // DEAMING DEN
       "dreaming_den": {
-        "generate": true,
+        "enabled": true,
         "generation_weight": 1.5
       },
       
       // ACIDBURNT ABYSSES
       "acidburnt_abysses": {
-        "generate": true,
+        "enabled": true,
         "generation_weight": 1.2
       }
     },

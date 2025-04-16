@@ -221,13 +221,11 @@ public class ConfiguredData {
                           "argument": {
                             "type": "minecraft:noise",
                             "noise": "minecraft:temperature",
-                            "xz_scale": 1,
                             "y_scale": 0
                           }
                         }""");
-                int biomes = EndDataCompat.getEnabledBiomes().size();
-                temperature.getAsJsonObject().addProperty("xz_scale",
-                        biomes == 0 ? 1 : 1f / biomes / 2);
+                temperature.getAsJsonObject().get("argument").getAsJsonObject()
+                        .addProperty("xz_scale", ConfigEntries.noiseScale > 0 ? 1 / ConfigEntries.noiseScale : 1);
 
                 json.getAsJsonObject().get("noise_router")
                         .getAsJsonObject().asMap().replace("temperature", temperature);
@@ -338,7 +336,7 @@ public class ConfiguredData {
                             }"""));
             }
 
-            return json.toString();/*
+            return Phantasm.log(gson.toJson(json));/*
             return """
                 {
                   "sea_level": 0,

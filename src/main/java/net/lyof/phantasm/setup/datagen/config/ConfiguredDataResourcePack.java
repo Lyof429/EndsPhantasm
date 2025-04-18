@@ -1,5 +1,6 @@
 package net.lyof.phantasm.setup.datagen.config;
 
+import net.lyof.phantasm.Phantasm;
 import net.minecraft.resource.InputSupplier;
 import net.minecraft.resource.ResourcePack;
 import net.minecraft.resource.ResourceType;
@@ -40,7 +41,7 @@ public class ConfiguredDataResourcePack implements ResourcePack {
 
     @Override
     public String getName() {
-        return "configured_data";
+        return Phantasm.MOD_ID + "_configured_data";
     }
 
     @Override

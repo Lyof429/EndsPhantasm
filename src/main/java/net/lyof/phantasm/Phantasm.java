@@ -49,9 +49,9 @@ public class Phantasm implements ModInitializer {
 		ModDataGenerator.registerFuels();
 		ModDataGenerator.registerStripped();
 
+		EndDataCompat.register();
 		ModFeatures.register();
 		ModWorldGeneration.register();
-		EndDataCompat.register();
 
 		if (!FabricLoader.getInstance().isDevelopmentEnvironment())
 			ModRegistry.clear();

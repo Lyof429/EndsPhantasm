@@ -46,18 +46,18 @@ public class ConfiguredData {
 
     public static void register() {
         register(Identifier.of("minecraft", "dimension/the_end.json"), () -> true,
-                Instances::changeBiomeSource);
+                Common::changeBiomeSource);
 
         // Huge thanks to Ice (https://linktr.ee/icycrystal) for these noise values
         register(Identifier.of("minecraft", "worldgen/noise_settings/end.json"), () -> true,
-                Instances::changeNoiseRouter);
+                Common::changeNoiseRouter);
 
         register(Identifier.of("minecraft", "worldgen/density_function/end/base_3d_noise.json"),
                 () -> EndDataCompat.getCompatibilityMode().equals("custom"),
                 json -> "{ \"type\": \"minecraft:old_blended_noise\", \"xz_scale\": 0.7, \"y_scale\": 1.2, \"xz_factor\": 90, \"y_factor\": 145, \"smear_scale_multiplier\": 8 }");
     }
 
-    private static class Instances {
+    private static class Common {
         private static JsonElement getJson(String string) {
             return gson.fromJson(string, JsonElement.class);
         }
@@ -336,7 +336,7 @@ public class ConfiguredData {
                             }"""));
             }
 
-            return Phantasm.log(gson.toJson(json));/*
+            return gson.toJson(json);/*
             return """
                 {
                   "sea_level": 0,

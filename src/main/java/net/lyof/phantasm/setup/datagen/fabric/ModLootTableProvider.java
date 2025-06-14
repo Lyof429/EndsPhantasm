@@ -6,11 +6,15 @@ import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.entry.GroupEntry;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LootPoolEntry;
+import net.minecraft.loot.function.ApplyBonusLootFunction;
+import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.LootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
@@ -64,5 +68,10 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addSelfDropOr(ModBlocks.POME, ModItems.POME_SLICE, UniformLootNumberProvider.create(3, 6));
 
         addSelfDropOr(ModBlocks.CIRITE_IRON_ORE, Items.IRON_NUGGET, UniformLootNumberProvider.create(1, 4));
+        addDrop(ModBlocks.RAW_PURPUR_COAL_ORE,
+                dropsWithSilkTouch(ModBlocks.RAW_PURPUR_COAL_ORE,
+                        applyExplosionDecay(ModBlocks.RAW_PURPUR_COAL_ORE, ItemEntry.builder(Items.COAL)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2, 4)))
+                                .apply(ApplyBonusLootFunction.uniformBonusCount(Enchantments.FORTUNE)))));
     }
 }

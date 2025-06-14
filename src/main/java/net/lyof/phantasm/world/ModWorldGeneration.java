@@ -37,6 +37,11 @@ public class ModWorldGeneration {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
                     GenerationStep.Feature.SURFACE_STRUCTURES,
                     ModPlacedFeatures.FALLEN_STAR);
+
+        if (ConfigEntries.doRawPurpur)
+            BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
+                    GenerationStep.Feature.UNDERGROUND_ORES,
+                    ModPlacedFeatures.RAW_PURPUR_COAL_ORE);
     }
 
     private static void generateBiomes() {

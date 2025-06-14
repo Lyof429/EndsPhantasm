@@ -64,6 +64,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.PURPUR_LAMP);
 
                         entries.add(ModBlocks.RAW_PURPUR);
+                        entries.add(ModBlocks.RAW_PURPUR_COAL_ORE);
                         entries.add(ModBlocks.RAW_PURPUR_BRICKS);
                         entries.add(ModBlocks.RAW_PURPUR_PILLAR);
                         entries.add(ModBlocks.RAW_PURPUR_TILES);
@@ -177,6 +178,7 @@ public class ModItemGroups {
             entries.addAfter(ModBlocks.TALL_VIVID_NIHILIS, ModBlocks.STARFLOWER);
 
             entries.addAfter(ModBlocks.STARFLOWER, ModBlocks.RAW_PURPUR);
+            entries.addAfter(Items.DEEPSLATE_COAL_ORE, ModBlocks.RAW_PURPUR_COAL_ORE);
 
             entries.addAfter(ModBlocks.RAW_PURPUR, ModBlocks.OBLIVION);
             entries.addAfter(ModBlocks.OBLIVION, ModBlocks.OBLIVINE);

@@ -6,14 +6,12 @@ import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.feature.PlacedFeatures;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
-import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
-import net.minecraft.world.gen.placementmodifier.PlacementModifier;
-import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
+import net.minecraft.world.gen.placementmodifier.*;
 
 import java.util.List;
 
@@ -71,6 +69,11 @@ public class ModPlacedFeatures {
 
         register(context, OBSIDIAN_TOWER, configLookup.getOrThrow(ModConfiguredFeatures.OBSIDIAN_TOWER),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP);
+
+        register(context, RAW_PURPUR_COAL_ORE, configLookup.getOrThrow(ModConfiguredFeatures.RAW_PURPUR_COAL_ORE),
+                CountPlacementModifier.of(32),
+                SquarePlacementModifier.of(),
+                HeightRangePlacementModifier.uniform(YOffset.BOTTOM, YOffset.TOP));
 
         register(context, OBLIVINE_PATCH, configLookup.getOrThrow(ModConfiguredFeatures.OBLIVINE),
                 SquarePlacementModifier.of(),
@@ -144,11 +147,11 @@ public class ModPlacedFeatures {
 
     public static final RegistryKey<PlacedFeature> VIVID_NIHILIS = create("patch_vivid_nihilis");
     public static final RegistryKey<PlacedFeature> TALL_VIVID_NIHILIS = create("patch_tall_vivid_nihilis");
-
     public static final RegistryKey<PlacedFeature> STARFLOWER_PATCH = create("patch_starflower");
 
     public static final RegistryKey<PlacedFeature> OBSIDIAN_TOWER = create("obsidian_tower");
 
+    public static final RegistryKey<PlacedFeature> RAW_PURPUR_COAL_ORE = create("raw_purpur_coal_ore");
     public static final RegistryKey<PlacedFeature> OBLIVINE_PATCH = create("patch_oblivine");
 
     public static final RegistryKey<PlacedFeature> ACIDIC_NIHILIS = create("patch_acidic_nihilis");

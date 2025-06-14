@@ -10,11 +10,13 @@ import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.world.feature.custom.tree.PreamSaplingGenerator;
 import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.data.client.Models;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.Items;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
@@ -349,7 +351,10 @@ public class ModBlocks {
                     new Block(rawPurpurMaterial))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
             .tagitem(ItemTags.STONE_CRAFTING_MATERIALS, ItemTags.STONE_TOOL_MATERIALS)
-            .drop()
+            .drop().model().build();
+    public static final Block RAW_PURPUR_COAL_ORE = ModRegistry.ofBlock("raw_purpur_coal_ore",
+                    new Block(copy(rawPurpurMaterial).mapColor(MapColor.DEEPSLATE_GRAY)))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.COAL_ORES)
             .model().build();
 
     public static final Block RAW_PURPUR_BRICKS = ModRegistry.ofBlock("raw_purpur_bricks",
@@ -477,7 +482,7 @@ public class ModBlocks {
 
 
     public static final Block DRALGAE = ModRegistry.ofBlock("dralgae",
-                    new PillaringPlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.DARK_CRIMSON).offset(AbstractBlock.OffsetType.NONE),
+                    new PillaringPlantBlock(FabricBlockSettings.create().noCollision().breakInstantly().sounds(BlockSoundGroup.ROOTS).pistonBehavior(PistonBehavior.DESTROY).mapColor(MapColor.DARK_CRIMSON),
                             ModTags.Blocks.DRALGAE_GROWABLE_ON,
                             Block.createCuboidShape(5, 0, 5, 11, 16, 11)))
             .model(ModRegistry.Models.CROSS).drop()

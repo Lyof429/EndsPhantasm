@@ -14,6 +14,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.structure.rule.BlockMatchRuleTest;
+import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
@@ -81,6 +83,9 @@ public class ModConfiguredFeatures {
         register(context, OBSIDIAN_TOWER, ObsidianTowerStructure.INSTANCE,
                 new CountConfig(UniformIntProvider.create(30, 50)));
 
+        register(context, RAW_PURPUR_COAL_ORE, Feature.ORE, new OreFeatureConfig(
+                new BlockMatchRuleTest(ModBlocks.RAW_PURPUR), ModBlocks.RAW_PURPUR_COAL_ORE.getDefaultState(), 24));
+
         register(context, OBLIVINE, OblivineFeature.INSTANCE,
                 BlockColumnFeatureConfig.create(UniformIntProvider.create(5, 8), BlockStateProvider.of(ModBlocks.OBLIVINE)));
 
@@ -134,11 +139,11 @@ public class ModConfiguredFeatures {
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> VIVID_NIHILIS = create("patch_vivid_nihilis");
     public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_VIVID_NIHILIS = create("patch_tall_vivid_nihilis");
-
     public static final RegistryKey<ConfiguredFeature<?, ?>> STARFLOWER = create("patch_starflower");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> OBSIDIAN_TOWER = create("obsidian_tower");
 
+    public static final RegistryKey<ConfiguredFeature<?, ?>> RAW_PURPUR_COAL_ORE = create("raw_purpur_coal_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> OBLIVINE = create("patch_oblivine");
 
 

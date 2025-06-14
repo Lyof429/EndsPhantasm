@@ -72,6 +72,8 @@ public class ModModelProvider extends FabricModelProvider {
                         pool.fence(entry.getValue());
                     if (entry.getKey() == ModRegistry.Models.FENCE_GATE)
                         pool.fenceGate(entry.getValue());
+                    if (entry.getKey() == ModRegistry.Models.WALL)
+                        pool.wall(entry.getValue());
                     if (entry.getKey() == ModRegistry.Models.SIGN)
                         pool.family(new BlockFamily.Builder(block)
                                 .sign(entry.getValue(), ModRegistry.BLOCK_SETS.get(block).get(ModRegistry.Models.WALL_SIGN))

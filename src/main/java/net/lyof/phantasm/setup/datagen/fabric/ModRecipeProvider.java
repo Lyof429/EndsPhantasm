@@ -47,19 +47,19 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     private List<List<ItemConvertible>> getStoneCuttingRecipes() {
         List<List<ItemConvertible>> result = new ArrayList<>();
 
-        List<ItemConvertible> crystal = List.of(ModBlocks.CRYSTAL_TILES, ModBlocks.CRYSTAL_TILES_STAIRS,
-                ModBlocks.CRYSTAL_TILES_SLAB, ModBlocks.CRYSTAL_PILLAR);
-        List<ItemConvertible> void_crystal = List.of(ModBlocks.VOID_CRYSTAL_TILES, ModBlocks.VOID_CRYSTAL_TILES_STAIRS,
-                ModBlocks.VOID_CRYSTAL_TILES_SLAB, ModBlocks.VOID_CRYSTAL_PILLAR);
+        List<ItemConvertible> crystal = List.of(ModBlocks.CRYSTAL_TILES, ModBlocks.CRYSTAL_TILE_STAIRS,
+                ModBlocks.CRYSTAL_TILE_SLAB, ModBlocks.CRYSTAL_PILLAR);
+        List<ItemConvertible> void_crystal = List.of(ModBlocks.VOID_CRYSTAL_TILES, ModBlocks.VOID_CRYSTAL_TILE_STAIRS,
+                ModBlocks.VOID_CRYSTAL_TILE_SLAB, ModBlocks.VOID_CRYSTAL_PILLAR);
         List<ItemConvertible> polished_obsidian = List.of(ModBlocks.POLISHED_OBSIDIAN, ModBlocks.POLISHED_OBSIDIAN_BRICKS,
-                ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS, ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB,
+                ModBlocks.POLISHED_OBSIDIAN_BRICK_STAIRS, ModBlocks.POLISHED_OBSIDIAN_BRICK_SLAB,
                 ModBlocks.POLISHED_OBSIDIAN_PILLAR, ModBlocks.CHISELED_OBSIDIAN);
         List<ItemConvertible> raw_purpur = List.of(ModBlocks.RAW_PURPUR, ModBlocks.RAW_PURPUR_BRICKS,
-                ModBlocks.RAW_PURPUR_BRICKS_STAIRS, ModBlocks.RAW_PURPUR_BRICKS_SLAB, ModBlocks.RAW_PURPUR_TILES,
-                ModBlocks.RAW_PURPUR_PILLAR);
+                ModBlocks.RAW_PURPUR_BRICK_STAIRS, ModBlocks.RAW_PURPUR_BRICK_SLAB, ModBlocks.RAW_PURPUR_TILES,
+                ModBlocks.RAW_PURPUR_PILLAR, ModBlocks.RAW_PURPUR_BRICK_WALL);
         List<ItemConvertible> cirite = List.of(ModBlocks.CIRITE, ModBlocks.CIRITE_BRICKS,
-                ModBlocks.CIRITE_BRICKS_STAIRS, ModBlocks.CIRITE_BRICKS_SLAB, ModBlocks.CIRITE_PILLAR,
-                ModBlocks.CHISELED_CIRITE);
+                ModBlocks.CIRITE_BRICK_STAIRS, ModBlocks.CIRITE_BRICK_SLAB, ModBlocks.CIRITE_PILLAR,
+                ModBlocks.CHISELED_CIRITE, ModBlocks.CIRITE_BRICK_WALL);
 
         result.add(crystal);
         result.add(void_crystal);
@@ -80,6 +80,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 }
             }
         }
+
+        offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.PURPUR_WALL, Blocks.PURPUR_BLOCK);
 
         for (Block parent : ModRegistry.BLOCK_SETS.keySet()) {
             for (Map.Entry<ModRegistry.Models, Block> entry : ModRegistry.BLOCK_SETS.get(parent).entrySet()) {
@@ -119,6 +121,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                             .group(Registries.ITEM.getId(entry.getValue().asItem()).getPath())
                             .criterion(hasItem(parent),conditionsFromItem(parent))
                             .offerTo(exporter);
+
+                if (entry.getKey() == ModRegistry.Models.WALL)
+                    ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, entry.getValue(), 6)
+                            .input('#', parent)
+                            .pattern("###").pattern("###")
+                            .group(Registries.ITEM.getId(entry.getValue().asItem()).getPath())
+                            .criterion(hasItem(parent),conditionsFromItem(parent))
+                            .offerTo(exporter);
             }
         }
 
@@ -141,7 +151,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         // Crystal Block
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYSTAL_BLOCK, ModBlocks.CRYSTAL_SHARD);
         // Crystal Pillar
-        offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYSTAL_PILLAR, ModBlocks.CRYSTAL_TILES_SLAB);
+        offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYSTAL_PILLAR, ModBlocks.CRYSTAL_TILE_SLAB);
         // Crystal Glass
         offerTilesRecipe(exporter, ModBlocks.CRYSTAL_GLASS, ModBlocks.CRYSTAL_SHARD, Blocks.GLASS);
 
@@ -150,7 +160,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         // Void Crystal Block
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.VOID_CRYSTAL_BLOCK, ModBlocks.VOID_CRYSTAL_SHARD);
         // Void Crystal Pillar
-        offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.VOID_CRYSTAL_PILLAR, ModBlocks.VOID_CRYSTAL_TILES_SLAB);
+        offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.VOID_CRYSTAL_PILLAR, ModBlocks.VOID_CRYSTAL_TILE_SLAB);
         // Void Crystal Glass
         offerTilesRecipe(exporter, ModBlocks.VOID_CRYSTAL_GLASS, ModBlocks.VOID_CRYSTAL_SHARD, Blocks.GLASS);
 
@@ -246,7 +256,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Blocks.END_STONE), conditionsFromItem(Blocks.END_STONE))
                 .group("raw_purpur_tiles").offerTo(exporter, Phantasm.makeID("raw_purpur_tiles"));
         // Raw Purpur Pillar
-        offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_PURPUR_PILLAR, ModBlocks.RAW_PURPUR_BRICKS_SLAB);
+        offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_PURPUR_PILLAR, ModBlocks.RAW_PURPUR_BRICK_SLAB);
 
         // Purpur Lamp
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PURPUR_LAMP, 3)

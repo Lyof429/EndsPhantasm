@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_raw_purpur_bricks_slab": {
+    "has_raw_purpur_brick_slab": {
       "conditions": {
         "items": [
           {
             "items": [
-              "phantasm:raw_purpur_bricks_slab"
+              "phantasm:raw_purpur_brick_slab"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_raw_purpur_bricks_slab",
+      "has_raw_purpur_brick_slab",
       "has_the_recipe"
     ]
   ],

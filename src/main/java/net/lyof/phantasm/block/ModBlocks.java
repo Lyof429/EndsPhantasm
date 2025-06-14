@@ -33,11 +33,19 @@ public class ModBlocks {
         ModRegistry.addDrop(PREAM_HANGING_SIGN, ModItems.PREAM_HANGING_SIGN);
         ModRegistry.addDrop(PREAM_WALL_HANGING_SIGN, ModItems.PREAM_HANGING_SIGN);
 
-        ModRegistry.registerStairsAndSlab(CRYSTAL_TILES, CRYSTAL_TILES_STAIRS, CRYSTAL_TILES_SLAB);
-        ModRegistry.registerStairsAndSlab(VOID_CRYSTAL_TILES, VOID_CRYSTAL_TILES_STAIRS, VOID_CRYSTAL_TILES_SLAB);
-        ModRegistry.registerStairsAndSlab(POLISHED_OBSIDIAN_BRICKS, POLISHED_OBSIDIAN_BRICKS_STAIRS, POLISHED_OBSIDIAN_BRICKS_SLAB);
-        ModRegistry.registerStairsAndSlab(RAW_PURPUR_BRICKS, RAW_PURPUR_BRICKS_STAIRS, RAW_PURPUR_BRICKS_SLAB);
-        ModRegistry.registerStairsAndSlab(CIRITE_BRICKS, CIRITE_BRICKS_STAIRS, CIRITE_BRICKS_SLAB);
+        ModRegistry.registerStairsAndSlab(CRYSTAL_TILES, CRYSTAL_TILE_STAIRS, CRYSTAL_TILE_SLAB);
+        ModRegistry.registerStairsAndSlab(VOID_CRYSTAL_TILES, VOID_CRYSTAL_TILE_STAIRS, VOID_CRYSTAL_TILE_SLAB);
+        ModRegistry.registerStairsAndSlab(POLISHED_OBSIDIAN_BRICKS, POLISHED_OBSIDIAN_BRICK_STAIRS, POLISHED_OBSIDIAN_BRICK_SLAB);
+        ModRegistry.registerSet(RAW_PURPUR_BRICKS, Map.of(
+                ModRegistry.Models.STAIRS, RAW_PURPUR_BRICK_STAIRS,
+                ModRegistry.Models.SLAB, RAW_PURPUR_BRICK_SLAB,
+                ModRegistry.Models.WALL, RAW_PURPUR_BRICK_WALL
+        ));
+        ModRegistry.registerSet(CIRITE_BRICKS, Map.of(
+                ModRegistry.Models.STAIRS, CIRITE_BRICK_STAIRS,
+                ModRegistry.Models.SLAB, CIRITE_BRICK_SLAB,
+                ModRegistry.Models.WALL, CIRITE_BRICK_WALL
+        ));
 
         ModRegistry.registerGlass(CRYSTAL_GLASS, CRYSTAL_GLASS_PANE);
         ModRegistry.registerGlass(VOID_CRYSTAL_GLASS, VOID_CRYSTAL_GLASS_PANE);
@@ -111,11 +119,11 @@ public class ModBlocks {
     public static final Block POLISHED_OBSIDIAN_BRICKS = ModRegistry.ofBlock("polished_obsidian_bricks",
             new Block(polishedObsidianMaterial))
             .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe").drop().build();
-    public static final Block POLISHED_OBSIDIAN_BRICKS_STAIRS = ModRegistry.ofBlock("polished_obsidian_bricks_stairs",
+    public static final Block POLISHED_OBSIDIAN_BRICK_STAIRS = ModRegistry.ofBlock("polished_obsidian_brick_stairs",
             new StairsBlock(POLISHED_OBSIDIAN_BRICKS.getDefaultState(), polishedObsidianMaterial))
             .tag(BlockTags.DRAGON_IMMUNE, BlockTags.STAIRS).tagitem(ItemTags.STAIRS)
             .tool("iron_pickaxe").drop().cutout().build();
-    public static final Block POLISHED_OBSIDIAN_BRICKS_SLAB = ModRegistry.ofBlock("polished_obsidian_bricks_slab",
+    public static final Block POLISHED_OBSIDIAN_BRICK_SLAB = ModRegistry.ofBlock("polished_obsidian_brick_slab",
             new SlabBlock(polishedObsidianMaterial))
             .tag(BlockTags.DRAGON_IMMUNE, BlockTags.SLABS).tagitem(ItemTags.SLABS)
             .tool("iron_pickaxe").drop().cutout().build();
@@ -126,7 +134,8 @@ public class ModBlocks {
             .model(ModRegistry.Models.PILLAR).drop().build();
     public static final Block CHISELED_OBSIDIAN = ModRegistry.ofBlock("chiseled_obsidian",
                     new Block(polishedObsidianMaterial))
-            .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe").drop().build();
+            .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe")
+            .model().drop().build();
 
     public static final Block CRYSTAL_SHARD = ModRegistry.ofBlock("crystal_shard",
             new CrystalShardBlock(copy(crystalMaterial).luminance(7).sounds(BlockSoundGroup.GLASS)))
@@ -142,11 +151,11 @@ public class ModBlocks {
             .model().tool("_pickaxe").drop().build();
     public static final Block CRYSTAL_TILES = ModRegistry.ofBlock("crystal_tiles",
             new Block(crystalMaterial)).tool("_pickaxe").drop().build();
-    public static final Block CRYSTAL_TILES_STAIRS = ModRegistry.ofBlock("crystal_tiles_stairs",
+    public static final Block CRYSTAL_TILE_STAIRS = ModRegistry.ofBlock("crystal_tile_stairs",
             new StairsBlock(CRYSTAL_TILES.getDefaultState(), crystalMaterial))
             .tool("_pickaxe").drop()
             .tag(BlockTags.STAIRS).tagitem(ItemTags.STAIRS).cutout().build();
-    public static final Block CRYSTAL_TILES_SLAB = ModRegistry.ofBlock("crystal_tiles_slab",
+    public static final Block CRYSTAL_TILE_SLAB = ModRegistry.ofBlock("crystal_tile_slab",
             new SlabBlock(crystalMaterial))
             .tool("_pickaxe").drop()
             .tag(BlockTags.SLABS).tagitem(ItemTags.SLABS).cutout().build();
@@ -167,11 +176,11 @@ public class ModBlocks {
             .model().tool("_pickaxe").drop().build();
     public static final Block VOID_CRYSTAL_TILES = ModRegistry.ofBlock("void_crystal_tiles",
             new Block(crystalMaterial)).tool("_pickaxe").drop().build();
-    public static final Block VOID_CRYSTAL_TILES_STAIRS = ModRegistry.ofBlock("void_crystal_tiles_stairs",
+    public static final Block VOID_CRYSTAL_TILE_STAIRS = ModRegistry.ofBlock("void_crystal_tile_stairs",
             new StairsBlock(VOID_CRYSTAL_TILES.getDefaultState(), crystalMaterial))
             .tool("_pickaxe").drop()
             .tag(BlockTags.STAIRS).tagitem(ItemTags.STAIRS).cutout().build();
-    public static final Block VOID_CRYSTAL_TILES_SLAB = ModRegistry.ofBlock("void_crystal_tiles_slab",
+    public static final Block VOID_CRYSTAL_TILE_SLAB = ModRegistry.ofBlock("void_crystal_tile_slab",
             new SlabBlock(crystalMaterial))
             .tool("_pickaxe").drop()
             .tag(BlockTags.SLABS).tagitem(ItemTags.SLABS).cutout().build();
@@ -347,15 +356,20 @@ public class ModBlocks {
                     new Block(rawPurpurMaterial))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
             .drop().build();
-    public static final Block RAW_PURPUR_BRICKS_STAIRS = ModRegistry.ofBlock("raw_purpur_bricks_stairs",
+    public static final Block RAW_PURPUR_BRICK_STAIRS = ModRegistry.ofBlock("raw_purpur_brick_stairs",
                     new StairsBlock(RAW_PURPUR_BRICKS.getDefaultState(), rawPurpurMaterial))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.STAIRS)
             .tagitem(ItemTags.STAIRS)
             .drop().build();
-    public static final Block RAW_PURPUR_BRICKS_SLAB = ModRegistry.ofBlock("raw_purpur_bricks_slab",
+    public static final Block RAW_PURPUR_BRICK_SLAB = ModRegistry.ofBlock("raw_purpur_brick_slab",
                     new SlabBlock(rawPurpurMaterial))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.SLABS)
             .tagitem(ItemTags.SLABS)
+            .drop().build();
+    public static final Block RAW_PURPUR_BRICK_WALL = ModRegistry.ofBlock("raw_purpur_brick_wall",
+                    new WallBlock(rawPurpurMaterial))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.WALLS)
+            .tagitem(ItemTags.WALLS)
             .drop().build();
 
     public static final Block RAW_PURPUR_TILES = ModRegistry.ofBlock("raw_purpur_tiles",
@@ -369,6 +383,11 @@ public class ModBlocks {
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
             .drop().build();
 
+    public static final Block PURPUR_WALL = ModRegistry.ofBlock("purpur_wall",
+                    new WallBlock(copy(Blocks.PURPUR_BLOCK)))
+            .tool("_pickaxe").tag(BlockTags.WALLS)
+            .tagitem(ItemTags.WALLS)
+            .drop().build();
     public static final Block PURPUR_LAMP = ModRegistry.ofBlock("purpur_lamp",
                     new Block(copy(Blocks.PURPUR_BLOCK).luminance(15)))
             .tool("_pickaxe")
@@ -488,15 +507,20 @@ public class ModBlocks {
                     new Block(ciriteMaterial))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
             .drop().build();
-    public static final Block CIRITE_BRICKS_STAIRS = ModRegistry.ofBlock("cirite_bricks_stairs",
+    public static final Block CIRITE_BRICK_STAIRS = ModRegistry.ofBlock("cirite_brick_stairs",
                     new StairsBlock(CIRITE_BRICKS.getDefaultState(), ciriteMaterial))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.STAIRS)
             .tagitem(ItemTags.STAIRS)
             .drop().build();
-    public static final Block CIRITE_BRICKS_SLAB = ModRegistry.ofBlock("cirite_bricks_slab",
+    public static final Block CIRITE_BRICK_SLAB = ModRegistry.ofBlock("cirite_brick_slab",
                     new SlabBlock(ciriteMaterial))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.SLABS)
             .tagitem(ItemTags.SLABS)
+            .drop().build();
+    public static final Block CIRITE_BRICK_WALL = ModRegistry.ofBlock("cirite_brick_wall",
+                    new WallBlock(ciriteMaterial))
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.WALLS)
+            .tagitem(ItemTags.WALLS)
             .drop().build();
 
     public static final Block CIRITE_PILLAR = ModRegistry.ofBlock("cirite_pillar",

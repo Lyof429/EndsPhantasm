@@ -60,14 +60,16 @@ public class ModItemGroups {
 
                         entries.add(ModItems.CHORUS_FRUIT_SALAD);
 
+                        entries.add(ModBlocks.PURPUR_WALL);
                         entries.add(ModBlocks.PURPUR_LAMP);
 
                         entries.add(ModBlocks.RAW_PURPUR);
                         entries.add(ModBlocks.RAW_PURPUR_BRICKS);
                         entries.add(ModBlocks.RAW_PURPUR_PILLAR);
                         entries.add(ModBlocks.RAW_PURPUR_TILES);
-                        entries.add(ModBlocks.RAW_PURPUR_BRICKS_STAIRS);
-                        entries.add(ModBlocks.RAW_PURPUR_BRICKS_SLAB);
+                        entries.add(ModBlocks.RAW_PURPUR_BRICK_STAIRS);
+                        entries.add(ModBlocks.RAW_PURPUR_BRICK_SLAB);
+                        entries.add(ModBlocks.RAW_PURPUR_BRICK_WALL);
 
                         entries.add(ModBlocks.CRYSTAL_SHARD);
                         entries.add(ModBlocks.VOID_CRYSTAL_SHARD);
@@ -84,13 +86,13 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.CRYSTAL_TILES);
                         entries.add(ModBlocks.CRYSTAL_PILLAR);
-                        entries.add(ModBlocks.CRYSTAL_TILES_STAIRS);
-                        entries.add(ModBlocks.CRYSTAL_TILES_SLAB);
+                        entries.add(ModBlocks.CRYSTAL_TILE_STAIRS);
+                        entries.add(ModBlocks.CRYSTAL_TILE_SLAB);
 
                         entries.add(ModBlocks.VOID_CRYSTAL_TILES);
                         entries.add(ModBlocks.VOID_CRYSTAL_PILLAR);
-                        entries.add(ModBlocks.VOID_CRYSTAL_TILES_STAIRS);
-                        entries.add(ModBlocks.VOID_CRYSTAL_TILES_SLAB);
+                        entries.add(ModBlocks.VOID_CRYSTAL_TILE_STAIRS);
+                        entries.add(ModBlocks.VOID_CRYSTAL_TILE_SLAB);
 
                         entries.add(ModBlocks.CRYSTAL_GLASS);
                         entries.add(ModBlocks.CRYSTAL_GLASS_PANE);
@@ -99,8 +101,8 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.POLISHED_OBSIDIAN);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS);
-                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS);
-                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICK_STAIRS);
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICK_SLAB);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_PILLAR);
                         entries.add(ModBlocks.CHISELED_OBSIDIAN);
 
@@ -127,8 +129,9 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CIRITE);
                         entries.add(ModBlocks.CIRITE_IRON_ORE);
                         entries.add(ModBlocks.CIRITE_BRICKS);
-                        entries.add(ModBlocks.CIRITE_BRICKS_STAIRS);
-                        entries.add(ModBlocks.CIRITE_BRICKS_SLAB);
+                        entries.add(ModBlocks.CIRITE_BRICK_STAIRS);
+                        entries.add(ModBlocks.CIRITE_BRICK_SLAB);
+                        entries.add(ModBlocks.CIRITE_BRICK_WALL);
                         entries.add(ModBlocks.CIRITE_PILLAR);
                         entries.add(ModBlocks.CHISELED_CIRITE);
 
@@ -215,38 +218,41 @@ public class ModItemGroups {
             entries.addAfter(ModBlocks.PREAM_TRAPDOOR, ModBlocks.PREAM_PRESSURE_PLATE);
             entries.addAfter(ModBlocks.PREAM_PRESSURE_PLATE, ModBlocks.PREAM_BUTTON);
 
-            entries.addAfter(Items.PURPUR_PILLAR, ModBlocks.PURPUR_LAMP);
+            entries.addAfter(Items.PURPUR_PILLAR, ModBlocks.PURPUR_WALL);
+            entries.addAfter(ModBlocks.PURPUR_WALL, ModBlocks.PURPUR_LAMP);
 
             entries.addAfter(Items.PURPUR_SLAB, ModBlocks.RAW_PURPUR);
             entries.addAfter(ModBlocks.RAW_PURPUR, ModBlocks.RAW_PURPUR_BRICKS);
             entries.addAfter(ModBlocks.RAW_PURPUR_BRICKS, ModBlocks.RAW_PURPUR_PILLAR);
             entries.addAfter(ModBlocks.RAW_PURPUR_PILLAR, ModBlocks.RAW_PURPUR_TILES);
-            entries.addAfter(ModBlocks.RAW_PURPUR_TILES, ModBlocks.RAW_PURPUR_BRICKS_STAIRS);
-            entries.addAfter(ModBlocks.RAW_PURPUR_BRICKS_STAIRS, ModBlocks.RAW_PURPUR_BRICKS_SLAB);
+            entries.addAfter(ModBlocks.RAW_PURPUR_TILES, ModBlocks.RAW_PURPUR_BRICK_STAIRS);
+            entries.addAfter(ModBlocks.RAW_PURPUR_BRICK_STAIRS, ModBlocks.RAW_PURPUR_BRICK_SLAB);
+            entries.addAfter(ModBlocks.RAW_PURPUR_BRICK_SLAB, ModBlocks.RAW_PURPUR_BRICK_WALL);
 
-            entries.addAfter(ModBlocks.RAW_PURPUR_BRICKS_SLAB, Blocks.OBSIDIAN);
+            entries.addAfter(ModBlocks.RAW_PURPUR_BRICK_SLAB, Blocks.OBSIDIAN);
             entries.addAfter(Blocks.OBSIDIAN, ModBlocks.POLISHED_OBSIDIAN);
             entries.addAfter(ModBlocks.POLISHED_OBSIDIAN, ModBlocks.POLISHED_OBSIDIAN_BRICKS);
-            entries.addAfter(ModBlocks.POLISHED_OBSIDIAN_BRICKS, ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS);
-            entries.addAfter(ModBlocks.POLISHED_OBSIDIAN_BRICKS_STAIRS, ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB);
-            entries.addAfter(ModBlocks.POLISHED_OBSIDIAN_BRICKS_SLAB, ModBlocks.POLISHED_OBSIDIAN_PILLAR);
+            entries.addAfter(ModBlocks.POLISHED_OBSIDIAN_BRICKS, ModBlocks.POLISHED_OBSIDIAN_BRICK_STAIRS);
+            entries.addAfter(ModBlocks.POLISHED_OBSIDIAN_BRICK_STAIRS, ModBlocks.POLISHED_OBSIDIAN_BRICK_SLAB);
+            entries.addAfter(ModBlocks.POLISHED_OBSIDIAN_BRICK_SLAB, ModBlocks.POLISHED_OBSIDIAN_PILLAR);
             entries.addAfter(ModBlocks.POLISHED_OBSIDIAN_PILLAR, ModBlocks.CHISELED_OBSIDIAN);
 
             entries.add(ModBlocks.CRYSTAL_BLOCK);
             entries.add(ModBlocks.CRYSTAL_TILES);
             entries.add(ModBlocks.CRYSTAL_PILLAR);
-            entries.add(ModBlocks.CRYSTAL_TILES_STAIRS);
-            entries.add(ModBlocks.CRYSTAL_TILES_SLAB);
+            entries.add(ModBlocks.CRYSTAL_TILE_STAIRS);
+            entries.add(ModBlocks.CRYSTAL_TILE_SLAB);
 
             entries.add(ModBlocks.VOID_CRYSTAL_BLOCK);
             entries.add(ModBlocks.VOID_CRYSTAL_TILES);
             entries.add(ModBlocks.VOID_CRYSTAL_PILLAR);
-            entries.add(ModBlocks.VOID_CRYSTAL_TILES_STAIRS);
-            entries.add(ModBlocks.VOID_CRYSTAL_TILES_SLAB);
+            entries.add(ModBlocks.VOID_CRYSTAL_TILE_STAIRS);
+            entries.add(ModBlocks.VOID_CRYSTAL_TILE_SLAB);
 
             entries.add(ModBlocks.CIRITE_BRICKS);
-            entries.add(ModBlocks.CIRITE_BRICKS_STAIRS);
-            entries.add(ModBlocks.CIRITE_BRICKS_SLAB);
+            entries.add(ModBlocks.CIRITE_BRICK_STAIRS);
+            entries.add(ModBlocks.CIRITE_BRICK_SLAB);
+            entries.add(ModBlocks.CIRITE_BRICK_WALL);
             entries.add(ModBlocks.CIRITE_PILLAR);
             entries.add(ModBlocks.CHISELED_CIRITE);
         });

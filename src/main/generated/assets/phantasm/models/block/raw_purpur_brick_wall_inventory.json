@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "phantasm:block/raw_purpur_bricks"
+  }
+}

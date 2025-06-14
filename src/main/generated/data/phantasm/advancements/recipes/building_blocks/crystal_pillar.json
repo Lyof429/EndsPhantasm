@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_crystal_tiles_slab": {
+    "has_crystal_tile_slab": {
       "conditions": {
         "items": [
           {
             "items": [
-              "phantasm:crystal_tiles_slab"
+              "phantasm:crystal_tile_slab"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_crystal_tiles_slab",
+      "has_crystal_tile_slab",
       "has_the_recipe"
     ]
   ],

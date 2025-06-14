@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "item": "phantasm:void_crystal_tiles"
-  },
-  "result": "phantasm:void_crystal_tiles_slab"
-}

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "item": "phantasm:cirite_pillar"
-  },
-  "result": "phantasm:cirite_bricks_slab"
-}

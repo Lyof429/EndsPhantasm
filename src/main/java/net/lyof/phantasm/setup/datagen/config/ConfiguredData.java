@@ -7,7 +7,9 @@ import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.BiomeKeys;
+import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.Nullable;
+import oshi.util.tuples.Triplet;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -160,7 +162,13 @@ public class ConfiguredData {
                         highlands = e.getAsJsonObject().get("parameters").getAsJsonObject();
                 }
 
-                int customCount = EndDataCompat.getEnabledBiomes().size();
+                // Adds biomes which already have noise parameters
+                for (JsonObject biome : EndDataCompat.getNoiseBiomes().stream().map(Pair::getSecond).toList()) {
+                    endEntries.add(biome);
+                }
+
+                // Calculate the other biomes
+                int customCount = EndDataCompat.getEnabledWeightedBiomes().size();
 
                 if (highlands != null && customCount > 0) {
                     String noise = EndDataCompat.getCompatibilityMode().equals("nullscape") ? "weirdness" : "temperature";
@@ -172,7 +180,7 @@ public class ConfiguredData {
                     double highlandsStep = customCount == 1 ? highlandsRange : highlandsRange / (customCount - 1);
                     double customRange = (pMax - pMin) * ConfigEntries.customBiomesWeight;
                     double customStep = 0;
-                    for (Pair<Identifier, Double> entry : EndDataCompat.getEnabledBiomes())
+                    for (Pair<Identifier, Double> entry : EndDataCompat.getEnabledWeightedBiomes())
                         customStep += entry.getSecond();
 
                     double min = pMin;
@@ -180,7 +188,7 @@ public class ConfiguredData {
 
                     // hook the custom biomes in
                     int j = 1;
-                    for (Pair<Identifier, Double> entry : EndDataCompat.getEnabledBiomes()) {
+                    for (Pair<Identifier, Double> entry : EndDataCompat.getEnabledWeightedBiomes()) {
                         Identifier biome = entry.getFirst();
                         Phantasm.log("Adding " + biome + " to the End biome source at slice " + j + " out of " + customCount);
 
@@ -336,156 +344,32 @@ public class ConfiguredData {
                             }"""));
             }
 
-            return gson.toJson(json);/*
-            return """
-                {
-                  "sea_level": 0,
-                  "disable_mob_generation": true,
-                  "aquifers_enabled": false,
-                  "ore_veins_enabled": false,
-                  "legacy_random_source": false,
-                  "default_block": {
-                    "Name": "minecraft:end_stone"
-                  },
-                  "default_fluid": {
-                    "Name": "minecraft:air"
-                  },
-                  "noise": {
-                    "min_y": 0,
-                    "height": 256,
-                    "size_horizontal": 2,
-                    "size_vertical": 1
-                  },
-                  "noise_router": {
-                    "barrier": 0,
-                    "fluid_level_floodedness": 0,
-                    "fluid_level_spread": 0,
-                    "lava": 0,
-                    "temperature": 0,
-                    "vegetation": 0,
-                    "continents": {
-                      "type": "minecraft:noise",
-                      "noise": "minecraft:temperature",
-                      "xz_scale": 6,
-                      "y_scale": 1
-                    },
-                    "erosion": {
-                      "type": "minecraft:cache_2d",
-                      "argument": {
-                        "type": "minecraft:end_islands"
-                      }
-                    },
-                    "depth": 0,
-                    "ridges": 0,
-                    "initial_density_without_jaggedness": {
-                      "type": "minecraft:add",
-                      "argument1": -0.234375,
-                      "argument2": {
-                        "type": "minecraft:mul",
-                        "argument1": {
-                          "type": "minecraft:y_clamped_gradient",
-                          "from_y": 4,
-                          "to_y": 32,
-                          "from_value": 0,
-                          "to_value": 1
-                        },
-                        "argument2": {
-                          "type": "minecraft:add",
-                          "argument1": 0.234375,
-                          "argument2": {
-                            "type": "minecraft:add",
-                            "argument1": -23.4375,
-                            "argument2": {
-                              "type": "minecraft:mul",
-                              "argument1": {
-                                "type": "minecraft:y_clamped_gradient",
-                                "from_y": 8,
-                                "to_y": 64,
-                                "from_value": 1,
-                                "to_value": 0
-                              },
-                              "argument2": {
-                                "type": "minecraft:add",
-                                "argument1": 23.4375,
-                                "argument2": {
-                                  "type": "minecraft:add",
-                                  "argument1": -0.703125,
-                                  "argument2": {
-                                    "type": "minecraft:cache_2d",
-                                    "argument": {
-                                      "type": "minecraft:end_islands"
-                                    }
-                                  }
-                                }
-                              }
-                            }
+            JsonObject baseRules = json.getAsJsonObject().get("surface_rule").getAsJsonObject();
+            JsonArray sequence = new JsonArray();
+            for (Pair<Identifier, JsonObject> biome : EndDataCompat.getCustomRules()) {
+                JsonObject condition = getJson("""
+                        {
+                          "type": "minecraft:condition",
+                          "if_true": {
+                            "type": "minecraft:biome",
+                            "biome_is": []
                           }
-                        }
-                      }
-                    },
-                    "final_density": {
-                      "type": "minecraft:squeeze",
-                      "argument": {
-                        "type": "minecraft:mul",
-                        "argument1": 0.64,
-                        "argument2": {
-                          "type": "minecraft:interpolated",
-                          "argument": {
-                            "type": "minecraft:blend_density",
-                            "argument": {
-                              "type": "minecraft:add",
-                              "argument1": -0.234375,
-                              "argument2": {
-                                "type": "minecraft:mul",
-                                "argument1": {
-                                  "type": "minecraft:y_clamped_gradient",
-                                  "from_y": 12,
-                                  "to_y": 52,
-                                  "from_value": 0.01,
-                                  "to_value": 0.9875
-                                },
-                                "argument2": {
-                                  "type": "minecraft:add",
-                                  "argument1": 0.234375,
-                                  "argument2": {
-                                    "type": "minecraft:add",
-                                    "argument1": -23.4375,
-                                    "argument2": {
-                                      "type": "minecraft:mul",
-                                      "argument1": {
-                                        "type": "minecraft:y_clamped_gradient",
-                                        "from_y": 58,
-                                        "to_y": 160,
-                                        "from_value": 1,
-                                        "to_value": 0.9
-                                      },
-                                      "argument2": {
-                                        "type": "minecraft:add",
-                                        "argument1": 23.4375,
-                                        "argument2": "minecraft:end/sloped_cheese"
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "vein_toggle": 0,
-                    "vein_ridged": 0,
-                    "vein_gap": 0
-                  },
-                  "spawn_target": [],
-                  "surface_rule": {
-                    "type": "minecraft:block",
-                    "result_state": {
-                      "Name": "minecraft:end_stone"
-                    }
-                  }
-                }
-                """;*/
+                        }""").getAsJsonObject();
+                condition.get("if_true").getAsJsonObject().get("biome_is").getAsJsonArray().add(biome.getFirst().toString());
+                condition.add("then_run", biome.getSecond());
+
+                sequence.add(condition);
+            }
+            sequence.add(baseRules);
+
+            JsonObject rules = getJson("""
+                    {
+                      "type": "minecraft:sequence"
+                    }""").getAsJsonObject();
+            rules.add("sequence", sequence);
+            json.getAsJsonObject().asMap().replace("surface_rule", rules);
+
+            return Phantasm.log( gson.toJson(json) );
         }
     }
 }

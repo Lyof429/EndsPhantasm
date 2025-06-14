@@ -1,0 +1,18 @@
+{
+  "biome": "minecraft:nether_wastes",
+  "parameters": {
+    "continentalness": 0,
+    "depth": 0,
+    "erosion": [0, 0.25],
+    "humidity": 0,
+    "offset": 0,
+    "temperature": [0, 1],
+    "weirdness": 0
+  },
+  "surface_rule": {
+    "type": "minecraft:block",
+    "result_state": {
+      "Name": "minecraft:dirt"
+    }
+  }
+}

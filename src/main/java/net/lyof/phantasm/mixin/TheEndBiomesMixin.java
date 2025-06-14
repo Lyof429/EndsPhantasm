@@ -13,6 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class TheEndBiomesMixin {
     @Inject(method = "addHighlandsBiome", at = @At("HEAD"))
     private static void catchFabricEndBiomes(RegistryKey<Biome> biome, double weight, CallbackInfo ci) {
-        EndDataCompat.add(biome, () -> weight);
+        EndDataCompat.add(biome.getValue(), () -> weight);
     }
 }

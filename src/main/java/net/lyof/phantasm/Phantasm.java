@@ -61,8 +61,19 @@ public class Phantasm implements ModInitializer {
 		return new Identifier(MOD_ID, id);
 	}
 
+	@Deprecated
 	public static <T> T log(T message) {
-		LOGGER.info("[Phantasm] {}", message);
+		return log(message, 0);
+	}
+
+	@Deprecated
+	public static <T> T log(T message, int level) {
+		if (level == 0)
+			LOGGER.info("[Phantasm] {}", message);
+		else if (level == 1)
+			LOGGER.warn("[Phantasm] {}", message);
+		else if (level == 2)
+			LOGGER.error("[Phantasm] {}", message);
 		return message;
 	}
 }

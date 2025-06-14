@@ -3,12 +3,10 @@ package net.lyof.phantasm.mixin;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ModConfig;
+import net.lyof.phantasm.setup.ReloadListener;
 import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
 import net.lyof.phantasm.setup.datagen.config.ConfiguredDataResourcePack;
-import net.minecraft.resource.LifecycledResourceManagerImpl;
-import net.minecraft.resource.Resource;
-import net.minecraft.resource.ResourcePack;
-import net.minecraft.resource.ResourceType;
+import net.minecraft.resource.*;
 import net.minecraft.util.Identifier;
 import org.apache.commons.io.input.CharSequenceInputStream;
 import org.spongepowered.asm.mixin.Mixin;
@@ -117,6 +115,6 @@ public class LifecycledResourceManagerImplMixin {
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void reloadConfigs(ResourceType type, List<ResourcePack> packs, CallbackInfo ci) {
-        ModConfig.register();
+        ReloadListener.INSTANCE.preload((ResourceManager) (Object) this);
     }
 }

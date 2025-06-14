@@ -45,10 +45,8 @@ public class PhantasmClient implements ClientModInitializer {
             client.execute(() -> {
                 Entity self = client.world.getEntityById(selfId);
                 Entity target = client.world.getEntityById(targetId);
-                if (self instanceof BehemothEntity behemoth) {
-                    Phantasm.log("Found it! " + behemoth.getBlockPos());
+                if (self instanceof BehemothEntity behemoth)
                     behemoth.setTarget((LivingEntity) target);
-                }
             });
         });
     }

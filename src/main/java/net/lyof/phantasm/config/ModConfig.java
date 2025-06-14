@@ -42,7 +42,7 @@ public class ModConfig {
                 writer.write(DEFAULT_CONFIG);
                 writer.close();
 
-                Phantasm.log("Phantasm Config file created");
+                Phantasm.log("Phantasm Config file created", 1);
             }
             catch (IOException e) {
                 e.printStackTrace();
@@ -66,7 +66,7 @@ public class ModConfig {
         }
 
         if (getVersion() > VERSION.get())
-            Phantasm.log("Your Phantasm configs are outdated! Consider deleting them so they can refresh");
+            Phantasm.log("Your Phantasm configs are outdated! Consider deleting them so they can refresh", 1);
     }
 
     static String parseJson(String text) {

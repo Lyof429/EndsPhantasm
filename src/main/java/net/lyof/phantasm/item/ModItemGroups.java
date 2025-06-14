@@ -17,7 +17,7 @@ public class ModItemGroups {
     public static final ItemGroup PHANTASM = register(Phantasm.MOD_ID,
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.phantasm"))
                     .icon(() -> new ItemStack(ModBlocks.FALLEN_STAR))
-                    .entries((displayContext, entries) -> {
+                    .entries((context, entries) -> {
                         if (false) return;
 
                         entries.add(ModBlocks.FALLEN_STAR);

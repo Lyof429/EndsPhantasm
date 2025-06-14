@@ -231,7 +231,7 @@ public class ModItemGroups {
             entries.addAfter(ModBlocks.RAW_PURPUR_BRICK_STAIRS, ModBlocks.RAW_PURPUR_BRICK_SLAB);
             entries.addAfter(ModBlocks.RAW_PURPUR_BRICK_SLAB, ModBlocks.RAW_PURPUR_BRICK_WALL);
 
-            entries.addAfter(ModBlocks.RAW_PURPUR_BRICK_SLAB, Blocks.OBSIDIAN);
+            entries.addAfter(ModBlocks.RAW_PURPUR_BRICK_WALL, Blocks.OBSIDIAN);
             entries.addAfter(Blocks.OBSIDIAN, ModBlocks.POLISHED_OBSIDIAN);
             entries.addAfter(ModBlocks.POLISHED_OBSIDIAN, ModBlocks.POLISHED_OBSIDIAN_BRICKS);
             entries.addAfter(ModBlocks.POLISHED_OBSIDIAN_BRICKS, ModBlocks.POLISHED_OBSIDIAN_BRICK_STAIRS);

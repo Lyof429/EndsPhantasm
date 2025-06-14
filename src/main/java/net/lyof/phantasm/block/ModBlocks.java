@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.custom.*;
+import net.lyof.phantasm.block.custom.FacingBlock;
 import net.lyof.phantasm.effect.ModEffects;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModRegistry;
@@ -135,9 +136,9 @@ public class ModBlocks {
             .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe")
             .model(ModRegistry.Models.PILLAR).drop().build();
     public static final Block CHISELED_OBSIDIAN = ModRegistry.ofBlock("chiseled_obsidian",
-                    new Block(polishedObsidianMaterial))
+                    new FacingBlock(polishedObsidianMaterial))
             .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe")
-            .model().drop().build();
+            .drop().build();
 
     public static final Block CRYSTAL_SHARD = ModRegistry.ofBlock("crystal_shard",
             new CrystalShardBlock(copy(crystalMaterial).luminance(7).sounds(BlockSoundGroup.GLASS)))

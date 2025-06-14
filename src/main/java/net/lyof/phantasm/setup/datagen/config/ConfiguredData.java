@@ -369,7 +369,7 @@ public class ConfiguredData {
             rules.add("sequence", sequence);
             json.getAsJsonObject().asMap().replace("surface_rule", rules);
 
-            return Phantasm.log( gson.toJson(json) );
+            return gson.toJson(json);
         }
     }
 }

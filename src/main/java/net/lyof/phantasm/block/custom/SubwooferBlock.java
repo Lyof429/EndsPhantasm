@@ -26,25 +26,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class SubwooferBlock extends Block {
+public class SubwooferBlock extends FacingBlock {
     public static final BooleanProperty POWERED = BooleanProperty.of("powered");
-    public static final DirectionProperty FACING = DirectionProperty.of("facing");
 
     public SubwooferBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(POWERED, false).with(FACING, Direction.NORTH));
+        this.setDefaultState(this.getDefaultState().with(POWERED, false));
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
-        builder.add(POWERED).add(FACING);
-    }
-
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return super.getPlacementState(ctx).with(FACING, ctx.getPlayer() != null && ctx.getPlayer().isSneaking() ?
-                ctx.getPlayerLookDirection().getOpposite() : ctx.getPlayerLookDirection());
+        builder.add(POWERED);
     }
 
     public static boolean canPush(Entity e) {

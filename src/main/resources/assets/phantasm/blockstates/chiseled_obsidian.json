@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "phantasm:block/chiseled_obsidian"
+    },
+    "facing=up": {
+      "model": "phantasm:block/chiseled_obsidian",
+      "x": -90
+    },
+    "facing=down": {
+      "model": "phantasm:block/chiseled_obsidian",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "phantasm:block/chiseled_obsidian",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "phantasm:block/chiseled_obsidian",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "phantasm:block/chiseled_obsidian",
+      "y": -90
+    }
+  }
+}

@@ -1,6 +1,5 @@
 package net.lyof.phantasm.mixin;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.world.ModWorldGeneration;
 import net.minecraft.registry.entry.RegistryEntry;

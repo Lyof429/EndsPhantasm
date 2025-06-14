@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.ParticleTypes;
@@ -47,7 +48,7 @@ public class SubwooferBlock extends Block {
     }
 
     public static boolean canPush(Entity e) {
-        return e.isPushable() || e instanceof ItemEntity ||e instanceof ProjectileEntity;
+        return e.isPushable() || e instanceof ItemEntity || e instanceof ProjectileEntity || e instanceof ArmorStandEntity;
     }
 
     @Override

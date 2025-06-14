@@ -258,6 +258,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         // Raw Purpur Pillar
         offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_PURPUR_PILLAR, ModBlocks.RAW_PURPUR_BRICK_SLAB);
 
+        // Purpur Wall
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PURPUR_WALL, 6)
+                .input('#', Blocks.PURPUR_BLOCK)
+                .pattern("###").pattern("###")
+                .group("purpur_wall")
+                .criterion(hasItem(Blocks.PURPUR_BLOCK),conditionsFromItem(Blocks.PURPUR_BLOCK))
+                .offerTo(exporter);
         // Purpur Lamp
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PURPUR_LAMP, 3)
                 .pattern("SSS")

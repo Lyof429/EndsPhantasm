@@ -7,9 +7,7 @@ import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.BiomeKeys;
-import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.Nullable;
-import oshi.util.tuples.Triplet;
 
 import java.util.LinkedList;
 import java.util.List;

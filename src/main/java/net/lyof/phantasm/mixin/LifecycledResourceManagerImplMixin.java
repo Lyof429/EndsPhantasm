@@ -2,7 +2,6 @@ package net.lyof.phantasm.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.config.ModConfig;
 import net.lyof.phantasm.setup.ReloadListener;
 import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
 import net.lyof.phantasm.setup.datagen.config.ConfiguredDataResourcePack;

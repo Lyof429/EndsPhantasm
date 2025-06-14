@@ -36,7 +36,7 @@ public class BoulderFeature extends Feature<BoulderFeatureConfig> {
         int size = config.size().get(random);
         Direction primary = Direction.fromHorizontal(random.nextInt(4));
         Direction secondary = random.nextBoolean() ? primary.rotateYClockwise() : primary.rotateYCounterclockwise();
-        int height = random.nextInt(4) + 2;
+        int height = random.nextInt(2) + 2;
 
         this.spike(toPlace, pos, 1, height);
         pos = this.move(pos, primary, secondary, random, world);

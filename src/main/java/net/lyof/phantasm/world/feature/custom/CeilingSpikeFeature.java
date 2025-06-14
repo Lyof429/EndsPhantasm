@@ -11,9 +11,7 @@ import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CeilingSpikeFeature extends Feature<BoulderFeatureConfig> {
@@ -32,7 +30,6 @@ public class CeilingSpikeFeature extends Feature<BoulderFeatureConfig> {
 
         int size = config.size().get(random);
 
-        List<BlockPos> toPlace = new ArrayList<>();
         Map<Direction, Integer> sizes = new HashMap<>();
         for (Direction dir : Direction.values())
             sizes.put(dir, size - random.nextBetween(2, 4));

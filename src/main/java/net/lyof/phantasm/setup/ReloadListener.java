@@ -17,6 +17,8 @@ public class ReloadListener {
     public void preload(ResourceManager manager) {
         ModConfig.register();
 
+        EndDataCompat.clear();
+
         for (Map.Entry<Identifier, Resource> entry : manager.findResources("worldgen/end_biomes",
                 path -> path.toString().endsWith(".json")).entrySet()) {
 

@@ -50,6 +50,11 @@ public class EndDataCompat {
         BIOMES_RULES.add(new Pair<>(biome, rules));
     }
 
+    public static void clear() {
+        BIOMES_NOISE.clear();
+        BIOMES_RULES.clear();
+    }
+
     public static boolean contains(Identifier biome) {
         return BIOMES_WEIGHT.stream().anyMatch(pair -> pair.getFirst().equals(biome))
                 || BIOMES_NOISE.stream().anyMatch(pair -> pair.getFirst().equals(biome));

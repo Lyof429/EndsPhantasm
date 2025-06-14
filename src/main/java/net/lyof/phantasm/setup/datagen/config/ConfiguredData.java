@@ -238,6 +238,8 @@ public class ConfiguredData {
                 json.getAsJsonObject().get("noise_router")
                         .getAsJsonObject().asMap().replace("temperature", temperature);
             }
+
+
             if (EndDataCompat.getCompatibilityMode().equals("custom")) {
                 json.getAsJsonObject().asMap().replace("noise", getJson("""
                         { "min_y": 0, "height": 256, "size_horizontal": 2, "size_vertical": 1 }"""));

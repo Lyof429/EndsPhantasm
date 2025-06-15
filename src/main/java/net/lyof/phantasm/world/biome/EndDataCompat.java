@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
 import net.fabricmc.loader.api.FabricLoader;
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.util.Identifier;
 
@@ -48,6 +49,7 @@ public class EndDataCompat {
     }
 
     public static void clear() {
+        BIOMES_WEIGHT.removeAll(BIOMES_WEIGHT.stream().filter(p -> p.getSecond().get() < 0).toList());
         BIOMES_NOISE.clear();
         BIOMES_RULES.clear();
     }
@@ -60,8 +62,8 @@ public class EndDataCompat {
     public static List<Pair<Identifier, Double>> getEnabledWeightedBiomes() {
         List<Pair<Identifier, Double>> result = new ArrayList<>();
         for (Pair<Identifier, Supplier<Double>> pair : BIOMES_WEIGHT) {
-            if (BIOMES_NOISE.stream().noneMatch(p -> p.getFirst().equals(pair.getFirst())) && pair.getSecond().get() > 0)
-                result.add(new Pair<>(pair.getFirst(), pair.getSecond().get()));
+            if (BIOMES_NOISE.stream().noneMatch(p -> p.getFirst().equals(pair.getFirst())) && Math.abs(pair.getSecond().get()) > 0)
+                result.add(new Pair<>(pair.getFirst(), Math.abs(pair.getSecond().get())));
         }
         return result;
     }
@@ -90,12 +92,17 @@ public class EndDataCompat {
     public static void read(JsonObject json) {
         if (!json.has("biome")) return;
 
-        if (json.has("parameters")) {
+        if (json.has("weight")) {
+            double weight = json.get("weight").getAsDouble();
+            add(new Identifier(json.get("biome").getAsString()), () -> -weight);
+        }
+        else if (json.has("parameters")) {
             JsonObject noise = new JsonObject();
             noise.add("biome", json.get("biome"));
             noise.add("parameters", json.get("parameters"));
             add(new Identifier(json.get("biome").getAsString()), noise);
         }
+
         if (json.has("surface_rule")) {
             addRules(new Identifier(json.get("biome").getAsString()), json.get("surface_rule").getAsJsonObject());
         }

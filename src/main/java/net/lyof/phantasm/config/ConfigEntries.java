@@ -22,6 +22,7 @@ public class ConfigEntries {
         extraSpiresHeight = new ConfigEntry<>("world_gen.end_spires.extra_height", 40).get();
 
         outerEndIntegration = new ConfigEntry<>("gameplay.outer_end_in_gameloop", true).get();
+        darkEnd = new ConfigEntry<>("gameplay.dark_end", false).get();
 
         behemothAggroRange = new ConfigEntry<>("gameplay.behemoth.aggro_range", 6).get();
         behemothAggroRangeSneaking = new ConfigEntry<>("gameplay.behemoth.aggro_range_sneaking", 0).get();
@@ -59,6 +60,7 @@ public class ConfigEntries {
     public static int extraSpiresHeight;
 
     public static boolean outerEndIntegration;
+    public static boolean darkEnd;
 
     public static int behemothAggroRange;
     public static int behemothAggroRangeSneaking;

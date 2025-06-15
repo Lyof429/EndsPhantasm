@@ -164,6 +164,8 @@ public class ModConfig {
   "gameplay": {
     // Should End portals teleport to the outer islands instead of the Dragon's
     "outer_end_in_gameloop": true,
+    // Should the End be rendered dark (like if it was actually night)
+    "dark_end": false,
     
     "dragon": {
       // Should the Dragon's Fireballs create a firey explosion on impact

@@ -36,6 +36,7 @@
   "client": [
     "MinecraftClientMixin",
     "VexEntityRendererMixin",
+    "client.DimensionEffectsMixin",
     "client.InGameHudMixin"
   ]
 }

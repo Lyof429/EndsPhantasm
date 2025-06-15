@@ -1,9 +1,9 @@
-// 1.20.1	2025-06-14T15:03:37.4219155	End's Phantasm/Tags for minecraft:block
+// 1.20.1	2025-06-15T17:45:16.2841008	End's Phantasm/Tags for minecraft:block
 593f2e2c9ff290a18e174aea8667161f9cb47660 data\minecraft\tags\blocks\ceiling_hanging_signs.json
 cce5be4750f254b2a6e75ad28e64f784441816e6 data\minecraft\tags\blocks\needs_stone_tool.json
 ac2d46c6d2fce0ad1e1fa97355a75c51e5b26783 data\minecraft\tags\blocks\mineable\axe.json
-3b0dbbdffd6ecd1316cc22f8f94fd877112c8a7c data\minecraft\tags\blocks\logs_that_burn.json
 cbf5c483fc1c97b74e51b8eacc052777718698b3 data\minecraft\tags\blocks\mineable\hoe.json
+3b0dbbdffd6ecd1316cc22f8f94fd877112c8a7c data\minecraft\tags\blocks\logs_that_burn.json
 ee2b68b93c4bc63121f34941a506a93255e12423 data\minecraft\tags\blocks\iron_ores.json
 142861b7bb99ff1cd71eb5e451e6cd005e8f3f98 data\minecraft\tags\blocks\unstable_bottom_center.json
 2929cf211baa4f020fb4202580f5d65864c31a7c data\minecraft\tags\blocks\needs_iron_tool.json

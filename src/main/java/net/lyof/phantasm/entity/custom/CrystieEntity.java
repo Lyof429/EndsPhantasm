@@ -55,7 +55,7 @@ public class CrystieEntity extends AnimalEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new DiveBombGoal(this));
-        this.goalSelector.add(1, new FlyGoal(this, 20));
+        this.goalSelector.add(1, new FlyGoal(this, 2));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, false, true) {
             @Override
             public boolean canStart() {

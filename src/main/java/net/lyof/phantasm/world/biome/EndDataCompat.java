@@ -5,7 +5,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
 import net.fabricmc.loader.api.FabricLoader;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.util.Identifier;
 

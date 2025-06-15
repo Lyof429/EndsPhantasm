@@ -80,7 +80,7 @@ public class ModConfiguredFeatures {
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.STARFLOWER)))));
 
         register(context, OBSIDIAN_TOWER, ObsidianTowerStructure.INSTANCE,
-                new CountConfig(UniformIntProvider.create(30, 50)));
+                new CountConfig(UniformIntProvider.create(50, 70)));
 
         register(context, RAW_PURPUR_COAL_ORE, Feature.ORE, new OreFeatureConfig(
                 new BlockMatchRuleTest(ModBlocks.RAW_PURPUR), ModBlocks.RAW_PURPUR_COAL_ORE.getDefaultState(), 24));

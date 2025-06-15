@@ -190,7 +190,7 @@ public class ConfiguredData {
                     int j = 1;
                     for (Pair<Identifier, Double> entry : EndDataCompat.getEnabledWeightedBiomes()) {
                         Identifier biome = entry.getFirst();
-                        Phantasm.log("Adding " + biome + " to the End biome source at slice " + j + " out of " + customCount);
+                        Phantasm.log("Adding " + biome + " to the End biome source at slice " + j + " out of " + customCount, 0);
 
                         max += customRange * entry.getSecond() / customStep;
                         endEntries.add(EndDataCompat.splitHypercube(biome, highlands, noise, min, max));

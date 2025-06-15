@@ -66,7 +66,6 @@ public class Phantasm implements ModInitializer {
 		return log(message, 0);
 	}
 
-	@Deprecated
 	public static <T> T log(T message, int level) {
 		if (level == 0)
 			LOGGER.info("[Phantasm] {}", message);

@@ -25,7 +25,7 @@ import java.util.function.Predicate;
 public class LifecycledResourceManagerImplMixin {
     @Unique
     private static Resource readAndApply(Optional<Resource> resource, ConfiguredData data) {
-        Phantasm.log("Applying configured data: " + data.target);
+        Phantasm.log("Applying configured data: " + data.target, 0);
 
         String result = "";
         if (resource.isEmpty())

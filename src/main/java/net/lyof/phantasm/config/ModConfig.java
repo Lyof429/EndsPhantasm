@@ -27,7 +27,7 @@ public class ModConfig {
     public static void register(boolean force) {
         String path = FabricLoader.getInstance().getConfigDir().resolve(Phantasm.MOD_ID + ".json").toString();
 
-        Phantasm.log("Loading Configs for Phantasm");
+        Phantasm.log("Loading Configs for Phantasm", 0);
 
         // Create config file if it doesn't exist already
         File config = new File(path);

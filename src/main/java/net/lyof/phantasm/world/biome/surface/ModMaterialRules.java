@@ -104,7 +104,7 @@ public class ModMaterialRules {
                             ModMaterialRules.createPhantasmRules(), settings.surfaceRule()
                         )
                 );
-                Phantasm.log("Successfully added Surface Rules for the End");
+                Phantasm.log("Successfully added Surface Rules for the End", 0);
             }
         }
     }

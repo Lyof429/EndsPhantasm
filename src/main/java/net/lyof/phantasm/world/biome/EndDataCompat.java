@@ -39,7 +39,7 @@ public class EndDataCompat {
             BIOMES_WEIGHT.add(new Pair<>(biome, weight));
     }
 
-    public static void addNoise(Identifier biome, JsonObject noise) {
+    public static void add(Identifier biome, JsonObject noise) {
         BIOMES_NOISE.add(new Pair<>(biome, noise));
     }
 
@@ -94,7 +94,7 @@ public class EndDataCompat {
             JsonObject noise = new JsonObject();
             noise.add("biome", json.get("biome"));
             noise.add("parameters", json.get("parameters"));
-            addNoise(new Identifier(json.get("biome").getAsString()), noise);
+            add(new Identifier(json.get("biome").getAsString()), noise);
         }
         if (json.has("surface_rule")) {
             addRules(new Identifier(json.get("biome").getAsString()), json.get("surface_rule").getAsJsonObject());

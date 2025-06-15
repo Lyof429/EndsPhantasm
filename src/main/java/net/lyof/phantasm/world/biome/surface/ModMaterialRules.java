@@ -25,24 +25,9 @@ public class ModMaterialRules {
         return MaterialRules.block(b.getDefaultState());
     }
 
-    private static final MaterialRules.MaterialRule VIVID_NIHILIUM = block(ModBlocks.VIVID_NIHILIUM);
     private static final MaterialRules.MaterialRule RAW_PURPUR = block(ModBlocks.RAW_PURPUR);
-    private static final MaterialRules.MaterialRule OBLIVION = block(ModBlocks.OBLIVION);
-
-    private static final MaterialRules.MaterialRule ACIDIC_NIHILIUM = block(ModBlocks.ACIDIC_NIHILIUM);
-    private static final MaterialRules.MaterialRule ACIDIC_MASS = block(ModBlocks.ACIDIC_MASS);
 
     public static MaterialRules.MaterialRule createPhantasmRules() {
-        double min_noise = -0.4;
-
-        MaterialRules.MaterialCondition is_dreaming_den = MaterialRules.biome(ModBiomes.DREAMING_DEN);
-        MaterialRules.MaterialCondition is_acidburnt_abysses = MaterialRules.biome(ModBiomes.ACIDBURNT_ABYSSES);
-
-        MaterialRules.MaterialCondition nihilium_noise_main =
-                MaterialRules.noiseThreshold(NoiseParametersKeys.AQUIFER_FLUID_LEVEL_SPREAD, min_noise, 0);
-        MaterialRules.MaterialCondition nihilium_noise_sub =
-                MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE_SWAMP, -0.1);
-
         MaterialRules.MaterialCondition band_noise =
                 MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE, 0);
 
@@ -95,108 +80,9 @@ public class ModMaterialRules {
                 )
         );
 
-        // DREAMING DEN RULES
-        MaterialRules.MaterialRule dreaming_den_nihilium = MaterialRules.condition(
-                is_dreaming_den,
-                MaterialRules.condition(
-                    MaterialRules.STONE_DEPTH_FLOOR,
-                        //MaterialRules.condition(
-                        //        MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
-                                VIVID_NIHILIUM
-                        //)
-                )
-        );
-
-        int oblivion_y = EndDataCompat.getCompatibilityMode().equals("default") ? 29 : 42;
-        MaterialRules.MaterialRule oblivion = MaterialRules.condition(
-                //MaterialRules.not(MaterialRules.aboveY(YOffset.fixed(oblivion_y), 0)),
-                MaterialRules.not(MaterialRules.stoneDepth(16, false, VerticalSurfaceType.FLOOR)),
-                MaterialRules.condition(
-                        MaterialRules.stoneDepth(2, false, VerticalSurfaceType.CEILING),
-                        OBLIVION
-                )
-        );
-
-        MaterialRules.MaterialRule dreaming_den = MaterialRules.sequence(
-                MaterialRules.condition(
-                        nihilium_noise_main,
-                        dreaming_den_nihilium
-                ),
-                MaterialRules.condition(
-                        MaterialRules.noiseThreshold(NoiseParametersKeys.AQUIFER_FLUID_LEVEL_SPREAD, min_noise),
-                        MaterialRules.condition(
-                                nihilium_noise_sub,
-                                dreaming_den_nihilium
-                        )
-                ),
-                MaterialRules.condition(
-                        is_dreaming_den,
-                        MaterialRules.condition(
-                                nihilium_noise_main,
-                                oblivion
-                        )
-                ),
-                MaterialRules.condition(
-                        is_dreaming_den,
-                        MaterialRules.condition(
-                                nihilium_noise_sub,
-                                oblivion
-                        )
-                )
-        );
-
-        // ACIDBURNT ABYSSES RULES
-        MaterialRules.MaterialRule acidburnt_abysses_nihilium = MaterialRules.condition(
-                is_acidburnt_abysses,
-                MaterialRules.condition(
-                        MaterialRules.STONE_DEPTH_FLOOR,
-                        //MaterialRules.condition(
-                        //        MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
-                                ACIDIC_NIHILIUM
-                        //)
-                )
-        );
-
-        MaterialRules.MaterialRule acidburnt_abysses_mass = MaterialRules.condition(
-                is_acidburnt_abysses,
-                MaterialRules.condition(
-                        MaterialRules.stoneDepth(2, false, VerticalSurfaceType.FLOOR),
-                        MaterialRules.condition(
-                                MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
-                                ACIDIC_MASS
-                        )
-                )
-        );
-
-
-        MaterialRules.MaterialRule acidburnt_abysses = MaterialRules.sequence(
-                MaterialRules.condition(
-                        MaterialRules.noiseThreshold(NoiseParametersKeys.BADLANDS_PILLAR, 0.25),
-                        acidburnt_abysses_mass
-                ),
-                MaterialRules.condition(
-                        nihilium_noise_main,
-                        acidburnt_abysses_nihilium
-                ),
-                MaterialRules.condition(
-                        MaterialRules.noiseThreshold(NoiseParametersKeys.AQUIFER_FLUID_LEVEL_SPREAD, min_noise),
-                        MaterialRules.condition(
-                                nihilium_noise_sub,
-                                acidburnt_abysses_nihilium
-                        )
-                )
-        );
-
 
         return ConfigEntries.doRawPurpur ?
-                MaterialRules.sequence(
-                        dreaming_den,
-                        acidburnt_abysses,
-                        raw_purpur_stripes
-                ) : MaterialRules.sequence(
-                        dreaming_den,
-                        acidburnt_abysses
-        );
+                raw_purpur_stripes : MaterialRules.sequence();
     }
 
     public static void addModMaterialRules(MinecraftServer server, RegistryKey<DimensionOptions> dimensionKey) {

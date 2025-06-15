@@ -24,6 +24,8 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
 public class ObsidianTowerStructure extends Feature<CountConfig> {
+    private static final int R = 7;
+
     private static final Identifier DRAGLING = Identifier.of("unusualend", "dragling");
     private static final Identifier LOOT_TABLE = Phantasm.makeID("chests/obsidian_tower");
 
@@ -47,24 +49,24 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
         maxy = maxy + 7 - maxy % 7;
 
         for (int sy = maxy; sy >= miny; sy--) {
-            for (int sx = -8; sx < 9; sx++) {
-                for (int sz = -8; sz < 9; sz++) {
-                    if (sx*sx + sz*sz < 64 && (sx*sx + sz*sz >= 49 || sy == maxy)) {
+            for (int sx = -R; sx <= R; sx++) {
+                for (int sz = -R; sz <= R; sz++) {
+                    if (sx*sx + sz*sz < R*R && (sx*sx + sz*sz >= (R-1)*(R-1) || sy == maxy)) {
                         Block block = Blocks.OBSIDIAN;
-                        double crying = (sy - 60) / (maxy - 60.0);
-                        if (Math.random() + 0.1 < crying * crying && crying > 0)
+                        double crying = (sy - 70) / (maxy - 70.0);
+                        if (Math.random() + 0.1 < crying * crying * crying)
                             block = Blocks.CRYING_OBSIDIAN;
-                        else if (Math.random() < 0.2)
-                            block = Math.random() < 0.5 ? ModBlocks.POLISHED_OBSIDIAN : ModBlocks.POLISHED_OBSIDIAN_BRICKS;
+                        else if (Math.random() < 0.35)
+                            block = Math.random() < 0.4 ? ModBlocks.POLISHED_OBSIDIAN : ModBlocks.POLISHED_OBSIDIAN_BRICKS;
 
                         this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
                                 block.getDefaultState());
                     }
-                    else if (sx*sx + sz*sz < 64 && sy == miny) {
+                    else if (sx*sx + sz*sz < R*R && sy == miny) {
                         this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
                                 Blocks.END_PORTAL.getDefaultState());
                     }
-                    else if (sx*sx + sz*sz < 49) {
+                    else if (sx*sx + sz*sz < (R-1)*(R-1)) {
                         this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
                                 Blocks.AIR.getDefaultState());
                     }
@@ -73,7 +75,6 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
             if (world.getBlockState(origin.withY(sy)).isAir()) this.setBlockState(world, origin.withY(sy), Blocks.CHAIN.getDefaultState());
             if (sy < maxy && sy > miny) this.putStairs(world, origin.withY(sy));
             if (sy % 7 == 0 && sy != maxy && sy != miny) this.putPlatform(world, origin.withY(sy), random.nextInt(7));
-            //if (sy % 5 == 0 && sy != 0) generateRoom(world, origin.withY(sy - 4));
         }
 
         return true;
@@ -82,13 +83,22 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
     public void putStairs(StructureWorldAccess world, BlockPos center) {
         int y = center.getY() - world.getBottomY();
 
-        for (int sx = -7; sx < 8; sx++) {
-            for (int sz = -7; sz < 8; sz++) {
-                if (sx*sx + sz*sz >= 36 && sx*sx + sz*sz < 49) {
-                    if (sx >= 5 && y % 4 == 0
-                            || sx <= -5 && y % 4 == 2
-                            || sz >= 5 && y % 4 == 1
-                            || sz <= -5 && y % 4 == 3)
+        for (int sx = -R+1; sx <= R-1; sx++) {
+            for (int sz = -R+1; sz <= R-1; sz++) {
+                if (sx*sx + sz*sz >= (R-2)*(R-2) && sx*sx + sz*sz < (R-1)*(R-1)) {
+                    if (sx == R-3 && sz == R-3 && y % 4 == 1
+                            || sx == -R+3 && sz == -R+3 && y % 4 == 3
+                            || sx == R-3 && sz == -R+3 && y % 4 == 0
+                            || sx == -R+3 && sz == R-3 && y % 4 == 2) {
+
+                        this.setBlockState(world, center.east(sx).north(sz),
+                                Blocks.PURPUR_SLAB.getDefaultState().with(SlabBlock.TYPE, SlabType.BOTTOM));
+                    }
+
+                    if (sx > R-3 && y % 4 == 0
+                            || sx < -R+3 && y % 4 == 2
+                            || sz > R-3 && y % 4 == 1
+                            || sz < -R+3 && y % 4 == 3)
                         this.setBlockState(world, center.east(sx).north(sz),
                                 Blocks.PURPUR_SLAB.getDefaultState().with(SlabBlock.TYPE, SlabType.TOP));
                 }
@@ -97,10 +107,10 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
 
         if (Math.random() < 0.2 || center.getY() == 1) {
             BlockPos door = center.mutableCopy();
-            if (y % 4 == 0) door = door.east(7);
-            else if (y % 4 == 2) door = door.west(7);
-            else if (y % 4 == 1) door = door.north(7);
-            else door = door.south(7);
+            if (y % 4 == 0) door = door.east(R-1);
+            else if (y % 4 == 2) door = door.west(R-1);
+            else if (y % 4 == 1) door = door.north(R-1);
+            else door = door.south(R-1);
 
             door = door.up();
             this.setBlockState(world, door, Blocks.AIR.getDefaultState());
@@ -110,18 +120,18 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
 
     public void putPlatform(ServerWorldAccess world, BlockPos center, int roomtype) {
         if (roomtype == 0) {
-            for (int sx = -5; sx < 6; sx++) {
-                for (int sz = -5; sz < 6; sz++) {
-                    if (sx * sx + sz * sz < 16) {
+            for (int sx = -R+3; sx <= R-3; sx++) {
+                for (int sz = -R+3; sz <= R-3; sz++) {
+                    if (sx * sx + sz * sz < (R-4)*(R-4)) {
                         this.setBlockState(world, center.east(sx).north(sz), Blocks.PURPUR_BLOCK.getDefaultState());
                     }
                 }
             }
         }
         else if (roomtype == 1) {
-            for (int sx = -5; sx < 6; sx++) {
-                for (int sz = -5; sz < 6; sz++) {
-                    if (sx * sx + sz * sz < 16) {
+            for (int sx = -R+3; sx <= R-3; sx++) {
+                for (int sz = -R+3; sz <= R-3; sz++) {
+                    if (sx * sx + sz * sz < (R-4)*(R-4)) {
                         this.setBlockState(world, center.east(sx).north(sz), Blocks.PURPUR_BLOCK.getDefaultState());
                     }
                 }
@@ -145,8 +155,8 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
             }
         }
         else if (roomtype == 3) {
-            center = center.north(world.getRandom().nextBetween(-3, 3)).east(world.getRandom().nextBetween(-3, 3));
-            BlockPos.iterateInSquare(center, 2, Direction.NORTH, Direction.EAST).forEach(pos ->
+            center = center.north(world.getRandom().nextBetween(-R+4, R-4)).east(world.getRandom().nextBetween(-R+4, R-4));
+            BlockPos.iterateInSquare(center, 1, Direction.NORTH, Direction.EAST).forEach(pos ->
                     this.setBlockState(world, pos, Blocks.OBSIDIAN.getDefaultState())
             );
             this.setBlockState(world, center.up(), Blocks.CHEST.getDefaultState());
@@ -155,12 +165,13 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
         }
     }
 
+    /*
     public static void generateRoom(StructureWorldAccess world, BlockPos center) {
         if (Math.random() < 0.5 || center.getY() == 1) {
             BlockPos door = center.mutableCopy();
-            if (Math.random() <= 0.25) door = door.east(7);
-            else if (Math.random() <= 0.25) door = door.west(7);
-            else if (Math.random() <= 0.25) door = door.north(7);
+            if (Math.random() <= 0.25) door = door.east(R-1);
+            else if (Math.random() <= 0.25) door = door.west(R-1);
+            else if (Math.random() <= 0.25) door = door.north(R-1);
             else door = door.south(7);
 
             world.setBlockState(door, Blocks.AIR.getDefaultState(), Block.NOTIFY_NEIGHBORS);
@@ -175,5 +186,5 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
             if (world.getBlockEntity(center.up()) instanceof ChestBlockEntity chest)
                 chest.setLootTable(LootTables.STRONGHOLD_CORRIDOR_CHEST, world.getRandom().nextLong());
         }
-    }
+    }*/
 }

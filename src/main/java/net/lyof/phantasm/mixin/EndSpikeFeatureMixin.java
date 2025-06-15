@@ -24,12 +24,12 @@ public abstract class EndSpikeFeatureMixin {
                                   ServerWorldAccess world, Random random, EndSpikeFeatureConfig config,
                                   EndSpikeFeature.Spike spike) {
 
-        double crying = (pos.getY() - 60) / (spike.getHeight() - 60d);
+        double crying = (pos.getY() - 70) / (spike.getHeight() - 70d);
         if (state.isOf(Blocks.OBSIDIAN) && ConfigEntries.improveEndSpires) {
-            if (crying > 0 && Math.random() < crying * crying)
+            if (Math.random() < crying * crying * crying)
                 state = Blocks.CRYING_OBSIDIAN.getDefaultState();
-            else if (Math.random() < 0.2)
-                state = Math.random() < 0.5 ? ModBlocks.POLISHED_OBSIDIAN.getDefaultState()
+            else if (Math.random() < 0.35)
+                state = Math.random() < 0.4 ? ModBlocks.POLISHED_OBSIDIAN.getDefaultState()
                         : ModBlocks.POLISHED_OBSIDIAN_BRICKS.getDefaultState();
         }
 

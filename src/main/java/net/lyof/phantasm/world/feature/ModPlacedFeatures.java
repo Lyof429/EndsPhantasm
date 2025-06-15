@@ -46,7 +46,8 @@ public class ModPlacedFeatures {
         register(context, CRYSTAL_SPIKE, configLookup.getOrThrow(ModConfiguredFeatures.CRYSTAL_SPIKE),
                 SquarePlacementModifier.of(),
                 BiomePlacementModifier.of(),
-                RarityFilterPlacementModifier.of(2));
+                RarityFilterPlacementModifier.of(4),
+                PlacedFeatures.createCountExtraModifier(2, 0.5f, 2));
 
         register(context, FALLEN_STAR, configLookup.getOrThrow(ModConfiguredFeatures.FALLEN_STAR),
                 SquarePlacementModifier.of(),

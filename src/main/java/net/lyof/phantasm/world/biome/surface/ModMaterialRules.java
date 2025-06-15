@@ -26,8 +26,6 @@ public class ModMaterialRules {
     private static final MaterialRules.MaterialRule RAW_PURPUR = block(ModBlocks.RAW_PURPUR);
 
     public static MaterialRules.MaterialRule createPhantasmRules() {
-        MaterialRules.MaterialCondition band_noise =
-                MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE, 0);
 
         int raw_purpur_offset = EndDataCompat.getCompatibilityMode().equals("endercon") ? 20 : 0;
         raw_purpur_offset += ConfigEntries.rawPurpurOffset;
@@ -70,7 +68,8 @@ public class ModMaterialRules {
                         ), MaterialRules.condition(
                                 band_y_above3,
                                 MaterialRules.condition(band_y_below3,
-                                        MaterialRules.condition(band_noise,
+                                        MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE,
+                                                        0),
                                                 RAW_PURPUR
                                         )
                                 )

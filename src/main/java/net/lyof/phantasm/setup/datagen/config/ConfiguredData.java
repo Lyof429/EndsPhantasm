@@ -87,7 +87,7 @@ public class ConfiguredData {
                              "erosion": [0.25, 1],
                              "humidity": 0,
                              "offset": 0,
-                             "temperature": [-1, 1],
+                             "temperature": 0,
                              "weirdness": 0
                            }
                          },
@@ -156,8 +156,10 @@ public class ConfiguredData {
                 JsonObject highlands = null;
 
                 for (JsonElement e : entries) {
-                    if (e.getAsJsonObject().get("biome").getAsString().equals(BiomeKeys.END_HIGHLANDS.getValue().toString()))
+                    if (e.getAsJsonObject().get("biome").getAsString().equals(BiomeKeys.END_HIGHLANDS.getValue().toString())) {
                         highlands = e.getAsJsonObject().get("parameters").getAsJsonObject();
+                        break;
+                    }
                 }
 
                 // Adds biomes which already have noise parameters

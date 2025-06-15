@@ -2,6 +2,7 @@ package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
 import net.lyof.phantasm.block.ModBlocks;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -39,7 +40,7 @@ public class OblivineFeature extends Feature<BlockColumnFeatureConfig> {
                 return false;
 
             BlockState state = config.layers().get(0).state().get(random, pos);
-            this.setBlockState(world, pos, state);
+            this.setBlockStateIf(world, pos, state, AbstractBlock.AbstractBlockState::isAir);
             pos = pos.down();
         }
         if (random.nextInt(5) == 0)

@@ -2,10 +2,8 @@ package net.lyof.phantasm.block.entity;
 
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlockEntities;
-import net.lyof.phantasm.entity.listener.ChallengeRuneEventListener;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
@@ -18,19 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class ChallengeRuneBlockEntity extends BlockEntity implements GameEventListener.Holder<ChallengeRuneEventListener> {
-    private final ChallengeRuneEventListener listener;
+public class ChallengeRuneBlockEntity extends BlockEntity {
     private final List<UUID> completedPlayers;
 
     public ChallengeRuneBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.CHALLENGE_RUNE, pos, state);
-        this.listener = new ChallengeRuneEventListener(this);
         this.completedPlayers = new ArrayList<>();
-    }
-
-    @Override
-    public ChallengeRuneEventListener getEventListener() {
-        return this.listener;
     }
 
     @Override
@@ -68,6 +59,10 @@ public class ChallengeRuneBlockEntity extends BlockEntity implements GameEventLi
 
     public boolean hasCompleted(PlayerEntity player) {
         return this.completedPlayers.contains(player.getUuid());
+    }
+
+    public boolean canStart(PlayerEntity player) {
+        return !this.hasCompleted(player);
     }
 
     public void startChallenge(PlayerEntity player) {

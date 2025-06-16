@@ -32,5 +32,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(Blocks.END_STONE_BRICK_SLAB);
         getOrCreateTagBuilder(ModTags.Blocks.DRALGAE_GROWABLE_ON)
                 .addTag(ModTags.Blocks.END_PLANTS_GROWABLE_ON);
+        getOrCreateTagBuilder(ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON)
+                .add(Blocks.CRYING_OBSIDIAN);
     }
 }

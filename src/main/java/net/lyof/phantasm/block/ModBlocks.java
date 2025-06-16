@@ -117,31 +117,31 @@ public class ModBlocks {
     // Polished Obsidian Blockset
     public static final Block POLISHED_OBSIDIAN = ModRegistry.ofBlock("polished_obsidian",
             new Block(polishedObsidianMaterial))
-            .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe").drop().model().build();
+            .tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON).tool("iron_pickaxe").drop().model().build();
     public static final Block POLISHED_OBSIDIAN_BRICKS = ModRegistry.ofBlock("polished_obsidian_bricks",
             new Block(polishedObsidianMaterial))
-            .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe").drop().build();
+            .tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON).tool("iron_pickaxe").drop().build();
     public static final Block POLISHED_OBSIDIAN_BRICK_STAIRS = ModRegistry.ofBlock("polished_obsidian_brick_stairs",
             new StairsBlock(POLISHED_OBSIDIAN_BRICKS.getDefaultState(), polishedObsidianMaterial))
-            .tag(BlockTags.DRAGON_IMMUNE, BlockTags.STAIRS).tagitem(ItemTags.STAIRS)
+            .tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON, BlockTags.STAIRS).tagitem(ItemTags.STAIRS)
             .tool("iron_pickaxe").drop().cutout().build();
     public static final Block POLISHED_OBSIDIAN_BRICK_SLAB = ModRegistry.ofBlock("polished_obsidian_brick_slab",
             new SlabBlock(polishedObsidianMaterial))
-            .tag(BlockTags.DRAGON_IMMUNE, BlockTags.SLABS).tagitem(ItemTags.SLABS)
+            .tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON, BlockTags.SLABS).tagitem(ItemTags.SLABS)
             .tool("iron_pickaxe").drop().cutout().build();
 
     public static final Block POLISHED_OBSIDIAN_PILLAR = ModRegistry.ofBlock("polished_obsidian_pillar",
                     new PillarBlock(polishedObsidianMaterial))
-            .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe")
+            .tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON).tool("iron_pickaxe")
             .model(ModRegistry.Models.PILLAR).drop().build();
     public static final Block CHISELED_OBSIDIAN = ModRegistry.ofBlock("chiseled_obsidian",
                     new FacingBlock(polishedObsidianMaterial))
-            .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe")
+            .tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON).tool("iron_pickaxe")
             .drop().build();
 
     public static final Block CHALLENGE_RUNE = ModRegistry.ofBlock("challenge_rune",
             new ChallengeRuneBlock(polishedObsidianMaterial))
-            .tag(BlockTags.DRAGON_IMMUNE).tool("_pickaxe")
+            .tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON).tool("_pickaxe")
             .build();
 
     public static final Block CRYSTAL_SHARD = ModRegistry.ofBlock("crystal_shard",

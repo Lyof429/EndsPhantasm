@@ -139,6 +139,11 @@ public class ModBlocks {
             .tag(BlockTags.DRAGON_IMMUNE).tool("iron_pickaxe")
             .drop().build();
 
+    public static final Block CHALLENGE_RUNE = ModRegistry.ofBlock("challenge_rune",
+            new ChallengeRuneBlock(polishedObsidianMaterial))
+            .tag(BlockTags.DRAGON_IMMUNE).tool("_pickaxe")
+            .build();
+
     public static final Block CRYSTAL_SHARD = ModRegistry.ofBlock("crystal_shard",
             new CrystalShardBlock(copy(crystalMaterial).luminance(7).sounds(BlockSoundGroup.GLASS)))
             .model(Models.GENERATED).tool("_pickaxe").drop().cutout().build();

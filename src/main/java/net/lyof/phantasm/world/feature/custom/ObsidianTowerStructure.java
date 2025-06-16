@@ -9,6 +9,7 @@ import net.minecraft.block.SlabBlock;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.block.enums.SlabType;
+import net.minecraft.client.render.block.entity.BeaconBlockEntityRenderer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.loot.LootTables;
 import net.minecraft.nbt.NbtCompound;
@@ -47,6 +48,8 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
         int miny = world.getBottomY();
         int maxy = config.getCount().get(random) + origin.getY();
         maxy = maxy + 7 - maxy % 7;
+
+        this.setBlockState(world, origin.withY(maxy + 1), ModBlocks.CHALLENGE_RUNE.getDefaultState());
 
         for (int sy = maxy; sy >= miny; sy--) {
             for (int sx = -R; sx <= R; sx++) {

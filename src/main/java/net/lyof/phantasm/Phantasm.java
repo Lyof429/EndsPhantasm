@@ -2,6 +2,7 @@ package net.lyof.phantasm;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
+import net.lyof.phantasm.block.ModBlockEntities;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ModConfig;
 import net.lyof.phantasm.effect.ModEffects;
@@ -36,6 +37,7 @@ public class Phantasm implements ModInitializer {
 		ModBlocks.register();
 
 		ModEntities.register();
+		ModBlockEntities.register();
 
 		ModParticles.register();
 		ModSounds.register();
@@ -53,8 +55,7 @@ public class Phantasm implements ModInitializer {
 		ModFeatures.register();
 		ModWorldGeneration.register();
 
-		if (!FabricLoader.getInstance().isDevelopmentEnvironment())
-			ModRegistry.clear();
+		if (!FabricLoader.getInstance().isDevelopmentEnvironment()) ModRegistry.clear();
 	}
 
 	public static Identifier makeID(String id) {

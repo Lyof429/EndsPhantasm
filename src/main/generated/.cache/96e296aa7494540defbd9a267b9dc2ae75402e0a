@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-15T17:45:16.2751226	End's Phantasm/Model Definitions
+// 1.20.1	2025-06-15T22:29:40.1723018	End's Phantasm/Model Definitions
 1dfe08bcfe8ebc76bda5c21fb3b3253d6d029360 assets\phantasm\blockstates\polished_obsidian_bricks.json
 2182470d696c249714cb5f87237585e7702492f6 assets\phantasm\blockstates\void_crystal_tile_slab.json
 b4eab81ee68092960c6944c0ebfdda04688ad103 assets\phantasm\blockstates\choral_block.json
@@ -166,8 +166,8 @@ e57788db80f0a379c5495d3089701c5f37b36254 assets\phantasm\models\block\polished_o
 e3c7a785ed60bc61527a845f862c15d3a2f1dd33 assets\phantasm\models\block\pream_button_inventory.json
 493de7a86d85e846fc09f5b2780940d925157aba assets\phantasm\models\block\cirite_brick_slab.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets\phantasm\models\item\behemoth_spawn_egg.json
-9de57fea22b09ad99b4907e5923a6e511ad395f0 assets\phantasm\blockstates\raw_purpur_brick_slab.json
 a9b368268d55c3b501a0d2f32a30209bdecafe54 assets\phantasm\blockstates\polished_obsidian_pillar.json
+9de57fea22b09ad99b4907e5923a6e511ad395f0 assets\phantasm\blockstates\raw_purpur_brick_slab.json
 5699987ce255b5cfa172654f277f00d18bfa9de0 assets\phantasm\models\block\void_crystal_glass_pane_noside.json
 95c551969ca4c28a9ff31868feeb93278a1b3d9e assets\phantasm\models\item\dralgae.json
 a6885d7eeef919571a9944859b6579bea5c718bb assets\phantasm\models\item\choral_arrow.json

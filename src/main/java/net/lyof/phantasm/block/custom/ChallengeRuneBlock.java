@@ -7,13 +7,23 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.event.listener.GameEventListener;
 import org.jetbrains.annotations.Nullable;
 
 public class ChallengeRuneBlock extends BlockWithEntity {
+    public static final BooleanProperty COMPLETED = BooleanProperty.of("completed");
+
     public ChallengeRuneBlock(Settings settings) {
         super(settings);
+    }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        super.appendProperties(builder);
+        builder.add(COMPLETED);
     }
 
     @Override

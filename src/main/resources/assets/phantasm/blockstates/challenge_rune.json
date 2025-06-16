@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "completed=false": {
+      "model": "phantasm:block/challenge_rune"
+    },
+    "completed=true": {
+      "model": "phantasm:block/challenge_rune_completed"
+    }
+  }
+}

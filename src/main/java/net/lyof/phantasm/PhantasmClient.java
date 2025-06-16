@@ -4,13 +4,16 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.lyof.phantasm.block.ModBlockEntities;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.client.ModModelLayers;
 import net.lyof.phantasm.entity.client.model.BehemothModel;
 import net.lyof.phantasm.entity.client.model.CrystieModel;
 import net.lyof.phantasm.entity.client.renderer.BehemothRenderer;
+import net.lyof.phantasm.entity.client.renderer.ChallengeRuneBlockEntityRenderer;
 import net.lyof.phantasm.entity.client.renderer.ChoralArrowRenderer;
 import net.lyof.phantasm.entity.client.renderer.CrystieRenderer;
 import net.lyof.phantasm.entity.custom.BehemothEntity;
@@ -20,6 +23,7 @@ import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 
@@ -36,6 +40,7 @@ public class PhantasmClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.BEHEMOTH, BehemothModel::getTexturedModelData);
 
         EntityRendererRegistry.register(ModEntities.CHORAL_ARROW, ChoralArrowRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.CHALLENGE_RUNE, ChallengeRuneBlockEntityRenderer::new);
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.ZZZ, ZzzParticle.Factory::new);
 

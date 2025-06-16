@@ -25,7 +25,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
 public class ObsidianTowerStructure extends Feature<CountConfig> {
-    private static final int R = 7;
+    public static final int R = 7;
 
     private static final Identifier DRAGLING = Identifier.of("unusualend", "dragling");
     private static final Identifier LOOT_TABLE = Phantasm.makeID("chests/obsidian_tower");

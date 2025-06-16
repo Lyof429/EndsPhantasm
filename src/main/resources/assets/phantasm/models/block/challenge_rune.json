@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "phantasm:block/chiseled_obsidian_d",
+    "up": "phantasm:block/chiseled_obsidian_t",
+    "north": "phantasm:block/chiseled_obsidian_l",
+    "east": "phantasm:block/chiseled_obsidian_f",
+    "south": "phantasm:block/chiseled_obsidian_u",
+    "west": "phantasm:block/chiseled_obsidian_m",
+    "particle": "phantasm:block/chiseled_obsidian_d"
+  }
+}

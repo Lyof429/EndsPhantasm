@@ -156,7 +156,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
     }
 
     public void stopChallenge(boolean success) {
-        this.tick = -4;
+        this.tick = -2;
 
         if (!this.getWorld().isClient()) {
             PacketByteBuf packet = PacketByteBufs.create();

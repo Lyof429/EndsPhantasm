@@ -8,6 +8,7 @@
     "ChorusFlowerBlockMixin",
     "ChorusPlantBlockMixin",
     "DragonFireballEntityMixin",
+    "EndCrystalEntityMixin",
     "EndCrystalItemMixin",
     "EndermanEntityMixin",
     "EndGatewayBlockEntityMixin",

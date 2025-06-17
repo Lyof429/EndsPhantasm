@@ -3,6 +3,7 @@ package net.lyof.phantasm.entity.client.renderer;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.block.custom.ChallengeRuneBlock;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
+import net.lyof.phantasm.block.entity.Challenger;
 import net.lyof.phantasm.util.RenderHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
@@ -14,6 +15,7 @@ import net.minecraft.client.render.block.entity.BeaconBlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RotationAxis;
@@ -51,19 +53,22 @@ public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<Cha
     public static final Identifier TOWER_BASE_TEXTURE = Identifier.of("minecraft", "textures/block/obsidian.png");
 
     @Override
-    public void render(ChallengeRuneBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers,
-                       int light, int overlay) {
+    public void render(ChallengeRuneBlockEntity self, float tickDelta, MatrixStack matrices,
+                       VertexConsumerProvider vertexConsumers, int light, int overlay) {
 
-        World world = entity.getWorld();
-        BlockPos pos = entity.getPos();
+        World world = self.getWorld();
+        BlockPos pos = self.getPos();
         if (world == null) return;
+        PlayerEntity player = MinecraftClient.getInstance().player;
 
-        if (entity.getTowerBases().isEmpty())
-            entity.generateTowerBases();
+        if (self.getTowerBases().isEmpty())
+            self.generateTowerBases();
 
         BlockState state = ModBlocks.CHALLENGE_RUNE.getDefaultState()
-                .with(ChallengeRuneBlock.COMPLETED, entity.hasCompleted(MinecraftClient.getInstance().player));
+                .with(ChallengeRuneBlock.COMPLETED, self.hasCompleted(player));
 
+
+        matrices.push();
 
         // Base block
         this.blockRenderer.getModelRenderer().render(world, this.blockRenderer.getModel(state), state, pos,
@@ -71,21 +76,28 @@ public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<Cha
                 state.getRenderingSeed(pos), OverlayTexture.DEFAULT_UV);
 
         // Tower base
-        if (entity.renderBase) {
+        if (self.renderBase) {
             light = WorldRenderer.getLightmapCoordinates(world, pos.withY(-20));
-            for (Vec3i vec : entity.getTowerBases())
+            for (Vec3i vec : self.getTowerBases())
                 RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
                         vec.getX(), vec.getX() + 1,
                         vec.getY() - 512, vec.getY(),
                         vec.getZ(), vec.getZ() + 1);
         }
 
-        // Sky
-        RenderHelper.renderCube(matrices, vertexConsumers.getBuffer(RenderLayer.getEndGateway()), light,
-                -10, 11, -10, 11, -10, 11);
+        if (self.isChallengeRunning()) {
+            // Sky
+            if (player instanceof Challenger challenger && challenger.isInRange()) {
+                float radius = Math.min(40, self.tick + tickDelta) / 4f;
+                RenderHelper.renderCube(matrices, vertexConsumers.getBuffer(RenderLayer.getEndGateway()), light,
+                        -radius, radius + 1, -radius, radius + 1, -radius, radius + 1);
+            }
 
-        /*BeaconBlockEntityRenderer.renderBeam(matrices, vertexConsumers, BeaconBlockEntityRenderer.BEAM_TEXTURE, tickDelta,
-                1, entity.getWorld().getTime(), 0, BeaconBlockEntityRenderer.MAX_BEAM_HEIGHT,
-                new float[]{0.5f, 0f, 0.7f}, 0.2f, 0.25f);*/
+            /*BeaconBlockEntityRenderer.renderBeam(matrices, vertexConsumers, BeaconBlockEntityRenderer.BEAM_TEXTURE, tickDelta,
+                    1, self.getWorld().getTime(), 0, BeaconBlockEntityRenderer.MAX_BEAM_HEIGHT,
+                    new float[]{0.5f, 0f, 0.7f}, 0.2f, 0.25f);*/
+        }
+
+        matrices.pop();
     }
 }

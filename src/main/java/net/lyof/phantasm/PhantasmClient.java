@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.lyof.phantasm.block.ModBlockEntities;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
+import net.lyof.phantasm.block.entity.Challenger;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.client.ModModelLayers;
 import net.lyof.phantasm.entity.client.model.BehemothModel;
@@ -26,6 +27,9 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.server.command.TitleCommand;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 
 public class PhantasmClient implements ClientModInitializer {
@@ -65,6 +69,23 @@ public class PhantasmClient implements ClientModInitializer {
             client.execute(() -> {
                 if (client.world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity challengeRune)
                     challengeRune.startChallenge(client.player);
+                client.inGameHud.setTitle(Text.translatable("block.phantasm.challenge_rune.start")
+                        .formatted(Formatting.LIGHT_PURPLE));
+            });
+        });
+
+        ClientPlayNetworking.registerGlobalReceiver(ModPackets.CHALLENGE_ENDS, (client, handler, buf, responseSender) -> {
+            BlockPos pos = buf.readBlockPos();
+            boolean success = buf.readBoolean();
+            client.execute(() -> {
+                if (client.world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity challengeRune) {
+                    if (((Challenger) client.player).phantasm$getRune() == challengeRune)
+                        client.inGameHud.setTitle(Text.translatable(success ?
+                                        "block.phantasm.challenge_rune.success" :
+                                        "block.phantasm.challenge_rune.fail")
+                                .formatted(Formatting.LIGHT_PURPLE));
+                    challengeRune.stopChallenge(success);
+                }
             });
         });
     }

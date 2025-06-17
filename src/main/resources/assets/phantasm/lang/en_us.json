@@ -67,6 +67,12 @@
   "block.phantasm.chiseled_obsidian": "Chiseled Obsidian",
 
   "block.phantasm.challenge_rune": "Challenge Rune",
+
+  "block.phantasm.challenge_rune.start": "Challenge started!",
+  "block.phantasm.challenge_rune.fail": "Challenge failed...",
+  "block.phantasm.challenge_rune.success": "Challenge complete!",
+
+  "block.phantasm.challenge_rune.hint": "A challenge is already running.",
   "block.phantasm.challenge_rune.hint.crystal0": "Bring back what was shattered.",
   "block.phantasm.challenge_rune.hint.crystal1": "Are you ready?",
   "block.phantasm.challenge_rune.hint.crystal2": "Let fire dance again.",

@@ -71,15 +71,18 @@ public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<Cha
                 state.getRenderingSeed(pos), OverlayTexture.DEFAULT_UV);
 
         // Tower base
-        light = WorldRenderer.getLightmapCoordinates(world, pos.withY(-20));
-        for (Vec3i vec : entity.getTowerBases())
-            RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
-                    vec.getX(), vec.getX() + 1,
-                    vec.getY() - 512, vec.getY(),
-                    vec.getZ(), vec.getZ() + 1);
+        if (entity.renderBase) {
+            light = WorldRenderer.getLightmapCoordinates(world, pos.withY(-20));
+            for (Vec3i vec : entity.getTowerBases())
+                RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
+                        vec.getX(), vec.getX() + 1,
+                        vec.getY() - 512, vec.getY(),
+                        vec.getZ(), vec.getZ() + 1);
+        }
 
-        RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
-                0, 1, 2, 3, 0, 1);
+        // Sky
+        RenderHelper.renderCube(matrices, vertexConsumers.getBuffer(RenderLayer.getEndGateway()), light,
+                -10, 11, -10, 11, -10, 11);
 
         /*BeaconBlockEntityRenderer.renderBeam(matrices, vertexConsumers, BeaconBlockEntityRenderer.BEAM_TEXTURE, tickDelta,
                 1, entity.getWorld().getTime(), 0, BeaconBlockEntityRenderer.MAX_BEAM_HEIGHT,

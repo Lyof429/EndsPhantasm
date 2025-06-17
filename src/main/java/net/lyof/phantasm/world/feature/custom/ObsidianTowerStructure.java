@@ -3,6 +3,7 @@ package net.lyof.phantasm.world.feature.custom;
 import com.mojang.serialization.Codec;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SlabBlock;
@@ -50,6 +51,8 @@ public class ObsidianTowerStructure extends Feature<CountConfig> {
         maxy = maxy + 7 - maxy % 7;
 
         this.setBlockState(world, origin.withY(maxy + 1), ModBlocks.CHALLENGE_RUNE.getDefaultState());
+        if (world.getBlockEntity(origin.withY(maxy + 1)) instanceof ChallengeRuneBlockEntity challengeRune)
+            challengeRune.renderBase = true;
 
         for (int sy = maxy; sy >= miny; sy--) {
             for (int sx = -R; sx <= R; sx++) {

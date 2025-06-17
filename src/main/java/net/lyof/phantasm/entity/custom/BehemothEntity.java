@@ -112,7 +112,7 @@ public class BehemothEntity extends HostileEntity implements Monster {
             buf.writeInt(this.getId());
             buf.writeInt(target == null ? 0 : target.getId());
             for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) this.getWorld(), this.getBlockPos())) {
-                ServerPlayNetworking.send(player, ModPackets.BEHEMOTH_WAKE_UP, buf);
+                ServerPlayNetworking.send(player, ModPackets.BEHEMOTH_WAKES_UP, buf);
             }
         }
 

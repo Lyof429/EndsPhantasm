@@ -1,19 +1,26 @@
 package net.lyof.phantasm.block.entity;
 
-import net.fabricmc.loader.impl.lib.sat4j.core.Vec;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlockEntities;
 import static net.lyof.phantasm.world.feature.custom.ObsidianTowerStructure.R;
+
+import net.lyof.phantasm.mixin.access.ServerPlayerEntityAccessor;
+import net.lyof.phantasm.setup.ModPackets;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
-import net.minecraft.world.event.listener.GameEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +28,7 @@ import java.util.UUID;
 
 public class ChallengeRuneBlockEntity extends BlockEntity {
     private final List<UUID> completedPlayers;
-    private boolean renderBase;
+    public boolean renderBase;
     private final List<Vec3i> towerBases;
 
     public ChallengeRuneBlockEntity(BlockPos pos, BlockState state) {
@@ -74,7 +81,6 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
                     this.towerBases.add(new Vec3i(sx, y, sz));
             }
         }
-        Phantasm.log(this.towerBases);
     }
 
     public void complete(PlayerEntity player) {
@@ -85,11 +91,30 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         return this.completedPlayers.contains(player.getUuid());
     }
 
-    public boolean canStart(PlayerEntity player) {
-        return !this.hasCompleted(player);
+    public boolean canStart(ServerPlayerEntity player) {
+        return !this.hasCompleted(player) && player.experienceLevel >= 5 && ((ServerPlayerEntityAccessor) player).getSeenCredits();
+    }
+
+    public void displayHint(ServerPlayerEntity user) {
+        String message = "" + user.getRandom().nextInt(5);
+        if (this.hasCompleted(user))
+            message = ".completed" + message;
+        else if (!((ServerPlayerEntityAccessor) user).getSeenCredits())
+            message = ".dragon" + message;
+        else if (user.experienceLevel < 5)
+            message = ".experience" + message;
+
+        user.sendMessage(Text.translatable("block.phantasm.challenge_rune.hint" + message).formatted(Formatting.LIGHT_PURPLE),
+                true);
     }
 
     public void startChallenge(PlayerEntity player) {
+        if (!player.getWorld().isClient()) {
+            PacketByteBuf packet = PacketByteBufs.create();
+            packet.writeBlockPos(this.getPos());
+            ServerPlayNetworking.send((ServerPlayerEntity) player, ModPackets.CHALLENGE_STARTS, packet);
+        }
+
         Phantasm.log("Starting challenge at " + this.getPos().toShortString());
         this.complete(player);
     }

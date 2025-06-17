@@ -29,6 +29,7 @@
     "access.ChunkGeneratorSettingsAccessor",
     "access.EndGatewayBlockEntityAccessor",
     "access.FoliagePlacerTypeInvoker",
+    "access.ServerPlayerEntityAccessor",
     "access.TrunkPlacerTypeInvoker"
   ],
   "injectors": {

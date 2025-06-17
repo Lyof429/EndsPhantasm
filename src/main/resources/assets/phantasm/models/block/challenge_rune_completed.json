@@ -1,12 +1,12 @@
 {
   "parent": "block/cube",
   "textures": {
-    "down": "phantasm:block/crystal_pillar",
-    "up": "phantasm:block/crystal_pillar",
-    "north": "phantasm:block/crystal_pillar",
-    "east": "phantasm:block/crystal_pillar",
-    "south": "phantasm:block/crystal_pillar",
-    "west": "phantasm:block/crystal_pillar",
-    "particle": "phantasm:block/crystal_pillar"
+    "down": "phantasm:block/challenge_rune_bottom_completed",
+    "up": "phantasm:block/challenge_rune_top_completed",
+    "north": "phantasm:block/challenge_rune_side_s_completed",
+    "east": "phantasm:block/challenge_rune_side_t_completed",
+    "south": "phantasm:block/challenge_rune_side_a_completed",
+    "west": "phantasm:block/challenge_rune_side_r_completed",
+    "particle": "phantasm:block/challenge_rune_side_s_completed"
   }
 }

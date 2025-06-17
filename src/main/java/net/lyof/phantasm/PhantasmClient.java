@@ -4,10 +4,10 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.lyof.phantasm.block.ModBlockEntities;
+import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.client.ModModelLayers;
 import net.lyof.phantasm.entity.client.model.BehemothModel;
@@ -26,6 +26,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.math.BlockPos;
 
 public class PhantasmClient implements ClientModInitializer {
     @Override
@@ -44,7 +45,11 @@ public class PhantasmClient implements ClientModInitializer {
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.ZZZ, ZzzParticle.Factory::new);
 
-        ClientPlayNetworking.registerGlobalReceiver(ModPackets.BEHEMOTH_WAKE_UP, (client, handler, buf, responseSender) -> {
+        registerPackets();
+    }
+
+    public static void registerPackets() {
+        ClientPlayNetworking.registerGlobalReceiver(ModPackets.BEHEMOTH_WAKES_UP, (client, handler, buf, responseSender) -> {
             int selfId = buf.readInt();
             int targetId = buf.readInt();
             client.execute(() -> {
@@ -52,6 +57,14 @@ public class PhantasmClient implements ClientModInitializer {
                 Entity target = client.world.getEntityById(targetId);
                 if (self instanceof BehemothEntity behemoth)
                     behemoth.setTarget((LivingEntity) target);
+            });
+        });
+
+        ClientPlayNetworking.registerGlobalReceiver(ModPackets.CHALLENGE_STARTS, (client, handler, buf, responseSender) -> {
+            BlockPos pos = buf.readBlockPos();
+            client.execute(() -> {
+                if (client.world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity challengeRune)
+                    challengeRune.startChallenge(client.player);
             });
         });
     }

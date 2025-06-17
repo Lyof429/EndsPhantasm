@@ -141,7 +141,7 @@ public class ModBlocks {
 
     public static final Block CHALLENGE_RUNE = ModRegistry.ofBlock("challenge_rune",
             new ChallengeRuneBlock(polishedObsidianMaterial))
-            .tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON).tool("_pickaxe")
+            .tag(BlockTags.DRAGON_IMMUNE).tool("_pickaxe")
             .build();
 
     public static final Block CRYSTAL_SHARD = ModRegistry.ofBlock("crystal_shard",

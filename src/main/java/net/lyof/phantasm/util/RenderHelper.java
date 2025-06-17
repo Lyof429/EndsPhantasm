@@ -1,5 +1,9 @@
 package net.lyof.phantasm.util;
 
+import it.unimi.dsi.fastutil.Hash;
+import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenCustomHashMap;
+import net.lyof.phantasm.Phantasm;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -9,10 +13,15 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.RotationAxis;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
+import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public class RenderHelper {
-    public static void renderFace(MatrixStack matrices, VertexConsumerProvider vertexConsumers, Identifier texture, int light,
+    public static void renderFace(MatrixStack matrices, VertexConsumer vertices, int light,
                            Point p1, Point p2, Point p3, Point p4) {
 
         matrices.push();
@@ -20,7 +29,7 @@ public class RenderHelper {
         MatrixStack.Entry entry = matrices.peek();
         Matrix4f position = entry.getPositionMatrix();
         Matrix3f normal = entry.getNormalMatrix();
-        VertexConsumer vertices = vertexConsumers.getBuffer(RenderLayer.getEntitySolid(texture));
+
 
         // Front face
         vertices.vertex(position, p1.x, p1.y, p1.z)
@@ -52,17 +61,8 @@ public class RenderHelper {
                 .normal(normal, 1, 1, 1)
                 .next();
 
-        /*
-        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180),
-                (p1.x + p2.x + p3.x + p4.x) / 4,
-                0,
-                (p1.z + p2.z + p3.z + p4.z) / 4);
-        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180),
-                0,
-                (p1.y + p2.y + p3.y + p4.y) / 4,
-                (p1.z + p2.z + p3.z + p4.z) / 4);
-        */
-        matrices.multiply(RotationAxis.of(new Vector3f(normal.m10, normal.m11, normal.m12)).rotationDegrees(180),
+
+        matrices.multiply(p1.getRotation(p2),
                 (p1.x + p2.x + p3.x + p4.x) / 4,
                 (p1.y + p2.y + p3.y + p4.y) / 4,
                 (p1.z + p2.z + p3.z + p4.z) / 4);
@@ -105,44 +105,50 @@ public class RenderHelper {
     }
 
     public static void renderCube(MatrixStack matrices, VertexConsumerProvider vertexConsumers, Identifier texture, int light,
+                                  float x0, float x1, float y0, float y1, float z0, float z1) {
+        renderCube(matrices, vertexConsumers.getBuffer(RenderLayer.getEntitySolid(texture)), light,
+                x0, x1, y0, y1, z0, z1);
+    }
+
+    public static void renderCube(MatrixStack matrices, VertexConsumer vertices, int light,
                            float x0, float x1, float y0, float y1, float z0, float z1) {
 
         float dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0), dz = Math.abs(z1 - z0);
 
-        renderFace(matrices, vertexConsumers, texture, light,
+        renderFace(matrices, vertices, light,
                 Point.of(x0, y0, z0, dx, dy),
                 Point.of(x0, y1, z0, dx, 0),
                 Point.of(x1, y1, z0, 0, 0), 
                 Point.of(x1, y0, z0, 0, dy));
                 //y0, y1, x0, x1, z0, z0);
-        renderFace(matrices, vertexConsumers, texture, light,
+        renderFace(matrices, vertices, light,
                 Point.of(x1, y0, z0, dz, dy),
                 Point.of(x1, y1, z0, dz, 0),
                 Point.of(x1, y1, z1, 0, 0),
                 Point.of(x1, y0, z1, 0, dy));
                 //y0, y1, x1, x1, z0, z1);
-        renderFace(matrices, vertexConsumers, texture, light,
+        renderFace(matrices, vertices, light,
                 Point.of(x0, y0, z1, dx, dy),
                 Point.of(x0, y1, z1, dx, 0),
                 Point.of(x1, y1, z1, 0, 0),
                 Point.of(x1, y0, z1, 0, dy));
                 //y0, y1, x1, x0, z1, z1);
-        renderFace(matrices, vertexConsumers, texture, light,
+        renderFace(matrices, vertices, light,
                 Point.of(x0, y0, z0, dz, dy),
                 Point.of(x0, y1, z0, dz, 0),
                 Point.of(x0, y1, z1, 0, 0),
                 Point.of(x0, y0, z1, 0, dy));
                 //y0, y1, x0, x0, z1, z0);
-        renderFace(matrices, vertexConsumers, texture, light,
-                Point.of(x0, y0, z0, dx, dz),
-                Point.of(x1, y0, z0, 0, dz),
-                Point.of(x1, y0, z1, 0, 0),
-                Point.of(x0, y0, z1, dx, 0));
-        renderFace(matrices, vertexConsumers, texture, light,
-                Point.of(x0, y1, z0, dx, dz),
-                Point.of(x1, y1, z0, 0, dz),
-                Point.of(x1, y1, z1, 0, 0),
-                Point.of(x0, y1, z1, dx, 0));
+        renderFace(matrices, vertices, light,
+                Point.of(x0, y0, z0, 0, dz),
+                Point.of(x1, y0, z0, dx, dz),
+                Point.of(x1, y0, z1, dx, 0),
+                Point.of(x0, y0, z1, 0, 0));
+        renderFace(matrices, vertices, light,
+                Point.of(x0, y1, z0, 0, dz),
+                Point.of(x1, y1, z0, dx, dz),
+                Point.of(x1, y1, z1, dx, 0),
+                Point.of(x0, y1, z1, 0, 0));
     }
 
 
@@ -153,6 +159,12 @@ public class RenderHelper {
             Point p = new Point();
             p.x = x; p.y = y; p.z = z; p.u = u; p.v = v;
             return p;
+        }
+
+        public Quaternionf getRotation(Point other) {
+            if (this.y == other.y)
+                return RotationAxis.POSITIVE_X.rotationDegrees(180);
+            return RotationAxis.POSITIVE_Y.rotationDegrees(180);
         }
     }
 }

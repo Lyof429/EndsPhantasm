@@ -21,6 +21,7 @@ import java.util.UUID;
 
 public class ChallengeRuneBlockEntity extends BlockEntity {
     private final List<UUID> completedPlayers;
+    private boolean renderBase;
     private final List<Vec3i> towerBases;
 
     public ChallengeRuneBlockEntity(BlockPos pos, BlockState state) {
@@ -35,6 +36,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         int size = nbt.getInt("CompletedPlayerCount");
         for (int i = 0; i < size; i++)
             this.completedPlayers.add(nbt.getUuid("Player" + i));
+        this.renderBase = nbt.getBoolean("RenderBase");
     }
 
     @Override
@@ -43,6 +45,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         nbt.putInt("CompletedPlayerCount", this.completedPlayers.size());
         for (int i = 0; i < this.completedPlayers.size(); i++)
             nbt.putUuid("Player" + i, this.completedPlayers.get(i));
+        nbt.putBoolean("RenderBase", this.renderBase);
     }
 
     @Override

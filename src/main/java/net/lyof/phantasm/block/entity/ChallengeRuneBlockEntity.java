@@ -11,6 +11,10 @@ import net.lyof.phantasm.mixin.access.ServerPlayerEntityAccessor;
 import net.lyof.phantasm.setup.ModPackets;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.TargetPredicate;
+import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
@@ -23,6 +27,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
@@ -187,8 +192,25 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
                 }
             }
 
-            if (self.challengerUuids.isEmpty()) {
+            if (self.challengerUuids.isEmpty())
                 self.stopChallenge(false);
+        }
+
+        if (self.tick == 80) {
+            world.getOtherEntities(null, Box.from(pos.toCenterPos()), e -> e instanceof EndCrystalEntity)
+                    .stream().findFirst().ifPresent(Entity::discard);
+
+            if (world.isClient())
+                world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                        3, World.ExplosionSourceType.NONE);
+
+            for (int sx = -R; sx <= R; sx++) {
+                for (int sy = 0; sy <= R; sy++) {
+                    for (int sz = -R; sz <= R; sz++) {
+                        if (sz != 0 || sx != 0 || sy != 0)
+                            world.breakBlock(pos.east(sx).north(sz).up(sy), true);
+                    }
+                }
             }
         }
 

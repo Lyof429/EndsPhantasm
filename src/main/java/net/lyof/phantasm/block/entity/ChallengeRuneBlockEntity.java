@@ -21,6 +21,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +29,15 @@ import java.util.UUID;
 
 public class ChallengeRuneBlockEntity extends BlockEntity {
     private final List<UUID> completedPlayers;
+    public int tick;
+
     public boolean renderBase;
     private final List<Vec3i> towerBases;
 
     public ChallengeRuneBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.CHALLENGE_RUNE, pos, state);
         this.completedPlayers = new ArrayList<>();
+        this.tick = -1;
         this.towerBases = new ArrayList<>();
     }
 
@@ -44,6 +48,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         for (int i = 0; i < size; i++)
             this.completedPlayers.add(nbt.getUuid("Player" + i));
         this.renderBase = nbt.getBoolean("RenderBase");
+        this.tick = nbt.getInt("ChallengeTick");
     }
 
     @Override
@@ -53,6 +58,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         for (int i = 0; i < this.completedPlayers.size(); i++)
             nbt.putUuid("Player" + i, this.completedPlayers.get(i));
         nbt.putBoolean("RenderBase", this.renderBase);
+        nbt.putInt("ChallengeTick", this.tick);
     }
 
     @Override
@@ -82,6 +88,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
             }
         }
     }
+
 
     public void complete(PlayerEntity player) {
         this.completedPlayers.add(player.getUuid());
@@ -116,6 +123,13 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         }
 
         Phantasm.log("Starting challenge at " + this.getPos().toShortString());
-        this.complete(player);
+        this.tick = 0;
+    }
+
+    public static void tick(World world, BlockPos pos, BlockState state, ChallengeRuneBlockEntity self) {
+        if (self.tick < 0) return;
+
+
+        self.tick++;
     }
 }

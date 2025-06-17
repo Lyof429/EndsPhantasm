@@ -1,6 +1,7 @@
 package net.lyof.phantasm.mixin;
 
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.decoration.EndCrystalEntity;
@@ -18,7 +19,8 @@ public abstract class EndCrystalEntityMixin extends Entity {
 
     @Inject(method = "canHit", at = @At("HEAD"), cancellable = true)
     public void preventHit(CallbackInfoReturnable<Boolean> cir) {
-        if (this.getWorld().getBlockState(this.getBlockPos().down()).isOf(ModBlocks.CHALLENGE_RUNE))
+        if (this.getWorld().getBlockEntity(this.getBlockPos().down()) instanceof ChallengeRuneBlockEntity challengeRune
+                && challengeRune.isChallengeRunning())
             cir.setReturnValue(false);
     }
 }

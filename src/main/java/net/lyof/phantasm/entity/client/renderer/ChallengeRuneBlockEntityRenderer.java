@@ -90,7 +90,7 @@ public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<Cha
             if (player instanceof Challenger challenger && challenger.isInRange()) {
                 float radius = Math.min(40, self.tick + tickDelta) / 4f;
                 RenderHelper.renderCube(matrices, vertexConsumers.getBuffer(RenderLayer.getEndGateway()), light,
-                        -radius, radius + 1, -radius, radius + 1, -radius, radius + 1);
+                        -radius, radius + 1, -radius*0.5f, radius*1.5f + 1, -radius, radius + 1);
             }
 
             /*BeaconBlockEntityRenderer.renderBeam(matrices, vertexConsumers, BeaconBlockEntityRenderer.BEAM_TEXTURE, tickDelta,

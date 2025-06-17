@@ -186,7 +186,6 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
                     self.challengerUuids.remove(challenger.phantasm$asPlayer().getUuid());
                 }
             }
-            Phantasm.log("Refreshing " + world.isClient());
 
             if (self.challengerUuids.isEmpty()) {
                 self.stopChallenge(false);

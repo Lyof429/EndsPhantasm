@@ -11,6 +11,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.RotationAxis;
+import net.minecraft.util.math.Vec3d;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
@@ -154,17 +155,26 @@ public class RenderHelper {
 
     public static class Point {
         public float x, y, z, u, v;
+        private static final Map<String, Quaternionf> rotationCache = new HashMap<>();
+        private static final Map<String, Point> instanceCache = new HashMap<>();
 
         public static Point of(float x, float y, float z, float u, float v) {
+            String key = x + " " + y + " " + z + " " + u + " " + v;
+            if (instanceCache.containsKey(key)) return instanceCache.get(key);
+
             Point p = new Point();
             p.x = x; p.y = y; p.z = z; p.u = u; p.v = v;
+            instanceCache.put(key, p);
             return p;
         }
 
         public Quaternionf getRotation(Point other) {
-            if (this.y == other.y)
-                return RotationAxis.POSITIVE_X.rotationDegrees(180);
-            return RotationAxis.POSITIVE_Y.rotationDegrees(180);
+            String key = this.x + " " + this.y + " " + this.z + "/" + other.x + " " + other.y + " " + other.z;
+            if (rotationCache.containsKey(key)) return rotationCache.get(key);
+
+            rotationCache.put(key, RotationAxis.of(new Vector3f(this.x - other.x, this.y - other.y, this.z - other.z))
+                    .rotationDegrees(180));
+            return rotationCache.get(key);
         }
     }
 }

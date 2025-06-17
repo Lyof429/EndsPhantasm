@@ -69,7 +69,8 @@ public class PhantasmClient implements ClientModInitializer {
             client.execute(() -> {
                 if (client.world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity challengeRune)
                     challengeRune.startChallenge(client.player);
-                client.inGameHud.setTitle(Text.translatable("block.phantasm.challenge_rune.start")
+                client.inGameHud.setTitle(Text.empty());
+                client.inGameHud.setSubtitle(Text.translatable("block.phantasm.challenge_rune.start")
                         .formatted(Formatting.LIGHT_PURPLE));
             });
         });
@@ -79,11 +80,13 @@ public class PhantasmClient implements ClientModInitializer {
             boolean success = buf.readBoolean();
             client.execute(() -> {
                 if (client.world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity challengeRune) {
-                    if (((Challenger) client.player).phantasm$getRune() == challengeRune)
-                        client.inGameHud.setTitle(Text.translatable(success ?
+                    if (((Challenger) client.player).phantasm$getRune() == challengeRune) {
+                        client.inGameHud.setTitle(Text.empty());
+                        client.inGameHud.setSubtitle(Text.translatable(success ?
                                         "block.phantasm.challenge_rune.success" :
                                         "block.phantasm.challenge_rune.fail")
                                 .formatted(Formatting.LIGHT_PURPLE));
+                    }
                     challengeRune.stopChallenge(success);
                 }
             });

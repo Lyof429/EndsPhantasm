@@ -84,7 +84,6 @@ public class ModItemGroups {
                         entries.add(ModItems.CRYSTALLINE_AXE);
                         entries.add(ModItems.CRYSTALLINE_HOE);
 
-
                         entries.add(ModBlocks.CRYSTAL_TILES);
                         entries.add(ModBlocks.CRYSTAL_PILLAR);
                         entries.add(ModBlocks.CRYSTAL_TILE_STAIRS);
@@ -107,6 +106,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_PILLAR);
                         entries.add(ModBlocks.CHISELED_OBSIDIAN);
 
+                        entries.add(ModBlocks.CHALLENGE_RUNE);
                         entries.add(ModItems.SHATTERED_PENDANT);
 
                         entries.add(ModItems.BEHEMOTH_MEAT);
@@ -263,6 +263,8 @@ public class ModItemGroups {
             entries.addAfter(ModItems.PREAM_SIGN, ModItems.PREAM_HANGING_SIGN);
 
             entries.addAfter(Items.JUKEBOX, ModBlocks.SUBWOOFER_BLOCK);
+
+            entries.addAfter(Items.ENDER_EYE, ModBlocks.CHALLENGE_RUNE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
             entries.addAfter(Items.NOTE_BLOCK, ModBlocks.SUBWOOFER_BLOCK);

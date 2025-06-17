@@ -21,6 +21,7 @@ import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.random.Random;
@@ -140,7 +141,9 @@ public class ModBlocks {
             .drop().build();
 
     public static final Block CHALLENGE_RUNE = ModRegistry.ofBlock("challenge_rune",
-            new ChallengeRuneBlock(polishedObsidianMaterial))
+            new ChallengeRuneBlock(FabricBlockSettings.create().mapColor(DyeColor.GRAY)
+                    .pistonBehavior(PistonBehavior.BLOCK)
+                    .strength(100, 1200)))
             .tag(BlockTags.DRAGON_IMMUNE).tool("_pickaxe")
             .build();
 

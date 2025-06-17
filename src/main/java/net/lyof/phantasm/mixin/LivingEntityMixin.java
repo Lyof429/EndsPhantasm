@@ -3,6 +3,9 @@ package net.lyof.phantasm.mixin;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
+import net.lyof.phantasm.block.entity.Challenger;
 import net.lyof.phantasm.effect.ModEffects;
 import net.lyof.phantasm.item.ModItems;
 import net.minecraft.entity.Entity;
@@ -16,13 +19,14 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin extends Entity {
+public abstract class LivingEntityMixin extends Entity implements Challenger {
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
@@ -62,5 +66,24 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "jump", at = @At("HEAD"), cancellable = true)
     public void charmMovement(CallbackInfo ci) {
         if (this.hasStatusEffect(ModEffects.CHARM)) ci.cancel();
+    }
+
+    @Inject(method = "onDeath", at = @At("HEAD"))
+    public void countRuneKill(DamageSource damageSource, CallbackInfo ci) {
+        if (this.phantasm$getRune() != null && this.getCommandTags().contains(Phantasm.MOD_ID + ".challenge"))
+            this.phantasm$getRune().progress();
+    }
+
+
+    @Unique private ChallengeRuneBlockEntity challengeRune = null;
+
+    @Override
+    public @Nullable ChallengeRuneBlockEntity phantasm$getRune() {
+        return this.challengeRune;
+    }
+
+    @Override
+    public void phantasm$setRune(ChallengeRuneBlockEntity challengeRune) {
+        this.challengeRune = challengeRune;
     }
 }

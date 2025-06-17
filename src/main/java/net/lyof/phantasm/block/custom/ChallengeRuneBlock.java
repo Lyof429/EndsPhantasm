@@ -49,9 +49,14 @@ public class ChallengeRuneBlock extends BlockWithEntity {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!player.getStackInHand(hand).isOf(Items.END_CRYSTAL)) {
-            if (world.isClient())
-                player.sendMessage(Text.translatable("block.phantasm.challenge_rune.hint.crystal" +
-                        player.getRandom().nextInt(5)).formatted(Formatting.LIGHT_PURPLE), true);
+            if (!world.isClient()) {
+                if (world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity challengeRune && challengeRune.hasCompleted(player))
+                    player.sendMessage(Text.translatable("block.phantasm.challenge_rune.hint")
+                            .formatted(Formatting.LIGHT_PURPLE), true);
+                else
+                    player.sendMessage(Text.translatable("block.phantasm.challenge_rune.hint.crystal" +
+                            player.getRandom().nextInt(5)).formatted(Formatting.LIGHT_PURPLE), true);
+            }
             return ActionResult.success(world.isClient());
         }
 

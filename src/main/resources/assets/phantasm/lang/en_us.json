@@ -67,6 +67,7 @@
   "block.phantasm.chiseled_obsidian": "Chiseled Obsidian",
 
   "block.phantasm.challenge_rune": "Challenge Rune",
+  "entity.phantasm.challenge": "Challenger %s",
 
   "block.phantasm.challenge_rune.start": "Challenge started!",
   "block.phantasm.challenge_rune.fail": "Challenge failed...",

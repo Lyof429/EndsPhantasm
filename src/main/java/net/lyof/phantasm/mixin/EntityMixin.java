@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
@@ -47,5 +48,10 @@ public abstract class EntityMixin {
     public void charmCursor(double cursorDeltaX, double cursorDeltaY, CallbackInfo ci) {
         if (((Entity) (Object) this) instanceof LivingEntity living && living.hasStatusEffect(ModEffects.CHARM))
             ci.cancel();
+    }
+
+    @ModifyReturnValue(method = "getDefaultName", at = @At("RETURN"))
+    public Text setChallengeName(Text original) {
+        return Text.translatable("entity.phantasm.challenge", original);
     }
 }

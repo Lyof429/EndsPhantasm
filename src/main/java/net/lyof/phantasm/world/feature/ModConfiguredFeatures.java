@@ -79,7 +79,7 @@ public class ModConfiguredFeatures {
                 2, 8, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.STARFLOWER)))));
 
-        register(context, OBSIDIAN_TOWER, ObsidianTowerStructure.INSTANCE,
+        register(context, SHATTERED_TOWER, ShatteredTowerStructure.INSTANCE,
                 new CountConfig(UniformIntProvider.create(50, 70)));
 
         register(context, RAW_PURPUR_COAL_ORE, Feature.ORE, new OreFeatureConfig(
@@ -140,7 +140,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_VIVID_NIHILIS = create("patch_tall_vivid_nihilis");
     public static final RegistryKey<ConfiguredFeature<?, ?>> STARFLOWER = create("patch_starflower");
 
-    public static final RegistryKey<ConfiguredFeature<?, ?>> OBSIDIAN_TOWER = create("obsidian_tower");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> SHATTERED_TOWER = create("shattered_tower");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> RAW_PURPUR_COAL_ORE = create("raw_purpur_coal_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> OBLIVINE = create("patch_oblivine");

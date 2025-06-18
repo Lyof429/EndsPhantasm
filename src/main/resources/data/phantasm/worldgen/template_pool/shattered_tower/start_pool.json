@@ -1,11 +1,11 @@
 {
-  "name": "phantasm:obsidian_tower/start_pool",
+  "name": "phantasm:shattered_tower/start_pool",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "element": {
         "element_type": "minecraft:feature_pool_element",
-        "feature": "phantasm:obsidian_tower",
+        "feature": "phantasm:shattered_tower",
         "projection": "rigid"
       },
       "weight": 1

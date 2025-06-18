@@ -3,27 +3,21 @@ package net.lyof.phantasm.entity.client.renderer;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.block.custom.ChallengeRuneBlock;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
-import net.lyof.phantasm.block.entity.Challenger;
+import net.lyof.phantasm.block.challenge.Challenger;
 import net.lyof.phantasm.util.RenderHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.pack.ExperimentalWarningScreen;
-import net.minecraft.client.gui.screen.world.ExperimentsScreen;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.BlockRenderManager;
-import net.minecraft.client.render.block.entity.BeaconBlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
-import org.joml.Matrix3f;
-import org.joml.Matrix4f;
 
 public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<ChallengeRuneBlockEntity> {
     private final BlockRenderManager blockRenderer;

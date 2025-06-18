@@ -25,15 +25,15 @@ import net.minecraft.world.gen.CountConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
-public class ObsidianTowerStructure extends Feature<CountConfig> {
+public class ShatteredTowerStructure extends Feature<CountConfig> {
     public static final int R = 7;
 
     private static final Identifier DRAGLING = Identifier.of("unusualend", "dragling");
-    private static final Identifier LOOT_TABLE = Phantasm.makeID("chests/obsidian_tower");
+    private static final Identifier LOOT_TABLE = Phantasm.makeID("chests/shattered_tower");
 
-    public static final Feature<CountConfig> INSTANCE = new ObsidianTowerStructure(CountConfig.CODEC);
+    public static final Feature<CountConfig> INSTANCE = new ShatteredTowerStructure(CountConfig.CODEC);
 
-    public ObsidianTowerStructure(Codec<CountConfig> configCodec) {
+    public ShatteredTowerStructure(Codec<CountConfig> configCodec) {
         super(configCodec);
     }
 

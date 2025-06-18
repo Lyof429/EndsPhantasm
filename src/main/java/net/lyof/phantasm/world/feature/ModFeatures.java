@@ -9,7 +9,7 @@ public class ModFeatures {
     public static void register() {
         Registry.register(Registries.FEATURE, Phantasm.makeID("crystal_spike"), CrystalSpikeFeature.INSTANCE);
         Registry.register(Registries.FEATURE, Phantasm.makeID("single_block"), SingleBlockFeature.INSTANCE);
-        Registry.register(Registries.FEATURE, Phantasm.makeID("obsidian_tower"), ObsidianTowerStructure.INSTANCE);
+        Registry.register(Registries.FEATURE, Phantasm.makeID("shattered_tower"), ShatteredTowerStructure.INSTANCE);
         Registry.register(Registries.FEATURE, Phantasm.makeID("oblivine"), OblivineFeature.INSTANCE);
         Registry.register(Registries.FEATURE, Phantasm.makeID("dralgae"), DralgaeFeature.INSTANCE);
         Registry.register(Registries.FEATURE, Phantasm.makeID("huge_dralgae"), HugeDralgaeFeature.INSTANCE);

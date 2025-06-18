@@ -1,6 +1,6 @@
-// 1.20.1	2025-06-17T14:35:09.6901224	End's Phantasm/Tags for minecraft:item
-3c7b4eb0c2d8eb33519bf4571bf742336fafa5e9 data\minecraft\tags\items\planks.json
+// 1.20.1	2025-06-18T18:36:51.1641753	End's Phantasm/Tags for minecraft:item
 5d1270eb9e4788b0604ec4a19166e9cec3aa0b71 data\minecraft\tags\items\wooden_trapdoors.json
+3c7b4eb0c2d8eb33519bf4571bf742336fafa5e9 data\minecraft\tags\items\planks.json
 d2fb8c38c3419c06b5906b7d6d843491b197f34d data\minecraft\tags\items\walls.json
 82c5a7201a689a5885ec8b7fb504152856be1368 data\minecraft\tags\items\stone_crafting_materials.json
 3b0dbbdffd6ecd1316cc22f8f94fd877112c8a7c data\phantasm\tags\items\pream_logs.json
@@ -12,19 +12,19 @@ d2fb8c38c3419c06b5906b7d6d843491b197f34d data\minecraft\tags\items\walls.json
 7cf2c10663cf3f5073d44bc5678a69d1d092145a data\minecraft\tags\items\axes.json
 0ad37c64477baf7c4ad1cdf16ff7aeeb90ad884c data\minecraft\tags\items\pickaxes.json
 aef1518893a7fb6f277dc7afc515a3bd2d3ae86f data\minecraft\tags\items\arrows.json
-e9b179adc932a9775a25d8959fb6546f3b3f18b5 data\minecraft\tags\items\shovels.json
 8dc15772c59c47810d2f4f6a5267057bb3b3ee8e data\minecraft\tags\items\music_discs.json
 a21b1362bdfbf7760d44f7e9996de7b2c4e843d6 data\minecraft\tags\items\flowers.json
-d620076ce910ed88021272b48177a735d1c2b32a data\phantasm\tags\items\has_xp_boost.json
+e9b179adc932a9775a25d8959fb6546f3b3f18b5 data\minecraft\tags\items\shovels.json
 3b0dbbdffd6ecd1316cc22f8f94fd877112c8a7c data\minecraft\tags\items\logs_that_burn.json
+d620076ce910ed88021272b48177a735d1c2b32a data\phantasm\tags\items\has_xp_boost.json
 ee2b68b93c4bc63121f34941a506a93255e12423 data\minecraft\tags\items\iron_ores.json
 142861b7bb99ff1cd71eb5e451e6cd005e8f3f98 data\minecraft\tags\items\fence_gates.json
 bab76acb2e7c650e528177b9ef18d5a6ed669bf9 data\minecraft\tags\items\slabs.json
 825d823d2e8f0cd29e672e97b92991c69c9610a4 data\minecraft\tags\items\stairs.json
-eae18e31557daa7af68aa1010038bd6d430c5886 data\minecraft\tags\items\hoes.json
 ec0cc05330bcc36ecae4846e703e00642fc521c2 data\minecraft\tags\items\wooden_doors.json
+eae18e31557daa7af68aa1010038bd6d430c5886 data\minecraft\tags\items\hoes.json
 82c5a7201a689a5885ec8b7fb504152856be1368 data\minecraft\tags\items\stone_tool_materials.json
-e1b3d52094e3d00fdae6c2f184de2a9de7d4bc36 data\minecraft\tags\items\wooden_pressure_plates.json
-82e989363d624a4c0449f7ad365163723138e11a data\minecraft\tags\items\wooden_stairs.json
 54c697faf80766563cfeb8d01616a51f303a2521 data\minecraft\tags\items\saplings.json
+82e989363d624a4c0449f7ad365163723138e11a data\minecraft\tags\items\wooden_stairs.json
+e1b3d52094e3d00fdae6c2f184de2a9de7d4bc36 data\minecraft\tags\items\wooden_pressure_plates.json
 e99484c17e3311dcf3e166bf110e6109c008512c data\minecraft\tags\items\wooden_fences.json

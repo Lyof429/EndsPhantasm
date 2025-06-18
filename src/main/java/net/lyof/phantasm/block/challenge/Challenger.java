@@ -1,5 +1,6 @@
-package net.lyof.phantasm.block.entity;
+package net.lyof.phantasm.block.challenge;
 
+import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;

@@ -1,9 +1,9 @@
 {
   "type": "minecraft:jigsaw",
-  "start_pool": "phantasm:obsidian_tower/start_pool",
+  "start_pool": "phantasm:shattered_tower/start_pool",
   "size": 2,
   "max_distance_from_center": 80,
-  "biomes": "#phantasm:has_structure/obsidian_tower",
+  "biomes": "#phantasm:has_structure/shattered_tower",
   "step": "surface_structures",
   "start_height": {
     "absolute": 60

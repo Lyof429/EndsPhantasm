@@ -8,10 +8,12 @@ import static net.lyof.phantasm.world.feature.custom.ShatteredTowerStructure.R;
 
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.block.challenge.ChallengeData;
+import net.lyof.phantasm.block.challenge.ChallengeRegistry;
 import net.lyof.phantasm.block.challenge.Challenger;
 import net.lyof.phantasm.mixin.access.ServerPlayerEntityAccessor;
 import net.lyof.phantasm.setup.ModPackets;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -44,8 +46,8 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
     private final List<UUID> challengerUuids;
     public int tick;
     private int progress;
-    private ServerBossBar bossbar;
-    public ChallengeData challengeData;
+    private final ServerBossBar bossbar;
+    public ChallengeData challengeData = ChallengeRegistry.EMPTY;
 
     public boolean renderBase;
     private final List<Vec3i> towerBases;
@@ -67,8 +69,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         this.challengeData = new ChallengeData(Phantasm.makeID("shattered_tower"), Phantasm.makeID("chests/shattered_tower"),
                 List.of(new ChallengeData.Monster(10, EntityType.ENDERMITE, 4, 3)),
                 12, 5, true);
-        try { this.bossbar.setStyle(BossBar.Style.byName("NOTCHED_" + this.challengeData.monsterObjective)); }
-        catch (Exception ignored) {}
+        this.bossbar.setStyle(BossBar.Style.byName("notched_" + this.challengeData.monsterObjective));
 
         int size = nbt.getInt("CompletedPlayerCount");
         for (int i = 0; i < size; i++)
@@ -178,8 +179,6 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
                     PacketByteBuf packet = PacketByteBufs.create();
                     packet.writeBlockPos(this.getPos());
                     ServerPlayNetworking.send((ServerPlayerEntity) player, ModPackets.CHALLENGE_STARTS, packet);
-
-                    this.bossbar.addPlayer((ServerPlayerEntity) player);
                 }
 
                 this.challengerUuids.add(participant.getUuid());
@@ -196,17 +195,6 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         this.tick = -2;
         this.progress = 0;
 
-        if (!this.getWorld().isClient()) {
-            PacketByteBuf packet = PacketByteBufs.create();
-            packet.writeBlockPos(this.getPos());
-            packet.writeBoolean(success);
-
-            for (PlayerEntity player : this.getWorld().getPlayers()) {
-                ServerPlayNetworking.send((ServerPlayerEntity) player, ModPackets.CHALLENGE_ENDS, packet);
-                this.bossbar.removePlayer((ServerPlayerEntity) player);
-            }
-        }
-
         if (success) {
             for (UUID uuid : List.copyOf(this.challengerUuids)) {
                 Challenger challenger = Challenger.get(uuid, this.getWorld());
@@ -217,6 +205,17 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
             }
 
             this.challengeData.spawnLoot(this);
+        }
+
+        if (!this.getWorld().isClient()) {
+            PacketByteBuf packet = PacketByteBufs.create();
+            packet.writeBlockPos(this.getPos());
+            packet.writeBoolean(success);
+
+            for (PlayerEntity player : this.getWorld().getPlayers()) {
+                ServerPlayNetworking.send((ServerPlayerEntity) player, ModPackets.CHALLENGE_ENDS, packet);
+                this.bossbar.removePlayer((ServerPlayerEntity) player);
+            }
         }
     }
 
@@ -235,14 +234,19 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
                     continue;
                 }
 
+                if (!world.isClient()) {
+                    self.bossbar.addPlayer((ServerPlayerEntity) challenger.phantasm$asPlayer());
+                    self.bossbar.setPercent(1 - (float) self.progress / self.challengeData.monsterObjective);
+                }
+
                 if (challenger.phantasm$getRune() == null)
                     challenger.phantasm$setRune(self);
-                if (!challenger.isInRange() || !challenger.phantasm$asPlayer().isAlive()) {
+                /*if (!challenger.isInRange() || !challenger.phantasm$asPlayer().isAlive()) {
                     self.challengerUuids.remove(uuid);
 
                     if (!world.isClient())
                         self.bossbar.removePlayer((ServerPlayerEntity) challenger.phantasm$asPlayer());
-                }
+                }*/
             }
 
             if (self.challengerUuids.isEmpty())
@@ -254,6 +258,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
                     .stream().findFirst().ifPresent(Entity::discard);
             if (world.isClient()) world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 1.5, pos.getZ() + 0.5,
                     2, World.ExplosionSourceType.NONE);
+            world.setBlockState(pos.up(), Blocks.AIR.getDefaultState());
             /*BlockPos.iterate(pos.east(-R).north(-R), pos.east(R).north(R).up(R)).forEach(p -> {
                 if (!p.equals(pos)) world.breakBlock(p, true);
             });*/

@@ -1,5 +1,8 @@
 package net.lyof.phantasm.block.challenge;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.minecraft.entity.EntityType;
@@ -11,9 +14,11 @@ import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChallengeData {
@@ -58,6 +63,26 @@ public class ChallengeData {
     }
 
 
+    public static void read(Identifier id, JsonObject json) {
+        if (json.has("loot_table") && json.has("monsters") && json.has("objective")
+                && json.has("level_cost") && json.has("post_dragon")) {
+
+            List<Monster> monsters = new ArrayList<>();
+            for (JsonElement elmt : json.getAsJsonArray("monsters"))
+                Monster.read(elmt.getAsJsonObject(), monsters);
+
+            ChallengeRegistry.register(id, new ChallengeData(
+                    id,
+                    new Identifier(json.get("loot_table").getAsString()),
+                    monsters,
+                    json.get("objective").getAsInt(),
+                    json.get("level_cost").getAsInt(),
+                    json.get("post_dragon").getAsBoolean()
+            ));
+        }
+    }
+
+
     public static class Monster {
         public final int weight;
 
@@ -85,6 +110,22 @@ public class ChallengeData {
             ((Challenger) entity).phantasm$setRune(rune);
 
             return entity;
+        }
+
+
+        public static void read(JsonObject json, List<Monster> monsters) {
+            if (json.has("entity")) {
+                EntityType<?> entity = Registries.ENTITY_TYPE.get(new Identifier(json.get("entity").getAsString()));
+                try { EntityType<? extends LivingEntity> e = (EntityType<? extends LivingEntity>) entity; }
+                catch (Exception ignored) { return; }
+
+                monsters.add(new Monster(
+                        json.has("weight") ? json.get("weight").getAsInt() : 1,
+                        Phantasm.log((EntityType<? extends LivingEntity>) entity),
+                        json.has("health_multiplier") ? json.get("health_multiplier").getAsFloat() : 1,
+                        json.has("damage_multiplier") ? json.get("damage_multiplier").getAsFloat() : 1
+                ));
+            }
         }
     }
 }

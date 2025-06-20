@@ -1,0 +1,14 @@
+{
+  "loot_table": "phantasm:chests/shattered_tower",
+  "objective": 12,
+  "level_cost": 5,
+  "post_dragon": true,
+  "monsters": [
+    {
+      "weight": 10,
+      "entity": "minecraft:endermite",
+      "health_multiplier": 4,
+      "damage_multiplier": 3
+    }
+  ]
+}

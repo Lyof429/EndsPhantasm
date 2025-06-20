@@ -15,6 +15,7 @@ import net.lyof.phantasm.setup.ModPackets;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.FurnaceBlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.boss.BossBar;
@@ -31,6 +32,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
@@ -66,10 +68,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
 
-        this.challengeData = new ChallengeData(Phantasm.makeID("shattered_tower"), Phantasm.makeID("chests/shattered_tower"),
-                List.of(new ChallengeData.Monster(10, EntityType.ENDERMITE, 4, 3)),
-                12, 5, true);
-        this.bossbar.setStyle(BossBar.Style.byName("notched_" + this.challengeData.monsterObjective));
+        this.setChallenge(new Identifier(nbt.getString("ChallengeId")));
 
         int size = nbt.getInt("CompletedPlayerCount");
         for (int i = 0; i < size; i++)
@@ -116,6 +115,11 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
     }
 
 
+    public void setChallenge(Identifier id) {
+        this.challengeData = ChallengeRegistry.get(id);
+        this.bossbar.setStyle(BossBar.Style.byName("notched_" + this.challengeData.monsterObjective));
+    }
+
     public List<Vec3i> getTowerBases() {
         return this.towerBases;
     }
@@ -142,7 +146,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
     }
 
     public boolean canStart(ServerPlayerEntity player) {
-        return !this.isChallengeRunning() && !this.hasCompleted(player)
+        return this.challengeData.monsterObjective > 0 && !this.isChallengeRunning() && !this.hasCompleted(player)
                 && player.experienceLevel >= this.challengeData.levelCost
                 && (!this.challengeData.postDragon || ((ServerPlayerEntityAccessor) player).getSeenCredits());
     }
@@ -227,6 +231,8 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         if (!self.isChallengeRunning() || world == null) return;
 
         if (self.tick % 20 == 0) {
+            Phantasm.log(self.tick);
+
             for (UUID uuid : List.copyOf(self.challengerUuids)) {
                 Challenger challenger = Challenger.get(uuid, world);
                 if (challenger == null) {
@@ -269,5 +275,6 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         }
 
         self.tick++;
+        markDirty(world, pos, state);
     }
 }

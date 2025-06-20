@@ -3,9 +3,12 @@ package net.lyof.phantasm.setup;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.block.challenge.ChallengeData;
+import net.lyof.phantasm.block.challenge.ChallengeRegistry;
 import net.lyof.phantasm.config.ModConfig;
 import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.minecraft.resource.Resource;
+import net.minecraft.resource.ResourceFinder;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 
@@ -18,19 +21,34 @@ public class ReloadListener {
         ModConfig.register();
 
         EndDataCompat.clear();
+        ChallengeRegistry.clear();
 
         for (Map.Entry<Identifier, Resource> entry : manager.findResources("worldgen/end_biomes",
                 path -> path.toString().endsWith(".json")).entrySet()) {
 
             try {
-                Resource resource = entry.getValue();
-
-                String content = new String(resource.getInputStream().readAllBytes());
+                String content = new String(entry.getValue().getInputStream().readAllBytes());
                 JsonElement json = new Gson().fromJson(content, JsonElement.class);
 
                 if (json == null || !json.isJsonObject()) continue;
 
                 EndDataCompat.read(json.getAsJsonObject());
+            }
+            catch (Throwable e) {
+                Phantasm.log("Could not read data file " + entry.getKey(), 2);
+            }
+        }
+
+        ResourceFinder finder = ResourceFinder.json("challenges");
+        for (Map.Entry<Identifier, Resource> entry : finder.findResources(manager).entrySet()) {
+
+            try {
+                String content = new String(entry.getValue().getInputStream().readAllBytes());
+                JsonElement json = new Gson().fromJson(content, JsonElement.class);
+
+                if (json == null || !json.isJsonObject()) continue;
+
+                ChallengeData.read(finder.toResourceId(entry.getKey()), json.getAsJsonObject());
             }
             catch (Throwable e) {
                 Phantasm.log("Could not read data file " + entry.getKey(), 2);

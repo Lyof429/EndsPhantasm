@@ -30,6 +30,7 @@ public class ShatteredTowerStructure extends Feature<CountConfig> {
 
     private static final Identifier DRAGLING = Identifier.of("unusualend", "dragling");
     private static final Identifier LOOT_TABLE = Phantasm.makeID("chests/shattered_tower");
+    private static final Identifier CHALLENGE = Phantasm.makeID("shattered_tower");
 
     public static final Feature<CountConfig> INSTANCE = new ShatteredTowerStructure(CountConfig.CODEC);
 
@@ -51,8 +52,10 @@ public class ShatteredTowerStructure extends Feature<CountConfig> {
         maxy = maxy + 7 - maxy % 7;
 
         this.setBlockState(world, origin.withY(maxy + 1), ModBlocks.CHALLENGE_RUNE.getDefaultState());
-        if (world.getBlockEntity(origin.withY(maxy + 1)) instanceof ChallengeRuneBlockEntity challengeRune)
+        if (world.getBlockEntity(origin.withY(maxy + 1)) instanceof ChallengeRuneBlockEntity challengeRune) {
             challengeRune.renderBase = true;
+            challengeRune.setChallenge(CHALLENGE);
+        }
 
         for (int sy = maxy; sy >= miny; sy--) {
             for (int sx = -R; sx <= R; sx++) {

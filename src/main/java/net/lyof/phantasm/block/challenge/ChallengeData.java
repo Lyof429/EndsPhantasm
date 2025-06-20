@@ -121,7 +121,7 @@ public class ChallengeData {
 
                 monsters.add(new Monster(
                         json.has("weight") ? json.get("weight").getAsInt() : 1,
-                        Phantasm.log((EntityType<? extends LivingEntity>) entity),
+                        (EntityType<? extends LivingEntity>) entity,
                         json.has("health_multiplier") ? json.get("health_multiplier").getAsFloat() : 1,
                         json.has("damage_multiplier") ? json.get("damage_multiplier").getAsFloat() : 1
                 ));

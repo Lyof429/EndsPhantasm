@@ -144,7 +144,7 @@ public class ModBlocks {
             new ChallengeRuneBlock(FabricBlockSettings.create().mapColor(DyeColor.GRAY)
                     .pistonBehavior(PistonBehavior.BLOCK)
                     .strength(100, 1200)))
-            .tag(BlockTags.DRAGON_IMMUNE).tool("_pickaxe")
+            .tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON).tool("_pickaxe")
             .build();
 
     public static final Block CRYSTAL_SHARD = ModRegistry.ofBlock("crystal_shard",

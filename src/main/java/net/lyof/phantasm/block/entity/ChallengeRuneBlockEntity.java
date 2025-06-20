@@ -193,6 +193,8 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         this.getWorld().playSound(player, this.getPos(), SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS,
                 10, 1);
         this.bossbar.setPercent(1);
+
+        markDirty(world, pos, this.getCachedState());
     }
 
     public void stopChallenge(boolean success) {
@@ -221,6 +223,9 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
                 this.bossbar.removePlayer((ServerPlayerEntity) player);
             }
         }
+
+        this.challengerUuids.clear();
+        markDirty(world, pos, this.getCachedState());
     }
 
     public boolean isChallengeRunning() {
@@ -231,8 +236,6 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         if (!self.isChallengeRunning() || world == null) return;
 
         if (self.tick % 20 == 0) {
-            Phantasm.log(self.tick);
-
             for (UUID uuid : List.copyOf(self.challengerUuids)) {
                 Challenger challenger = Challenger.get(uuid, world);
                 if (challenger == null) {
@@ -257,6 +260,8 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
 
             if (self.challengerUuids.isEmpty())
                 self.stopChallenge(false);
+
+            markDirty(world, pos, state);
         }
 
         if (self.tick == 100) {
@@ -275,6 +280,5 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         }
 
         self.tick++;
-        markDirty(world, pos, state);
     }
 }

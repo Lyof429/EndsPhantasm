@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class ChallengeRegistry {
     private static final Map<Identifier, ChallengeData> REGISTRY = new HashMap<>();
-    public static final ChallengeData EMPTY = new ChallengeData(Phantasm.makeID("empty"), Phantasm.makeID("empty"),
+    public static final ChallengeData EMPTY = new ChallengeData(Phantasm.makeID("/empty"), Phantasm.makeID("/empty"),
             List.of(), 0, 0, false);
 
     public static void register(Identifier id, ChallengeData data) {

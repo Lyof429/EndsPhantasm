@@ -112,7 +112,7 @@ public class ChallengeData {
             return entity;
         }
 
-
+        @SuppressWarnings("unchecked")
         public static void read(JsonObject json, List<Monster> monsters) {
             if (json.has("entity")) {
                 EntityType<?> entity = Registries.ENTITY_TYPE.get(new Identifier(json.get("entity").getAsString()));

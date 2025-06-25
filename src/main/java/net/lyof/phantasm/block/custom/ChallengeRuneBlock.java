@@ -19,6 +19,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.event.listener.GameEventListener;
 import org.jetbrains.annotations.Nullable;
 
@@ -61,6 +62,13 @@ public class ChallengeRuneBlock extends BlockWithEntity {
         }
 
         return super.onUse(state, world, pos, player, hand, hit);
+    }
+
+    @Override
+    public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
+        super.onBroken(world, pos, state);
+        if (world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity challengeRune && challengeRune.isChallengeRunning())
+            challengeRune.stopChallenge(false);
     }
 
     @Override

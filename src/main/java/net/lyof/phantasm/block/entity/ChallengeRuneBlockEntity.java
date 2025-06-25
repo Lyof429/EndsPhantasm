@@ -182,7 +182,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
                 if (!this.getWorld().isClient()) {
                     PacketByteBuf packet = PacketByteBufs.create();
                     packet.writeBlockPos(this.getPos());
-                    ServerPlayNetworking.send((ServerPlayerEntity) player, ModPackets.CHALLENGE_STARTS, packet);
+                    ServerPlayNetworking.send((ServerPlayerEntity) participant, ModPackets.CHALLENGE_STARTS, packet);
                 }
 
                 this.challengerUuids.add(participant.getUuid());
@@ -209,11 +209,12 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
                 if (challenger.phantasm$getRune() == this && challenger.isInRange() && challenger.phantasm$asPlayer().isAlive())
                     this.complete(challenger.phantasm$asPlayer());
             }
-
-            this.challengeData.spawnLoot(this);
         }
 
         if (!this.getWorld().isClient()) {
+            if (success)
+                this.challengeData.spawnLoot(this);
+
             PacketByteBuf packet = PacketByteBufs.create();
             packet.writeBlockPos(this.getPos());
             packet.writeBoolean(success);
@@ -270,12 +271,10 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
             if (world.isClient()) world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 1.5, pos.getZ() + 0.5,
                     2, World.ExplosionSourceType.NONE);
             world.setBlockState(pos.up(), Blocks.AIR.getDefaultState());
-            /*BlockPos.iterate(pos.east(-R).north(-R), pos.east(R).north(R).up(R)).forEach(p -> {
-                if (!p.equals(pos)) world.breakBlock(p, true);
-            });*/
         }
 
-        if (self.tick > 100 && self.tick <= 100 + 20*self.challengeData.monsterObjective && self.tick % 20 == 0) {
+        if (!world.isClient() && self.tick > 100 && self.tick <= 100 + 20*self.challengeData.monsterObjective
+                && self.tick % 20 == 0) {
             self.challengeData.spawnMonster(self);
         }
 

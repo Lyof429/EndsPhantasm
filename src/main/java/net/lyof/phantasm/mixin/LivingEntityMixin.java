@@ -111,8 +111,8 @@ public abstract class LivingEntityMixin extends Entity implements Challenger {
     }
 
     @Override
-    public void setChallengeRune(ChallengeRuneBlockEntity challengeRune) {
-        this.challengeRune = challengeRune;
-        this.challengePos = challengeRune == null ? null : challengeRune.getPos();
+    public void setChallengeRune(ChallengeRuneBlockEntity rune) {
+        this.challengeRune = rune;
+        this.challengePos = rune == null ? null : rune.getPos();
     }
 }

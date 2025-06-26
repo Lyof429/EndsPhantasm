@@ -26,9 +26,10 @@ public class EndCrystalItemMixin {
         if (block == Blocks.OBSIDIAN) {
             if (original.call(instance, block) || instance.isIn(ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON))
                 return true;
-            if (instance.isOf(ModBlocks.CHALLENGE_RUNE) && context.getPlayer() instanceof ServerPlayerEntity serverPlayer)
-                    return !(context.getWorld().getBlockEntity(context.getBlockPos()) instanceof ChallengeRuneBlockEntity challengeRune)
-                            || challengeRune.canStart(serverPlayer);
+            if (instance.isOf(ModBlocks.CHALLENGE_RUNE))
+                    return context.getPlayer() instanceof ServerPlayerEntity serverPlayer
+                            && context.getWorld().getBlockEntity(context.getBlockPos()) instanceof ChallengeRuneBlockEntity rune
+                            && rune.canStart(serverPlayer);
         }
         return original.call(instance, block);
     }
@@ -41,14 +42,14 @@ public class EndCrystalItemMixin {
         BlockPos pos = context.getBlockPos();
         PlayerEntity user = context.getPlayer();
 
-        if (user != null && world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity challengeRune) {
-            if (user instanceof ServerPlayerEntity serverPlayer) {
-                if (challengeRune.canStart(serverPlayer))
-                    challengeRune.startChallenge(user);
-                else
-                    challengeRune.displayHint(serverPlayer);
-                user.swingHand(context.getHand(), true);
-            }
+        if (!(user instanceof ServerPlayerEntity serverPlayer)) return result;
+
+        if (world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity rune) {
+            if (result.isAccepted())
+                rune.startChallenge(user);
+            else
+                rune.displayHint(serverPlayer);
+            user.swingHand(context.getHand(), true);
         }
         return result;
     }

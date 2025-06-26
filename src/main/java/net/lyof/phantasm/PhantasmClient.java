@@ -27,6 +27,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
@@ -70,6 +71,8 @@ public class PhantasmClient implements ClientModInitializer {
                     rune.startChallenge();
                     rune.addChallenger(client.player);
 
+                    client.worldRenderer.playSong(SoundEvents.MUSIC_DISC_OTHERSIDE, pos);
+
                     client.inGameHud.setTitle(Text.empty());
                     client.inGameHud.setSubtitle(Text.translatable("block.phantasm.challenge_rune.start")
                             .formatted(Formatting.LIGHT_PURPLE));
@@ -89,7 +92,10 @@ public class PhantasmClient implements ClientModInitializer {
                                         "block.phantasm.challenge_rune.fail")
                                 .formatted(Formatting.LIGHT_PURPLE));
                     }
+
                     rune.stopChallenge(success);
+
+                    client.worldRenderer.playSong(null, pos);
                 }
             });
         });

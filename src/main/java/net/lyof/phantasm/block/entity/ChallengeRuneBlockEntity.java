@@ -14,6 +14,7 @@ import net.lyof.phantasm.mixin.access.ServerPlayerEntityAccessor;
 import net.lyof.phantasm.setup.ModPackets;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.JukeboxBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.BossBar;
@@ -179,7 +180,8 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
     public void startChallenge(PlayerEntity player) {
         this.startChallenge();
 
-        player.addExperienceLevels(-this.challengeData.levelCost);
+        if (!player.isCreative())
+            player.addExperienceLevels(-this.challengeData.levelCost);
 
         for (PlayerEntity participant : player.getWorld().getPlayers()) {
             if (participant.getPos().distanceTo(Vec3d.of(this.getPos())) < Challenger.R) {
@@ -231,6 +233,15 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
             for (PlayerEntity player : this.getWorld().getPlayers()) {
                 ServerPlayNetworking.send((ServerPlayerEntity) player, ModPackets.CHALLENGE_ENDS, packet);
                 this.bossbar.removePlayer((ServerPlayerEntity) player);
+            }
+        }
+
+        for (Entity entity : world.getOtherEntities(null, Box.from(this.getPos().up((int) Challenger.R/2)
+                        .toCenterPos()).expand(Challenger.R * 2),
+                e -> e instanceof Challenger challenger && challenger.getChallengeRune() == this)) {
+
+            if (!(entity instanceof PlayerEntity)) {
+                entity.remove(Entity.RemovalReason.CHANGED_DIMENSION);
             }
         }
 

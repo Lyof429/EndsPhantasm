@@ -18,12 +18,7 @@ public interface Challenger {
     PlayerEntity asPlayer();
 
     @Nullable ChallengeRuneBlockEntity getChallengeRune();
-    void setChallengeRune(ChallengeRuneBlockEntity challengeRune);
-
-    default double getDistance() {
-        if (this.getChallengeRune() == null) return 0;
-        return this.asPlayer().getPos().subtract(this.getChallengeRune().getPos().toCenterPos()).length();
-    }
+    void setChallengeRune(ChallengeRuneBlockEntity rune);
 
     default boolean isInRange() {
         if (this.getChallengeRune() == null) return false;

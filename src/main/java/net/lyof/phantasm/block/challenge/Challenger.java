@@ -2,6 +2,8 @@ package net.lyof.phantasm.block.challenge;
 
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,8 +27,11 @@ public interface Challenger {
 
     default boolean isInRange() {
         if (this.getChallengeRune() == null) return false;
-        return Math.abs(this.asPlayer().getX() - 0.5 - this.getChallengeRune().getPos().getX()) < R
-                && Math.abs(this.asPlayer().getEyeY() - 0.5 - this.getChallengeRune().getPos().getY()) < R
-                && Math.abs(this.asPlayer().getZ() - 0.5 - this.getChallengeRune().getPos().getZ()) < R;
+
+        Vec3d self = this.asPlayer().getEyePos();
+        Vec3d rune = this.getChallengeRune().getPos().up((int) R/2).toCenterPos();
+        return Math.abs(self.x - rune.x) < R
+                && Math.abs(self.y - rune.y) < R
+                && Math.abs(self.z - rune.z) < R;
     }
 }

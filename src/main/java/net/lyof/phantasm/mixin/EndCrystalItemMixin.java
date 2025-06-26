@@ -47,8 +47,8 @@ public class EndCrystalItemMixin {
                     challengeRune.startChallenge(user);
                 else
                     challengeRune.displayHint(serverPlayer);
+                user.swingHand(context.getHand(), true);
             }
-            else user.swingHand(context.getHand(), true);
         }
         return result;
     }

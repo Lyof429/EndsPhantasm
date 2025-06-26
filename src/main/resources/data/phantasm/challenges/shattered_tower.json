@@ -1,5 +1,5 @@
 {
-  "loot_table": "phantasm:chests/shattered_tower",
+  "loot_table": "phantasm:chests/shattered_tower_challenge",
   "objective": 12,
   "level_cost": 5,
   "post_dragon": true,

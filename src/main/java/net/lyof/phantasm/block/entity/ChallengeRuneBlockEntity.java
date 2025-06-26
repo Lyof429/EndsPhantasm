@@ -135,7 +135,8 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
 
 
     public void complete(PlayerEntity player) {
-        this.completedPlayerUuids.add(player.getUuid());
+        if (!this.hasCompleted(player))
+            this.completedPlayerUuids.add(player.getUuid());
     }
 
     public boolean hasCompleted(PlayerEntity player) {
@@ -173,6 +174,8 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         this.tick = 0;
         this.progress = 0;
         this.challengerUuids.clear();
+
+        player.addExperienceLevels(-this.challengeData.levelCost);
 
         for (PlayerEntity participant : player.getWorld().getPlayers()) {
             if (participant.getPos().distanceTo(Vec3d.of(this.getPos())) < 10) {

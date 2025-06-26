@@ -10,11 +10,12 @@ import java.util.Map;
 
 public class ChallengeRegistry {
     private static final Map<Identifier, ChallengeData> REGISTRY = new HashMap<>();
-    public static final ChallengeData EMPTY = new ChallengeData(Phantasm.makeID("/empty"), Phantasm.makeID("/empty"),
-            List.of(), 0, 0, false);
+    public static final ChallengeData EMPTY = register(Phantasm.makeID("/empty"),
+            new ChallengeData(Phantasm.makeID("/empty"), Phantasm.makeID("/empty"), List.of(), 0, 0, false));
 
-    public static void register(Identifier id, ChallengeData data) {
+    public static ChallengeData register(Identifier id, ChallengeData data) {
         REGISTRY.putIfAbsent(id, data);
+        return data;
     }
 
     public static ChallengeData get(Identifier id) {

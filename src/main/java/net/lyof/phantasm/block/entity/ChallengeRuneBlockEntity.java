@@ -2,6 +2,7 @@ package net.lyof.phantasm.block.entity;
 
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlockEntities;
 import static net.lyof.phantasm.world.feature.custom.ShatteredTowerStructure.R;
 
@@ -143,6 +144,11 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         return this.completedPlayerUuids.contains(player.getUuid());
     }
 
+    public void addChallenger(PlayerEntity player) {
+        this.challengerUuids.add(player.getUuid());
+        ((Challenger) player).setChallengeRune(this);
+    }
+
     public boolean canStart(ServerPlayerEntity player) {
         return this.challengeData.monsterObjective > 0 && !this.isChallengeRunning() && !this.hasCompleted(player)
                 && player.experienceLevel >= this.challengeData.levelCost
@@ -171,26 +177,29 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
     }
 
     public void startChallenge(PlayerEntity player) {
-        this.tick = 0;
-        this.progress = 0;
-        this.challengerUuids.clear();
+        this.startChallenge();
 
         player.addExperienceLevels(-this.challengeData.levelCost);
 
         for (PlayerEntity participant : player.getWorld().getPlayers()) {
-            if (participant.getPos().distanceTo(Vec3d.of(this.getPos())) < 10) {
+            if (participant.getPos().distanceTo(Vec3d.of(this.getPos())) < Challenger.R) {
                 if (!this.getWorld().isClient()) {
                     PacketByteBuf packet = PacketByteBufs.create();
                     packet.writeBlockPos(this.getPos());
                     ServerPlayNetworking.send((ServerPlayerEntity) participant, ModPackets.CHALLENGE_STARTS, packet);
                 }
 
-                this.challengerUuids.add(participant.getUuid());
-                ((Challenger) participant).setChallengeRune(this);
+                this.addChallenger(participant);
             }
         }
+    }
 
-        this.getWorld().playSound(player, this.getPos(), SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS,
+    public void startChallenge() {
+        this.tick = 0;
+        this.progress = 0;
+        this.challengerUuids.clear();
+
+        this.getWorld().playSound(null, this.getPos(), SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS,
                 10, 1);
         this.bossbar.setPercent(1);
 
@@ -251,12 +260,12 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
 
                 if (challenger.getChallengeRune() == null)
                     challenger.setChallengeRune(self);
-                /*if (!challenger.isInRange() || !challenger.phantasm$asPlayer().isAlive()) {
+                if (!challenger.isInRange() || !challenger.asPlayer().isAlive()) {
                     self.challengerUuids.remove(uuid);
 
                     if (!world.isClient())
-                        self.bossbar.removePlayer((ServerPlayerEntity) challenger.phantasm$asPlayer());
-                }*/
+                        self.bossbar.removePlayer((ServerPlayerEntity) challenger.asPlayer());
+                }
             }
 
             if (self.challengerUuids.isEmpty())

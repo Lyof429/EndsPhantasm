@@ -9,6 +9,11 @@
       "entity": "minecraft:endermite",
       "health_multiplier": 4,
       "damage_multiplier": 3
+    },
+    {
+      "weight": 5,
+      "entity": "minecraft:phantom",
+      "health_multiplier": 3
     }
   ]
 }

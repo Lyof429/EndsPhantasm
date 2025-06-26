@@ -112,9 +112,16 @@ public class RenderHelper {
     }
 
     public static void renderCube(MatrixStack matrices, VertexConsumer vertices, int light,
-                           float x0, float x1, float y0, float y1, float z0, float z1) {
+                                  float x0, float x1, float y0, float y1, float z0, float z1) {
+        renderCube(matrices, vertices, light,
+                x0, x1, y0, y1, z0, z1, false);
+    }
+
+    public static void renderCube(MatrixStack matrices, VertexConsumer vertices, int light,
+                           float x0, float x1, float y0, float y1, float z0, float z1, boolean scaleTexture) {
 
         float dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0), dz = Math.abs(z1 - z0);
+        if (scaleTexture) { dx = 1; dy = 1; dz = 1; }
 
         renderFace(matrices, vertices, light,
                 Point.of(x0, y0, z0, dx, dy),

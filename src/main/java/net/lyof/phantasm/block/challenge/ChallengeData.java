@@ -54,6 +54,7 @@ public class ChallengeData {
             if (select < 0) {
                 LivingEntity entity = monster.create(rune);
                 rune.getWorld().spawnEntity(entity);
+                return;
             }
         }
     }

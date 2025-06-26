@@ -11,7 +11,7 @@ public interface Challenger {
     static Challenger get(UUID uuid, World world) {
         return (Challenger) world.getPlayerByUuid(uuid);
     }
-    float R = 19.9f;
+    float R = 15.99f;
 
     PlayerEntity asPlayer();
 

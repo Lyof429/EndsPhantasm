@@ -66,11 +66,14 @@ public class PhantasmClient implements ClientModInitializer {
         ClientPlayNetworking.registerGlobalReceiver(ModPackets.CHALLENGE_STARTS, (client, handler, buf, responseSender) -> {
             BlockPos pos = buf.readBlockPos();
             client.execute(() -> {
-                if (client.world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity challengeRune)
-                    challengeRune.startChallenge(client.player);
-                client.inGameHud.setTitle(Text.empty());
-                client.inGameHud.setSubtitle(Text.translatable("block.phantasm.challenge_rune.start")
-                        .formatted(Formatting.LIGHT_PURPLE));
+                if (client.world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity rune) {
+                    rune.startChallenge();
+                    rune.addChallenger(client.player);
+
+                    client.inGameHud.setTitle(Text.empty());
+                    client.inGameHud.setSubtitle(Text.translatable("block.phantasm.challenge_rune.start")
+                            .formatted(Formatting.LIGHT_PURPLE));
+                }
             });
         });
 
@@ -78,15 +81,15 @@ public class PhantasmClient implements ClientModInitializer {
             BlockPos pos = buf.readBlockPos();
             boolean success = buf.readBoolean();
             client.execute(() -> {
-                if (client.world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity challengeRune) {
-                    if (((Challenger) client.player).getChallengeRune() == challengeRune) {
+                if (client.world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity rune) {
+                    if (((Challenger) client.player).getChallengeRune() == rune) {
                         client.inGameHud.setTitle(Text.empty());
                         client.inGameHud.setSubtitle(Text.translatable(success ?
                                         "block.phantasm.challenge_rune.success" :
                                         "block.phantasm.challenge_rune.fail")
                                 .formatted(Formatting.LIGHT_PURPLE));
                     }
-                    challengeRune.stopChallenge(success);
+                    rune.stopChallenge(success);
                 }
             });
         });

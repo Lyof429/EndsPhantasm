@@ -1,5 +1,6 @@
 package net.lyof.phantasm.block.challenge;
 
+import com.google.common.collect.ImmutableSet;
 import com.google.gson.JsonObject;
 import net.lyof.phantasm.Phantasm;
 import net.minecraft.util.Identifier;
@@ -24,6 +25,6 @@ public class ChallengeRegistry {
     }
 
     public static void clear() {
-        REGISTRY.clear();
+        ImmutableSet.copyOf(REGISTRY.entrySet()).stream().filter(e -> e.getValue().dataDriven).forEach(REGISTRY::remove);
     }
 }

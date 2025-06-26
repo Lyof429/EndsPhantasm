@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChallengeData {
+    public boolean dataDriven = false;
+
     public final Identifier id;
     private final Identifier lootTable;
     private final List<Monster> monsters;
@@ -38,6 +40,11 @@ public class ChallengeData {
         this.totalWeight = this.monsters.stream().reduce(0, (sum, monster) -> sum + monster.weight, Integer::sum);
         this.levelCost = levelCost;
         this.postDragon = postDragon;
+    }
+
+    public ChallengeData setDataDriven(boolean value) {
+        this.dataDriven = value;
+        return this;
     }
 
     public void spawnMonster(ChallengeRuneBlockEntity rune) {
@@ -78,7 +85,7 @@ public class ChallengeData {
                     json.get("objective").getAsInt(),
                     json.get("level_cost").getAsInt(),
                     json.get("post_dragon").getAsBoolean()
-            ));
+            ).setDataDriven(true));
         }
     }
 

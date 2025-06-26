@@ -11,6 +11,7 @@ public interface Challenger {
     static Challenger get(UUID uuid, World world) {
         return (Challenger) world.getPlayerByUuid(uuid);
     }
+    float R = 19.9f;
 
     PlayerEntity asPlayer();
 
@@ -24,8 +25,8 @@ public interface Challenger {
 
     default boolean isInRange() {
         if (this.getChallengeRune() == null) return false;
-        return Math.abs(this.asPlayer().getX() - 0.5 - this.getChallengeRune().getPos().getX()) < 10
-                && Math.abs(this.asPlayer().getEyeY() - 0.5 - this.getChallengeRune().getPos().getY()) < 10
-                && Math.abs(this.asPlayer().getZ() - 0.5 - this.getChallengeRune().getPos().getZ()) < 10;
+        return Math.abs(this.asPlayer().getX() - 0.5 - this.getChallengeRune().getPos().getX()) < R
+                && Math.abs(this.asPlayer().getEyeY() - 0.5 - this.getChallengeRune().getPos().getY()) < R
+                && Math.abs(this.asPlayer().getZ() - 0.5 - this.getChallengeRune().getPos().getZ()) < R;
     }
 }

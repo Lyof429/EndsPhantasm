@@ -42,20 +42,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 	}
 
 
-	@Unique private ChallengeRuneBlockEntity challengeRune = null;
-
 	@Override
 	public PlayerEntity asPlayer() {
 		return (PlayerEntity) (Object) this;
-	}
-
-	@Override
-	public ChallengeRuneBlockEntity getChallengeRune() {
-		return this.challengeRune;
-	}
-
-	@Override
-	public void setChallengeRune(ChallengeRuneBlockEntity challengeRune) {
-		this.challengeRune = challengeRune;
 	}
 }

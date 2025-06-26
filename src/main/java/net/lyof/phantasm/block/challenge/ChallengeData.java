@@ -56,7 +56,8 @@ public class ChallengeData {
 
         world.getServer().getLootManager().getLootTable(this.lootTable)
                 .generateLoot(new LootContext.Builder(new LootContextParameterSet.Builder(world)
-                        .add(LootContextParameters.ORIGIN, rune.getPos().toCenterPos()).build(LootContextTypes.CHEST)).build(null),
+                        .add(LootContextParameters.ORIGIN, rune.getPos().toCenterPos()).build(LootContextTypes.CHEST))
+                                .build(null),
                         stack -> world.spawnEntity(new ItemEntity(world, rune.getPos().getX() + 0.5,
                                 rune.getPos().getY() + 1, rune.getPos().getZ() + 0.5, stack)));
     }

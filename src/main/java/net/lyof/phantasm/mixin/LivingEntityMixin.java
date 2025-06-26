@@ -14,7 +14,10 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -75,15 +78,41 @@ public abstract class LivingEntityMixin extends Entity implements Challenger {
     }
 
 
+    @Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
+    private void writeRune(NbtCompound nbt, CallbackInfo ci) {
+        if (this.getChallengeRune() != null) {
+            nbt.putInt(Phantasm.MOD_ID + "_RuneX", this.getChallengeRune().getPos().getX());
+            nbt.putInt(Phantasm.MOD_ID + "_RuneY", this.getChallengeRune().getPos().getY());
+            nbt.putInt(Phantasm.MOD_ID + "_RuneZ", this.getChallengeRune().getPos().getZ());
+        }
+    }
+
+    @Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
+    private void readRune(NbtCompound nbt, CallbackInfo ci) {
+        if (nbt.contains(Phantasm.MOD_ID + "_RuneX"))
+            this.challengePos = new BlockPos(nbt.getInt(Phantasm.MOD_ID + "_RuneX"),
+                    nbt.getInt(Phantasm.MOD_ID + "_RuneY"),
+                    nbt.getInt(Phantasm.MOD_ID + "_RuneZ"));
+    }
+
+
     @Unique private ChallengeRuneBlockEntity challengeRune = null;
+    @Unique private BlockPos challengePos = null;
+
+    @Override
+    public PlayerEntity asPlayer() { return null; }
 
     @Override
     public @Nullable ChallengeRuneBlockEntity getChallengeRune() {
+        if (this.challengeRune == null && this.challengePos != null
+                && this.getWorld().getBlockEntity(this.challengePos) instanceof ChallengeRuneBlockEntity rune)
+            this.challengeRune = Phantasm.log(rune);
         return this.challengeRune;
     }
 
     @Override
     public void setChallengeRune(ChallengeRuneBlockEntity challengeRune) {
         this.challengeRune = challengeRune;
+        this.challengePos = challengeRune == null ? null : challengeRune.getPos();
     }
 }

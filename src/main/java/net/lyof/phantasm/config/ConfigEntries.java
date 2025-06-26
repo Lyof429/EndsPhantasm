@@ -15,7 +15,7 @@ public class ConfigEntries {
 
         doFallenStars = new ConfigEntry<>("world_gen.do_fallen_stars", true).get();
         doRawPurpur = new ConfigEntry<>("world_gen.do_raw_purpur", true).get();
-        rawPurpurOffset = new ConfigEntry<>("world_gen.raw_purpur_offset", 0).get();
+        rawPurpurOffset = new ConfigEntry<>("world_gen.raw_purpur_offset", 10).get();
 
         improveEndSpires = new ConfigEntry<>("world_gen.end_spires.beautify", true).get();
         noCrystalCages = new ConfigEntry<>("world_gen.end_spires.no_crystal_cages", false).get();

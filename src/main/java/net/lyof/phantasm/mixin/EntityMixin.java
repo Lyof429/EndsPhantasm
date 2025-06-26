@@ -1,6 +1,8 @@
 package net.lyof.phantasm.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.block.challenge.Challenger;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.effect.ModEffects;
 import net.lyof.phantasm.mixin.access.EndGatewayBlockEntityAccessor;
@@ -21,9 +23,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Set;
+
 @Mixin(Entity.class)
 public abstract class EntityMixin {
     @Shadow public abstract World getWorld();
+
+    @Shadow public abstract Set<String> getCommandTags();
 
     @ModifyReturnValue(method = "getTeleportTarget", at = @At("RETURN"))
     public TeleportTarget spawnInOuterEnd(TeleportTarget original, ServerWorld destination) {
@@ -52,6 +58,8 @@ public abstract class EntityMixin {
 
     @ModifyReturnValue(method = "getDefaultName", at = @At("RETURN"))
     public Text setChallengeName(Text original) {
-        return Text.translatable("entity.phantasm.challenge", original);
+        if (this.getCommandTags().contains(Phantasm.MOD_ID + ".challenge"))
+            return Text.translatable("entity.phantasm.challenge", original);
+        return original;
     }
 }

@@ -60,20 +60,26 @@ public class ShatteredTowerStructure extends Feature<CountConfig> {
         for (int sy = maxy; sy >= miny; sy--) {
             for (int sx = -R; sx <= R; sx++) {
                 for (int sz = -R; sz <= R; sz++) {
-                    if (sx*sx + sz*sz < R*R && (sx*sx + sz*sz >= (R-1)*(R-1) || sy == maxy)) {
-                        Block block = Blocks.OBSIDIAN;
-                        double crying = (sy - 70) / (maxy - 70.0);
-                        if (Math.random() + 0.1 < crying * crying * crying)
-                            block = Blocks.CRYING_OBSIDIAN;
-                        else if (Math.random() < 0.35)
-                            block = Math.random() < 0.4 ? ModBlocks.POLISHED_OBSIDIAN : ModBlocks.POLISHED_OBSIDIAN_BRICKS;
+                    if (sx*sx + sz*sz < R*R) {
+                        if (sx*sx + sz*sz >= (R-1)*(R-1)) {
+                            Block block = Blocks.OBSIDIAN;
+                            double crying = (sy - 70) / (maxy - 70.0);
+                            if (Math.random() + 0.1 < crying * crying * crying)
+                                block = Blocks.CRYING_OBSIDIAN;
+                            else if (Math.random() < 0.35)
+                                block = Math.random() < 0.4 ? ModBlocks.POLISHED_OBSIDIAN : ModBlocks.POLISHED_OBSIDIAN_BRICKS;
 
-                        this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
-                                block.getDefaultState());
-                    }
-                    else if (sx*sx + sz*sz < R*R && sy == miny) {
-                        this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
-                                Blocks.END_PORTAL.getDefaultState());
+                            this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
+                                    block.getDefaultState());
+                        }
+                        else if (sy == maxy) {
+                            this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
+                                    ModBlocks.POLISHED_OBSIDIAN_BRICKS.getDefaultState());
+                        }
+                        else if (sy == miny) {
+                            this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
+                                    Blocks.END_PORTAL.getDefaultState());
+                        }
                     }
                     else if (sx*sx + sz*sz < (R-1)*(R-1)) {
                         this.setBlockState(world, origin.withY(sy).east(sx).north(sz),

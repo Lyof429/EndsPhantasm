@@ -12,20 +12,20 @@ public interface Challenger {
         return (Challenger) world.getPlayerByUuid(uuid);
     }
 
-    PlayerEntity phantasm$asPlayer();
+    PlayerEntity asPlayer();
 
-    @Nullable ChallengeRuneBlockEntity phantasm$getRune();
-    void phantasm$setRune(ChallengeRuneBlockEntity challengeRune);
+    @Nullable ChallengeRuneBlockEntity getChallengeRune();
+    void setChallengeRune(ChallengeRuneBlockEntity challengeRune);
 
     default double getDistance() {
-        if (this.phantasm$getRune() == null) return 0;
-        return this.phantasm$asPlayer().getPos().subtract(this.phantasm$getRune().getPos().toCenterPos()).length();
+        if (this.getChallengeRune() == null) return 0;
+        return this.asPlayer().getPos().subtract(this.getChallengeRune().getPos().toCenterPos()).length();
     }
 
     default boolean isInRange() {
-        if (this.phantasm$getRune() == null) return false;
-        return Math.abs(this.phantasm$asPlayer().getX() - 0.5 - this.phantasm$getRune().getPos().getX()) < 10
-                && Math.abs(this.phantasm$asPlayer().getEyeY() - 0.5 - this.phantasm$getRune().getPos().getY()) < 10
-                && Math.abs(this.phantasm$asPlayer().getZ() - 0.5 - this.phantasm$getRune().getPos().getZ()) < 10;
+        if (this.getChallengeRune() == null) return false;
+        return Math.abs(this.asPlayer().getX() - 0.5 - this.getChallengeRune().getPos().getX()) < 10
+                && Math.abs(this.asPlayer().getEyeY() - 0.5 - this.getChallengeRune().getPos().getY()) < 10
+                && Math.abs(this.asPlayer().getZ() - 0.5 - this.getChallengeRune().getPos().getZ()) < 10;
     }
 }

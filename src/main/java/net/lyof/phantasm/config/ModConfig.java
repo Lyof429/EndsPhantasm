@@ -147,7 +147,7 @@ public class ModConfig {
     // Should Raw Purpur stripes appear on the islands' sides
     "do_raw_purpur": true,
     // y offset to be added to the Raw Purpur stripes generation
-    "raw_purpur_offset": 0,
+    "raw_purpur_offset": 10,
     
     "end_spires": {
       // Should the main island's obsidian spires be prettified with crying obsidian

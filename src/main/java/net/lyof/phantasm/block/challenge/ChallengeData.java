@@ -1,6 +1,5 @@
 package net.lyof.phantasm.block.challenge;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.lyof.phantasm.Phantasm;
@@ -107,7 +106,7 @@ public class ChallengeData {
                     "Challenge bonus", this.damageMultiplier, EntityAttributeModifier.Operation.MULTIPLY_BASE));
 
             entity.addCommandTag(Phantasm.MOD_ID + ".challenge");
-            ((Challenger) entity).phantasm$setRune(rune);
+            ((Challenger) entity).setChallengeRune(rune);
 
             return entity;
         }

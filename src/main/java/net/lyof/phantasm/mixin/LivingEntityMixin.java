@@ -70,20 +70,20 @@ public abstract class LivingEntityMixin extends Entity implements Challenger {
 
     @Inject(method = "onDeath", at = @At("HEAD"))
     public void countRuneKill(DamageSource damageSource, CallbackInfo ci) {
-        if (this.phantasm$getRune() != null && this.getCommandTags().contains(Phantasm.MOD_ID + ".challenge"))
-            this.phantasm$getRune().progress();
+        if (this.getChallengeRune() != null && this.getCommandTags().contains(Phantasm.MOD_ID + ".challenge"))
+            this.getChallengeRune().progress();
     }
 
 
     @Unique private ChallengeRuneBlockEntity challengeRune = null;
 
     @Override
-    public @Nullable ChallengeRuneBlockEntity phantasm$getRune() {
+    public @Nullable ChallengeRuneBlockEntity getChallengeRune() {
         return this.challengeRune;
     }
 
     @Override
-    public void phantasm$setRune(ChallengeRuneBlockEntity challengeRune) {
+    public void setChallengeRune(ChallengeRuneBlockEntity challengeRune) {
         this.challengeRune = challengeRune;
     }
 }

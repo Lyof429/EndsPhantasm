@@ -79,7 +79,7 @@ public class PhantasmClient implements ClientModInitializer {
             boolean success = buf.readBoolean();
             client.execute(() -> {
                 if (client.world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity challengeRune) {
-                    if (((Challenger) client.player).phantasm$getRune() == challengeRune) {
+                    if (((Challenger) client.player).getChallengeRune() == challengeRune) {
                         client.inGameHud.setTitle(Text.empty());
                         client.inGameHud.setSubtitle(Text.translatable(success ?
                                         "block.phantasm.challenge_rune.success" :

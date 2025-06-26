@@ -2,7 +2,6 @@ package net.lyof.phantasm.block.entity;
 
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlockEntities;
 import static net.lyof.phantasm.world.feature.custom.ShatteredTowerStructure.R;
 
@@ -15,9 +14,7 @@ import net.lyof.phantasm.setup.ModPackets;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.FurnaceBlockEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.decoration.EndCrystalEntity;
@@ -186,7 +183,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
                 }
 
                 this.challengerUuids.add(participant.getUuid());
-                ((Challenger) participant).phantasm$setRune(this);
+                ((Challenger) participant).setChallengeRune(this);
             }
         }
 
@@ -206,8 +203,8 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
                 Challenger challenger = Challenger.get(uuid, this.getWorld());
                 if (challenger == null) continue;
 
-                if (challenger.phantasm$getRune() == this && challenger.isInRange() && challenger.phantasm$asPlayer().isAlive())
-                    this.complete(challenger.phantasm$asPlayer());
+                if (challenger.getChallengeRune() == this && challenger.isInRange() && challenger.asPlayer().isAlive())
+                    this.complete(challenger.asPlayer());
             }
         }
 
@@ -245,12 +242,12 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
                 }
 
                 if (!world.isClient()) {
-                    self.bossbar.addPlayer((ServerPlayerEntity) challenger.phantasm$asPlayer());
+                    self.bossbar.addPlayer((ServerPlayerEntity) challenger.asPlayer());
                     self.bossbar.setPercent(1 - (float) self.progress / self.challengeData.monsterObjective);
                 }
 
-                if (challenger.phantasm$getRune() == null)
-                    challenger.phantasm$setRune(self);
+                if (challenger.getChallengeRune() == null)
+                    challenger.setChallengeRune(self);
                 /*if (!challenger.isInRange() || !challenger.phantasm$asPlayer().isAlive()) {
                     self.challengerUuids.remove(uuid);
 

@@ -9,6 +9,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
@@ -116,6 +117,8 @@ public class ChallengeData {
 
             entity.addCommandTag(Phantasm.MOD_ID + ".challenge");
             ((Challenger) entity).setChallengeRune(rune);
+            if (entity instanceof MobEntity mob)
+                mob.setPersistent();
 
             return entity;
         }

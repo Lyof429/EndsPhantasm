@@ -15,6 +15,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
@@ -82,9 +83,14 @@ public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<Cha
         if (self.isChallengeRunning()) {
             // Sky
             if (player instanceof Challenger challenger && challenger.isInRange()) {
+                matrices.push();
+                matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(self.tick + tickDelta));
+
                 float radius = Challenger.R * Math.min(40, self.tick + tickDelta) / 40f;
                 RenderHelper.renderCube(matrices, vertexConsumers.getBuffer(RenderLayer.getEyes(TOWER_BASE_TEXTURE)), light,
                         -radius, radius + 1, -radius*0.5f, radius*1.5f + 1, -radius, radius + 1, true);
+
+                matrices.pop();
             }
 
             /*BeaconBlockEntityRenderer.renderBeam(matrices, vertexConsumers, BeaconBlockEntityRenderer.BEAM_TEXTURE, tickDelta,

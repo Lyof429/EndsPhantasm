@@ -9,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.CrossbowItem;
@@ -50,7 +51,7 @@ public class ChoralArrowEntity extends ArrowEntity {
     protected void onHit(LivingEntity target) {
         if (!this.shotByCrossbow) {
             super.onHit(target);
-            target.addStatusEffect(new StatusEffectInstance(ModEffects.CHARM, 40, 0));
+            target.addStatusEffect(new StatusEffectInstance(ModEffects.CHARM, target instanceof PlayerEntity ? 20 : 40, 0));
         }
     }
 

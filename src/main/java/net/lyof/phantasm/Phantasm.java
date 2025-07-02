@@ -74,6 +74,8 @@ public class Phantasm implements ModInitializer {
 			LOGGER.warn("[Phantasm] {}", message);
 		else if (level == 2)
 			LOGGER.error("[Phantasm] {}", message);
+		else if (level == 3)
+			LOGGER.debug("[Phantasm] {}", message);
 		return message;
 	}
 }

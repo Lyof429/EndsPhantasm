@@ -42,7 +42,7 @@ public class ModConfig {
                 writer.write(DEFAULT_CONFIG);
                 writer.close();
 
-                Phantasm.log("Phantasm Config file created", 1);
+                Phantasm.log("Phantasm Config file created", 3);
             }
             catch (IOException e) {
                 e.printStackTrace();

@@ -38,12 +38,12 @@ public class ConfigEntry<T> implements Supplier<T> {
                 if (Objects.equals(step, this.path.get(this.path.size() - 1)))
                     result = next.get(step);
                 else {
-                    Phantasm.log("Couldn't find config value for path : \"" + this.path + "\", defaulting to " + fallback, 1);
+                    Phantasm.log("Couldn't find config value for path : \"" + this.path + "\", defaulting to " + fallback, 3);
                     return fallback;
                 }
             }
             if (next == null) {
-                Phantasm.log("Couldn't find config value for path : \"" + this.path + "\", defaulting to " + fallback, 1);
+                Phantasm.log("Couldn't find config value for path : \"" + this.path + "\", defaulting to " + fallback, 3);
                 return fallback;
             }
         }
@@ -61,7 +61,7 @@ public class ConfigEntry<T> implements Supplier<T> {
         if (fallback instanceof List)
             return (T) result;
 
-        Phantasm.log("Couldn't find config value for path : \"" + this.path + "\", defaulting to " + fallback, 1);
+        Phantasm.log("Couldn't find config value for path : \"" + this.path + "\", defaulting to " + fallback, 3);
         return fallback;
     }
 }

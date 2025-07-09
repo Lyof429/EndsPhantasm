@@ -7,6 +7,7 @@ import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;
@@ -19,9 +20,11 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class ChallengeData {
+public class Challenge {
     public boolean dataDriven = false;
 
     public final Identifier id;
@@ -32,8 +35,8 @@ public class ChallengeData {
     public final boolean postDragon;
     private final int totalWeight;
 
-    public ChallengeData(Identifier id, Identifier lootTable, List<Monster> monsters, int monsterObjective,
-                         int levelCost, boolean postDragon) {
+    public Challenge(Identifier id, Identifier lootTable, List<Monster> monsters, int monsterObjective,
+                     int levelCost, boolean postDragon) {
         this.id = id;
         this.lootTable = lootTable;
         this.monsters = monsters;
@@ -43,7 +46,7 @@ public class ChallengeData {
         this.postDragon = postDragon;
     }
 
-    public ChallengeData setDataDriven(boolean value) {
+    public Challenge setDataDriven(boolean value) {
         this.dataDriven = value;
         return this;
     }
@@ -80,7 +83,7 @@ public class ChallengeData {
             for (JsonElement elmt : json.getAsJsonArray("monsters"))
                 Monster.read(elmt.getAsJsonObject(), monsters);
 
-            ChallengeRegistry.register(id, new ChallengeData(
+            ChallengeRegistry.register(id, new Challenge(
                     id,
                     new Identifier(json.get("loot_table").getAsString()),
                     monsters,
@@ -96,24 +99,22 @@ public class ChallengeData {
         public final int weight;
 
         private final EntityType<? extends LivingEntity> entityType;
-        private final float healthMultiplier;
-        private final float damageMultiplier;
+        private final Map<EntityAttribute, Float> attributeMultipliers;
 
-        public Monster(int weight, EntityType<? extends LivingEntity> entityType, float healthMultiplier, float damageMultiplier) {
+        public Monster(int weight, EntityType<? extends LivingEntity> entityType, Map<EntityAttribute, Float> attributeMultipliers) {
             this.weight = weight;
             this.entityType = entityType;
-            this.healthMultiplier = healthMultiplier;
-            this.damageMultiplier = damageMultiplier;
+            this.attributeMultipliers = attributeMultipliers;
         }
 
         public LivingEntity create(ChallengeRuneBlockEntity rune) {
             LivingEntity entity = this.entityType.create(rune.getWorld());
             entity.setPosition(rune.getPos().up().toCenterPos().add(0, -0.5, 0));
-            entity.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).addPersistentModifier(new EntityAttributeModifier(
-                    "Challenge bonus", this.healthMultiplier, EntityAttributeModifier.Operation.MULTIPLY_BASE));
+
+            for (Map.Entry<EntityAttribute, Float> entry : this.attributeMultipliers.entrySet())
+                entity.getAttributeInstance(entry.getKey()).addPersistentModifier(new EntityAttributeModifier(
+                        "Challenge bonus", entry.getValue(), EntityAttributeModifier.Operation.MULTIPLY_BASE));
             entity.setHealth(entity.getMaxHealth());
-            entity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).addPersistentModifier(new EntityAttributeModifier(
-                    "Challenge bonus", this.damageMultiplier, EntityAttributeModifier.Operation.MULTIPLY_BASE));
 
             entity.addCommandTag(Phantasm.MOD_ID + ".challenge");
             ((Challenger) entity).setChallengeRune(rune);
@@ -130,11 +131,21 @@ public class ChallengeData {
                 try { EntityType<? extends LivingEntity> e = (EntityType<? extends LivingEntity>) entity; }
                 catch (Exception ignored) { return; }
 
+                JsonObject attributesObject = json.has("attributes")
+                        ? json.getAsJsonObject("attributes") : new JsonObject();
+                Map<EntityAttribute, Float> attributes = new HashMap<>();
+                for (Map.Entry<String, JsonElement> entry : attributesObject.entrySet()) {
+                    if (!entry.getValue().isJsonPrimitive() || !entry.getValue().getAsJsonPrimitive().isNumber())
+                        continue;
+
+                    attributes.putIfAbsent(Registries.ATTRIBUTE.get(new Identifier(entry.getKey())),
+                            entry.getValue().getAsFloat());
+                }
+
                 monsters.add(new Monster(
                         json.has("weight") ? json.get("weight").getAsInt() : 1,
                         (EntityType<? extends LivingEntity>) entity,
-                        json.has("health_multiplier") ? json.get("health_multiplier").getAsFloat() : 1,
-                        json.has("damage_multiplier") ? json.get("damage_multiplier").getAsFloat() : 1
+                        attributes
                 ));
             }
         }

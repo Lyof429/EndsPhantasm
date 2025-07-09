@@ -3,7 +3,7 @@ package net.lyof.phantasm.setup;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.block.challenge.ChallengeData;
+import net.lyof.phantasm.block.challenge.Challenge;
 import net.lyof.phantasm.block.challenge.ChallengeRegistry;
 import net.lyof.phantasm.config.ModConfig;
 import net.lyof.phantasm.world.biome.EndDataCompat;
@@ -48,7 +48,7 @@ public class ReloadListener {
 
                 if (json == null || !json.isJsonObject()) continue;
 
-                ChallengeData.read(finder.toResourceId(entry.getKey()), json.getAsJsonObject());
+                Challenge.read(finder.toResourceId(entry.getKey()), json.getAsJsonObject());
             }
             catch (Throwable e) {
                 Phantasm.log("Could not read data file " + entry.getKey(), 2);

@@ -1,19 +1,23 @@
 {
   "loot_table": "phantasm:chests/shattered_tower_challenge",
-  "objective": 12,
+  "objective": 20,
   "level_cost": 5,
   "post_dragon": true,
   "monsters": [
     {
       "weight": 10,
       "entity": "minecraft:endermite",
-      "health_multiplier": 4,
-      "damage_multiplier": 3
+      "attributes": {
+        "minecraft:generic.max_health": 4,
+        "minecraft:generic.attack_damage": 3
+      }
     },
     {
       "weight": 5,
       "entity": "minecraft:phantom",
-      "health_multiplier": 3
+      "attributes": {
+        "minecraft:generic.max_health": 2
+      }
     }
   ]
 }

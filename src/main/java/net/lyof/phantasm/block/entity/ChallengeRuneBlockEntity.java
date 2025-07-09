@@ -2,19 +2,17 @@ package net.lyof.phantasm.block.entity;
 
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlockEntities;
 import static net.lyof.phantasm.world.feature.custom.ShatteredTowerStructure.R;
 
 import net.lyof.phantasm.block.ModBlocks;
-import net.lyof.phantasm.block.challenge.ChallengeData;
+import net.lyof.phantasm.block.challenge.Challenge;
 import net.lyof.phantasm.block.challenge.ChallengeRegistry;
 import net.lyof.phantasm.block.challenge.Challenger;
 import net.lyof.phantasm.mixin.access.ServerPlayerEntityAccessor;
 import net.lyof.phantasm.setup.ModPackets;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.JukeboxBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.BossBar;
@@ -48,7 +46,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
     public int tick;
     private int progress;
     private final ServerBossBar bossbar;
-    public ChallengeData challengeData = ChallengeRegistry.EMPTY;
+    public Challenge challenge = ChallengeRegistry.EMPTY;
 
     public boolean renderBase;
     private final List<Vec3i> towerBases;
@@ -86,7 +84,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
 
-        nbt.putString("ChallengeId", this.challengeData.id.toString());
+        nbt.putString("ChallengeId", this.challenge.id.toString());
 
         nbt.putInt("CompletedPlayerCount", this.completedPlayerUuids.size());
         for (int i = 0; i < this.completedPlayerUuids.size(); i++)
@@ -115,8 +113,8 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
 
 
     public void setChallenge(Identifier id) {
-        this.challengeData = ChallengeRegistry.get(id);
-        this.bossbar.setStyle(BossBar.Style.byName("notched_" + this.challengeData.monsterObjective));
+        this.challenge = ChallengeRegistry.get(id);
+        this.bossbar.setStyle(BossBar.Style.byName("notched_" + this.challenge.monsterObjective));
     }
 
     public List<Vec3i> getTowerBases() {
@@ -151,18 +149,18 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
     }
 
     public boolean canStart(ServerPlayerEntity player) {
-        return this.challengeData.monsterObjective > 0 && !this.isChallengeRunning() && !this.hasCompleted(player)
-                && player.experienceLevel >= this.challengeData.levelCost
-                && (!this.challengeData.postDragon || ((ServerPlayerEntityAccessor) player).getSeenCredits());
+        return this.challenge.monsterObjective > 0 && !this.isChallengeRunning() && !this.hasCompleted(player)
+                && player.experienceLevel >= this.challenge.levelCost
+                && (!this.challenge.postDragon || ((ServerPlayerEntityAccessor) player).getSeenCredits());
     }
 
     public void displayHint(ServerPlayerEntity user) {
         String message = "";
         if (this.hasCompleted(user))
             message = ".completed" + user.getRandom().nextInt(5);
-        else if (this.challengeData.postDragon && !((ServerPlayerEntityAccessor) user).getSeenCredits())
+        else if (this.challenge.postDragon && !((ServerPlayerEntityAccessor) user).getSeenCredits())
             message = ".dragon" + user.getRandom().nextInt(5);
-        else if (user.experienceLevel < this.challengeData.levelCost)
+        else if (user.experienceLevel < this.challenge.levelCost)
             message = ".experience" + user.getRandom().nextInt(5);
 
         user.sendMessage(Text.translatable("block.phantasm.challenge_rune.hint" + message).formatted(Formatting.LIGHT_PURPLE),
@@ -171,9 +169,9 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
 
     public void progress() {
         this.progress++;
-        this.bossbar.setPercent(1 - (float) this.progress / this.challengeData.monsterObjective);
+        this.bossbar.setPercent(1 - (float) this.progress / this.challenge.monsterObjective);
 
-        if (this.progress >= this.challengeData.monsterObjective)
+        if (this.progress >= this.challenge.monsterObjective)
             this.stopChallenge(true);
     }
 
@@ -181,7 +179,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         this.startChallenge();
 
         if (!player.isCreative())
-            player.addExperienceLevels(-this.challengeData.levelCost);
+            player.addExperienceLevels(-this.challenge.levelCost);
 
         for (PlayerEntity participant : player.getWorld().getPlayers()) {
             if (participant.getPos().distanceTo(Vec3d.of(this.getPos())) < Challenger.R) {
@@ -224,7 +222,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
 
         if (!this.getWorld().isClient()) {
             if (success)
-                this.challengeData.spawnLoot(this);
+                this.challenge.spawnLoot(this);
 
             PacketByteBuf packet = PacketByteBufs.create();
             packet.writeBlockPos(this.getPos());
@@ -266,7 +264,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
 
                 if (!world.isClient()) {
                     self.bossbar.addPlayer((ServerPlayerEntity) challenger.asPlayer());
-                    self.bossbar.setPercent(1 - (float) self.progress / self.challengeData.monsterObjective);
+                    self.bossbar.setPercent(1 - (float) self.progress / self.challenge.monsterObjective);
                 }
 
                 if (challenger.getChallengeRune() == null)
@@ -293,9 +291,9 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
             world.setBlockState(pos.up(), Blocks.AIR.getDefaultState());
         }
 
-        if (!world.isClient() && self.tick > 100 && self.tick <= 100 + 20*self.challengeData.monsterObjective
+        if (!world.isClient() && self.tick > 100 && self.tick <= 100 + 20*self.challenge.monsterObjective
                 && self.tick % 20 == 0) {
-            self.challengeData.spawnMonster(self);
+            self.challenge.spawnMonster(self);
         }
 
         self.tick++;

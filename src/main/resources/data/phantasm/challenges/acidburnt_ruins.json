@@ -1,0 +1,16 @@
+{
+  "loot_table": "phantasm:chests/acidburnt_ruins_challenge",
+  "objective": 12,
+  "level_cost": 2,
+  "post_dragon": false,
+  "monsters": [
+    {
+      "weight": 10,
+      "entity": "minecraft:endermite",
+      "attributes": {
+        "minecraft:generic.max_health": 4,
+        "minecraft:generic.attack_damage": 3
+      }
+    }
+  ]
+}

@@ -138,8 +138,10 @@ public class Challenge {
                     if (!entry.getValue().isJsonPrimitive() || !entry.getValue().getAsJsonPrimitive().isNumber())
                         continue;
 
-                    attributes.putIfAbsent(Registries.ATTRIBUTE.get(new Identifier(entry.getKey())),
-                            entry.getValue().getAsFloat());
+                    EntityAttribute attr = Registries.ATTRIBUTE.get(new Identifier(entry.getKey()));
+                    if (attr == null) continue;
+
+                    attributes.putIfAbsent(attr, entry.getValue().getAsFloat());
                 }
 
                 monsters.add(new Monster(

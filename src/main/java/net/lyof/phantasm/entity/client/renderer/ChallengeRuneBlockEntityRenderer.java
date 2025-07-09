@@ -56,9 +56,6 @@ public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<Cha
         if (world == null) return;
         PlayerEntity player = MinecraftClient.getInstance().player;
 
-        if (self.getTowerBases().isEmpty())
-            self.generateTowerBases();
-
         BlockState state = ModBlocks.CHALLENGE_RUNE.getDefaultState()
                 .with(ChallengeRuneBlock.COMPLETED, self.hasCompleted(player));
 
@@ -73,11 +70,37 @@ public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<Cha
         // Tower base
         if (self.renderBase) {
             light = WorldRenderer.getLightmapCoordinates(world, pos.withY(-20));
-            for (Vec3i vec : self.getTowerBases())
-                RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
-                        vec.getX(), vec.getX() + 1,
-                        vec.getY() - 512, vec.getY(),
-                        vec.getZ(), vec.getZ() + 1);
+
+            matrices.push();
+            matrices.translate(0, -pos.getY(), 0);
+
+            RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
+                    6, 7, -512, 0, -3, 4);
+            RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
+                    -6, -5, -512, 0, -3, 4);
+            RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
+                    -3, 4, -512, 0, 6, 7);
+            RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
+                    -3, 4, -512, 0, -6, -5);
+
+            RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
+                    5, 6, -512, 0, 4, 5);
+            RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
+                    4, 5, -512, 0, 5, 6);
+            RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
+                    5, 6, -512, 0, -4, -3);
+            RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
+                    4, 5, -512, 0, -5, -4);
+            RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
+                    -5, -4, -512, 0, 4, 5);
+            RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
+                    -4, -3, -512, 0, 5, 6);
+            RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
+                    -5, -4, -512, 0, -4, -3);
+            RenderHelper.renderCube(matrices, vertexConsumers, TOWER_BASE_TEXTURE, light,
+                    -4, -3, -512, 0, -5, -4);
+
+            matrices.pop();
         }
 
         if (self.isChallengeRunning()) {

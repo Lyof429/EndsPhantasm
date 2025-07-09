@@ -49,7 +49,6 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
     public Challenge challenge = ChallengeRegistry.EMPTY;
 
     public boolean renderBase;
-    private final List<Vec3i> towerBases;
 
     public ChallengeRuneBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.CHALLENGE_RUNE, pos, state);
@@ -58,7 +57,6 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         this.bossbar = new ServerBossBar(ModBlocks.CHALLENGE_RUNE.getName(), BossBar.Color.PURPLE, BossBar.Style.NOTCHED_20);
 
         this.tick = -1;
-        this.towerBases = new ArrayList<>();
     }
 
     @Override
@@ -116,23 +114,6 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         this.challenge = ChallengeRegistry.get(id);
         this.bossbar.setStyle(BossBar.Style.byName("notched_" + this.challenge.monsterObjective));
     }
-
-    public List<Vec3i> getTowerBases() {
-        return this.towerBases;
-    }
-
-    public void generateTowerBases() {
-        this.towerBases.clear();
-        int y = this.getWorld().getBottomY() - this.getPos().getY();
-
-        for (int sx = -R; sx <= R; sx++) {
-            for (int sz = -R; sz <= R; sz++) {
-                if (sx * sx + sz * sz < R * R && sx * sx + sz * sz >= (R - 1) * (R - 1))
-                    this.towerBases.add(new Vec3i(sx, y, sz));
-            }
-        }
-    }
-
 
     public void complete(PlayerEntity player) {
         if (!this.hasCompleted(player))

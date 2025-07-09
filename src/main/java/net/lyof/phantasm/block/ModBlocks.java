@@ -410,7 +410,7 @@ public class ModBlocks {
     // Oblivion
     public static final Block OBLIVION = ModRegistry.ofBlock("oblivion",
                     new Block(oblivionMaterial))
-            .tag(ModTags.Blocks.OBLIVINE_GROWABLE_ON)
+            .tag(ModTags.Blocks.OBLIVINE_GROWABLE_ON, ModTags.Blocks.END_PLANTS_GROWABLE_ON)
             .tool("_hoe")
             .drop()
             .model().build();

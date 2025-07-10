@@ -30,11 +30,15 @@ public class ConfigEntries {
         explosiveDragonFireballs = new ConfigEntry<>("gameplay.dragon.explosive_fireballs", true).get();
         noEndermenFight = new ConfigEntry<>("gameplay.dragon.no_pesky_endermen", false).get();
 
-        elytraBoostAdvancement = new ConfigEntry<>("equipment.elytra_boost_advancement", "minecraft:end/kill_dragon").get();
+        accessibilityChallengeBarrier = new ConfigEntry<>("gameplay.challenge.accessibility_barrier", false).get();
+
+        elytraBoostAdvancement = new ConfigEntry<>("equipment.elytra.boost_advancement", "minecraft:end/kill_dragon").get();
+        elytraChallenge = new ConfigEntry<>("equipment.elytra.challenge", true).get();
+
         crystalXPBoost = new ConfigEntry<>("equipment.crystal_xp_boost", 3).get();
 
-        chorusSaladTp = new ConfigEntry<>("equipment.chorus_fruit_salad_teleportation", true).get();
-        chorusSaladStack = new ConfigEntry<>("equipment.chorus_fruit_salad_stack_size", 1).get();
+        chorusSaladTp = new ConfigEntry<>("equipment.chorus_fruit_salad.teleportation", true).get();
+        chorusSaladStack = new ConfigEntry<>("equipment.chorus_fruit_salad.stack_size", 4).get();
 
         shatteredPendantDurability = new ConfigEntry<>("equipment.shattered_pendant_durability", 4).get();
         subwooferRange = new ConfigEntry<>("equipment.subwoofer_range", 6).get();
@@ -68,7 +72,11 @@ public class ConfigEntries {
     public static boolean explosiveDragonFireballs;
     public static boolean noEndermenFight;
 
+    public static boolean accessibilityChallengeBarrier;
+
     public static String elytraBoostAdvancement = "";
+    public static boolean elytraChallenge;
+
     public static double crystalXPBoost;
     public static boolean chorusSaladTp;
     public static int chorusSaladStack;

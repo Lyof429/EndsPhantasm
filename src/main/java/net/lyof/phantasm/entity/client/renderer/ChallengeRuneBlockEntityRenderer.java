@@ -4,6 +4,7 @@ import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.block.custom.ChallengeRuneBlock;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.lyof.phantasm.block.challenge.Challenger;
+import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.util.RenderHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
@@ -108,12 +109,19 @@ public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<Cha
             // Sky
             if (player instanceof Challenger challenger && challenger.isInRange()) {
                 matrices.push();
-                //matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(self.tick + tickDelta));
 
                 float radius = Challenger.R * Math.min(40, self.tick + tickDelta) / 40f;
-                RenderHelper.renderCube(matrices, vertexConsumers.getBuffer(RenderLayer.getEndPortal()), light,
-                        -radius, radius + 1, -radius*0.5f, radius*1.5f + 1, -radius, radius + 1, true);
-                //vertexConsumers.getBuffer(RenderLayer.getEyes(TOWER_BASE_TEXTURE))
+
+                if (ConfigEntries.accessibilityChallengeBarrier) {
+                    matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(self.tick + tickDelta));
+
+                    RenderHelper.renderCube(matrices, vertexConsumers.getBuffer(RenderLayer.getEyes(TOWER_BASE_TEXTURE)), light,
+                            -radius, radius + 1, -radius * 0.5f, radius * 1.5f + 1, -radius, radius + 1, true);
+                }
+                else {
+                    RenderHelper.renderCube(matrices, vertexConsumers.getBuffer(RenderLayer.getEndPortal()), light,
+                            -radius, radius + 1, -radius * 0.5f, radius * 1.5f + 1, -radius, radius + 1, true);
+                }
 
                 matrices.pop();
             }

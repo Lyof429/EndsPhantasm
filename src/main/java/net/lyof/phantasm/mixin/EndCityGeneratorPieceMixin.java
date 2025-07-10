@@ -3,6 +3,7 @@ package net.lyof.phantasm.mixin;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
+import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.block.Block;
 import net.minecraft.structure.*;
 import net.minecraft.util.Identifier;
@@ -21,6 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(EndCityGenerator.Piece.class)
 public abstract class EndCityGeneratorPieceMixin extends SimpleStructurePiece {
     @Unique private static final Identifier CHALLENGE_ID = Phantasm.makeID("elytra");
+    @Unique private static final Identifier STRUCTURE_ID = Identifier.of("minecraft", "end_city/ship");
 
     @Shadow protected abstract Identifier getId();
 
@@ -30,7 +32,7 @@ public abstract class EndCityGeneratorPieceMixin extends SimpleStructurePiece {
 
     @Inject(method = "handleMetadata", at = @At("HEAD"), cancellable = true)
     public void placeElytraChallenge(String metadata, BlockPos pos, ServerWorldAccess world, Random random, BlockBox boundingBox, CallbackInfo ci) {
-        if (metadata.startsWith("Elytra") && this.getId().equals(Identifier.of("minecraft", "end_city/ship"))) {
+        if (ConfigEntries.elytraChallenge && metadata.startsWith("Elytra") && this.getId().equals(STRUCTURE_ID)) {
 
             pos = pos.offset(this.placementData.getRotation().rotate(Direction.SOUTH), 8).down(2);
             Phantasm.log(pos);

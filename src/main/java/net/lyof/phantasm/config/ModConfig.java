@@ -179,20 +179,32 @@ public class ModConfig {
       "aggro_range": 6,
       // Distance (in blocks) at which walking close to a Behemoth while sneaking will aggro it
       "aggro_range_sneaking": 0
+    },
+    
+    "challenge": {
+      // Use a see through, dynamic runic barrier texture for challenge boundaries
+      //   If false, the End portal's static texture will be used. Looks better to me, but might be confusing
+      "accessibility_barrier": false
     }
   },
   
   // CATEGORY: EQUIPMENT
   "equipment": {
-    // Advancement needed to enable elytra boosting. Leave blank "" to disable the need for one
-    "elytra_boost_advancement": "minecraft:end/kill_dragon",
+    "elytra": {
+      // Advancement needed to enable elytra boosting. Leave blank "" to disable the need for one
+      "boost_advancement": "minecraft:end/kill_dragon",
+      // Should the item frame in End City Ships be replaced by a Challenge Rune
+      "challenge": true
+    }
     // Crystalline tools boost ratio
     "crystal_xp_boost": 3,
     
-    // Should eating a Chorus Fruit Salad teleport in/out of the End
-    "chorus_fruit_salad_teleportation": true,
-    // Max Chorus Fruit Salad stack size
-    "chorus_fruit_salad_stack_size": 1,
+    "chorus_fruit_salad": {
+      // Should eating a Chorus Fruit Salad teleport in/out of the End
+      "teleportation": true,
+      // Max Chorus Fruit Salad stack size
+      "stack_size": 4
+    }
     
     // Max uses for Shattered Pendants
     "shattered_pendant_durability": 6,

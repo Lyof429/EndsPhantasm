@@ -106,7 +106,7 @@ public abstract class LivingEntityMixin extends Entity implements Challenger {
     public @Nullable ChallengeRuneBlockEntity getChallengeRune() {
         if (this.challengeRune == null && this.challengePos != null
                 && this.getWorld().getBlockEntity(this.challengePos) instanceof ChallengeRuneBlockEntity rune)
-            this.challengeRune = Phantasm.log(rune);
+            this.challengeRune = rune;
         return this.challengeRune;
     }
 

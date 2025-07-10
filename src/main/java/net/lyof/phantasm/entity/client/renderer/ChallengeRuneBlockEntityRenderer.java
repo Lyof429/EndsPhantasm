@@ -13,6 +13,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.structure.EndCityGenerator;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RotationAxis;
@@ -107,11 +108,12 @@ public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<Cha
             // Sky
             if (player instanceof Challenger challenger && challenger.isInRange()) {
                 matrices.push();
-                matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(self.tick + tickDelta));
+                //matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(self.tick + tickDelta));
 
                 float radius = Challenger.R * Math.min(40, self.tick + tickDelta) / 40f;
-                RenderHelper.renderCube(matrices, vertexConsumers.getBuffer(RenderLayer.getEyes(TOWER_BASE_TEXTURE)), light,
+                RenderHelper.renderCube(matrices, vertexConsumers.getBuffer(RenderLayer.getEndPortal()), light,
                         -radius, radius + 1, -radius*0.5f, radius*1.5f + 1, -radius, radius + 1, true);
+                //vertexConsumers.getBuffer(RenderLayer.getEyes(TOWER_BASE_TEXTURE))
 
                 matrices.pop();
             }

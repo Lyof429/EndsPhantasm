@@ -128,6 +128,7 @@ public class Challenge {
         public static void read(JsonObject json, List<Monster> monsters) {
             if (json.has("entity")) {
                 EntityType<?> entity = Registries.ENTITY_TYPE.get(new Identifier(json.get("entity").getAsString()));
+                if (entity == EntityType.PIG && !json.get("entity").getAsString().equals("minecraft:pig")) return;
                 try { EntityType<? extends LivingEntity> e = (EntityType<? extends LivingEntity>) entity; }
                 catch (Exception ignored) { return; }
 

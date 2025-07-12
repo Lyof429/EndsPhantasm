@@ -61,6 +61,8 @@ public class SubwooferBlock extends FacingBlock {
                     world.addSyncedBlockEvent(pos, this, dir.getId(), i);
                     world.emitGameEvent(null, GameEvent.NOTE_BLOCK_PLAY, pos);
 
+                    if (i == 1) continue;
+
                     List<Entity> entities = world.getOtherEntities(null, new Box(p).expand(1.2), SubwooferBlock::canPush);
                     for (Entity e : entities) {
                         if (affected.contains(e.getUuid())) continue;

@@ -61,6 +61,11 @@ public class ShatteredTowerStructure extends Feature<CountConfig> {
             for (int sx = -R; sx <= R; sx++) {
                 for (int sz = -R; sz <= R; sz++) {
                     if (sx*sx + sz*sz < R*R) {
+                        if (sx*sx + sz*sz < (R-1)*(R-1)) {
+                            this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
+                                    Blocks.AIR.getDefaultState());
+                        }
+
                         if (sx*sx + sz*sz >= (R-1)*(R-1)) {
                             Block block = Blocks.OBSIDIAN;
                             double crying = (sy - 70) / (maxy - 70.0);
@@ -80,10 +85,6 @@ public class ShatteredTowerStructure extends Feature<CountConfig> {
                             this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
                                     Blocks.END_PORTAL.getDefaultState());
                         }
-                    }
-                    else if (sx*sx + sz*sz < (R-1)*(R-1)) {
-                        this.setBlockState(world, origin.withY(sy).east(sx).north(sz),
-                                Blocks.AIR.getDefaultState());
                     }
                 }
             }

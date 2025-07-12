@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -79,7 +80,7 @@ public class LifecycledResourceManagerImplMixin {
             }
         }
 
-        List<Identifier> ids = original.keySet().stream().toList();
+        List<Identifier> ids = new ArrayList<>(original.keySet());
         for (Identifier id : ids) {
             ConfiguredData data = ConfiguredData.get(id);
             if (data == null || !data.enabled.get()) continue;
@@ -101,7 +102,7 @@ public class LifecycledResourceManagerImplMixin {
             }
         }
 
-        List<Identifier> ids = original.keySet().stream().toList();
+        List<Identifier> ids = new ArrayList<>(original.keySet());
         for (Identifier id : ids) {
             ConfiguredData data = ConfiguredData.get(id);
             if (data == null || !data.enabled.get()) continue;

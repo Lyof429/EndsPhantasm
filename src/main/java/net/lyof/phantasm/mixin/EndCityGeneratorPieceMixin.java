@@ -35,7 +35,6 @@ public abstract class EndCityGeneratorPieceMixin extends SimpleStructurePiece {
         if (ConfigEntries.elytraChallenge && metadata.startsWith("Elytra") && this.getId().equals(STRUCTURE_ID)) {
 
             pos = pos.offset(this.placementData.getRotation().rotate(Direction.SOUTH), 8).down(2);
-            Phantasm.log(pos);
             world.setBlockState(pos, ModBlocks.CHALLENGE_RUNE.getDefaultState(), Block.NOTIFY_ALL);
 
             if (world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity rune) {

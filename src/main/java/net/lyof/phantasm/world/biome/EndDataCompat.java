@@ -54,8 +54,15 @@ public class EndDataCompat {
     }
 
     public static boolean contains(Identifier biome) {
-        return BIOMES_WEIGHT.stream().anyMatch(pair -> pair.getFirst().equals(biome))
-                || BIOMES_NOISE.stream().anyMatch(pair -> pair.getFirst().equals(biome));
+        for (Pair<Identifier, Supplier<Double>> pair : BIOMES_WEIGHT) {
+            if (pair.getFirst().equals(biome))
+                return true;
+        }
+        for (Pair<Identifier, JsonObject> pair : BIOMES_NOISE) {
+            if (pair.getFirst().equals(biome))
+                return true;
+        }
+        return false;
     }
 
     public static List<Pair<Identifier, Double>> getEnabledWeightedBiomes() {

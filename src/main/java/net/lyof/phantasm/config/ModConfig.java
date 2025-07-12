@@ -99,7 +99,7 @@ public class ModConfig {
     static final String DEFAULT_CONFIG = """
 {
   "TECHNICAL": {
-    "VERSION_DO_NOT_EDIT": 1.6,
+    "VERSION_DO_NOT_EDIT": 1.7,
     "FORCE_RESET": false
   },
 
@@ -195,7 +195,8 @@ public class ModConfig {
       "boost_advancement": "minecraft:end/kill_dragon",
       // Should the item frame in End City Ships be replaced by a Challenge Rune
       "challenge": true
-    }
+    },
+    
     // Crystalline tools boost ratio
     "crystal_xp_boost": 3,
     
@@ -204,7 +205,7 @@ public class ModConfig {
       "teleportation": true,
       // Max Chorus Fruit Salad stack size
       "stack_size": 4
-    }
+    },
     
     // Max uses for Shattered Pendants
     "shattered_pendant_durability": 6,

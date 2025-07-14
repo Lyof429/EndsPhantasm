@@ -1,4 +1,4 @@
-package net.lyof.phantasm.mixin;
+package net.lyof.phantasm.mixin.client;
 
 import net.lyof.phantasm.Phantasm;
 import net.minecraft.client.render.entity.VexEntityRenderer;

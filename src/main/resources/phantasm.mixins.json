@@ -39,8 +39,8 @@
     "defaultRequire": 1
   },
   "client": [
-    "MinecraftClientMixin",
-    "VexEntityRendererMixin",
+    "client.MinecraftClientMixin",
+    "client.VexEntityRendererMixin",
     "client.DimensionEffectsMixin",
     "client.InGameHudMixin"
   ]

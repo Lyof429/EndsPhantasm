@@ -1,4 +1,4 @@
-package net.lyof.phantasm.mixin;
+package net.lyof.phantasm.mixin.client;
 
 import net.lyof.phantasm.effect.ModEffects;
 import net.minecraft.client.MinecraftClient;

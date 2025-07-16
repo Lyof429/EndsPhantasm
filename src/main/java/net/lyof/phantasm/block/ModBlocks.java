@@ -199,11 +199,20 @@ public class ModBlocks {
             .tool("_pickaxe").drop().build();
 
     public static final Block VOID_CRYSTAL_GLASS = ModRegistry.ofBlock("void_crystal_glass",
-                    new GlassBlock(crystalGlassMaterial))
+            new GlassBlock(crystalGlassMaterial))
             .cutout().drop().build();
     public static final Block VOID_CRYSTAL_GLASS_PANE = ModRegistry.ofBlock("void_crystal_glass_pane",
-                    new PaneBlock(crystalGlassMaterial))
+            new PaneBlock(crystalGlassMaterial))
             .cutout().model(ModRegistry.Models.PANE).drop().build();
+
+    // Crystal Redstone Components
+    public static final Block DELAYER = ModRegistry.ofBlock("delayer",
+            new DelayerBlock(copy(Blocks.REPEATER)))
+            .cutout().drop().build();
+
+    public static final Block RANDOMIZER = ModRegistry.ofBlock("randomizer",
+            new DelayerBlock(copy(Blocks.REPEATER)))
+            .cutout().drop().build();
 
 
     // Pream Blockset

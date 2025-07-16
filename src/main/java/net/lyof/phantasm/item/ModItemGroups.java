@@ -99,6 +99,9 @@ public class ModItemGroups {
                         entries.add(ModBlocks.VOID_CRYSTAL_GLASS);
                         entries.add(ModBlocks.VOID_CRYSTAL_GLASS_PANE);
 
+                        entries.add(ModBlocks.DELAYER);
+                        entries.add(ModBlocks.RANDOMIZER);
+
                         entries.add(ModBlocks.POLISHED_OBSIDIAN);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS);
                         entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICK_STAIRS);
@@ -264,10 +267,16 @@ public class ModItemGroups {
 
             entries.addAfter(Items.JUKEBOX, ModBlocks.SUBWOOFER_BLOCK);
 
+            entries.addAfter(Items.COMPARATOR, ModBlocks.DELAYER);
+            entries.addAfter(ModBlocks.DELAYER, ModBlocks.RANDOMIZER);
+
             entries.addAfter(Items.ENDER_EYE, ModBlocks.CHALLENGE_RUNE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
             entries.addAfter(Items.NOTE_BLOCK, ModBlocks.SUBWOOFER_BLOCK);
+
+            entries.addAfter(Items.COMPARATOR, ModBlocks.DELAYER);
+            entries.addAfter(ModBlocks.DELAYER, ModBlocks.RANDOMIZER);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register(entries -> {
             entries.addAfter(Items.PINK_STAINED_GLASS, ModBlocks.CRYSTAL_GLASS);

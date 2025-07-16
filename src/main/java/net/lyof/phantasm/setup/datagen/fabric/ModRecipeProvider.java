@@ -20,6 +20,7 @@ import net.minecraft.recipe.CookingRecipeSerializer;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.tag.ItemTags;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -221,6 +222,26 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
                 .group("crystalline_hoe").offerTo(exporter, Phantasm.makeID("crystalline_hoe"));
 
+        // Delayer
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.DELAYER)
+                .pattern("TCT")
+                .pattern("SSS")
+                .input('C', ModBlocks.CRYSTAL_BLOCK)
+                .input('T', Items.REDSTONE_TORCH)
+                .input('S', Items.STONE)
+                .criterion(hasItem(ModBlocks.CRYSTAL_BLOCK), conditionsFromItem(ModBlocks.CRYSTAL_BLOCK))
+                .group("delayer").offerTo(exporter, Phantasm.makeID("delayer"));
+        // Randomizer
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.RANDOMIZER)
+                .pattern(" T ")
+                .pattern("TCT")
+                .pattern("SSS")
+                .input('C', ModBlocks.CRYSTAL_BLOCK)
+                .input('T', Items.REDSTONE_TORCH)
+                .input('S', Items.STONE)
+                .criterion(hasItem(ModBlocks.CRYSTAL_BLOCK), conditionsFromItem(ModBlocks.CRYSTAL_BLOCK))
+                .group("randomizer").offerTo(exporter, Phantasm.makeID("randomizer"));
+
         // Pream Planks
         offerPlanksRecipe(exporter, ModBlocks.PREAM_PLANKS, ModTags.Items.PREAM_LOGS, 4);
         createCondensingRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PREAM_WOOD,
@@ -334,7 +355,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
         // Choral Blocks
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHORAL_BLOCK, ModBlocks.CHORAL_FAN);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.SUBWOOFER_BLOCK, 1)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.SUBWOOFER_BLOCK)
                 .pattern("F##")
                 .pattern("FO#")
                 .pattern("F##")
@@ -344,6 +365,23 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(ModBlocks.CHORAL_BLOCK), conditionsFromItem(ModBlocks.CHORAL_BLOCK))
                 .criterion(hasItem(ModBlocks.CHORAL_FAN), conditionsFromItem(ModBlocks.CHORAL_FAN))
                 .group("subwoofer_block").offerTo(exporter, Phantasm.makeID("subwoofer_block"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Blocks.JUKEBOX)
+                .pattern("###")
+                .pattern("#C#")
+                .pattern("###")
+                .input('C', ModBlocks.CHORAL_BLOCK)
+                .input('#', ItemTags.PLANKS)
+                .criterion(hasItem(ModBlocks.CHORAL_BLOCK), conditionsFromItem(ModBlocks.CHORAL_BLOCK))
+                .group("jukebox").offerTo(exporter, Phantasm.makeID("jukebox"));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Blocks.NOTE_BLOCK)
+                .pattern("###")
+                .pattern("#C#")
+                .pattern("###")
+                .input('C', ModBlocks.CHORAL_FAN)
+                .input('#', ItemTags.PLANKS)
+                .criterion(hasItem(ModBlocks.CHORAL_FAN), conditionsFromItem(ModBlocks.CHORAL_FAN))
+                .group("note_block").offerTo(exporter, Phantasm.makeID("note_block"));
 
         // Choral Arrow
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.CHORAL_ARROW, 6)

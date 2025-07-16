@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "randomizer",
+  "key": {
+    "C": {
+      "item": "phantasm:crystal_block"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    },
+    "T": {
+      "item": "minecraft:redstone_torch"
+    }
+  },
+  "pattern": [
+    " T ",
+    "TCT",
+    "SSS"
+  ],
+  "result": {
+    "item": "phantasm:randomizer"
+  },
+  "show_notification": true
+}

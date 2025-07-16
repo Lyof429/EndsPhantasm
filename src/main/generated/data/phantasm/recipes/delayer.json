@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "delayer",
+  "key": {
+    "C": {
+      "item": "phantasm:crystal_block"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    },
+    "T": {
+      "item": "minecraft:redstone_torch"
+    }
+  },
+  "pattern": [
+    "TCT",
+    "SSS"
+  ],
+  "result": {
+    "item": "phantasm:delayer"
+  },
+  "show_notification": true
+}

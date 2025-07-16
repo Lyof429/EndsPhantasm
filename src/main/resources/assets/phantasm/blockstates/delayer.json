@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,delaying=false": {
+      "model": "phantasm:block/delayer",
+      "y": 270
+    },
+    "facing=east,delaying=true": {
+      "model": "phantasm:block/delayer_on",
+      "y": 270
+    },
+    "facing=north,delaying=false": {
+      "model": "phantasm:block/delayer",
+      "y": 180
+    },
+    "facing=north,delaying=true": {
+      "model": "phantasm:block/delayer_on",
+      "y": 180
+    },
+    "facing=south,delaying=false": {
+      "model": "phantasm:block/delayer"
+    },
+    "facing=south,delaying=true": {
+      "model": "phantasm:block/delayer_on"
+    },
+    "facing=west,delaying=false": {
+      "model": "phantasm:block/delayer",
+      "y": 90
+    },
+    "facing=west,delaying=true": {
+      "model": "phantasm:block/delayer_on",
+      "y": 90
+    }
+  }
+}

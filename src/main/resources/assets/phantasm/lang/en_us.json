@@ -59,6 +59,9 @@
   "block.phantasm.void_crystal_glass": "Void Crystal Glass",
   "block.phantasm.void_crystal_glass_pane": "Void Crystal Glass Pane",
 
+  "block.phantasm.delayer": "Redstone Delayer",
+  "block.phantasm.randomizer": "Redstone Randomizer",
+
   "block.phantasm.polished_obsidian": "Polished Obsidian",
   "block.phantasm.polished_obsidian_bricks": "Polished Obsidian Bricks",
   "block.phantasm.polished_obsidian_brick_stairs": "Polished Obsidian Brick Stairs",

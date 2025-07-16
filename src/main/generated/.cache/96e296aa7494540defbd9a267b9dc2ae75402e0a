@@ -1,4 +1,4 @@
-// 1.20.1	2025-07-09T16:56:04.5740731	End's Phantasm/Model Definitions
+// 1.20.1	2025-07-16T21:54:03.4907552	End's Phantasm/Model Definitions
 1dfe08bcfe8ebc76bda5c21fb3b3253d6d029360 assets\phantasm\blockstates\polished_obsidian_bricks.json
 2182470d696c249714cb5f87237585e7702492f6 assets\phantasm\blockstates\void_crystal_tile_slab.json
 b4eab81ee68092960c6944c0ebfdda04688ad103 assets\phantasm\blockstates\choral_block.json
@@ -127,8 +127,8 @@ b635b056801ffdbfdea0908ca874ce09dbe59b56 assets\phantasm\blockstates\cirite_bric
 1afd68d0ab93116598d7b235a0e3d9b0afee7ee5 assets\phantasm\models\block\polished_obsidian.json
 d8670e6f45f1ab5306d418e07c8d51c743565ce1 assets\phantasm\models\block\void_crystal_tile_stairs_inner.json
 739f630a6e8bf2d809d063885365ab12fbf2bea3 assets\phantasm\models\item\crystalline_axe.json
-251e53d35619e3e06aac460287bb715dcef60492 assets\phantasm\models\block\raw_purpur_brick_stairs_outer.json
 6dcce1e960571f4561100d3c8602d6ebbf0327ca assets\phantasm\models\block\acidic_mass.json
+251e53d35619e3e06aac460287bb715dcef60492 assets\phantasm\models\block\raw_purpur_brick_stairs_outer.json
 04b1180f9c0010c2228ef6a5eae56b5ca4dce2ea assets\phantasm\models\block\tall_acidic_nihilis_bottom.json
 616f070834ef5a7102663c3b4a4c1fb7105ba162 assets\phantasm\blockstates\cirite_brick_slab.json
 2a9262d908d5757784fdd40e39eef64907f5bf06 assets\phantasm\models\block\cirite_brick_wall_post.json

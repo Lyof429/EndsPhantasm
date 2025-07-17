@@ -3,8 +3,6 @@ package net.lyof.phantasm.block.entity;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.lyof.phantasm.block.ModBlockEntities;
-import static net.lyof.phantasm.world.feature.custom.ShatteredTowerStructure.R;
-
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.block.challenge.Challenge;
 import net.lyof.phantasm.block.challenge.ChallengeRegistry;
@@ -33,7 +31,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;

@@ -1,6 +1,5 @@
 package net.lyof.phantasm.mixin.client;
 
-import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.client.render.DimensionEffects;
 import org.spongepowered.asm.mixin.Mixin;

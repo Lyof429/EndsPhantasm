@@ -1,6 +1,5 @@
 package net.lyof.phantasm.mixin;
 
-import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

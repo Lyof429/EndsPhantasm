@@ -1,7 +1,6 @@
 package net.lyof.phantasm.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.lyof.phantasm.block.challenge.Challenger;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.effect.ModEffects;
@@ -13,7 +12,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;

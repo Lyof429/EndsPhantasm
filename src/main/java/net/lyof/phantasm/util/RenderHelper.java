@@ -1,9 +1,5 @@
 package net.lyof.phantasm.util;
 
-import it.unimi.dsi.fastutil.Hash;
-import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenCustomHashMap;
-import net.lyof.phantasm.Phantasm;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -11,7 +7,6 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.RotationAxis;
-import net.minecraft.util.math.Vec3d;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
@@ -19,7 +14,6 @@ import org.joml.Vector3f;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class RenderHelper {
     public static void renderFace(MatrixStack matrices, VertexConsumer vertices, int light,

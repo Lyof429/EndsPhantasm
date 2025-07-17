@@ -1,25 +1,26 @@
 package net.lyof.phantasm.entity.client.renderer;
 
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.block.challenge.Challenger;
 import net.lyof.phantasm.block.custom.ChallengeRuneBlock;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
-import net.lyof.phantasm.block.challenge.Challenger;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.util.RenderHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.*;
+import net.minecraft.client.render.OverlayTexture;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.render.block.BlockRenderManager;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.structure.EndCityGenerator;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<ChallengeRuneBlockEntity> {

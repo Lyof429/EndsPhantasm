@@ -2,14 +2,15 @@ package net.lyof.phantasm.block.custom;
 
 import net.lyof.phantasm.block.ModBlockEntities;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.text.Text;
@@ -20,7 +21,6 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import net.minecraft.world.event.listener.GameEventListener;
 import org.jetbrains.annotations.Nullable;
 
 public class ChallengeRuneBlock extends BlockWithEntity {

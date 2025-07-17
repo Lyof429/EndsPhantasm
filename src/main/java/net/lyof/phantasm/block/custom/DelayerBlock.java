@@ -1,6 +1,5 @@
 package net.lyof.phantasm.block.custom;
 
-import net.lyof.phantasm.Phantasm;
 import net.minecraft.block.AbstractRedstoneGateBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -8,7 +7,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.Property;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -16,9 +14,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.RedstoneView;
 import net.minecraft.world.World;
-import net.minecraft.world.tick.TickPriority;
 
 public class DelayerBlock extends AbstractRedstoneGateBlock {
     public static BooleanProperty DELAYING = BooleanProperty.of("delaying");

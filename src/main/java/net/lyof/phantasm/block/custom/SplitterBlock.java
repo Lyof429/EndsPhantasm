@@ -1,6 +1,5 @@
 package net.lyof.phantasm.block.custom;
 
-import net.lyof.phantasm.Phantasm;
 import net.minecraft.block.AbstractRedstoneGateBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -8,7 +7,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;

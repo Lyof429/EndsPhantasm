@@ -2,7 +2,6 @@ package net.lyof.phantasm.block.challenge;
 
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;

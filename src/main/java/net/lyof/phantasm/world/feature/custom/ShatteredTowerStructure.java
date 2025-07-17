@@ -10,7 +10,6 @@ import net.minecraft.block.SlabBlock;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.block.enums.SlabType;
-import net.minecraft.client.render.block.entity.BeaconBlockEntityRenderer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.loot.LootTables;
 import net.minecraft.nbt.NbtCompound;

@@ -4,10 +4,15 @@ import net.lyof.phantasm.Phantasm;
 import net.minecraft.block.AbstractRedstoneGateBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Property;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -31,21 +36,35 @@ public class DelayerBlock extends AbstractRedstoneGateBlock {
 
     @Override
     protected int getUpdateDelayInternal(BlockState state) {
-        return 2 + this.receivedPower * 20;
+        return this.receivedPower * 20;
     }
 
-    @Override
-    protected void updatePowered(World world, BlockPos pos, BlockState state) {
+    protected void updateReceivedPower(World world, BlockPos pos, BlockState state) {
         Direction facing = state.get(FACING);
         Direction right = facing.rotateYClockwise();
         Direction left = facing.rotateYCounterclockwise();
         boolean gatesOnly = this.getSideInputFromGatesOnly();
         this.receivedPower = world.getEmittedRedstonePower(pos.offset(right), right, gatesOnly)
                 + world.getEmittedRedstonePower(pos.offset(left), left, gatesOnly);
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        this.updateReceivedPower(world, pos, state);
+        player.sendMessage(Text.translatable("block.phantasm.delayer.display", this.receivedPower), true);
+        return ActionResult.success(world.isClient());
+    }
+
+    @Override
+    protected void updatePowered(World world, BlockPos pos, BlockState state) {
+        this.updateReceivedPower(world, pos, state);
 
         boolean had = state.get(POWERED);
         boolean has = this.hasPower(world, pos, state);
         if (had != has) world.setBlockState(pos, state.with(DELAYING, has), Block.NOTIFY_LISTENERS);
+
+        if (state.get(DELAYING) && has == had)
+            return;
 
         super.updatePowered(world, pos, world.getBlockState(pos));
     }

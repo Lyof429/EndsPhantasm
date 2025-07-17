@@ -1,0 +1,65 @@
+{
+  "variants": {
+    "facing=east,powered=false,mode=false": {
+      "model": "phantasm:block/splitter",
+      "y": 270
+    },
+    "facing=east,powered=true,mode=false": {
+      "model": "phantasm:block/splitter_on",
+      "y": 270
+    },
+    "facing=north,powered=false,mode=false": {
+      "model": "phantasm:block/splitter",
+      "y": 180
+    },
+    "facing=north,powered=true,mode=false": {
+      "model": "phantasm:block/splitter_on",
+      "y": 180
+    },
+    "facing=south,powered=false,mode=false": {
+      "model": "phantasm:block/splitter"
+    },
+    "facing=south,powered=true,mode=false": {
+      "model": "phantasm:block/splitter_on"
+    },
+    "facing=west,powered=false,mode=false": {
+      "model": "phantasm:block/splitter",
+      "y": 90
+    },
+    "facing=west,powered=true,mode=false": {
+      "model": "phantasm:block/splitter_on",
+      "y": 90
+    },
+
+    "facing=east,powered=false,mode=true": {
+      "model": "phantasm:block/splitter_alt",
+      "y": 270
+    },
+    "facing=east,powered=true,mode=true": {
+      "model": "phantasm:block/splitter_alt_on",
+      "y": 270
+    },
+    "facing=north,powered=false,mode=true": {
+      "model": "phantasm:block/splitter_alt",
+      "y": 180
+    },
+    "facing=north,powered=true,mode=true": {
+      "model": "phantasm:block/splitter_alt_on",
+      "y": 180
+    },
+    "facing=south,powered=false,mode=true": {
+      "model": "phantasm:block/splitter_alt"
+    },
+    "facing=south,powered=true,mode=true": {
+      "model": "phantasm:block/splitter_alt_on"
+    },
+    "facing=west,powered=false,mode=true": {
+      "model": "phantasm:block/splitter_alt",
+      "y": 90
+    },
+    "facing=west,powered=true,mode=true": {
+      "model": "phantasm:block/splitter_alt_on",
+      "y": 90
+    }
+  }
+}

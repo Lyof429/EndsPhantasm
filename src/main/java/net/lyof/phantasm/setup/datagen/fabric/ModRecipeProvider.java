@@ -231,8 +231,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input('S', Items.STONE)
                 .criterion(hasItem(ModBlocks.CRYSTAL_BLOCK), conditionsFromItem(ModBlocks.CRYSTAL_BLOCK))
                 .group("delayer").offerTo(exporter, Phantasm.makeID("delayer"));
-        // Randomizer
-        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.RANDOMIZER)
+        // Splitter
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.SPLITTER)
                 .pattern(" T ")
                 .pattern("TCT")
                 .pattern("SSS")
@@ -240,7 +240,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input('T', Items.REDSTONE_TORCH)
                 .input('S', Items.STONE)
                 .criterion(hasItem(ModBlocks.CRYSTAL_BLOCK), conditionsFromItem(ModBlocks.CRYSTAL_BLOCK))
-                .group("randomizer").offerTo(exporter, Phantasm.makeID("randomizer"));
+                .group("splitter").offerTo(exporter, Phantasm.makeID("splitter"));
 
         // Pream Planks
         offerPlanksRecipe(exporter, ModBlocks.PREAM_PLANKS, ModTags.Items.PREAM_LOGS, 4);

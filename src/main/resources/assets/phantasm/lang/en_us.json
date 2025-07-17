@@ -60,7 +60,8 @@
   "block.phantasm.void_crystal_glass_pane": "Void Crystal Glass Pane",
 
   "block.phantasm.delayer": "Redstone Delayer",
-  "block.phantasm.randomizer": "Redstone Randomizer",
+  "block.phantasm.delayer.display": "Delay: %ss",
+  "block.phantasm.splitter": "Redstone Splitter",
 
   "block.phantasm.polished_obsidian": "Polished Obsidian",
   "block.phantasm.polished_obsidian_bricks": "Polished Obsidian Bricks",

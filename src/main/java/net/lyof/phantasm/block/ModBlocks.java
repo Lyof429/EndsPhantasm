@@ -210,8 +210,8 @@ public class ModBlocks {
             new DelayerBlock(copy(Blocks.REPEATER)))
             .cutout().drop().build();
 
-    public static final Block RANDOMIZER = ModRegistry.ofBlock("randomizer",
-            new DelayerBlock(copy(Blocks.REPEATER)))
+    public static final Block SPLITTER = ModRegistry.ofBlock("splitter",
+            new SplitterBlock(copy(Blocks.REPEATER)))
             .cutout().drop().build();
 
 

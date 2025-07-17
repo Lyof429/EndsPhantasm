@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
-  "group": "randomizer",
+  "group": "splitter",
   "key": {
     "C": {
       "item": "phantasm:crystal_block"
@@ -19,7 +19,7 @@
     "SSS"
   ],
   "result": {
-    "item": "phantasm:randomizer"
+    "item": "phantasm:splitter"
   },
   "show_notification": true
 }

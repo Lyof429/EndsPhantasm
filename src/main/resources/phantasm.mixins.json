@@ -13,6 +13,7 @@
     "EndCrystalEntityMixin",
     "EndCrystalItemMixin",
     "EndermanEntityMixin",
+    "EnderPearlItemMixin",
     "EndGatewayBlockEntityMixin",
     "EndSpikeFeatureMixin",
     "EndSpikeFeatureSpikeMixin",
@@ -39,9 +40,9 @@
     "defaultRequire": 1
   },
   "client": [
-    "client.MinecraftClientMixin",
-    "client.VexEntityRendererMixin",
     "client.DimensionEffectsMixin",
-    "client.InGameHudMixin"
+    "client.InGameHudMixin",
+    "client.MinecraftClientMixin",
+    "client.VexEntityRendererMixin"
   ]
 }

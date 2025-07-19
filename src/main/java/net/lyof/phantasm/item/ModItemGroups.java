@@ -267,9 +267,6 @@ public class ModItemGroups {
 
             entries.addAfter(Items.JUKEBOX, ModBlocks.SUBWOOFER_BLOCK);
 
-            entries.addAfter(Items.COMPARATOR, ModBlocks.DELAYER);
-            entries.addAfter(ModBlocks.DELAYER, ModBlocks.SPLITTER);
-
             entries.addAfter(Items.ENDER_EYE, ModBlocks.CHALLENGE_RUNE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {

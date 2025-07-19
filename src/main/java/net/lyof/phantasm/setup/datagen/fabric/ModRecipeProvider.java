@@ -224,10 +224,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
         // Delayer
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.DELAYER)
-                .pattern("TCT")
+                .pattern("RCT")
                 .pattern("SSS")
                 .input('C', ModBlocks.CRYSTAL_BLOCK)
                 .input('T', Items.REDSTONE_TORCH)
+                .input('R', Items.REDSTONE)
                 .input('S', Items.STONE)
                 .criterion(hasItem(ModBlocks.CRYSTAL_BLOCK), conditionsFromItem(ModBlocks.CRYSTAL_BLOCK))
                 .group("delayer").offerTo(exporter, Phantasm.makeID("delayer"));

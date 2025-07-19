@@ -6,6 +6,9 @@
     "C": {
       "item": "phantasm:crystal_block"
     },
+    "R": {
+      "item": "minecraft:redstone"
+    },
     "S": {
       "item": "minecraft:stone"
     },
@@ -14,7 +17,7 @@
     }
   },
   "pattern": [
-    "TCT",
+    "RCT",
     "SSS"
   ],
   "result": {

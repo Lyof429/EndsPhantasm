@@ -36,7 +36,10 @@ public class ConfiguredData {
     public static List<ConfiguredData> INSTANCES = new LinkedList<>();
 
     public static @Nullable ConfiguredData get(Identifier id) {
-        return INSTANCES.stream().filter(data -> data.target.equals(id)).findAny().orElse(null);
+        for (ConfiguredData data : INSTANCES) {
+            if (data.target.equals(id)) return data;
+        }
+        return null;
     }
 
     protected static void register(Identifier target, Supplier<Boolean> enabled, Function<JsonElement, String> provider) {

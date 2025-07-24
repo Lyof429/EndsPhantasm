@@ -19,7 +19,6 @@
     "EndSpikeFeatureSpikeMixin",
     "EntityMixin",
     "FireworkRocketItemMixin",
-    "ItemMixin",
     "LifecycledResourceManagerImplMixin",
     "LivingEntityMixin",
     "MinecraftServerMixin",
@@ -42,6 +41,7 @@
   "client": [
     "client.DimensionEffectsMixin",
     "client.InGameHudMixin",
+    "client.ItemMixin",
     "client.MinecraftClientMixin",
     "client.VexEntityRendererMixin"
   ]

@@ -170,6 +170,7 @@
   "biome.phantasm.acidburnt_abysses": "Acidburnt Abysses",
 
   "tooltip.xp_boosted": "Efficiency increases with experience.",
+  "tooltip.xp_boosted.value": "Current bonus: +%s",
   "item.minecraft.firework_rocket.cannot_use": "You must complete %s first!",
 
 

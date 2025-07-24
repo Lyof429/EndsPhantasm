@@ -11,6 +11,7 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.text.Text;
@@ -51,12 +52,8 @@ public class ChallengeRuneBlock extends BlockWithEntity {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!player.getStackInHand(hand).isOf(Items.END_CRYSTAL)) {
             if (!world.isClient()) {
-                if (world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity challengeRune && challengeRune.hasCompleted(player))
-                    player.sendMessage(Text.translatable("block.phantasm.challenge_rune.hint")
-                            .formatted(Formatting.LIGHT_PURPLE), true);
-                else
-                    player.sendMessage(Text.translatable("block.phantasm.challenge_rune.hint.crystal" +
-                            player.getRandom().nextInt(5)).formatted(Formatting.LIGHT_PURPLE), true);
+                if (world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity challengeRune)
+                    challengeRune.displayHint(Reason.CRYSTAL, (ServerPlayerEntity) player);
             }
             return ActionResult.success(world.isClient());
         }
@@ -81,5 +78,24 @@ public class ChallengeRuneBlock extends BlockWithEntity {
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return checkType(type, ModBlockEntities.CHALLENGE_RUNE, ChallengeRuneBlockEntity::tick);
+    }
+
+
+    public enum Reason {
+        CRYSTAL("crystal"),
+        DRAGON("dragon"),
+        EXPERIENCE("experience"),
+
+        EMPTY("empty"),
+        COMPLETED("completed"),
+        RUNNING("running"),
+
+        NONE("none");
+
+        public final String name;
+
+        Reason(String name) {
+            this.name = name;
+        }
     }
 }

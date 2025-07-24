@@ -48,7 +48,7 @@ public class EndCrystalItemMixin {
             if (result.isAccepted())
                 rune.startChallenge(user);
             else
-                rune.displayHint(serverPlayer);
+                rune.displayHint(rune.getStartingCondition(serverPlayer), serverPlayer);
             user.swingHand(context.getHand(), true);
         }
         return result;

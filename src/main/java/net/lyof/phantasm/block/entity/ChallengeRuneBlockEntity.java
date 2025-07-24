@@ -2,13 +2,16 @@ package net.lyof.phantasm.block.entity;
 
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlockEntities;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.block.challenge.Challenge;
 import net.lyof.phantasm.block.challenge.ChallengeRegistry;
 import net.lyof.phantasm.block.challenge.Challenger;
+import net.lyof.phantasm.block.custom.ChallengeRuneBlock;
 import net.lyof.phantasm.mixin.access.ServerPlayerEntityAccessor;
 import net.lyof.phantasm.setup.ModPackets;
+import net.minecraft.advancement.Advancement;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
@@ -38,6 +41,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class ChallengeRuneBlockEntity extends BlockEntity {
+    private static final Identifier DRAGON = Identifier.of("minecraft", "end/kill_dragon");
+
     private final List<UUID> completedPlayerUuids;
     private final List<UUID> challengerUuids;
     public int tick;
@@ -126,23 +131,37 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         ((Challenger) player).setChallengeRune(this);
     }
 
-    public boolean canStart(ServerPlayerEntity player) {
-        return this.challenge.monsterObjective > 0 && !this.isChallengeRunning() && !this.hasCompleted(player)
-                && player.experienceLevel >= this.challenge.levelCost
-                && (!this.challenge.postDragon || ((ServerPlayerEntityAccessor) player).getSeenCredits());
+    public ChallengeRuneBlock.Reason getStartingCondition(ServerPlayerEntity player) {
+        if (this.challenge.monsterObjective <= 0) return ChallengeRuneBlock.Reason.EMPTY;
+       if (this.isChallengeRunning()) return ChallengeRuneBlock.Reason.RUNNING;
+       if (this.hasCompleted(player)) return ChallengeRuneBlock.Reason.COMPLETED;
+       if (player.experienceLevel < this.challenge.levelCost) return ChallengeRuneBlock.Reason.EXPERIENCE;
+       Advancement advc = player.getServer().getAdvancementLoader().get(DRAGON);
+       if (advc != null && this.challenge.postDragon && !player.getAdvancementTracker().getProgress(advc).isDone())
+           return ChallengeRuneBlock.Reason.DRAGON;
+       return ChallengeRuneBlock.Reason.NONE;
     }
 
-    public void displayHint(ServerPlayerEntity user) {
-        String message = "";
-        if (this.hasCompleted(user))
-            message = ".completed" + user.getRandom().nextInt(5);
-        else if (this.challenge.postDragon && !((ServerPlayerEntityAccessor) user).getSeenCredits())
-            message = ".dragon" + user.getRandom().nextInt(5);
-        else if (user.experienceLevel < this.challenge.levelCost)
-            message = ".experience" + user.getRandom().nextInt(5);
+    public boolean canStart(ServerPlayerEntity player) {
+        return getStartingCondition(player) == ChallengeRuneBlock.Reason.NONE;
+    }
 
-        user.sendMessage(Text.translatable("block.phantasm.challenge_rune.hint" + message).formatted(Formatting.LIGHT_PURPLE),
+    public void displayHint(ChallengeRuneBlock.Reason reason, ServerPlayerEntity player) {
+        String message = "";
+        if (this.isChallengeRunning() || reason == ChallengeRuneBlock.Reason.RUNNING)
+            message = "";
+        else if (reason == ChallengeRuneBlock.Reason.CRYSTAL)
+            message = ".crystal" + world.random.nextInt(5);
+        else if (reason == ChallengeRuneBlock.Reason.COMPLETED)
+            message = ".completed" + world.random.nextInt(5);
+        else if (reason == ChallengeRuneBlock.Reason.DRAGON)
+            message = ".dragon" + world.random.nextInt(5);
+        else if (reason == ChallengeRuneBlock.Reason.EXPERIENCE)
+            message = ".experience" + world.random.nextInt(5);
+
+        player.sendMessage(Text.translatable("block.phantasm.challenge_rune.hint" + message).formatted(Formatting.LIGHT_PURPLE),
                 true);
+        Phantasm.log(reason);
     }
 
     public void progress() {
@@ -188,14 +207,14 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         this.tick = -2;
         this.progress = 0;
 
-        if (success) {
-            for (UUID uuid : List.copyOf(this.challengerUuids)) {
-                Challenger challenger = Challenger.get(uuid, this.getWorld());
-                if (challenger == null) continue;
+        for (UUID uuid : List.copyOf(this.challengerUuids)) {
+            Challenger challenger = Challenger.get(uuid, this.getWorld());
+            if (challenger == null) continue;
 
-                if (challenger.getChallengeRune() == this && challenger.isInRange() && challenger.asPlayer().isAlive())
-                    this.complete(challenger.asPlayer());
-            }
+            if (success && challenger.getChallengeRune() == this && challenger.isInRange() && challenger.asPlayer().isAlive())
+                this.complete(challenger.asPlayer());
+            if (challenger.getChallengeRune() == this)
+                challenger.setChallengeRune(null);
         }
 
         if (!this.getWorld().isClient()) {

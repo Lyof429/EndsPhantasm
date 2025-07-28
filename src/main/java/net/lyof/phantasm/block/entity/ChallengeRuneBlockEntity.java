@@ -9,7 +9,6 @@ import net.lyof.phantasm.block.challenge.Challenge;
 import net.lyof.phantasm.block.challenge.ChallengeRegistry;
 import net.lyof.phantasm.block.challenge.Challenger;
 import net.lyof.phantasm.block.custom.ChallengeRuneBlock;
-import net.lyof.phantasm.mixin.access.ServerPlayerEntityAccessor;
 import net.lyof.phantasm.setup.ModPackets;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.block.BlockState;
@@ -131,37 +130,36 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         ((Challenger) player).setChallengeRune(this);
     }
 
-    public ChallengeRuneBlock.Reason getStartingCondition(ServerPlayerEntity player) {
-        if (this.challenge.monsterObjective <= 0) return ChallengeRuneBlock.Reason.EMPTY;
-       if (this.isChallengeRunning()) return ChallengeRuneBlock.Reason.RUNNING;
-       if (this.hasCompleted(player)) return ChallengeRuneBlock.Reason.COMPLETED;
-       if (player.experienceLevel < this.challenge.levelCost) return ChallengeRuneBlock.Reason.EXPERIENCE;
-       Advancement advc = player.getServer().getAdvancementLoader().get(DRAGON);
-       if (advc != null && this.challenge.postDragon && !player.getAdvancementTracker().getProgress(advc).isDone())
-           return ChallengeRuneBlock.Reason.DRAGON;
-       return ChallengeRuneBlock.Reason.NONE;
+    public ChallengeRuneBlock.Condition getStartingCondition(ServerPlayerEntity player) {
+        if (this.challenge.monsterObjective <= 0) return ChallengeRuneBlock.Condition.EMPTY;
+        if (this.isChallengeRunning()) return ChallengeRuneBlock.Condition.RUNNING;
+        if (this.hasCompleted(player)) return ChallengeRuneBlock.Condition.COMPLETED;
+        if (player.experienceLevel < this.challenge.levelCost) return ChallengeRuneBlock.Condition.EXPERIENCE;
+        Advancement advc = player.getServer().getAdvancementLoader().get(DRAGON);
+        if (advc != null && this.challenge.postDragon && !player.getAdvancementTracker().getProgress(advc).isDone())
+            return ChallengeRuneBlock.Condition.DRAGON;
+        return ChallengeRuneBlock.Condition.NONE;
     }
 
     public boolean canStart(ServerPlayerEntity player) {
-        return getStartingCondition(player) == ChallengeRuneBlock.Reason.NONE;
+        return getStartingCondition(player) == ChallengeRuneBlock.Condition.NONE;
     }
 
-    public void displayHint(ChallengeRuneBlock.Reason reason, ServerPlayerEntity player) {
+    public void displayHint(ChallengeRuneBlock.Condition reason, ServerPlayerEntity player) {
         String message = "";
-        if (this.isChallengeRunning() || reason == ChallengeRuneBlock.Reason.RUNNING)
+        if (this.isChallengeRunning() || reason == ChallengeRuneBlock.Condition.RUNNING)
             message = "";
-        else if (reason == ChallengeRuneBlock.Reason.CRYSTAL)
-            message = ".crystal" + world.random.nextInt(5);
-        else if (reason == ChallengeRuneBlock.Reason.COMPLETED)
+        else if (this.hasCompleted(player) || reason == ChallengeRuneBlock.Condition.COMPLETED)
             message = ".completed" + world.random.nextInt(5);
-        else if (reason == ChallengeRuneBlock.Reason.DRAGON)
+        else if (reason == ChallengeRuneBlock.Condition.CRYSTAL)
+            message = ".crystal" + world.random.nextInt(5);
+        else if (reason == ChallengeRuneBlock.Condition.DRAGON)
             message = ".dragon" + world.random.nextInt(5);
-        else if (reason == ChallengeRuneBlock.Reason.EXPERIENCE)
+        else if (reason == ChallengeRuneBlock.Condition.EXPERIENCE)
             message = ".experience" + world.random.nextInt(5);
 
         player.sendMessage(Text.translatable("block.phantasm.challenge_rune.hint" + message).formatted(Formatting.LIGHT_PURPLE),
                 true);
-        Phantasm.log(reason);
     }
 
     public void progress() {

@@ -14,9 +14,7 @@ import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -53,7 +51,7 @@ public class ChallengeRuneBlock extends BlockWithEntity {
         if (!player.getStackInHand(hand).isOf(Items.END_CRYSTAL)) {
             if (!world.isClient()) {
                 if (world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity challengeRune)
-                    challengeRune.displayHint(Reason.CRYSTAL, (ServerPlayerEntity) player);
+                    challengeRune.displayHint(Condition.CRYSTAL, (ServerPlayerEntity) player);
             }
             return ActionResult.success(world.isClient());
         }
@@ -81,7 +79,7 @@ public class ChallengeRuneBlock extends BlockWithEntity {
     }
 
 
-    public enum Reason {
+    public enum Condition {
         CRYSTAL("crystal"),
         DRAGON("dragon"),
         EXPERIENCE("experience"),
@@ -94,7 +92,7 @@ public class ChallengeRuneBlock extends BlockWithEntity {
 
         public final String name;
 
-        Reason(String name) {
+        Condition(String name) {
             this.name = name;
         }
     }

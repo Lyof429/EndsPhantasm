@@ -1,6 +1,8 @@
 package net.lyof.phantasm;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.block.ModBlockEntities;
 import net.lyof.phantasm.block.ModBlocks;
@@ -19,6 +21,8 @@ import net.lyof.phantasm.world.ModWorldGeneration;
 import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.lyof.phantasm.world.feature.ModFeatures;
 import net.lyof.phantasm.world.feature.custom.tree.ModTreePlacerTypes;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +60,9 @@ public class Phantasm implements ModInitializer {
 		ModWorldGeneration.register();
 
 		if (!FabricLoader.getInstance().isDevelopmentEnvironment()) ModRegistry.clear();
+
+		FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(container -> ResourceManagerHelper.registerBuiltinResourcePack(makeID("phantasm_connected_glass"),
+				container, Text.literal("Phantasm Connected Glass"), ResourcePackActivationType.DEFAULT_ENABLED));
 	}
 
 	public static Identifier makeID(String id) {

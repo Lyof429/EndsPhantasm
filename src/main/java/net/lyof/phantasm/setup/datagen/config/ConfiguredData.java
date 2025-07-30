@@ -2,6 +2,7 @@ package net.lyof.phantasm.setup.datagen.config;
 
 import com.google.gson.*;
 import com.mojang.datafixers.util.Pair;
+import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.world.biome.EndDataCompat;
@@ -58,6 +59,10 @@ public class ConfiguredData {
         register(Identifier.of("minecraft", "worldgen/density_function/end/base_3d_noise.json"),
                 () -> EndDataCompat.getCompatibilityMode().equals("custom"),
                 json -> "{ \"type\": \"minecraft:old_blended_noise\", \"xz_scale\": 0.7, \"y_scale\": 1.2, \"xz_factor\": 90, \"y_factor\": 145, \"smear_scale_multiplier\": 8 }");
+
+        register(Phantasm.makeID("loot_tables/chests/challenges/elytra.json"),
+                () -> FabricLoader.getInstance().isModLoaded("grindy-elytras"),
+                Common::changeElytraChallengeLoot);
     }
 
     private static class Common {
@@ -375,6 +380,10 @@ public class ConfiguredData {
             json.getAsJsonObject().asMap().replace("surface_rule", rules);
 
             return gson.toJson(json);
+        }
+
+        public static String changeElytraChallengeLoot(JsonElement json) {
+            return gson.toJson(json).replace("minecraft:elytra", "grindy-elytras:elytra_fragment");
         }
     }
 }

@@ -37,7 +37,7 @@ public class OblivineFeature extends Feature<BlockColumnFeatureConfig> {
         }
 
         for (int i = 0; i < size; i++) {
-            if (pos.getY() < world.getBottomY() || pos.getY() > world.getTopY())
+            if (pos.getY() < world.getBottomY() || pos.getY() >= world.getTopY())
                 return false;
 
             BlockState state = config.layers().get(0).state().get(random, pos);

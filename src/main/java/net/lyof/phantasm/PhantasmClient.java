@@ -22,6 +22,7 @@ import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.particle.custom.ZzzParticle;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.setup.ModRegistry;
+import net.lyof.phantasm.sound.ModSounds;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
@@ -71,7 +72,7 @@ public class PhantasmClient implements ClientModInitializer {
                     rune.startChallenge();
                     rune.addChallenger(client.player);
 
-                    client.worldRenderer.playSong(SoundEvents.MUSIC_DISC_OTHERSIDE, pos);
+                    client.worldRenderer.playSong(ModSounds.CHALLENGE, pos);
 
                     client.inGameHud.setTitle(Text.empty());
                     client.inGameHud.setSubtitle(Text.translatable("block.phantasm.challenge_rune.start")

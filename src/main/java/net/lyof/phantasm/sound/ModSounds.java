@@ -16,4 +16,5 @@ public class ModSounds {
 
 
     public static final SoundEvent MUSIC_DISC_ABRUPTION = register("music_disc_abruption");
+    public static final SoundEvent CHALLENGE = register("challenge");
 }

@@ -1,6 +1,7 @@
 package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
@@ -28,15 +29,15 @@ public class OblivineFeature extends Feature<BlockColumnFeatureConfig> {
 
         int size = world.getRandom().nextBetween(4, 12);
 
-        BlockPos pos = new BlockPos(origin).withY(0);
-        while (pos.getY() < world.getHeight() && !(world.getBlockState(pos.up()).isOf(ModBlocks.OBLIVION)
+        BlockPos pos = new BlockPos(origin).withY(world.getBottomY());
+        while (pos.getY() < world.getTopY() && !(world.getBlockState(pos.up()).isOf(ModBlocks.OBLIVION)
                 && world.getBlockState(pos).isOf(Blocks.AIR))) {
 
             pos = pos.up();
         }
 
         for (int i = 0; i < size; i++) {
-            if (pos.getY() < world.getBottomY() || pos.getY() > 250)
+            if (pos.getY() < world.getBottomY() || pos.getY() > world.getTopY())
                 return false;
 
             BlockState state = config.layers().get(0).state().get(random, pos);

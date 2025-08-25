@@ -1,5 +1,7 @@
 package net.lyof.phantasm.config;
 
+import java.util.List;
+
 public class ConfigEntries {
     public static void reload() {
         dataCompatMode = new ConfigEntry<>("world_gen.biomes.datapack_compatibility", "automatic").get();
@@ -33,7 +35,8 @@ public class ConfigEntries {
         accessibilityChallengeBarrier = new ConfigEntry<>("gameplay.challenge.accessibility_barrier", false).get();
 
         elytraBoostAdvancement = new ConfigEntry<>("equipment.elytra.boost_advancement", "minecraft:end/kill_dragon").get();
-        elytraChallenge = new ConfigEntry<>("equipment.elytra.challenge", true).get();
+        elytraChallenge = new ConfigEntry<>("equipment.elytra.has_challenge", true).get();
+        elytraChallengeOffset = new ConfigEntry<>("equipment.elytra.challenge_rune_offset", List.of(0d, 2d, 8d)).get();
 
         crystalXPBoost = new ConfigEntry<>("equipment.crystal_xp_boost", 3).get();
 
@@ -76,6 +79,7 @@ public class ConfigEntries {
 
     public static String elytraBoostAdvancement = "";
     public static boolean elytraChallenge;
+    public static List<Double> elytraChallengeOffset;
 
     public static double crystalXPBoost;
     public static boolean chorusSaladTp;

@@ -19,6 +19,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.List;
+
 @Mixin(EndCityGenerator.Piece.class)
 public abstract class EndCityGeneratorPieceMixin extends SimpleStructurePiece {
     @Unique private static final Identifier CHALLENGE_ID = Phantasm.makeID("elytra");
@@ -33,8 +35,12 @@ public abstract class EndCityGeneratorPieceMixin extends SimpleStructurePiece {
     @Inject(method = "handleMetadata", at = @At("HEAD"), cancellable = true)
     public void placeElytraChallenge(String metadata, BlockPos pos, ServerWorldAccess world, Random random, BlockBox boundingBox, CallbackInfo ci) {
         if (ConfigEntries.elytraChallenge && metadata.startsWith("Elytra") && this.getId().equals(STRUCTURE_ID)) {
+            if (ConfigEntries.elytraChallengeOffset.size() < 3) ConfigEntries.elytraChallengeOffset = List.of(0d, 2d, 8d);
 
-            pos = pos.offset(this.placementData.getRotation().rotate(Direction.SOUTH), 8).down(2);
+            Direction axis = this.placementData.getRotation().rotate(Direction.SOUTH);
+            pos = pos.offset(axis.rotateYClockwise(), ConfigEntries.elytraChallengeOffset.get(0).intValue())
+                    .down(ConfigEntries.elytraChallengeOffset.get(1).intValue())
+                    .offset(axis, ConfigEntries.elytraChallengeOffset.get(2).intValue());
             world.setBlockState(pos, ModBlocks.CHALLENGE_RUNE.getDefaultState(), Block.NOTIFY_ALL);
 
             if (world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity rune) {

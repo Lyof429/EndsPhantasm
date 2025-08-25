@@ -194,7 +194,10 @@ public class ModConfig {
       // Advancement needed to enable elytra boosting. Leave blank "" to disable the need for one
       "boost_advancement": "minecraft:end/kill_dragon",
       // Should the item frame in End City Ships be replaced by a Challenge Rune
-      "challenge": true
+      "has_challenge": true,
+      // Offset to place the Challenge Rune in End City Ships. Doeesn't need to be modified unless you're using
+      //   a mod or datapack that alters this structure
+      "challenge_rune_offset": [0, 2, 8]
     },
     
     // Crystalline tools boost ratio

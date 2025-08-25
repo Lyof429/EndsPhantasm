@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:ocean_ruin",
+  "biome_temp": "cold",
+  "biomes": "#phantasm:is_acidburnt_abysses",
+  "cluster_probability": 0.9,
+  "large_probability": 0.8,
+  "spawn_overrides": {},
+  "step": "surface_structures"
+}

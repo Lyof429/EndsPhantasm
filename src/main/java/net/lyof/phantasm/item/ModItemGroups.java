@@ -12,6 +12,7 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
+import net.minecraft.world.gen.structure.StructureType;
 
 public class ModItemGroups {
     public static final ItemGroup PHANTASM = register(Phantasm.MOD_ID,

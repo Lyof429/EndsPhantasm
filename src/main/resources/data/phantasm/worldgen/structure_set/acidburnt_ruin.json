@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 14357621,
+    "separation": 2,
+    "spacing": 10
+  },
+  "structures": [
+    {
+      "structure": "phantasm:acidburnt_ruin",
+      "weight": 1
+    }
+  ]
+}

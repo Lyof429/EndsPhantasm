@@ -1,5 +1,5 @@
 {
-  "loot_table": "phantasm:chests/acidburnt_ruins_challenge",
+  "loot_table": "phantasm:chests/shattered_tower",
   "objective": 12,
   "level_cost": 2,
   "post_dragon": false,

@@ -26,6 +26,7 @@
     "MobEntityMixin",
     "MultiNoiseBiomeSourceMixin",
     "MultiNoiseBiomeSourceParameterListMixin",
+    "OceanRuinGeneratorMixin",
     "OceanRuinStructureMixin",
     "PlantBlockMixin",
     "PlayerEntityMixin",

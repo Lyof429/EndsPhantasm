@@ -3,7 +3,6 @@ package net.lyof.phantasm.item;
 import net.fabricmc.yarn.constants.MiningLevels;
 import net.lyof.phantasm.block.ModBlocks;
 import net.minecraft.item.ToolMaterial;
-import net.minecraft.item.ToolMaterials;
 import net.minecraft.recipe.Ingredient;
 
 public enum ModTiers implements ToolMaterial {

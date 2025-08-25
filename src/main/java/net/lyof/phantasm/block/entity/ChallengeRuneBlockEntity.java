@@ -2,7 +2,6 @@ package net.lyof.phantasm.block.entity;
 
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlockEntities;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.block.challenge.Challenge;

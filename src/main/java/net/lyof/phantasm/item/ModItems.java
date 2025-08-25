@@ -7,7 +7,6 @@ import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.custom.ChoralArrowEntity;
 import net.lyof.phantasm.item.custom.ChoralArrowItem;
 import net.lyof.phantasm.item.custom.ChorusFruitSaladItem;
-import net.lyof.phantasm.item.custom.RealityBreakerItem;
 import net.lyof.phantasm.item.custom.ShatteredPendantItem;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;

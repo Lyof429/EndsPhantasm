@@ -1,7 +1,6 @@
 package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;

@@ -1,6 +1,5 @@
 package net.lyof.phantasm.mixin.client;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.client.MinecraftClient;

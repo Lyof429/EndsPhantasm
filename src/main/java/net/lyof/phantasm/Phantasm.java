@@ -22,9 +22,7 @@ import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.lyof.phantasm.world.feature.ModFeatures;
 import net.lyof.phantasm.world.feature.custom.tree.ModTreePlacerTypes;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.gen.structure.OceanRuinStructure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

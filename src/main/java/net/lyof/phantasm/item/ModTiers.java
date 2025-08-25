@@ -3,26 +3,29 @@ package net.lyof.phantasm.item;
 import net.fabricmc.yarn.constants.MiningLevels;
 import net.lyof.phantasm.block.ModBlocks;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.ToolMaterials;
 import net.minecraft.recipe.Ingredient;
 
 public enum ModTiers implements ToolMaterial {
 
     CRYSTALLINE(MiningLevels.IRON, 612, 8f, 1f, 17,
-            Ingredient.ofItems(ModBlocks.CRYSTAL_SHARD, ModBlocks.VOID_CRYSTAL_SHARD))
+            Ingredient.ofItems(ModBlocks.CRYSTAL_SHARD, ModBlocks.VOID_CRYSTAL_SHARD)),
+    RELIC(MiningLevels.NETHERITE, 3145, 10f, 4f, 0,
+            Ingredient.empty())
     ;
 
     private final int durability;
     private final float speed;
     private final float damage;
-    private final int mining_level;
+    private final int miningLevel;
     private final int enchantability;
     private final Ingredient repair;
 
-    ModTiers(int mining_level, int durability, float speed, float damage, int enchantability, Ingredient repair) {
+    ModTiers(int miningLevel, int durability, float speed, float damage, int enchantability, Ingredient repair) {
         this.durability = durability;
         this.speed = speed;
         this.damage = damage;
-        this.mining_level = mining_level;
+        this.miningLevel = miningLevel;
         this.enchantability = enchantability;
         this.repair = repair;
     }
@@ -44,7 +47,7 @@ public enum ModTiers implements ToolMaterial {
 
     @Override
     public int getMiningLevel() {
-        return this.mining_level;
+        return this.miningLevel;
     }
 
     @Override

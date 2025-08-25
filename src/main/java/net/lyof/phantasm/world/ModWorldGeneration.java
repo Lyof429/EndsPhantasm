@@ -12,8 +12,10 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.registry.RegistryEntryLookup;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
 
 public class ModWorldGeneration {
@@ -26,9 +28,9 @@ public class ModWorldGeneration {
     }
 
 
-    public static RegistryEntryLookup<Biome> LOOKUP;
+    public static RegistryEntry<Biome> THE_END = null;
     public static void register(RegistryEntryLookup<Biome> lookup) {
-        LOOKUP = lookup;
+        THE_END = lookup.getOrThrow(BiomeKeys.THE_END);
     }
 
 

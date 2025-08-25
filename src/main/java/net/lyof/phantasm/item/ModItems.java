@@ -7,6 +7,7 @@ import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.custom.ChoralArrowEntity;
 import net.lyof.phantasm.item.custom.ChoralArrowItem;
 import net.lyof.phantasm.item.custom.ChorusFruitSaladItem;
+import net.lyof.phantasm.item.custom.RealityBreakerItem;
 import net.lyof.phantasm.item.custom.ShatteredPendantItem;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
@@ -41,27 +42,31 @@ public class ModItems {
             new Item(new FabricItemSettings().food(ModRegistry.Foods.OBLIFRUIT))).model().build();
 
     public static final Item CRYSTALLINE_SHOVEL = ModRegistry.ofItem("crystalline_shovel",
-                    new ShovelItem(ModTiers.CRYSTALLINE, 2, -3f, new FabricItemSettings()))
+            new ShovelItem(ModTiers.CRYSTALLINE, 2, -3f, new FabricItemSettings()))
             .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED, ItemTags.SHOVELS).build();
     public static final Item CRYSTALLINE_PICKAXE = ModRegistry.ofItem("crystalline_pickaxe",
             new PickaxeItem(ModTiers.CRYSTALLINE, 2, -2.8f, new FabricItemSettings()))
             .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED, ItemTags.PICKAXES).build();
     public static final Item CRYSTALLINE_AXE = ModRegistry.ofItem("crystalline_axe",
-                    new AxeItem(ModTiers.CRYSTALLINE, 7, -3f, new FabricItemSettings()))
+            new AxeItem(ModTiers.CRYSTALLINE, 7, -3f, new FabricItemSettings()))
             .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED, ItemTags.AXES).build();
     public static final Item CRYSTALLINE_HOE = ModRegistry.ofItem("crystalline_hoe",
-                    new HoeItem(ModTiers.CRYSTALLINE, 0, -3f, new FabricItemSettings()))
+            new HoeItem(ModTiers.CRYSTALLINE, 0, -3f, new FabricItemSettings()))
             .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED, ItemTags.HOES).build();
     public static final Item CRYSTALLINE_SWORD = ModRegistry.ofItem("crystalline_sword",
-                    new SwordItem(ModTiers.CRYSTALLINE, 4, -2.4f, new FabricItemSettings()))
+            new SwordItem(ModTiers.CRYSTALLINE, 4, -2.4f, new FabricItemSettings()))
             .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED, ItemTags.SWORDS).build();
 
+    /*public static final Item REALITY_BREAKER = ModRegistry.ofItem("reality_breaker",
+            new RealityBreakerItem(ModTiers.RELIC, 1, -3.2f, new FabricItemSettings()))
+            .model(Models.HANDHELD).tag(ItemTags.TOOLS, ItemTags.PICKAXES).build();*/
+
     public static final Item PREAM_SIGN = ModRegistry.ofItem("pream_sign",
-                    new SignItem(new FabricItemSettings(), ModBlocks.PREAM_SIGN, ModBlocks.PREAM_WALL_SIGN))
+            new SignItem(new FabricItemSettings(), ModBlocks.PREAM_SIGN, ModBlocks.PREAM_WALL_SIGN))
             .fuel(200)
             .build();
     public static final Item PREAM_HANGING_SIGN = ModRegistry.ofItem("pream_hanging_sign",
-                    new HangingSignItem(ModBlocks.PREAM_HANGING_SIGN, ModBlocks.PREAM_WALL_HANGING_SIGN, new FabricItemSettings()))
+            new HangingSignItem(ModBlocks.PREAM_HANGING_SIGN, ModBlocks.PREAM_WALL_HANGING_SIGN, new FabricItemSettings()))
             .fuel(200)
             .build();
 
@@ -78,9 +83,8 @@ public class ModItems {
             .model().build();
 
     public static final Item SHATTERED_PENDANT = ModRegistry.ofItem("shattered_pendant",
-                new ShatteredPendantItem(new FabricItemSettings()))
+            new ShatteredPendantItem(new FabricItemSettings()))
             .model().build();
-
 
     public static final Item POME_SLICE = ModRegistry.ofItem("pome_slice",
             new Item(new FabricItemSettings().food(ModRegistry.Foods.POME_SLICE))).model().build();
@@ -93,10 +97,11 @@ public class ModItems {
             new ChoralArrowItem(new FabricItemSettings()))
             .model().tag(ItemTags.ARROWS).build();
 
+
     public static final Item CRYSTIE_SPAWN_EGG = ModRegistry.ofItem("crystie_spawn_egg",
-                new SpawnEggItem(ModEntities.CRYSTIE, 0xfaf0ff, 0xa0a0ff, new FabricItemSettings()))
+            new SpawnEggItem(ModEntities.CRYSTIE, 0xfaf0ff, 0xa0a0ff, new FabricItemSettings()))
             .build();
     public static final Item BEHEMOTH_SPAWN_EGG = ModRegistry.ofItem("behemoth_spawn_egg",
-                new SpawnEggItem(ModEntities.BEHEMOTH, 0xafa0ff, 0x0f000f, new FabricItemSettings()))
+            new SpawnEggItem(ModEntities.BEHEMOTH, 0xafa0ff, 0x0f000f, new FabricItemSettings()))
             .build();
 }

@@ -29,7 +29,7 @@ public abstract class MultiNoiseBiomeSourceMixin {
         if (this.isEnd == null)
             this.isEnd = this.getBiomeEntries().getEntries().stream().anyMatch(p -> p.getSecond().matchesKey(BiomeKeys.THE_END));
 
-        if (!ConfigEntries.forceMainIsland || ModWorldGeneration.LOOKUP == null || !this.isEnd)
+        if (!ConfigEntries.forceMainIsland || ModWorldGeneration.THE_END == null || !this.isEnd)
             return;
 
         int i = BiomeCoords.toBlock(x);
@@ -37,7 +37,7 @@ public abstract class MultiNoiseBiomeSourceMixin {
         long l = ChunkSectionPos.getSectionCoord(i);
         long m = ChunkSectionPos.getSectionCoord(k);
         if (l*l + m*m <= 4096L) {
-            cir.setReturnValue(ModWorldGeneration.LOOKUP.getOrThrow(BiomeKeys.THE_END));
+            cir.setReturnValue(ModWorldGeneration.THE_END);
         }
     }
 }

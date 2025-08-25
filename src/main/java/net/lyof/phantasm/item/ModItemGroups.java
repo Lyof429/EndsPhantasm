@@ -102,16 +102,6 @@ public class ModItemGroups {
                         entries.add(ModBlocks.DELAYER);
                         entries.add(ModBlocks.SPLITTER);
 
-                        entries.add(ModBlocks.POLISHED_OBSIDIAN);
-                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS);
-                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICK_STAIRS);
-                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICK_SLAB);
-                        entries.add(ModBlocks.POLISHED_OBSIDIAN_PILLAR);
-                        entries.add(ModBlocks.CHISELED_OBSIDIAN);
-
-                        entries.add(ModBlocks.CHALLENGE_RUNE);
-                        entries.add(ModItems.SHATTERED_PENDANT);
-
                         entries.add(ModItems.BEHEMOTH_MEAT);
                         entries.add(ModItems.BEHEMOTH_STEAK);
 
@@ -146,6 +136,19 @@ public class ModItemGroups {
                         entries.add(ModItems.CHORAL_ARROW);
 
                         entries.add(ModItems.MUSIC_DISC_ABRUPTION);
+
+
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN);
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICKS);
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICK_STAIRS);
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN_BRICK_SLAB);
+                        entries.add(ModBlocks.POLISHED_OBSIDIAN_PILLAR);
+                        entries.add(ModBlocks.CHISELED_OBSIDIAN);
+
+                        entries.add(ModBlocks.CHALLENGE_RUNE);
+                        entries.add(ModItems.SHATTERED_PENDANT);
+
+                        //entries.add(ModItems.REALITY_BREAKER);
 
                         //for (Item item : ModRegistry.ITEMS)
                         //    entries.add(item);
@@ -287,9 +290,11 @@ public class ModItemGroups {
             entries.addAfter(ModItems.CRYSTALLINE_PICKAXE, ModItems.CRYSTALLINE_AXE);
             entries.addAfter(ModItems.CRYSTALLINE_AXE, ModItems.CRYSTALLINE_HOE);
 
+            //entries.addBefore(Items.BUCKET, ModItems.REALITY_BREAKER);
+
             entries.add(ModItems.SHATTERED_PENDANT);
 
-            entries.add(ModItems.MUSIC_DISC_ABRUPTION);
+            entries.addAfter(Items.MUSIC_DISC_RELIC, ModItems.MUSIC_DISC_ABRUPTION);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
             entries.addAfter(Items.IRON_SWORD, ModItems.CRYSTALLINE_SWORD);

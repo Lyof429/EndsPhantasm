@@ -6,6 +6,7 @@
     "ActiveTargetGoalMixin",
     "AnvilScreenHandlerMixin",
     "BlockEntityTypeMixin",
+    "BlockMixin",
     "ChorusFlowerBlockMixin",
     "ChorusPlantBlockMixin",
     "DragonFireballEntityMixin",

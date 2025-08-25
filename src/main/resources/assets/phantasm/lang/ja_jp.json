@@ -1,0 +1,191 @@
+{
+  "block.phantasm.fallen_star": "流れ星",
+
+  "block.phantasm.vivid_nihilium": "鮮かなニヒリウム",
+  "block.phantasm.vivid_nihilis": "鮮かなニヒリス",
+  "block.phantasm.tall_vivid_nihilis": "背の高い鮮かなニヒリス",
+
+  "block.phantasm.starflower": "星屑の花",
+
+  "block.phantasm.pream_log": "プリアムの原木",
+  "block.phantasm.pream_wood": "プリアムの木",
+  "block.phantasm.stripped_pream_log": "樹皮を剥いだプリアムの原木",
+  "block.phantasm.stripped_pream_wood": "樹皮を剥いだプリアムの木",
+  "block.phantasm.pream_leaves": "プリアムの葉",
+  "block.phantasm.hanging_pream_leaves": "垂れ下がったプリアムの葉",
+  "block.phantasm.pream_sapling": "プリアムの苗木",
+  "block.phantasm.pream_planks": "プリアムの板材",
+  "block.phantasm.pream_stairs": "プリアムの階段",
+  "block.phantasm.pream_slab": "プリアムのハーフブロック",
+  "block.phantasm.pream_door": "プリアムのドア",
+  "block.phantasm.pream_trapdoor": "プリアムのトラップドア",
+  "block.phantasm.pream_fence": "プリアムのフェンス",
+  "block.phantasm.pream_fence_gate": "プリアムのフェンスゲート",
+  "block.phantasm.pream_pressure_plate": "プリアムの感圧板",
+  "block.phantasm.pream_button": "プリアムのボタン",
+  "block.phantasm.pream_sign": "プリアムの看板",
+  "block.phantasm.pream_hanging_sign": "プリアムの吊り看板",
+
+  "block.phantasm.oblivion": "オブリビオン",
+  "block.phantasm.oblivine": "オブリヴァイン",
+  "block.phantasm.crystalily": "クリスタリリー",
+
+  "item.phantasm.pream_berry": "プリアムベリー",
+  "item.phantasm.oblifruit": "オブリフルーツ",
+
+  "item.phantasm.chorus_fruit_salad": "コーラスフルーツサラダ",
+
+  "block.phantasm.crystal_shard": "クリスタルの欠片",
+  "block.phantasm.void_crystal_shard": "ヴォイドクリスタルの欠片",
+
+  "item.phantasm.crystalline_sword": "クリスタルの剣",
+  "item.phantasm.crystalline_shovel": "クリスタルのシャベル",
+  "item.phantasm.crystalline_pickaxe": "クリスタルのツルハシ",
+  "item.phantasm.crystalline_axe": "クリスタルの斧",
+  "item.phantasm.crystalline_hoe": "クリスタルのクワ",
+
+  "block.phantasm.crystal_block": "クリスタルブロック",
+  "block.phantasm.crystal_tiles": "クリスタルタイル",
+  "block.phantasm.crystal_tile_stairs": "クリスタルタイルの階段",
+  "block.phantasm.crystal_tile_slab": "クリスタルタイルのハーフブロック",
+  "block.phantasm.crystal_pillar": "クリスタルの柱",
+  "block.phantasm.crystal_glass": "クリスタルガラス",
+  "block.phantasm.crystal_glass_pane": "クリスタル板ガラス",
+  "block.phantasm.void_crystal_block": "ヴォイドクリスタルブロック",
+  "block.phantasm.void_crystal_tiles": "ヴォイドクリスタルタイル",
+  "block.phantasm.void_crystal_tile_stairs": "ヴォイドクリスタルタイルの階段",
+  "block.phantasm.void_crystal_tile_slab": "ヴォイドクリスタルタイルのハーフブロック",
+  "block.phantasm.void_crystal_pillar": "ヴォイドクリスタルの柱",
+  "block.phantasm.void_crystal_glass": "ヴォイドクリスタルガラス",
+  "block.phantasm.void_crystal_glass_pane": "ヴォイドクリスタルのガラス板",
+
+  "block.phantasm.delayer": "レッドストーンディレイヤー",
+  "block.phantasm.delayer.display": "遅延: %s秒",
+  "block.phantasm.splitter": "レッドストーンスプリッター",
+
+  "block.phantasm.polished_obsidian": "磨かれた黒曜石",
+  "block.phantasm.polished_obsidian_bricks": "磨かれた黒曜石レンガ",
+  "block.phantasm.polished_obsidian_brick_stairs": "磨かれた黒曜石レンガの階段",
+  "block.phantasm.polished_obsidian_brick_slab": "磨かれた黒曜石レンガのハーフブロック",
+  "block.phantasm.polished_obsidian_pillar": "磨かれた黒曜石の柱",
+  "block.phantasm.chiseled_obsidian": "模様入りの黒曜石",
+
+  "block.phantasm.challenge_rune": "挑戦のルーン",
+  "entity.phantasm.challenge": "挑戦者 %s",
+
+  "block.phantasm.challenge_rune.start": "挑戦が始まった！",
+  "block.phantasm.challenge_rune.fail": "挑戦に失敗した…",
+  "block.phantasm.challenge_rune.success": "挑戦を達成した！",
+
+  "block.phantasm.challenge_rune.hint": "すでに挑戦が進行中",
+  "block.phantasm.challenge_rune.hint.crystal0": "砕けたものを取り戻せ",
+  "block.phantasm.challenge_rune.hint.crystal1": "準備はできたか？",
+  "block.phantasm.challenge_rune.hint.crystal2": "炎を再び踊らせよ",
+  "block.phantasm.challenge_rune.hint.crystal3": "塔の頂に輝く星のように",
+  "block.phantasm.challenge_rune.hint.crystal4": "生命のクリスタルを持ってくるのだ",
+  "block.phantasm.challenge_rune.hint.completed0": "すでに自らの価値を証明した",
+  "block.phantasm.challenge_rune.hint.completed1": "明晰さは代償が伴う",
+  "block.phantasm.challenge_rune.hint.completed2": "この夢は終わりを迎えた",
+  "block.phantasm.challenge_rune.hint.completed3": "目覚めよ",
+  "block.phantasm.challenge_rune.hint.completed4": "ここにはかつて竜がいた",
+  "block.phantasm.challenge_rune.hint.dragon0": "自らの価値を示せ",
+  "block.phantasm.challenge_rune.hint.dragon1": "お前は力不足だ",
+  "block.phantasm.challenge_rune.hint.dragon2": "ジーンを倒せ",
+  "block.phantasm.challenge_rune.hint.dragon3": "自由こそが道を開く",
+  "block.phantasm.challenge_rune.hint.dragon4": "お前は自由でなければならない",
+  "block.phantasm.challenge_rune.hint.experience0": "お前はまだ力不足だ",
+  "block.phantasm.challenge_rune.hint.experience1": "お前の魂は鈍い",
+  "block.phantasm.challenge_rune.hint.experience2": "立ち向かい続けるのだ",
+  "block.phantasm.challenge_rune.hint.experience3": "経験こそがお前を導く",
+  "block.phantasm.challenge_rune.hint.experience4": "まだ準備ができていないようだ",
+
+  "block.phantasm.purpur_wall": "プルプァの塀",
+  "block.phantasm.purpur_lamp": "プルプァのランプ",
+
+  "block.phantasm.raw_purpur": "粗いプルプァ",
+  "block.phantasm.raw_purpur_coal_ore": "粗いプルプァの石炭鉱石",
+  "block.phantasm.raw_purpur_bricks": "粗いプルプァレンガ",
+  "block.phantasm.raw_purpur_brick_stairs": "粗いプルプァレンガの階段",
+  "block.phantasm.raw_purpur_brick_slab": "粗いプルプァレンガのハーフブロック",
+  "block.phantasm.raw_purpur_brick_wall": "粗いプルプァレンガの塀",
+  "block.phantasm.raw_purpur_tiles": "粗いプルプァタイル",
+  "block.phantasm.raw_purpur_pillar": "粗いプルプァの柱",
+
+  "item.phantasm.crystie_spawn_egg": "クリスティのスポーンエッグ",
+  "entity.phantasm.crystie": "クリスティ",
+
+  "item.phantasm.behemoth_spawn_egg": "ベヒーモスのスポーンエッグ",
+  "entity.phantasm.behemoth": "ベヒーモス",
+
+  "item.phantasm.behemoth_meat": "ベヒーモスの生肉",
+  "item.phantasm.behemoth_steak": "ベヒーモスステーキ",
+
+  "item.phantasm.shattered_pendant": "砕けたペンダント",
+  "item.phantasm.shattered_pendant.desc": "直前の安全な場所へテレポートできる。\n奈落に落ちたとき自動発動する",
+
+  "block.phantasm.acidic_nihilium": "酸性ニヒリウム",
+  "block.phantasm.acidic_nihilis": "酸性ニヒリス",
+  "block.phantasm.tall_acidic_nihilis": "背の高い酸性ニヒリス",
+  "block.phantasm.dragon_mint": "ドラゴンミント",
+  "block.phantasm.acidic_mass": "酸性の塊",
+
+  "block.phantasm.dralgae": "ドラルジ",
+  "block.phantasm.pome": "ポメ",
+  "item.phantasm.pome_slice": "ポメの薄切り",
+
+  "block.phantasm.cirite": "シライト",
+  "block.phantasm.cirite_iron_ore": "シライト鉄鉱石",
+  "block.phantasm.cirite_bricks": "シライトレンガ",
+  "block.phantasm.cirite_brick_stairs": "シライトレンガの階段",
+  "block.phantasm.cirite_brick_slab": "シライトレンガのハーフブロック",
+  "block.phantasm.cirite_brick_wall": "シライトレンガの塀",
+  "block.phantasm.cirite_pillar": "シライトの柱",
+  "block.phantasm.chiseled_cirite": "模様入りのシライト",
+
+  "block.phantasm.choral_block": "コーラルブロック",
+  "block.phantasm.choral_fan": "コーラルファン",
+  "block.phantasm.subwoofer_block": "サブウーファーブロック",
+
+  "item.phantasm.choral_arrow": "コーラルの矢",
+  "item.phantasm.choral_arrow.desc.bow": "弓: 対象を魅了する",
+  "item.phantasm.choral_arrow.desc.crossbow": "クロスボウ: 反発する音波を生み出す",
+  "entity.phantasm.choral_arrow": "コーラルの矢",
+
+  "item.phantasm.music_disc_abruption": "レコード",
+  "item.phantasm.music_disc_abruption.desc": "Dylanvhs - Abruption",
+  "sounds.phantasm.music_disc_abruption": "Abruptionを再生中",
+
+  "item.minecraft.potion.effect.corrosion": "腐食のポーション",
+  "item.minecraft.splash_potion.effect.corrosion": "腐食のスプラッシュポーション",
+  "item.minecraft.lingering_potion.effect.corrosion": "腐食の残留ポーション",
+  "effect.phantasm.corrosion": "腐食",
+
+  "effect.phantasm.charm": "魅了",
+
+
+
+  "itemgroup.phantasm": "Phantasm",
+
+  "biome.phantasm.dreaming_den": "夢見の巣穴",
+  "biome.phantasm.acidburnt_abysses": "酸焼けの深淵",
+
+  "tooltip.xp_boosted": "効率が経験値レベルと共に上昇する",
+  "tooltip.xp_boosted.value": "現在のボーナス: +%s",
+  "item.minecraft.firework_rocket.cannot_use": "%sを先にクリアする必要がある！",
+
+
+  "advancement.phantasm.find_dreaming_den": "夢は叶う",
+  "advancement.phantasm.find_dreaming_den.desc": "夢見の巣穴を発見する",
+  "advancement.phantasm.get_crystal": "さらに輝け！",
+  "advancement.phantasm.get_crystal.desc": "エンドでクリスタルのかけらを採掘する",
+  "advancement.phantasm.find_underisland": "上なる如く、下もまた然り",
+  "advancement.phantasm.find_underisland.desc": "夢見の巣穴の下、アンダーアイランドに足を踏み入れる",
+  "advancement.phantasm.get_crystal_tools": "輝きの時！",
+  "advancement.phantasm.get_crystal_tools.desc": "全種類のクリスタルツールを入手する",
+  "advancement.phantasm.find_acidburnt_abysses": "島々を染める赤き痕",
+  "advancement.phantasm.find_acidburnt_abysses.desc": "酸焼けの深淵を発見する",
+  "advancement.phantasm.find_choral_riff": "反響する虚無",
+  "advancement.phantasm.find_choral_riff.desc": "コーラルリフを探検する",
+  "advancement.phantasm.use_choral_arrow": "外れた音符！",
+  "advancement.phantasm.use_choral_arrow.desc": "コーラルの矢でモンスターを魅了して倒す"
+}

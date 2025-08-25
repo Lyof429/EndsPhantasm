@@ -4,8 +4,8 @@
     {
       "rolls": {
         "type": "minecraft:uniform",
-        "min": 4,
-        "max": 7
+        "min": 6,
+        "max": 10
       },
       "bonus_rolls": 0,
       "entries": [
@@ -13,6 +13,38 @@
           "type": "minecraft:item",
           "name": "minecraft:ender_pearl",
           "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 2,
+                "max": 6
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:phantom_membrane",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 2,
+                "max": 6
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dragon_breath",
+          "weight": 15,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -75,22 +107,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:chorus_flower",
-          "weight": 5,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 3,
-                "max": 6
-              },
-              "add": false
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
           "name": "minecraft:obsidian",
           "weight": 5,
           "functions": [
@@ -98,8 +114,40 @@
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": 10,
-                "max": 24
+                "min": 4,
+                "max": 14
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "phantasm:raw_purpur",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 4,
+                "max": 14
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:end_stone",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 4,
+                "max": 14
               },
               "add": false
             }
@@ -121,6 +169,11 @@
               "treasure": true
             }
           ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "phantasm:chorus_fruit_salad",
+          "weight": 10
         }
       ]
     },

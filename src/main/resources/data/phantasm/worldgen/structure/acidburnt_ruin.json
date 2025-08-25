@@ -1,6 +1,7 @@
 {
   "type": "minecraft:ocean_ruin",
   "biome_temp": "cold",
+  "variant": 1,
   "biomes": "#phantasm:is_acidburnt_abysses",
   "cluster_probability": 0.9,
   "large_probability": 0.8,

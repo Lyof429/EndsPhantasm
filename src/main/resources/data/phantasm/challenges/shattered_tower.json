@@ -6,17 +6,18 @@
   "monsters": [
     {
       "weight": 10,
-      "entity": "minecraft:endermite",
+      "entity": "minecraft:zombie",
       "attributes": {
-        "minecraft:generic.max_health": 4,
-        "minecraft:generic.attack_damage": 3
+        "minecraft:generic.max_health": 2,
+        "minecraft:generic.attack_damage": 2
       }
     },
     {
       "weight": 5,
-      "entity": "minecraft:phantom",
+      "entity": "minecraft:vex",
       "attributes": {
-        "minecraft:generic.max_health": 2
+        "minecraft:generic.max_health": 2,
+        "minecraft:generic.attack_damage": 2
       }
     }
   ]

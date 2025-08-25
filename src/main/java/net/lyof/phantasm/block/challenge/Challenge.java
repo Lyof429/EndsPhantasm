@@ -10,6 +10,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
@@ -119,6 +120,8 @@ public class Challenge {
             ((Challenger) entity).setChallengeRune(rune);
             if (entity instanceof MobEntity mob)
                 mob.setPersistent();
+            if (entity instanceof VexEntity vex)
+                vex.setBounds(rune.getPos().up());
 
             return entity;
         }

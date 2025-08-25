@@ -2,7 +2,7 @@ package net.lyof.phantasm.mixin;
 
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.world.structure.IdentifierAware;
-import net.lyof.phantasm.world.structure.VariantRuinStructure;
+import net.lyof.phantasm.world.structure.VariantStructure;
 import net.minecraft.structure.StructurePiecesCollector;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.structure.OceanRuinStructure;
@@ -14,17 +14,17 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(OceanRuinStructure.class)
-public class OceanRuinStructureMixin implements VariantRuinStructure, IdentifierAware {
-    @Unique private int variant = 0;
+public class OceanRuinStructureMixin implements VariantStructure, IdentifierAware {
+    @Unique private String variant = "";
     @Unique private Identifier id = null;
 
     @Override
-    public void setVariant(int value) {
+    public void setVariant(String value) {
         this.variant = value;
     }
 
     @Override
-    public int getVariant() {
+    public String getVariant() {
         return this.variant;
     }
 

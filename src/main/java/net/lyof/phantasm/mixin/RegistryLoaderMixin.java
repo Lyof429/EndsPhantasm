@@ -6,9 +6,8 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.Decoder;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.world.structure.IdentifierAware;
-import net.lyof.phantasm.world.structure.VariantRuinStructure;
+import net.lyof.phantasm.world.structure.VariantStructure;
 import net.minecraft.registry.*;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
@@ -35,8 +34,8 @@ public class RegistryLoaderMixin {
         }
 
         if (registryKey.equals(RegistryKeys.STRUCTURE)) {
-            if (result instanceof VariantRuinStructure structure && json.getAsJsonObject().has("variant")) {
-                structure.setVariant(json.getAsJsonObject().get("variant").getAsInt());
+            if (result instanceof VariantStructure structure && json.getAsJsonObject().has("variant")) {
+                structure.setVariant(json.getAsJsonObject().get("variant").getAsString());
             }
         }
 

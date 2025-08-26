@@ -6,9 +6,11 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.Decoder;
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.world.structure.IdentifierAware;
 import net.lyof.phantasm.world.structure.VariantStructure;
 import net.minecraft.registry.*;
+import net.minecraft.resource.ResourceFinder;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,12 +27,12 @@ public class RegistryLoaderMixin {
                                          RegistryOps.RegistryInfoGetter registryInfoGetter, ResourceManager resourceManager,
                                          RegistryKey<? extends Registry<E>> registryKey, MutableRegistry<E> newRegistry,
                                          Decoder<E> decoder, Map<RegistryKey<?>, Exception> exceptions,
-                                         @Local Identifier identifier, @Local JsonElement json) {
+                                         @Local Identifier identifier, @Local JsonElement json, @Local ResourceFinder resourceFinder) {
 
         R result = original.call(instance, allowPartial, onError);
 
         if (result instanceof IdentifierAware aware) {
-            aware.setIdentifier(identifier);
+            aware.setIdentifier(resourceFinder.toResourceId(identifier));
         }
 
         if (registryKey.equals(RegistryKeys.STRUCTURE)) {

@@ -6,7 +6,6 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.Decoder;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.world.structure.IdentifierAware;
 import net.lyof.phantasm.world.structure.VariantStructure;
 import net.minecraft.registry.*;

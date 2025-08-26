@@ -36,8 +36,8 @@ public class OceanRuinGeneratorMixin {
 
         if (structure instanceof VariantStructure variant && variant.getVariant().equals("acidburnt")) {
             holder.addPiece(new OceanRuinGenerator.Piece(manager, Util.getRandom(WARM_RUINS, random), pos, rotation, integrity, structure.biomeTemperature, large));
-            holder.addPiece(new OceanRuinGenerator.Piece(manager, Util.getRandom(CRACKED_RUINS, random), pos, rotation, 0.7F, structure.biomeTemperature, large));
-            holder.addPiece(new OceanRuinGenerator.Piece(manager, Util.getRandom(BIG_WARM_RUINS, random), pos, rotation, 0.7F, structure.biomeTemperature, large));
+            holder.addPiece(new OceanRuinGenerator.Piece(manager, Util.getRandom(CRACKED_RUINS, random), pos, rotation, 0.8F, structure.biomeTemperature, large));
+            holder.addPiece(new OceanRuinGenerator.Piece(manager, Util.getRandom(BIG_WARM_RUINS, random), pos, rotation, 0.8F, structure.biomeTemperature, large));
 
             ci.cancel();
         }

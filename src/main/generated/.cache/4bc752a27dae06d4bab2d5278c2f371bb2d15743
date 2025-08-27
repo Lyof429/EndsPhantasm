@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-27T16:38:16.3898566	End's Phantasm/Block Loot Tables
+// 1.20.1	2025-08-27T18:15:37.0041509	End's Phantasm/Block Loot Tables
 84f0b6e2d7cfb187d5d5de6b2dcc825ca0643ce8 data\phantasm\loot_tables\blocks\crystal_pillar.json
 754842e402287f059b390347065830e05894ada6 data\phantasm\loot_tables\blocks\void_crystal_tiles.json
 ff960fb1a6d27fe2dcd3db93cbdb5c9546cca75d data\phantasm\loot_tables\blocks\choral_fan.json
@@ -72,8 +72,8 @@ bbee2eb89add9cb7bc61504e4b225b615c01b813 data\phantasm\loot_tables\blocks\crysta
 6ccb00b3d6039bf7a52acde28a5985c9d39b7fa0 data\phantasm\loot_tables\blocks\pream_stairs.json
 e482616ac03669e86cdbbe92d3dd9121577e3841 data\phantasm\loot_tables\blocks\void_crystal_tile_stairs.json
 e62ba95177329dbb9b03cbbbfe96e59db34faf75 data\phantasm\loot_tables\blocks\delayer.json
-9e9de650374ec1a0aebe246838569e0750dff01e data\phantasm\loot_tables\blocks\polished_obsidian.json
 7a04c9d87b9325f65589d5a25d67cbda333f1735 data\phantasm\loot_tables\blocks\pream_hanging_sign.json
+9e9de650374ec1a0aebe246838569e0750dff01e data\phantasm\loot_tables\blocks\polished_obsidian.json
 845cb2b92a19b99b1b4c3236d179111debd7d90f data\phantasm\loot_tables\blocks\starflower.json
 cc6a49458b3dafc8ea5dfa00fbdf025b095aaf0d data\phantasm\loot_tables\blocks\pream_sign.json
 62fd12fb1e2f893f44fb8e88a42bffa269fa12ad data\phantasm\loot_tables\blocks\raw_purpur_brick_stairs.json

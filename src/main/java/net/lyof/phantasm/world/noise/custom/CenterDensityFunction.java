@@ -5,7 +5,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.dynamic.CodecHolder;
 import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.world.gen.densityfunction.DensityFunction;
 
 public record CenterDensityFunction(int distance) implements DensityFunction.Base {

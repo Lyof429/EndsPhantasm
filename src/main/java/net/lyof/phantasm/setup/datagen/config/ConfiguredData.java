@@ -56,10 +56,6 @@ public class ConfiguredData {
         register(Identifier.of("minecraft", "worldgen/noise_settings/end.json"), () -> true,
                 Common::changeNoiseRouter);
 
-        register(Identifier.of("minecraft", "worldgen/density_function/end/base_3d_noise.json"),
-                () -> EndDataCompat.getCompatibilityMode().equals("custom"),
-                json -> "{ \"type\": \"minecraft:old_blended_noise\", \"xz_scale\": 0.7, \"y_scale\": 1.2, \"xz_factor\": 90, \"y_factor\": 145, \"smear_scale_multiplier\": 8 }");
-
         register(Phantasm.makeID("loot_tables/chests/challenges/elytra.json"),
                 () -> FabricLoader.getInstance().isModLoaded("grindy-elytras"),
                 Common::changeElytraChallengeLoot);
@@ -253,105 +249,12 @@ public class ConfiguredData {
                         { "min_y": 0, "height": 256, "size_horizontal": 2, "size_vertical": 1 }"""));
 
                 json.getAsJsonObject().get("noise_router")
-                        .getAsJsonObject().asMap().replace("initial_density_without_jaggedness", getJson("""
-                            {
-                              "type": "minecraft:add",
-                              "argument1": -0.234375,
-                              "argument2": {
-                                "type": "minecraft:mul",
-                                "argument1": {
-                                  "type": "minecraft:y_clamped_gradient",
-                                  "from_y": 4,
-                                  "to_y": 32,
-                                  "from_value": 0,
-                                  "to_value": 1
-                                },
-                                "argument2": {
-                                  "type": "minecraft:add",
-                                  "argument1": 0.234375,
-                                  "argument2": {
-                                    "type": "minecraft:add",
-                                    "argument1": -23.4375,
-                                    "argument2": {
-                                      "type": "minecraft:mul",
-                                      "argument1": {
-                                        "type": "minecraft:y_clamped_gradient",
-                                        "from_y": 8,
-                                        "to_y": 64,
-                                        "from_value": 1,
-                                        "to_value": 0
-                                      },
-                                      "argument2": {
-                                        "type": "minecraft:add",
-                                        "argument1": 23.4375,
-                                        "argument2": {
-                                          "type": "minecraft:add",
-                                          "argument1": -0.703125,
-                                          "argument2": {
-                                            "type": "minecraft:cache_2d",
-                                            "argument": {
-                                              "type": "minecraft:end_islands"
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }"""));
+                        .getAsJsonObject().asMap().replace("depth", new JsonPrimitive("phantasm:is_center"));
+
                 json.getAsJsonObject().get("noise_router")
-                        .getAsJsonObject().asMap().replace("final_density", getJson("""
-                            {
-                              "type": "minecraft:squeeze",
-                              "argument": {
-                                "type": "minecraft:mul",
-                                "argument1": 0.64,
-                                "argument2": {
-                                  "type": "minecraft:interpolated",
-                                  "argument": {
-                                    "type": "minecraft:blend_density",
-                                    "argument": {
-                                      "type": "minecraft:add",
-                                      "argument1": -0.234375,
-                                      "argument2": {
-                                        "type": "minecraft:mul",
-                                        "argument1": {
-                                          "type": "minecraft:y_clamped_gradient",
-                                          "from_y": 12,
-                                          "to_y": 52,
-                                          "from_value": 0.01,
-                                          "to_value": 0.9875
-                                        },
-                                        "argument2": {
-                                          "type": "minecraft:add",
-                                          "argument1": 0.234375,
-                                          "argument2": {
-                                            "type": "minecraft:add",
-                                            "argument1": -23.4375,
-                                            "argument2": {
-                                              "type": "minecraft:mul",
-                                              "argument1": {
-                                                "type": "minecraft:y_clamped_gradient",
-                                                "from_y": 58,
-                                                "to_y": 160,
-                                                "from_value": 1,
-                                                "to_value": 0.9
-                                              },
-                                              "argument2": {
-                                                "type": "minecraft:add",
-                                                "argument1": 23.4375,
-                                                "argument2": "minecraft:end/sloped_cheese"
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }"""));
+                        .getAsJsonObject().asMap().replace("initial_density_without_jaggedness", new JsonPrimitive("phantasm:initial_density_without_jaggedness"));
+                json.getAsJsonObject().get("noise_router")
+                        .getAsJsonObject().asMap().replace("final_density", new JsonPrimitive("phantasm:final_density"));
             }
 
             JsonObject baseRules = json.getAsJsonObject().get("surface_rule").getAsJsonObject();

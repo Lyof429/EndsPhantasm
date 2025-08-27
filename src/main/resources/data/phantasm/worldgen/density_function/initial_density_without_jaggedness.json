@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:cache_once",
+  "argument": {
+    "type": "minecraft:range_choice",
+    "input": "phantasm:is_center",
+    "min_inclusive": 0.5,
+    "max_exclusive": 1.5,
+    "when_in_range": "phantasm:center/initial_density_without_jaggedness",
+    "when_out_of_range": "phantasm:outer/initial_density_without_jaggedness"
+  }
+}

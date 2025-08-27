@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:cache_2d",
+  "argument": {
+    "type": "phantasm:center",
+    "distance": 800
+  }
+}

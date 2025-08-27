@@ -21,6 +21,7 @@ import net.lyof.phantasm.world.ModWorldGeneration;
 import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.lyof.phantasm.world.feature.ModFeatures;
 import net.lyof.phantasm.world.feature.custom.tree.ModTreePlacerTypes;
+import net.lyof.phantasm.world.noise.ModDensityFunctions;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
@@ -56,6 +57,7 @@ public class Phantasm implements ModInitializer {
 
 		EndDataCompat.register();
 		ModFeatures.register();
+		ModDensityFunctions.register();
 		ModWorldGeneration.register();
 
 		if (!FabricLoader.getInstance().isDevelopmentEnvironment()) ModRegistry.clear();

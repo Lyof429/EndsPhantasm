@@ -121,7 +121,7 @@ public class Challenge {
             if (entity instanceof MobEntity mob)
                 mob.setPersistent();
             if (entity instanceof VexEntity vex)
-                vex.setBounds(rune.getPos().up());
+                vex.setBounds(rune.getPos().up(5));
 
             return entity;
         }

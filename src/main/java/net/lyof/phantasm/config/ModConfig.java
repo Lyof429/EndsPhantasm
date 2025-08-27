@@ -156,7 +156,7 @@ public class ModConfig {
       "no_crystal_cages": false,
       // Height to be added to the spires, mostly useful in case of datapacks raising the main island level
         // Set to 0 to have them be the same height as they are in vanilla
-      "extra_height": 40
+      "extra_height": 0
     }
   },
   

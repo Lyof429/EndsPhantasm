@@ -135,7 +135,7 @@ public class ConfiguredData {
                            "biome": "minecraft:the_end",
                            "parameters": {
                              "continentalness": 0,
-                             "depth": 0,
+                             "depth": 1,
                              "erosion": 0,
                              "humidity": 0,
                              "offset": 0,

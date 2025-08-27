@@ -28,12 +28,6 @@ public class ModWorldGeneration {
     }
 
 
-    public static RegistryEntry<Biome> THE_END = null;
-    public static void register(RegistryEntryLookup<Biome> lookup) {
-        THE_END = lookup.getOrThrow(BiomeKeys.THE_END);
-    }
-
-
     private static void generateFeatures() {
         if (ConfigEntries.doFallenStars)
             BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),

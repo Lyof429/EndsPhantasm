@@ -5,7 +5,6 @@ import java.util.List;
 public class ConfigEntries {
     public static void reload() {
         dataCompatMode = new ConfigEntry<>("world_gen.biomes.datapack_compatibility", "automatic").get();
-        forceMainIsland = new ConfigEntry<>("world_gen.biomes.force_main_island", true).get();
         customBiomesWeight = new ConfigEntry<>("world_gen.biomes.custom_biomes_weight", 0.6).get();
         noiseScale = new ConfigEntry<>("world_gen.biomes.noise_scale", 2).get();
 
@@ -48,7 +47,6 @@ public class ConfigEntries {
     }
 
     public static String dataCompatMode = "";
-    public static boolean forceMainIsland;
     public static double customBiomesWeight;
     public static double noiseScale;
 

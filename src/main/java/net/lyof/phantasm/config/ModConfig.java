@@ -127,8 +127,6 @@ public class ModConfig {
       "custom_biomes_weight": 0.6,
       // Value to scale the End's biome generation with. Higher values mean bigger biomes. Must be greater than 0
       "noise_scale": 2,
-      // Should the End's biome source be partially overrode so that the main island biome always generate at the center
-      "force_main_island": true,
     
       // DEAMING DEN
       "dreaming_den": {

@@ -24,8 +24,6 @@
     "LivingEntityMixin",
     "MinecraftServerMixin",
     "MobEntityMixin",
-    "MultiNoiseBiomeSourceMixin",
-    "MultiNoiseBiomeSourceParameterListMixin",
     "OceanRuinGeneratorMixin",
     "OceanRuinGeneratorMixin$PieceMixin",
     "OceanRuinStructureMixin",

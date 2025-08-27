@@ -120,7 +120,7 @@ public class ModPlacedFeatures {
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of(),
-                RarityFilterPlacementModifier.of(3));
+                RarityFilterPlacementModifier.of(4));
 
         register(context, CIRITE_CEILING_SPIKE, configLookup.getOrThrow(ModConfiguredFeatures.CIRITE_CEILING_SPIKE),
                 SquarePlacementModifier.of(),

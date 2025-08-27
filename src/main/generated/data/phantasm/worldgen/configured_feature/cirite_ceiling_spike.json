@@ -1,5 +1,5 @@
 {
-  "type": "phantasm:boulder",
+  "type": "phantasm:ceiling_spike",
   "config": {
     "block": {
       "type": "minecraft:weighted_state_provider",
@@ -8,21 +8,21 @@
           "data": {
             "Name": "phantasm:cirite"
           },
-          "weight": 9
+          "weight": 7
         },
         {
           "data": {
             "Name": "phantasm:cirite_iron_ore"
           },
-          "weight": 1
+          "weight": 2
         }
       ]
     },
     "size": {
       "type": "minecraft:uniform",
       "value": {
-        "max_inclusive": 7,
-        "min_inclusive": 3
+        "max_inclusive": 13,
+        "min_inclusive": 7
       }
     }
   }

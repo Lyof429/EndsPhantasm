@@ -112,12 +112,12 @@ public class ModConfiguredFeatures {
                 new DralgaeFeatureConfig(UniformIntProvider.create(15, 30), BlockStateProvider.of(Blocks.OBSIDIAN),
                         BlockStateProvider.of(ModBlocks.ACIDIC_MASS)));
 
-        register(context, CIRITE_BOULDER, BoulderFeature.INSTANCE,
-                new BoulderFeatureConfig(UniformIntProvider.create(3, 7), new WeightedBlockStateProvider(
+        register(context, CIRITE_SPIKE, SpikeFeature.INSTANCE,
+                new BoulderFeatureConfig(UniformIntProvider.create(3, 10), new WeightedBlockStateProvider(
                         DataPool.<BlockState>builder().add(ModBlocks.CIRITE.getDefaultState(), 9)
                                 .add(ModBlocks.CIRITE_IRON_ORE.getDefaultState(), 1))));
 
-        register(context, CIRITE_SPIKE, CeilingSpikeFeature.INSTANCE,
+        register(context, CIRITE_CEILING_SPIKE, CeilingSpikeFeature.INSTANCE,
                 new BoulderFeatureConfig(UniformIntProvider.create(7, 13), new WeightedBlockStateProvider(
                         DataPool.<BlockState>builder().add(ModBlocks.CIRITE.getDefaultState(), 7)
                                 .add(ModBlocks.CIRITE_IRON_ORE.getDefaultState(), 2))));
@@ -154,8 +154,8 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> TALL_DRALGAE = create("tall_dralgae");
     public static final RegistryKey<ConfiguredFeature<?, ?>> HUGE_DRALGAE = create("huge_dralgae");
 
-    public static final RegistryKey<ConfiguredFeature<?, ?>> CIRITE_BOULDER = create("cirite_boulder");
     public static final RegistryKey<ConfiguredFeature<?, ?>> CIRITE_SPIKE = create("cirite_spike");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CIRITE_CEILING_SPIKE = create("cirite_ceiling_spike");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> CHORAL_RIFF = create("choral_riff");
     public static final RegistryKey<ConfiguredFeature<?, ?>> CHORAL_FAN = create("patch_choral_fan");

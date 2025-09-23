@@ -37,7 +37,7 @@ public abstract class EntityMixin {
             BlockPos p = new BlockPos(1280, 60, 0);
 
             BlockPos pos = EndGatewayBlockEntityAccessor.getExitPos(destination, p).up(2);
-            if (destination.getBlockState(pos.down()).isAir()) {
+            if (destination.getBlockState(pos.down(3)).isAir()) {
                 destination.getRegistryManager().getOptional(RegistryKeys.CONFIGURED_FEATURE).flatMap(registry ->
                         registry.getEntry(EndConfiguredFeatures.END_ISLAND)).ifPresent(reference ->
                     reference.value().generate(destination, destination.getChunkManager().getChunkGenerator(),

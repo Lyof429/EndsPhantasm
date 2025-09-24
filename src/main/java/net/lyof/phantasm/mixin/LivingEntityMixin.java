@@ -4,9 +4,10 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.block.challenge.Challenger;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.lyof.phantasm.effect.ModEffects;
+import net.lyof.phantasm.entity.extra.Challenger;
+import net.lyof.phantasm.entity.extra.Corrosive;
 import net.lyof.phantasm.item.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -29,13 +30,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin extends Entity implements Challenger {
+public abstract class LivingEntityMixin extends Entity implements Challenger, Corrosive {
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
 
     @Shadow @Nullable public abstract StatusEffectInstance getStatusEffect(StatusEffect effect);
     @Shadow public abstract boolean hasStatusEffect(StatusEffect effect);
+
+    @Shadow public abstract boolean addStatusEffect(StatusEffectInstance effect);
 
     @WrapOperation(method = "eatFood", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;decrement(I)V"))
     public void keepOblifruit(ItemStack instance, int amount, Operation<Void> original) {
@@ -61,6 +64,12 @@ public abstract class LivingEntityMixin extends Entity implements Challenger {
             cir.setReturnValue(false);
     }
 
+    @Inject(method = "damage", at = @At("TAIL"))
+    public void applyAttackEffects(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (source.getAttacker() instanceof Corrosive corrosive && corrosive.isCorrosive())
+            this.addStatusEffect(new StatusEffectInstance(ModEffects.CORROSION, 80, 0));
+    }
+
     @Inject(method = "getMovementSpeed()F", at = @At("HEAD"), cancellable = true)
     public void charmMovementSpeed(CallbackInfoReturnable<Float> cir) {
         if (this.hasStatusEffect(ModEffects.CHARM)) cir.setReturnValue(0f);
@@ -77,6 +86,12 @@ public abstract class LivingEntityMixin extends Entity implements Challenger {
             this.getChallengeRune().progress();
     }
 
+    @Inject(method = "tick", at = @At("TAIL"))
+    public void tickCorrosive(CallbackInfo ci) {
+        if (this.corrosiveTicks > 0)
+            this.corrosiveTicks--;
+    }
+
 
     @Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
     private void writeRune(NbtCompound nbt, CallbackInfo ci) {
@@ -85,6 +100,8 @@ public abstract class LivingEntityMixin extends Entity implements Challenger {
             nbt.putInt(Phantasm.MOD_ID + "_RuneY", this.getChallengeRune().getPos().getY());
             nbt.putInt(Phantasm.MOD_ID + "_RuneZ", this.getChallengeRune().getPos().getZ());
         }
+
+        nbt.putInt(Phantasm.MOD_ID + "_CorrosiveTicks", this.corrosiveTicks);
     }
 
     @Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
@@ -93,6 +110,9 @@ public abstract class LivingEntityMixin extends Entity implements Challenger {
             this.challengePos = new BlockPos(nbt.getInt(Phantasm.MOD_ID + "_RuneX"),
                     nbt.getInt(Phantasm.MOD_ID + "_RuneY"),
                     nbt.getInt(Phantasm.MOD_ID + "_RuneZ"));
+
+        if (nbt.contains(Phantasm.MOD_ID + "_CorrosiveTicks"))
+            this.corrosiveTicks = nbt.getInt(Phantasm.MOD_ID + "_CorrosiveTicks");
     }
 
 
@@ -114,5 +134,18 @@ public abstract class LivingEntityMixin extends Entity implements Challenger {
     public void setChallengeRune(ChallengeRuneBlockEntity rune) {
         this.challengeRune = rune;
         this.challengePos = rune == null ? null : rune.getPos();
+    }
+
+
+    @Unique private int corrosiveTicks;
+
+    @Override
+    public void setCorrosiveTicks(int ticks) {
+        this.corrosiveTicks = ticks;
+    }
+
+    @Override
+    public boolean isCorrosive() {
+        return this.corrosiveTicks > 0;
     }
 }

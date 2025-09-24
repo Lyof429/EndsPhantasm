@@ -1,4 +1,4 @@
-package net.lyof.phantasm.block.challenge;
+package net.lyof.phantasm.entity.extra;
 
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;

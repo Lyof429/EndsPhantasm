@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
+import net.lyof.phantasm.entity.extra.Challenger;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;

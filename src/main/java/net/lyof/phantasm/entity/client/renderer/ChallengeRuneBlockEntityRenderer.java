@@ -1,10 +1,10 @@
 package net.lyof.phantasm.entity.client.renderer;
 
 import net.lyof.phantasm.block.ModBlocks;
-import net.lyof.phantasm.block.challenge.Challenger;
 import net.lyof.phantasm.block.custom.ChallengeRuneBlock;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.lyof.phantasm.config.ConfigEntries;
+import net.lyof.phantasm.entity.extra.Challenger;
 import net.lyof.phantasm.util.RenderHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;

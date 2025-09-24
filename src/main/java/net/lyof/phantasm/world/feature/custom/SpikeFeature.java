@@ -1,22 +1,17 @@
 package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.world.feature.custom.config.BoulderFeatureConfig;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
-import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SpikeFeature extends Feature<BoulderFeatureConfig> {

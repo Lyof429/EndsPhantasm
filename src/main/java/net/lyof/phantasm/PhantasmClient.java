@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.lyof.phantasm.block.ModBlockEntities;
-import net.lyof.phantasm.block.challenge.Challenger;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.client.ModModelLayers;
@@ -18,6 +17,7 @@ import net.lyof.phantasm.entity.client.renderer.ChallengeRuneBlockEntityRenderer
 import net.lyof.phantasm.entity.client.renderer.ChoralArrowRenderer;
 import net.lyof.phantasm.entity.client.renderer.CrystieRenderer;
 import net.lyof.phantasm.entity.custom.BehemothEntity;
+import net.lyof.phantasm.entity.extra.Challenger;
 import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.particle.custom.ZzzParticle;
 import net.lyof.phantasm.setup.ModPackets;

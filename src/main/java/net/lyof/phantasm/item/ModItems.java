@@ -7,6 +7,7 @@ import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.custom.ChoralArrowEntity;
 import net.lyof.phantasm.item.custom.ChoralArrowItem;
 import net.lyof.phantasm.item.custom.ChorusFruitSaladItem;
+import net.lyof.phantasm.item.custom.PomeSliceItem;
 import net.lyof.phantasm.item.custom.ShatteredPendantItem;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
@@ -86,7 +87,7 @@ public class ModItems {
             .model().build();
 
     public static final Item POME_SLICE = ModRegistry.ofItem("pome_slice",
-            new Item(new FabricItemSettings().food(ModRegistry.Foods.POME_SLICE))).model().build();
+            new PomeSliceItem(new FabricItemSettings().food(ModRegistry.Foods.POME_SLICE))).model().build();
 
     public static final Item MUSIC_DISC_ABRUPTION = ModRegistry.ofItem("music_disc_abruption",
             new MusicDiscItem(4, ModSounds.MUSIC_DISC_ABRUPTION, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 239))

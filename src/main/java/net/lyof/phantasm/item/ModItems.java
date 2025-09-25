@@ -5,10 +5,7 @@ import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.custom.ChoralArrowEntity;
-import net.lyof.phantasm.item.custom.ChoralArrowItem;
-import net.lyof.phantasm.item.custom.ChorusFruitSaladItem;
-import net.lyof.phantasm.item.custom.PomeSliceItem;
-import net.lyof.phantasm.item.custom.ShatteredPendantItem;
+import net.lyof.phantasm.item.custom.*;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.sound.ModSounds;
@@ -37,9 +34,9 @@ public class ModItems {
 
 
     public static final Item PREAM_BERRY = ModRegistry.ofItem("pream_berry",
-            new Item(new FabricItemSettings().food(ModRegistry.Foods.PREAM_BERRY))).model().build();
+            new DescribedItem(new FabricItemSettings().food(ModRegistry.Foods.PREAM_BERRY))).model().build();
     public static final Item OBLIFRUIT = ModRegistry.ofItem("oblifruit",
-            new Item(new FabricItemSettings().food(ModRegistry.Foods.OBLIFRUIT))).model().build();
+            new DescribedItem(new FabricItemSettings().food(ModRegistry.Foods.OBLIFRUIT))).model().build();
 
     public static final Item CRYSTALLINE_SHOVEL = ModRegistry.ofItem("crystalline_shovel",
             new ShovelItem(ModTiers.CRYSTALLINE, 2, -3f, new FabricItemSettings()))

@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class PomeSliceItem extends Item {
+public class PomeSliceItem extends DescribedItem {
     public PomeSliceItem(Settings settings) {
         super(settings);
     }

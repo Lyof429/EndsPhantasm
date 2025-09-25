@@ -31,9 +31,12 @@
   "block.phantasm.crystalily": "Crystalily",
 
   "item.phantasm.pream_berry": "Pream Berry",
+  "item.phantasm.pream_berry.desc": "Heals some life when eaten.",
   "item.phantasm.oblifruit": "Oblifruit",
+  "item.phantasm.oblifruit.desc": "Has a chance to duplicate when eaten.",
 
   "item.phantasm.chorus_fruit_salad": "Chorus Fruit Salad",
+  "item.phantasm.chorus_fruit.desc": "Teleports in and out of the End when eaten.",
 
   "block.phantasm.crystal_shard": "Crystal Shard",
   "block.phantasm.void_crystal_shard": "Void Crystal Shard",
@@ -132,6 +135,7 @@
   "block.phantasm.dralgae": "Dralgae",
   "block.phantasm.pome": "Pome",
   "item.phantasm.pome_slice": "Pome Slice",
+  "item.phantasm.pome_slice.desc": "Makes your attacks corrosive when eaten.",
 
   "block.phantasm.cirite": "Cirite",
   "block.phantasm.cirite_iron_ore": "Cirite Iron Ore",

@@ -9,7 +9,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 
-public class ChorusFruitSaladItem extends Item {
+public class ChorusFruitSaladItem extends DescribedItem {
     public ChorusFruitSaladItem(Settings settings) {
         super(settings);
     }

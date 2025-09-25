@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ShatteredPendantItem extends Item {
+public class ShatteredPendantItem extends DescribedItem {
     public ShatteredPendantItem(Settings settings) {
         super(settings.rarity(Rarity.RARE).maxCount(1).maxDamage(ConfigEntries.shatteredPendantDurability).fireproof());
     }
@@ -92,14 +92,6 @@ public class ShatteredPendantItem extends Item {
             user.playSound(SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, 1, 2);
         }
         return super.finishUsing(stack, world, user);
-    }
-
-    @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        super.appendTooltip(stack, world, tooltip, context);
-        String[] txt = Text.translatable("item.phantasm.shattered_pendant.desc").getString().split("\\n");
-        for (String t : txt)
-            tooltip.add(Text.literal(t).formatted(Formatting.GRAY));
     }
 
     @Override

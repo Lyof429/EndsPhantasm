@@ -19,11 +19,11 @@ public class DescribedItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, world, tooltip, context);
+
         String[] txt = Text.translatable(this.getOrCreateDescTranslationKey()).getString().split("\\n");
         for (String t : txt)
             tooltip.add(Text.literal(t).formatted(Formatting.GRAY));
-
-        super.appendTooltip(stack, world, tooltip, context);
     }
 
     public String getOrCreateDescTranslationKey() {

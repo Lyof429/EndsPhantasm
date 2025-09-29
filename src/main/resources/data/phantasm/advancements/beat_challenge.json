@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:end/find_end_city",
+  "criteria": {
+    "beat_challenge": {
+      "conditions": {
+        "loot_table": "phantasm:/challenge"
+      },
+      "trigger": "minecraft:player_generates_container_loot"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.phantasm.beat_challenge.desc"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "phantasm:challenge_rune"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.phantasm.beat_challenge"
+    }
+  },
+  "requirements": [
+    [
+      "beat_challenge"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

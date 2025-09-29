@@ -42,10 +42,10 @@ public abstract class InGameHudMixin {
     public void renderCorrosiveCrosshair(DrawContext instance, Identifier texture, int x, int y, int u, int v, int width, int height,
                                          Operation<Void> original) {
 
-        if (v == 94 && (u == 36 || u == 52 || u == 68) && texture.equals(VANILLA_ICONS)
+        if (v == 94 && (u == 52 || u == 68) && texture.equals(VANILLA_ICONS)
                 && this.getCameraPlayer() instanceof Corrosive corrosive && corrosive.isCorrosive()) {
 
-            instance.drawTexture(CORROSION_ATTACK, x, y, u - 36, 18, width, height, 64, 64);
+            instance.drawTexture(CORROSION_ATTACK, x, y, u - 52, 18, width, 16, 64, 64);
         }
         else
             original.call(instance, texture, x, y, u, v, width, height);
@@ -55,10 +55,10 @@ public abstract class InGameHudMixin {
     public void renderCorrosiveHotbar(DrawContext instance, Identifier texture, int x, int y, int u, int v, int width, int height,
                                       Operation<Void> original, @Local(ordinal = 2) int p) {
 
-        if (((u == 0 && v == 94) || (u == 18 && v == 112 - p)) && texture.equals(VANILLA_ICONS)
+        if (u == 18 && v == 112 - p && texture.equals(VANILLA_ICONS)
                 && this.getCameraPlayer() instanceof Corrosive corrosive && corrosive.isCorrosive()) {
 
-            instance.drawTexture(CORROSION_ATTACK, x, y, u, v - 94, width, height, 64, 64);
+            instance.drawTexture(CORROSION_ATTACK, x, y, 0, v - 94, width, height, 64, 64);
         }
         else
             original.call(instance, texture, x, y, u, v, width, height);

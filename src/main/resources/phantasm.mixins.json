@@ -29,6 +29,7 @@
     "OceanRuinStructureMixin",
     "PlantBlockMixin",
     "PlayerEntityMixin",
+    "PlayerGeneratesContainerLootCriterionConditionsMixin",
     "RegistryLoaderMixin",
     "ServerPlayerEntityMixin",
     "TheEndBiomesMixin",

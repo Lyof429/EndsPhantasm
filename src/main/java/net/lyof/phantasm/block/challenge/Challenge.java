@@ -29,7 +29,7 @@ public class Challenge {
     public boolean dataDriven = false;
 
     public final Identifier id;
-    private final Identifier lootTable;
+    public final Identifier lootTable;
     private final List<Monster> monsters;
     public final int monsterObjective;
     public final int levelCost;

@@ -10,6 +10,7 @@ import net.lyof.phantasm.block.custom.ChallengeRuneBlock;
 import net.lyof.phantasm.entity.extra.Challenger;
 import net.lyof.phantasm.setup.ModPackets;
 import net.minecraft.advancement.Advancement;
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
@@ -118,6 +119,9 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
     public void complete(PlayerEntity player) {
         if (!this.hasCompleted(player))
             this.completedPlayerUuids.add(player.getUuid());
+
+        if (player instanceof ServerPlayerEntity serverPlayer)
+            Criteria.PLAYER_GENERATES_CONTAINER_LOOT.trigger(serverPlayer, this.challenge.lootTable);
     }
 
     public boolean hasCompleted(PlayerEntity player) {

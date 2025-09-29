@@ -59,6 +59,9 @@ public class ConfiguredData {
         register(Phantasm.makeID("loot_tables/chests/challenges/elytra.json"),
                 () -> FabricLoader.getInstance().isModLoaded("grindy-elytras"),
                 Common::changeElytraChallengeLoot);
+
+        register(Identifier.of("minecraft", "advancements/end/elytra.json"),
+                () -> ConfigEntries.elytraChallenge, Common::changeElytraParent);
     }
 
     private static class Common {
@@ -287,6 +290,11 @@ public class ConfiguredData {
 
         public static String changeElytraChallengeLoot(JsonElement json) {
             return gson.toJson(json).replace("minecraft:elytra", "grindy-elytras:elytra_fragment");
+        }
+
+        public static String changeElytraParent(JsonElement json) {
+            json.getAsJsonObject().asMap().replace("parent", new JsonPrimitive(Phantasm.makeID("beat_challenge").toString()));
+            return json.toString();
         }
     }
 }

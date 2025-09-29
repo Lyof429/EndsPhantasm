@@ -10,9 +10,7 @@ import net.lyof.phantasm.world.biome.ModBiomes;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementFrame;
 import net.minecraft.advancement.AdvancementRewards;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.advancement.criterion.InventoryChangedCriterion;
-import net.minecraft.advancement.criterion.OnKilledCriterion;
+import net.minecraft.advancement.criterion.*;
 import net.minecraft.loot.condition.LocationCheckLootCondition;
 import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.entity.DamageSourcePredicate;
@@ -45,13 +43,15 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
         }
     }
 
+    public static final Identifier SYNTHETIC_CHALLENGE = Phantasm.makeID("/challenge");
+
 
     public ModAdvancementProvider(FabricDataOutput output) {
         super(output);
     }
 
-    public static final String BASE = "advancement.phantasm.";
-    public static final String DESC = ".desc";
+    protected static final String BASE = "advancement.phantasm.";
+    protected static final String DESC = ".desc";
 
     @Override
     public void generateAdvancement(Consumer<Advancement> consumer) {
@@ -146,5 +146,18 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 .rewards(AdvancementRewards.NONE)
                 .parent(CHORAL_RIFF)
                 .build(consumer, "phantasm:use_choral_arrow");
+
+        Advancement CHALLENGE = Advancement.Builder.create()
+                .display(ModBlocks.CHALLENGE_RUNE,
+                        Text.translatable(BASE + "beat_challenge"),
+                        Text.translatable(BASE + "beat_challenge" + DESC),
+                        null,
+                        AdvancementFrame.CHALLENGE,
+                        true, true, false)
+                .criterion("beat_challenge", PlayerGeneratesContainerLootCriterion.Conditions.create(
+                        SYNTHETIC_CHALLENGE
+                ))
+                .rewards(AdvancementRewards.Builder.experience(50))
+                .build(Phantasm.makeID("phantasm:beat_challenge"));
     }
 }

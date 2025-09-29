@@ -1,6 +1,7 @@
 package net.lyof.phantasm.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.setup.ReloadListener;
 import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
@@ -87,6 +88,11 @@ public class LifecycledResourceManagerImplMixin {
 
             original.replace(id, readAndApply(original.get(id), data));
         }
+
+        if (startingPath.startsWith("recipes") && !FabricLoader.getInstance().isModLoaded("vinurl")) {
+            original.remove(new Identifier("vinurl", "recipes/custom_record.json"));
+        }
+
         return original;
     }
 

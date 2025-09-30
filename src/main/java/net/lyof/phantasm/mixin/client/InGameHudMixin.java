@@ -21,8 +21,11 @@ public abstract class InGameHudMixin {
     @Shadow protected abstract PlayerEntity getCameraPlayer();
 
     @Unique private static final Identifier VANILLA_ICONS = new Identifier("textures/gui/icons.png");
+    @Unique private static final Identifier VANILLA_WIDGETS = new Identifier("textures/gui/widgets.png");
+
     @Unique private static final Identifier CORROSION_ARMOR = Phantasm.makeID("textures/gui/corrosion_armor.png");
     @Unique private static final Identifier CORROSION_ATTACK = Phantasm.makeID("textures/gui/corrosion_attack_indicator.png");
+    @Unique private static final Identifier CORROSION_HOTBAR = Phantasm.makeID("textures/gui/corrosion_hotbar.png");
 
     @WrapOperation(method = "renderStatusBars", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawTexture(Lnet/minecraft/util/Identifier;IIIIII)V"))
     public void renderCorrodedArmor(DrawContext instance, Identifier texture, int x, int y, int u, int v, int width, int height,
@@ -45,7 +48,7 @@ public abstract class InGameHudMixin {
         if (v == 94 && (u == 52 || u == 68) && texture.equals(VANILLA_ICONS)
                 && this.getCameraPlayer() instanceof Corrosive corrosive && corrosive.isCorrosive()) {
 
-            instance.drawTexture(CORROSION_ATTACK, x, y, u - 52, 18, width, 16, 64, 64);
+            instance.drawTexture(CORROSION_ATTACK, x, y, u - 52, 18, width, 16, 32, 32);
         }
         else
             original.call(instance, texture, x, y, u, v, width, height);
@@ -55,12 +58,14 @@ public abstract class InGameHudMixin {
     public void renderCorrosiveHotbar(DrawContext instance, Identifier texture, int x, int y, int u, int v, int width, int height,
                                       Operation<Void> original, @Local(ordinal = 2) int p) {
 
-        if (u == 18 && v == 112 - p && texture.equals(VANILLA_ICONS)
-                && this.getCameraPlayer() instanceof Corrosive corrosive && corrosive.isCorrosive()) {
+        if (this.getCameraPlayer() instanceof Corrosive corrosive && corrosive.isCorrosive()) {
+            /*if (texture.equals(VANILLA_WIDGETS) && u == 0 && v == 22)
+                instance.drawTexture(CORROSION_HOTBAR, x - 4, y - 4, 0, 0, 32, 32, 32, 32);
+            else */if (texture.equals(VANILLA_ICONS) && u == 18 && v == 112 - p)
+                instance.drawTexture(CORROSION_ATTACK, x, y, 0, v - 94, width, height, 32, 32);
 
-            instance.drawTexture(CORROSION_ATTACK, x, y, 0, v - 94, width, height, 64, 64);
+            else original.call(instance, texture, x, y, u, v, width, height);
         }
-        else
-            original.call(instance, texture, x, y, u, v, width, height);
+        else original.call(instance, texture, x, y, u, v, width, height);
     }
 }

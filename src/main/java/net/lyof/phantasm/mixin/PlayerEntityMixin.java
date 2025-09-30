@@ -3,7 +3,7 @@ package net.lyof.phantasm.mixin;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.effect.ModEffects;
-import net.lyof.phantasm.entity.extra.Challenger;
+import net.lyof.phantasm.entity.access.Challenger;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;

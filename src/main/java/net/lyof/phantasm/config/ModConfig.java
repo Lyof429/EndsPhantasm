@@ -182,7 +182,9 @@ public class ModConfig {
     "challenge": {
       // Use a see through, dynamic runic barrier texture for challenge boundaries
       //   If false, the End portal's static texture will be used. Looks better to me, but might be confusing
-      "accessibility_barrier": false
+      "accessibility_barrier": false,
+      // Radius (in blocks) for challenges
+      "radius": 16
     }
   },
   

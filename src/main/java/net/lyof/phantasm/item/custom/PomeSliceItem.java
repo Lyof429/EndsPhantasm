@@ -1,8 +1,7 @@
 package net.lyof.phantasm.item.custom;
 
-import net.lyof.phantasm.entity.extra.Corrosive;
+import net.lyof.phantasm.entity.access.Corrosive;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

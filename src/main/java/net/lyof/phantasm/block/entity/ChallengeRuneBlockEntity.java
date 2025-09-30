@@ -7,7 +7,7 @@ import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.block.challenge.Challenge;
 import net.lyof.phantasm.block.challenge.ChallengeRegistry;
 import net.lyof.phantasm.block.custom.ChallengeRuneBlock;
-import net.lyof.phantasm.entity.extra.Challenger;
+import net.lyof.phantasm.entity.access.Challenger;
 import net.lyof.phantasm.setup.ModPackets;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.criterion.Criteria;
@@ -180,7 +180,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
             player.addExperienceLevels(-this.challenge.levelCost);
 
         for (PlayerEntity participant : player.getWorld().getPlayers()) {
-            if (participant.getPos().distanceTo(Vec3d.of(this.getPos())) < Challenger.R) {
+            if (participant.getPos().distanceTo(Vec3d.of(this.getPos())) < Challenge.R) {
                 if (!this.getWorld().isClient()) {
                     PacketByteBuf packet = PacketByteBufs.create();
                     packet.writeBlockPos(this.getPos());
@@ -232,8 +232,8 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
             }
         }
 
-        for (Entity entity : world.getOtherEntities(null, Box.from(this.getPos().up((int) Challenger.R/2)
-                        .toCenterPos()).expand(Challenger.R * 2),
+        for (Entity entity : world.getOtherEntities(null, Box.from(this.getPos().up((int) Challenge.R/2)
+                        .toCenterPos()).expand(Challenge.R * 2),
                 e -> e instanceof Challenger challenger && challenger.getChallengeRune() == this)) {
 
             if (!(entity instanceof PlayerEntity)) {

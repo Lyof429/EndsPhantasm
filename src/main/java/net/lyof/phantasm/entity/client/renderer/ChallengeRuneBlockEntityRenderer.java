@@ -1,10 +1,11 @@
 package net.lyof.phantasm.entity.client.renderer;
 
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.block.challenge.Challenge;
 import net.lyof.phantasm.block.custom.ChallengeRuneBlock;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.lyof.phantasm.config.ConfigEntries;
-import net.lyof.phantasm.entity.extra.Challenger;
+import net.lyof.phantasm.entity.access.Challenger;
 import net.lyof.phantasm.util.RenderHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
@@ -111,7 +112,7 @@ public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<Cha
             if (player instanceof Challenger challenger && challenger.isInRange()) {
                 matrices.push();
 
-                float radius = Challenger.R * Math.min(40, self.tick + tickDelta) / 40f;
+                float radius = Challenge.R * Math.min(40, self.tick + tickDelta) / 40f;
 
                 if (ConfigEntries.accessibilityChallengeBarrier) {
                     matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(self.tick + tickDelta));

@@ -17,7 +17,7 @@ import net.lyof.phantasm.entity.client.renderer.ChallengeRuneBlockEntityRenderer
 import net.lyof.phantasm.entity.client.renderer.ChoralArrowRenderer;
 import net.lyof.phantasm.entity.client.renderer.CrystieRenderer;
 import net.lyof.phantasm.entity.custom.BehemothEntity;
-import net.lyof.phantasm.entity.extra.Challenger;
+import net.lyof.phantasm.entity.access.Challenger;
 import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.particle.custom.ZzzParticle;
 import net.lyof.phantasm.setup.ModPackets;

@@ -1,5 +1,8 @@
 package net.lyof.phantasm.config;
 
+import net.lyof.phantasm.block.challenge.Challenge;
+import net.lyof.phantasm.entity.access.Challenger;
+
 import java.util.List;
 
 public class ConfigEntries {
@@ -32,6 +35,7 @@ public class ConfigEntries {
         noEndermenFight = new ConfigEntry<>("gameplay.dragon.no_pesky_endermen", false).get();
 
         accessibilityChallengeBarrier = new ConfigEntry<>("gameplay.challenge.accessibility_barrier", false).get();
+        Challenge.R = new ConfigEntry<>("gameplay.challenge.radius", 16).get() - 0.01f;
 
         elytraBoostAdvancement = new ConfigEntry<>("equipment.elytra.boost_advancement", "minecraft:end/kill_dragon").get();
         elytraChallenge = new ConfigEntry<>("equipment.elytra.has_challenge", true).get();

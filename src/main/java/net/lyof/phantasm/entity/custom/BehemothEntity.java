@@ -3,7 +3,7 @@ package net.lyof.phantasm.entity.custom;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.lyof.phantasm.entity.animation.BehemothAnimation;
+import net.lyof.phantasm.entity.client.animation.BehemothAnimation;
 import net.lyof.phantasm.entity.goal.BehemothAttackGoal;
 import net.lyof.phantasm.entity.goal.SleepGoal;
 import net.lyof.phantasm.entity.listener.BehemothEventListener;

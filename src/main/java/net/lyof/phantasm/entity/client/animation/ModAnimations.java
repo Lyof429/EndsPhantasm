@@ -1,4 +1,4 @@
-package net.lyof.phantasm.entity.animation;
+package net.lyof.phantasm.entity.client.animation;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

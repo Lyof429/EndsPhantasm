@@ -109,7 +109,7 @@ public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<Cha
 
         if (self.isChallengeRunning()) {
             // Sky
-            if (player instanceof Challenger challenger && challenger.isInRange()) {
+            if (player instanceof Challenger challenger && challenger.isInRange(self)) {
                 matrices.push();
 
                 float radius = Challenge.R * Math.min(40, self.tick + tickDelta) / 40f;
@@ -127,6 +127,13 @@ public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<Cha
 
                 matrices.pop();
             }
+
+            /*matrices.push();
+            matrices.scale(4, 4, 4);
+            this.blockRenderer.getModelRenderer().render(world, this.blockRenderer.getModel(state), state, pos,
+                    matrices, vertexConsumers.getBuffer(RenderLayer.getEyes(TOWER_BASE_TEXTURE)), true, world.random,
+                    state.getRenderingSeed(pos), OverlayTexture.DEFAULT_UV);
+            matrices.pop();*/
 
             /*BeaconBlockEntityRenderer.renderBeam(matrices, vertexConsumers, BeaconBlockEntityRenderer.BEAM_TEXTURE, tickDelta,
                     1, self.getWorld().getTime(), 0, BeaconBlockEntityRenderer.MAX_BEAM_HEIGHT,

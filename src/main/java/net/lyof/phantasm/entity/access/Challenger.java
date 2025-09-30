@@ -20,10 +20,15 @@ public interface Challenger {
     void setChallengeRune(ChallengeRuneBlockEntity rune);
 
     default boolean isInRange() {
-        if (this.getChallengeRune() == null) return false;
+        return this.isInRange(this.getChallengeRune());
+    }
+
+    default boolean isInRange(ChallengeRuneBlockEntity center) {
+        if (center == null) return false;
+        if (center != this.getChallengeRune()) return false;
 
         Vec3d self = this.asPlayer().getEyePos();
-        Vec3d rune = this.getChallengeRune().getPos().up((int) Challenge.R/2).toCenterPos();
+        Vec3d rune = center.getPos().up((int) Challenge.R/2).toCenterPos();
         return Math.abs(self.x - rune.x) < Challenge.R
                 && Math.abs(self.y - rune.y) < Challenge.R
                 && Math.abs(self.z - rune.z) < Challenge.R;

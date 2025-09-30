@@ -1,4 +1,4 @@
-package net.lyof.phantasm.entity.animation;
+package net.lyof.phantasm.entity.client.animation;
 
 public enum BehemothAnimation {
     IDLE(-1),

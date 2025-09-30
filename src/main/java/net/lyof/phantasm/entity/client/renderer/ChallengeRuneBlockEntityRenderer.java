@@ -1,5 +1,6 @@
 package net.lyof.phantasm.entity.client.renderer;
 
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.block.challenge.Challenge;
 import net.lyof.phantasm.block.custom.ChallengeRuneBlock;
@@ -50,6 +51,7 @@ public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<Cha
 
 
     public static final Identifier TOWER_BASE_TEXTURE = Identifier.of("minecraft", "textures/block/obsidian.png");
+    public static final Identifier RUNE_BARRIER_TEXTURE = Phantasm.makeID("textures/particle/rune_barrier.png");
 
     @Override
     public void render(ChallengeRuneBlockEntity self, float tickDelta, MatrixStack matrices,
@@ -117,7 +119,7 @@ public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<Cha
                 if (ConfigEntries.accessibilityChallengeBarrier) {
                     matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(self.tick + tickDelta));
 
-                    RenderHelper.renderCube(matrices, vertexConsumers.getBuffer(RenderLayer.getEyes(TOWER_BASE_TEXTURE)), light,
+                    RenderHelper.renderCube(matrices, vertexConsumers.getBuffer(RenderLayer.getEyes(RUNE_BARRIER_TEXTURE)), light,
                             -radius, radius + 1, -radius * 0.5f, radius * 1.5f + 1, -radius, radius + 1, true);
                 }
                 else {

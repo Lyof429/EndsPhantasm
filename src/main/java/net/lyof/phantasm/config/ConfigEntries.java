@@ -1,7 +1,6 @@
 package net.lyof.phantasm.config;
 
 import net.lyof.phantasm.block.challenge.Challenge;
-import net.lyof.phantasm.entity.access.Challenger;
 
 import java.util.List;
 

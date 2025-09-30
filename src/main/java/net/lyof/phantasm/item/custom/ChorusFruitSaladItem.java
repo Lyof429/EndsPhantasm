@@ -3,7 +3,6 @@ package net.lyof.phantasm.item.custom;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.world.ServerWorld;

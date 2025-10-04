@@ -31,12 +31,12 @@
   "block.phantasm.crystalily": "Crystalily",
 
   "item.phantasm.pream_berry": "Pream Berry",
-  "item.phantasm.pream_berry.desc": "When eaten:\n Heals some life.",
+  "item.phantasm.pream_berry.desc": "When eaten:\nHeals some life.",
   "item.phantasm.oblifruit": "Oblifruit",
-  "item.phantasm.oblifruit.desc": "When eaten:\n Has a chance to duplicate.",
+  "item.phantasm.oblifruit.desc": "When eaten:\nHas a chance to duplicate.",
 
   "item.phantasm.chorus_fruit_salad": "Chorus Fruit Salad",
-  "item.phantasm.chorus_fruit_salad.desc": "When eaten:\n Teleports in and out of the End.",
+  "item.phantasm.chorus_fruit_salad.desc": "When eaten:\nTeleports in and out of the End.",
 
   "block.phantasm.crystal_shard": "Crystal Shard",
   "block.phantasm.void_crystal_shard": "Void Crystal Shard",
@@ -46,6 +46,7 @@
   "item.phantasm.crystalline_pickaxe": "Crystalline Pickaxe",
   "item.phantasm.crystalline_axe": "Crystalline Axe",
   "item.phantasm.crystalline_hoe": "Crystalline Hoe",
+  "item.phantasm.crystalline_knife": "Crystalline Knife",
 
   "block.phantasm.crystal_block": "Crystal Block",
   "block.phantasm.crystal_tiles": "Crystal Tiles",
@@ -135,7 +136,7 @@
   "block.phantasm.dralgae": "Dralgae",
   "block.phantasm.pome": "Pome",
   "item.phantasm.pome_slice": "Pome Slice",
-  "item.phantasm.pome_slice.desc": "When eaten:\n Makes your attacks corrosive.",
+  "item.phantasm.pome_slice.desc": "When eaten:\nMakes your attacks corrosive.",
 
   "block.phantasm.cirite": "Cirite",
   "block.phantasm.cirite_iron_ore": "Cirite Iron Ore",

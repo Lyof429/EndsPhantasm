@@ -83,6 +83,8 @@ public class ModItemGroups {
                         entries.add(ModItems.CRYSTALLINE_PICKAXE);
                         entries.add(ModItems.CRYSTALLINE_AXE);
                         entries.add(ModItems.CRYSTALLINE_HOE);
+                        if (ModItems.CRYSTALLINE_KNIFE != null)
+                            entries.add(ModItems.CRYSTALLINE_KNIFE);
 
                         entries.add(ModBlocks.CRYSTAL_TILES);
                         entries.add(ModBlocks.CRYSTAL_PILLAR);

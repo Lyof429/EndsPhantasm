@@ -5,6 +5,10 @@
     "phantasm:crystalline_pickaxe",
     "phantasm:crystalline_axe",
     "phantasm:crystalline_hoe",
-    "phantasm:crystalline_sword"
+    "phantasm:crystalline_sword",
+    {
+      "id": "phantasm:crystalline_knife",
+      "required": false
+    }
   ]
 }

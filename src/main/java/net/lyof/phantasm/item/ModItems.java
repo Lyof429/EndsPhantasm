@@ -1,6 +1,7 @@
 package net.lyof.phantasm.item;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.ModEntities;
@@ -8,6 +9,7 @@ import net.lyof.phantasm.entity.custom.ChoralArrowEntity;
 import net.lyof.phantasm.item.custom.*;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.ModTags;
+import net.lyof.phantasm.setup.compat.FarmersDelightCompat;
 import net.lyof.phantasm.sound.ModSounds;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
@@ -20,6 +22,7 @@ import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
+import vectorwing.farmersdelight.common.item.KnifeItem;
 
 public class ModItems {
     public static void register() {
@@ -30,6 +33,9 @@ public class ModItems {
                 return arrowEntity;
             }
         });
+
+        if (FabricLoader.getInstance().isModLoaded("farmersdelight"))
+            FarmersDelightCompat.register();
     }
 
 
@@ -40,19 +46,21 @@ public class ModItems {
 
     public static final Item CRYSTALLINE_SHOVEL = ModRegistry.ofItem("crystalline_shovel",
             new ShovelItem(ModTiers.CRYSTALLINE, 2, -3f, new FabricItemSettings()))
-            .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED, ItemTags.SHOVELS).build();
+            .model(Models.HANDHELD).tag(ItemTags.SHOVELS).build();
     public static final Item CRYSTALLINE_PICKAXE = ModRegistry.ofItem("crystalline_pickaxe",
             new PickaxeItem(ModTiers.CRYSTALLINE, 2, -2.8f, new FabricItemSettings()))
-            .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED, ItemTags.PICKAXES).build();
+            .model(Models.HANDHELD).tag(ItemTags.PICKAXES).build();
     public static final Item CRYSTALLINE_AXE = ModRegistry.ofItem("crystalline_axe",
             new AxeItem(ModTiers.CRYSTALLINE, 7, -3f, new FabricItemSettings()))
-            .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED, ItemTags.AXES).build();
+            .model(Models.HANDHELD).tag(ItemTags.AXES).build();
     public static final Item CRYSTALLINE_HOE = ModRegistry.ofItem("crystalline_hoe",
             new HoeItem(ModTiers.CRYSTALLINE, 0, -3f, new FabricItemSettings()))
-            .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED, ItemTags.HOES).build();
+            .model(Models.HANDHELD).tag(ItemTags.HOES).build();
     public static final Item CRYSTALLINE_SWORD = ModRegistry.ofItem("crystalline_sword",
             new SwordItem(ModTiers.CRYSTALLINE, 4, -2.4f, new FabricItemSettings()))
-            .model(Models.HANDHELD).tag(ModTags.Items.XP_BOOSTED, ItemTags.SWORDS).build();
+            .model(Models.HANDHELD).tag(ItemTags.SWORDS).build();
+
+    public static Item CRYSTALLINE_KNIFE = null;
 
     /*public static final Item REALITY_BREAKER = ModRegistry.ofItem("reality_breaker",
             new RealityBreakerItem(ModTiers.RELIC, 1, -3.2f, new FabricItemSettings()))

@@ -11,9 +11,10 @@ base {
 }
 
 repositories {
-	// THESE TWO
-	//maven { url "https://maven.shedaniel.me/" }
-	//maven { url "https://maven.terraformersmc.com/releases/" }
+	maven {
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven"
+	}
 }
 
 loom {
@@ -50,15 +51,7 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	// THAT
-	//modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
-	//	exclude(group: "net.fabricmc.fabric-api")
-	//}
-
-	// Uncomment the following line to enable the deprecated Fabric API modules. 
-	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
-
-	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
+	modCompileOnly "maven.modrinth:farmers-delight-refabricated:${project.farmersdelight_version}"
 }
 
 processResources {

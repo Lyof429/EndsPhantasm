@@ -2,6 +2,7 @@ package net.lyof.phantasm.block;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBlockTags;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.custom.FacingBlock;
 import net.lyof.phantasm.block.custom.*;
@@ -175,9 +176,11 @@ public class ModBlocks {
 
     public static final Block CRYSTAL_GLASS = ModRegistry.ofBlock("crystal_glass",
             new GlassBlock(crystalGlassMaterial))
+            .tag(ConventionalBlockTags.GLASS_BLOCKS)
             .cutout().drop().build();
     public static final Block CRYSTAL_GLASS_PANE = ModRegistry.ofBlock("crystal_glass_pane",
             new PaneBlock(crystalGlassMaterial))
+            .tag(ConventionalBlockTags.GLASS_PANES)
             .cutout().model(ModRegistry.Models.PANE).drop().build();
 
     // Void Crystal Blockset
@@ -200,9 +203,11 @@ public class ModBlocks {
 
     public static final Block VOID_CRYSTAL_GLASS = ModRegistry.ofBlock("void_crystal_glass",
             new GlassBlock(crystalGlassMaterial))
+            .tag(ConventionalBlockTags.GLASS_BLOCKS)
             .cutout().drop().build();
     public static final Block VOID_CRYSTAL_GLASS_PANE = ModRegistry.ofBlock("void_crystal_glass_pane",
             new PaneBlock(crystalGlassMaterial))
+            .tag(ConventionalBlockTags.GLASS_PANES)
             .cutout().model(ModRegistry.Models.PANE).drop().build();
 
     // Crystal Redstone Components

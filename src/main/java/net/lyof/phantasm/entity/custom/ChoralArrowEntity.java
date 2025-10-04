@@ -1,5 +1,6 @@
 package net.lyof.phantasm.entity.custom;
 
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalEntityTypeTags;
 import net.lyof.phantasm.block.custom.SubwooferBlock;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.effect.ModEffects;
@@ -51,7 +52,8 @@ public class ChoralArrowEntity extends ArrowEntity {
     protected void onHit(LivingEntity target) {
         if (!this.shotByCrossbow) {
             super.onHit(target);
-            target.addStatusEffect(new StatusEffectInstance(ModEffects.CHARM, target instanceof PlayerEntity ? 20 : 40, 0));
+            if (!target.getType().isIn(ConventionalEntityTypeTags.BOSSES))
+                target.addStatusEffect(new StatusEffectInstance(ModEffects.CHARM, target instanceof PlayerEntity ? 20 : 40, 0));
         }
     }
 

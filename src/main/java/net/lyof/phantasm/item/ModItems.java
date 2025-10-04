@@ -1,6 +1,7 @@
 package net.lyof.phantasm.item;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
 import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ConfigEntries;
@@ -40,9 +41,11 @@ public class ModItems {
 
 
     public static final Item PREAM_BERRY = ModRegistry.ofItem("pream_berry",
-            new DescribedItem(new FabricItemSettings().food(ModRegistry.Foods.PREAM_BERRY))).model().build();
+            new DescribedItem(new FabricItemSettings().food(ModRegistry.Foods.PREAM_BERRY)))
+            .tag(ConventionalItemTags.FOODS).model().build();
     public static final Item OBLIFRUIT = ModRegistry.ofItem("oblifruit",
-            new DescribedItem(new FabricItemSettings().food(ModRegistry.Foods.OBLIFRUIT))).model().build();
+            new DescribedItem(new FabricItemSettings().food(ModRegistry.Foods.OBLIFRUIT)))
+            .tag(ConventionalItemTags.FOODS).model().build();
 
     public static final Item CRYSTALLINE_SHOVEL = ModRegistry.ofItem("crystalline_shovel",
             new ShovelItem(ModTiers.CRYSTALLINE, 2, -3f, new FabricItemSettings()))
@@ -78,13 +81,16 @@ public class ModItems {
     public static final Item CHORUS_FRUIT_SALAD = ModRegistry.ofItem("chorus_fruit_salad",
             new ChorusFruitSaladItem(new FabricItemSettings().food(ModRegistry.Foods.CHORUS_SALAD).recipeRemainder(Items.BOWL)
                     .maxCount(ConfigEntries.chorusSaladStack)))
+            .tag(ConventionalItemTags.FOODS)
             .model().build();
 
     public static final Item BEHEMOTH_MEAT = ModRegistry.ofItem("behemoth_meat",
             new Item(new FabricItemSettings().food(ModRegistry.Foods.BEHEMOTH_MEAT)))
+            .tag(ConventionalItemTags.FOODS)
             .model().build();
     public static final Item BEHEMOTH_STEAK = ModRegistry.ofItem("behemoth_steak",
             new Item(new FabricItemSettings().food(ModRegistry.Foods.BEHEMOTH_STEAK)))
+            .tag(ConventionalItemTags.FOODS)
             .model().build();
 
     public static final Item SHATTERED_PENDANT = ModRegistry.ofItem("shattered_pendant",
@@ -92,7 +98,8 @@ public class ModItems {
             .model().build();
 
     public static final Item POME_SLICE = ModRegistry.ofItem("pome_slice",
-            new PomeSliceItem(new FabricItemSettings().food(ModRegistry.Foods.POME_SLICE))).model().build();
+            new PomeSliceItem(new FabricItemSettings().food(ModRegistry.Foods.POME_SLICE)))
+            .tag(ConventionalItemTags.FOODS).model().build();
 
     public static final Item MUSIC_DISC_ABRUPTION = ModRegistry.ofItem("music_disc_abruption",
             new MusicDiscItem(4, ModSounds.MUSIC_DISC_ABRUPTION, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 239))

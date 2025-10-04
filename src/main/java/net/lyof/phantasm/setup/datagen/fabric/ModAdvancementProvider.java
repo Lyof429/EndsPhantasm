@@ -157,10 +157,8 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         null,
                         AdvancementFrame.CHALLENGE,
                         true, true, false)
-                .criterion("beat_challenge", PlayerGeneratesContainerLootCriterion.Conditions.create(
-                        SYNTHETIC_CHALLENGE
-                ))
+                .criterion("beat_challenge", PlayerGeneratesContainerLootCriterion.Conditions.create(SYNTHETIC_CHALLENGE))
                 .rewards(AdvancementRewards.Builder.experience(50))
-                .build(Phantasm.makeID("phantasm:beat_challenge"));
+                .build(Phantasm.makeID("beat_challenge"));
     }
 }

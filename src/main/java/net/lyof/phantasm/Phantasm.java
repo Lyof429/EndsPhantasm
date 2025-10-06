@@ -19,6 +19,7 @@ import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
 import net.lyof.phantasm.sound.ModSounds;
+import net.lyof.phantasm.util.MixinAccess;
 import net.lyof.phantasm.world.ModWorldGeneration;
 import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.lyof.phantasm.world.feature.ModFeatures;
@@ -76,6 +77,7 @@ public class Phantasm implements ModInitializer {
 	private static void registerPackets() {
 		ServerPlayNetworking.registerGlobalReceiver(ModPackets.TELEPORT_END, ((server, player, handler, buf, responseSender) -> {
 			player.notInAnyWorld = false;
+			((MixinAccess<Boolean>) player).setMixinValue(true);
 			Criteria.CHANGED_DIMENSION.trigger(player, World.END, World.OVERWORLD);
 			player.moveToWorld(server.getWorld(World.END));
 		}));

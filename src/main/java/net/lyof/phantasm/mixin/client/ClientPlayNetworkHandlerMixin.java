@@ -10,6 +10,7 @@ import net.minecraft.client.gui.screen.CreditsScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.c2s.play.ClientStatusC2SPacket;
 import net.minecraft.network.packet.s2c.play.GameStateChangeS2CPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
@@ -29,9 +30,7 @@ public class ClientPlayNetworkHandlerMixin {
     private void showBeginning(GameStateChangeS2CPacket packet, CallbackInfo ci) {
         if (packet.getReason() == GameStateChangeS2CPacket.GAME_WON && packet.getValue() == 2) {
             CreditsScreen creditsScreen = new CreditsScreen(true, () -> {
-                PacketByteBuf buf = PacketByteBufs.create();
-                buf.writeInt(this.client.player.getId());
-                ClientPlayNetworking.send(ModPackets.TELEPORT_END, buf);
+                ClientPlayNetworking.send(ModPackets.TELEPORT_END, PacketByteBufs.empty());
                 this.client.setScreen(null);
             });
             ((MixinAccess<Boolean>) creditsScreen).setMixinValue(true);

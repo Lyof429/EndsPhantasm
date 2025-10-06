@@ -3,10 +3,13 @@ package net.lyof.phantasm.mixin;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.util.MixinAccess;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.GameStateChangeS2CPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -18,9 +21,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = ServerPlayerEntity.class, priority = 1001)
-public abstract class ServerPlayerEntityMixin extends Entity {
+public abstract class ServerPlayerEntityMixin extends Entity implements MixinAccess<Boolean> {
     public ServerPlayerEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
@@ -40,6 +45,7 @@ public abstract class ServerPlayerEntityMixin extends Entity {
 
     @WrapMethod(method = "moveToWorld")
     public Entity cancelCredits(ServerWorld destination, Operation<Entity> original) {
+        Phantasm.log(this.seenBeginning);
         if (destination.getRegistryKey() == World.END && !this.seenBeginning) {
             ServerPlayerEntity self = (ServerPlayerEntity) (Object) this;
 
@@ -64,5 +70,33 @@ public abstract class ServerPlayerEntityMixin extends Entity {
         }
 
         return original.call(destination);
+    }
+
+    @Unique private static final String SEEN_BEGINNING_KEY = Phantasm.MOD_ID + "_SeenBeginning";
+
+    @Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
+    private void readData(NbtCompound nbt, CallbackInfo ci) {
+        Phantasm.log(nbt);
+        if (nbt.contains(SEEN_BEGINNING_KEY)) this.seenBeginning = nbt.getBoolean(SEEN_BEGINNING_KEY);
+    }
+
+    @Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
+    private void writeData(NbtCompound nbt, CallbackInfo ci) {
+        nbt.putBoolean(SEEN_BEGINNING_KEY, this.seenBeginning);
+    }
+
+    @Inject(method = "copyFrom", at = @At("HEAD"))
+    private void copySeenBeginning(ServerPlayerEntity oldPlayer, boolean alive, CallbackInfo ci) {
+        this.seenBeginning = ((MixinAccess<Boolean>) oldPlayer).getMixinValue();
+    }
+
+    @Override
+    public void setMixinValue(Boolean value) {
+        this.seenBeginning = value;
+    }
+
+    @Override
+    public Boolean getMixinValue() {
+        return this.seenBeginning;
     }
 }

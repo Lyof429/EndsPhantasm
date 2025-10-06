@@ -11,7 +11,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.GameStateChangeS2CPacket;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
@@ -45,7 +44,6 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
 
     @WrapMethod(method = "moveToWorld")
     public Entity cancelCredits(ServerWorld destination, Operation<Entity> original) {
-        Phantasm.log(this.seenBeginning);
         if (destination.getRegistryKey() == World.END && !this.seenBeginning) {
             ServerPlayerEntity self = (ServerPlayerEntity) (Object) this;
 
@@ -76,7 +74,6 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
 
     @Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
     private void readData(NbtCompound nbt, CallbackInfo ci) {
-        Phantasm.log(nbt);
         if (nbt.contains(SEEN_BEGINNING_KEY)) this.seenBeginning = nbt.getBoolean(SEEN_BEGINNING_KEY);
     }
 

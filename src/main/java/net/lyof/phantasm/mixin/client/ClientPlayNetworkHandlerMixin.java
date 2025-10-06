@@ -4,17 +4,10 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.util.MixinAccess;
-import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.CreditsScreen;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.c2s.play.ClientStatusC2SPacket;
 import net.minecraft.network.packet.s2c.play.GameStateChangeS2CPacket;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -39,10 +32,4 @@ public class ClientPlayNetworkHandlerMixin {
             ci.cancel();
         }
     }
-
-    /*
-    this.player.notInAnyWorld = false;
-    this.player = this.server.getPlayerManager().respawnPlayer(this.player, true);
-    Criteria.CHANGED_DIMENSION.trigger(this.player, World.END, World.OVERWORLD);
-    */
 }

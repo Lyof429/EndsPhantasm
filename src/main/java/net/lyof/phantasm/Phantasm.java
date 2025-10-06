@@ -26,7 +26,6 @@ import net.lyof.phantasm.world.feature.ModFeatures;
 import net.lyof.phantasm.world.feature.custom.tree.ModTreePlacerTypes;
 import net.lyof.phantasm.world.noise.ModDensityFunctions;
 import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;

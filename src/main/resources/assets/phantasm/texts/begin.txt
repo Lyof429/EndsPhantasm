@@ -1,5 +1,3 @@
-§2Hello, world.
-
 §3Is it the end?
 
-§2Yes. And no.
+§2Yes. And no. It reached an end, but its journey is not over.

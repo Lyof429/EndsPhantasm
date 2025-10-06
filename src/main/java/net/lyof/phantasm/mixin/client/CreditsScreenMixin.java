@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.util.MixinAccess;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.LogoDrawer;
@@ -41,7 +40,7 @@ public abstract class CreditsScreenMixin implements MixinAccess<Boolean> {
             this.centeredLines = new IntOpenHashSet();
             this.load("phantasm:texts/begin.txt", this::readPoem);
 
-            this.creditsHeight = this.credits.size() * 12 - 100;
+            this.creditsHeight = this.credits.size() * 12 - 200;
             ci.cancel();
         }
     }

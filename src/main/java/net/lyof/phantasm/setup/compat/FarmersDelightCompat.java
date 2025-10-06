@@ -5,9 +5,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.item.ModTiers;
 import net.lyof.phantasm.setup.ModRegistry;
-import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
-import vectorwing.farmersdelight.FarmersDelight;
 import vectorwing.farmersdelight.common.item.KnifeItem;
 import vectorwing.farmersdelight.common.registry.ModCreativeTabs;
 

@@ -6,7 +6,6 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.Decoder;
-import net.lyof.phantasm.world.structure.IdentifierAware;
 import net.lyof.phantasm.world.structure.VariantStructure;
 import net.minecraft.registry.*;
 import net.minecraft.resource.ResourceFinder;
@@ -29,10 +28,6 @@ public class RegistryLoaderMixin {
                                          @Local Identifier identifier, @Local JsonElement json, @Local ResourceFinder resourceFinder) {
 
         R result = original.call(instance, allowPartial, onError);
-
-        if (result instanceof IdentifierAware aware) {
-            aware.setIdentifier(resourceFinder.toResourceId(identifier));
-        }
 
         if (registryKey.equals(RegistryKeys.STRUCTURE)) {
             if (result instanceof VariantStructure structure && json.getAsJsonObject().has("variant")) {

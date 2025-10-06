@@ -9,7 +9,6 @@ import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.custom.ChoralArrowEntity;
 import net.lyof.phantasm.item.custom.*;
 import net.lyof.phantasm.setup.ModRegistry;
-import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.setup.compat.FarmersDelightCompat;
 import net.lyof.phantasm.sound.ModSounds;
 import net.minecraft.block.DispenserBlock;
@@ -23,7 +22,6 @@ import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
-import vectorwing.farmersdelight.common.item.KnifeItem;
 
 public class ModItems {
     public static void register() {

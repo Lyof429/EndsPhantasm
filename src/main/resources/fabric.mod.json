@@ -28,6 +28,7 @@
 	"mixins": [
 		"phantasm.mixins.json"
 	],
+	"accessWidener" : "phantasm.accesswidener",
 	"depends": {
 		"fabricloader": ">=0.14.22",
 		"minecraft": "~1.20.1",

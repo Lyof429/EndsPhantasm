@@ -1,6 +1,7 @@
 package net.lyof.phantasm;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
@@ -14,6 +15,7 @@ import net.lyof.phantasm.item.ModItemGroups;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.setup.ModDataGenerator;
+import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
 import net.lyof.phantasm.sound.ModSounds;
@@ -22,8 +24,11 @@ import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.lyof.phantasm.world.feature.ModFeatures;
 import net.lyof.phantasm.world.feature.custom.tree.ModTreePlacerTypes;
 import net.lyof.phantasm.world.noise.ModDensityFunctions;
+import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,10 +65,20 @@ public class Phantasm implements ModInitializer {
 		ModDensityFunctions.register();
 		ModWorldGeneration.register();
 
+		registerPackets();
+
 		if (!FabricLoader.getInstance().isDevelopmentEnvironment()) ModRegistry.clear();
 
 		FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(container -> ResourceManagerHelper.registerBuiltinResourcePack(makeID("phantasm_connected_glass"),
 				container, Text.literal("Phantasm Connected Glass"), ResourcePackActivationType.DEFAULT_ENABLED));
+	}
+
+	private static void registerPackets() {
+		ServerPlayNetworking.registerGlobalReceiver(ModPackets.TELEPORT_END, ((server, player, handler, buf, responseSender) -> {
+			player.notInAnyWorld = false;
+			Criteria.CHANGED_DIMENSION.trigger(player, World.END, World.OVERWORLD);
+			player.moveToWorld(server.getWorld(World.END));
+		}));
 	}
 
 	public static Identifier makeID(String id) {

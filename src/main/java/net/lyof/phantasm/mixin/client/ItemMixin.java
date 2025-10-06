@@ -4,6 +4,7 @@ import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;

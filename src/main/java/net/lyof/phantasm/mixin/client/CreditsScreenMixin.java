@@ -1,6 +1,7 @@
 package net.lyof.phantasm.mixin.client;
 
 import com.google.common.collect.Lists;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
@@ -50,7 +51,7 @@ public abstract class CreditsScreenMixin implements MixinAccess<Boolean> {
         return !this.beginningCredits;
     }
 
-    @ModifyConstant(method = "render", constant = @Constant(intValue = 100))
+    @ModifyExpressionValue(method = "render", at = @At(value = "CONSTANT", args = "intValue=100"))
     private int removeLogoSpace(int constant) {
         if (this.beginningCredits) return 0;
         return constant;

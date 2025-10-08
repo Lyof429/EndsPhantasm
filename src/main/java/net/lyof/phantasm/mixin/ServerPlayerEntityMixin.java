@@ -3,6 +3,7 @@ package net.lyof.phantasm.mixin;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.util.MixinAccess;
 import net.minecraft.advancement.Advancement;
@@ -84,7 +85,7 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
 
     @Inject(method = "copyFrom", at = @At("HEAD"))
     private void copySeenBeginning(ServerPlayerEntity oldPlayer, boolean alive, CallbackInfo ci) {
-        this.seenBeginning = ((MixinAccess<Boolean>) oldPlayer).getMixinValue();
+        this.seenBeginning = ((MixinAccess<Boolean>) oldPlayer).getMixinValue() && !FabricLoader.getInstance().isDevelopmentEnvironment();
     }
 
     @Override

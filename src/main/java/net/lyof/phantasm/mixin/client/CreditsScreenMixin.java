@@ -41,7 +41,7 @@ public abstract class CreditsScreenMixin implements MixinAccess<Boolean> {
             this.centeredLines = new IntOpenHashSet();
             this.load("phantasm:texts/begin.txt", this::readPoem);
 
-            this.creditsHeight = this.credits.size() * 12 - 200;
+            this.creditsHeight = this.credits.size() * 12 - 250;
             ci.cancel();
         }
     }

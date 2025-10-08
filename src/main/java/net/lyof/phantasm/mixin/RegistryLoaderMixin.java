@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import java.util.Map;
 import java.util.function.Consumer;
 
+@SuppressWarnings("all")
 @Mixin(RegistryLoader.class)
 public class RegistryLoaderMixin {
     @WrapOperation(method = "load(Lnet/minecraft/registry/RegistryOps$RegistryInfoGetter;Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/registry/MutableRegistry;Lcom/mojang/serialization/Decoder;Ljava/util/Map;)V",

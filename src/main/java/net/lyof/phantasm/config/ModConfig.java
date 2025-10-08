@@ -162,6 +162,9 @@ public class ModConfig {
   "gameplay": {
     // Should End portals teleport to the outer islands instead of the Dragon's
     "outer_end_in_gameloop": true,
+    // Should a credit like cutscene be shown the first time a player enters the End to give hints about the new progression
+    //   Will have no effect if outer_end_in_gameloop is set to false
+    "cutscene": true,
     // Should the End be rendered dark (like if it were actually night)
     "dark_end": false,
     

@@ -5,6 +5,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.util.MixinAccess;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
@@ -46,16 +47,20 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
     @WrapMethod(method = "moveToWorld")
     public Entity cancelCredits(ServerWorld destination, Operation<Entity> original) {
         if (destination.getRegistryKey() == World.END && !this.seenBeginning) {
-            ServerPlayerEntity self = (ServerPlayerEntity) (Object) this;
+            this.seenBeginning = true;
 
-            self.detach();
-            this.getServerWorld().removePlayer(self, RemovalReason.CHANGED_DIMENSION);
-            if (!self.notInAnyWorld) {
-                self.notInAnyWorld = true;
-                self.networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.GAME_WON, 2));
-                this.seenBeginning = true;
+            if (ConfigEntries.beginCutscene) {
+                ServerPlayerEntity self = (ServerPlayerEntity) (Object) this;
+
+                self.detach();
+                this.getServerWorld().removePlayer(self, RemovalReason.CHANGED_DIMENSION);
+                if (!self.notInAnyWorld) {
+                    self.notInAnyWorld = true;
+                    self.networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.GAME_WON, 2));
+                }
+
+                return this;
             }
-            return this;
         }
 
         Advancement advancement = this.getServerWorld().getServer().getAdvancementLoader().get(CREDITS_ADVANCEMENT);

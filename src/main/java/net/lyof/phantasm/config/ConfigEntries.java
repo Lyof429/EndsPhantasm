@@ -25,6 +25,7 @@ public class ConfigEntries {
         extraSpiresHeight = new ConfigEntry<>("world_gen.end_spires.extra_height", 0).get();
 
         outerEndIntegration = new ConfigEntry<>("gameplay.outer_end_in_gameloop", true).get();
+        beginCutscene = outerEndIntegration && new ConfigEntry<>("gameplay.cutscene", true).get();
         darkEnd = new ConfigEntry<>("gameplay.dark_end", false).get();
 
         behemothAggroRange = new ConfigEntry<>("gameplay.behemoth.aggro_range", 6).get();
@@ -68,6 +69,7 @@ public class ConfigEntries {
     public static int extraSpiresHeight;
 
     public static boolean outerEndIntegration;
+    public static boolean beginCutscene;
     public static boolean darkEnd;
 
     public static int behemothAggroRange;

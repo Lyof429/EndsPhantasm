@@ -25,7 +25,6 @@ import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.lyof.phantasm.world.feature.ModFeatures;
 import net.lyof.phantasm.world.feature.custom.tree.ModTreePlacerTypes;
 import net.lyof.phantasm.world.noise.ModDensityFunctions;
-import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -77,7 +76,6 @@ public class Phantasm implements ModInitializer {
 		ServerPlayNetworking.registerGlobalReceiver(ModPackets.TELEPORT_END, ((server, player, handler, buf, responseSender) -> {
 			player.notInAnyWorld = false;
 			((MixinAccess<Boolean>) player).setMixinValue(true);
-			Criteria.CHANGED_DIMENSION.trigger(player, World.END, World.OVERWORLD);
 			player.moveToWorld(server.getWorld(World.END));
 		}));
 	}

@@ -14,9 +14,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.io.IOException;
@@ -27,11 +25,11 @@ import java.util.List;
 public abstract class CreditsScreenMixin implements MixinAccess<Boolean> {
     @Shadow private List<OrderedText> credits;
     @Shadow private IntSet centeredLines;
+    @Shadow private int creditsHeight;
 
     @Shadow protected abstract void load(String id, CreditsScreen.CreditsReader reader);
     @Shadow protected abstract void readPoem(Reader reader) throws IOException;
 
-    @Shadow private int creditsHeight;
     @Unique private boolean beginningCredits = false;
 
     @Inject(method = "init", at = @At("HEAD"), cancellable = true)

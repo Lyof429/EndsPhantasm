@@ -73,8 +73,7 @@ public class Phantasm implements ModInitializer {
 	}
 
 	private static void registerPackets() {
-		ServerPlayNetworking.registerGlobalReceiver(ModPackets.TELEPORT_END, ((server, player, handler, buf, responseSender) -> {
-			player.notInAnyWorld = false;
+		ServerPlayNetworking.registerGlobalReceiver(ModPackets.BEGIN_CUTSCENE_ENDS, ((server, player, handler, buf, responseSender) -> {
 			((MixinAccess<Boolean>) player).setMixinValue(true);
 			player.moveToWorld(server.getWorld(World.END));
 		}));
@@ -90,6 +89,9 @@ public class Phantasm implements ModInitializer {
 	}
 
 	public static <T> T log(T message, int level) {
+		if (level == 3 && FabricLoader.getInstance().isDevelopmentEnvironment())
+			level = 1;
+
 		if (level == 0)
 			LOGGER.info("[Phantasm] {}", message);
 		else if (level == 1)

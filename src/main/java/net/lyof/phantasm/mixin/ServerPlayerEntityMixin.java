@@ -9,6 +9,7 @@ import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.util.MixinAccess;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
+import net.minecraft.block.EndPortalBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.NbtCompound;
@@ -46,18 +47,17 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
 
     @WrapMethod(method = "moveToWorld")
     public Entity cancelCredits(ServerWorld destination, Operation<Entity> original) {
+        ServerPlayerEntity self = (ServerPlayerEntity) (Object) this;
+        self.notInAnyWorld = false;
+
         if (destination.getRegistryKey() == World.END && !this.seenBeginning) {
             this.seenBeginning = true;
 
             if (ConfigEntries.beginCutscene) {
-                ServerPlayerEntity self = (ServerPlayerEntity) (Object) this;
-
                 self.detach();
                 this.getServerWorld().removePlayer(self, RemovalReason.CHANGED_DIMENSION);
-                if (!self.notInAnyWorld) {
-                    self.notInAnyWorld = true;
-                    self.networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.GAME_WON, 2));
-                }
+                self.notInAnyWorld = true;
+                self.networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.GAME_WON, 2));
 
                 return this;
             }
@@ -90,7 +90,8 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
 
     @Inject(method = "copyFrom", at = @At("HEAD"))
     private void copySeenBeginning(ServerPlayerEntity oldPlayer, boolean alive, CallbackInfo ci) {
-        this.seenBeginning = ((MixinAccess<Boolean>) oldPlayer).getMixinValue() && !FabricLoader.getInstance().isDevelopmentEnvironment();
+        this.seenBeginning = ((MixinAccess<Boolean>) oldPlayer).getMixinValue()
+                && !FabricLoader.getInstance().isDevelopmentEnvironment();
     }
 
     @Override

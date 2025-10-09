@@ -23,7 +23,7 @@ public class ClientPlayNetworkHandlerMixin {
     private void showBeginning(GameStateChangeS2CPacket packet, CallbackInfo ci) {
         if (packet.getReason() == GameStateChangeS2CPacket.GAME_WON && packet.getValue() == 2) {
             CreditsScreen creditsScreen = new CreditsScreen(true, () -> {
-                ClientPlayNetworking.send(ModPackets.TELEPORT_END, PacketByteBufs.empty());
+                ClientPlayNetworking.send(ModPackets.BEGIN_CUTSCENE_ENDS, PacketByteBufs.empty());
                 this.client.setScreen(null);
             });
             ((MixinAccess<Boolean>) creditsScreen).setMixinValue(true);

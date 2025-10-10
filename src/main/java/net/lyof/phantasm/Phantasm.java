@@ -73,10 +73,10 @@ public class Phantasm implements ModInitializer {
 	}
 
 	private static void registerPackets() {
-		ServerPlayNetworking.registerGlobalReceiver(ModPackets.BEGIN_CUTSCENE_ENDS, ((server, player, handler, buf, responseSender) -> {
+		ServerPlayNetworking.registerGlobalReceiver(ModPackets.BEGIN_CUTSCENE_ENDS, (server, player, handler, buf, responseSender) -> {
 			((MixinAccess<Boolean>) player).setMixinValue(true);
 			player.moveToWorld(server.getWorld(World.END));
-		}));
+		});
 	}
 
 	public static Identifier makeID(String id) {

@@ -43,7 +43,6 @@
     "defaultRequire": 1
   },
   "client": [
-    "client.ClientPlayNetworkHandlerMixin",
     "client.CreditsScreenMixin",
     "client.DimensionEffectsMixin",
     "client.InGameHudMixin",

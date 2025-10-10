@@ -3,9 +3,12 @@ package net.lyof.phantasm.mixin;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
+import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.util.MixinAccess;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
@@ -57,7 +60,7 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
                 self.detach();
                 this.getServerWorld().removePlayer(self, RemovalReason.CHANGED_DIMENSION);
                 self.notInAnyWorld = true;
-                self.networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.GAME_WON, 2));
+                ServerPlayNetworking.send(self, ModPackets.BEGIN_CUTSCENE_STARTS, PacketByteBufs.empty());
 
                 return this;
             }

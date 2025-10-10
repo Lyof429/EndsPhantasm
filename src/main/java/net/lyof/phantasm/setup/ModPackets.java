@@ -9,5 +9,6 @@ public class ModPackets {
     public static final Identifier CHALLENGE_STARTS = Phantasm.makeID("challenge_starts");
     public static final Identifier CHALLENGE_ENDS = Phantasm.makeID("challenge_ends");
 
+    public static final Identifier BEGIN_CUTSCENE_STARTS = Phantasm.makeID("begin_cutscene_starts");
     public static final Identifier BEGIN_CUTSCENE_ENDS = Phantasm.makeID("begin_cutscene_ends");
 }

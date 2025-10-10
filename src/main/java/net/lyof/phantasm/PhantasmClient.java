@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.lyof.phantasm.block.ModBlockEntities;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.lyof.phantasm.entity.ModEntities;
@@ -23,7 +24,9 @@ import net.lyof.phantasm.particle.custom.ZzzParticle;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.sound.ModSounds;
+import net.lyof.phantasm.util.MixinAccess;
 import net.minecraft.block.Block;
+import net.minecraft.client.gui.screen.CreditsScreen;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.entity.Entity;
@@ -97,6 +100,18 @@ public class PhantasmClient implements ClientModInitializer {
 
                     client.worldRenderer.playSong(null, pos);
                 }
+            });
+        });
+
+        ClientPlayNetworking.registerGlobalReceiver(ModPackets.BEGIN_CUTSCENE_STARTS, (client, handler, buf, responseSender) -> {
+            client.execute(() -> {
+                CreditsScreen creditsScreen = new CreditsScreen(true, () -> {
+                    ClientPlayNetworking.send(ModPackets.BEGIN_CUTSCENE_ENDS, PacketByteBufs.empty());
+                    client.setScreen(null);
+                });
+                ((MixinAccess<Boolean>) creditsScreen).setMixinValue(true);
+
+                client.setScreen(creditsScreen);
             });
         });
     }

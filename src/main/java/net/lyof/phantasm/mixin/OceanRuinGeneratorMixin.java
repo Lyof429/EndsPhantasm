@@ -23,10 +23,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(OceanRuinGenerator.class)
 public class OceanRuinGeneratorMixin {
-    @Unique private static final Identifier[] WARM_RUINS = new Identifier[]{Phantasm.makeID("acidburnt_ruin/warm_1"), Phantasm.makeID("acidburnt_ruin/warm_2"), Phantasm.makeID("acidburnt_ruin/warm_3"), Phantasm.makeID("acidburnt_ruin/warm_4"), Phantasm.makeID("acidburnt_ruin/warm_5"), Phantasm.makeID("acidburnt_ruin/warm_6"), Phantasm.makeID("acidburnt_ruin/warm_7"), Phantasm.makeID("acidburnt_ruin/warm_8")};
-    @Unique private static final Identifier[] CRACKED_RUINS = new Identifier[]{Phantasm.makeID("acidburnt_ruin/cracked_1"), Phantasm.makeID("acidburnt_ruin/cracked_2"), Phantasm.makeID("acidburnt_ruin/cracked_3"), Phantasm.makeID("acidburnt_ruin/cracked_4"), Phantasm.makeID("acidburnt_ruin/cracked_5"), Phantasm.makeID("acidburnt_ruin/cracked_6"), Phantasm.makeID("acidburnt_ruin/cracked_7"), Phantasm.makeID("acidburnt_ruin/cracked_8")};
-    @Unique private static final Identifier[] BIG_WARM_RUINS = new Identifier[]{Phantasm.makeID("acidburnt_ruin/big_warm_4"), Phantasm.makeID("acidburnt_ruin/big_warm_5"), Phantasm.makeID("acidburnt_ruin/big_warm_6"), Phantasm.makeID("acidburnt_ruin/big_warm_7")};
-
+    @Unique private static final Identifier[] PIECES = new Identifier[]{
+            Phantasm.makeID("acidburnt_ruin/sulphurs_1"),
+            Phantasm.makeID("acidburnt_ruin/sulphurs_2"),
+            Phantasm.makeID("acidburnt_ruin/sulphurs_3")};
 
     @Inject(method = "addPieces(Lnet/minecraft/structure/StructureTemplateManager;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/BlockRotation;Lnet/minecraft/structure/StructurePiecesHolder;Lnet/minecraft/util/math/random/Random;Lnet/minecraft/world/gen/structure/OceanRuinStructure;ZF)V",
             at = @At("HEAD"), cancellable = true)
@@ -35,9 +35,8 @@ public class OceanRuinGeneratorMixin {
                                          float integrity, CallbackInfo ci) {
 
         if (structure instanceof VariantStructure variant && variant.getVariant().equals("acidburnt")) {
-            holder.addPiece(new OceanRuinGenerator.Piece(manager, Util.getRandom(WARM_RUINS, random), pos, rotation, integrity, structure.biomeTemperature, large));
-            holder.addPiece(new OceanRuinGenerator.Piece(manager, Util.getRandom(CRACKED_RUINS, random), pos, rotation, 0.8F, structure.biomeTemperature, large));
-            holder.addPiece(new OceanRuinGenerator.Piece(manager, Util.getRandom(BIG_WARM_RUINS, random), pos, rotation, 0.8F, structure.biomeTemperature, large));
+            for (int i = 0; i < random.nextBetween(2, 5); i++)
+                holder.addPiece(new OceanRuinGenerator.Piece(manager, Util.getRandom(PIECES, random), pos, rotation, 0.95f, structure.biomeTemperature, large));
 
             ci.cancel();
         }

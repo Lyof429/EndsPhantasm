@@ -17,7 +17,7 @@
       "entity": "minecraft:vex",
       "attributes": {
         "minecraft:generic.max_health": 2,
-        "minecraft:generic.attack_damage": 2
+        "minecraft:generic.attack_damage": 1
       }
     }
   ]

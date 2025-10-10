@@ -8,8 +8,7 @@
       "weight": 10,
       "entity": "minecraft:endermite",
       "attributes": {
-        "minecraft:generic.max_health": 4,
-        "minecraft:generic.attack_damage": 2
+        "minecraft:generic.max_health": 4
       }
     }
   ]

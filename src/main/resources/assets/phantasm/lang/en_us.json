@@ -164,8 +164,10 @@
   "item.minecraft.splash_potion.effect.corrosion": "Splash Potion of Corrosion",
   "item.minecraft.lingering_potion.effect.corrosion": "Lingering Potion of Corrosion",
   "effect.phantasm.corrosion": "Corrosion",
+  "effect.phantasm.corrosion.description": "Increases damage taken by 20% per level.",
 
   "effect.phantasm.charm": "Charm",
+  "effect.phantasm.charm.description": "Entirely stuns the target, preventing movement, attacks, item usage and head rotation.",
 
 
 

@@ -1,52 +1,15 @@
 package net.lyof.phantasm.world.structure.custom;
 
-import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.world.structure.ModStructureTypes;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ChestBlock;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.ChestBlockEntity;
-import net.minecraft.entity.EntityData;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.mob.DrownedEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.loot.LootTables;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.structure.*;
-import net.minecraft.structure.processor.BlockIgnoreStructureProcessor;
-import net.minecraft.structure.processor.BlockRotStructureProcessor;
-import net.minecraft.structure.processor.StructureProcessor;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
+import net.lyof.phantasm.world.structure.ModStructures;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockBox;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.Heightmap;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.StructureAccessor;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.structure.Structure;
+import net.minecraft.world.gen.structure.OceanRuinStructure;
 import net.minecraft.world.gen.structure.StructureType;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
-public class EndRuinStructure extends Structure {
+public class EndRuinStructure extends OceanRuinStructure {
     public static final Codec<EndRuinStructure> CODEC = RecordCodecBuilder.create(
             instance -> instance.group(configCodecBuilder(instance),
                     Identifier.CODEC.listOf().fieldOf("pieces").forGetter(structure -> structure.pieces)
@@ -56,21 +19,15 @@ public class EndRuinStructure extends Structure {
     public final List<Identifier> pieces;
 
     public EndRuinStructure(Config config, List<Identifier> pieces) {
-        super(config);
+        super(config, BiomeTemperature.WARM, 0.8f, 1);
         this.pieces = pieces;
     }
 
     @Override
     public StructureType<?> getType() {
-        return ModStructureTypes.END_RUINS;
+        return ModStructures.END_RUIN;
     }
 
-    @Override
-    public Optional<StructurePosition> getStructurePosition(Context context) {
-        return getStructurePosition(context, Heightmap.Type.OCEAN_FLOOR_WG, (collector) -> {
-            //this.addPieces(collector, context);
-        });
-    }
 /*
     private void addPieces(StructurePiecesCollector collector, Structure.Context context) {
         BlockPos blockPos = new BlockPos(context.chunkPos().getStartX(), 90, context.chunkPos().getStartZ());

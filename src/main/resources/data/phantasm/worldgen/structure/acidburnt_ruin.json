@@ -1,7 +1,10 @@
 {
-  "type": "minecraft:ocean_ruin",
-  "biome_temp": "cold",
-  "variant": "acidburnt",
+  "type": "phantasm:end_ruin",
+  "pieces": [
+    "phantasm:acidburnt_ruin/sulphurs_1",
+    "phantasm:acidburnt_ruin/sulphurs_2",
+    "phantasm:acidburnt_ruin/sulphurs_3"
+  ],
   "biomes": "#phantasm:is_acidburnt_abysses",
   "cluster_probability": 1,
   "large_probability": 0.8,

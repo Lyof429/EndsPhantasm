@@ -1,23 +1,14 @@
 package net.lyof.phantasm.mixin;
 
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.setup.ModTags;
-import net.lyof.phantasm.world.structure.VariantStructure;
+import net.lyof.phantasm.world.structure.custom.EndRuinStructure;
 import net.lyof.phantasm.world.structure.processor.RandomReplaceStructureProcessor;
 import net.minecraft.structure.*;
-import net.minecraft.structure.processor.BlockIgnoreStructureProcessor;
-import net.minecraft.structure.processor.BlockRotStructureProcessor;
-import net.minecraft.structure.processor.RuleStructureProcessor;
-import net.minecraft.structure.processor.StructureProcessorRule;
-import net.minecraft.structure.rule.RuleTest;
-import net.minecraft.structure.rule.TagMatchRuleTest;
-import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
@@ -42,10 +33,10 @@ import java.util.List;
 
 @Mixin(OceanRuinGenerator.class)
 public class OceanRuinGeneratorMixin {
-    @Unique private static final Identifier[] PIECES = new Identifier[]{
+    /*@Unique private static final Identifier[] PIECES = new Identifier[]{
             Phantasm.makeID("acidburnt_ruin/sulphurs_1"),
             Phantasm.makeID("acidburnt_ruin/sulphurs_2"),
-            Phantasm.makeID("acidburnt_ruin/sulphurs_3")};
+            Phantasm.makeID("acidburnt_ruin/sulphurs_3")};*/
 
     @Inject(method = "addPieces(Lnet/minecraft/structure/StructureTemplateManager;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/BlockRotation;Lnet/minecraft/structure/StructurePiecesHolder;Lnet/minecraft/util/math/random/Random;Lnet/minecraft/world/gen/structure/OceanRuinStructure;ZF)V",
             at = @At("HEAD"), cancellable = true)
@@ -53,9 +44,9 @@ public class OceanRuinGeneratorMixin {
                                          StructurePiecesHolder holder, Random random, OceanRuinStructure structure, boolean large,
                                          float integrity, CallbackInfo ci) {
 
-        if (structure instanceof VariantStructure variant && variant.getVariant().equals("acidburnt")) {
+        if (structure instanceof EndRuinStructure ruin) {
             for (int i = 0; i < random.nextBetween(2, 5); i++)
-                holder.addPiece(new OceanRuinGenerator.Piece(manager, Util.getRandom(PIECES, random), pos, rotation, -0.95f, structure.biomeTemperature, large));
+                holder.addPiece(new OceanRuinGenerator.Piece(manager, (Identifier) Util.getRandom(ruin.pieces.toArray(), random), pos, rotation, -0.95f, structure.biomeTemperature, large));
 
             ci.cancel();
         }
@@ -63,8 +54,6 @@ public class OceanRuinGeneratorMixin {
 
     @Mixin(OceanRuinGenerator.Piece.class)
     public abstract static class PieceMixin extends SimpleStructurePiece {
-        @Shadow @Final private float integrity;
-
         public PieceMixin(StructurePieceType type, int length, StructureTemplateManager structureTemplateManager, Identifier id, String template, StructurePlacementData placementData, BlockPos pos) {
             super(type, length, structureTemplateManager, id, template, placementData, pos);
         }

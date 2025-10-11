@@ -26,6 +26,7 @@ import net.lyof.phantasm.world.feature.ModFeatures;
 import net.lyof.phantasm.world.feature.custom.tree.ModTreePlacerTypes;
 import net.lyof.phantasm.world.noise.ModDensityFunctions;
 import net.lyof.phantasm.world.structure.ModProcessorTypes;
+import net.lyof.phantasm.world.structure.ModStructures;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -64,6 +65,7 @@ public class Phantasm implements ModInitializer {
 		ModFeatures.register();
 		ModDensityFunctions.register();
 		ModProcessorTypes.register();
+		ModStructures.register();
 		ModWorldGeneration.register();
 
 		registerPackets();

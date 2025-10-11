@@ -2,7 +2,7 @@ package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
 import net.lyof.phantasm.setup.ModTags;
-import net.lyof.phantasm.world.feature.custom.config.DralgaeFeatureConfig;
+import net.lyof.phantasm.world.feature.config.DralgaeFeatureConfig;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;

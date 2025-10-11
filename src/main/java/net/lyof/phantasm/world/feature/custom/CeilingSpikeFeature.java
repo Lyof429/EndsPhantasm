@@ -2,7 +2,7 @@ package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
 import net.lyof.phantasm.setup.ModTags;
-import net.lyof.phantasm.world.feature.custom.config.BoulderFeatureConfig;
+import net.lyof.phantasm.world.feature.config.BoulderFeatureConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;

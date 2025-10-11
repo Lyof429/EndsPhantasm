@@ -1,4 +1,4 @@
-package net.lyof.phantasm.world.feature.custom.config;
+package net.lyof.phantasm.world.feature.config;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

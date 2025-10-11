@@ -9,7 +9,6 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin(OceanRuinStructure.class)
 public class OceanRuinStructureMixin implements VariantStructure {
     @Unique private String variant = "";
-    @Unique private Identifier id = null;
 
     @Override
     public void setVariant(String value) {

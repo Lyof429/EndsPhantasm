@@ -1,6 +1,13 @@
 {
   "type": "phantasm:end_ruin",
   "pieces": [
+    "phantasm:acidburnt_ruin/cube_altar",
+    "phantasm:acidburnt_ruin/enderman_altar",
+    "phantasm:acidburnt_ruin/garden",
+    "phantasm:acidburnt_ruin/large_house",
+    "phantasm:acidburnt_ruin/medium_house",
+    "phantasm:acidburnt_ruin/small_house",
+    "phantasm:acidburnt_ruin/small_pavillion",
     "phantasm:acidburnt_ruin/sulphurs_1",
     "phantasm:acidburnt_ruin/sulphurs_2",
     "phantasm:acidburnt_ruin/sulphurs_3"
@@ -9,5 +16,6 @@
   "cluster_probability": 1,
   "large_probability": 0.8,
   "spawn_overrides": {},
-  "step": "surface_structures"
+  "step": "surface_structures",
+  "terrain_adaption": "beard_thin"
 }

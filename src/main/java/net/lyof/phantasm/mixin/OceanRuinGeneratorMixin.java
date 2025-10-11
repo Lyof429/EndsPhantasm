@@ -33,11 +33,6 @@ import java.util.List;
 
 @Mixin(OceanRuinGenerator.class)
 public class OceanRuinGeneratorMixin {
-    /*@Unique private static final Identifier[] PIECES = new Identifier[]{
-            Phantasm.makeID("acidburnt_ruin/sulphurs_1"),
-            Phantasm.makeID("acidburnt_ruin/sulphurs_2"),
-            Phantasm.makeID("acidburnt_ruin/sulphurs_3")};*/
-
     @Inject(method = "addPieces(Lnet/minecraft/structure/StructureTemplateManager;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/BlockRotation;Lnet/minecraft/structure/StructurePiecesHolder;Lnet/minecraft/util/math/random/Random;Lnet/minecraft/world/gen/structure/OceanRuinStructure;ZF)V",
             at = @At("HEAD"), cancellable = true)
     private static void addVariantPieces(StructureTemplateManager manager, BlockPos pos, BlockRotation rotation,
@@ -45,8 +40,8 @@ public class OceanRuinGeneratorMixin {
                                          float integrity, CallbackInfo ci) {
 
         if (structure instanceof EndRuinStructure ruin) {
-            for (int i = 0; i < random.nextBetween(2, 5); i++)
-                holder.addPiece(new OceanRuinGenerator.Piece(manager, (Identifier) Util.getRandom(ruin.pieces.toArray(), random), pos, rotation, -0.95f, structure.biomeTemperature, large));
+            //for (int i = 0; i < random.nextBetween(2, 5); i++)
+            holder.addPiece(new OceanRuinGenerator.Piece(manager, (Identifier) Util.getRandom(ruin.pieces.toArray(), random), pos, rotation, -0.95f, structure.biomeTemperature, large));
 
             ci.cancel();
         }

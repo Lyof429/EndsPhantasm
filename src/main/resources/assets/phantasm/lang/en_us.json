@@ -163,6 +163,7 @@
   "item.minecraft.potion.effect.corrosion": "Potion of Corrosion",
   "item.minecraft.splash_potion.effect.corrosion": "Splash Potion of Corrosion",
   "item.minecraft.lingering_potion.effect.corrosion": "Lingering Potion of Corrosion",
+  "item.minecraft.tipped_arrow.effect.corrosion": "Arrow of Corrosion",
   "effect.phantasm.corrosion": "Corrosion",
   "effect.phantasm.corrosion.description": "Increases damage taken by 20% per level.",
 

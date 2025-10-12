@@ -58,9 +58,9 @@ public abstract class InGameHudMixin {
                                       Operation<Void> original, @Local(ordinal = 2) int p) {
 
         if (this.getCameraPlayer() instanceof Corrosive corrosive && corrosive.isCorrosive()) {
-            /*if (texture.equals(VANILLA_WIDGETS) && u == 0 && v == 22)
+            if (texture.equals(VANILLA_WIDGETS) && u == 0 && v == 22)
                 instance.drawTexture(CORROSION_HOTBAR, x - 4, y - 4, 0, 0, 32, 32, 32, 32);
-            else */if (texture.equals(VANILLA_ICONS) && u == 18 && v == 112 - p)
+            else if (texture.equals(VANILLA_ICONS) && u == 18 && v == 112 - p)
                 instance.drawTexture(CORROSION_ATTACK, x, y, 0, v - 94, width, height, 32, 32);
 
             else original.call(instance, texture, x, y, u, v, width, height);

@@ -32,8 +32,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 5,
-                "min": 2
+                "max": 9,
+                "min": 4
               },
               "function": "minecraft:set_count"
             }
@@ -72,6 +72,22 @@
           ],
           "name": "minecraft:bread",
           "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 4,
+                "min": 2
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "phantasm:choral_fan",
+          "weight": 5
         }
       ],
       "rolls": {
@@ -85,7 +101,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 3,
           "functions": [
             {
               "add": false,
@@ -101,7 +116,6 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 2,
           "functions": [
             {
               "add": false,
@@ -153,13 +167,13 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 3,
-                "min": 1
+                "max": 4,
+                "min": 2
               },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "phantasm:choral_fan",
+          "name": "phantasm:choral_arrow",
           "weight": 5
         },
         {
@@ -176,7 +190,7 @@
             }
           ],
           "name": "minecraft:iron_ingot",
-          "weight": 2
+          "weight": 3
         }
       ],
       "rolls": {

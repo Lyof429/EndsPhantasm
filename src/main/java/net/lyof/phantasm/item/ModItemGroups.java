@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.setup.ModRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
@@ -150,6 +151,10 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CHALLENGE_RUNE);
                         entries.add(ModItems.SHATTERED_PENDANT);
 
+                        Phantasm.log("Phantasm item group here" + ModItems.EGGS_NIHILO + " " + ModRegistry.Foods.EGGS_NIHILO
+                                + " " + ModItems.CRYSTALLINE_KNIFE);
+                        entries.add(ModItems.EGGS_NIHILO);
+
                         //entries.add(ModItems.REALITY_BREAKER);
 
                         //for (Item item : ModRegistry.ITEMS)
@@ -174,6 +179,8 @@ public class ModItemGroups {
             entries.add(ModItems.BEHEMOTH_STEAK);
 
             entries.add(ModItems.POME_SLICE);
+
+            entries.add(ModItems.EGGS_NIHILO);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             entries.addAfter(Items.FLOWERING_AZALEA_LEAVES, ModBlocks.PREAM_LEAVES);

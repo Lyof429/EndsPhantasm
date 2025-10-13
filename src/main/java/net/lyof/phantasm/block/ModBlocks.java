@@ -1,5 +1,6 @@
 package net.lyof.phantasm.block;
 
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBlockTags;
@@ -18,11 +19,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.BlockItem;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.DyeColor;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.random.Random;
@@ -313,20 +316,20 @@ public class ModBlocks {
             .drop().build();
 
     public static final Block PREAM_SIGN = ModRegistry.ofBlock("pream_sign",
-            new SignBlock(preamPassableMaterial, PREAM), false)
+            new SignBlock(preamPassableMaterial, PREAM), null)
             .tag(BlockTags.SIGNS, BlockTags.STANDING_SIGNS, BlockTags.WALL_POST_OVERRIDE, ModTags.Blocks.PREAM_BLOCKS)
             .tool("_axe").drop(ModItems.PREAM_SIGN).build();
     public static final Block PREAM_WALL_SIGN = ModRegistry.ofBlock("pream_wall_sign",
-            new WallSignBlock(preamPassableMaterial, PREAM), false)
+            new WallSignBlock(preamPassableMaterial, PREAM), null)
             .tag(BlockTags.SIGNS, BlockTags.WALL_SIGNS, BlockTags.WALL_POST_OVERRIDE)
             .tool("_axe").drop(ModItems.PREAM_SIGN).build();
 
     public static final Block PREAM_HANGING_SIGN = ModRegistry.ofBlock("pream_hanging_sign",
-            new HangingSignBlock(preamPassableMaterial, PREAM), false)
+            new HangingSignBlock(preamPassableMaterial, PREAM), null)
             .tag(BlockTags.ALL_HANGING_SIGNS, BlockTags.CEILING_HANGING_SIGNS, ModTags.Blocks.PREAM_BLOCKS)
             .tool("_axe").build();
     public static final Block PREAM_WALL_HANGING_SIGN = ModRegistry.ofBlock("pream_wall_hanging_sign",
-            new WallHangingSignBlock(copy(preamPassableMaterial), PREAM), false)
+            new WallHangingSignBlock(copy(preamPassableMaterial), PREAM), null)
             .tag(BlockTags.ALL_HANGING_SIGNS, BlockTags.WALL_HANGING_SIGNS, ModTags.Blocks.PREAM_BLOCKS)
             .tool("_axe").build();
 
@@ -575,4 +578,9 @@ public class ModBlocks {
     public static final Block SUBWOOFER_BLOCK = ModRegistry.ofBlock("subwoofer_block",
                     new SubwooferBlock(copy(Blocks.NOTE_BLOCK).mapColor(MapColor.WHITE)))
             .tool("_axe").drop().build();
+
+
+    public static final Block EGGS_NIHILO = ModRegistry.ofBlock("eggs_nihilo",
+                    new EggsNihiloBlock(copy(Blocks.CAKE).mapColor(MapColor.BLACK).ticksRandomly()), null)
+            .build();
 }

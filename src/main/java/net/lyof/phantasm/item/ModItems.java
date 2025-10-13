@@ -3,6 +3,7 @@ package net.lyof.phantasm.item;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
 import net.fabricmc.loader.api.FabricLoader;
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.ModEntities;
@@ -106,6 +107,10 @@ public class ModItems {
     public static final Item CHORAL_ARROW = ModRegistry.ofItem("choral_arrow",
             new ChoralArrowItem(new FabricItemSettings()))
             .model().tag(ItemTags.ARROWS).build();
+
+    public static final Item EGGS_NIHILO = ModRegistry.ofItem("eggs_nihilo",
+            new BlockItem(ModBlocks.EGGS_NIHILO, new FabricItemSettings().food(ModRegistry.Foods.EGGS_NIHILO).rarity(Rarity.EPIC)))
+            .model().build();
 
 
     public static final Item CRYSTIE_SPAWN_EGG = ModRegistry.ofItem("crystie_spawn_egg",

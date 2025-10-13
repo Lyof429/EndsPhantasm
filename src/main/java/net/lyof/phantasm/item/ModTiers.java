@@ -2,15 +2,16 @@ package net.lyof.phantasm.item;
 
 import net.fabricmc.yarn.constants.MiningLevels;
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 
 public enum ModTiers implements ToolMaterial {
 
     CRYSTALLINE(MiningLevels.IRON, 612, 8f, 1f, 17,
-            Ingredient.ofItems(ModBlocks.CRYSTAL_SHARD, ModBlocks.VOID_CRYSTAL_SHARD)),
+            Ingredient.ofItems(ModBlocks.CRYSTAL_SHARD, ModBlocks.VOID_CRYSTAL_SHARD))/*,
     RELIC(MiningLevels.NETHERITE, 3145, 10f, 4f, 0,
-            Ingredient.empty())
+            Ingredient.empty())*/
     ;
 
     private final int durability;

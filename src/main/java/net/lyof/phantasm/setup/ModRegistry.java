@@ -21,14 +21,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class ModRegistry {
     public static class BlockBuilder {
-        protected BlockBuilder(Identifier id, Block block, boolean item) {
+        protected BlockBuilder(Identifier id, Block block, Supplier<Item> item) {
             this.id = id;
             this.block = Registry.register(Registries.BLOCK, id, block);
-            if (item)
-                ModRegistry.ofItem(id.getPath(), new BlockItem(block, new FabricItemSettings())).build();
+            if (item != null)
+                ModRegistry.ofItem(id.getPath(), item.get()).build();
         }
 
         public Block build() {
@@ -216,8 +218,7 @@ public class ModRegistry {
     public static class Foods {
         public static final FoodComponent PREAM_BERRY = new FoodComponent.Builder().alwaysEdible()
                 .saturationModifier(1).hunger(4)
-                .statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 1, true, false),
-                        1)
+                .statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 1, true, false), 1)
                 .build();
 
         public static final FoodComponent OBLIFRUIT = new FoodComponent.Builder()
@@ -230,18 +231,14 @@ public class ModRegistry {
 
         public static final FoodComponent BEHEMOTH_MEAT = new FoodComponent.Builder().alwaysEdible()
                 .hunger(6).saturationModifier(0.5f)
-                .statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 100, 0, true, true),
-                        1)
-                .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 1, true, true),
-                        1)
+                .statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 100, 0, true, true), 1)
+                .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 1, true, true), 1)
                 .meat()
                 .build();
 
         public static final FoodComponent BEHEMOTH_STEAK = new FoodComponent.Builder().alwaysEdible().hunger(10).saturationModifier(0.8f)
-                .statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 300, 0, true, true),
-                        1)
-                .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300, 1, true, true),
-                        1)
+                .statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 300, 0, true, true), 1)
+                .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300, 1, true, true), 1)
                 .meat()
                 .build();
 
@@ -249,14 +246,17 @@ public class ModRegistry {
                 .hunger(4).saturationModifier(1.3f)
                 .snack()
                 .build();
+
+        public static FoodComponent EGGS_NIHILO = new FoodComponent.Builder().hunger(5).saturationModifier(0.8f)
+                .build();
     }
 
 
     public static BlockBuilder ofBlock(String id, Block block) {
-        return ModRegistry.ofBlock(id, block, true);
+        return ModRegistry.ofBlock(id, block, () -> new BlockItem(block, new FabricItemSettings()));
     }
 
-    public static BlockBuilder ofBlock(String id, Block block, boolean item) {
+    public static BlockBuilder ofBlock(String id, Block block, Supplier<Item> item) {
         return new BlockBuilder(Phantasm.makeID(id), block, item);
     }
 

@@ -156,6 +156,8 @@
   "item.phantasm.choral_arrow.desc.crossbow": "Crossbow: Creates a repulsive sound wave",
   "entity.phantasm.choral_arrow": "Choral Arrow",
 
+  "block.phantasm.eggs_nihilo": "Eggs Nihilo",
+
   "item.phantasm.music_disc_abruption": "Music Disc",
   "item.phantasm.music_disc_abruption.desc": "Dylanvhs - Abruption",
   "sounds.phantasm.music_disc_abruption": "Abruption playing",

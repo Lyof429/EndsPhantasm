@@ -17,6 +17,7 @@ import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.setup.ModDataGenerator;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.setup.ModRegistry;
+import net.lyof.phantasm.setup.compat.FarmersDelightCompat;
 import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
 import net.lyof.phantasm.sound.ModSounds;
 import net.lyof.phantasm.util.MixinAccess;
@@ -42,9 +43,12 @@ public class Phantasm implements ModInitializer {
 		ModConfig.register();
 		ConfiguredData.register();
 
+		if (FabricLoader.getInstance().isModLoaded("farmersdelight"))
+			FarmersDelightCompat.setup();
+
 		ModItems.register();
-		ModItemGroups.register();
 		ModBlocks.register();
+		ModItemGroups.register();
 
 		ModEntities.register();
 		ModBlockEntities.register();

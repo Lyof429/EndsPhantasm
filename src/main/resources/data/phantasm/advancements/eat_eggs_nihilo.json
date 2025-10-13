@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:end/dragon_egg",
+  "criteria": {
+    "eat_eggs_nihilo": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "phantasm:eggs_nihilo"
+          ]
+        }
+      }
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.phantasm.eat_eggs_nihilo.desc"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "phantasm:eggs_nihilo"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.phantasm.eat_eggs_nihilo"
+    }
+  },
+  "requirements": [
+    [
+      "eat_eggs_nihilo"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}

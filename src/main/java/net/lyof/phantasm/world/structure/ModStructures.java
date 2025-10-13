@@ -5,7 +5,6 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.world.structure.custom.EndRuinStructure;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.world.gen.structure.OceanRuinStructure;
 import net.minecraft.world.gen.structure.Structure;
 import net.minecraft.world.gen.structure.StructureType;
 

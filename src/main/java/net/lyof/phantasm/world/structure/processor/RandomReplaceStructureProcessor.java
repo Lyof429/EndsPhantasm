@@ -2,10 +2,8 @@ package net.lyof.phantasm.world.structure.processor;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.world.structure.ModProcessorTypes;
 import net.minecraft.block.Block;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;

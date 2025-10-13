@@ -2,8 +2,6 @@ package net.lyof.phantasm.setup.compat;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.fabricmc.loader.api.FabricLoader;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.item.ModTiers;
 import net.lyof.phantasm.setup.ModRegistry;

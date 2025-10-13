@@ -2,7 +2,6 @@ package net.lyof.phantasm.item;
 
 import net.fabricmc.yarn.constants.MiningLevels;
 import net.lyof.phantasm.block.ModBlocks;
-import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 

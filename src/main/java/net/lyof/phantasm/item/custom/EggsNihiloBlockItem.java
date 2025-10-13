@@ -1,6 +1,5 @@
 package net.lyof.phantasm.item.custom;
 
-import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.setup.compat.FarmersDelightCompat;
 import net.minecraft.block.Block;
@@ -11,8 +10,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import vectorwing.farmersdelight.common.block.FeastBlock;
-import vectorwing.farmersdelight.common.utility.TextUtils;
 
 import java.util.List;
 

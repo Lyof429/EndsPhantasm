@@ -145,6 +145,20 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 Ingredient.ofItems(ModBlocks.POLISHED_OBSIDIAN))
                 .criterion(hasItem(ModBlocks.POLISHED_OBSIDIAN), conditionsFromItem(ModBlocks.POLISHED_OBSIDIAN))
                 .group("polished_obsidian_bricks").offerTo(exporter, Phantasm.makeID("polished_obsidian_bricks"));
+        // Polished Obisidian Pillar
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_OBSIDIAN_PILLAR, 2)
+                .pattern("O")
+                .pattern("O")
+                .input('O', ModBlocks.POLISHED_OBSIDIAN_BRICKS)
+                .criterion(hasItem(ModBlocks.POLISHED_OBSIDIAN_BRICKS), conditionsFromItem(ModBlocks.POLISHED_OBSIDIAN_BRICKS))
+                .group("polished_obsidian_pillar").offerTo(exporter, Phantasm.makeID("polished_obsidian_pillar"));
+        // Chiseled Obsidian
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHISELED_OBSIDIAN)
+                .pattern("O")
+                .pattern("O")
+                .input('O', ModBlocks.POLISHED_OBSIDIAN_BRICK_SLAB)
+                .criterion(hasItem(ModBlocks.POLISHED_OBSIDIAN_BRICK_SLAB), conditionsFromItem(ModBlocks.POLISHED_OBSIDIAN_BRICK_SLAB))
+                .group("chiseled_obsidian").offerTo(exporter, Phantasm.makeID("chiseled_obsidian"));
 
 
         // Crystal Tiles
@@ -304,14 +318,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.OBLIVION, ModBlocks.OBLIVINE);
 
         // Chorus Fruit Salad
-        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.CHORUS_FRUIT_SALAD)
-                .pattern(" P ")
-                .pattern("COC")
-                .pattern(" B ")
-                .input('P', ModItems.PREAM_BERRY)
-                .input('C', Items.CHORUS_FRUIT)
-                .input('O', ModItems.OBLIFRUIT)
-                .input('B', Items.BOWL)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.CHORUS_FRUIT_SALAD)
+                .input(ModItems.PREAM_BERRY)
+                .input(ModItems.OBLIFRUIT)
+                .input(Items.CHORUS_FRUIT, 2)
+                .input(Items.BOWL)
                 .criterion(hasItem(ModItems.PREAM_BERRY), conditionsFromItem(ModItems.PREAM_BERRY))
                 .criterion(hasItem(ModItems.OBLIFRUIT), conditionsFromItem(ModItems.OBLIFRUIT))
                 .group("chorus_fruit_salad").offerTo(exporter, Phantasm.makeID("chorus_fruit_salad"));
@@ -335,6 +346,20 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 Ingredient.ofItems(ModBlocks.CIRITE))
                 .criterion(hasItem(ModBlocks.CIRITE), conditionsFromItem(ModBlocks.CIRITE))
                 .group("cirite_bricks").offerTo(exporter, Phantasm.makeID("cirite_bricks"));
+        // Cirite Pillar
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CIRITE_PILLAR, 2)
+                .pattern("O")
+                .pattern("O")
+                .input('O', ModBlocks.CIRITE_BRICKS)
+                .criterion(hasItem(ModBlocks.CIRITE_BRICKS), conditionsFromItem(ModBlocks.CIRITE_BRICKS))
+                .group("cirite_pillar").offerTo(exporter, Phantasm.makeID("cirite_pillar"));
+        // Chiseled Cirite
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHISELED_CIRITE)
+                .pattern("O")
+                .pattern("O")
+                .input('O', ModBlocks.CIRITE_BRICK_SLAB)
+                .criterion(hasItem(ModBlocks.CIRITE_BRICK_SLAB), conditionsFromItem(ModBlocks.CIRITE_BRICK_SLAB))
+                .group("chiseled_cirite").offerTo(exporter, Phantasm.makeID("chiseled_cirite"));
 
         // Cirite Iron Ore
         offerFoodCookingRecipe(exporter, "furnace", CookingRecipeSerializer.SMELTING, 200,
@@ -393,5 +418,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input('F', ModBlocks.CHORAL_FAN)
                 .criterion(hasItem(ModBlocks.CHORAL_FAN), conditionsFromItem(ModBlocks.CHORAL_FAN))
                 .group("choral_arrow").offerTo(exporter, Phantasm.makeID("choral_arrow"));
+
+        // Eggs Nihilo
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.EGGS_NIHILO)
+                .input(ModItems.OBLIFRUIT, 5)
+                .input(Items.DRAGON_EGG)
+                .input(ModBlocks.FALLEN_STAR)
+                .input(Items.BOWL)
+                .criterion(hasItem(Items.DRAGON_EGG), conditionsFromItem(Items.DRAGON_EGG))
+                .group("eggs_nihilo").offerTo(exporter, Phantasm.makeID("eggs_nihilo"));
     }
 }

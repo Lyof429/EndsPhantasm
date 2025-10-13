@@ -151,8 +151,6 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CHALLENGE_RUNE);
                         entries.add(ModItems.SHATTERED_PENDANT);
 
-                        Phantasm.log("Phantasm item group here" + ModItems.EGGS_NIHILO + " " + ModRegistry.Foods.EGGS_NIHILO
-                                + " " + ModItems.CRYSTALLINE_KNIFE);
                         entries.add(ModItems.EGGS_NIHILO);
 
                         //entries.add(ModItems.REALITY_BREAKER);

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "cirite_pillar",
+  "key": {
+    "O": {
+      "item": "phantasm:cirite_bricks"
+    }
+  },
+  "pattern": [
+    "O",
+    "O"
+  ],
+  "result": {
+    "count": 2,
+    "item": "phantasm:cirite_pillar"
+  },
+  "show_notification": true
+}

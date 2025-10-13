@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "polished_obsidian_pillar",
+  "key": {
+    "O": {
+      "item": "phantasm:polished_obsidian_bricks"
+    }
+  },
+  "pattern": [
+    "O",
+    "O"
+  ],
+  "result": {
+    "count": 2,
+    "item": "phantasm:polished_obsidian_pillar"
+  },
+  "show_notification": true
+}

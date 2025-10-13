@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "chiseled_cirite",
+  "key": {
+    "O": {
+      "item": "phantasm:cirite_brick_slab"
+    }
+  },
+  "pattern": [
+    "O",
+    "O"
+  ],
+  "result": {
+    "item": "phantasm:chiseled_cirite"
+  },
+  "show_notification": true
+}

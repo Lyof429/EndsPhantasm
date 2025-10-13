@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "chiseled_obsidian",
+  "key": {
+    "O": {
+      "item": "phantasm:polished_obsidian_brick_slab"
+    }
+  },
+  "pattern": [
+    "O",
+    "O"
+  ],
+  "result": {
+    "item": "phantasm:chiseled_obsidian"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "eggs_nihilo",
+  "ingredients": [
+    {
+      "item": "phantasm:oblifruit"
+    },
+    {
+      "item": "phantasm:oblifruit"
+    },
+    {
+      "item": "phantasm:oblifruit"
+    },
+    {
+      "item": "phantasm:oblifruit"
+    },
+    {
+      "item": "phantasm:oblifruit"
+    },
+    {
+      "item": "minecraft:dragon_egg"
+    },
+    {
+      "item": "phantasm:fallen_star"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "phantasm:eggs_nihilo"
+  }
+}

@@ -157,6 +157,7 @@
   "entity.phantasm.choral_arrow": "Choral Arrow",
 
   "block.phantasm.eggs_nihilo": "Eggs Nihilo",
+  "item.phantasm.eggs_nihilo.desc": "Regenerates slowly over time",
 
   "item.phantasm.music_disc_abruption": "Music Disc",
   "item.phantasm.music_disc_abruption.desc": "Dylanvhs - Abruption",
@@ -201,5 +202,5 @@
   "advancement.phantasm.beat_challenge": "Fight for Real",
   "advancement.phantasm.beat_challenge.desc": "Use an End Crystal to start and then beat a Challenge Rune",
   "advancement.phantasm.eat_eggs_nihilo": "Nothingburger",
-  "advancement.phantasm.eat_eggs_nihilo.desc": "Cook the Dragon's Egg on a frying pun"
+  "advancement.phantasm.eat_eggs_nihilo.desc": "Cook the Dragon Egg on a frying pun"
 }

@@ -171,16 +171,16 @@ public class ModItemGroups {
     public static void register() {
         if (false) return;
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
-            entries.add(ModItems.PREAM_BERRY);
-            entries.add(ModItems.OBLIFRUIT);
-            entries.add(ModItems.CHORUS_FRUIT_SALAD);
+            entries.addAfter(Items.BEETROOT, ModItems.PREAM_BERRY);
+            entries.addAfter(ModItems.PREAM_BERRY, ModItems.OBLIFRUIT);
+            entries.addAfter(ModItems.OBLIFRUIT, ModItems.CHORUS_FRUIT_SALAD);
 
-            entries.add(ModItems.BEHEMOTH_MEAT);
-            entries.add(ModItems.BEHEMOTH_STEAK);
+            entries.addAfter(Items.COOKED_RABBIT, ModItems.BEHEMOTH_MEAT);
+            entries.addAfter(ModItems.BEHEMOTH_MEAT, ModItems.BEHEMOTH_STEAK);
 
-            entries.add(ModItems.POME_SLICE);
+            entries.addAfter(ModItems.CHORUS_FRUIT_SALAD, ModItems.POME_SLICE);
 
-            entries.add(ModItems.EGGS_NIHILO);
+            entries.addAfter(Items.PUMPKIN_PIE, ModItems.EGGS_NIHILO);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             entries.addAfter(Items.FLOWERING_AZALEA_LEAVES, ModBlocks.PREAM_LEAVES);

@@ -2,16 +2,22 @@ package net.lyof.phantasm.setup.compat;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.item.ModTiers;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.FoodComponent;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
+import net.minecraft.text.Text;
 import vectorwing.farmersdelight.common.item.KnifeItem;
 import vectorwing.farmersdelight.common.registry.ModCreativeTabs;
 import vectorwing.farmersdelight.common.registry.ModEffects;
+import vectorwing.farmersdelight.common.utility.TextUtils;
+
+import java.util.List;
 
 public class FarmersDelightCompat {
     public static void setup() {
@@ -25,9 +31,12 @@ public class FarmersDelightCompat {
                 new KnifeItem(ModTiers.CRYSTALLINE, 1.5f, -2f, new FabricItemSettings())).build();
 
         ItemGroupEvents.modifyEntriesEvent(Registries.ITEM_GROUP.getKey(ModCreativeTabs.TAB_FARMERS_DELIGHT.get()).get()).register(entries -> {
-
             entries.addAfter(vectorwing.farmersdelight.common.registry.ModItems.IRON_KNIFE.get(),
                     ModItems.CRYSTALLINE_KNIFE);
         });
+    }
+
+    public static void appendTooltip(ItemStack stack, List<Text> tooltip, int i) {
+        TextUtils.addFoodEffectTooltip(stack, tooltip, i);
     }
 }

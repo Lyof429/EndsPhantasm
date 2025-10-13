@@ -43,7 +43,7 @@ public class Phantasm implements ModInitializer {
 		ModConfig.register();
 		ConfiguredData.register();
 
-		if (FabricLoader.getInstance().isModLoaded("farmersdelight"))
+		if (Phantasm.isFarmersDelight())
 			FarmersDelightCompat.setup();
 
 		ModItems.register();
@@ -109,5 +109,10 @@ public class Phantasm implements ModInitializer {
 		else if (level == 3)
 			LOGGER.debug("[Phantasm] {}", message);
 		return message;
+	}
+
+
+	public static boolean isFarmersDelight() {
+		return FabricLoader.getInstance().isModLoaded("farmersdelight");
 	}
 }

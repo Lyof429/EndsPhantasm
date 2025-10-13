@@ -34,7 +34,7 @@ public class ModItems {
             }
         });
 
-        if (FabricLoader.getInstance().isModLoaded("farmersdelight"))
+        if (Phantasm.isFarmersDelight())
             FarmersDelightCompat.register();
     }
 
@@ -109,7 +109,7 @@ public class ModItems {
             .model().tag(ItemTags.ARROWS).build();
 
     public static final Item EGGS_NIHILO = ModRegistry.ofItem("eggs_nihilo",
-            new BlockItem(ModBlocks.EGGS_NIHILO, new FabricItemSettings().food(ModRegistry.Foods.EGGS_NIHILO).rarity(Rarity.EPIC)))
+            new EggsNihiloBlockItem(ModBlocks.EGGS_NIHILO, new FabricItemSettings().food(ModRegistry.Foods.EGGS_NIHILO).rarity(Rarity.EPIC)))
             .model().build();
 
 

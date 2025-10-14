@@ -1,5 +1,6 @@
 package net.lyof.phantasm;
 
+import com.vinurl.api.VinURLSound;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -14,10 +15,7 @@ import net.lyof.phantasm.entity.access.Challenger;
 import net.lyof.phantasm.entity.client.ModModelLayers;
 import net.lyof.phantasm.entity.client.model.BehemothModel;
 import net.lyof.phantasm.entity.client.model.CrystieModel;
-import net.lyof.phantasm.entity.client.renderer.BehemothRenderer;
-import net.lyof.phantasm.entity.client.renderer.ChallengeRuneBlockEntityRenderer;
-import net.lyof.phantasm.entity.client.renderer.ChoralArrowRenderer;
-import net.lyof.phantasm.entity.client.renderer.CrystieRenderer;
+import net.lyof.phantasm.entity.client.renderer.*;
 import net.lyof.phantasm.entity.custom.BehemothEntity;
 import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.particle.custom.ZzzParticle;
@@ -47,6 +45,9 @@ public class PhantasmClient implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.BEHEMOTH, BehemothRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.BEHEMOTH, BehemothModel::getTexturedModelData);
+
+        EntityRendererRegistry.register(ModEntities.POLYPPIE, PolyppieRenderer::new);
+        //EntityModelLayerRegistry.registerModelLayer(ModModelLayers.BEHEMOTH, BehemothModel::getTexturedModelData);
 
         EntityRendererRegistry.register(ModEntities.CHORAL_ARROW, ChoralArrowRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.CHALLENGE_RUNE, ChallengeRuneBlockEntityRenderer::new);

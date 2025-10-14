@@ -1,7 +1,6 @@
 package net.lyof.phantasm.item.custom;
 
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.setup.compat.FarmersDelightCompat;
 import net.minecraft.block.Block;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.BlockItem;
@@ -25,7 +24,7 @@ public class EggsNihiloBlockItem extends BlockItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        if (Phantasm.isFarmersDelight())
+        if (Phantasm.isFarmersDelightLoaded())
             TextUtils.addFoodEffectTooltip(stack, tooltip, 1);
 
         String[] txt = Text.translatable(this.getOrCreateDescTranslationKey()).getString().split("\\n");

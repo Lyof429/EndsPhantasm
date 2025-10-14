@@ -58,8 +58,12 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+
 	// Farmer's Delight
 	modCompileOnly "maven.modrinth:farmers-delight-refabricated:${project.farmersdelight_version}"
+
+	// VinURL
+	modCompileOnly "maven.modrinth:vinurl:${project.vinurl_version}"
 
 	// EMI
 	modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"

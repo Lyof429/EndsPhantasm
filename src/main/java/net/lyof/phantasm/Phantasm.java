@@ -28,6 +28,7 @@ import net.lyof.phantasm.world.feature.custom.tree.ModTreePlacerTypes;
 import net.lyof.phantasm.world.noise.ModDensityFunctions;
 import net.lyof.phantasm.world.structure.ModProcessorTypes;
 import net.lyof.phantasm.world.structure.ModStructures;
+import net.minecraft.block.entity.JukeboxBlockEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -43,7 +44,7 @@ public class Phantasm implements ModInitializer {
 		ModConfig.register();
 		ConfiguredData.register();
 
-		if (Phantasm.isFarmersDelight())
+		if (Phantasm.isFarmersDelightLoaded())
 			FarmersDelightCompat.setup();
 
 		ModItems.register();
@@ -112,7 +113,11 @@ public class Phantasm implements ModInitializer {
 	}
 
 
-	public static boolean isFarmersDelight() {
+	public static boolean isFarmersDelightLoaded() {
 		return FabricLoader.getInstance().isModLoaded("farmersdelight");
+	}
+
+	public static boolean isVinURLLoaded() {
+		return FabricLoader.getInstance().isModLoaded("vinurl");
 	}
 }

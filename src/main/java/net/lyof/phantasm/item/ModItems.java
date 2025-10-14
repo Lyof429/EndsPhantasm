@@ -33,7 +33,7 @@ public class ModItems {
             }
         });
 
-        if (Phantasm.isFarmersDelight())
+        if (Phantasm.isFarmersDelightLoaded())
             FarmersDelightCompat.register();
     }
 

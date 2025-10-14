@@ -5,8 +5,10 @@ import com.vinurl.util.Constants;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.entity.ModEntities;
+import net.lyof.phantasm.item.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MovementType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;
@@ -84,6 +86,11 @@ public class PolyppieEntity extends PassiveEntity {
         this.tickCount = nbt.getLong("TickCount");
     }
 
+    @Override
+    public double getMountedHeightOffset() {
+        return this.getHeight();
+    }
+
     public ItemStack getStack() {
         return this.stack;
     }
@@ -146,11 +153,21 @@ public class PolyppieEntity extends PassiveEntity {
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
 
-        if (stack.isOf(ModBlocks.CHORAL_BLOCK.asItem())) {
+        if (stack.isOf(ModItems.CHORAL_ARROW)) {
+            Phantasm.log("Making band " + this.getY());
+            Band band = new Band(this);
+            if (band.getPlaying() == null)
+                band.startRandom(this.getRandom());
+
+            return ActionResult.success(player.getWorld().isClient());
+        }
+
+        if (stack.isOf(ModBlocks.CHORAL_BLOCK.asItem()) && !this.hasPassengers()) {
             PolyppieEntity polyppie = ModEntities.POLYPPIE.create(this.getWorld());
             this.getWorld().spawnEntity(polyppie);
+            polyppie.move(MovementType.SELF, this.getPos().add(0, 1, 0));
             polyppie.startRiding(this, true);
-            return ActionResult.SUCCESS;
+            return ActionResult.success(player.getWorld().isClient());
         }
 
         if (!this.isValid(stack)) {
@@ -186,11 +203,12 @@ public class PolyppieEntity extends PassiveEntity {
             }
         }
 
-        else if (this.tickCount % 20 == 0 && !this.hasVehicle()) {
+        /*else if (this.tickCount % 30 == 0 && !this.hasPassengers()) {
+            Phantasm.log("Making band " + this.getY());
             Band band = new Band(this);
             if (band.getPlaying() == null)
-                band.getRandomReady(this.getRandom()).startPlaying();
-        }
+                band.startRandom(this.getRandom());
+        }*/
 
         this.tickCount++;
     }
@@ -200,23 +218,26 @@ public class PolyppieEntity extends PassiveEntity {
         protected List<PolyppieEntity> members = new ArrayList<>();
 
         public Band(PolyppieEntity base) {
-            for (Entity entity : base.getRootVehicle().getPassengerList()) {
-                if (entity instanceof PolyppieEntity polyppie)
-                    this.add(polyppie);
-            }
+            this.members = base.getRootVehicle().streamPassengersAndSelf().filter(e -> e instanceof PolyppieEntity)
+                    .map(e -> (PolyppieEntity) e).toList();
+            Phantasm.log(this.members.stream().map(e -> e.getY() + " " + e.getStack()).toList());
         }
 
         public void add(PolyppieEntity polyppie) {
             this.members.add(polyppie);
         }
 
-        public PolyppieEntity getRandomReady(Random random) {
-            List<PolyppieEntity> stacks = new ArrayList<>();
+        public void startRandom(Random random) {
+            List<PolyppieEntity> singers = new ArrayList<>();
             for (PolyppieEntity polyppie : this.members) {
-                if (!polyppie.getStack().isEmpty())
-                    stacks.add(polyppie);
+                if (!polyppie.getStack().isEmpty()) {
+                    singers.add(polyppie);
+                    Phantasm.log(polyppie.getStack());
+                }
             }
-            return stacks.get(random.nextInt(stacks.size()));
+            if (singers.isEmpty())
+                return;
+            singers.get(random.nextInt(singers.size())).startPlaying();
         }
 
         public PolyppieEntity getPlaying() {

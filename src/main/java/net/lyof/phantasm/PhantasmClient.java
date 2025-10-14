@@ -1,6 +1,5 @@
 package net.lyof.phantasm;
 
-import com.vinurl.api.VinURLSound;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -13,10 +12,12 @@ import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.access.Challenger;
 import net.lyof.phantasm.entity.client.ModModelLayers;
+import net.lyof.phantasm.entity.client.SongHandler;
 import net.lyof.phantasm.entity.client.model.BehemothModel;
 import net.lyof.phantasm.entity.client.model.CrystieModel;
 import net.lyof.phantasm.entity.client.renderer.*;
 import net.lyof.phantasm.entity.custom.BehemothEntity;
+import net.lyof.phantasm.entity.custom.PolyppieEntity;
 import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.particle.custom.ZzzParticle;
 import net.lyof.phantasm.setup.ModPackets;
@@ -24,17 +25,23 @@ import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.sound.ModSounds;
 import net.lyof.phantasm.util.MixinAccess;
 import net.minecraft.block.Block;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.CreditsScreen;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
+import net.minecraft.client.sound.EntityTrackingSoundInstance;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.MusicDiscItem;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 
 public class PhantasmClient implements ClientModInitializer {
+    public static final SongHandler SONG_HANDLER = new SongHandler();
+
     @Override
     public void onInitializeClient() {
         for (Block block : ModRegistry.BLOCK_CUTOUT)
@@ -114,6 +121,37 @@ public class PhantasmClient implements ClientModInitializer {
                 ((MixinAccess<Boolean>) creditsScreen).setMixinValue(true);
 
                 client.setScreen(creditsScreen);
+            });
+        });
+
+        ClientPlayNetworking.registerGlobalReceiver(ModPackets.POLYPPIE_UPDATES, (client, handler, buf, responseSender) -> {
+            NbtCompound nbt = buf.readNbt();
+            int id = buf.readInt();
+
+            client.execute(() -> {
+                Entity self = client.world.getEntityById(id);
+                ItemStack item = ItemStack.EMPTY;
+                if (!nbt.isEmpty()) item = ItemStack.fromNbt(nbt);
+
+                if (self instanceof PolyppieEntity polyppie) {
+                    // Must make a id -> SoundInstance map like how playingSongs does it, and go from there
+
+                    EntityTrackingSoundInstance soundInstance = SONG_HANDLER.get(id);
+                    if (soundInstance != null) {
+                        client.getSoundManager().stop(soundInstance);
+                        SONG_HANDLER.remove(id);
+                    }
+
+                    if (item.getItem() instanceof MusicDiscItem musicDisc) {
+                        client.inGameHud.setRecordPlayingOverlay(musicDisc.getDescription());
+
+                        soundInstance = new EntityTrackingSoundInstance(musicDisc.getSound(), SoundCategory.RECORDS, 4, 1, polyppie, 0);
+                        SONG_HANDLER.add(id, soundInstance);
+                        client.getSoundManager().play(soundInstance);
+                    }
+
+                    client.worldRenderer.updateEntitiesForSong(client.world, polyppie.getBlockPos(), !nbt.isEmpty());
+                }
             });
         });
     }

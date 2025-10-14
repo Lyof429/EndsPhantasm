@@ -2,10 +2,15 @@ package net.lyof.phantasm.entity.custom;
 
 import com.vinurl.api.VinURLSound;
 import com.vinurl.util.Constants;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.item.ModItems;
+import net.lyof.phantasm.setup.ModPackets;
+import net.minecraft.block.JukeboxBlock;
+import net.minecraft.block.entity.JukeboxBlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MovementType;
@@ -18,6 +23,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MusicDiscItem;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
@@ -106,7 +112,15 @@ public class PolyppieEntity extends PassiveEntity {
     public void startPlaying() {
         this.recordStartTick = this.tickCount;
         this.isPlaying = true;
-        this.getWorld().syncWorldEvent(null, 1010, this.getBlockPos(), Item.getRawId(this.getStack().getItem()));
+        this.getWorld().emitGameEvent(GameEvent.JUKEBOX_PLAY, this.getPos(), GameEvent.Emitter.of(this));
+        //this.getWorld().syncWorldEvent(null, 1010, this.getBlockPos(), Item.getRawId(this.getStack().getItem()));
+
+        if (this.getWorld().isClient()) {
+            PacketByteBuf buf = PacketByteBufs.create();
+            buf.writeNbt(this.getStack().writeNbt(new NbtCompound()));
+            buf.writeInt(this.getId());
+            ClientPlayNetworking.send(ModPackets.POLYPPIE_UPDATES, buf);
+        }
 
         if (Phantasm.isVinURLLoaded() && getStack().getTranslationKey().equals("item.vinurl.custom_record")) {
             VinURLSound.play(this.getWorld(), getStack(), this.getBlockPos());
@@ -116,6 +130,14 @@ public class PolyppieEntity extends PassiveEntity {
     public void stopPlaying() {
         this.isPlaying = false;
         this.getWorld().emitGameEvent(GameEvent.JUKEBOX_STOP_PLAY, this.getPos(), GameEvent.Emitter.of(this));
+        //this.getWorld().syncWorldEvent(1011, this.getBlockPos(), 0);
+
+        if (this.getWorld().isClient()) {
+            PacketByteBuf buf = PacketByteBufs.create();
+            buf.writeNbt(new NbtCompound());
+            buf.writeInt(this.getId());
+            ClientPlayNetworking.send(ModPackets.POLYPPIE_UPDATES, buf);
+        }
 
         if (Phantasm.isVinURLLoaded() && getStack().getTranslationKey().equals("item.vinurl.custom_record")) {
             VinURLSound.stop(this.getWorld(), getStack(), this.getBlockPos(), false);
@@ -167,6 +189,7 @@ public class PolyppieEntity extends PassiveEntity {
             this.getWorld().spawnEntity(polyppie);
             polyppie.move(MovementType.SELF, this.getPos().add(0, 1, 0));
             polyppie.startRiding(this, true);
+
             return ActionResult.success(player.getWorld().isClient());
         }
 

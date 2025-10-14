@@ -108,9 +108,6 @@ public class ModItemGroups {
                         entries.add(ModItems.BEHEMOTH_MEAT);
                         entries.add(ModItems.BEHEMOTH_STEAK);
 
-                        entries.add(ModItems.CRYSTIE_SPAWN_EGG);
-                        entries.add(ModItems.BEHEMOTH_SPAWN_EGG);
-
 
                         entries.add(ModBlocks.ACIDIC_NIHILIUM);
                         entries.add(ModBlocks.ACIDIC_NIHILIS);
@@ -152,6 +149,11 @@ public class ModItemGroups {
                         entries.add(ModItems.SHATTERED_PENDANT);
 
                         entries.add(ModItems.EGGS_NIHILO);
+
+
+                        entries.add(ModItems.CRYSTIE_SPAWN_EGG);
+                        entries.add(ModItems.BEHEMOTH_SPAWN_EGG);
+                        entries.add(ModItems.POLYPPIE_SPAWN_EGG);
 
                         //entries.add(ModItems.REALITY_BREAKER);
 
@@ -310,8 +312,9 @@ public class ModItemGroups {
             entries.addAfter(Items.SPECTRAL_ARROW, ModItems.CHORAL_ARROW);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> {
-            entries.add(ModItems.CRYSTIE_SPAWN_EGG);
-            entries.add(ModItems.BEHEMOTH_SPAWN_EGG);
+            entries.addAfter(Items.CREEPER_SPAWN_EGG, ModItems.CRYSTIE_SPAWN_EGG);
+            entries.addAfter(Items.BEE_SPAWN_EGG, ModItems.BEHEMOTH_SPAWN_EGG);
+            entries.addAfter(Items.POLAR_BEAR_SPAWN_EGG, ModItems.POLYPPIE_SPAWN_EGG);
         });
     }
 }

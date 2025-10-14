@@ -118,4 +118,7 @@ public class ModItems {
     public static final Item BEHEMOTH_SPAWN_EGG = ModRegistry.ofItem("behemoth_spawn_egg",
             new SpawnEggItem(ModEntities.BEHEMOTH, 0xafa0ff, 0x0f000f, new FabricItemSettings()))
             .build();
+    public static final Item POLYPPIE_SPAWN_EGG = ModRegistry.ofItem("polyppie_spawn_egg",
+                    new SpawnEggItem(ModEntities.POLYPPIE, 0xffccdc, 0xcc9999, new FabricItemSettings()))
+            .build();
 }

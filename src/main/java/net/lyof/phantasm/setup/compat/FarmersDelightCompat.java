@@ -33,8 +33,4 @@ public class FarmersDelightCompat {
                     ModItems.CRYSTALLINE_KNIFE);
         });
     }
-
-    public static void appendTooltip(ItemStack stack, List<Text> tooltip, int i) {
-        TextUtils.addFoodEffectTooltip(stack, tooltip, i);
-    }
 }

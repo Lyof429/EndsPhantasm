@@ -26,6 +26,7 @@ import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.sound.ModSounds;
 import net.lyof.phantasm.util.MixinAccess;
 import net.minecraft.block.Block;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.CreditsScreen;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;

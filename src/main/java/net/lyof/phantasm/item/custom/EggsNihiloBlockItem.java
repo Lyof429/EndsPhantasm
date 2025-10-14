@@ -10,6 +10,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import vectorwing.farmersdelight.common.utility.TextUtils;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class EggsNihiloBlockItem extends BlockItem {
         super.appendTooltip(stack, world, tooltip, context);
 
         if (Phantasm.isFarmersDelight())
-            FarmersDelightCompat.appendTooltip(stack, tooltip, 1);
+            TextUtils.addFoodEffectTooltip(stack, tooltip, 1);
 
         String[] txt = Text.translatable(this.getOrCreateDescTranslationKey()).getString().split("\\n");
         for (String t : txt)

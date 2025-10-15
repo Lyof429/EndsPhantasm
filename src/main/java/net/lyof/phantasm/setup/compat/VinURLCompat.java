@@ -18,10 +18,11 @@ import net.minecraft.util.Formatting;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 public class VinURLCompat {
-    public static void playSound(int id) {
+    public static void playSound(UUID id) {
         TickableSoundInstance soundInstance = PhantasmClient.SONG_HANDLER.get(id);
         if (soundInstance instanceof FileSound fileSound) {
             VinURLClient.CLIENT.getSoundManager().play(soundInstance);
@@ -29,7 +30,7 @@ public class VinURLCompat {
         }
     }
 
-    public static void queueSound(String fileName, int id) {
+    public static void queueSound(String fileName, UUID id) {
         Executable.YT_DLP.getProcessStream(fileName + "/download").subscribe(String.valueOf(id)).onComplete(() -> {
             playSound(id);
         }).start();
@@ -42,7 +43,7 @@ public class VinURLCompat {
         String url = item.getOrCreateNbt().getString(Constants.URL_KEY);
         String fileName = AudioHandler.hashURL(url);
 
-        int id = polyppie.getId();
+        UUID id = polyppie.getUuid();
 
         if (client.player != null && url != null && !url.isEmpty()) {
             songHandler.add(id, new EntityTrackingFileSound(fileName, polyppie));

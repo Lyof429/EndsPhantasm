@@ -9,6 +9,9 @@ import net.lyof.phantasm.PhantasmClient;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.setup.ModPackets;
+import net.minecraft.block.entity.JukeboxBlockEntity;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.sound.SoundManager;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -165,6 +168,11 @@ public class PolyppieEntity extends PassiveEntity {
     }
 
     @Override
+    public boolean isPersistent() {
+        return super.isPersistent() || !this.getStack().isEmpty();
+    }
+
+    @Override
     protected void dropInventory() {
         super.dropInventory();
         this.stopPlaying();
@@ -210,14 +218,16 @@ public class PolyppieEntity extends PassiveEntity {
                 if (this.isSongFinished(disc)) {
                     this.stopPlaying();
                 } else if (this.hasSecondPassed()) {
+                    if (this.getWorld().isClient())
+                        // I have to find an identifying value that will never change ._.
+                        Phantasm.log(this.getUuid() + " " + MinecraftClient.getInstance().getSoundManager()
+                                .isPlaying(PhantasmClient.SONG_HANDLER.get(this.getUuid())));
+
                     this.ticksThisSecond = 0;
                     this.getWorld().emitGameEvent(GameEvent.JUKEBOX_PLAY, this.getPos(), GameEvent.Emitter.of(this));
                     this.spawnNoteParticle();
                 }
             }
-
-            if (this.tickCount % 20 == 0 && this.getWorld().isClient())
-                PhantasmClient.SONG_HANDLER.tick(this.getId());
         }
 
 

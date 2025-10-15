@@ -41,6 +41,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 
+import java.util.UUID;
+
 public class PhantasmClient implements ClientModInitializer {
     public static final SongHandler SONG_HANDLER = new SongHandler();
 
@@ -128,10 +130,11 @@ public class PhantasmClient implements ClientModInitializer {
 
         ClientPlayNetworking.registerGlobalReceiver(ModPackets.POLYPPIE_UPDATES, (client, handler, buf, responseSender) -> {
             NbtCompound nbt = buf.readNbt();
-            int id = buf.readInt();
+            int eid = buf.readInt();
 
             client.execute(() -> {
-                Entity self = client.world.getEntityById(id);
+                Entity self = client.world.getEntityById(eid);
+                UUID id = self.getUuid();
                 ItemStack item = ItemStack.EMPTY;
                 if (!nbt.isEmpty()) item = ItemStack.fromNbt(nbt);
 
@@ -151,8 +154,6 @@ public class PhantasmClient implements ClientModInitializer {
                         SONG_HANDLER.add(id, soundInstance);
                         client.getSoundManager().play(soundInstance);
                     }
-
-                    client.worldRenderer.updateEntitiesForSong(client.world, polyppie.getBlockPos(), !nbt.isEmpty());
                 }
             });
         });

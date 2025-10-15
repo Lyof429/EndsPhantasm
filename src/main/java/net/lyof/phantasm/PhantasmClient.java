@@ -22,6 +22,7 @@ import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.particle.custom.ZzzParticle;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.setup.ModRegistry;
+import net.lyof.phantasm.setup.compat.VinURLCompat;
 import net.lyof.phantasm.sound.ModSounds;
 import net.lyof.phantasm.util.MixinAccess;
 import net.minecraft.block.Block;
@@ -29,6 +30,7 @@ import net.minecraft.client.gui.screen.CreditsScreen;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.sound.EntityTrackingSoundInstance;
+import net.minecraft.client.sound.TickableSoundInstance;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -134,15 +136,15 @@ public class PhantasmClient implements ClientModInitializer {
                 if (!nbt.isEmpty()) item = ItemStack.fromNbt(nbt);
 
                 if (self instanceof PolyppieEntity polyppie) {
-                    // Must make a id -> SoundInstance map like how playingSongs does it, and go from there
-
-                    EntityTrackingSoundInstance soundInstance = SONG_HANDLER.get(id);
+                    TickableSoundInstance soundInstance = SONG_HANDLER.get(id);
                     if (soundInstance != null) {
                         client.getSoundManager().stop(soundInstance);
                         SONG_HANDLER.remove(id);
                     }
 
-                    if (item.getItem() instanceof MusicDiscItem musicDisc) {
+                    if (Phantasm.isVinURLLoaded() && item.getTranslationKey().equals("item.vinurl.custom_record")) {
+                        VinURLCompat.playSound(polyppie, item, client);
+                    } else if (item.getItem() instanceof MusicDiscItem musicDisc) {
                         client.inGameHud.setRecordPlayingOverlay(musicDisc.getDescription());
 
                         soundInstance = new EntityTrackingSoundInstance(musicDisc.getSound(), SoundCategory.RECORDS, 4, 1, polyppie, 0);

@@ -17,6 +17,11 @@ repositories {
 	}
 
 	maven {
+		name = "WispForest - owo"
+		url = "https://maven.wispforest.io/releases/"
+	}
+
+	maven {
 		name = "Modrinth"
 		url = "https://api.modrinth.com/maven"
 	}
@@ -64,6 +69,7 @@ dependencies {
 
 	// VinURL
 	modCompileOnly "maven.modrinth:vinurl:${project.vinurl_version}"
+	modCompileOnly "io.wispforest:owo-lib:${project.owo_version}"
 
 	// EMI
 	modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"

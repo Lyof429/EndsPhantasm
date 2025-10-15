@@ -111,7 +111,6 @@ public class PolyppieEntity extends PassiveEntity {
         this.recordStartTick = this.tickCount;
         this.isPlaying = true;
         this.getWorld().emitGameEvent(GameEvent.JUKEBOX_PLAY, this.getPos(), GameEvent.Emitter.of(this));
-        //this.getWorld().syncWorldEvent(null, 1010, this.getBlockPos(), Item.getRawId(this.getStack().getItem()));
 
         if (!this.getWorld().isClient()) {
             PacketByteBuf buf = PacketByteBufs.create();
@@ -120,16 +119,11 @@ public class PolyppieEntity extends PassiveEntity {
             for (ServerPlayerEntity player : PlayerLookup.tracking(this))
                 ServerPlayNetworking.send(player, ModPackets.POLYPPIE_UPDATES, buf);
         }
-
-        if (Phantasm.isVinURLLoaded() && getStack().getTranslationKey().equals("item.vinurl.custom_record")) {
-            VinURLSound.play(this.getWorld(), getStack(), this.getBlockPos());
-        }
     }
 
     public void stopPlaying() {
         this.isPlaying = false;
         this.getWorld().emitGameEvent(GameEvent.JUKEBOX_STOP_PLAY, this.getPos(), GameEvent.Emitter.of(this));
-        //this.getWorld().syncWorldEvent(1011, this.getBlockPos(), 0);
 
         if (!this.getWorld().isClient()) {
             PacketByteBuf buf = PacketByteBufs.create();
@@ -137,10 +131,6 @@ public class PolyppieEntity extends PassiveEntity {
             buf.writeInt(this.getId());
             for (ServerPlayerEntity player : PlayerLookup.tracking(this))
                 ServerPlayNetworking.send(player, ModPackets.POLYPPIE_UPDATES, buf);
-        }
-
-        if (Phantasm.isVinURLLoaded() && getStack().getTranslationKey().equals("item.vinurl.custom_record")) {
-            VinURLSound.stop(this.getWorld(), getStack(), this.getBlockPos(), false);
         }
     }
 

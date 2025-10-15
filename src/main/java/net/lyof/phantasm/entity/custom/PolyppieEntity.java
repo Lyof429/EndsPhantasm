@@ -9,9 +9,7 @@ import net.lyof.phantasm.PhantasmClient;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.setup.ModPackets;
-import net.minecraft.block.entity.JukeboxBlockEntity;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.sound.SoundManager;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -41,12 +39,15 @@ import java.util.List;
 
 public class PolyppieEntity extends PassiveEntity {
     private static final TrackedData<ItemStack> ITEM_STACK = DataTracker.registerData(PolyppieEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
+    //private static final TrackedData<Integer> SOUND_KEY = DataTracker.registerData(PolyppieEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private static int OFFSET = 0;
 
     protected boolean isPlaying;
     protected long tickCount;
     protected long recordStartTick;
-
     protected int ticksThisSecond;
+
+    protected int soundKey;
 
     public PolyppieEntity(EntityType<? extends PassiveEntity> entityType, World world) {
         super(entityType, world);
@@ -73,6 +74,7 @@ public class PolyppieEntity extends PassiveEntity {
     protected void initDataTracker() {
         super.initDataTracker();
         this.getDataTracker().startTracking(ITEM_STACK, ItemStack.EMPTY);
+        //this.getDataTracker().startTracking(SOUND_KEY, -1);
     }
 
     @Override
@@ -85,18 +87,21 @@ public class PolyppieEntity extends PassiveEntity {
         nbt.putBoolean("IsPlaying", this.isPlaying);
         //nbt.putLong("RecordStartTick", this.recordStartTick);
         nbt.putLong("TickCount", this.tickCount - this.recordStartTick);
+
+        nbt.putInt("SoundKey", this.getSoundKey());
     }
 
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
-        if (nbt.contains("RecordItem", 10)) {
+        if (nbt.contains("RecordItem", 10))
             this.setStack(ItemStack.fromNbt(nbt.getCompound("RecordItem")));
-        }
 
         this.isPlaying = nbt.getBoolean("IsPlaying");
         this.recordStartTick = 0;//nbt.getLong("RecordStartTick");
         this.tickCount = nbt.getLong("TickCount");
+
+        this.setSoundKey(nbt.getInt("SoundKey"));
     }
 
     @Override
@@ -112,6 +117,21 @@ public class PolyppieEntity extends PassiveEntity {
         this.getDataTracker().set(ITEM_STACK, stack);
     }
 
+    public void initSoundKey() {
+        if (this.getSoundKey() <= 0) {
+            this.setSoundKey((int) (System.currentTimeMillis() % 10000) + OFFSET++);
+            Phantasm.log("Creating sound key: " + this.getSoundKey());
+        }
+    }
+
+    public int getSoundKey() {
+        return this.soundKey; //this.getDataTracker().get(SOUND_KEY);
+    }
+
+    public void setSoundKey(int soundKey) {
+        this.soundKey = soundKey; //this.getDataTracker().set(SOUND_KEY, soundKey);
+    }
+
     public boolean isValid(ItemStack stack) {
         return stack.isIn(ItemTags.MUSIC_DISCS) && this.getStack().isEmpty();
     }
@@ -120,31 +140,32 @@ public class PolyppieEntity extends PassiveEntity {
         return !this.getStack().isEmpty() && this.isPlaying;
     }
 
+    protected void sendPacket(boolean start) {
+        if (!this.getWorld().isClient()) {
+            this.initSoundKey();
+
+            PacketByteBuf buf = PacketByteBufs.create();
+            buf.writeNbt(start ? this.getStack().writeNbt(new NbtCompound()) : new NbtCompound());
+            buf.writeInt(this.getId());
+            buf.writeInt(this.getSoundKey());
+            for (ServerPlayerEntity player : PlayerLookup.tracking(this))
+                ServerPlayNetworking.send(player, ModPackets.POLYPPIE_UPDATES, buf);
+        }
+    }
+
     public void startPlaying() {
         this.recordStartTick = this.tickCount;
         this.isPlaying = true;
         this.getWorld().emitGameEvent(GameEvent.JUKEBOX_PLAY, this.getPos(), GameEvent.Emitter.of(this));
 
-        if (!this.getWorld().isClient()) {
-            PacketByteBuf buf = PacketByteBufs.create();
-            buf.writeNbt(this.getStack().writeNbt(new NbtCompound()));
-            buf.writeInt(this.getId());
-            for (ServerPlayerEntity player : PlayerLookup.tracking(this))
-                ServerPlayNetworking.send(player, ModPackets.POLYPPIE_UPDATES, buf);
-        }
+        this.sendPacket(true);
     }
 
     public void stopPlaying() {
         this.isPlaying = false;
         this.getWorld().emitGameEvent(GameEvent.JUKEBOX_STOP_PLAY, this.getPos(), GameEvent.Emitter.of(this));
 
-        if (!this.getWorld().isClient()) {
-            PacketByteBuf buf = PacketByteBufs.create();
-            buf.writeNbt(new NbtCompound());
-            buf.writeInt(this.getId());
-            for (ServerPlayerEntity player : PlayerLookup.tracking(this))
-                ServerPlayNetworking.send(player, ModPackets.POLYPPIE_UPDATES, buf);
-        }
+        this.sendPacket(false);
     }
 
     public boolean isSongFinished(MusicDiscItem disc) {
@@ -220,8 +241,8 @@ public class PolyppieEntity extends PassiveEntity {
                 } else if (this.hasSecondPassed()) {
                     if (this.getWorld().isClient())
                         // I have to find an identifying value that will never change ._.
-                        Phantasm.log(this.getUuid() + " " + MinecraftClient.getInstance().getSoundManager()
-                                .isPlaying(PhantasmClient.SONG_HANDLER.get(this.getUuid())));
+                        Phantasm.log(this.getSoundKey() + " " + MinecraftClient.getInstance().getSoundManager()
+                                .isPlaying(PhantasmClient.SONG_HANDLER.get(this.getSoundKey())));
 
                     this.ticksThisSecond = 0;
                     this.getWorld().emitGameEvent(GameEvent.JUKEBOX_PLAY, this.getPos(), GameEvent.Emitter.of(this));

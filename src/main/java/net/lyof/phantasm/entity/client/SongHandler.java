@@ -14,18 +14,19 @@ import java.util.Map;
 import java.util.UUID;
 
 public class SongHandler {
-    protected final Map<UUID, TickableSoundInstance> playing = new HashMap<>();
+    protected final Map<Integer, TickableSoundInstance> playing = new HashMap<>();
+    protected int offset = 0;
 
-    public void add(UUID id, TickableSoundInstance soundInstance) {
+    public void add(int id, TickableSoundInstance soundInstance) {
         this.remove(id);
         this.playing.put(id, soundInstance);
     }
 
-    public void remove(UUID id) {
+    public void remove(int id) {
         this.playing.remove(id);
     }
 
-    public TickableSoundInstance get(UUID id) {
+    public TickableSoundInstance get(int id) {
         return this.playing.get(id);
     }
 }

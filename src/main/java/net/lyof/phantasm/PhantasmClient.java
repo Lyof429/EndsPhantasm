@@ -130,28 +130,30 @@ public class PhantasmClient implements ClientModInitializer {
 
         ClientPlayNetworking.registerGlobalReceiver(ModPackets.POLYPPIE_UPDATES, (client, handler, buf, responseSender) -> {
             NbtCompound nbt = buf.readNbt();
-            int eid = buf.readInt();
+            int id = buf.readInt();
+            int soundKey = buf.readInt();
 
             client.execute(() -> {
-                Entity self = client.world.getEntityById(eid);
-                UUID id = self.getUuid();
+                Entity self = client.world.getEntityById(id);
                 ItemStack item = ItemStack.EMPTY;
                 if (!nbt.isEmpty()) item = ItemStack.fromNbt(nbt);
 
                 if (self instanceof PolyppieEntity polyppie) {
-                    TickableSoundInstance soundInstance = SONG_HANDLER.get(id);
+                    polyppie.setSoundKey(soundKey);
+                    TickableSoundInstance soundInstance = SONG_HANDLER.get(soundKey);
+
                     if (soundInstance != null) {
                         client.getSoundManager().stop(soundInstance);
-                        SONG_HANDLER.remove(id);
+                        SONG_HANDLER.remove(soundKey);
                     }
 
                     if (Phantasm.isVinURLLoaded() && item.getTranslationKey().equals("item.vinurl.custom_record")) {
-                        VinURLCompat.playSound(polyppie, item, client);
+                        VinURLCompat.playSound(polyppie, soundKey, item, client);
                     } else if (item.getItem() instanceof MusicDiscItem musicDisc) {
                         client.inGameHud.setRecordPlayingOverlay(musicDisc.getDescription());
 
                         soundInstance = new EntityTrackingSoundInstance(musicDisc.getSound(), SoundCategory.RECORDS, 4, 1, polyppie, 0);
-                        SONG_HANDLER.add(id, soundInstance);
+                        SONG_HANDLER.add(soundKey, soundInstance);
                         client.getSoundManager().play(soundInstance);
                     }
                 }

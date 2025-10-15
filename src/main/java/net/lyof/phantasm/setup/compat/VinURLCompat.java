@@ -22,7 +22,7 @@ import java.util.UUID;
 import java.util.stream.Stream;
 
 public class VinURLCompat {
-    public static void playSound(UUID id) {
+    public static void playSound(int id) {
         TickableSoundInstance soundInstance = PhantasmClient.SONG_HANDLER.get(id);
         if (soundInstance instanceof FileSound fileSound) {
             VinURLClient.CLIENT.getSoundManager().play(soundInstance);
@@ -30,44 +30,45 @@ public class VinURLCompat {
         }
     }
 
-    public static void queueSound(String fileName, UUID id) {
+    public static void queueSound(String fileName, int id) {
         Executable.YT_DLP.getProcessStream(fileName + "/download").subscribe(String.valueOf(id)).onComplete(() -> {
             playSound(id);
         }).start();
     }
 
 
-    public static void playSound(PolyppieEntity polyppie, ItemStack item, MinecraftClient client) {
+    public static void playSound(PolyppieEntity polyppie, int soundKey, ItemStack item, MinecraftClient client) {
         SongHandler songHandler = PhantasmClient.SONG_HANDLER;
 
         String url = item.getOrCreateNbt().getString(Constants.URL_KEY);
         String fileName = AudioHandler.hashURL(url);
 
-        UUID id = polyppie.getUuid();
-
         if (client.player != null && url != null && !url.isEmpty()) {
-            songHandler.add(id, new EntityTrackingFileSound(fileName, polyppie));
-            if (Executable.YT_DLP.isProcessRunning(fileName + "/download")) {
-                queueSound(fileName, id);
-            } else if (AudioHandler.getAudioFile(fileName).exists()) {
-                playSound(id);
-            } else {
+            songHandler.add(soundKey, new EntityTrackingFileSound(fileName, polyppie));
+
+            if (Executable.YT_DLP.isProcessRunning(fileName + "/download"))
+                queueSound(fileName, soundKey);
+            else if (AudioHandler.getAudioFile(fileName).exists())
+                playSound(soundKey);
+            else {
                 if (VinURLClient.CONFIG.downloadEnabled()) {
                     List<String> whitelist = VinURLClient.CONFIG.urlWhitelist();
                     String baseURL = AudioHandler.getBaseURL(url);
                     if (whitelist.stream().anyMatch(url::startsWith)) {
                         AudioHandler.downloadSound(url, fileName);
-                        queueSound(fileName, id);
+                        queueSound(fileName, soundKey);
                         return;
                     }
 
-                    client.player.sendMessage(Text.literal("Press ").append(Text.literal(KeyListener.getHotKey()).formatted(Formatting.YELLOW)).append(" to whitelist ").append(Text.literal(baseURL).formatted(Formatting.YELLOW)), true);
+                    client.player.sendMessage(Text.literal("Press ")
+                            .append(Text.literal(KeyListener.getHotKey()).formatted(Formatting.YELLOW))
+                            .append(" to whitelist ").append(Text.literal(baseURL).formatted(Formatting.YELLOW)), true);
                     KeyListener.waitForKeyPress().thenAccept((confirmed) -> {
                         if (confirmed) {
                             whitelist.add(baseURL);
-                            VinURLClient.CONFIG.save();  // Needs owo
+                            VinURLClient.CONFIG.save();
                             AudioHandler.downloadSound(url, fileName);
-                            queueSound(fileName, id);
+                            queueSound(fileName, soundKey);
                         }
                     });
                 }

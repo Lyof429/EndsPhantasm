@@ -1,6 +1,5 @@
 package net.lyof.phantasm.entity.custom;
 
-import com.vinurl.api.VinURLSound;
 import com.vinurl.util.Constants;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -9,11 +8,13 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.PhantasmClient;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.entity.ModEntities;
-import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModPackets;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PolyppieEntity extends PassiveEntity {
-    protected ItemStack stack = ItemStack.EMPTY;
+    private static final TrackedData<ItemStack> ITEM_STACK = DataTracker.registerData(PolyppieEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
 
     protected boolean isPlaying;
     protected long tickCount;
@@ -65,6 +66,11 @@ public class PolyppieEntity extends PassiveEntity {
                 .add(EntityAttributes.GENERIC_ARMOR, 4);
     }
 
+    @Override
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.getDataTracker().startTracking(ITEM_STACK, ItemStack.EMPTY);
+    }
 
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
@@ -82,7 +88,7 @@ public class PolyppieEntity extends PassiveEntity {
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
         if (nbt.contains("RecordItem", 10)) {
-            this.stack = ItemStack.fromNbt(nbt.getCompound("RecordItem"));
+            this.setStack(ItemStack.fromNbt(nbt.getCompound("RecordItem")));
         }
 
         this.isPlaying = nbt.getBoolean("IsPlaying");
@@ -96,7 +102,11 @@ public class PolyppieEntity extends PassiveEntity {
     }
 
     public ItemStack getStack() {
-        return this.stack;
+        return this.getDataTracker().get(ITEM_STACK);
+    }
+
+    public void setStack(ItemStack stack) {
+        this.getDataTracker().set(ITEM_STACK, stack);
     }
 
     public boolean isValid(ItemStack stack) {
@@ -165,16 +175,7 @@ public class PolyppieEntity extends PassiveEntity {
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
 
-        if (stack.isOf(ModItems.CHORAL_ARROW)) {
-            Band band = new Band(this);
-            if (band.getPlaying() == null)
-                band.startRandom(this.getRandom());
-
-            return ActionResult.success(player.getWorld().isClient());
-        }
-
         if (stack.isOf(ModBlocks.CHORAL_BLOCK.asItem()) && !this.hasPassengers()) {
-            Phantasm.log("uh");
             PolyppieEntity polyppie = ModEntities.POLYPPIE.create(this.getWorld());
             polyppie.setPosition(this.getPos().add(0, 1, 0));
             polyppie.startRiding(this, true);
@@ -187,13 +188,13 @@ public class PolyppieEntity extends PassiveEntity {
             if (!this.getStack().isEmpty()) {
                 this.stopPlaying();
                 this.dropStack(this.getStack());
-                this.stack = ItemStack.EMPTY;
+                this.setStack(ItemStack.EMPTY);
                 return ActionResult.success(player.getWorld().isClient());
             }
             return ActionResult.PASS;
         }
 
-        this.stack = stack.copy();
+        this.setStack(stack.copyWithCount(1));
         stack.decrement(1);
         return ActionResult.success(player.getWorld().isClient());
     }
@@ -236,7 +237,6 @@ public class PolyppieEntity extends PassiveEntity {
         public Band(PolyppieEntity base) {
             this.members = base.getRootVehicle().streamPassengersAndSelf().filter(e -> e instanceof PolyppieEntity)
                     .map(e -> (PolyppieEntity) e).toList();
-            Phantasm.log(this.members.stream().map(e -> e.getY() + " " + e.getStack()).toList());
         }
 
         public void add(PolyppieEntity polyppie) {
@@ -246,10 +246,8 @@ public class PolyppieEntity extends PassiveEntity {
         public void startRandom(Random random) {
             List<PolyppieEntity> singers = new ArrayList<>();
             for (PolyppieEntity polyppie : this.members) {
-                if (!polyppie.getStack().isEmpty()) {
+                if (!polyppie.getStack().isEmpty())
                     singers.add(polyppie);
-                    Phantasm.log(polyppie.getStack());
-                }
             }
             if (singers.isEmpty())
                 return;

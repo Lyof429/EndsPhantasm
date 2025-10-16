@@ -10,14 +10,18 @@ import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.client.SongHandler;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.sound.custom.PolyppieSoundInstance;
+import net.minecraft.client.render.entity.feature.ShoulderParrotFeatureRenderer;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.passive.ParrotEntity;
 import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.passive.TameableShoulderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MusicDiscItem;
@@ -34,13 +38,16 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-public class PolyppieEntity extends PassiveEntity {
+public class PolyppieEntity extends TameableShoulderEntity {
     private static final TrackedData<ItemStack> ITEM_STACK = DataTracker.registerData(PolyppieEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
     //private static final TrackedData<Integer> SOUND_KEY = DataTracker.registerData(PolyppieEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static int OFFSET = 0;
@@ -52,7 +59,7 @@ public class PolyppieEntity extends PassiveEntity {
 
     protected int soundKey;
 
-    public PolyppieEntity(EntityType<? extends PassiveEntity> entityType, World world) {
+    public PolyppieEntity(EntityType<? extends TameableShoulderEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -218,7 +225,7 @@ public class PolyppieEntity extends PassiveEntity {
     }
 
     @Override
-    protected ActionResult interactMob(PlayerEntity player, Hand hand) {
+    public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
 
         if (stack.isOf(ModBlocks.CHORAL_BLOCK.asItem()) && !this.hasPassengers()) {
@@ -244,6 +251,18 @@ public class PolyppieEntity extends PassiveEntity {
         stack.decrement(1);
         return ActionResult.success(player.getWorld().isClient());
     }
+
+
+    @Override
+    public EntityView method_48926() {
+        return this.getWorld();
+    }
+
+    @Override
+    public boolean canAttackWithOwner(LivingEntity target, LivingEntity owner) {
+        return false;
+    }
+
 
     @Override
     public void tick() {

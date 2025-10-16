@@ -24,28 +24,23 @@ import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.compat.VinURLCompat;
 import net.lyof.phantasm.sound.ModSounds;
+import net.lyof.phantasm.sound.custom.PolyppieDiscSoundInstance;
+import net.lyof.phantasm.sound.custom.PolyppieSoundInstance;
 import net.lyof.phantasm.util.MixinAccess;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.screen.CreditsScreen;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
-import net.minecraft.client.sound.EntityTrackingSoundInstance;
-import net.minecraft.client.sound.TickableSoundInstance;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MusicDiscItem;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.UUID;
-
 public class PhantasmClient implements ClientModInitializer {
-    public static final SongHandler SONG_HANDLER = new SongHandler();
-
     @Override
     public void onInitializeClient() {
         for (Block block : ModRegistry.BLOCK_CUTOUT)
@@ -140,11 +135,11 @@ public class PhantasmClient implements ClientModInitializer {
 
                 if (self instanceof PolyppieEntity polyppie) {
                     polyppie.setSoundKey(soundKey);
-                    TickableSoundInstance soundInstance = SONG_HANDLER.get(soundKey);
+                    PolyppieSoundInstance soundInstance = SongHandler.instance.get(soundKey);
 
                     if (soundInstance != null) {
+                        SongHandler.instance.remove(soundKey);
                         client.getSoundManager().stop(soundInstance);
-                        SONG_HANDLER.remove(soundKey);
                     }
 
                     if (Phantasm.isVinURLLoaded() && item.getTranslationKey().equals("item.vinurl.custom_record")) {
@@ -152,8 +147,8 @@ public class PhantasmClient implements ClientModInitializer {
                     } else if (item.getItem() instanceof MusicDiscItem musicDisc) {
                         client.inGameHud.setRecordPlayingOverlay(musicDisc.getDescription());
 
-                        soundInstance = new EntityTrackingSoundInstance(musicDisc.getSound(), SoundCategory.RECORDS, 4, 1, polyppie, 0);
-                        SONG_HANDLER.add(soundKey, soundInstance);
+                        soundInstance = new PolyppieDiscSoundInstance(musicDisc.getSound(), 1, polyppie, 0);
+                        SongHandler.instance.add(soundKey, soundInstance);
                         client.getSoundManager().play(soundInstance);
                     }
                 }

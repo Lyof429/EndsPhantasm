@@ -7,15 +7,10 @@ import net.lyof.phantasm.item.ModTiers;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.FoodComponent;
-import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
-import net.minecraft.text.Text;
 import vectorwing.farmersdelight.common.item.KnifeItem;
 import vectorwing.farmersdelight.common.registry.ModCreativeTabs;
 import vectorwing.farmersdelight.common.registry.ModEffects;
-import vectorwing.farmersdelight.common.utility.TextUtils;
-
-import java.util.List;
 
 public class FarmersDelightCompat {
     public static void setup() {

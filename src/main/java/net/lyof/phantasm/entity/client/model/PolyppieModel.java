@@ -1,14 +1,10 @@
 package net.lyof.phantasm.entity.client.model;
 
-import net.lyof.phantasm.entity.client.animation.BehemothAnimation;
-import net.lyof.phantasm.entity.custom.BehemothEntity;
-import net.lyof.phantasm.entity.custom.CrystieEntity;
 import net.lyof.phantasm.entity.custom.PolyppieEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.MathHelper;
 
 public class PolyppieModel<T extends PolyppieEntity> extends SinglePartEntityModel<T> {
 	private final ModelPart main;

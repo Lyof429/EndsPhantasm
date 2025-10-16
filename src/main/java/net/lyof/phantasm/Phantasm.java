@@ -28,7 +28,6 @@ import net.lyof.phantasm.world.feature.custom.tree.ModTreePlacerTypes;
 import net.lyof.phantasm.world.noise.ModDensityFunctions;
 import net.lyof.phantasm.world.structure.ModProcessorTypes;
 import net.lyof.phantasm.world.structure.ModStructures;
-import net.minecraft.block.entity.JukeboxBlockEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;

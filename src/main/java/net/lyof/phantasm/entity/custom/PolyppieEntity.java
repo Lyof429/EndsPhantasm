@@ -5,11 +5,11 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.PhantasmClient;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.entity.ModEntities;
+import net.lyof.phantasm.entity.client.SongHandler;
 import net.lyof.phantasm.setup.ModPackets;
-import net.minecraft.client.MinecraftClient;
+import net.lyof.phantasm.sound.custom.PolyppieSoundInstance;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -23,6 +23,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.MusicDiscItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -105,6 +108,22 @@ public class PolyppieEntity extends PassiveEntity {
     }
 
     @Override
+    public Packet<ClientPlayPacketListener> createSpawnPacket() {
+        return new EntitySpawnS2CPacket(this, this.getSoundKey());
+    }
+
+    @Override
+    public void onSpawnPacket(EntitySpawnS2CPacket packet) {
+        super.onSpawnPacket(packet);
+        this.setSoundKey(packet.getEntityData());
+
+        if (this.getWorld().isClient()) {
+            PolyppieSoundInstance soundInstance = SongHandler.instance.get(this.getSoundKey());
+            if (soundInstance != null) soundInstance.update(this);
+        }
+    }
+
+    @Override
     public double getMountedHeightOffset() {
         return this.getHeight();
     }
@@ -118,10 +137,8 @@ public class PolyppieEntity extends PassiveEntity {
     }
 
     public void initSoundKey() {
-        if (this.getSoundKey() <= 0) {
+        if (this.getSoundKey() <= 0)
             this.setSoundKey((int) (System.currentTimeMillis() % 10000) + OFFSET++);
-            Phantasm.log("Creating sound key: " + this.getSoundKey());
-        }
     }
 
     public int getSoundKey() {
@@ -239,11 +256,6 @@ public class PolyppieEntity extends PassiveEntity {
                 if (this.isSongFinished(disc)) {
                     this.stopPlaying();
                 } else if (this.hasSecondPassed()) {
-                    if (this.getWorld().isClient())
-                        // I have to find an identifying value that will never change ._.
-                        Phantasm.log(this.getSoundKey() + " " + MinecraftClient.getInstance().getSoundManager()
-                                .isPlaying(PhantasmClient.SONG_HANDLER.get(this.getSoundKey())));
-
                     this.ticksThisSecond = 0;
                     this.getWorld().emitGameEvent(GameEvent.JUKEBOX_PLAY, this.getPos(), GameEvent.Emitter.of(this));
                     this.spawnNoteParticle();

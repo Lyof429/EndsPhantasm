@@ -1,32 +1,29 @@
 package net.lyof.phantasm.entity.client;
 
-import net.lyof.phantasm.Phantasm;
-import net.minecraft.client.sound.EntityTrackingSoundInstance;
-import net.minecraft.client.sound.MovingSoundInstance;
-import net.minecraft.client.sound.SoundInstance;
-import net.minecraft.client.sound.TickableSoundInstance;
-import net.minecraft.entity.Entity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
+import net.lyof.phantasm.sound.custom.PolyppieSoundInstance;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class SongHandler {
-    protected final Map<Integer, TickableSoundInstance> playing = new HashMap<>();
+    public static final SongHandler instance = new SongHandler();
+
+    protected final Map<Integer, PolyppieSoundInstance> playing = new HashMap<>();
     protected int offset = 0;
 
-    public void add(int id, TickableSoundInstance soundInstance) {
+    public void add(int id, PolyppieSoundInstance soundInstance) {
         this.remove(id);
         this.playing.put(id, soundInstance);
     }
 
     public void remove(int id) {
+        if (this.playing.containsKey(id)) this.get(id).setFinished();
         this.playing.remove(id);
     }
 
-    public TickableSoundInstance get(int id) {
+    @Nullable
+    public PolyppieSoundInstance get(int id) {
         return this.playing.get(id);
     }
 }

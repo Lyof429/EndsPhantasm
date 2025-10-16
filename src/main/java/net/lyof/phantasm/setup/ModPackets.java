@@ -1,6 +1,5 @@
 package net.lyof.phantasm.setup;
 
-import net.fabricmc.fabric.api.networking.v1.FabricPacket;
 import net.lyof.phantasm.Phantasm;
 import net.minecraft.util.Identifier;
 

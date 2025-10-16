@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "phantasm:block/pream_cabinet_front",
+    "side": "phantasm:block/pream_cabinet_side",
+    "top": "phantasm:block/pream_cabinet_top"
+  }
+}

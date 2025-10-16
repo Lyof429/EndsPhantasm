@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "fd_cabinet",
+  "key": {
+    "D": {
+      "item": "phantasm:pream_trapdoor"
+    },
+    "_": {
+      "item": "phantasm:pream_slab"
+    }
+  },
+  "pattern": [
+    "___",
+    "D D",
+    "___"
+  ],
+  "result": {
+    "item": "phantasm:pream_cabinet"
+  },
+  "show_notification": true
+}

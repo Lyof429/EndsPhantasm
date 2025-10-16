@@ -50,6 +50,9 @@ public class ModItemGroups {
                         entries.add(ModItems.PREAM_SIGN);
                         entries.add(ModItems.PREAM_HANGING_SIGN);
 
+                        if (ModBlocks.PREAM_CABINET != null)
+                            entries.add(ModBlocks.PREAM_CABINET);
+
                         entries.add(ModItems.PREAM_BERRY);
 
                         entries.add(ModBlocks.OBLIVION);

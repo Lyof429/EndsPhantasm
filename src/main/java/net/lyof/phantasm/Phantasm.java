@@ -76,8 +76,12 @@ public class Phantasm implements ModInitializer {
 
 		if (!FabricLoader.getInstance().isDevelopmentEnvironment()) ModRegistry.clear();
 
-		FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(container -> ResourceManagerHelper.registerBuiltinResourcePack(makeID("phantasm_connected_glass"),
-				container, Text.literal("Phantasm Connected Glass"), ResourcePackActivationType.DEFAULT_ENABLED));
+
+		registerPack("phantasm_connected_glass", "Phantasm Connected Glass", false);
+
+		if (Phantasm.isVinURLLoaded()) registerPack("compat_vinurl", "VinURL Compat", false);
+		if (Phantasm.isFarmersDelightLoaded()) registerPack("compat_farmersdelight", "Farmer's Delight Compat", true);
+		if (FabricLoader.getInstance().isModLoaded("jeed")) registerPack("compat_jeed", "JEED Compat", true);
 	}
 
 	private static void registerPackets() {
@@ -86,6 +90,14 @@ public class Phantasm implements ModInitializer {
 			player.moveToWorld(server.getWorld(World.END));
 		});
 	}
+
+	private static void registerPack(String id, String name, boolean force) {
+		Phantasm.log("Enabling module : " + name, 0);
+		FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(container ->
+				ResourceManagerHelper.registerBuiltinResourcePack(makeID(id), container, Text.literal(name),
+						force ? ResourcePackActivationType.ALWAYS_ENABLED : ResourcePackActivationType.DEFAULT_ENABLED));
+	}
+
 
 	public static Identifier makeID(String id) {
 		return new Identifier(MOD_ID, id);

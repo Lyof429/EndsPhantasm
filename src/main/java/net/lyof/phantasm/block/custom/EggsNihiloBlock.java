@@ -85,7 +85,7 @@ public class EggsNihiloBlock extends Block {
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int i = state.get(SERVINGS);
-        if (i < 4 && random.nextDouble() < 0.025)
+        if (i < 4 && random.nextDouble() < 0.05)
             world.setBlockState(pos, state.with(SERVINGS, i+1));
     }
 

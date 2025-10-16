@@ -336,6 +336,8 @@ public class ModBlocks {
             .tag(BlockTags.SAPLINGS, ModTags.Blocks.PREAM_BLOCKS).tagitem(ItemTags.SAPLINGS)
             .end_plant().fuel(100).drop().build();
 
+    public static Block PREAM_CABINET = null;
+
     // Vivid Nihilium
     public static final Block VIVID_NIHILIUM = ModRegistry.ofBlock("vivid_nihilium",
             new NihiliumBlock(copy(Blocks.END_STONE).mapColor(MapColor.TEAL).ticksRandomly()))

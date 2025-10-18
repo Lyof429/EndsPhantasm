@@ -1,4 +1,4 @@
-package net.lyof.phantasm.entity.client;
+package net.lyof.phantasm.sound;
 
 import net.lyof.phantasm.sound.custom.PolyppieSoundInstance;
 import org.jetbrains.annotations.Nullable;

@@ -10,7 +10,6 @@ public class SongHandler {
     public static final SongHandler instance = new SongHandler();
 
     protected final Map<Integer, PolyppieSoundInstance> playing = new HashMap<>();
-    protected int offset = 0;
 
     public void add(int id, PolyppieSoundInstance soundInstance) {
         this.remove(id);

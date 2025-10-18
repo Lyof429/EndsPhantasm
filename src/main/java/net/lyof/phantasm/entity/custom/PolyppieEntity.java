@@ -45,8 +45,6 @@ import java.util.List;
 
 public class PolyppieEntity extends TameableShoulderEntity {
     private static final TrackedData<ItemStack> ITEM_STACK = DataTracker.registerData(PolyppieEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
-    //private static final TrackedData<Integer> SOUND_KEY = DataTracker.registerData(PolyppieEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    private static int OFFSET = 0;
 
     protected boolean isPlaying;
     protected long tickCount;
@@ -80,7 +78,6 @@ public class PolyppieEntity extends TameableShoulderEntity {
     protected void initDataTracker() {
         super.initDataTracker();
         this.getDataTracker().startTracking(ITEM_STACK, ItemStack.EMPTY);
-        //this.getDataTracker().startTracking(SOUND_KEY, -1);
     }
 
     @Override
@@ -91,7 +88,6 @@ public class PolyppieEntity extends TameableShoulderEntity {
         }
 
         nbt.putBoolean("IsPlaying", this.isPlaying);
-        //nbt.putLong("RecordStartTick", this.recordStartTick);
         nbt.putLong("TickCount", this.tickCount - this.recordStartTick);
 
         nbt.putInt("SoundKey", this.getSoundKey());
@@ -104,7 +100,7 @@ public class PolyppieEntity extends TameableShoulderEntity {
             this.setStack(ItemStack.fromNbt(nbt.getCompound("RecordItem")));
 
         this.isPlaying = nbt.getBoolean("IsPlaying");
-        this.recordStartTick = 0;//nbt.getLong("RecordStartTick");
+        this.recordStartTick = 0;
         this.tickCount = nbt.getLong("TickCount");
 
         this.setSoundKey(nbt.getInt("SoundKey"));
@@ -141,15 +137,15 @@ public class PolyppieEntity extends TameableShoulderEntity {
 
     public void initSoundKey() {
         if (this.getSoundKey() <= 0)
-            this.setSoundKey((int) (System.currentTimeMillis() % 10000) + OFFSET++);
+            this.setSoundKey((int) (System.currentTimeMillis() % 10000));
     }
 
     public int getSoundKey() {
-        return this.soundKey; //this.getDataTracker().get(SOUND_KEY);
+        return this.soundKey;
     }
 
     public void setSoundKey(int soundKey) {
-        this.soundKey = soundKey; //this.getDataTracker().set(SOUND_KEY, soundKey);
+        this.soundKey = soundKey;
     }
 
     public boolean isValid(ItemStack stack) {
@@ -290,7 +286,7 @@ public class PolyppieEntity extends TameableShoulderEntity {
 
 
     public static class Band {
-        protected List<PolyppieEntity> members = new ArrayList<>();
+        protected List<PolyppieEntity> members;
 
         public Band(PolyppieEntity base) {
             this.members = base.getRootVehicle().streamPassengersAndSelf().filter(e -> e instanceof PolyppieEntity)

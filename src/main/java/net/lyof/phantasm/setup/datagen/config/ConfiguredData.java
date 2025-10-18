@@ -77,10 +77,11 @@ public class ConfiguredData {
             }
 
             // Replaces the End's hardcoded biome source with a multinoise
-            if (json.getAsJsonObject().get("generator")
+            if (EndDataCompat.getCompatibilityMode() != EndDataCompat.Mode.VANILLA
+                    && json.getAsJsonObject().get("generator")
                     .getAsJsonObject().get("biome_source")
                     .getAsJsonObject().get("type")
-                    .getAsString().equals("minecraft:the_end") && !EndDataCompat.getCompatibilityMode().equals("vanilla")) {
+                    .getAsString().equals("minecraft:the_end")) {
 
                 json.getAsJsonObject().get("generator")
                         .getAsJsonObject().asMap().replace("biome_source", getJson("""
@@ -178,7 +179,7 @@ public class ConfiguredData {
                 int customCount = EndDataCompat.getEnabledWeightedBiomes().size();
 
                 if (highlands != null && customCount > 0) {
-                    String noise = EndDataCompat.getCompatibilityMode().equals("nullscape") ? "weirdness" : "temperature";
+                    String noise = EndDataCompat.getCompatibilityMode() == EndDataCompat.Mode.NULLSCAPE ? "weirdness" : "temperature";
                     JsonElement point = highlands.get(noise);
                     double pMin = point.isJsonArray() ? point.getAsJsonArray().get(0).getAsDouble() : -1;
                     double pMax = point.isJsonArray() ? point.getAsJsonArray().get(1).getAsDouble() : 1;
@@ -247,7 +248,7 @@ public class ConfiguredData {
             }
 
 
-            if (EndDataCompat.getCompatibilityMode().equals("custom")) {
+            if (EndDataCompat.getCompatibilityMode() == EndDataCompat.Mode.CUSTOM) {
                 json.getAsJsonObject().asMap().replace("noise", getJson("""
                         { "min_y": 0, "height": 256, "size_horizontal": 2, "size_vertical": 1 }"""));
 

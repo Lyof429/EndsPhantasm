@@ -27,8 +27,7 @@ public class ModMaterialRules {
 
     public static MaterialRules.MaterialRule createPhantasmRules() {
 
-        int raw_purpur_offset = EndDataCompat.getCompatibilityMode().equals("endercon") ? 20 : 0;
-        raw_purpur_offset += ConfigEntries.rawPurpurOffset;
+        int raw_purpur_offset = ConfigEntries.rawPurpurOffset;
         MaterialRules.MaterialCondition band_y_below = MaterialRules.verticalGradient("raw_purpur_stripes_below1",
                 YOffset.fixed(raw_purpur_offset + 40), YOffset.fixed(raw_purpur_offset + 42));
         MaterialRules.MaterialCondition band_y_above = MaterialRules.not(MaterialRules.verticalGradient("raw_purpur_stripes_above1",
@@ -78,8 +77,7 @@ public class ModMaterialRules {
         );
 
 
-        return ConfigEntries.doRawPurpur ?
-                raw_purpur_stripes : MaterialRules.sequence();
+        return ConfigEntries.doRawPurpur ? raw_purpur_stripes : MaterialRules.sequence();
     }
 
     public static void addModMaterialRules(MinecraftServer server, RegistryKey<DimensionOptions> dimensionKey) {

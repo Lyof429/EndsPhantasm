@@ -20,13 +20,18 @@ public class EndDataCompat {
                 () -> ConfigEntries.doAcidburntAbyssesBiome ? ConfigEntries.acidburntAbyssesWeight : 0);
     }
 
-    public static String getCompatibilityMode() {
-        if (ConfigEntries.dataCompatMode.equals("automatic")) {
-            if (FabricLoader.getInstance().isModLoaded("nullscape"))
-                return "nullscape";
-            else return "custom";
-        }
-        return ConfigEntries.dataCompatMode;
+    public static EndDataCompat.Mode getCompatibilityMode() {
+        return switch (ConfigEntries.dataCompatMode) {
+            case "automatic" -> {
+                if (FabricLoader.getInstance().isModLoaded("nullscape"))
+                    yield Mode.NULLSCAPE;
+                else yield Mode.CUSTOM;
+            }
+            case "vanilla" -> Mode.VANILLA;
+            case "default" -> Mode.DEFAULT;
+            case "nullscape" -> Mode.NULLSCAPE;
+            default -> Mode.CUSTOM;
+        };
     }
 
 
@@ -112,5 +117,13 @@ public class EndDataCompat {
         if (json.has("surface_rule")) {
             addRules(new Identifier(json.get("biome").getAsString()), json.get("surface_rule").getAsJsonObject());
         }
+    }
+
+
+    public enum Mode {
+        VANILLA,
+        DEFAULT,
+        CUSTOM,
+        NULLSCAPE
     }
 }

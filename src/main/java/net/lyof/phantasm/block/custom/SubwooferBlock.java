@@ -68,7 +68,11 @@ public class SubwooferBlock extends FacingBlock {
                         if (affected.contains(e.getUuid())) continue;
 
                         affected.add(e.getUuid());
-                        e.setVelocity(new Vec3d(dir.getOffsetX(), dir.getOffsetY() + 0.1, dir.getOffsetZ()));
+                        e.addVelocity(new Vec3d(dir.getOffsetX(), dir.getOffsetY(), dir.getOffsetZ())
+                                .multiply(world.getReceivedRedstonePower(pos) / 5f)
+                                .add(0, 0.1, 0));
+                        if (e.getVelocity().y < 0.1 && dir.getAxis() != Direction.Axis.Y)
+                            e.addVelocity(0, 0.1, 0);
                         e.velocityModified = true;
                         if (dir == Direction.UP) e.fallDistance = 0;
                     }

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "servings=0": {
+      "model": "phantasm:block/eggs_nihilo_0"
+    },
+    "servings=1": {
+      "model": "phantasm:block/eggs_nihilo_1"
+    },
+    "servings=2": {
+      "model": "phantasm:block/eggs_nihilo_2"
+    },
+    "servings=3": {
+      "model": "phantasm:block/eggs_nihilo_3"
+    },
+    "servings=4": {
+      "model": "phantasm:block/eggs_nihilo_4"
+    }
+  }
+}

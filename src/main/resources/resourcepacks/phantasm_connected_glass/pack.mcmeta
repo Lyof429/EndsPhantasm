@@ -2,7 +2,7 @@
   "pack": {
     "pack_format": 15,
     "description": {
-      "text": "Adds connected glass for the Phantasm mod."
+      "text": "Makes Phantasm's Crystal Glass have connected textures."
     }
   }
 }

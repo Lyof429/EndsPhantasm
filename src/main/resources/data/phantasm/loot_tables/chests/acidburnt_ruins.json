@@ -22,6 +22,22 @@
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2,
+                "min": 1
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:ender_pearl",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
           "name": "phantasm:pome",
           "weight": 3
         },
@@ -92,7 +108,7 @@
       ],
       "rolls": {
         "type": "minecraft:uniform",
-        "max": 4,
+        "max": 5,
         "min": 3
       }
     },
@@ -121,8 +137,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 8,
-                "min": 5
+                "max": 7,
+                "min": 4
               },
               "function": "minecraft:set_count"
             }

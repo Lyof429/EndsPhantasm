@@ -101,7 +101,8 @@ public abstract class LivingEntityMixin extends Entity implements Challenger, Co
             nbt.putInt(Phantasm.MOD_ID + "_RuneZ", this.getChallengeRune().getPos().getZ());
         }
 
-        nbt.putInt(Phantasm.MOD_ID + "_CorrosiveTicks", this.corrosiveTicks);
+        if (this.corrosiveTicks > 0)
+            nbt.putInt(Phantasm.MOD_ID + "_CorrosiveTicks", this.corrosiveTicks);
     }
 
     @Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))

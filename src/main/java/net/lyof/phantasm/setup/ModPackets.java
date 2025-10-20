@@ -13,4 +13,5 @@ public class ModPackets {
     public static final Identifier BEGIN_CUTSCENE_ENDS = Phantasm.makeID("begin_cutscene_ends");
 
     public static final Identifier POLYPPIE_UPDATES = Phantasm.makeID("polyppie_updates");
+    public static final Identifier POLYPPIE_UNCARRIES = Phantasm.makeID("polyppie_uncarries");
 }

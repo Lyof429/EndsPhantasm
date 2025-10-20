@@ -1,3 +1,4 @@
 accessWidener	v1	named
 accessible class net/minecraft/client/gui/screen/CreditsScreen$CreditsReader
+accessible method net/minecraft/entity/Entity unsetRemoved ()V
 accessible method net/minecraft/client/render/WorldRenderer updateEntitiesForSong (Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Z)V

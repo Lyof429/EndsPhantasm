@@ -95,7 +95,7 @@ public class VinURLCompat {
 
         @Override
         public void tick() {
-            if (!this.entity.isRemoved()) {
+            if (!this.entity.isRemoved() || this.entity.getRemovalReason() == Entity.RemovalReason.UNLOADED_WITH_PLAYER) {
                 this.x = this.entity.getX();
                 this.y = this.entity.getY();
                 this.z = this.entity.getZ();

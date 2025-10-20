@@ -39,6 +39,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 public class PhantasmClient implements ClientModInitializer {
     @Override
@@ -152,6 +153,19 @@ public class PhantasmClient implements ClientModInitializer {
                         client.getSoundManager().play(soundInstance);
                     }
                 }
+            });
+        });
+
+        ClientPlayNetworking.registerGlobalReceiver(ModPackets.POLYPPIE_UNCARRIES, (client, handler, buf, responseSender) -> {
+            int id = buf.readInt();
+            double x = buf.readDouble(), y = buf.readDouble(), z = buf.readDouble();
+
+            client.execute(() -> {
+                Phantasm.log("uncarry1");
+                 if (client.world.getEntityById(id) instanceof PolyppieEntity polyppie) {
+                     Phantasm.log("uncarry2");
+                     polyppie.setCarriedBy(client.player, new Vec3d(x, y, z));
+                 }
             });
         });
     }

@@ -7,9 +7,11 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.entity.ModEntities;
+import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.sound.SongHandler;
 import net.lyof.phantasm.sound.custom.PolyppieSoundInstance;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -229,6 +231,12 @@ public class PolyppieEntity extends TameableShoulderEntity {
             return ActionResult.success(player.getWorld().isClient());
         }
 
+        if (stack.isEmpty() && this.canBeCarriedBy(player)) {
+            this.setCarriedBy(player, null);
+
+            return ActionResult.success(player.getWorld().isClient());
+        }
+
         if (!this.isValid(stack)) {
             if (!this.getStack().isEmpty()) {
                 this.stopPlaying();
@@ -282,6 +290,37 @@ public class PolyppieEntity extends TameableShoulderEntity {
         }
 
         this.tickCount++;
+    }
+
+    public boolean canBeCarriedBy(PlayerEntity player) {
+        return player instanceof PolyppieCarrier carrier && carrier.getCarriedPolyppie() == null;
+    }
+
+    public void setCarriedBy(PlayerEntity player, Vec3d position) {
+        if (position == null) {
+            this.dismountVehicle();
+            if (this.hasPassengers()) this.getPassengerList().forEach(Entity::dismountVehicle);
+
+            ((PolyppieCarrier) player).setCarriedPolyppie(this);
+            this.remove(RemovalReason.UNLOADED_WITH_PLAYER);
+        } else {
+            this.unsetRemoved();
+            this.setPosition(position);
+            ((PolyppieCarrier) player).setCarriedPolyppie(null);
+
+            // TODO: because it's technically removed, looks like the id got used for smth else
+            //  Would be better to instanciate a new polyppie and make it read the old one's nbt
+            //  (and don't forget to update the sound instance)
+            if (player instanceof ServerPlayerEntity serverPlayer) {
+                PacketByteBuf buf = PacketByteBufs.create();
+                buf.writeInt(this.getId());
+                buf.writeDouble(position.x);
+                buf.writeDouble(position.y);
+                buf.writeDouble(position.z);
+                Phantasm.log("uncarry0");
+                ServerPlayNetworking.send(serverPlayer, ModPackets.POLYPPIE_UNCARRIES, buf);
+            }
+        }
     }
 
 

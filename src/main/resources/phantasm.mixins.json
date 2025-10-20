@@ -31,6 +31,7 @@
     "PlayerEntityMixin",
     "PlayerGeneratesContainerLootCriterionConditionsMixin",
     "ServerPlayerEntityMixin",
+    "ServerPlayerInteractionManagerMixin",
     "TheEndBiomesMixin",
     "access.ChunkGeneratorSettingsAccessor",
     "access.EndGatewayBlockEntityAccessor",

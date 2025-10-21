@@ -48,6 +48,7 @@
     "client.InGameHudMixin",
     "client.ItemMixin",
     "client.MinecraftClientMixin",
+    "client.PlayerEntityRendererMixin",
     "client.VexEntityRendererMixin"
   ]
 }

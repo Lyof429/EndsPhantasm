@@ -34,6 +34,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MusicDiscItem;
 import net.minecraft.nbt.NbtCompound;
@@ -150,6 +151,8 @@ public class PhantasmClient implements ClientModInitializer {
                         client.getSoundManager().stop(soundInstance);
                     }
 
+                    if (polyppie.isDead()) return;
+
                     if (Phantasm.isVinURLLoaded() && item.getTranslationKey().equals("item.vinurl.custom_record")) {
                         VinURLCompat.playSound(polyppie, soundKey, item, client);
                     } else if (item.getItem() instanceof MusicDiscItem musicDisc) {
@@ -163,16 +166,30 @@ public class PhantasmClient implements ClientModInitializer {
             });
         });
 
-        ClientPlayNetworking.registerGlobalReceiver(ModPackets.POLYPPIE_UNCARRIES, (client, handler, buf, responseSender) -> {
-            int id = buf.readInt();
+        ClientPlayNetworking.registerGlobalReceiver(ModPackets.POLYPPIE_STARTS_BEING_CARRIED, (client, handler, buf, responseSender) -> {
+            int polyppieid = buf.readInt();
+            int playerid = buf.readInt();
+
+            client.execute(() -> {
+                if (client.world.getEntityById(polyppieid) instanceof PolyppieEntity polyppie
+                        && client.world.getEntityById(playerid) instanceof PlayerEntity player) {
+                    polyppie.setCarriedBy(player, null);
+                }
+            });
+        });
+
+        ClientPlayNetworking.registerGlobalReceiver(ModPackets.POLYPPIE_STOPS_BEING_CARRIED, (client, handler, buf, responseSender) -> {
+            int polyppieid = buf.readInt();
+            int playerid = buf.readInt();
             double x = buf.readDouble(), y = buf.readDouble(), z = buf.readDouble();
 
             client.execute(() -> {
-                 if (client.world.getEntityById(id) instanceof PolyppieEntity polyppie) {
+                 if (client.world.getEntityById(polyppieid) instanceof PolyppieEntity polyppie
+                         && client.world.getEntityById(playerid) instanceof PlayerEntity player) {
                      PolyppieSoundInstance soundInstance = SongHandler.instance.get(polyppie.getSoundKey());
                      if (soundInstance != null) soundInstance.update(polyppie);
 
-                     polyppie.setCarriedBy(client.player, new Vec3d(x, y, z));
+                     polyppie.setCarriedBy(player, new Vec3d(x, y, z));
                  }
             });
         });

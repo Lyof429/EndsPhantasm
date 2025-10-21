@@ -11,6 +11,7 @@ import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.sound.SongHandler;
 import net.lyof.phantasm.sound.custom.PolyppieSoundInstance;
+import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -36,6 +37,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.EntityView;
@@ -274,17 +276,15 @@ public class PolyppieEntity extends TameableEntity {
     public void tick() {
         super.tick();
 
-        if (this.isPlayingRecord()) {
-            if (this.getStack().getItem() instanceof MusicDiscItem disc) {
-                this.ticksThisSecond++;
+        if (this.isPlayingRecord() && this.getStack().getItem() instanceof MusicDiscItem disc) {
+            this.ticksThisSecond++;
 
-                if (this.isSongFinished(disc)) {
-                    this.stopPlaying();
-                } else if (this.hasSecondPassed()) {
-                    this.ticksThisSecond = 0;
-                    this.getWorld().emitGameEvent(GameEvent.JUKEBOX_PLAY, this.getPos(), GameEvent.Emitter.of(this));
-                    this.spawnNoteParticle();
-                }
+            if (this.isSongFinished(disc)) {
+                this.stopPlaying();
+            } else if (this.hasSecondPassed()) {
+                this.ticksThisSecond = 0;
+                this.getWorld().emitGameEvent(GameEvent.JUKEBOX_PLAY, this.getPos(), GameEvent.Emitter.of(this));
+                this.spawnNoteParticle();
             }
         }
 
@@ -303,18 +303,27 @@ public class PolyppieEntity extends TameableEntity {
 
     public void setCarriedBy(PlayerEntity player, Vec3d position) {
         if (position == null) {
+            if (player.getWorld() instanceof ServerWorld serverWorld) {
+                PacketByteBuf buf = PacketByteBufs.create();
+                buf.writeInt(this.getId());
+                buf.writeInt(player.getId());
+                for (ServerPlayerEntity p : serverWorld.getServer().getPlayerManager().getPlayerList())
+                    ServerPlayNetworking.send(p, ModPackets.POLYPPIE_STARTS_BEING_CARRIED, buf);
+            }
+
             this.dismountVehicle();
             if (this.hasPassengers()) this.getPassengerList().forEach(Entity::dismountVehicle);
 
             ((PolyppieCarrier) player).setCarriedPolyppie(this);
             this.setOwner(player);
             this.remove(RemovalReason.UNLOADED_WITH_PLAYER);
-        } else {
+        }
+        else {
             this.setPosition(position);
             this.setRotation(180 + player.getHeadYaw(), 0);
             ((PolyppieCarrier) player).setCarriedPolyppie(null);
 
-            if (player instanceof ServerPlayerEntity serverPlayer) {
+            if (player.getWorld() instanceof ServerWorld serverWorld) {
                 this.setTamed(false);
                 this.setOwnerUuid(null);
                 this.unsetRemoved();
@@ -327,10 +336,12 @@ public class PolyppieEntity extends TameableEntity {
 
                 PacketByteBuf buf = PacketByteBufs.create();
                 buf.writeInt(polyppie.getId());
+                buf.writeInt(player.getId());
                 buf.writeDouble(position.x);
                 buf.writeDouble(position.y);
                 buf.writeDouble(position.z);
-                ServerPlayNetworking.send(serverPlayer, ModPackets.POLYPPIE_UNCARRIES, buf);
+                for (ServerPlayerEntity p : serverWorld.getServer().getPlayerManager().getPlayerList())
+                    ServerPlayNetworking.send(p, ModPackets.POLYPPIE_STOPS_BEING_CARRIED, buf);
             }
         }
     }

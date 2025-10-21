@@ -13,6 +13,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, PolyppieModel<PolyppieEntity>> {
+    public static PolyppieRenderer instance = null;
+
     private static final Identifier TEXTURE = Phantasm.makeID("textures/entity/crystie.png");
     private static final Identifier TEXTURE_ANGRY = Phantasm.makeID("textures/entity/behemoth_angry.png");
 
@@ -21,6 +23,8 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
     public PolyppieRenderer(EntityRendererFactory.Context context) {
         super(context, new PolyppieModel<>(context.getPart(ModModelLayers.CRYSTIE)), 0.6f);
         this.itemRenderer = context.getItemRenderer();
+
+        if (instance == null) instance = this;
     }
 
     @Override

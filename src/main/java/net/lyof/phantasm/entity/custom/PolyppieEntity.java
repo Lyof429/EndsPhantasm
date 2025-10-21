@@ -22,7 +22,6 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.entity.passive.TameableShoulderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MusicDiscItem;
@@ -289,7 +288,6 @@ public class PolyppieEntity extends TameableEntity {
             }
         }
 
-
         else if (this.tickCount % 20 == 0 && !this.hasVehicle()) {
             Band band = new Band(this);
             if (band.getPlaying() == null)
@@ -297,11 +295,6 @@ public class PolyppieEntity extends TameableEntity {
         }
 
         this.tickCount++;
-        if (this.tickCount % 20 == 0 && this.getStack().getItem() instanceof MusicDiscItem disc) {
-            Phantasm.log("TickCount: " + this.tickCount + " Start: " + this.recordStartTick + " Length: " + ((long) disc.getSongLengthInTicks() + 20L)
-                    + " Client: " + this.getWorld().isClient());
-            Phantasm.log(this.isSongFinished(disc));
-        }
     }
 
     public boolean canBeCarriedBy(PlayerEntity player) {

@@ -136,14 +136,10 @@ public class PhantasmClient implements ClientModInitializer {
                 if (!nbt.isEmpty()) item = ItemStack.fromNbt(nbt);
 
                 PolyppieEntity polyppie = null;
-
-                Phantasm.log("Received packet, id: " + id + " " + self);
-                if (self instanceof PolyppieCarrier carrier && carrier.getCarriedPolyppie() != null) {
+                if (self instanceof PolyppieCarrier carrier && carrier.getCarriedPolyppie() != null)
                     polyppie = carrier.getCarriedPolyppie();
-                }
-                else if (self instanceof PolyppieEntity) {
+                else if (self instanceof PolyppieEntity)
                     polyppie = (PolyppieEntity) self;
-                }
 
                 if (polyppie != null) {
                     polyppie.setSoundKey(soundKey);

@@ -4,7 +4,6 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.mixin.access.ChunkGeneratorSettingsAccessor;
-import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;

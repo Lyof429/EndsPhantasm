@@ -1,10 +1,7 @@
 package net.lyof.phantasm.mixin;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
-import net.lyof.phantasm.entity.custom.PolyppieEntity;
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.network.ServerPlayerInteractionManager;
@@ -14,7 +11,6 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

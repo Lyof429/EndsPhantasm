@@ -70,16 +70,14 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 
 	@Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
 	private void writeCustom(NbtCompound nbt, CallbackInfo ci) {
-		if (this.getCarriedPolyppie() != null) {
+		if (this.getCarriedPolyppie() != null)
 			nbt.put(Phantasm.MOD_ID + "_CarriedPolyppie", this.getCarriedPolyppie().writeNbt(new NbtCompound()));
-		}
 	}
 
 	@Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
-	private void readCustom(NbtCompound nbt, CallbackInfo ci) {/*
-		if (nbt.contains(Phantasm.MOD_ID + "_CarriedPolyppie", 10)) {
+	private void readCustom(NbtCompound nbt, CallbackInfo ci) {
+		if (nbt.contains(Phantasm.MOD_ID + "_CarriedPolyppie", 10))
 			this.polyppieNbt = nbt.getCompound(Phantasm.MOD_ID + "_CarriedPolyppie");
-		}*/
 	}
 
 	@Inject(method = "tick", at = @At("TAIL"))
@@ -92,7 +90,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 		}
 
 		if (this.polyppie != null) {
-			if (this.age % 20 == 0) {
+			if (this.age % 5 == 0) {
 				this.polyppie.setPosition(this.getPos().add(0, 1, 0));
 			}
 			this.polyppie.tick();

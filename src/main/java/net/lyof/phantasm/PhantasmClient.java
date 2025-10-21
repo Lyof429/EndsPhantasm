@@ -11,6 +11,7 @@ import net.lyof.phantasm.block.ModBlockEntities;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.access.Challenger;
+import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.entity.client.ModModelLayers;
 import net.lyof.phantasm.entity.client.model.BehemothModel;
 import net.lyof.phantasm.entity.client.model.CrystieModel;
@@ -134,7 +135,17 @@ public class PhantasmClient implements ClientModInitializer {
                 ItemStack item = ItemStack.EMPTY;
                 if (!nbt.isEmpty()) item = ItemStack.fromNbt(nbt);
 
-                if (self instanceof PolyppieEntity polyppie) {
+                PolyppieEntity polyppie = null;
+
+                Phantasm.log("Received packet, id: " + id + " " + self);
+                if (self instanceof PolyppieCarrier carrier && carrier.getCarriedPolyppie() != null) {
+                    polyppie = carrier.getCarriedPolyppie();
+                }
+                else if (self instanceof PolyppieEntity) {
+                    polyppie = (PolyppieEntity) self;
+                }
+
+                if (polyppie != null) {
                     polyppie.setSoundKey(soundKey);
                     PolyppieSoundInstance soundInstance = SongHandler.instance.get(soundKey);
 
@@ -161,9 +172,10 @@ public class PhantasmClient implements ClientModInitializer {
             double x = buf.readDouble(), y = buf.readDouble(), z = buf.readDouble();
 
             client.execute(() -> {
-                Phantasm.log("uncarry1");
                  if (client.world.getEntityById(id) instanceof PolyppieEntity polyppie) {
-                     Phantasm.log("uncarry2");
+                     PolyppieSoundInstance soundInstance = SongHandler.instance.get(polyppie.getSoundKey());
+                     if (soundInstance != null) soundInstance.update(polyppie);
+
                      polyppie.setCarriedBy(client.player, new Vec3d(x, y, z));
                  }
             });

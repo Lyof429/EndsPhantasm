@@ -113,12 +113,12 @@ public class ModItems {
 
 
     public static final Item CRYSTIE_SPAWN_EGG = ModRegistry.ofItem("crystie_spawn_egg",
-            new SpawnEggItem(ModEntities.CRYSTIE, 0xfaf0ff, 0xa0a0ff, new FabricItemSettings()))
+            new SpawnEggItem(ModEntities.CRYSTIE, 0xB7C6E2, 0x5E58A0, new FabricItemSettings()))
             .build();
     public static final Item BEHEMOTH_SPAWN_EGG = ModRegistry.ofItem("behemoth_spawn_egg",
-            new SpawnEggItem(ModEntities.BEHEMOTH, 0xafa0ff, 0x0f000f, new FabricItemSettings()))
+            new SpawnEggItem(ModEntities.BEHEMOTH, 0x60548D, 0x1C1947, new FabricItemSettings()))
             .build();
     public static final Item POLYPPIE_SPAWN_EGG = ModRegistry.ofItem("polyppie_spawn_egg",
-                    new SpawnEggItem(ModEntities.POLYPPIE, 0xffccdc, 0xcc9999, new FabricItemSettings()))
+                    new SpawnEggItem(ModEntities.POLYPPIE, 0xCD98BC, 0x9A4E99, new FabricItemSettings()))
             .build();
 }

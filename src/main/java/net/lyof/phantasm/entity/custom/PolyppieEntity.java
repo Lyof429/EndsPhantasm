@@ -21,6 +21,7 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.passive.TameableShoulderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -43,9 +44,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class PolyppieEntity extends TameableShoulderEntity {
+public class PolyppieEntity extends TameableEntity {
     private static final TrackedData<ItemStack> ITEM_STACK = DataTracker.registerData(PolyppieEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
 
     protected boolean isPlaying;
@@ -55,7 +57,7 @@ public class PolyppieEntity extends TameableShoulderEntity {
 
     protected int soundKey;
 
-    public PolyppieEntity(EntityType<? extends TameableShoulderEntity> entityType, World world) {
+    public PolyppieEntity(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -158,15 +160,20 @@ public class PolyppieEntity extends TameableShoulderEntity {
         return !this.getStack().isEmpty() && this.isPlaying;
     }
 
-    protected void sendPacket(boolean start) {
+    protected void sendSongPacket(boolean start) {
         if (!this.getWorld().isClient()) {
             this.initSoundKey();
+            boolean isCarried = this.getRemovalReason() == RemovalReason.UNLOADED_WITH_PLAYER;
 
             PacketByteBuf buf = PacketByteBufs.create();
             buf.writeNbt(start ? this.getStack().writeNbt(new NbtCompound()) : new NbtCompound());
-            buf.writeInt(this.getId());
+            buf.writeInt(isCarried ? this.getOwner().getId() : this.getId());
             buf.writeInt(this.getSoundKey());
-            for (ServerPlayerEntity player : PlayerLookup.tracking(this))
+
+            Collection<ServerPlayerEntity> targets = PlayerLookup.tracking(isCarried ? this.getOwner() : this);
+            for (ServerPlayerEntity player : targets)
+                ServerPlayNetworking.send(player, ModPackets.POLYPPIE_UPDATES, buf);
+            if (isCarried && this.getOwner() instanceof ServerPlayerEntity player && !targets.contains(player))
                 ServerPlayNetworking.send(player, ModPackets.POLYPPIE_UPDATES, buf);
         }
     }
@@ -176,14 +183,14 @@ public class PolyppieEntity extends TameableShoulderEntity {
         this.isPlaying = true;
         this.getWorld().emitGameEvent(GameEvent.JUKEBOX_PLAY, this.getPos(), GameEvent.Emitter.of(this));
 
-        this.sendPacket(true);
+        this.sendSongPacket(true);
     }
 
     public void stopPlaying() {
         this.isPlaying = false;
         this.getWorld().emitGameEvent(GameEvent.JUKEBOX_STOP_PLAY, this.getPos(), GameEvent.Emitter.of(this));
 
-        this.sendPacket(false);
+        this.sendSongPacket(false);
     }
 
     public boolean isSongFinished(MusicDiscItem disc) {
@@ -231,7 +238,7 @@ public class PolyppieEntity extends TameableShoulderEntity {
             return ActionResult.success(player.getWorld().isClient());
         }
 
-        if (stack.isEmpty() && this.canBeCarriedBy(player)) {
+        if (stack.isEmpty() && this.canBeCarriedBy(player) && player.isSneaking()) {
             this.setCarriedBy(player, null);
 
             return ActionResult.success(player.getWorld().isClient());
@@ -268,10 +275,10 @@ public class PolyppieEntity extends TameableShoulderEntity {
     public void tick() {
         super.tick();
 
-        this.ticksThisSecond++;
-
         if (this.isPlayingRecord()) {
             if (this.getStack().getItem() instanceof MusicDiscItem disc) {
+                this.ticksThisSecond++;
+
                 if (this.isSongFinished(disc)) {
                     this.stopPlaying();
                 } else if (this.hasSecondPassed()) {
@@ -290,6 +297,11 @@ public class PolyppieEntity extends TameableShoulderEntity {
         }
 
         this.tickCount++;
+        if (this.tickCount % 20 == 0 && this.getStack().getItem() instanceof MusicDiscItem disc) {
+            Phantasm.log("TickCount: " + this.tickCount + " Start: " + this.recordStartTick + " Length: " + ((long) disc.getSongLengthInTicks() + 20L)
+                    + " Client: " + this.getWorld().isClient());
+            Phantasm.log(this.isSongFinished(disc));
+        }
     }
 
     public boolean canBeCarriedBy(PlayerEntity player) {
@@ -302,22 +314,29 @@ public class PolyppieEntity extends TameableShoulderEntity {
             if (this.hasPassengers()) this.getPassengerList().forEach(Entity::dismountVehicle);
 
             ((PolyppieCarrier) player).setCarriedPolyppie(this);
+            this.setOwner(player);
             this.remove(RemovalReason.UNLOADED_WITH_PLAYER);
         } else {
-            this.unsetRemoved();
             this.setPosition(position);
+            this.setRotation(180 + player.getHeadYaw(), 0);
             ((PolyppieCarrier) player).setCarriedPolyppie(null);
 
-            // TODO: because it's technically removed, looks like the id got used for smth else
-            //  Would be better to instanciate a new polyppie and make it read the old one's nbt
-            //  (and don't forget to update the sound instance)
             if (player instanceof ServerPlayerEntity serverPlayer) {
+                this.setTamed(false);
+                this.setOwnerUuid(null);
+                this.unsetRemoved();
+
+                PolyppieEntity polyppie = ModEntities.POLYPPIE.create(this.getWorld());
+                polyppie.readNbt(this.writeNbt(new NbtCompound()));
+                this.getWorld().spawnEntity(polyppie);
+
+                this.discard();
+
                 PacketByteBuf buf = PacketByteBufs.create();
-                buf.writeInt(this.getId());
+                buf.writeInt(polyppie.getId());
                 buf.writeDouble(position.x);
                 buf.writeDouble(position.y);
                 buf.writeDouble(position.z);
-                Phantasm.log("uncarry0");
                 ServerPlayNetworking.send(serverPlayer, ModPackets.POLYPPIE_UNCARRIES, buf);
             }
         }

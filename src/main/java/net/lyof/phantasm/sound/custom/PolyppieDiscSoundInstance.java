@@ -15,28 +15,24 @@ public class PolyppieDiscSoundInstance extends AbstractSoundInstance implements 
         this.volume = 4;
         this.pitch = pitch;
         this.entity = entity;
-        this.x = this.entity.getX();
-        this.y = this.entity.getY();
-        this.z = this.entity.getZ();
+        this.setPos(this.entity.getX(), this.entity.getY(), this.entity.getZ());
     }
 
     @Override
-    public boolean canPlay() {
-        return !this.entity.isSilent();
+    public Entity getEntity() {
+        return this.entity;
+    }
+
+    @Override
+    public void setPos(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     @Override
     public boolean isDone() {
         return this.done;
-    }
-
-    @Override
-    public void tick() {
-        if (!this.entity.isRemoved() || this.entity.getRemovalReason() == Entity.RemovalReason.UNLOADED_WITH_PLAYER) {
-            this.x = this.entity.getX();
-            this.y = this.entity.getY();
-            this.z = this.entity.getZ();
-        }
     }
 
     @Override

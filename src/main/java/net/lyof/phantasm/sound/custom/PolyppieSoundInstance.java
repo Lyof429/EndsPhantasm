@@ -20,5 +20,4 @@ public interface PolyppieSoundInstance extends TickableSoundInstance {
     default boolean canPlay() {
         return !this.getEntity().isSilent();
     }
-
 }

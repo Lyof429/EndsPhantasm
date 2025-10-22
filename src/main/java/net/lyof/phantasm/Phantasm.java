@@ -23,7 +23,6 @@ import net.lyof.phantasm.setup.ModRegistry;
 import net.lyof.phantasm.setup.compat.FarmersDelightCompat;
 import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
 import net.lyof.phantasm.sound.ModSounds;
-import net.lyof.phantasm.util.MixinAccess;
 import net.lyof.phantasm.world.ModWorldGeneration;
 import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.lyof.phantasm.world.feature.ModFeatures;
@@ -32,10 +31,8 @@ import net.lyof.phantasm.world.noise.ModDensityFunctions;
 import net.lyof.phantasm.world.structure.ModProcessorTypes;
 import net.lyof.phantasm.world.structure.ModStructures;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.resource.ResourceType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -88,10 +85,7 @@ public class Phantasm implements ModInitializer {
 	}
 
 	private static void registerPackets() {
-		ServerPlayNetworking.registerGlobalReceiver(ModPackets.BEGIN_CUTSCENE_ENDS, (server, player, handler, buf, responseSender) -> {
-			((MixinAccess<Boolean>) player).setMixinValue(true);
-			player.moveToWorld(server.getWorld(World.END));
-		});
+		ServerPlayNetworking.registerGlobalReceiver(ModPackets.BEGIN_CUTSCENE_ENDS, ModPackets.Server::beginCutsceneEnds);
 	}
 
 	private static void registerModules() {

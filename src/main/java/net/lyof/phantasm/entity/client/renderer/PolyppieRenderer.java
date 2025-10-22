@@ -1,6 +1,5 @@
 package net.lyof.phantasm.entity.client.renderer;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.client.ModModelLayers;
 import net.lyof.phantasm.entity.client.model.PolyppieModel;
 import net.lyof.phantasm.entity.custom.PolyppieEntity;

@@ -2,7 +2,6 @@ package net.lyof.phantasm.setup;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.challenge.Challenge;
 import net.lyof.phantasm.block.challenge.ChallengeRegistry;

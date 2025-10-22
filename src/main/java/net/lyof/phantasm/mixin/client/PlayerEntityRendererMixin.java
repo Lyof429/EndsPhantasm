@@ -4,7 +4,6 @@ import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.entity.client.renderer.PolyppieRenderer;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import org.spongepowered.asm.mixin.Mixin;

@@ -64,7 +64,7 @@ public class ReloadListener {
 
                 if (json == null || !json.isJsonObject()) continue;
 
-                PolyppieEntity.Variant.read(json.getAsJsonObject());
+                PolyppieEntity.Variant.read(finder.toResourceId(entry.getKey()), json.getAsJsonObject());
             }
             catch (Throwable e) {
                 Phantasm.log("Could not read data file " + entry.getKey(), 2);

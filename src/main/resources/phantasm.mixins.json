@@ -20,6 +20,7 @@
     "EndSpikeFeatureMixin",
     "EndSpikeFeatureSpikeMixin",
     "EntityMixin",
+    "EntitySpawnS2CPacketMixin",
     "FireworkRocketItemMixin",
     "LifecycledResourceManagerImplMixin",
     "LivingEntityMixin",

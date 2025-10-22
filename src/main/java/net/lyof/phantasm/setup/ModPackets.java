@@ -200,13 +200,11 @@ public class ModPackets {
 
         public static void polyppieSetsVariant(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
             int id = buf.readInt();
-            int variant = buf.readInt();
+            Identifier variant = buf.readIdentifier();
 
             client.execute(() -> {
-                if (client.world.getEntityById(id) instanceof PolyppieEntity polyppie) {
-                    Phantasm.log(client.player.getEntityName() + " set variant " + variant);
+                if (client.world.getEntityById(id) instanceof PolyppieEntity polyppie)
                     polyppie.setVariant(PolyppieEntity.Variant.get(variant));
-                }
             });
         }
     }

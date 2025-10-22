@@ -22,6 +22,7 @@ import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.particle.custom.ZzzParticle;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.setup.ModRegistry;
+import net.lyof.phantasm.setup.ReloadListener;
 import net.lyof.phantasm.setup.compat.VinURLCompat;
 import net.lyof.phantasm.sound.ModSounds;
 import net.lyof.phantasm.sound.SongHandler;
@@ -67,6 +68,15 @@ public class PhantasmClient implements ClientModInitializer {
     }
 
     public static void registerPackets() {
+        ClientPlayNetworking.registerGlobalReceiver(ModPackets.INITIALIZE, (client, handler, buf, responseSender) -> {
+            int eventType = buf.readInt();
+
+            if (eventType == 0)
+                ReloadListener.INSTANCE.reloadClient();
+            else if (eventType == 1)
+                PolyppieEntity.Variant.read(buf);
+        });
+
         ClientPlayNetworking.registerGlobalReceiver(ModPackets.BEHEMOTH_WAKES_UP, (client, handler, buf, responseSender) -> {
             int selfId = buf.readInt();
             int targetId = buf.readInt();
@@ -191,6 +201,18 @@ public class PhantasmClient implements ClientModInitializer {
 
                      polyppie.setCarriedBy(player, new Vec3d(x, y, z));
                  }
+            });
+        });
+
+        ClientPlayNetworking.registerGlobalReceiver(ModPackets.POLYPPIE_SETS_VARIANT, (client, handler, buf, responseSender) -> {
+            int id = buf.readInt();
+            int variant = buf.readInt();
+
+            client.execute(() -> {
+                if (client.world.getEntityById(id) instanceof PolyppieEntity polyppie) {
+                    Phantasm.log(client.player.getEntityName() + " set variant " + variant);
+                    polyppie.setVariant(PolyppieEntity.Variant.get(variant));
+                }
             });
         });
     }

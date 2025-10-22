@@ -1,5 +1,7 @@
 package net.lyof.phantasm.entity.custom;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.vinurl.util.Constants;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -8,13 +10,15 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
+import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.sound.SongHandler;
 import net.lyof.phantasm.sound.custom.PolyppieSoundInstance;
-import net.minecraft.client.render.entity.PlayerEntityRenderer;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.VariantHolder;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
@@ -23,8 +27,11 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.MusicDiscItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
@@ -32,23 +39,25 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
-public class PolyppieEntity extends TameableEntity {
+public class PolyppieEntity extends TameableEntity implements VariantHolder<PolyppieEntity.Variant> {
     private static final TrackedData<ItemStack> ITEM_STACK = DataTracker.registerData(PolyppieEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
 
     protected boolean isPlaying;
@@ -57,6 +66,7 @@ public class PolyppieEntity extends TameableEntity {
     protected int ticksThisSecond;
 
     protected int soundKey;
+    protected Variant variant = Variant.get(0);
 
     public PolyppieEntity(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
@@ -96,6 +106,8 @@ public class PolyppieEntity extends TameableEntity {
         nbt.putLong("TickCount", this.tickCount - this.recordStartTick);
 
         nbt.putInt("SoundKey", this.getSoundKey());
+
+        nbt.putInt("Variant", Variant.instances.indexOf(this.variant));
     }
 
     @Override
@@ -109,17 +121,23 @@ public class PolyppieEntity extends TameableEntity {
         this.tickCount = nbt.getLong("TickCount");
 
         this.setSoundKey(nbt.getInt("SoundKey"));
+
+        this.setVariant(Variant.get(nbt.getInt("Variant")));
     }
 
     @Override
     public Packet<ClientPlayPacketListener> createSpawnPacket() {
-        return new EntitySpawnS2CPacket(this, this.getSoundKey());
+        return new EntitySpawnS2CPacket(this, this.getSoundKey()
+                + 10000*Variant.instances.indexOf(this.getVariant()));
     }
 
     @Override
     public void onSpawnPacket(EntitySpawnS2CPacket packet) {
         super.onSpawnPacket(packet);
-        this.setSoundKey(packet.getEntityData());
+
+        int data = packet.getEntityData();
+        this.setSoundKey(data % 10000);
+        this.setVariant(Variant.get(data / 10000));
 
         if (this.getWorld().isClient()) {
             PolyppieSoundInstance soundInstance = SongHandler.instance.get(this.getSoundKey());
@@ -162,7 +180,7 @@ public class PolyppieEntity extends TameableEntity {
     }
 
     protected void sendSongPacket(boolean start) {
-        if (!this.getWorld().isClient()) {
+        if (this.getWorld() instanceof ServerWorld serverWorld) {
             this.initSoundKey();
             boolean isCarried = this.getRemovalReason() == RemovalReason.UNLOADED_WITH_PLAYER;
 
@@ -171,10 +189,7 @@ public class PolyppieEntity extends TameableEntity {
             buf.writeInt(isCarried ? this.getOwner().getId() : this.getId());
             buf.writeInt(this.getSoundKey());
 
-            Collection<ServerPlayerEntity> targets = PlayerLookup.tracking(isCarried ? this.getOwner() : this);
-            for (ServerPlayerEntity player : targets)
-                ServerPlayNetworking.send(player, ModPackets.POLYPPIE_UPDATES, buf);
-            if (isCarried && this.getOwner() instanceof ServerPlayerEntity player && !targets.contains(player))
+            for (ServerPlayerEntity player : serverWorld.getServer().getPlayerManager().getPlayerList())
                 ServerPlayNetworking.send(player, ModPackets.POLYPPIE_UPDATES, buf);
         }
     }
@@ -230,18 +245,21 @@ public class PolyppieEntity extends TameableEntity {
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
 
-        if (stack.isOf(ModBlocks.CHORAL_BLOCK.asItem()) && !this.hasPassengers()) {
-            PolyppieEntity polyppie = ModEntities.POLYPPIE.create(this.getWorld());
-            polyppie.setPosition(this.getPos().add(0, 1, 0));
-            polyppie.startRiding(this, true);
-            this.getWorld().spawnEntity(polyppie);
-
-            return ActionResult.success(player.getWorld().isClient());
+        if (stack.isEmpty()) {
+            if (this.canBeCarriedBy(player) && player.isSneaking()) {
+                this.setCarriedBy(player, null);
+                return ActionResult.success(player.getWorld().isClient());
+            }
+            return ActionResult.PASS;
         }
 
-        if (stack.isEmpty() && this.canBeCarriedBy(player) && player.isSneaking()) {
-            this.setCarriedBy(player, null);
+        Variant variant = Variant.get(stack);
+        if (variant != null && variant != this.getVariant()) {
+            if (!this.getWorld().isClient())
+                this.setVariant(variant);
 
+            stack.decrement(1);
+            this.getWorld().playSound(player, this.getBlockPos(), SoundEvents.BLOCK_CORAL_BLOCK_PLACE, SoundCategory.PLAYERS);
             return ActionResult.success(player.getWorld().isClient());
         }
 
@@ -342,8 +360,31 @@ public class PolyppieEntity extends TameableEntity {
                 buf.writeDouble(position.z);
                 for (ServerPlayerEntity p : serverWorld.getServer().getPlayerManager().getPlayerList())
                     ServerPlayNetworking.send(p, ModPackets.POLYPPIE_STOPS_BEING_CARRIED, buf);
+
+                this.setVariant(polyppie.getVariant());
             }
         }
+    }
+
+    @Override
+    public void setVariant(Variant variant) {
+        this.variant = variant;
+
+        if (this.getWorld() instanceof ServerWorld serverWorld) {
+            PacketByteBuf buf = PacketByteBufs.create();
+            buf.writeInt(this.getId());
+            buf.writeInt(Variant.instances.indexOf(variant));
+            for (ServerPlayerEntity p : serverWorld.getServer().getPlayerManager().getPlayerList())
+                ServerPlayNetworking.send(p, ModPackets.POLYPPIE_SETS_VARIANT, buf);
+        }
+        else {
+            Phantasm.log(Variant.instances);
+        }
+    }
+
+    @Override
+    public Variant getVariant() {
+        return this.variant;
     }
 
 
@@ -377,6 +418,75 @@ public class PolyppieEntity extends TameableEntity {
                     singer = polyppie;
             }
             return singer;
+        }
+    }
+
+
+    public static class Variant {
+        private static final List<Variant> instances = new ArrayList<>(
+                List.of(new Variant(ModBlocks.CHORAL_BLOCK.asItem(), Phantasm.makeID("textures/entity/crystie.png"))));
+
+        public final Item coral;
+        public final Identifier texture;
+
+        protected Variant(Item coral, Identifier texture) {
+            this.coral = coral;
+            this.texture = texture;
+        }
+
+        public static void read(JsonObject json) {
+            if (json.has("coral") && json.has("texture")) {
+                Item item = Registries.ITEM.get(new Identifier(json.get("coral").getAsString()));
+                if (item != Items.AIR)
+                    instances.add(new Variant(item, new Identifier(json.get("texture").getAsString())));
+            }
+        }
+
+        public static void clear() {
+            if (instances.size() > 1)
+                instances.subList(1, instances.size()).clear();
+        }
+
+        public static Variant get(int id) {
+            if (id < instances.size())
+                return instances.get(id);
+            return instances.get(0);
+        }
+
+        public static Variant get(ItemStack stack) {
+            for (Variant variant : instances) {
+                if (stack.isOf(variant.coral))
+                    return variant;
+            }
+            return null;
+        }
+
+        @Override
+        public String toString() {
+            return "Variant{" +
+                    "coral=" + coral.getTranslationKey() +
+                    ", texture=" + texture +
+                    '}';
+        }
+
+        public static void read(PacketByteBuf packet) {
+            Item coral = Registries.ITEM.get(packet.readIdentifier());
+            Identifier texture = packet.readIdentifier();
+
+            instances.add(new Variant(coral, texture));
+        }
+
+        public static void write(List<PacketByteBuf> packets) {
+            for (int i = 1; i < instances.size(); i++) {
+                PacketByteBuf packet = PacketByteBufs.create();
+                packet.writeInt(1);
+
+                Variant variant = instances.get(i);
+                packet.writeIdentifier(Registries.ITEM.getId(variant.coral));
+                packet.writeIdentifier(variant.texture);
+
+                packets.add(packet);
+            }
         }
     }
 }

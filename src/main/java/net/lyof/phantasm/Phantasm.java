@@ -1,6 +1,8 @@
 package net.lyof.phantasm;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
@@ -11,6 +13,7 @@ import net.lyof.phantasm.config.ModConfig;
 import net.lyof.phantasm.effect.ModEffects;
 import net.lyof.phantasm.effect.ModPotions;
 import net.lyof.phantasm.entity.ModEntities;
+import net.lyof.phantasm.entity.custom.PolyppieEntity;
 import net.lyof.phantasm.item.ModItemGroups;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.particle.ModParticles;
@@ -28,11 +31,16 @@ import net.lyof.phantasm.world.feature.custom.tree.ModTreePlacerTypes;
 import net.lyof.phantasm.world.noise.ModDensityFunctions;
 import net.lyof.phantasm.world.structure.ModProcessorTypes;
 import net.lyof.phantasm.world.structure.ModStructures;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.resource.ResourceType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Phantasm implements ModInitializer {
 	public static final String MOD_ID = "phantasm";
@@ -73,15 +81,10 @@ public class Phantasm implements ModInitializer {
 		ModWorldGeneration.register();
 
 		registerPackets();
+		registerEvents();
+		registerModules();
 
 		if (!FabricLoader.getInstance().isDevelopmentEnvironment()) ModRegistry.clear();
-
-
-		registerPack("phantasm_connected_glass", "Phantasm Connected Glass", false);
-
-		if (Phantasm.isVinURLLoaded()) registerPack("compat_vinurl", "VinURL Compat", false);
-		if (Phantasm.isFarmersDelightLoaded()) registerPack("compat_farmersdelight", "Farmer's Delight Compat", true);
-		if (FabricLoader.getInstance().isModLoaded("jeed")) registerPack("compat_jeed", "JEED Compat", true);
 	}
 
 	private static void registerPackets() {
@@ -91,11 +94,33 @@ public class Phantasm implements ModInitializer {
 		});
 	}
 
+	private static void registerModules() {
+		registerPack("phantasm_connected_glass", "Phantasm Connected Glass", false);
+
+		if (Phantasm.isVinURLLoaded()) registerPack("compat_vinurl", "VinURL Compat", false);
+		if (Phantasm.isFarmersDelightLoaded()) registerPack("compat_farmersdelight", "Farmer's Delight Compat", true);
+		if (FabricLoader.getInstance().isModLoaded("jeed")) registerPack("compat_jeed", "JEED Compat", true);
+	}
+
 	private static void registerPack(String id, String name, boolean force) {
 		Phantasm.log("Enabling module : " + name, 0);
 		FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(container ->
 				ResourceManagerHelper.registerBuiltinResourcePack(makeID(id), container, Text.literal(name),
 						force ? ResourcePackActivationType.ALWAYS_ENABLED : ResourcePackActivationType.DEFAULT_ENABLED));
+	}
+
+	private static void registerEvents() {
+		ServerLifecycleEvents.SYNC_DATA_PACK_CONTENTS.register((player, joined) -> {
+			List<PacketByteBuf> packets = new ArrayList<>();
+
+			PacketByteBuf packet = PacketByteBufs.create();
+			packet.writeInt(0);
+			packets.add(packet);
+
+			PolyppieEntity.Variant.write(packets);
+
+			packets.forEach(p -> ServerPlayNetworking.send(player, ModPackets.INITIALIZE, p));
+		});
 	}
 
 

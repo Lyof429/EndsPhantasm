@@ -15,9 +15,6 @@ import net.minecraft.util.Identifier;
 public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, PolyppieModel<PolyppieEntity>> {
     public static PolyppieRenderer instance = null;
 
-    private static final Identifier TEXTURE = Phantasm.makeID("textures/entity/crystie.png");
-    private static final Identifier TEXTURE_ANGRY = Phantasm.makeID("textures/entity/behemoth_angry.png");
-
     private final ItemRenderer itemRenderer;
 
     public PolyppieRenderer(EntityRendererFactory.Context context) {
@@ -29,7 +26,7 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
 
     @Override
     public Identifier getTexture(PolyppieEntity entity) {
-        return TEXTURE;
+        return entity.getVariant().texture;
     }
 
     @Override

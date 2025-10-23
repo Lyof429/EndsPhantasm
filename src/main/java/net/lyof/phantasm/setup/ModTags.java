@@ -49,6 +49,7 @@ public class ModTags {
 
     public static class GameEvents {
         public static final TagKey<GameEvent> BEHEMOTH_CAN_LISTEN = create("behemoth_can_listen");
+        public static final TagKey<GameEvent> DORMANT_POLYPPIE_CAN_LISTEN = create("dormant_polyppie_can_listen");
 
         private static TagKey<GameEvent> create(String name) {
             return TagKey.of(RegistryKeys.GAME_EVENT, Phantasm.makeID(name));

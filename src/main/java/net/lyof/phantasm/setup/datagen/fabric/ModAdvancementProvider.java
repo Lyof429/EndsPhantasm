@@ -150,6 +150,18 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 .parent(CHORAL_RIFF)
                 .build(consumer, "phantasm:use_choral_arrow");
 
+        Advancement DORMANT_POLYPPIE = Advancement.Builder.create()
+                .display(ModBlocks.DORMANT_POLYPPIE,
+                        Text.translatable(BASE + "get_dormant_polyppie"),
+                        Text.translatable(BASE + "get_dormant_polyppie" + DESC),
+                        null,
+                        AdvancementFrame.TASK,
+                        true, true, false)
+                .criterion("has_dormant_polyppie", InventoryChangedCriterion.Conditions.items(ModBlocks.DORMANT_POLYPPIE))
+                .rewards(AdvancementRewards.NONE)
+                .parent(CHORAL_RIFF)
+                .build(consumer, "phantasm:get_dormant_polyppie");
+
         Advancement CHALLENGE = Advancement.Builder.create()
                 .display(ModBlocks.CHALLENGE_RUNE,
                         Text.translatable(BASE + "beat_challenge"),

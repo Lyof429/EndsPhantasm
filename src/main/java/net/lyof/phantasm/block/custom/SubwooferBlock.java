@@ -1,6 +1,9 @@
 package net.lyof.phantasm.block.custom;
 
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
+import net.lyof.phantasm.entity.ModEntities;
+import net.lyof.phantasm.entity.custom.PolyppieEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;

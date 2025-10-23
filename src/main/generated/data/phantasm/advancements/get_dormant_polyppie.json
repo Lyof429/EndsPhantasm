@@ -1,0 +1,38 @@
+{
+  "parent": "phantasm:find_choral_riff",
+  "criteria": {
+    "has_dormant_polyppie": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "phantasm:dormant_polyppie"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.phantasm.get_dormant_polyppie.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "phantasm:dormant_polyppie"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.phantasm.get_dormant_polyppie"
+    }
+  },
+  "requirements": [
+    [
+      "has_dormant_polyppie"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

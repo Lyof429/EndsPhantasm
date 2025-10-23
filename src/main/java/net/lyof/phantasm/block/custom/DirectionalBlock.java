@@ -1,5 +1,6 @@
 package net.lyof.phantasm.block.custom;
 
+import net.lyof.phantasm.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -25,7 +26,7 @@ import java.util.Map;
 
 public class DirectionalBlock extends Block {
     public static final DirectionProperty FACING = DirectionProperty.of("facing");
-    public static final Map<Direction, VoxelShape> SHAPES = Map.of(
+    protected static final Map<Direction, VoxelShape> SHAPES = Map.of(
             Direction.DOWN, Block.createCuboidShape(3, 0, 3, 13, 10, 13),
             Direction.UP, Block.createCuboidShape(3, 6, 3, 13, 16, 13),
             Direction.NORTH, Block.createCuboidShape(3, 3, 0, 13, 13, 10),
@@ -83,7 +84,7 @@ public class DirectionalBlock extends Block {
 
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (random.nextInt(20) == 0) {
+        if (this == ModBlocks.CHORAL_FAN && random.nextInt(20) == 0) {
             world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
                     SoundEvents.BLOCK_AMETHYST_BLOCK_RESONATE, SoundCategory.BLOCKS, 1, 1, true);
         }

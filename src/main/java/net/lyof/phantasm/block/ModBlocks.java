@@ -341,7 +341,7 @@ public class ModBlocks {
     // Vivid Nihilium
     public static final Block VIVID_NIHILIUM = ModRegistry.ofBlock("vivid_nihilium",
             new NihiliumBlock(copy(Blocks.END_STONE).mapColor(MapColor.TEAL).ticksRandomly()))
-            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE).end_soil()
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.ENDERMAN_HOLDABLE).end_soil()
             .cutout().build();
 
     public static final Block TALL_VIVID_NIHILIS = ModRegistry.ofBlock("tall_vivid_nihilis",
@@ -462,7 +462,7 @@ public class ModBlocks {
     // Acidic Nihilium
     public static final Block ACIDIC_NIHILIUM = ModRegistry.ofBlock("acidic_nihilium",
                     new NihiliumBlock(copy(Blocks.END_STONE).mapColor(MapColor.DARK_DULL_PINK).ticksRandomly()))
-            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE).end_soil()
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.ENDERMAN_HOLDABLE).end_soil()
             .cutout().build();
 
     public static final Block ACIDIC_NIHILIS = ModRegistry.ofBlock("acidic_nihilis",
@@ -568,10 +568,14 @@ public class ModBlocks {
                     new Block(copy(Blocks.BRAIN_CORAL_BLOCK).mapColor(MapColor.WHITE)))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
             .model().drop().build();
-
     public static final DirectionalBlock CHORAL_FAN = (DirectionalBlock) ModRegistry.ofBlock("choral_fan",
                     new DirectionalBlock(copy(Blocks.BRAIN_CORAL_FAN).mapColor(MapColor.WHITE)))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
+            .drop().cutout().build();
+
+    public static final DirectionalBlock DORMANT_POLYPPIE = (DirectionalBlock) ModRegistry.ofBlock("dormant_polyppie",
+                    new DormantPolyppieBlock(copy(Blocks.BRAIN_CORAL_BLOCK).mapColor(MapColor.WHITE)))
+            .tool("stone_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
             .drop().cutout().build();
 
     public static final Block SUBWOOFER_BLOCK = ModRegistry.ofBlock("subwoofer_block",

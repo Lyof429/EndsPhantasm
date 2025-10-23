@@ -9,7 +9,6 @@ import net.minecraft.world.event.GameEvent;
 import java.util.concurrent.CompletableFuture;
 
 public class ModGameEventTagProvider extends VanillaGameEventTagProvider {
-
     public ModGameEventTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
@@ -21,6 +20,10 @@ public class ModGameEventTagProvider extends VanillaGameEventTagProvider {
                 GameEvent.JUKEBOX_PLAY,
                 GameEvent.JUKEBOX_STOP_PLAY,
                 GameEvent.NOTE_BLOCK_PLAY
+        );
+
+        this.getOrCreateTagBuilder(ModTags.GameEvents.DORMANT_POLYPPIE_CAN_LISTEN).add(
+                GameEvent.JUKEBOX_PLAY
         );
     }
 }

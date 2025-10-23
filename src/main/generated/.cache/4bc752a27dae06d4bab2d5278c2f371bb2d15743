@@ -1,4 +1,4 @@
-// 1.20.1	2025-10-14T18:49:19.7429465	End's Phantasm/Block Loot Tables
+// 1.20.1	2025-10-23T18:27:09.1970804	End's Phantasm/Block Loot Tables
 84f0b6e2d7cfb187d5d5de6b2dcc825ca0643ce8 data\phantasm\loot_tables\blocks\crystal_pillar.json
 754842e402287f059b390347065830e05894ada6 data\phantasm\loot_tables\blocks\void_crystal_tiles.json
 ff960fb1a6d27fe2dcd3db93cbdb5c9546cca75d data\phantasm\loot_tables\blocks\choral_fan.json
@@ -35,6 +35,7 @@ cd66a7ed96d92a42761323e520d1db64c1c838f0 data\phantasm\loot_tables\blocks\cirite
 ba1a63c0a556fac5c025dca4bc7774e9e37f2837 data\phantasm\loot_tables\blocks\polished_obsidian_pillar.json
 57a30f6474a29bc1fa138f1c6238fda90ca62a99 data\phantasm\loot_tables\blocks\stripped_pream_log.json
 af934cdae8bb24d4f7af1e8975b9c4ce37140d1d data\phantasm\loot_tables\blocks\raw_purpur_coal_ore.json
+1915a4b383ced8b462a4d6bf98ce7604ec4f7f65 data\phantasm\loot_tables\blocks\dormant_polyppie.json
 58aaa869ea7188cce5bb27391f2272c03e5ee33e data\phantasm\loot_tables\blocks\cirite_pillar.json
 2fafa4b9aac0d06b7a6a0346993ef54424ee8980 data\phantasm\loot_tables\blocks\choral_block.json
 88bb147cf853329e191d97c3c1620721db8b4e4e data\phantasm\loot_tables\blocks\cirite.json

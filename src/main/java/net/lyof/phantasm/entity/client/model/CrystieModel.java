@@ -12,7 +12,7 @@ public class CrystieModel<T extends CrystieEntity> extends SinglePartEntityModel
 	private final ModelPart wingsright;
 
 	public CrystieModel(ModelPart root) {
-		this.main = root.getChild("main");
+		this.main = root.getChild("primary");
 		this.wingsleft = main.getChild("wings").getChild("left");
 		this.wingsright = main.getChild("wings").getChild("right");
 	}
@@ -20,9 +20,9 @@ public class CrystieModel<T extends CrystieEntity> extends SinglePartEntityModel
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
-		ModelPartData main = modelPartData.addChild("main", ModelPartBuilder.create().uv(0, 0).cuboid(-3.0F, -6.0F, -3.0F, 6.0F, 6.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
+		ModelPartData main = modelPartData.addChild("primary", ModelPartBuilder.create().uv(0, 0).cuboid(-3.0F, -6.0F, -3.0F, 6.0F, 6.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
 
-		//ModelPartData spike = main.addChild("spike", ModelPartBuilder.create().uv(12, 12).cuboid(-3.0F, -6.0F, 0.0F, 6.0F, 7.0F, 0.0F, new Dilation(0.0F))
+		//ModelPartData spike = primary.addChild("spike", ModelPartBuilder.create().uv(12, 12).cuboid(-3.0F, -6.0F, 0.0F, 6.0F, 7.0F, 0.0F, new Dilation(0.0F))
 		//		.uv(0, 6).cuboid(0.0F, -6.0F, -3.0F, 0.0F, 7.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -7.0F, 0.0F));
 
 		ModelPartData wings = main.addChild("wings", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, -7.0F, 0.0F));

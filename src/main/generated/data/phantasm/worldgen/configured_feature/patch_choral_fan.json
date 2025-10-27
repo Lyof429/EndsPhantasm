@@ -1,11 +1,34 @@
 {
-  "type": "phantasm:ceiling_boulder",
+  "type": "phantasm:choral",
   "config": {
-    "block": {
+    "primary": {
       "type": "minecraft:simple_state_provider",
       "state": {
         "Name": "phantasm:choral_block"
       }
+    },
+    "secondary": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "phantasm:choral_fan",
+            "Properties": {
+              "facing": "down"
+            }
+          },
+          "weight": 200
+        },
+        {
+          "data": {
+            "Name": "phantasm:dormant_polyppie",
+            "Properties": {
+              "facing": "down"
+            }
+          },
+          "weight": 1
+        }
+      ]
     },
     "size": 0
   }

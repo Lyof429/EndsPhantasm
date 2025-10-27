@@ -11,7 +11,6 @@ import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.sound.SongHandler;
 import net.lyof.phantasm.sound.custom.PolyppieSoundInstance;
-import net.minecraft.block.entity.SculkSensorBlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -187,7 +186,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         }
     }
 
-    public boolean isValid(ItemStack stack) {
+    public boolean isValidDisc(ItemStack stack) {
         return stack.isIn(ItemTags.MUSIC_DISCS) && this.getStack().isEmpty();
     }
 
@@ -261,12 +260,9 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
 
-        if (stack.isEmpty()) {
-            if (this.canBeCarriedBy(player) && player.isSneaking()) {
-                this.setCarriedBy(player, null);
-                return ActionResult.success(player.getWorld().isClient());
-            }
-            return ActionResult.PASS;
+        if (stack.isEmpty() && this.canBeCarriedBy(player) && player.isSneaking()) {
+            this.setCarriedBy(player, null);
+            return ActionResult.success(player.getWorld().isClient());
         }
 
         Variant variant = Variant.get(stack);
@@ -279,19 +275,20 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
             return ActionResult.success(player.getWorld().isClient());
         }
 
-        if (!this.isValid(stack)) {
-            if (!this.getStack().isEmpty()) {
-                this.stopPlaying();
-                this.dropStack(this.getStack());
-                this.setStack(ItemStack.EMPTY);
-                return ActionResult.success(player.getWorld().isClient());
-            }
-            return ActionResult.PASS;
+        if (this.isValidDisc(stack)) {
+            this.setStack(stack.copyWithCount(1));
+            stack.decrement(1);
+            return ActionResult.success(player.getWorld().isClient());
+
         }
 
-        this.setStack(stack.copyWithCount(1));
-        stack.decrement(1);
-        return ActionResult.success(player.getWorld().isClient());
+        if (!this.getStack().isEmpty()) {
+            this.stopPlaying();
+            this.dropStack(this.getStack());
+            this.setStack(ItemStack.EMPTY);
+            return ActionResult.success(player.getWorld().isClient());
+        }
+        return ActionResult.PASS;
     }
 
 

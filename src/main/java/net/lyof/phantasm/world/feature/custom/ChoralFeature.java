@@ -2,8 +2,10 @@ package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
 import net.lyof.phantasm.block.ModBlocks;
+import net.lyof.phantasm.block.custom.DirectionalBlock;
 import net.lyof.phantasm.setup.ModTags;
-import net.lyof.phantasm.world.feature.config.BoulderFeatureConfig;
+import net.lyof.phantasm.world.feature.config.Sized2BlocksFeatureConfig;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -15,19 +17,19 @@ import net.minecraft.world.gen.feature.util.FeatureContext;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CeilingBoulderFeature extends Feature<BoulderFeatureConfig> {
-    public static final Feature<BoulderFeatureConfig> INSTANCE = new CeilingBoulderFeature(BoulderFeatureConfig.CODEC);
+public class ChoralFeature extends Feature<Sized2BlocksFeatureConfig> {
+    public static final Feature<Sized2BlocksFeatureConfig> INSTANCE = new ChoralFeature(Sized2BlocksFeatureConfig.CODEC);
 
-    public CeilingBoulderFeature(Codec<BoulderFeatureConfig> configCodec) {
+    public ChoralFeature(Codec<Sized2BlocksFeatureConfig> configCodec) {
         super(configCodec);
     }
 
     @Override
-    public boolean generate(FeatureContext<BoulderFeatureConfig> context) {
+    public boolean generate(FeatureContext<Sized2BlocksFeatureConfig> context) {
         StructureWorldAccess world = context.getWorld();
         BlockPos origin = context.getOrigin();
         Random random = context.getRandom();
-        BoulderFeatureConfig config = context.getConfig();
+        Sized2BlocksFeatureConfig config = context.getConfig();
 
         List<BlockPos> toPlace = new ArrayList<>();
         List<BlockPos> fans = new ArrayList<>();
@@ -55,16 +57,20 @@ public class CeilingBoulderFeature extends Feature<BoulderFeatureConfig> {
         this.spike(toPlace, pos, 1);
         this.spike(fans, pos, 2);
 
-        for (BlockPos place : toPlace)
-            this.setBlockStateIf(world, place, config.block().get(random, place),
-                    block -> size > 0 && block.isTransparent(world, place));
-        for (BlockPos place : fans)
-            this.setBlockStateIf(world, place, ModBlocks.CHORAL_FAN.getPlacementState(world, place),
-                    block -> random.nextInt(5) == 0 && block.isTransparent(world, place));
+        for (BlockPos p : toPlace)
+            this.setBlockStateIf(world, p, config.primary().get(random, p),
+                    block -> size > 0 && block.isTransparent(world, p));
+        for (BlockPos p : fans) {
+            BlockState state = config.secondary().get(random, p);
+            if (state.getBlock() instanceof DirectionalBlock directional)
+                state = directional.getPlacementState(world, p);
+            this.setBlockStateIf(world, p, state,
+                    block -> random.nextInt(5) == 0 && block.isTransparent(world, p));
+        }
 
 
         if (size == 0 && Math.random() < 0.7) {
-            FeatureContext<BoulderFeatureConfig> contextnext =
+            FeatureContext<Sized2BlocksFeatureConfig> contextnext =
                     new FeatureContext<>(context.getFeature(),
                             context.getWorld(),
                             context.getGenerator(),

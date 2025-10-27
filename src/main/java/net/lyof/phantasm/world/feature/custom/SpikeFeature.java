@@ -3,7 +3,7 @@ package net.lyof.phantasm.world.feature.custom;
 import com.mojang.serialization.Codec;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.setup.ModTags;
-import net.lyof.phantasm.world.feature.config.BoulderFeatureConfig;
+import net.lyof.phantasm.world.feature.config.SizedBlockFeatureConfig;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -14,19 +14,19 @@ import net.minecraft.world.gen.feature.util.FeatureContext;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SpikeFeature extends Feature<BoulderFeatureConfig> {
-    public static final Feature<BoulderFeatureConfig> INSTANCE = new SpikeFeature(BoulderFeatureConfig.CODEC);
+public class SpikeFeature extends Feature<SizedBlockFeatureConfig> {
+    public static final Feature<SizedBlockFeatureConfig> INSTANCE = new SpikeFeature(SizedBlockFeatureConfig.CODEC);
 
-    public SpikeFeature(Codec<BoulderFeatureConfig> configCodec) {
+    public SpikeFeature(Codec<SizedBlockFeatureConfig> configCodec) {
         super(configCodec);
     }
 
     @Override
-    public boolean generate(FeatureContext<BoulderFeatureConfig> context) {
+    public boolean generate(FeatureContext<SizedBlockFeatureConfig> context) {
         StructureWorldAccess world = context.getWorld();
         BlockPos pos = context.getOrigin();
         Random random = context.getRandom();
-        BoulderFeatureConfig config = context.getConfig();
+        SizedBlockFeatureConfig config = context.getConfig();
 
 
         this.generate(world, pos, config, random, 0);
@@ -34,7 +34,7 @@ public class SpikeFeature extends Feature<BoulderFeatureConfig> {
         return true;
     }
 
-    public void generate(StructureWorldAccess world, BlockPos pos, BoulderFeatureConfig config, Random random, int spread) {
+    public void generate(StructureWorldAccess world, BlockPos pos, SizedBlockFeatureConfig config, Random random, int spread) {
 
         if (!world.getBlockState(pos.down()).isIn(ModTags.Blocks.END_PLANTS_GROWABLE_ON))
             return;

@@ -34,7 +34,9 @@ public class DormantPolyppieEventListener implements GameEventListener {
     @Override
     public boolean listen(ServerWorld world, GameEvent event, GameEvent.Emitter emitter, Vec3d emitterPos) {
         if (event.isIn(ModTags.GameEvents.DORMANT_POLYPPIE_CAN_LISTEN)) {
-            world.addSyncedBlockEvent(this.source.getPos(), this.source.getCachedState().getBlock(), 0, 0);
+            float chance = emitter.sourceEntity() instanceof PolyppieEntity ? 0.02f : 0.01f;
+            if (world.random.nextFloat() < chance)
+                world.addSyncedBlockEvent(this.source.getPos(), this.source.getCachedState().getBlock(), 0, 0);
             return true;
         }
         return false;

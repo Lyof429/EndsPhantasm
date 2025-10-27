@@ -5,6 +5,7 @@ import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.block.custom.CrystalShardBlock;
 import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.world.feature.config.CrystalSpikeFeatureConfig;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -50,7 +51,8 @@ public class CrystalSpikeFeature extends Feature<CrystalSpikeFeatureConfig> {
             if (pos.getY() >= world.getHeight() - 1)
                 return false;
 
-            this.setBlockState(world, pos, top.with(CrystalShardBlock.IS_TIP, i == size - 1));
+            this.setBlockStateIf(world, pos, top.with(CrystalShardBlock.IS_TIP, i == size - 1),
+                    AbstractBlock.AbstractBlockState::isReplaceable);
             pos = pos.up();
         }
 
@@ -66,7 +68,8 @@ public class CrystalSpikeFeature extends Feature<CrystalSpikeFeatureConfig> {
             if (pos.getY() <= world.getBottomY() + 1 || pos.getY() >= 250)
                 return false;
 
-            this.setBlockState(world, pos, bottom.with(CrystalShardBlock.IS_UP, false).with(CrystalShardBlock.IS_TIP, i == size - 1));
+            this.setBlockStateIf(world, pos, bottom.with(CrystalShardBlock.IS_UP, false).with(CrystalShardBlock.IS_TIP, i == size - 1),
+                    AbstractBlock.AbstractBlockState::isReplaceable);
             pos = pos.down();
         }
 

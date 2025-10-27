@@ -7,7 +7,7 @@
         "Name": "phantasm:fallen_star"
       }
     },
-    "y_level": {
+    "size": {
       "type": "minecraft:uniform",
       "value": {
         "max_inclusive": 180,

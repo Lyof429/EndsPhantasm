@@ -1,7 +1,13 @@
 {
   "type": "phantasm:dralgae",
   "config": {
-    "fruit": {
+    "primary": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "phantasm:dralgae"
+      }
+    },
+    "secondary": {
       "type": "minecraft:simple_state_provider",
       "state": {
         "Name": "phantasm:pome"
@@ -12,12 +18,6 @@
       "value": {
         "max_inclusive": 20,
         "min_inclusive": 5
-      }
-    },
-    "stem": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "phantasm:dralgae"
       }
     }
   }

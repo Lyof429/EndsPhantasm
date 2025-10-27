@@ -2,10 +2,9 @@ package net.lyof.phantasm.world.feature;
 
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
-import net.lyof.phantasm.world.feature.config.BoulderFeatureConfig;
+import net.lyof.phantasm.world.feature.config.SizedBlockFeatureConfig;
 import net.lyof.phantasm.world.feature.config.CrystalSpikeFeatureConfig;
-import net.lyof.phantasm.world.feature.config.DralgaeFeatureConfig;
-import net.lyof.phantasm.world.feature.config.SingleBlockFeatureConfig;
+import net.lyof.phantasm.world.feature.config.Sized2BlocksFeatureConfig;
 import net.lyof.phantasm.world.feature.custom.*;
 import net.lyof.phantasm.world.feature.custom.tree.custom.PreamFoliagePlacer;
 import net.lyof.phantasm.world.feature.custom.tree.custom.PreamTrunkPlacer;
@@ -65,7 +64,7 @@ public class ModConfiguredFeatures {
                 new CrystalSpikeFeatureConfig(UniformIntProvider.create(3, 5), 0.3f));
 
         register(context, FALLEN_STAR, SingleBlockFeature.INSTANCE,
-                new SingleBlockFeatureConfig(UniformIntProvider.create(110, 180), BlockStateProvider.of(ModBlocks.FALLEN_STAR)));
+                new SizedBlockFeatureConfig(UniformIntProvider.create(110, 180), BlockStateProvider.of(ModBlocks.FALLEN_STAR)));
 
         register(context, VIVID_NIHILIS, Feature.FLOWER, new RandomPatchFeatureConfig(
                 48, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
@@ -101,32 +100,40 @@ public class ModConfiguredFeatures {
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.DRAGON_MINT)))));
 
         register(context, DRALGAE, DralgaeFeature.INSTANCE,
-                new DralgaeFeatureConfig(UniformIntProvider.create(5, 10), BlockStateProvider.of(ModBlocks.DRALGAE),
+                new Sized2BlocksFeatureConfig(UniformIntProvider.create(5, 10), BlockStateProvider.of(ModBlocks.DRALGAE),
                         BlockStateProvider.of(ModBlocks.DRALGAE)));
 
         register(context, TALL_DRALGAE, DralgaeFeature.INSTANCE,
-                new DralgaeFeatureConfig(UniformIntProvider.create(5, 20), BlockStateProvider.of(ModBlocks.DRALGAE),
+                new Sized2BlocksFeatureConfig(UniformIntProvider.create(5, 20), BlockStateProvider.of(ModBlocks.DRALGAE),
                         BlockStateProvider.of(ModBlocks.POME)));
 
         register(context, HUGE_DRALGAE, HugeDralgaeFeature.INSTANCE,
-                new DralgaeFeatureConfig(UniformIntProvider.create(15, 30), BlockStateProvider.of(Blocks.OBSIDIAN),
+                new Sized2BlocksFeatureConfig(UniformIntProvider.create(15, 30), BlockStateProvider.of(Blocks.OBSIDIAN),
                         BlockStateProvider.of(ModBlocks.ACIDIC_MASS)));
 
         register(context, CIRITE_SPIKE, SpikeFeature.INSTANCE,
-                new BoulderFeatureConfig(UniformIntProvider.create(3, 10), new WeightedBlockStateProvider(
+                new SizedBlockFeatureConfig(UniformIntProvider.create(3, 10), new WeightedBlockStateProvider(
                         DataPool.<BlockState>builder().add(ModBlocks.CIRITE.getDefaultState(), 9)
                                 .add(ModBlocks.CIRITE_IRON_ORE.getDefaultState(), 1))));
 
         register(context, CIRITE_CEILING_SPIKE, CeilingSpikeFeature.INSTANCE,
-                new BoulderFeatureConfig(UniformIntProvider.create(7, 13), new WeightedBlockStateProvider(
+                new SizedBlockFeatureConfig(UniformIntProvider.create(7, 13), new WeightedBlockStateProvider(
                         DataPool.<BlockState>builder().add(ModBlocks.CIRITE.getDefaultState(), 7)
                                 .add(ModBlocks.CIRITE_IRON_ORE.getDefaultState(), 2))));
 
-        register(context, CHORAL_RIFF, CeilingBoulderFeature.INSTANCE,
-                new BoulderFeatureConfig(UniformIntProvider.create(4, 9), SimpleBlockStateProvider.of(ModBlocks.CHORAL_BLOCK)));
+        register(context, CHORAL_RIFF, ChoralFeature.INSTANCE,
+                new Sized2BlocksFeatureConfig(UniformIntProvider.create(4, 9),
+                        SimpleBlockStateProvider.of(ModBlocks.CHORAL_BLOCK),
+                        new WeightedBlockStateProvider(DataPool.<BlockState>builder()
+                                .add(ModBlocks.CHORAL_FAN.getDefaultState(), 200)
+                                .add(ModBlocks.DORMANT_POLYPPIE.getDefaultState(), 1))));
 
-        register(context, CHORAL_FAN, CeilingBoulderFeature.INSTANCE,
-                new BoulderFeatureConfig(ConstantIntProvider.create(0), SimpleBlockStateProvider.of(ModBlocks.CHORAL_BLOCK)));
+        register(context, CHORAL_FAN, ChoralFeature.INSTANCE,
+                new Sized2BlocksFeatureConfig(ConstantIntProvider.create(0),
+                        SimpleBlockStateProvider.of(ModBlocks.CHORAL_BLOCK),
+                        new WeightedBlockStateProvider(DataPool.<BlockState>builder()
+                                .add(ModBlocks.CHORAL_FAN.getDefaultState(), 200)
+                                .add(ModBlocks.DORMANT_POLYPPIE.getDefaultState(), 1))));
     }
 
 

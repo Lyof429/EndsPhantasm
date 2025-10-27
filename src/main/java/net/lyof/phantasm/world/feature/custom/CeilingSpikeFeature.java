@@ -2,7 +2,7 @@ package net.lyof.phantasm.world.feature.custom;
 
 import com.mojang.serialization.Codec;
 import net.lyof.phantasm.setup.ModTags;
-import net.lyof.phantasm.world.feature.config.BoulderFeatureConfig;
+import net.lyof.phantasm.world.feature.config.SizedBlockFeatureConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -14,19 +14,19 @@ import net.minecraft.world.gen.feature.util.FeatureContext;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CeilingSpikeFeature extends Feature<BoulderFeatureConfig> {
-    public static final Feature<BoulderFeatureConfig> INSTANCE = new CeilingSpikeFeature(BoulderFeatureConfig.CODEC);
+public class CeilingSpikeFeature extends Feature<SizedBlockFeatureConfig> {
+    public static final Feature<SizedBlockFeatureConfig> INSTANCE = new CeilingSpikeFeature(SizedBlockFeatureConfig.CODEC);
 
-    public CeilingSpikeFeature(Codec<BoulderFeatureConfig> configCodec) {
+    public CeilingSpikeFeature(Codec<SizedBlockFeatureConfig> configCodec) {
         super(configCodec);
     }
 
     @Override
-    public boolean generate(FeatureContext<BoulderFeatureConfig> context) {
+    public boolean generate(FeatureContext<SizedBlockFeatureConfig> context) {
         StructureWorldAccess world = context.getWorld();
         BlockPos origin = context.getOrigin();
         Random random = context.getRandom();
-        BoulderFeatureConfig config = context.getConfig();
+        SizedBlockFeatureConfig config = context.getConfig();
 
         int size = config.size().get(random);
 

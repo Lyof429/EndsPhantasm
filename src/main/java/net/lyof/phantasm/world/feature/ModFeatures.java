@@ -14,7 +14,7 @@ public class ModFeatures {
         Registry.register(Registries.FEATURE, Phantasm.makeID("dralgae"), DralgaeFeature.INSTANCE);
         Registry.register(Registries.FEATURE, Phantasm.makeID("huge_dralgae"), HugeDralgaeFeature.INSTANCE);
         Registry.register(Registries.FEATURE, Phantasm.makeID("spike"), SpikeFeature.INSTANCE);
-        Registry.register(Registries.FEATURE, Phantasm.makeID("ceiling_boulder"), CeilingBoulderFeature.INSTANCE);
+        Registry.register(Registries.FEATURE, Phantasm.makeID("choral"), ChoralFeature.INSTANCE);
         Registry.register(Registries.FEATURE, Phantasm.makeID("ceiling_spike"), CeilingSpikeFeature.INSTANCE);
     }
 }

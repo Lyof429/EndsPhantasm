@@ -29,8 +29,7 @@ public class ConfiguredData {
     }
 
     public String apply(@Nullable String original) {
-        return gson.fromJson(this.provider.apply(gson.fromJson(original == null ? "" : original, JsonElement.class)),
-                JsonElement.class).toString();
+        return this.provider.apply(gson.fromJson(original == null ? "" : original, JsonElement.class));
     }
 
 
@@ -64,11 +63,18 @@ public class ConfiguredData {
                 () -> ConfigEntries.elytraChallenge, Common::changeElytraParent);
     }
 
-    private static class Common {
-        private static JsonElement getJson(String string) {
-            return gson.fromJson(string, JsonElement.class);
-        }
+    public static void registerClient() {
+        register(Phantasm.makeID("models/item/crystalline_knife.json"),
+                () -> FabricLoader.getInstance().isModLoaded("kitchenprojectiles") && Phantasm.isFarmersDelightLoaded(),
+                Client::changeKnifeModel);
+    }
 
+    protected static JsonElement getJson(String string) {
+        return gson.fromJson(string, JsonElement.class);
+    }
+
+
+    private static class Common {
         public static String changeBiomeSource(JsonElement json) {
             if (json == null) {
                 json = getJson("""
@@ -296,6 +302,26 @@ public class ConfiguredData {
         public static String changeElytraParent(JsonElement json) {
             json.getAsJsonObject().asMap().replace("parent", new JsonPrimitive(Phantasm.makeID("beat_challenge").toString()));
             return json.toString();
+        }
+    }
+
+
+    private static class Client {
+        public static String changeKnifeModel(JsonElement json) {
+            if (json == null || !json.isJsonObject()) return "{}";
+            JsonObject o = json.getAsJsonObject();
+
+            JsonArray overrides = new JsonArray();
+            JsonElement throwing = getJson("""
+                        {
+                          "predicate": {
+                            "kitchenprojectiles:throwing": 1
+                          },
+                          "model": "phantasm:item/crystalline_knife_throwing"
+                        }""");
+            overrides.add(throwing);
+            o.add("overrides", overrides);
+            return Phantasm.log(json.toString());
         }
     }
 }

@@ -16,6 +16,7 @@ import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.particle.custom.ZzzParticle;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.setup.ModRegistry;
+import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
@@ -23,9 +24,18 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 public class PhantasmClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        ConfiguredData.registerClient();
+        registerPackets();
+
+        registerRenderers();
+
         for (Block block : ModRegistry.BLOCK_CUTOUT)
             BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getCutout());
 
+        ParticleFactoryRegistry.getInstance().register(ModParticles.ZZZ, ZzzParticle.Factory::new);
+    }
+
+    private static void registerRenderers() {
         EntityRendererRegistry.register(ModEntities.CRYSTIE, CrystieRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.CRYSTIE, CrystieModel::getTexturedModelData);
 
@@ -37,13 +47,9 @@ public class PhantasmClient implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.CHORAL_ARROW, ChoralArrowRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.CHALLENGE_RUNE, ChallengeRuneBlockEntityRenderer::new);
-
-        ParticleFactoryRegistry.getInstance().register(ModParticles.ZZZ, ZzzParticle.Factory::new);
-
-        registerPackets();
     }
 
-    public static void registerPackets() {
+    private static void registerPackets() {
         ClientPlayNetworking.registerGlobalReceiver(ModPackets.INITIALIZE, ModPackets.Client::initialize);
 
         ClientPlayNetworking.registerGlobalReceiver(ModPackets.BEHEMOTH_WAKES_UP, ModPackets.Client::behemothWakesUp);

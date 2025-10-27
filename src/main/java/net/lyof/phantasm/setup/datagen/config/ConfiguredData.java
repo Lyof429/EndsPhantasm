@@ -312,16 +312,15 @@ public class ConfiguredData {
             JsonObject o = json.getAsJsonObject();
 
             JsonArray overrides = new JsonArray();
-            JsonElement throwing = getJson("""
+            overrides.add(getJson("""
                         {
                           "predicate": {
                             "kitchenprojectiles:throwing": 1
                           },
                           "model": "phantasm:item/crystalline_knife_throwing"
-                        }""");
-            overrides.add(throwing);
+                        }"""));
             o.add("overrides", overrides);
-            return Phantasm.log(json.toString());
+            return json.toString();
         }
     }
 }

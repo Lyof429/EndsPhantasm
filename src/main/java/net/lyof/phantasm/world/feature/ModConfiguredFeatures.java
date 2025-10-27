@@ -2,9 +2,9 @@ package net.lyof.phantasm.world.feature;
 
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
-import net.lyof.phantasm.world.feature.config.SizedBlockFeatureConfig;
 import net.lyof.phantasm.world.feature.config.CrystalSpikeFeatureConfig;
 import net.lyof.phantasm.world.feature.config.Sized2BlocksFeatureConfig;
+import net.lyof.phantasm.world.feature.config.SizedBlockFeatureConfig;
 import net.lyof.phantasm.world.feature.custom.*;
 import net.lyof.phantasm.world.feature.custom.tree.custom.PreamFoliagePlacer;
 import net.lyof.phantasm.world.feature.custom.tree.custom.PreamTrunkPlacer;

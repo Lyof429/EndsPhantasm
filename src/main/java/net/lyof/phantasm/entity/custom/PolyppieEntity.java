@@ -481,19 +481,14 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
 
     public interface PolyppieSpawnPacket {
-        void setVariant(Identifier id);
-        void setSongKey(int key);
+        void setPolyppieData(Identifier id, int key);
         Identifier getVariant();
         int getSongKey();
-        void setEdited();
 
         static EntitySpawnS2CPacket createPacket(Entity entity, int songKey, Identifier variant) {
             EntitySpawnS2CPacket packet = new EntitySpawnS2CPacket(entity);
-            if (packet instanceof PolyppieSpawnPacket polyppiePacket) {
-                polyppiePacket.setEdited();
-                polyppiePacket.setSongKey(songKey);
-                polyppiePacket.setVariant(variant);
-            }
+            if (packet instanceof PolyppieSpawnPacket polyppiePacket)
+                polyppiePacket.setPolyppieData(variant, songKey);
             return packet;
         }
     }

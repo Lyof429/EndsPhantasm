@@ -4,8 +4,6 @@ import net.lyof.phantasm.block.ModBlockEntities;
 import net.lyof.phantasm.entity.listener.DormantPolyppieEventListener;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.entity.SculkSensorBlockEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.event.listener.GameEventListener;
 

@@ -20,7 +20,6 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 

@@ -1,12 +1,8 @@
 package net.lyof.phantasm.entity.listener;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.entity.DormantPolyppieBlockEntity;
-import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.custom.PolyppieEntity;
 import net.lyof.phantasm.setup.ModTags;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.event.BlockPositionSource;

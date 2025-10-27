@@ -17,12 +17,8 @@ public class EntitySpawnS2CPacketMixin implements PolyppieEntity.PolyppieSpawnPa
     @Unique private boolean isPolyppiePacket = false;
 
     @Override
-    public void setVariant(Identifier id) {
+    public void setPolyppieData(Identifier id, int key) {
         this.variant = id;
-    }
-
-    @Override
-    public void setSongKey(int key) {
         this.songKey = key;
     }
 
@@ -34,11 +30,6 @@ public class EntitySpawnS2CPacketMixin implements PolyppieEntity.PolyppieSpawnPa
     @Override
     public int getSongKey() {
         return this.songKey;
-    }
-
-    @Override
-    public void setEdited() {
-        this.isPolyppiePacket = true;
     }
 
     @Inject(method = "<init>(Lnet/minecraft/network/PacketByteBuf;)V", at = @At("TAIL"))

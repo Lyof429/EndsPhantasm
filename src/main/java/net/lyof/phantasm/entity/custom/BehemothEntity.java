@@ -9,10 +9,7 @@ import net.lyof.phantasm.entity.goal.SleepGoal;
 import net.lyof.phantasm.entity.listener.BehemothEventListener;
 import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.setup.ModPackets;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityPose;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -20,11 +17,14 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.world.LocalDifficulty;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.event.listener.EntityGameEventHandler;
 import org.jetbrains.annotations.Nullable;
@@ -71,6 +71,12 @@ public class BehemothEntity extends HostileEntity implements Monster {
     }
 
     @Override
+    public @Nullable EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+        this.setYaw(this.random.nextInt(360));
+        return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+    }
+
+    @Override
     public float getStepHeight() {
         return 1f;
     }
@@ -97,10 +103,8 @@ public class BehemothEntity extends HostileEntity implements Monster {
     @Override
     public boolean damage(DamageSource source, float amount) {
         if (source.isIndirect()) return false;
-        if (source.getAttacker() instanceof PlayerEntity player && !player.isCreative() && !player.isSpectator()) {
+        if (source.getAttacker() instanceof PlayerEntity player && !player.isCreative() && !player.isSpectator())
             this.setTarget(player);
-            this.angryTicks = MAX_ANGRY_TICKS;
-        }
         return super.damage(source, amount);
     }
 
@@ -154,7 +158,7 @@ public class BehemothEntity extends HostileEntity implements Monster {
             this.setTarget(null);
 
         if (!this.isAngry() && this.age % 20 == 0) {
-            this.playSound(SoundEvents.ENTITY_SNIFFER_SNIFFING, 2, 1);
+            this.playSound(SoundEvents.ENTITY_SNIFFER_SNIFFING, 1, 1);
             if (this.getWorld().isClient() && this.getRandom().nextInt(2) == 0)
                 this.getWorld().addParticle(ModParticles.ZZZ,
                         this.getX() - Math.sin(-this.getYaw() * Math.PI / 180), this.getY() + 0.3,

@@ -29,7 +29,7 @@ public class ModConfig {
 
         Phantasm.log("Loading Configs for Phantasm", 0);
 
-        // Create config file if it doesn't exist already
+        // Create the config file if it doesn't exist already
         File config = new File(path);
         boolean create = !config.isFile();
 

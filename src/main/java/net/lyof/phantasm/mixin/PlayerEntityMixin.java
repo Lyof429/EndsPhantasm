@@ -12,6 +12,7 @@ import net.lyof.phantasm.setup.ModTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -93,5 +94,12 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 			}
 			this.polyppie.tick();
 		}
+	}
+
+	@Inject(method = "onDeath", at = @At("HEAD"))
+	private void dropCarriedPolyppie(DamageSource damageSource, CallbackInfo ci) {
+		Phantasm.log("dead " + this.getWorld().isClient());
+		if (this.getCarriedPolyppie() != null)
+			this.getCarriedPolyppie().setCarriedBy((PlayerEntity) (Object) this, this.getPos());
 	}
 }

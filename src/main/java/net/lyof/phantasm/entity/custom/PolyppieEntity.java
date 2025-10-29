@@ -63,7 +63,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     protected int ticksThisSecond;
 
     protected int soundKey;
-    protected Variant variant = Variant.DEFAULT;
+    protected Variant variant;
 
     public PolyppieEntity(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
@@ -170,6 +170,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
     @Override
     public Variant getVariant() {
+        if (this.variant == null) this.variant = Variant.getDefault();
         return this.variant;
     }
 
@@ -240,10 +241,6 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         }
     }
 
-    private boolean hasSecondPassed() {
-        return this.ticksThisSecond >= 20;
-    }
-
     @Override
     public boolean isPersistent() {
         return super.isPersistent() || !this.getStack().isEmpty();
@@ -291,43 +288,6 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         return ActionResult.PASS;
     }
 
-
-    @Override
-    public EntityView method_48926() {
-        return this.getWorld();
-    }
-
-    @Override
-    public boolean canAttackWithOwner(LivingEntity target, LivingEntity owner) {
-        return false;
-    }
-
-
-    @Override
-    public void tick() {
-        super.tick();
-
-        if (this.isPlayingRecord() && this.getStack().getItem() instanceof MusicDiscItem disc) {
-            this.ticksThisSecond++;
-
-            if (this.isSongFinished(disc)) {
-                this.stopPlaying();
-            } else if (this.hasSecondPassed()) {
-                this.ticksThisSecond = 0;
-                this.getWorld().emitGameEvent(GameEvent.JUKEBOX_PLAY, this.getPos(), GameEvent.Emitter.of(this));
-                this.spawnNoteParticle();
-            }
-        }
-
-        else if (this.tickCount % 20 == 0 && !this.hasVehicle()) {
-            Band band = new Band(this);
-            if (band.getPlaying() == null)
-                band.startRandom(this.getRandom());
-        }
-
-        this.tickCount++;
-    }
-
     public boolean canBeCarriedBy(PlayerEntity player) {
         return player instanceof PolyppieCarrier carrier && carrier.getCarriedPolyppie() == null;
     }
@@ -350,6 +310,8 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
             this.remove(RemovalReason.UNLOADED_WITH_PLAYER);
         }
         else {
+            Phantasm.log("Down " + player.getWorld().isClient());
+
             this.setPosition(position);
             this.setRotation(180 + player.getHeadYaw(), 0);
             ((PolyppieCarrier) player).setCarriedPolyppie(null);
@@ -374,9 +336,46 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
                 for (ServerPlayerEntity p : serverWorld.getServer().getPlayerManager().getPlayerList())
                     ServerPlayNetworking.send(p, ModPackets.POLYPPIE_STOPS_BEING_CARRIED, buf);
 
-                this.setVariant(polyppie.getVariant());
+                polyppie.setVariant(this.getVariant());
             }
         }
+    }
+
+
+    @Override
+    public EntityView method_48926() {
+        return this.getWorld();
+    }
+
+    @Override
+    public boolean canAttackWithOwner(LivingEntity target, LivingEntity owner) {
+        return false;
+    }
+
+
+    @Override
+    public void tick() {
+        super.tick();
+
+        if (this.isPlayingRecord() && this.getStack().getItem() instanceof MusicDiscItem disc) {
+            this.ticksThisSecond++;
+
+            if (this.isSongFinished(disc)) {
+                this.stopPlaying();
+            } else if (this.ticksThisSecond >= 20) {
+                this.ticksThisSecond = 0;
+                this.getWorld().emitGameEvent(GameEvent.JUKEBOX_PLAY, this.getPos(), GameEvent.Emitter.of(this));
+                this.spawnNoteParticle();
+            }
+        }
+
+        else if (this.tickCount % 20 == 0 && !this.hasVehicle()) {
+            Band band = new Band(this);
+            if (band.getPlaying() == null)
+                band.startRandom(this.getRandom());
+        }
+
+        this.tickCount++;
     }
 
 
@@ -423,6 +422,12 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         public final Item coral;
         public final Identifier texture;
 
+        public static Variant getDefault() {
+            if (DEFAULT == null)
+                DEFAULT = new Variant(DEFAULT_ID, ModBlocks.CHORAL_BLOCK.asItem(), Phantasm.makeID("textures/entity/crystie.png"));
+            return DEFAULT;
+        }
+
         protected Variant(Identifier id, Item coral, Identifier texture) {
             this.id = id;
             this.coral = coral;
@@ -442,13 +447,11 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         }
 
         public static Variant get(Identifier id) {
-            if (DEFAULT == null)
-                DEFAULT = new Variant(DEFAULT_ID, ModBlocks.CHORAL_BLOCK.asItem(), Phantasm.makeID("textures/entity/crystie.png"));
-            return instances.getOrDefault(id, DEFAULT);
+            return instances.getOrDefault(id, getDefault());
         }
 
         public static Variant get(ItemStack stack) {
-            if (stack.isOf(DEFAULT.coral))
+            if (stack.isOf(getDefault().coral))
                 return DEFAULT;
             for (Map.Entry<Identifier, Variant> entry : instances.entrySet()) {
                 if (stack.isOf(entry.getValue().coral))

@@ -91,8 +91,7 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
 
     @Inject(method = "copyFrom", at = @At("HEAD"))
     private void copySeenBeginning(ServerPlayerEntity oldPlayer, boolean alive, CallbackInfo ci) {
-        this.seenBeginning = ((MixinAccess<Boolean>) oldPlayer).getMixinValue()
-                && !FabricLoader.getInstance().isDevelopmentEnvironment();
+        this.seenBeginning = ((MixinAccess<Boolean>) oldPlayer).getMixinValue();
     }
 
     @Override

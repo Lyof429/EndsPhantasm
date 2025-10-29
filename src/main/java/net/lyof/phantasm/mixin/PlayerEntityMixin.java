@@ -18,6 +18,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -109,11 +110,9 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 		}
 	}
 
-	@WrapMethod(method = "onDeath")
-	private void dropCarriedPolyppie(DamageSource damageSource, Operation<Void> original) {
-		Phantasm.log("dead " + this.getWorld().isClient());
-		if (this.getCarriedPolyppie() != null)
+	@Inject(method = "dropInventory", at = @At("HEAD"))
+	private void dropCarriedPolyppie(CallbackInfo ci) {
+		if (/*!this.getWorld().getGameRules().getBoolean(GameRules.KEEP_INVENTORY) && */this.getCarriedPolyppie() != null)
 			this.getCarriedPolyppie().setCarriedBy((PlayerEntity) (Object) this, this.getPos());
-		original.call(damageSource);
 	}
 }

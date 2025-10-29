@@ -1,6 +1,7 @@
 package net.lyof.phantasm.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.lyof.phantasm.Phantasm;
@@ -58,16 +59,16 @@ public abstract class LivingEntityMixin extends Entity implements Challenger, Co
         return original * (1 + 0.2f * i);
     }
 
-    @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
-    public void cancelDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    @WrapMethod(method = "damage")
+    public boolean cancelDamage(DamageSource source, float amount, Operation<Boolean> original) {
         if (source.getAttacker() instanceof LivingEntity attacker && attacker.hasStatusEffect(ModEffects.CHARM))
-            cir.setReturnValue(false);
-    }
+            return false;
 
-    @Inject(method = "damage", at = @At("TAIL"))
-    public void applyAttackEffects(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        boolean v = original.call(source, amount);
+
         if (source.getAttacker() instanceof Corrosive corrosive && corrosive.isCorrosive())
             this.addStatusEffect(new StatusEffectInstance(ModEffects.CORROSION, 80, 0));
+        return v;
     }
 
     @Inject(method = "getMovementSpeed()F", at = @At("HEAD"), cancellable = true)

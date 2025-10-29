@@ -1,6 +1,8 @@
 package net.lyof.phantasm.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.effect.ModEffects;
@@ -56,6 +58,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 
 	@Unique private NbtCompound polyppieNbt = null;
 	@Unique private PolyppieEntity polyppie = null;
+	@Unique private int polyppieUpdateDelay = 0;
 
 	@Override
 	public void setCarriedPolyppie(PolyppieEntity polyppie) {
@@ -67,16 +70,17 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 		return this.polyppie;
 	}
 
-	@Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
+	@Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
 	private void writeCustom(NbtCompound nbt, CallbackInfo ci) {
 		if (this.getCarriedPolyppie() != null)
 			nbt.put(Phantasm.MOD_ID + "_CarriedPolyppie", this.getCarriedPolyppie().writeNbt(new NbtCompound()));
 	}
 
-	@Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
+	@Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))
 	private void readCustom(NbtCompound nbt, CallbackInfo ci) {
-		if (nbt.contains(Phantasm.MOD_ID + "_CarriedPolyppie", 10))
+		if (nbt.contains(Phantasm.MOD_ID + "_CarriedPolyppie", 10)) {
 			this.polyppieNbt = nbt.getCompound(Phantasm.MOD_ID + "_CarriedPolyppie");
+		}
 	}
 
 	@Inject(method = "tick", at = @At("TAIL"))
@@ -84,22 +88,32 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 		if (this.polyppieNbt != null && this.polyppie == null) {
 			this.polyppie = ModEntities.POLYPPIE.create(this.getWorld());
 			this.polyppie.readNbt(this.polyppieNbt);
-			this.polyppie.remove(RemovalReason.UNLOADED_WITH_PLAYER);
 			this.polyppieNbt = null;
+
+			this.polyppie.unsetRemoved();
+			this.getWorld().spawnEntity(this.polyppie);
+
+			this.polyppieUpdateDelay = 100;
 		}
 
 		if (this.polyppie != null) {
-			if (this.age % 5 == 0) {
+			if (this.age % 5 == 0)
 				this.polyppie.setPosition(this.getPos().add(0, 1, 0));
-			}
 			this.polyppie.tick();
+
+			if (this.polyppieUpdateDelay > 0) {
+				if (this.polyppieUpdateDelay == 1)
+					this.polyppie.setCarriedBy((PlayerEntity) (Object) this, null);
+				this.polyppieUpdateDelay--;
+			}
 		}
 	}
 
-	@Inject(method = "onDeath", at = @At("HEAD"))
-	private void dropCarriedPolyppie(DamageSource damageSource, CallbackInfo ci) {
+	@WrapMethod(method = "onDeath")
+	private void dropCarriedPolyppie(DamageSource damageSource, Operation<Void> original) {
 		Phantasm.log("dead " + this.getWorld().isClient());
 		if (this.getCarriedPolyppie() != null)
 			this.getCarriedPolyppie().setCarriedBy((PlayerEntity) (Object) this, this.getPos());
+		original.call(damageSource);
 	}
 }

@@ -247,6 +247,11 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     }
 
     @Override
+    public void unsetRemoved() {
+        super.unsetRemoved();
+    }
+
+    @Override
     protected void dropInventory() {
         super.dropInventory();
         this.stopPlaying();
@@ -303,15 +308,13 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
             }
 
             this.dismountVehicle();
-            if (this.hasPassengers()) this.getPassengerList().forEach(Entity::dismountVehicle);
+            this.getPassengerList().forEach(Entity::dismountVehicle);
 
             ((PolyppieCarrier) player).setCarriedPolyppie(this);
             this.setOwner(player);
             this.remove(RemovalReason.UNLOADED_WITH_PLAYER);
         }
         else {
-            Phantasm.log("Down " + player.getWorld().isClient());
-
             this.setPosition(position);
             this.setRotation(180 + player.getHeadYaw(), 0);
             ((PolyppieCarrier) player).setCarriedPolyppie(null);

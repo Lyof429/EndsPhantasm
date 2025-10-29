@@ -311,7 +311,9 @@ public class ConfiguredData {
             if (json == null || !json.isJsonObject()) return "{}";
             JsonObject o = json.getAsJsonObject();
 
-            JsonArray overrides = new JsonArray();
+            if (!o.has("overrides") || !o.get("overrides").isJsonArray())
+                o.add("overrides", new JsonArray());
+            JsonArray overrides = o.getAsJsonArray("overrides");
             overrides.add(getJson("""
                         {
                           "predicate": {

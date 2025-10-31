@@ -15,6 +15,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -57,62 +60,63 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 	}
 
 
-	@Unique private NbtCompound polyppieNbt = null;
+	@Unique private static final String POLYPPIE_KEY = Phantasm.MOD_ID + "_CarriedPolyppie";
+	@Unique private static final TrackedData<NbtCompound> POLYPPIE = DataTracker.registerData(PlayerEntityMixin.class,
+			TrackedDataHandlerRegistry.NBT_COMPOUND);
 	@Unique private PolyppieEntity polyppie = null;
-	@Unique private int polyppieUpdateDelay = 0;
+
+	@Inject(method = "initDataTracker", at = @At("HEAD"))
+	private void initPolyppieDataTracker(CallbackInfo ci) {
+		this.getDataTracker().startTracking(POLYPPIE, new NbtCompound());
+	}
 
 	@Override
 	public void setCarriedPolyppie(PolyppieEntity polyppie) {
 		this.polyppie = polyppie;
+
+		if (polyppie == null)
+			this.getDataTracker().set(POLYPPIE, new NbtCompound());
+		else {
+			this.polyppie.remove(RemovalReason.UNLOADED_WITH_PLAYER);
+			this.getDataTracker().set(POLYPPIE, this.polyppie.writeNbt(new NbtCompound()));
+		}
 	}
 
 	@Override
 	public PolyppieEntity getCarriedPolyppie() {
+		if (!this.getDataTracker().get(POLYPPIE).isEmpty() && this.polyppie == null && this.getWorld() != null) {
+			this.polyppie = ModEntities.POLYPPIE.create(this.getWorld());
+			this.polyppie.readNbt(this.getDataTracker().get(POLYPPIE));
+			this.polyppie.remove(RemovalReason.UNLOADED_WITH_PLAYER);
+		}
 		return this.polyppie;
 	}
 
 	@Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
 	private void writeCustom(NbtCompound nbt, CallbackInfo ci) {
 		if (this.getCarriedPolyppie() != null)
-			nbt.put(Phantasm.MOD_ID + "_CarriedPolyppie", this.getCarriedPolyppie().writeNbt(new NbtCompound()));
+			nbt.put(POLYPPIE_KEY, this.getCarriedPolyppie().writeNbt(new NbtCompound()));
 	}
 
 	@Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))
 	private void readCustom(NbtCompound nbt, CallbackInfo ci) {
-		if (nbt.contains(Phantasm.MOD_ID + "_CarriedPolyppie", 10)) {
-			this.polyppieNbt = nbt.getCompound(Phantasm.MOD_ID + "_CarriedPolyppie");
+		if (nbt.contains(POLYPPIE_KEY, 10)) {
+			this.getDataTracker().set(POLYPPIE, nbt.getCompound(POLYPPIE_KEY));
 		}
 	}
 
 	@Inject(method = "tick", at = @At("TAIL"))
 	private void tickCarriedPolyppie(CallbackInfo ci) {
-		if (this.polyppieNbt != null && this.polyppie == null) {
-			this.polyppie = ModEntities.POLYPPIE.create(this.getWorld());
-			this.polyppie.readNbt(this.polyppieNbt);
-			this.polyppieNbt = null;
-
-			this.polyppie.unsetRemoved();
-			this.getWorld().spawnEntity(this.polyppie);
-
-			this.polyppieUpdateDelay = 100;
-		}
-
-		if (this.polyppie != null) {
+		if (this.getCarriedPolyppie() != null) {
 			if (this.age % 5 == 0)
 				this.polyppie.setPosition(this.getPos().add(0, 1, 0));
 			this.polyppie.tick();
-
-			if (this.polyppieUpdateDelay > 0) {
-				if (this.polyppieUpdateDelay == 1)
-					this.polyppie.setCarriedBy((PlayerEntity) (Object) this, null);
-				this.polyppieUpdateDelay--;
-			}
 		}
 	}
 
 	@Inject(method = "dropInventory", at = @At("HEAD"))
 	private void dropCarriedPolyppie(CallbackInfo ci) {
-		if (/*!this.getWorld().getGameRules().getBoolean(GameRules.KEEP_INVENTORY) && */this.getCarriedPolyppie() != null)
+		if (!this.getWorld().getGameRules().getBoolean(GameRules.KEEP_INVENTORY) && this.getCarriedPolyppie() != null)
 			this.getCarriedPolyppie().setCarriedBy((PlayerEntity) (Object) this, this.getPos());
 	}
 }

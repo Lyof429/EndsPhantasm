@@ -8,6 +8,8 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
+import net.lyof.phantasm.entity.access.PolyppieCarrier;
+import net.lyof.phantasm.entity.custom.PolyppieEntity;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.util.MixinAccess;
 import net.minecraft.advancement.Advancement;
@@ -19,6 +21,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -90,8 +93,14 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
     }
 
     @Inject(method = "copyFrom", at = @At("HEAD"))
-    private void copySeenBeginning(ServerPlayerEntity oldPlayer, boolean alive, CallbackInfo ci) {
-        this.seenBeginning = ((MixinAccess<Boolean>) oldPlayer).getMixinValue();
+    private void copySeenBeginning(ServerPlayerEntity old, boolean alive, CallbackInfo ci) {
+        this.seenBeginning = ((MixinAccess<Boolean>) old).getMixinValue();
+
+        if (this.getWorld().getGameRules().getBoolean(GameRules.KEEP_INVENTORY) && old instanceof PolyppieCarrier oldCarrier
+                && this instanceof PolyppieCarrier carrier && oldCarrier.getCarriedPolyppie() != null) {
+            //oldCarrier.getCarriedPolyppie().stopPlaying();
+            carrier.setCarriedPolyppie(oldCarrier.getCarriedPolyppie());
+        }
     }
 
     @Override

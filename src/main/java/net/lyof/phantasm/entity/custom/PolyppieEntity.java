@@ -19,6 +19,7 @@ import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandler;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.PassiveEntity;
@@ -55,7 +56,10 @@ import java.util.List;
 import java.util.Map;
 
 public class PolyppieEntity extends TameableEntity implements VariantHolder<PolyppieEntity.Variant> {
-    private static final TrackedData<ItemStack> ITEM_STACK = DataTracker.registerData(PolyppieEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
+    private static final TrackedData<ItemStack> ITEM_STACK = DataTracker.registerData(PolyppieEntity.class,
+            TrackedDataHandlerRegistry.ITEM_STACK);
+    private static final TrackedData<Identifier> VARIANT = DataTracker.registerData(PolyppieEntity.class,
+            ModEntities.TRACKED_IDENTIFIER);
 
     protected boolean isPlaying;
     protected long tickCount;
@@ -63,7 +67,6 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     protected int ticksThisSecond;
 
     protected int soundKey;
-    protected Variant variant;
 
     public PolyppieEntity(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
@@ -90,6 +93,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     protected void initDataTracker() {
         super.initDataTracker();
         this.getDataTracker().startTracking(ITEM_STACK, ItemStack.EMPTY);
+        this.getDataTracker().startTracking(VARIANT, Variant.DEFAULT_ID);
     }
 
     @Override
@@ -103,7 +107,6 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         nbt.putLong("TickCount", this.tickCount - this.recordStartTick);
 
         nbt.putInt("SoundKey", this.getSoundKey());
-
         nbt.putString("Variant", this.getVariant().id.toString());
     }
 
@@ -118,27 +121,22 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         this.tickCount = nbt.getLong("TickCount");
 
         this.setSoundKey(nbt.getInt("SoundKey"));
-
         this.setVariant(Variant.get(new Identifier(nbt.getString("Variant"))));
     }
 
     @Override
     public Packet<ClientPlayPacketListener> createSpawnPacket() {
-        return PolyppieSpawnPacket.createPacket(this, this.getSoundKey(), this.getVariant().id);
+        return new EntitySpawnS2CPacket(this, this.getSoundKey());
     }
 
     @Override
     public void onSpawnPacket(EntitySpawnS2CPacket packet) {
         super.onSpawnPacket(packet);
+        this.setSoundKey(packet.getEntityData());
 
-        if (packet instanceof PolyppieSpawnPacket polyppiePacket) {
-            this.setSoundKey(polyppiePacket.getSongKey());
-            this.setVariant(Variant.get(polyppiePacket.getVariant()));
-
-            if (this.getWorld().isClient()) {
-                PolyppieSoundInstance soundInstance = SongHandler.instance.get(this.getSoundKey());
-                if (soundInstance != null) soundInstance.update(this);
-            }
+        if (this.getWorld().isClient()) {
+            PolyppieSoundInstance soundInstance = SongHandler.instance.get(this.getSoundKey());
+            if (soundInstance != null) soundInstance.update(this);
         }
     }
 
@@ -170,21 +168,12 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
     @Override
     public Variant getVariant() {
-        if (this.variant == null) this.variant = Variant.getDefault();
-        return this.variant;
+        return Variant.get(this.getDataTracker().get(VARIANT));
     }
 
     @Override
     public void setVariant(Variant variant) {
-        this.variant = variant;
-
-        if (this.getWorld() instanceof ServerWorld serverWorld) {
-            PacketByteBuf buf = PacketByteBufs.create();
-            buf.writeInt(this.getId());
-            buf.writeIdentifier(this.variant.id);
-            for (ServerPlayerEntity p : serverWorld.getServer().getPlayerManager().getPlayerList())
-                ServerPlayNetworking.send(p, ModPackets.POLYPPIE_SETS_VARIANT, buf);
-        }
+        this.getDataTracker().set(VARIANT, variant.id);
     }
 
     public boolean isValidDisc(ItemStack stack) {
@@ -202,7 +191,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
             PacketByteBuf buf = PacketByteBufs.create();
             buf.writeNbt(start ? this.getStack().writeNbt(new NbtCompound()) : new NbtCompound());
-            buf.writeInt(isCarried ? this.getOwner().getId() : this.getId());
+            buf.writeInt(isCarried && this.getOwner() != null ? this.getOwner().getId() : this.getId());
             buf.writeInt(this.getSoundKey());
 
             for (ServerPlayerEntity player : serverWorld.getServer().getPlayerManager().getPlayerList())
@@ -310,9 +299,9 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
             this.dismountVehicle();
             this.getPassengerList().forEach(Entity::dismountVehicle);
 
-            ((PolyppieCarrier) player).setCarriedPolyppie(this);
-            this.setOwner(player);
             this.remove(RemovalReason.UNLOADED_WITH_PLAYER);
+            this.setOwner(player);
+            ((PolyppieCarrier) player).setCarriedPolyppie(this);
         }
         else {
             this.setPosition(position);
@@ -482,20 +471,6 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
                 packets.add(packet);
             }
-        }
-    }
-
-
-    public interface PolyppieSpawnPacket {
-        void setPolyppieData(Identifier id, int key);
-        Identifier getVariant();
-        int getSongKey();
-
-        static EntitySpawnS2CPacket createPacket(Entity entity, int songKey, Identifier variant) {
-            EntitySpawnS2CPacket packet = new EntitySpawnS2CPacket(entity);
-            if (packet instanceof PolyppieSpawnPacket polyppiePacket)
-                polyppiePacket.setPolyppieData(variant, songKey);
-            return packet;
         }
     }
 }

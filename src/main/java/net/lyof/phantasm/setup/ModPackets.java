@@ -175,8 +175,8 @@ public class ModPackets {
             int playerid = buf.readInt();
 
             client.execute(() -> {
-                if (Phantasm.log(client.world.getEntityById(polyppieid)) instanceof PolyppieEntity polyppie
-                        && Phantasm.log(client.world.getEntityById(playerid)) instanceof PlayerEntity player) {
+                if (client.world.getEntityById(polyppieid) instanceof PolyppieEntity polyppie
+                        && client.world.getEntityById(playerid) instanceof PlayerEntity player) {
                     polyppie.setCarriedBy(player, null);
                 }
             });

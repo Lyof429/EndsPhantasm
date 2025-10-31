@@ -10,15 +10,23 @@ import net.lyof.phantasm.entity.custom.PolyppieEntity;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandler;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 
 public class ModEntities {
     public static void register() {
+        TrackedDataHandlerRegistry.register(TRACKED_IDENTIFIER);
+
         FabricDefaultAttributeRegistry.register(CRYSTIE, CrystieEntity.createAttributes());
         FabricDefaultAttributeRegistry.register(BEHEMOTH, BehemothEntity.createAttributes());
         FabricDefaultAttributeRegistry.register(POLYPPIE, PolyppieEntity.createAttributes());
     }
+
 
     public static final EntityType<CrystieEntity> CRYSTIE = Registry.register(Registries.ENTITY_TYPE,
             Phantasm.makeID("crystie"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, CrystieEntity::new)
@@ -35,4 +43,7 @@ public class ModEntities {
     public static final EntityType<ChoralArrowEntity> CHORAL_ARROW = Registry.register(Registries.ENTITY_TYPE,
             Phantasm.makeID("choral_arrow"), FabricEntityTypeBuilder.create(SpawnGroup.MISC, ChoralArrowEntity::new)
                     .dimensions(EntityDimensions.fixed(0.5f, 0.5f)).trackRangeChunks(4).trackedUpdateRate(20).build());
+
+
+    public static final TrackedDataHandler<Identifier> TRACKED_IDENTIFIER = TrackedDataHandler.of(PacketByteBuf::writeIdentifier, PacketByteBuf::readIdentifier);
 }

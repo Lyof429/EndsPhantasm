@@ -77,6 +77,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 		if (polyppie == null)
 			this.getDataTracker().set(POLYPPIE, new NbtCompound());
 		else {
+			this.polyppie.setYaw(180);
 			this.polyppie.remove(RemovalReason.UNLOADED_WITH_PLAYER);
 			this.getDataTracker().set(POLYPPIE, this.polyppie.writeNbt(new NbtCompound()));
 		}

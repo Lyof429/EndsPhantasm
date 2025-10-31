@@ -1,6 +1,7 @@
 package net.lyof.phantasm;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -13,6 +14,7 @@ import net.lyof.phantasm.config.ModConfig;
 import net.lyof.phantasm.effect.ModEffects;
 import net.lyof.phantasm.effect.ModPotions;
 import net.lyof.phantasm.entity.ModEntities;
+import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.entity.custom.PolyppieEntity;
 import net.lyof.phantasm.item.ModItemGroups;
 import net.lyof.phantasm.item.ModItems;
@@ -114,6 +116,13 @@ public class Phantasm implements ModInitializer {
 			PolyppieEntity.Variant.write(packets);
 
 			packets.forEach(p -> ServerPlayNetworking.send(player, ModPackets.INITIALIZE, p));
+		});
+
+		ServerPlayerEvents.AFTER_RESPAWN.register((old, self, alive) -> {
+			if (self instanceof PolyppieCarrier carrier && carrier.getCarriedPolyppie() != null) {
+				Phantasm.log("Stopping sound");
+				carrier.getCarriedPolyppie().stopPlaying();
+			}
 		});
 	}
 

@@ -49,7 +49,6 @@ public class ModPackets {
     public static final Identifier POLYPPIE_UPDATES = Phantasm.makeID("polyppie_updates");
     public static final Identifier POLYPPIE_STARTS_BEING_CARRIED = Phantasm.makeID("polyppie_starts_being_carried");
     public static final Identifier POLYPPIE_STOPS_BEING_CARRIED = Phantasm.makeID("polyppie_stops_being_carried");
-    public static final Identifier POLYPPIE_SETS_VARIANT = Phantasm.makeID("polyppie_sets_variant");
 
 
     public static class Server {
@@ -195,16 +194,6 @@ public class ModPackets {
 
                     polyppie.setCarriedBy(player, new Vec3d(x, y, z));
                 }
-            });
-        }
-
-        public static void polyppieSetsVariant(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
-            int id = buf.readInt();
-            Identifier variant = buf.readIdentifier();
-
-            client.execute(() -> {
-                if (client.world.getEntityById(id) instanceof PolyppieEntity polyppie)
-                    polyppie.setVariant(PolyppieEntity.Variant.get(variant));
             });
         }
     }

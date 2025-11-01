@@ -62,8 +62,8 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
             ModEntities.TRACKED_IDENTIFIER);
 
     protected boolean isPlaying;
-    protected long tickCount;
-    protected long recordStartTick;
+    public long tickCount;
+    public long recordStartTick;
     protected int ticksThisSecond;
 
     protected int soundKey;
@@ -177,7 +177,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     }
 
     public boolean isValidDisc(ItemStack stack) {
-        return stack.isIn(ItemTags.MUSIC_DISCS) && this.getStack().isEmpty();
+        return stack.isIn(ItemTags.MUSIC_DISCS);
     }
 
     public boolean isPlayingRecord() {
@@ -266,7 +266,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
             return ActionResult.success(player.getWorld().isClient());
         }
 
-        if (this.isValidDisc(stack)) {
+        if (this.isValidDisc(stack) && this.getStack().isEmpty()) {
             this.setStack(stack.copyWithCount(1));
             stack.decrement(1);
             return ActionResult.success(player.getWorld().isClient());

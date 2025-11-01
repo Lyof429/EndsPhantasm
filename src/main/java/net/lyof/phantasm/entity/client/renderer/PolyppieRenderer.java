@@ -5,6 +5,7 @@ import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.entity.client.ModModelLayers;
 import net.lyof.phantasm.entity.client.model.PolyppieModel;
 import net.lyof.phantasm.entity.custom.PolyppieEntity;
+import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -27,6 +28,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, PolyppieModel<PolyppieEntity>> {
+    private static final float pi = (float) Math.PI;
+    private static final float rad = pi / 180f;
+    private static final Map<String, Quaternionf> rotationCache = new HashMap<>();
+
+    private static Quaternionf getRotation(float x, float y, float z) {
+        String key = x + " " + y + " " + z;
+        rotationCache.putIfAbsent(key, new Quaternionf().rotateXYZ(x, y, z));
+        return rotationCache.get(key);
+    }
+
     private final ItemRenderer itemRenderer;
 
     public PolyppieRenderer(EntityRendererFactory.Context context) {
@@ -42,11 +53,18 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
     }
 
     @Override
-    public void render(PolyppieEntity entity, float f, float g, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int i) {
+    public void render(PolyppieEntity self, float tickDelta, float animationProgress, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
+        super.render(self, tickDelta, animationProgress, matrices, vertexConsumers, light);
+
         matrices.push();
-        super.render(entity, f, g, matrices, vertexConsumers, i);
-        matrices.translate(0, 0, 1);
-        this.itemRenderer.renderItem(entity.getStack(), ModelTransformationMode.FIXED, i, 0, matrices, vertexConsumers, entity.getWorld(), 0);
+
+        matrices.translate(0, self.getHeight()*this.model.getPart().yScale*0.5f, 0);
+        matrices.multiply(getRotation(0,
+                rad*(180 - MathHelper.lerpAngleDegrees(tickDelta, self.prevBodyYaw, self.bodyYaw)),
+                self.isPlayingRecord() ? 0.5f*MathHelper.sin(0.05f*(tickDelta + self.tickCount - self.recordStartTick)) : 0));
+        matrices.translate(0, 0, -self.getWidth()*this.model.getPart().zScale*0.5f);
+
+        this.itemRenderer.renderItem(self.getStack(), ModelTransformationMode.FIXED, light, 0, matrices, vertexConsumers, self.getWorld(), 0);
         matrices.pop();
     }
 
@@ -58,22 +76,12 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
 
         private static void setupCarriedRenderer(EntityRendererFactory.Context context) {
             if (flag) return;
-
             flag = true;
             renderer = new PolyppieRenderer(context);
         }
 
         public static PolyppieRenderer renderer = null;
         public static boolean flag = false;
-
-        private static final float pi = (float) Math.PI;
-        private static final Map<String, Quaternionf> rotationCache = new HashMap<>();
-
-        private static Quaternionf getRotation(float x, float y, float z) {
-            String key = x + " " + y + " " + z;
-            rotationCache.putIfAbsent(key, new Quaternionf().rotateXYZ(x, y, z));
-            return rotationCache.get(key);
-        }
 
         @Override
         public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractClientPlayerEntity self,
@@ -83,10 +91,8 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
                 matrices.push();
 
                 ModelPart torso = this.getContextModel().body;
-                renderer.model.getPart().xScale = torso.xScale;
-                renderer.model.getPart().yScale = torso.yScale;
-                renderer.model.getPart().zScale = torso.zScale;
-                matrices.translate(0, torso.yScale * 0.5, torso.zScale * (self.isInSneakingPose() ? 0.5 : 0.3));
+                matrices.scale(torso.xScale, torso.yScale, torso.zScale);
+                matrices.translate(0, torso.yScale * 0.7, torso.zScale * (self.isInSneakingPose() ? 0.5 : 0.45));
                 matrices.multiply(getRotation(torso.pitch + pi, 0, torso.roll));
 
                 renderer.render(carrier.getCarriedPolyppie(), tickDelta, animationProgress, matrices, vertexConsumers, light);

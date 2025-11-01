@@ -1,11 +1,9 @@
 package net.lyof.phantasm.mixin;
 
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
-import net.minecraft.client.gui.screen.ingame.EnchantmentScreen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.screen.ScreenHandler;

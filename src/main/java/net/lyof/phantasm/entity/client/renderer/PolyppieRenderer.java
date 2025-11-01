@@ -1,11 +1,9 @@
 package net.lyof.phantasm.entity.client.renderer;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.entity.client.ModModelLayers;
 import net.lyof.phantasm.entity.client.model.PolyppieModel;
 import net.lyof.phantasm.entity.custom.PolyppieEntity;
-import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -17,11 +15,8 @@ import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RotationAxis;
 import org.joml.Quaternionf;
 
 import java.util.HashMap;

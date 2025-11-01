@@ -2,10 +2,8 @@ package net.lyof.phantasm.mixin.client;
 
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;
-import net.minecraft.client.gui.screen.ingame.EnchantmentScreen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.PlayerScreenHandler;
@@ -38,10 +36,6 @@ public abstract class InventoryScreenMixin extends AbstractInventoryScreen<Playe
                     this.isPointWithinBounds(open ? -32 : -7, 76, 7, 23, mouseX, mouseY) ? 32 : 0,
                     open ? 0 : 32,
                     32, 32);
-            /*
-            int color = 0;
-            MinecraftClient.getInstance().
-            Phantasm.log(color);*/
         }
     }
 

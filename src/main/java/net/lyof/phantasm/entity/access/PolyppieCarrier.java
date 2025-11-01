@@ -2,7 +2,6 @@ package net.lyof.phantasm.entity.access;
 
 import net.lyof.phantasm.entity.custom.PolyppieEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 

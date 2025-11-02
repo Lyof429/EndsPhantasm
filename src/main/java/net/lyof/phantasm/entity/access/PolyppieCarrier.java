@@ -16,6 +16,9 @@ public interface PolyppieCarrier {
         boolean isPolyppieInventoryOpen();
 
         boolean isPolyppieInventoryEnabled();
+
+        int getSlotX();
+        int getSlotY();
     }
 
     class Inventory implements net.minecraft.inventory.Inventory {

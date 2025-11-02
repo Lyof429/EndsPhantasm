@@ -34,7 +34,7 @@ public class ConfigEntries {
         explosiveDragonFireballs = new ConfigEntry<>("gameplay.dragon.explosive_fireballs", true).get();
         noEndermenFight = new ConfigEntry<>("gameplay.dragon.no_pesky_endermen", false).get();
 
-        polyppieSlotAnchor = new ConfigEntry<>("gameplay.polyppie.slot_anchor", 1).get();
+        polyppieSlotAnchor = new ConfigEntry<>("gameplay.polyppie.slot_anchor", 3).get();
         polyppieSlotOffset = new ConfigEntry<>("gameplay.polyppie.slot_offset", 0).get();
 
         accessibilityChallengeBarrier = new ConfigEntry<>("gameplay.challenge.accessibility_barrier", false).get();

@@ -5,6 +5,7 @@ import com.vinurl.util.Constants;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
+import net.lyof.phantasm.entity.client.DiscVisuals;
 import net.lyof.phantasm.setup.compat.VinURLCompat;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -31,8 +32,6 @@ public abstract class InventoryScreenMixin extends AbstractInventoryScreen<Playe
     }
 
     @Unique private static final Identifier INVENTORY_TEXTURE = Phantasm.makeID("textures/gui/polyppie_inventory.png");
-    @Unique private static final Identifier PROGRESS_BAR_TEXTURE = Phantasm.makeID("textures/gui/polyppie_progress_bar.png");
-
 
     @Inject(method = "drawBackground", at = @At("TAIL"))
     private void drawPolyppieInventory(DrawContext context, float delta, int mouseX, int mouseY, CallbackInfo ci) {
@@ -69,14 +68,21 @@ public abstract class InventoryScreenMixin extends AbstractInventoryScreen<Playe
                     96, 32);
 
             if (self.isPolyppieInventoryOpen() && anchor % 2 == 1 && MinecraftClient.getInstance().player instanceof PolyppieCarrier carrier) {
-                context.drawText(this.textRenderer, carrier.getCarriedPolyppie().getName(),
-                        i + x + 30, j + y + 13, 0x373737, false);
+                DiscVisuals visuals = DiscVisuals.get(carrier.getCarriedPolyppie().getStack());
+                x = self.getSlotX();
+                y = self.getSlotY();
 
-                context.drawTexture(PROGRESS_BAR_TEXTURE, i + x + 32, j + y + 25, 0, 0,
-                        32, 4,
+                context.drawText(this.textRenderer, carrier.getCarriedPolyppie().getName(),
+                        i + x + 24, j + y, 0x373737, false);
+
+                context.drawTexture(visuals.notes, i + x - 8, j + y - 8,
+                        0, 0, 32, 32, 32, 32);
+
+                context.drawTexture(visuals.progressBar, i + x + 24, j + y + 11, 0, 0,
+                        32, 6,
                         32, 16);
-                context.drawTexture(PROGRESS_BAR_TEXTURE, i + x + 32, j + y + 25, 0, 8,
-                        (int) (carrier.getCarriedPolyppie().getSongProgress() * 32), 4,
+                context.drawTexture(visuals.progressBar, i + x + 24, j + y + 11, 0, 8,
+                        (int) (carrier.getCarriedPolyppie().getSongProgress() * 32), 6,
                         32, 16);
             }
         }

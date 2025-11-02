@@ -185,7 +185,7 @@ public class ModConfig {
     "polyppie": {
       // Anchor to render a carried Polyppie's slot in the player inventory
       //   0: Left, 1: Top, 2: Right, 3: Bottom
-      "slot_anchor": 1,
+      "slot_anchor": 3,
       // offset to render a carried Polyppie's slot in the player inventory. Will always be anchored to a side
       "slot_offset": 0
     },

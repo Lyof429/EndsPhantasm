@@ -6,6 +6,8 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.block.ModBlockEntities;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.client.ModModelLayers;
@@ -16,10 +18,12 @@ import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.particle.custom.ZzzParticle;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.setup.ModRegistry;
+import net.lyof.phantasm.setup.ReloadListener;
 import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
+import net.minecraft.resource.ResourceType;
 
 public class PhantasmClient implements ClientModInitializer {
     @Override
@@ -33,6 +37,8 @@ public class PhantasmClient implements ClientModInitializer {
             BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getCutout());
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.ZZZ, ZzzParticle.Factory::new);
+
+        ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(new ReloadListener.Client());
     }
 
     private static void registerRenderers() {

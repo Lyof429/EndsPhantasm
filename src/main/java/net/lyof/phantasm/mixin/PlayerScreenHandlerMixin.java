@@ -41,7 +41,7 @@ public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements 
                 case 0 -> { x = -32 + 13; y = ConfigEntries.polyppieSlotOffset + 8; }
                 case 1 -> { x = ConfigEntries.polyppieSlotOffset + 8; y = -32 + 13; }
                 case 2 -> { x = 176 + 3; y = ConfigEntries.polyppieSlotOffset + 8; }
-                default -> { x = ConfigEntries.polyppieSlotOffset + 3; y = 166 + 3; }
+                default -> { x = ConfigEntries.polyppieSlotOffset + 8; y = 166 + 3; }
             }
 
             this.polyppieSlot = this.addSlot(new Slot(this.polyppieInventory, this.slots.size(), x, y) {
@@ -74,5 +74,15 @@ public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements 
     public boolean isPolyppieInventoryEnabled() {
         return PlayerScreenHandlerMixin.this.owner instanceof PolyppieCarrier carrier
                 && carrier.getCarriedPolyppie() != null;
+    }
+
+    @Override
+    public int getSlotX() {
+        return this.polyppieSlot.x;
+    }
+
+    @Override
+    public int getSlotY() {
+        return this.polyppieSlot.y;
     }
 }

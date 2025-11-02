@@ -29,9 +29,9 @@ import java.util.function.Consumer;
 
 public class ModRecipeProvider extends FabricRecipeProvider {
 
-    private static void offerTilesRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible result,
+    private static void offerTilesRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible result, int amount,
                                          ItemConvertible a, ItemConvertible b) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, result)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, result, amount)
                 .pattern("AB").pattern("BA")
                 .input('A', a).input('B', b)
                 .criterion(hasItem(a), conditionsFromItem(a))
@@ -162,22 +162,22 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
 
         // Crystal Tiles
-        offerTilesRecipe(exporter, ModBlocks.CRYSTAL_TILES, ModBlocks.CRYSTAL_SHARD, Blocks.END_STONE);
+        offerTilesRecipe(exporter, ModBlocks.CRYSTAL_TILES, 2, ModBlocks.CRYSTAL_SHARD, Blocks.END_STONE);
         // Crystal Block
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYSTAL_BLOCK, ModBlocks.CRYSTAL_SHARD);
         // Crystal Pillar
         offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYSTAL_PILLAR, ModBlocks.CRYSTAL_TILE_SLAB);
         // Crystal Glass
-        offerTilesRecipe(exporter, ModBlocks.CRYSTAL_GLASS, ModBlocks.CRYSTAL_SHARD, Blocks.GLASS);
+        offerTilesRecipe(exporter, ModBlocks.CRYSTAL_GLASS, 2, ModBlocks.CRYSTAL_SHARD, Blocks.GLASS);
 
         // Void Crystal Tiles
-        offerTilesRecipe(exporter, ModBlocks.VOID_CRYSTAL_TILES, ModBlocks.VOID_CRYSTAL_SHARD, Blocks.END_STONE);
+        offerTilesRecipe(exporter, ModBlocks.VOID_CRYSTAL_TILES, 2, ModBlocks.VOID_CRYSTAL_SHARD, Blocks.END_STONE);
         // Void Crystal Block
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.VOID_CRYSTAL_BLOCK, ModBlocks.VOID_CRYSTAL_SHARD);
         // Void Crystal Pillar
         offerMosaicRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.VOID_CRYSTAL_PILLAR, ModBlocks.VOID_CRYSTAL_TILE_SLAB);
         // Void Crystal Glass
-        offerTilesRecipe(exporter, ModBlocks.VOID_CRYSTAL_GLASS, ModBlocks.VOID_CRYSTAL_SHARD, Blocks.GLASS);
+        offerTilesRecipe(exporter, ModBlocks.VOID_CRYSTAL_GLASS, 2, ModBlocks.VOID_CRYSTAL_SHARD, Blocks.GLASS);
 
 
         // Crystalline Sword
@@ -378,6 +378,9 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(ModBlocks.DRALGAE), conditionsFromItem(ModBlocks.DRALGAE))
                 .criterion(hasItem(Blocks.OBSIDIAN), conditionsFromItem(Blocks.OBSIDIAN))
                 .group("obsidian").offerTo(exporter, Phantasm.makeID("obsidian"));
+
+        // Pome
+        offerCompactingRecipe(exporter, RecipeCategory.FOOD, ModBlocks.POME, ModItems.POME_SLICE);
 
         // Choral Blocks
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHORAL_BLOCK, ModBlocks.CHORAL_FAN);

@@ -7,6 +7,8 @@ import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.item.ModTiers;
 import net.lyof.phantasm.setup.ModRegistry;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -14,10 +16,13 @@ import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.sound.BlockSoundGroup;
 import vectorwing.farmersdelight.common.block.CabinetBlock;
 import vectorwing.farmersdelight.common.item.KnifeItem;
 import vectorwing.farmersdelight.common.registry.ModCreativeTabs;
 import vectorwing.farmersdelight.common.registry.ModEffects;
+
+import java.util.function.Supplier;
 
 public class FarmersDelightCompat {
     public static void setup() {
@@ -33,8 +38,7 @@ public class FarmersDelightCompat {
         ModBlocks.PREAM_CABINET = ModRegistry.ofBlock("pream_cabinet",
                 new CabinetBlock(FabricBlockSettings.copyOf(Blocks.BARREL).mapColor(MapColor.TERRACOTTA_YELLOW))).build();
 
-
-        ItemGroupEvents.modifyEntriesEvent(getKey(ModCreativeTabs.TAB_FARMERS_DELIGHT.get())).register(entries -> {
+        ItemGroupEvents.modifyEntriesEvent(getKey(ModCreativeTabs.TAB_FARMERS_DELIGHT)).register(entries -> {
             entries.addAfter(vectorwing.farmersdelight.common.registry.ModItems.IRON_KNIFE.get(),
                     ModItems.CRYSTALLINE_KNIFE);
             entries.addAfter(vectorwing.farmersdelight.common.registry.ModBlocks.WARPED_CABINET.get(),
@@ -42,7 +46,7 @@ public class FarmersDelightCompat {
         });
     }
 
-    protected static RegistryKey<ItemGroup> getKey(ItemGroup tab) {
-        return Registries.ITEM_GROUP.getKey(tab).get();
+    protected static RegistryKey<ItemGroup> getKey(Supplier<ItemGroup> tab) {
+        return Registries.ITEM_GROUP.getKey(tab.get()).get();
     }
 }

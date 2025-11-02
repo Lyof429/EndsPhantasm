@@ -10,6 +10,8 @@ public interface PolyppieCarrier {
     @Nullable PolyppieEntity getCarriedPolyppie();
 
     interface ScreenHandler {
+        int x = -32, y = 100;
+
         void openPolyppieInventory();
         boolean isPolyppieInventoryOpen();
 

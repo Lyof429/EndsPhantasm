@@ -85,6 +85,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 		if (!this.getDataTracker().get(POLYPPIE).isEmpty() && this.polyppie == null && this.getWorld() != null) {
 			this.polyppie = ModEntities.POLYPPIE.create(this.getWorld());
 			this.polyppie.readNbt(this.getDataTracker().get(POLYPPIE));
+			this.polyppie.setOwner((PlayerEntity) (Object) this);
 			this.polyppie.remove(RemovalReason.UNLOADED_WITH_PLAYER);
 		}
 		return this.polyppie;

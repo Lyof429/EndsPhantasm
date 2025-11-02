@@ -34,6 +34,9 @@ public class ConfigEntries {
         explosiveDragonFireballs = new ConfigEntry<>("gameplay.dragon.explosive_fireballs", true).get();
         noEndermenFight = new ConfigEntry<>("gameplay.dragon.no_pesky_endermen", false).get();
 
+        polyppieSlotAnchor = new ConfigEntry<>("gameplay.polyppie.slot_anchor", 1).get();
+        polyppieSlotOffset = new ConfigEntry<>("gameplay.polyppie.slot_offset", 0).get();
+
         accessibilityChallengeBarrier = new ConfigEntry<>("gameplay.challenge.accessibility_barrier", false).get();
         Challenge.R = new ConfigEntry<>("gameplay.challenge.radius", 16).get() - 0.01f;
 
@@ -78,6 +81,9 @@ public class ConfigEntries {
     public static boolean explosiveDragonFireballs;
     public static boolean noEndermenFight;
 
+    public static int polyppieSlotAnchor;
+    public static int polyppieSlotOffset;
+
     public static boolean accessibilityChallengeBarrier;
 
     public static String elytraBoostAdvancement = "";
@@ -88,7 +94,6 @@ public class ConfigEntries {
     public static boolean chorusSaladTp;
     public static int chorusSaladStack;
 
-    public static int subwooferRange;
-
     public static int shatteredPendantDurability;
+    public static int subwooferRange;
 }

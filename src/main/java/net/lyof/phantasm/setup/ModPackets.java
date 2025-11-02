@@ -136,8 +136,8 @@ public class ModPackets {
 
             client.execute(() -> {
                 Entity self = client.world.getEntityById(id);
-                ItemStack item = ItemStack.EMPTY;
-                if (!nbt.isEmpty()) item = ItemStack.fromNbt(nbt);
+                ItemStack stack = ItemStack.EMPTY;
+                if (!nbt.isEmpty()) stack = ItemStack.fromNbt(nbt);
 
                 PolyppieEntity polyppie = null;
                 if (self instanceof PolyppieCarrier carrier && carrier.getCarriedPolyppie() != null)
@@ -145,20 +145,19 @@ public class ModPackets {
                 else if (self instanceof PolyppieEntity)
                     polyppie = (PolyppieEntity) self;
 
+                PolyppieSoundInstance soundInstance = SongHandler.instance.get(soundKey);
+                if (soundInstance != null) {
+                    SongHandler.instance.remove(soundKey);
+                    client.getSoundManager().stop(soundInstance);
+                }
+
                 if (polyppie != null) {
                     polyppie.setSoundKey(soundKey);
-                    PolyppieSoundInstance soundInstance = SongHandler.instance.get(soundKey);
-
-                    if (soundInstance != null) {
-                        SongHandler.instance.remove(soundKey);
-                        client.getSoundManager().stop(soundInstance);
-                    }
-
                     if (polyppie.isDead()) return;
 
-                    if (Phantasm.isVinURLLoaded() && item.getTranslationKey().equals("item.vinurl.custom_record")) {
-                        VinURLCompat.playSound(polyppie, soundKey, item, client);
-                    } else if (item.getItem() instanceof MusicDiscItem musicDisc) {
+                    if (Phantasm.isVinURLLoaded() && VinURLCompat.isVinURLDisc(stack)) {
+                        VinURLCompat.playSound(polyppie, soundKey, stack, client);
+                    } else if (stack.getItem() instanceof MusicDiscItem musicDisc) {
                         client.inGameHud.setRecordPlayingOverlay(musicDisc.getDescription());
 
                         soundInstance = new PolyppieDiscSoundInstance(musicDisc.getSound(), 1, polyppie, 0);

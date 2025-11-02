@@ -182,6 +182,14 @@ public class ModConfig {
       "aggro_range_sneaking": 0
     },
     
+    "polyppie": {
+      // Anchor to render a carried Polyppie's slot in the player inventory
+      //   0: Left, 1: Top, 2: Right, 3: Bottom
+      "slot_anchor": 1,
+      // offset to render a carried Polyppie's slot in the player inventory. Will always be anchored to a side
+      "slot_offset": 0
+    },
+    
     "challenge": {
       // Use a see through, dynamic runic barrier texture for challenge boundaries
       //   If false, the End portal's static texture will be used. Looks better to me, but might be confusing

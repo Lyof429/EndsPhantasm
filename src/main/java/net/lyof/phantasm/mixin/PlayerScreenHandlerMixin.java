@@ -1,5 +1,6 @@
 package net.lyof.phantasm.mixin;
 
+import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -35,7 +36,15 @@ public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements 
         if (this.owner instanceof PolyppieCarrier carrier) {
             this.polyppieInventory = new PolyppieCarrier.Inventory(carrier);
 
-            this.polyppieSlot = this.addSlot(new Slot(this.polyppieInventory, this.slots.size(), -19, 84) {
+            int x, y;
+            switch (ConfigEntries.polyppieSlotAnchor) {
+                case 0 -> { x = -32 + 13; y = ConfigEntries.polyppieSlotOffset + 8; }
+                case 1 -> { x = ConfigEntries.polyppieSlotOffset + 8; y = -32 + 13; }
+                case 2 -> { x = 176 + 3; y = ConfigEntries.polyppieSlotOffset + 8; }
+                default -> { x = ConfigEntries.polyppieSlotOffset + 3; y = 166 + 3; }
+            }
+
+            this.polyppieSlot = this.addSlot(new Slot(this.polyppieInventory, this.slots.size(), x, y) {
                 @Override
                 public void onQuickTransfer(ItemStack newItem, ItemStack original) {
                     super.onQuickTransfer(newItem, original);

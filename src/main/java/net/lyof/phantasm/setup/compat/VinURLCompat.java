@@ -19,6 +19,17 @@ import net.minecraft.util.Formatting;
 import java.util.List;
 
 public class VinURLCompat {
+    public static Text getDescription(ItemStack stack) {
+        String fileName = AudioHandler.hashURL(stack.getOrCreateNbt().getString("music_url"));
+        if (fileName.isEmpty())
+            return Text.empty();
+        return Text.literal(AudioHandler.getDescription(fileName)).formatted(Formatting.GRAY);
+    }
+
+    public static boolean isVinURLDisc(ItemStack stack) {
+        return stack.isOf(Constants.CUSTOM_RECORD);
+    }
+
     public static void playSound(int id) {
         TickableSoundInstance soundInstance = SongHandler.instance.get(id);
         if (soundInstance instanceof FileSound fileSound) {

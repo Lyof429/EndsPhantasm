@@ -9,6 +9,7 @@ import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.setup.ModPackets;
+import net.lyof.phantasm.setup.compat.VinURLCompat;
 import net.lyof.phantasm.sound.SongHandler;
 import net.lyof.phantasm.sound.custom.PolyppieSoundInstance;
 import net.minecraft.entity.Entity;
@@ -213,12 +214,22 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         this.sendSongPacket(false);
     }
 
-    public boolean isSongFinished(MusicDiscItem disc) {
-        if (Phantasm.isVinURLLoaded() && getStack().getTranslationKey().equals("item.vinurl.custom_record")) {
+    public boolean isSongFinished() {
+        if (Phantasm.isVinURLLoaded() && VinURLCompat.isVinURLDisc(this.getStack())) {
             NbtCompound nbt = getStack().getOrCreateNbt();
             return this.tickCount > this.recordStartTick + nbt.getInt(Constants.DURATION_KEY) * 20L;
         }
-        return this.tickCount >= this.recordStartTick + (long) disc.getSongLengthInTicks() + 20L;
+        return this.tickCount >= this.recordStartTick + (long) ((MusicDiscItem) getStack().getItem()).getSongLengthInTicks() + 20L;
+    }
+
+    public float getSongProgress() {
+        if (!(this.getStack().getItem() instanceof MusicDiscItem disc)) return 0;
+
+        if (Phantasm.isVinURLLoaded() && VinURLCompat.isVinURLDisc(this.getStack())) {
+            NbtCompound nbt = getStack().getOrCreateNbt();
+            return (this.tickCount - this.recordStartTick) / (nbt.getInt(Constants.DURATION_KEY) * 20f);
+        }
+        return (this.tickCount - this.recordStartTick) / (float) (disc.getSongLengthInTicks() + 20L);
     }
 
     public void spawnNoteParticle() {
@@ -348,10 +359,10 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     public void tick() {
         super.tick();
 
-        if (this.isPlayingRecord() && this.getStack().getItem() instanceof MusicDiscItem disc) {
+        if (this.isPlayingRecord() && this.getStack().getItem() instanceof MusicDiscItem) {
             this.ticksThisSecond++;
 
-            if (this.isSongFinished(disc)) {
+            if (this.isSongFinished()) {
                 this.stopPlaying();
             } else if (this.ticksThisSecond >= 20) {
                 this.ticksThisSecond = 0;

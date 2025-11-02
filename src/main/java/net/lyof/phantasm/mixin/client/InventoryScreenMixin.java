@@ -1,19 +1,14 @@
 package net.lyof.phantasm.mixin.client;
 
-import com.vinurl.VinURL;
-import com.vinurl.util.Constants;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
-import net.lyof.phantasm.entity.client.DiscVisuals;
-import net.lyof.phantasm.setup.compat.VinURLCompat;
+import net.lyof.phantasm.sound.DiscVisuals;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.MusicDiscItem;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;

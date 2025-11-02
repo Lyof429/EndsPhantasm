@@ -1,7 +1,6 @@
-package net.lyof.phantasm.entity.client;
+package net.lyof.phantasm.sound;
 
 import com.google.gson.JsonObject;
-import net.lyof.phantasm.Phantasm;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

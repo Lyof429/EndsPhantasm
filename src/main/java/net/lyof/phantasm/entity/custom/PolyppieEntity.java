@@ -60,6 +60,8 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
             TrackedDataHandlerRegistry.ITEM_STACK);
     private static final TrackedData<Identifier> VARIANT = DataTracker.registerData(PolyppieEntity.class,
             ModEntities.TRACKED_IDENTIFIER);
+    private static final TrackedData<Boolean> PAUSED = DataTracker.registerData(PolyppieEntity.class,
+            TrackedDataHandlerRegistry.BOOLEAN);
 
     protected boolean isPlaying;
     public long tickCount;
@@ -94,6 +96,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         super.initDataTracker();
         this.getDataTracker().startTracking(ITEM_STACK, ItemStack.EMPTY);
         this.getDataTracker().startTracking(VARIANT, Variant.DEFAULT_ID);
+        this.getDataTracker().startTracking(PAUSED, false);
     }
 
     @Override

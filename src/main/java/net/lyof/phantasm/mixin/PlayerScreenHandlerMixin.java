@@ -36,13 +36,13 @@ public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements 
         if (this.owner instanceof PolyppieCarrier carrier) {
             this.polyppieInventory = new PolyppieCarrier.Inventory(carrier);
 
-            int x, y;
-            switch (ConfigEntries.polyppieSlotAnchor) {
+            int x = 8, y = 166 - 10 + 8;
+            /*switch (ConfigEntries.polyppieSlotAnchor) {
                 case 0 -> { x = -32 + 13; y = ConfigEntries.polyppieSlotOffset + 8; }
                 case 1 -> { x = ConfigEntries.polyppieSlotOffset + 8; y = -32 + 13; }
                 case 2 -> { x = 176 + 3; y = ConfigEntries.polyppieSlotOffset + 8; }
                 default -> { x = ConfigEntries.polyppieSlotOffset + 8; y = 166 + 3; }
-            }
+            }*/
 
             this.polyppieSlot = this.addSlot(new Slot(this.polyppieInventory, this.slots.size(), x, y) {
                 @Override

@@ -1,4 +1,4 @@
-package net.lyof.phantasm.sound;
+package net.lyof.phantasm.screen;
 
 import com.google.gson.JsonObject;
 import net.minecraft.item.Item;

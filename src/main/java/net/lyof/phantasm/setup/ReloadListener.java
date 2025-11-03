@@ -7,7 +7,7 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.challenge.Challenge;
 import net.lyof.phantasm.block.challenge.ChallengeRegistry;
 import net.lyof.phantasm.config.ModConfig;
-import net.lyof.phantasm.sound.DiscVisuals;
+import net.lyof.phantasm.screen.DiscVisuals;
 import net.lyof.phantasm.entity.custom.PolyppieEntity;
 import net.lyof.phantasm.world.biome.EndDataCompat;
 import net.minecraft.resource.Resource;
@@ -94,8 +94,6 @@ public class ReloadListener {
             ResourceFinder finder = ResourceFinder.json("disc_visuals");
             for (Map.Entry<Identifier, Resource> entry : finder.findResources(manager).entrySet()) {
                 try {
-                    Phantasm.log("What da fuck " + entry.getKey());
-
                     String content = new String(entry.getValue().getInputStream().readAllBytes());
                     JsonElement json = new Gson().fromJson(content, JsonElement.class);
 

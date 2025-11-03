@@ -1,24 +1,23 @@
 package net.lyof.phantasm.mixin.client;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
-import net.lyof.phantasm.sound.DiscVisuals;
+import net.lyof.phantasm.screen.DiscVisuals;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
+import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(InventoryScreen.class)
 public abstract class InventoryScreenMixin extends AbstractInventoryScreen<PlayerScreenHandler> {
@@ -28,97 +27,66 @@ public abstract class InventoryScreenMixin extends AbstractInventoryScreen<Playe
 
     @Unique private static final Identifier INVENTORY_TEXTURE = Phantasm.makeID("textures/gui/polyppie_inventory.png");
 
+    @Inject(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ingame/AbstractInventoryScreen;init()V"))
+    private void initHeight(CallbackInfo ci) {
+        if (this.handler instanceof PolyppieCarrier.ScreenHandler self && self.isPolyppieInventoryEnabled())
+            this.backgroundHeight = 166 - 5 + 27;
+        else
+            this.backgroundHeight = 166;
+    }
+
+    @Inject(method = "init", at = @At("TAIL"))
+    private void init(CallbackInfo ci) {
+        if (this.handler instanceof PolyppieCarrier.ScreenHandler self && self.isPolyppieInventoryEnabled()) {
+            int x = 0;
+            int y = 166 - 5;
+
+            this.addDrawableChild(new TexturedButtonWidget(this.x + x + 145, this.y + y + 8, 12, 12,
+                    0, 32, 12, INVENTORY_TEXTURE, (button) -> {
+                button.setFocused(!button.isFocused());
+                this.handler.onButtonClick(this.client.player, 0);
+            }));
+            this.addDrawableChild(new TexturedButtonWidget(this.x + x + 1475 + 12, this.y + y + 8, 12, 12,
+                    12, 32, 12, INVENTORY_TEXTURE, (button) -> {
+                button.setFocused(!button.isFocused());
+                this.handler.onButtonClick(this.client.player, 1);
+            }));
+        }
+    }
+
+    @ModifyExpressionValue(method = "init", at = @At(value = "FIELD", target = "Lnet/minecraft/client/gui/screen/ingame/InventoryScreen;height:I", ordinal = 1))
+    private int fixRecipeButton(int original) {
+        if (this.handler instanceof PolyppieCarrier.ScreenHandler self && self.isPolyppieInventoryEnabled())
+            return original - 22;
+        else
+            return original;
+    }
+
     @Inject(method = "drawBackground", at = @At("TAIL"))
     private void drawPolyppieInventory(DrawContext context, float delta, int mouseX, int mouseY, CallbackInfo ci) {
         if (this.handler instanceof PolyppieCarrier.ScreenHandler self && self.isPolyppieInventoryEnabled()) {
-            int i = (this.width - this.backgroundWidth) / 2;
-            int j = (this.height - this.backgroundHeight) / 2;
+            int x = 0, y = 166 - 5;
+            context.drawTexture(INVENTORY_TEXTURE, this.x + x, this.y + y,
+                    0, 0, 176, 27);
 
-            boolean open = self.isPolyppieInventoryOpen();
-
-            int anchor = MathHelper.clamp(ConfigEntries.polyppieSlotAnchor, 0, 3);
-            int x, y;
-            switch (anchor) {
-                case 0 -> {
-                    x = -32;
-                    y = ConfigEntries.polyppieSlotOffset;
-                }
-                case 1 -> {
-                    x = ConfigEntries.polyppieSlotOffset;
-                    y = -32;
-                }
-                case 2 -> {
-                    x = this.backgroundWidth;
-                    y = ConfigEntries.polyppieSlotOffset;
-                }
-                default -> {
-                    x = ConfigEntries.polyppieSlotOffset;
-                    y = this.backgroundHeight;
-                }
-            }
-
-            context.drawTexture(INVENTORY_TEXTURE, i + x, j + y,
-                    this.isHoveringButton(open, mouseX, mouseY) ? 128 : 0,
-                    64 * anchor + (open ? 0 : 32),
-                    96, 32);
-
-            if (self.isPolyppieInventoryOpen() && anchor % 2 == 1 && MinecraftClient.getInstance().player instanceof PolyppieCarrier carrier) {
+            if (self.isPolyppieInventoryOpen() && MinecraftClient.getInstance().player instanceof PolyppieCarrier carrier) {
                 DiscVisuals visuals = DiscVisuals.get(carrier.getCarriedPolyppie().getStack());
-                x = self.getSlotX();
-                y = self.getSlotY();
+                x = self.getSlotX() - 8;
+                y = self.getSlotY() - 8;
 
                 context.drawText(this.textRenderer, carrier.getCarriedPolyppie().getName(),
-                        i + x + 24, j + y, 0x373737, false);
+                        this.x + x + 32, this.y + y + 8, 0x373737, false);
 
-                context.drawTexture(visuals.notes, i + x - 8, j + y - 8,
+                context.drawTexture(visuals.notes, this.x + x, this.y + y,
                         0, 0, 32, 32, 32, 32);
 
-                context.drawTexture(visuals.progressBar, i + x + 24, j + y + 11, 0, 0,
-                        32, 6,
-                        32, 16);
-                context.drawTexture(visuals.progressBar, i + x + 24, j + y + 11, 0, 8,
-                        (int) (carrier.getCarriedPolyppie().getSongProgress() * 32), 6,
-                        32, 16);
+                context.drawTexture(visuals.progressBar, this.x + x + 32, this.y + y + 17, 0, 0,
+                        96, 7,
+                        128, 16);
+                context.drawTexture(visuals.progressBar, this.x + x + 32, this.y + y + 17, 0, 8,
+                        (int) (carrier.getCarriedPolyppie().getSongProgress() * 96), 7,
+                        128, 16);
             }
         }
-    }
-
-    @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
-    private void openPolyppieInventory(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
-        if (this.handler instanceof PolyppieCarrier.ScreenHandler self) {
-            if (this.isHoveringButton(self.isPolyppieInventoryOpen(), mouseX, mouseY)) {
-                self.openPolyppieInventory();
-                cir.setReturnValue(true);
-            }
-        }
-    }
-
-    @Unique private boolean isHoveringButton(boolean open, double mouseX, double mouseY) {
-        int anchor = MathHelper.clamp(ConfigEntries.polyppieSlotAnchor, 0, 3);
-        int x, y, width, height;
-        switch (anchor) {
-            case 0 -> {
-                x = open ? -32 : -32 + 25;
-                y = ConfigEntries.polyppieSlotOffset;
-                width = 7;
-                height = 24;
-            } case 1 -> {
-                x = ConfigEntries.polyppieSlotOffset;
-                y = open ? -32 : -32 + 25;
-                width = 24;
-                height = 7;
-            } case 2 -> {
-                x = open ? this.backgroundWidth + 25 : this.backgroundWidth;
-                y = ConfigEntries.polyppieSlotOffset;
-                width = 7;
-                height = 24;
-            } default -> {
-                x = ConfigEntries.polyppieSlotOffset;
-                y = open ? this.backgroundHeight + 25 : this.backgroundHeight;
-                width = 24;
-                height = 7;
-            }
-        }
-        return this.isPointWithinBounds(x, y, width, height, mouseX, mouseY);
     }
 }

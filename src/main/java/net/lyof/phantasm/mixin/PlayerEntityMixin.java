@@ -68,7 +68,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 	}
 
 	@Override
-	public void setCarriedPolyppie(PolyppieEntity polyppie) {
+	public void phantasm_setPolyppie(PolyppieEntity polyppie) {
 		this.polyppie = polyppie;
 
 		if (polyppie == null)
@@ -81,7 +81,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 	}
 
 	@Override
-	public PolyppieEntity getCarriedPolyppie() {
+	public PolyppieEntity phantasm_getPolyppie() {
 		if (!this.getDataTracker().get(POLYPPIE).isEmpty() && this.polyppie == null && this.getWorld() != null) {
 			this.polyppie = ModEntities.POLYPPIE.create(this.getWorld());
 			this.polyppie.readNbt(this.getDataTracker().get(POLYPPIE));
@@ -93,8 +93,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 
 	@Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
 	private void writeCustom(NbtCompound nbt, CallbackInfo ci) {
-		if (this.getCarriedPolyppie() != null)
-			nbt.put(POLYPPIE_KEY, this.getCarriedPolyppie().writeNbt(new NbtCompound()));
+		if (this.phantasm_getPolyppie() != null)
+			nbt.put(POLYPPIE_KEY, this.phantasm_getPolyppie().writeNbt(new NbtCompound()));
 	}
 
 	@Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))
@@ -106,7 +106,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 
 	@Inject(method = "tick", at = @At("TAIL"))
 	private void tickCarriedPolyppie(CallbackInfo ci) {
-		if (this.getCarriedPolyppie() != null) {
+		if (this.phantasm_getPolyppie() != null) {
 			if (this.age % 5 == 0)
 				this.polyppie.setPosition(this.getPos().add(0, 1, 0));
 			this.polyppie.tick();
@@ -115,7 +115,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 
 	@Inject(method = "dropInventory", at = @At("HEAD"))
 	private void dropCarriedPolyppie(CallbackInfo ci) {
-		if (!this.getWorld().getGameRules().getBoolean(GameRules.KEEP_INVENTORY) && this.getCarriedPolyppie() != null)
-			this.getCarriedPolyppie().setCarriedBy((PlayerEntity) (Object) this, this.getPos());
+		if (!this.getWorld().getGameRules().getBoolean(GameRules.KEEP_INVENTORY) && this.phantasm_getPolyppie() != null)
+			this.phantasm_getPolyppie().setCarriedBy((PlayerEntity) (Object) this, this.getPos());
 	}
 }

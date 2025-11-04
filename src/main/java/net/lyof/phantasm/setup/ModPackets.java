@@ -9,6 +9,7 @@ import net.lyof.phantasm.entity.access.Challenger;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.entity.custom.BehemothEntity;
 import net.lyof.phantasm.entity.custom.PolyppieEntity;
+import net.lyof.phantasm.screen.access.PolyppieInventory;
 import net.lyof.phantasm.setup.compat.VinURLCompat;
 import net.lyof.phantasm.sound.ModSounds;
 import net.lyof.phantasm.sound.SongHandler;
@@ -46,7 +47,8 @@ public class ModPackets {
     public static final Identifier BEGIN_CUTSCENE_STARTS = Phantasm.makeID("begin_cutscene_starts");
     public static final Identifier BEGIN_CUTSCENE_ENDS = Phantasm.makeID("begin_cutscene_ends");
 
-    public static final Identifier POLYPPIE_UPDATES = Phantasm.makeID("polyppie_updates");
+    public static final Identifier POLYPPIE_SERVER_UPDATE = Phantasm.makeID("polyppie_server_update");
+    public static final Identifier POLYPPIE_CLIENT_UPDATE = Phantasm.makeID("polyppie_client_update");
     public static final Identifier POLYPPIE_STARTS_BEING_CARRIED = Phantasm.makeID("polyppie_starts_being_carried");
     public static final Identifier POLYPPIE_STOPS_BEING_CARRIED = Phantasm.makeID("polyppie_stops_being_carried");
 
@@ -56,6 +58,12 @@ public class ModPackets {
                                              PacketByteBuf buf, PacketSender responseSender) {
             ((MixinAccess<Boolean>) player).setMixinValue(true);
             player.moveToWorld(server.getWorld(World.END));
+        }
+
+        public static void polyppieClientUpdate(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,
+                                             PacketByteBuf buf, PacketSender responseSender) {
+            int id = buf.readInt();
+            server.execute(() -> PolyppieInventory.Handler.onButtonClick(player, id));
         }
     }
 
@@ -129,7 +137,7 @@ public class ModPackets {
             });
         }
 
-        public static void polyppieUpdates(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
+        public static void polyppieServerUpdate(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
             NbtCompound nbt = buf.readNbt();
             int id = buf.readInt();
             int soundKey = buf.readInt();
@@ -140,8 +148,8 @@ public class ModPackets {
                 if (!nbt.isEmpty()) stack = ItemStack.fromNbt(nbt);
 
                 PolyppieEntity polyppie = null;
-                if (self instanceof PolyppieCarrier carrier && carrier.getCarriedPolyppie() != null)
-                    polyppie = carrier.getCarriedPolyppie();
+                if (self instanceof PolyppieCarrier carrier && carrier.phantasm_getPolyppie() != null)
+                    polyppie = carrier.phantasm_getPolyppie();
                 else if (self instanceof PolyppieEntity)
                     polyppie = (PolyppieEntity) self;
 

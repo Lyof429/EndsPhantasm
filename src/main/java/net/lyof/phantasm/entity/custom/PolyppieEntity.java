@@ -111,6 +111,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
         nbt.putInt("SoundKey", this.getSoundKey());
         nbt.putString("Variant", this.getVariant().id.toString());
+        nbt.putBoolean("Paused", this.isPaused());
     }
 
     @Override
@@ -125,6 +126,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
         this.setSoundKey(nbt.getInt("SoundKey"));
         this.setVariant(Variant.get(new Identifier(nbt.getString("Variant"))));
+        this.setPaused(nbt.getBoolean("Paused"));
     }
 
     @Override
@@ -179,6 +181,19 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         this.getDataTracker().set(VARIANT, variant.id);
     }
 
+    public boolean isPaused() {
+        return this.getDataTracker().get(PAUSED);
+    }
+
+    public void setPaused(boolean paused) {
+        this.getDataTracker().set(PAUSED, paused);
+        if (this.isPaused()) this.stopPlaying();
+    }
+
+    public void togglePaused() {
+        this.setPaused(!this.isPaused());
+    }
+
     public boolean isValidDisc(ItemStack stack) {
         return stack.isIn(ItemTags.MUSIC_DISCS);
     }
@@ -198,7 +213,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
             buf.writeInt(this.getSoundKey());
 
             for (ServerPlayerEntity player : serverWorld.getServer().getPlayerManager().getPlayerList())
-                ServerPlayNetworking.send(player, ModPackets.POLYPPIE_UPDATES, buf);
+                ServerPlayNetworking.send(player, ModPackets.POLYPPIE_SERVER_UPDATE, buf);
         }
     }
 
@@ -227,6 +242,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
     public float getSongProgress() {
         if (!(this.getStack().getItem() instanceof MusicDiscItem disc)) return 0;
+        if (!this.isPlaying) return 0;
 
         if (Phantasm.isVinURLLoaded() && VinURLCompat.isVinURLDisc(this.getStack())) {
             NbtCompound nbt = getStack().getOrCreateNbt();
@@ -296,7 +312,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     }
 
     public boolean canBeCarriedBy(PlayerEntity player) {
-        return player instanceof PolyppieCarrier carrier && carrier.getCarriedPolyppie() == null;
+        return player instanceof PolyppieCarrier carrier && carrier.phantasm_getPolyppie() == null;
     }
 
     public void setCarriedBy(PlayerEntity player, Vec3d position) {
@@ -314,12 +330,12 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
             this.remove(RemovalReason.UNLOADED_WITH_PLAYER);
             this.setOwner(player);
-            ((PolyppieCarrier) player).setCarriedPolyppie(this);
+            ((PolyppieCarrier) player).phantasm_setPolyppie(this);
         }
         else {
             this.setPosition(position);
             this.setRotation(180 + player.getHeadYaw(), 0);
-            ((PolyppieCarrier) player).setCarriedPolyppie(null);
+            ((PolyppieCarrier) player).phantasm_setPolyppie(null);
 
             if (player.getWorld() instanceof ServerWorld serverWorld) {
                 this.setTamed(false);
@@ -399,7 +415,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         public void startRandom(Random random) {
             List<PolyppieEntity> singers = new ArrayList<>();
             for (PolyppieEntity polyppie : this.members) {
-                if (!polyppie.getStack().isEmpty())
+                if (!polyppie.getStack().isEmpty() && !polyppie.isPaused())
                     singers.add(polyppie);
             }
             if (singers.isEmpty())
@@ -408,12 +424,11 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         }
 
         public PolyppieEntity getPlaying() {
-            PolyppieEntity singer = null;
             for (PolyppieEntity polyppie : this.members) {
                 if (polyppie.isPlayingRecord())
-                    singer = polyppie;
+                    return polyppie;
             }
-            return singer;
+            return null;
         }
     }
 

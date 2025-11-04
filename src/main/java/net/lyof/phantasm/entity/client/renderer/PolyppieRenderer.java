@@ -82,7 +82,7 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
         public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractClientPlayerEntity self,
                            float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
 
-            if (self instanceof PolyppieCarrier carrier && carrier.getCarriedPolyppie() != null) {
+            if (self instanceof PolyppieCarrier carrier && carrier.phantasm_getPolyppie() != null) {
                 matrices.push();
 
                 ModelPart torso = this.getContextModel().body;
@@ -90,7 +90,7 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
                 matrices.translate(0, torso.yScale * 0.7, torso.zScale * (self.isInSneakingPose() ? 0.5 : 0.45));
                 matrices.multiply(getRotation(torso.pitch + pi, 0, torso.roll));
 
-                renderer.render(carrier.getCarriedPolyppie(), tickDelta, animationProgress, matrices, vertexConsumers, light);
+                renderer.render(carrier.phantasm_getPolyppie(), tickDelta, animationProgress, matrices, vertexConsumers, light);
                 matrices.pop();
             }
         }

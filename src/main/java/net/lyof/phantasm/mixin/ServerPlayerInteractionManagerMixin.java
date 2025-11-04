@@ -26,7 +26,7 @@ public class ServerPlayerInteractionManagerMixin {
     private void putPolyppieDown(ServerPlayerEntity player, World world, ItemStack stack, Hand hand, BlockHitResult hitResult,
                                  CallbackInfoReturnable<ActionResult> cir) {
 
-        if (player instanceof PolyppieCarrier carrier && carrier.getCarriedPolyppie() != null && stack.isEmpty()
+        if (player instanceof PolyppieCarrier carrier && carrier.phantasm_getPolyppie() != null && stack.isEmpty()
                 && hitResult.getSide() == Direction.UP && !hitResult.isInsideBlock() && player.isSneaking()) {
 
             BlockPos pos = hitResult.getBlockPos().up();
@@ -43,7 +43,7 @@ public class ServerPlayerInteractionManagerMixin {
                     return;
             }
 
-            carrier.getCarriedPolyppie().setCarriedBy(player, hitResult.getPos());
+            carrier.phantasm_getPolyppie().setCarriedBy(player, hitResult.getPos());
             cir.setReturnValue(ActionResult.SUCCESS);
         }
     }

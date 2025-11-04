@@ -88,6 +88,8 @@ public class Phantasm implements ModInitializer {
 
 	private static void registerPackets() {
 		ServerPlayNetworking.registerGlobalReceiver(ModPackets.BEGIN_CUTSCENE_ENDS, ModPackets.Server::beginCutsceneEnds);
+
+		ServerPlayNetworking.registerGlobalReceiver(ModPackets.POLYPPIE_CLIENT_UPDATE, ModPackets.Server::polyppieClientUpdate);
 	}
 
 	private static void registerModules() {
@@ -119,9 +121,9 @@ public class Phantasm implements ModInitializer {
 		});
 
 		ServerPlayerEvents.AFTER_RESPAWN.register((old, self, alive) -> {
-			if (self instanceof PolyppieCarrier carrier && carrier.getCarriedPolyppie() != null) {
+			if (self instanceof PolyppieCarrier carrier && carrier.phantasm_getPolyppie() != null) {
 				Phantasm.log("Stopping sound");
-				carrier.getCarriedPolyppie().stopPlaying();
+				carrier.phantasm_getPolyppie().stopPlaying();
 			}
 		});
 	}

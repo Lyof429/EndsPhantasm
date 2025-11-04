@@ -64,7 +64,7 @@ public class PhantasmClient implements ClientModInitializer {
 
         ClientPlayNetworking.registerGlobalReceiver(ModPackets.BEGIN_CUTSCENE_STARTS, ModPackets.Client::beginCutsceneStarts);
 
-        ClientPlayNetworking.registerGlobalReceiver(ModPackets.POLYPPIE_UPDATES, ModPackets.Client::polyppieUpdates);
+        ClientPlayNetworking.registerGlobalReceiver(ModPackets.POLYPPIE_SERVER_UPDATE, ModPackets.Client::polyppieServerUpdate);
         ClientPlayNetworking.registerGlobalReceiver(ModPackets.POLYPPIE_STARTS_BEING_CARRIED, ModPackets.Client::polyppieStartsBeingCarried);
         ClientPlayNetworking.registerGlobalReceiver(ModPackets.POLYPPIE_STOPS_BEING_CARRIED, ModPackets.Client::polyppieStopsBeingCarried);
     }

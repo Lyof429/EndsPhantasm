@@ -1,11 +1,18 @@
 package net.lyof.phantasm.mixin;
 
-import net.lyof.phantasm.config.ConfigEntries;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
+import net.lyof.phantasm.screen.access.PolyppieInventory;
+import net.lyof.phantasm.setup.ModPackets;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
@@ -20,7 +27,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerScreenHandler.class)
-public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements PolyppieCarrier.ScreenHandler {
+public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements PolyppieInventory.Handler {
     @Shadow @Final private PlayerEntity owner;
 
     protected PlayerScreenHandlerMixin(@Nullable ScreenHandlerType<?> type, int syncId) {
@@ -28,23 +35,17 @@ public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements 
     }
 
     @Unique private Inventory polyppieInventory = null;
-    @Unique private Slot polyppieSlot = null;
-    @Unique private boolean isPolyppieInventoryOpen = true;
+    @Unique private Slot phantasm_slot = null;
+    @Unique private boolean phantasm_visible = true;
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void initPolyppieScreenHandler(PlayerInventory inventory, boolean onServer, PlayerEntity owner, CallbackInfo ci) {
         if (this.owner instanceof PolyppieCarrier carrier) {
-            this.polyppieInventory = new PolyppieCarrier.Inventory(carrier);
+            this.polyppieInventory = new PolyppieInventory(carrier);
 
             int x = 8, y = 166 - 10 + 8;
-            /*switch (ConfigEntries.polyppieSlotAnchor) {
-                case 0 -> { x = -32 + 13; y = ConfigEntries.polyppieSlotOffset + 8; }
-                case 1 -> { x = ConfigEntries.polyppieSlotOffset + 8; y = -32 + 13; }
-                case 2 -> { x = 176 + 3; y = ConfigEntries.polyppieSlotOffset + 8; }
-                default -> { x = ConfigEntries.polyppieSlotOffset + 8; y = 166 + 3; }
-            }*/
 
-            this.polyppieSlot = this.addSlot(new Slot(this.polyppieInventory, this.slots.size(), x, y) {
+            this.phantasm_slot = this.addSlot(new Slot(this.polyppieInventory, this.slots.size(), x, y) {
                 @Override
                 public void onQuickTransfer(ItemStack newItem, ItemStack original) {
                     super.onQuickTransfer(newItem, original);
@@ -53,36 +54,36 @@ public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements 
 
                 @Override
                 public boolean isEnabled() {
-                    return PlayerScreenHandlerMixin.this.isPolyppieInventoryEnabled()
-                            && PlayerScreenHandlerMixin.this.isPolyppieInventoryOpen;
+                    return PlayerScreenHandlerMixin.this.phantasm_isEnabled()
+                            && PlayerScreenHandlerMixin.this.phantasm_visible;
                 }
             });
         }
     }
 
     @Override
-    public void openPolyppieInventory() {
-        this.isPolyppieInventoryOpen = !this.isPolyppieInventoryOpen;
+    public void phantasm_toggleVisibility() {
+        this.phantasm_visible = !this.phantasm_visible;
     }
 
     @Override
-    public boolean isPolyppieInventoryOpen() {
-        return this.isPolyppieInventoryOpen;
+    public boolean phantasm_isOpen() {
+        return this.phantasm_visible;
     }
 
     @Override
-    public boolean isPolyppieInventoryEnabled() {
+    public boolean phantasm_isEnabled() {
         return PlayerScreenHandlerMixin.this.owner instanceof PolyppieCarrier carrier
-                && carrier.getCarriedPolyppie() != null;
+                && carrier.phantasm_getPolyppie() != null;
     }
 
     @Override
-    public int getSlotX() {
-        return this.polyppieSlot.x;
+    public int phantasm_getSlotX() {
+        return this.phantasm_slot.x;
     }
 
     @Override
-    public int getSlotY() {
-        return this.polyppieSlot.y;
+    public int phantasm_getSlotY() {
+        return this.phantasm_slot.y;
     }
 }

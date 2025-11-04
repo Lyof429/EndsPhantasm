@@ -1,5 +1,6 @@
 package net.lyof.phantasm.screen.access;
 
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.util.Identifier;
 
@@ -15,7 +16,9 @@ public class TogglableButtonWidget extends TexturedButtonWidget {
     protected Supplier<Boolean> toggled;
 
     @Override
-    public boolean isSelected() {
-        return super.isSelected() || this.toggled.get();
+    public void renderButton(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.setFocused(false);
+        this.drawTexture(context, this.texture, this.getX(), this.getY(), this.toggled.get() ? this.u + this.width : this.u, this.v,
+                this.hoveredVOffset, this.width, this.height, this.textureWidth, this.textureHeight);
     }
 }

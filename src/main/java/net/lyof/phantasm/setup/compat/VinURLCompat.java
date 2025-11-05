@@ -1,6 +1,6 @@
 package net.lyof.phantasm.setup.compat;
 
-import com.vinurl.client.AudioHandler;
+import com.vinurl.client.SoundManager;
 import com.vinurl.client.FileSound;
 import com.vinurl.client.KeyListener;
 import com.vinurl.client.VinURLClient;
@@ -20,10 +20,10 @@ import java.util.List;
 
 public class VinURLCompat {
     public static Text getDescription(ItemStack stack) {
-        String fileName = AudioHandler.hashURL(stack.getOrCreateNbt().getString("music_url"));
+        String fileName = SoundManager.hashURL(stack.getOrCreateNbt().getString("music_url"));
         if (fileName.isEmpty())
             return Text.empty();
-        return Text.literal(AudioHandler.getDescription(fileName)).formatted(Formatting.GRAY);
+        return Text.literal(SoundManager.getDescription(fileName)).formatted(Formatting.GRAY);
     }
 
     public static boolean isVinURLDisc(ItemStack stack) {
@@ -34,7 +34,7 @@ public class VinURLCompat {
         TickableSoundInstance soundInstance = SongHandler.instance.get(id);
         if (soundInstance instanceof FileSound fileSound) {
             VinURLClient.CLIENT.getSoundManager().play(soundInstance);
-            VinURLClient.CLIENT.inGameHud.setRecordPlayingOverlay(Text.literal(AudioHandler.getDescription(fileSound.fileName)));
+            VinURLClient.CLIENT.inGameHud.setRecordPlayingOverlay(Text.literal(SoundManager.getDescription(fileSound.fileName)));
         }
     }
 
@@ -47,21 +47,21 @@ public class VinURLCompat {
 
     public static void playSound(PolyppieEntity polyppie, int soundKey, ItemStack item, MinecraftClient client) {
         String url = item.getOrCreateNbt().getString(Constants.URL_KEY);
-        String fileName = AudioHandler.hashURL(url);
+        String fileName = SoundManager.hashURL(url);
 
         if (client.player != null && url != null && !url.isEmpty()) {
             SongHandler.instance.add(soundKey, new PolyppieUrlSoundInstance(fileName, polyppie));
 
             if (Executable.YT_DLP.isProcessRunning(fileName + "/download"))
                 queueSound(fileName, soundKey);
-            else if (AudioHandler.getAudioFile(fileName).exists())
+            else if (SoundManager.getAudioFile(fileName).exists())
                 playSound(soundKey);
             else {
                 if (VinURLClient.CONFIG.downloadEnabled()) {
                     List<String> whitelist = VinURLClient.CONFIG.urlWhitelist();
-                    String baseURL = AudioHandler.getBaseURL(url);
+                    String baseURL = SoundManager.getBaseURL(url);
                     if (whitelist.stream().anyMatch(url::startsWith)) {
-                        AudioHandler.downloadSound(url, fileName);
+                        SoundManager.downloadSound(url, fileName);
                         queueSound(fileName, soundKey);
                         return;
                     }
@@ -73,7 +73,7 @@ public class VinURLCompat {
                         if (confirmed) {
                             whitelist.add(baseURL);
                             VinURLClient.CONFIG.save();
-                            AudioHandler.downloadSound(url, fileName);
+                            SoundManager.downloadSound(url, fileName);
                             queueSound(fileName, soundKey);
                         }
                     });

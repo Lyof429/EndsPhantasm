@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "phantasm:item/pome_slice"
+    "layer0": "phantasm:item/pomb_slice"
   }
 }

@@ -136,9 +136,9 @@
   "block.phantasm.acidic_mass": "Acidic Mass",
 
   "block.phantasm.dralgae": "Dralgae",
-  "block.phantasm.pome": "Pome",
-  "item.phantasm.pome_slice": "Pome Slice",
-  "item.phantasm.pome_slice.desc": "When eaten:\nMakes your attacks corrosive.",
+  "block.phantasm.pomb": "Pomb",
+  "item.phantasm.pomb_slice": "Pomb Slice",
+  "item.phantasm.pomb_slice.desc": "When eaten:\nMakes your attacks corrosive.",
 
   "block.phantasm.cirite": "Cirite",
   "block.phantasm.cirite_iron_ore": "Cirite Iron Ore",

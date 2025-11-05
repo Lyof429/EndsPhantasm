@@ -95,8 +95,8 @@ public class ModItems {
             new ShatteredPendantItem(new FabricItemSettings()))
             .model().build();
 
-    public static final Item POME_SLICE = ModRegistry.ofItem("pome_slice",
-            new PomeSliceItem(new FabricItemSettings().food(ModRegistry.Foods.POME_SLICE)))
+    public static final Item POMB_SLICE = ModRegistry.ofItem("pomb_slice",
+            new PombSliceItem(new FabricItemSettings().food(ModRegistry.Foods.POMB_SLICE)))
             .tag(ConventionalItemTags.FOODS).model().build();
 
     public static final Item MUSIC_DISC_ABRUPTION = ModRegistry.ofItem("music_disc_abruption",

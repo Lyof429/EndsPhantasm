@@ -10,7 +10,7 @@
     "secondary": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "phantasm:pome"
+        "Name": "phantasm:pomb"
       }
     },
     "size": {

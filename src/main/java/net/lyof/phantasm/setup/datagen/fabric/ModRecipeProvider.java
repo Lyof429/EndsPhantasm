@@ -379,8 +379,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Blocks.OBSIDIAN), conditionsFromItem(Blocks.OBSIDIAN))
                 .group("obsidian").offerTo(exporter, Phantasm.makeID("obsidian"));
 
-        // Pome
-        offerCompactingRecipe(exporter, RecipeCategory.FOOD, ModBlocks.POME, ModItems.POME_SLICE);
+        // Pomb
+        offerCompactingRecipe(exporter, RecipeCategory.FOOD, ModBlocks.POMB, ModItems.POMB_SLICE);
 
         // Choral Blocks
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHORAL_BLOCK, ModBlocks.CHORAL_FAN);

@@ -453,7 +453,7 @@ public class ModBlocks {
     private static final FabricBlockSettings acidicMassMaterial =
             copy(Blocks.MOSS_BLOCK).mapColor(MapColor.DARK_DULL_PINK).strength(1.8f);
 
-    private static final FabricBlockSettings pomeMaterial =
+    private static final FabricBlockSettings pombMaterial =
             copy(Blocks.MELON).mapColor(MapColor.DARK_DULL_PINK).strength(1.5f);
 
     private static final FabricBlockSettings ciriteMaterial =
@@ -513,8 +513,8 @@ public class ModBlocks {
             .tag(ModTags.Blocks.DRALGAE_GROWABLE_ON, BlockTags.CLIMBABLE)
             .cutout().build();
 
-    public static final Block POME = ModRegistry.ofBlock("pome",
-                    new PomeBlock(pomeMaterial))
+    public static final Block POMB = ModRegistry.ofBlock("pomb",
+                    new PombBlock(pombMaterial))
             .tool("_axe")
             .build();
 

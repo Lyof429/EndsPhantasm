@@ -5,8 +5,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class PomeSliceItem extends DescribedItem {
-    public PomeSliceItem(Settings settings) {
+public class PombSliceItem extends DescribedItem {
+    public PombSliceItem(Settings settings) {
         super(settings);
     }
 

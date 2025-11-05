@@ -17,7 +17,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "phantasm:pome_slice",
+          "name": "phantasm:pomb_slice",
           "weight": 7
         },
         {
@@ -38,7 +38,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "phantasm:pome",
+          "name": "phantasm:pomb",
           "weight": 3
         },
         {

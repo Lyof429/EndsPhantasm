@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_pome_slice": {
+    "has_pomb_slice": {
       "conditions": {
         "items": [
           {
             "items": [
-              "phantasm:pome_slice"
+              "phantasm:pomb_slice"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "phantasm:pome"
+        "recipe": "phantasm:pomb"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_pome_slice",
+      "has_pomb_slice",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "phantasm:pome"
+      "phantasm:pomb"
     ]
   },
   "sends_telemetry_event": false

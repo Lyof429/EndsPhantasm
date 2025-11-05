@@ -17,8 +17,8 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class PomeBlock extends FallingBlock {
-    public PomeBlock(Settings settings) {
+public class PombBlock extends FallingBlock {
+    public PombBlock(Settings settings) {
         super(settings);
     }
 

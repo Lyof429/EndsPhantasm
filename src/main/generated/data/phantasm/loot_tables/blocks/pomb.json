@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "phantasm:pome"
+              "name": "phantasm:pomb"
             },
             {
               "type": "minecraft:group",
@@ -58,7 +58,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "phantasm:pome_slice"
+          "name": "phantasm:pomb_slice"
         }
       ],
       "rolls": {

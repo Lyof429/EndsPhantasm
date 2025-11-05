@@ -5,10 +5,10 @@
   },
   "providers": [
     {
-      "item": "phantasm:pome"
+      "item": "phantasm:pomb"
     },
     {
-      "item": "phantasm:pome_slice"
+      "item": "phantasm:pomb_slice"
     },
     {
       "item": "phantasm:acidic_mass"

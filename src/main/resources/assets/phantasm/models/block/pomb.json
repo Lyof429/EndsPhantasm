@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "phantasm:block/pomb_top",
+    "side": "phantasm:block/pomb"
+  }
+}

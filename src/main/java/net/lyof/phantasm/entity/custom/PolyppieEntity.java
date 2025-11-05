@@ -70,6 +70,8 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
     protected int soundKey;
 
+    private boolean dirty = false;
+
     public PolyppieEntity(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -150,12 +152,17 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         return this.getHeight();
     }
 
+    protected void markDirty() {
+        this.dirty = true;
+    }
+
     public ItemStack getStack() {
         return this.getDataTracker().get(ITEM_STACK);
     }
 
     public void setStack(ItemStack stack) {
         this.getDataTracker().set(ITEM_STACK, stack);
+        this.markDirty();
     }
 
     public void initSoundKey() {
@@ -169,6 +176,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
     public void setSoundKey(int soundKey) {
         this.soundKey = soundKey;
+        this.markDirty();
     }
 
     @Override
@@ -179,6 +187,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     @Override
     public void setVariant(Variant variant) {
         this.getDataTracker().set(VARIANT, variant.id);
+        this.markDirty();
     }
 
     public boolean isPaused() {
@@ -188,6 +197,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     public void setPaused(boolean paused) {
         this.getDataTracker().set(PAUSED, paused);
         if (this.isPaused()) this.stopPlaying();
+        this.markDirty();
     }
 
     public void togglePaused() {
@@ -397,6 +407,10 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         }
 
         this.tickCount++;
+
+        if (this.dirty && !this.getWorld().isClient() && this.getOwner() instanceof PolyppieCarrier carrier) {
+
+        }
     }
 
 

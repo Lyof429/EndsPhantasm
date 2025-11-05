@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "phantasm:pomb_slice"
+    },
+    {
+      "item": "phantasm:pomb_slice"
+    },
+    {
+      "item": "phantasm:pomb_slice"
+    },
+    {
+      "item": "phantasm:pomb_slice"
+    },
+    {
+      "item": "phantasm:pomb_slice"
+    },
+    {
+      "item": "phantasm:pomb_slice"
+    },
+    {
+      "item": "phantasm:pomb_slice"
+    },
+    {
+      "item": "phantasm:pomb_slice"
+    },
+    {
+      "item": "phantasm:pomb_slice"
+    }
+  ],
+  "result": {
+    "item": "phantasm:pomb"
+  }
+}

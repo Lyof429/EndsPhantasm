@@ -44,7 +44,7 @@ public class PillaringPlantBlock extends PlantBlock implements Fertilizable {
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         if (state.isOf(ModBlocks.DRALGAE) && random.nextInt(10) == 0)
-            world.setBlockState(pos.up(), ModBlocks.POME.getDefaultState());
+            world.setBlockState(pos.up(), ModBlocks.POMB.getDefaultState());
         else
             world.setBlockState(pos.up(), this.getDefaultState());
     }

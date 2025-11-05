@@ -105,7 +105,10 @@ public class PolyppieInventory implements Inventory {
             if (player instanceof PolyppieCarrier carrier) {
                 switch (id) {
                     case 0 -> carrier.phantasm_getPolyppie().togglePaused();
-                    case 1 -> carrier.phantasm_getPolyppie().stopPlaying();
+                    case 1 -> {
+                        carrier.phantasm_getPolyppie().stopPlaying();
+                        carrier.phantasm_getPolyppie().setPaused(false);
+                    }
                 }
             }
         }

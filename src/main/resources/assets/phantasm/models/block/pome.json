@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "phantasm:block/pome_top",
-    "side": "phantasm:block/pome"
-  }
-}

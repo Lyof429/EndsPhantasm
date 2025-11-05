@@ -117,8 +117,8 @@ public class ModItemGroups {
                         entries.add(ModBlocks.DRAGON_MINT);
 
                         entries.add(ModBlocks.DRALGAE);
-                        entries.add(ModBlocks.POME);
-                        entries.add(ModItems.POME_SLICE);
+                        entries.add(ModBlocks.POMB);
+                        entries.add(ModItems.POMB_SLICE);
 
                         entries.add(ModBlocks.ACIDIC_MASS);
 
@@ -180,7 +180,7 @@ public class ModItemGroups {
             entries.addAfter(Items.COOKED_RABBIT, ModItems.BEHEMOTH_MEAT);
             entries.addAfter(ModItems.BEHEMOTH_MEAT, ModItems.BEHEMOTH_STEAK);
 
-            entries.addAfter(ModItems.CHORUS_FRUIT_SALAD, ModItems.POME_SLICE);
+            entries.addAfter(ModItems.CHORUS_FRUIT_SALAD, ModItems.POMB_SLICE);
 
             entries.addAfter(Items.PUMPKIN_PIE, ModItems.EGGS_NIHILO);
         });
@@ -214,7 +214,7 @@ public class ModItemGroups {
             entries.addAfter(ModBlocks.CRYSTAL_SHARD, ModBlocks.VOID_CRYSTAL_SHARD);
 
             entries.addAfter(ModBlocks.DRAGON_MINT, ModBlocks.DRALGAE);
-            entries.addAfter(ModBlocks.DRALGAE, ModBlocks.POME);
+            entries.addAfter(ModBlocks.DRALGAE, ModBlocks.POMB);
 
             entries.addAfter(Blocks.HORN_CORAL_BLOCK, ModBlocks.CHORAL_BLOCK);
             entries.addAfter(Blocks.HORN_CORAL_WALL_FAN, ModBlocks.CHORAL_FAN);

@@ -241,7 +241,7 @@ public class ModRegistry {
                 .meat()
                 .build();
 
-        public static final FoodComponent POME_SLICE = new FoodComponent.Builder().alwaysEdible()
+        public static final FoodComponent POMB_SLICE = new FoodComponent.Builder().alwaysEdible()
                 .hunger(4).saturationModifier(1.3f)
                 .snack()
                 .build();

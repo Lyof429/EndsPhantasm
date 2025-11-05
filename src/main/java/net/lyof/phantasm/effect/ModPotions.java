@@ -12,7 +12,7 @@ import net.minecraft.registry.Registry;
 
 public class ModPotions {
     public static void register() {
-        BrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, ModItems.POME_SLICE, CORROSION);
+        BrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, ModItems.POMB_SLICE, CORROSION);
         BrewingRecipeRegistry.registerPotionRecipe(CORROSION, Items.REDSTONE, LONG_CORROSION);
         BrewingRecipeRegistry.registerPotionRecipe(CORROSION, Items.GLOWSTONE_DUST, STRONG_CORROSION);
     }

@@ -105,7 +105,7 @@ public class ModConfiguredFeatures {
 
         register(context, TALL_DRALGAE, DralgaeFeature.INSTANCE,
                 new Sized2BlocksFeatureConfig(UniformIntProvider.create(5, 20), BlockStateProvider.of(ModBlocks.DRALGAE),
-                        BlockStateProvider.of(ModBlocks.POME)));
+                        BlockStateProvider.of(ModBlocks.POMB)));
 
         register(context, HUGE_DRALGAE, HugeDralgaeFeature.INSTANCE,
                 new Sized2BlocksFeatureConfig(UniformIntProvider.create(15, 30), BlockStateProvider.of(Blocks.OBSIDIAN),

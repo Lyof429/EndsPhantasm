@@ -74,6 +74,9 @@ dependencies {
 	// EMI
 	modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
 	modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
+
+	// Inventory Profiles Next
+	modCompileOnly "maven.modrinth:inventory-profiles-next:fabric-1.20.1-1.10.19"
 }
 
 processResources {

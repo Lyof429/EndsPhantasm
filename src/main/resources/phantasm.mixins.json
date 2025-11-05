@@ -44,6 +44,8 @@
     "defaultRequire": 1
   },
   "client": [
+    "access.ClickableWidgetAccessor",
+    "access.HandledScreenAccessor",
     "client.CreditsScreenMixin",
     "client.DimensionEffectsMixin",
     "client.InGameHudMixin",
@@ -51,6 +53,7 @@
     "client.ItemMixin",
     "client.MinecraftClientMixin",
     "client.PlayerEntityRendererMixin",
+    "client.ScreenMixin",
     "client.VexEntityRendererMixin"
   ]
 }

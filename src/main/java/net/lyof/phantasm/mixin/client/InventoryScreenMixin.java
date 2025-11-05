@@ -16,6 +16,9 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.anti_ad.mc.ipn.api.IPNButton;
+import org.anti_ad.mc.ipn.api.IPNGuiHint;
+import org.anti_ad.mc.ipn.api.IPNGuiHints;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -46,20 +49,13 @@ public abstract class InventoryScreenMixin extends AbstractInventoryScreen<Playe
             int x = 0;
             int y = 166 - 5;
 
-            this.addDrawableChild(new TogglableButtonWidget(this.x + x + 145, this.y + y + 8, 12, 12,
+            this.addDrawableChild(new TogglableButtonWidget(this.x + x + 145, this.y + y + 8 + 11, 12, 12,
                     0, 32, INVENTORY_TEXTURE, () -> carrier.phantasm_getPolyppie().isPaused(),
                     (button) -> PolyppieInventory.Handler.onButtonClick(player, 0)));
-            this.addDrawableChild(new TexturedButtonWidget(this.x + x + 145 + 12, this.y + y + 8, 12, 12,
+            this.addDrawableChild(new TexturedButtonWidget(this.x + x + 145 + 12, this.y + y + 8 + 11, 12, 12,
                     24, 32, INVENTORY_TEXTURE,
                     (button) -> PolyppieInventory.Handler.onButtonClick(player, 1)));
         }
-    }
-
-    @ModifyExpressionValue(method = "init", at = @At(value = "FIELD", target = "Lnet/minecraft/client/gui/screen/ingame/InventoryScreen;height:I", ordinal = 1))
-    private int fixRecipeButton(int original) {
-        if (this.handler instanceof PolyppieInventory.Handler self && self.phantasm_isEnabled())
-            return original - 22;
-        return original;
     }
 
     @Inject(method = "drawBackground", at = @At("TAIL"))

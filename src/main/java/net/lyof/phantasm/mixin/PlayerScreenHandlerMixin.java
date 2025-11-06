@@ -1,18 +1,11 @@
 package net.lyof.phantasm.mixin;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
-import net.lyof.phantasm.screen.access.PolyppieInventory;
-import net.lyof.phantasm.setup.ModPackets;
-import net.minecraft.client.MinecraftClient;
+import net.lyof.phantasm.screen.custom.PolyppieInventory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;

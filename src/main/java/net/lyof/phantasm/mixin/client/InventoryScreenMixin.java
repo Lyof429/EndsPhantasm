@@ -1,11 +1,10 @@
 package net.lyof.phantasm.mixin.client;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.screen.DiscVisuals;
-import net.lyof.phantasm.screen.access.PolyppieInventory;
-import net.lyof.phantasm.screen.access.TogglableButtonWidget;
+import net.lyof.phantasm.screen.custom.PolyppieInventory;
+import net.lyof.phantasm.screen.custom.TogglableButtonWidget;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;
@@ -16,9 +15,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import org.anti_ad.mc.ipn.api.IPNButton;
-import org.anti_ad.mc.ipn.api.IPNGuiHint;
-import org.anti_ad.mc.ipn.api.IPNGuiHints;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;

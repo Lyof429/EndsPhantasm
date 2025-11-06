@@ -46,6 +46,8 @@
   "client": [
     "access.ClickableWidgetAccessor",
     "access.HandledScreenAccessor",
+    "client.ButtonPositionHintMixin",
+    "client.ClickableWidgetMixin",
     "client.CreditsScreenMixin",
     "client.DimensionEffectsMixin",
     "client.InGameHudMixin",
@@ -53,7 +55,6 @@
     "client.ItemMixin",
     "client.MinecraftClientMixin",
     "client.PlayerEntityRendererMixin",
-    "client.ScreenMixin",
     "client.VexEntityRendererMixin"
   ]
 }

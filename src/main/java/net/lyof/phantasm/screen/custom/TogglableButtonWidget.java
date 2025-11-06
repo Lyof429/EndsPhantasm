@@ -1,10 +1,9 @@
-package net.lyof.phantasm.screen.access;
+package net.lyof.phantasm.screen.custom;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.util.Identifier;
 
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class TogglableButtonWidget extends TexturedButtonWidget {

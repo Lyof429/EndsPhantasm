@@ -9,7 +9,7 @@ import net.lyof.phantasm.entity.access.Challenger;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.entity.custom.BehemothEntity;
 import net.lyof.phantasm.entity.custom.PolyppieEntity;
-import net.lyof.phantasm.screen.access.PolyppieInventory;
+import net.lyof.phantasm.screen.custom.PolyppieInventory;
 import net.lyof.phantasm.setup.compat.VinURLCompat;
 import net.lyof.phantasm.sound.ModSounds;
 import net.lyof.phantasm.sound.SongHandler;

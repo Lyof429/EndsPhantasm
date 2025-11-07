@@ -2,7 +2,7 @@ package net.lyof.phantasm.mixin.client;
 
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.mixin.access.HandledScreenAccessor;
-import net.lyof.phantasm.screen.custom.PolyppieInventory;
+import net.lyof.phantasm.screen.access.PolyppieInventory;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;

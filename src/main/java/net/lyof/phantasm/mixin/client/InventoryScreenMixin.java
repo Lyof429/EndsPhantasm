@@ -3,12 +3,13 @@ package net.lyof.phantasm.mixin.client;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.screen.DiscVisuals;
-import net.lyof.phantasm.screen.custom.PolyppieInventory;
+import net.lyof.phantasm.screen.access.PolyppieInventory;
 import net.lyof.phantasm.screen.custom.TogglableButtonWidget;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
+import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -45,12 +46,14 @@ public abstract class InventoryScreenMixin extends AbstractInventoryScreen<Playe
             int x = 0;
             int y = 166 - 5;
 
+            ClickableWidget playButton = new TexturedButtonWidget(this.x + x + 145 + 12, this.y + y + 8 + 11, 12, 12,
+                    24, 32, INVENTORY_TEXTURE,
+                    (button) -> PolyppieInventory.Handler.onButtonClick(player, 1));
+
             this.addDrawableChild(new TogglableButtonWidget(this.x + x + 145, this.y + y + 8 + 11, 12, 12,
                     0, 32, INVENTORY_TEXTURE, () -> carrier.phantasm_getPolyppie().isPaused(),
                     (button) -> PolyppieInventory.Handler.onButtonClick(player, 0)));
-            this.addDrawableChild(new TexturedButtonWidget(this.x + x + 145 + 12, this.y + y + 8 + 11, 12, 12,
-                    24, 32, INVENTORY_TEXTURE,
-                    (button) -> PolyppieInventory.Handler.onButtonClick(player, 1)));
+            this.addDrawableChild(playButton);
         }
     }
 

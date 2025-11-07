@@ -1,12 +1,9 @@
 package net.lyof.phantasm.mixin.client;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.mixin.access.HandledScreenAccessor;
-import net.lyof.phantasm.screen.custom.PolyppieInventory;
+import net.lyof.phantasm.screen.access.PolyppieInventory;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.gui.widget.Widget;
 import org.anti_ad.mc.ipnext.integration.ButtonPositionHint;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

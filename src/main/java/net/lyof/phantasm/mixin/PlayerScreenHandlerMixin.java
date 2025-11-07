@@ -1,7 +1,7 @@
 package net.lyof.phantasm.mixin;
 
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
-import net.lyof.phantasm.screen.custom.PolyppieInventory;
+import net.lyof.phantasm.screen.access.PolyppieInventory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;

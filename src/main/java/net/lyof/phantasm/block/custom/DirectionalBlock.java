@@ -77,7 +77,7 @@ public class DirectionalBlock extends Block {
                 possible.add(dir);
         }
         if (possible.isEmpty()) return Blocks.AIR.getDefaultState();
-        return this.getDefaultState().with(FACING, possible.get((int) pos.asLong() % possible.size()));
+        return this.getDefaultState().with(FACING, possible.get((int) Math.abs(pos.asLong()) % possible.size()));
     }
 
     @Override

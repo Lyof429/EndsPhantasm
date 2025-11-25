@@ -1,8 +1,5 @@
 package net.lyof.phantasm.mixin.client;
 
-import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.mixin.access.HandledScreenAccessor;
 import net.lyof.phantasm.screen.access.PolyppieInventory;
 import net.minecraft.client.MinecraftClient;
@@ -26,7 +23,7 @@ public abstract class ClickableWidgetMixin {
         if (
             MinecraftClient.getInstance().currentScreen instanceof HandledScreen<?> handled
             && ((HandledScreenAccessor) handled).getHandler() instanceof PolyppieInventory.Handler handler
-            && handler.phantasm_isOpen()
+            && handler.phantasm_isVisible()
         ) {
             return this.y - 11;
         }

@@ -9,7 +9,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
-import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -46,14 +45,15 @@ public abstract class InventoryScreenMixin extends AbstractInventoryScreen<Playe
             int x = 0;
             int y = 166 - 5;
 
-            ClickableWidget playButton = new TexturedButtonWidget(this.x + x + 145 + 12, this.y + y + 8 + 11, 12, 12,
-                    24, 32, INVENTORY_TEXTURE,
-                    (button) -> PolyppieInventory.Handler.onButtonClick(player, 1));
-
             this.addDrawableChild(new TogglableButtonWidget(this.x + x + 145, this.y + y + 8 + 11, 12, 12,
                     0, 32, INVENTORY_TEXTURE, () -> carrier.phantasm_getPolyppie().isPaused(),
-                    (button) -> PolyppieInventory.Handler.onButtonClick(player, 0)));
-            this.addDrawableChild(playButton);
+                    button -> PolyppieInventory.Handler.onButtonClick(player, 0)));
+            this.addDrawableChild(new TexturedButtonWidget(this.x + x + 145 + 12, this.y + y + 8 + 11, 12, 12,
+                    24, 32, INVENTORY_TEXTURE,
+                    button -> PolyppieInventory.Handler.onButtonClick(player, 1)));
+            this.addDrawableChild(new TogglableButtonWidget(this.x + x + 145, this.y + y, 8, 8,
+                    0, 0, INVENTORY_TEXTURE, self::phantasm_isVisible,
+                    button -> self.phantasm_toggleVisibility()));
         }
     }
 
@@ -61,10 +61,11 @@ public abstract class InventoryScreenMixin extends AbstractInventoryScreen<Playe
     private void drawPolyppieInventory(DrawContext context, float delta, int mouseX, int mouseY, CallbackInfo ci) {
         if (this.handler instanceof PolyppieInventory.Handler self && self.phantasm_isEnabled()) {
             int x = 0, y = 166 - 5;
-            context.drawTexture(INVENTORY_TEXTURE, this.x + x, this.y + y,
-                    0, 0, 176, 27);
 
-            if (self.phantasm_isOpen() && MinecraftClient.getInstance().player instanceof PolyppieCarrier carrier) {
+            if (self.phantasm_isVisible() && MinecraftClient.getInstance().player instanceof PolyppieCarrier carrier) {
+                context.drawTexture(INVENTORY_TEXTURE, this.x + x, this.y + y,
+                        0, 0, 176, 27);
+
                 DiscVisuals visuals = DiscVisuals.get(carrier.phantasm_getPolyppie().getStack());
                 x = self.phantasm_getSlotX() - 8;
                 y = self.phantasm_getSlotY() - 8;

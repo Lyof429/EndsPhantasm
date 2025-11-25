@@ -88,7 +88,7 @@ public class PolyppieInventory implements Inventory {
         int x = -32, y = 100;
 
         void phantasm_toggleVisibility();
-        boolean phantasm_isOpen();
+        boolean phantasm_isVisible();
 
         boolean phantasm_isEnabled();
 

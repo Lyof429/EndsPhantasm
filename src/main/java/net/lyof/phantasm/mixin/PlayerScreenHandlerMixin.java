@@ -60,7 +60,7 @@ public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements 
     }
 
     @Override
-    public boolean phantasm_isOpen() {
+    public boolean phantasm_isVisible() {
         return this.phantasm_visible && this.phantasm_isEnabled();
     }
 

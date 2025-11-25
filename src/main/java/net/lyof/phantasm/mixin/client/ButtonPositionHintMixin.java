@@ -20,7 +20,7 @@ public class ButtonPositionHintMixin {
         if (
             MinecraftClient.getInstance().currentScreen instanceof HandledScreen<?> handled
             && ((HandledScreenAccessor) handled).getHandler() instanceof PolyppieInventory.Handler handler
-            && handler.phantasm_isOpen()
+            && handler.phantasm_isVisible()
         ) {
             cir.setReturnValue(this.bottom + 22);
         }

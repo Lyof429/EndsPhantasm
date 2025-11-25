@@ -332,9 +332,14 @@ public class ModBlocks {
 
     public static final Block PREAM_SAPLING = ModRegistry.ofBlock("pream_sapling",
             new SaplingBlock(new PreamSaplingGenerator(), copy(Blocks.OAK_SAPLING).mapColor(MapColor.PURPLE).hardness(0)))
-            .model(ModRegistry.Models.CROSS).cutout()
+            //.model(ModRegistry.Models.CROSS)
+            .cutout()
             .tag(BlockTags.SAPLINGS, ModTags.Blocks.PREAM_BLOCKS).tagitem(ItemTags.SAPLINGS)
             .end_plant().fuel(100).drop().build();
+
+    public static final Block POTTED_PREAM_SAPLING = ModRegistry.ofBlock("potted_pream_sapling",
+            Blocks.createFlowerPotBlock(PREAM_SAPLING), null)
+            .cutout().tag(BlockTags.FLOWER_POTS).build();
 
     public static Block PREAM_CABINET = null;
 

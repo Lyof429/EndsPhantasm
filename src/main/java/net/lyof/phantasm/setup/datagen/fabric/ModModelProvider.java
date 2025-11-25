@@ -96,6 +96,8 @@ public class ModModelProvider extends FabricModelProvider {
         generator.registerParentedItemModel(ModBlocks.ACIDIC_NIHILIUM, Phantasm.makeID("block/acidic_nihilium"));
         generator.registerDoubleBlock(ModBlocks.TALL_ACIDIC_NIHILIS, BlockStateModelGenerator.TintType.NOT_TINTED);
         generator.registerParentedItemModel(ModBlocks.POMB, Phantasm.makeID("block/pomb"));
+
+        generator.registerFlowerPotPlant(ModBlocks.PREAM_SAPLING, ModBlocks.POTTED_PREAM_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
     }
 
     @Override

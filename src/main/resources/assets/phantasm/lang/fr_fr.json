@@ -50,8 +50,8 @@
 
   "block.phantasm.crystal_block": "Bloc de cristal",
   "block.phantasm.crystal_tiles": "Tuiles de cristal",
-  "block.phantasm.crystal_tiles_stairs": "Escalier en tuiles de cristal",
-  "block.phantasm.crystal_tiles_slab": "Dalle en tuiles de cristal",
+  "block.phantasm.crystal_tile_stairs": "Escalier en tuiles de cristal",
+  "block.phantasm.crystal_tile_slab": "Dalle en tuiles de cristal",
   "block.phantasm.crystal_pillar": "Pilier en cristal",
 
   "block.phantasm.crystal_glass": "Verre cristallin",
@@ -59,8 +59,8 @@
 
   "block.phantasm.void_crystal_block": "Bloc de cristal du vide",
   "block.phantasm.void_crystal_tiles": "Tuiles de cristal du vide",
-  "block.phantasm.void_crystal_tiles_stairs": "Escalier en cristal du vide",
-  "block.phantasm.void_crystal_tiles_slab": "Dalle en cristal du vide",
+  "block.phantasm.void_crystal_tile_stairs": "Escalier en cristal du vide",
+  "block.phantasm.void_crystal_tile_slab": "Dalle en cristal du vide",
   "block.phantasm.void_crystal_pillar": "Pilier en cristal du vide",
 
   "block.phantasm.void_crystal_glass": "Verre cristallin du vide",
@@ -68,15 +68,15 @@
 
   "block.phantasm.polished_obsidian": "Obsidienne polie",
   "block.phantasm.polished_obsidian_bricks": "Obsidienne polie taillée",
-  "block.phantasm.polished_obsidian_bricks_stairs": "Escalier en obisidienne polie taillée",
-  "block.phantasm.polished_obsidian_bricks_slab": "Dalle en obsidienne polie taillée",
+  "block.phantasm.polished_obsidian_brick_stairs": "Escalier en obisidienne polie taillée",
+  "block.phantasm.polished_obsidian_brick_slab": "Dalle en obsidienne polie taillée",
 
   "block.phantasm.purpur_lamp": "Lampe de purpur",
 
   "block.phantasm.raw_purpur": "Purpur brut",
   "block.phantasm.raw_purpur_bricks": "Purpur brut taillé",
-  "block.phantasm.raw_purpur_bricks_stairs": "Escalier en purpur brut taillé",
-  "block.phantasm.raw_purpur_bricks_slab": "Dalle en purpur brut taillé",
+  "block.phantasm.raw_purpur_brick_stairs": "Escalier en purpur brut taillé",
+  "block.phantasm.raw_purpur_brick_slab": "Dalle en purpur brut taillé",
 
   "block.phantasm.raw_purpur_tiles": "Briquettes de purpur brut taillé",
   "block.phantasm.raw_purpur_pillar": "Pilier en purpur brute taillé",
@@ -106,8 +106,8 @@
   "block.phantasm.cirite": "Cirite",
   "block.phantasm.cirite_iron_ore": "Minerai de fer de cirite",
   "block.phantasm.cirite_bricks": "Cirite taillée",
-  "block.phantasm.cirite_bricks_stairs": "Escalier en cirite taillée",
-  "block.phantasm.cirite_bricks_slab": "Dalle en cirite taillée",
+  "block.phantasm.cirite_brick_stairs": "Escalier en cirite taillée",
+  "block.phantasm.cirite_brick_slab": "Dalle en cirite taillée",
 
   "block.phantasm.choral_block": "Bloc de chorail",
   "block.phantasm.choral_fan": "Chorail",
@@ -142,22 +142,18 @@
 
   "advancement.phantasm.find_dreaming_den": "Les rêves sont réels",
   "advancement.phantasm.find_dreaming_den.desc": "Trouvez une tanière des rêves",
-
   "advancement.phantasm.get_crystal": "Plus brillant!",
   "advancement.phantasm.get_crystal.desc": "Minez des éclats de cristal",
-
   "advancement.phantasm.find_underisland": "L'envers du décor",
   "advancement.phantasm.find_underisland.desc": "Explorez l'envers, sous la tanière des rêves",
-
   "advancement.phantasm.get_crystal_tools": "Temps de briller!",
   "advancement.phantasm.get_crystal_tools.desc": "Obtenez tous les outils cristallins",
-
   "advancement.phantasm.find_acidburnt_abysses": "Quand le monde voit rouge",
   "advancement.phantasm.find_acidburnt_abysses.desc": "Trouvez les abysses acidebrûlées",
-
   "advancement.phantasm.find_choral_riff": "Echoing Void",
   "advancement.phantasm.find_choral_riff.desc": "Aventures vous dans la barrière de chorail",
-
   "advancement.phantasm.use_choral_arrow": "Fausse note!",
-  "advancement.phantasm.use_choral_arrow.desc": "Etourdissez et éliminez un ennemi avec une flèche de chorail"
+  "advancement.phantasm.use_choral_arrow.desc": "Etourdissez et éliminez un ennemi avec une flèche de chorail",
+  "advancement.phantasm.get_dormant_polyppie": "Discosteak",
+  "advancement.phantasm.get_dormant_polyppie.desc": "Trouvez un Polyppie endormi. Peut etre attend il que son reveil sonne?"
 }

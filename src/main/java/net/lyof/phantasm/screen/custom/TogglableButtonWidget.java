@@ -15,9 +15,11 @@ public class TogglableButtonWidget extends TexturedButtonWidget {
     protected Supplier<Boolean> toggled;
 
     @Override
-    public void renderButton(DrawContext context, int mouseX, int mouseY, float delta) {
+    public void drawTexture(DrawContext context, Identifier texture, int x, int y, int u, int v, int hoveredVOffset, int width, int height, int textureWidth, int textureHeight) {
+        if (!this.active) return;
+        
         this.setFocused(false);
-        this.drawTexture(context, this.texture, this.getX(), this.getY(), this.toggled.get() ? this.u + this.width : this.u, this.v,
-                this.hoveredVOffset, this.width, this.height, this.textureWidth, this.textureHeight);
+        super.drawTexture(context, texture, x, y, this.toggled.get() ? u + this.width : u, v, hoveredVOffset, width, height,
+                textureWidth, textureHeight);
     }
 }

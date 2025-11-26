@@ -1,5 +1,8 @@
 package net.lyof.phantasm.mixin.client;
 
+import com.llamalad7.mixinextras.expression.Definition;
+import com.llamalad7.mixinextras.expression.Expression;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.screen.DiscVisuals;
@@ -9,6 +12,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
+import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -16,6 +20,7 @@ import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,18 +28,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(InventoryScreen.class)
 public abstract class InventoryScreenMixin extends AbstractInventoryScreen<PlayerScreenHandler> {
+    @Shadow protected abstract void init();
+    @Shadow public abstract void render(DrawContext context, int mouseX, int mouseY, float delta);
+
     public InventoryScreenMixin(PlayerScreenHandler screenHandler, PlayerInventory playerInventory, Text text) {
         super(screenHandler, playerInventory, text);
     }
 
     @Unique private static final Identifier INVENTORY_TEXTURE = Phantasm.makeID("textures/gui/polyppie_inventory.png");
 
+    @Unique private ButtonWidget phantasm_stop;
+    @Unique private ButtonWidget phantasm_play;
+
     @Inject(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ingame/AbstractInventoryScreen;init()V"))
     private void initHeight(CallbackInfo ci) {
-        if (this.handler instanceof PolyppieInventory.Handler self && self.phantasm_isEnabled())
+        if (this.handler instanceof PolyppieInventory.Handler self && self.phantasm_isVisible())
             this.backgroundHeight = 166 - 5 + 27;
-        else
-            this.backgroundHeight = 166;
+        else this.backgroundHeight = 166;
     }
 
     @Inject(method = "init", at = @At("TAIL"))
@@ -44,17 +54,37 @@ public abstract class InventoryScreenMixin extends AbstractInventoryScreen<Playe
                 && player instanceof PolyppieCarrier carrier) {
             int x = 0;
             int y = 166 - 5;
+            if (!self.phantasm_isVisible()) y -= 11;
 
-            this.addDrawableChild(new TogglableButtonWidget(this.x + x + 145, this.y + y + 8 + 11, 12, 12,
+            this.addDrawableChild(this.phantasm_stop = new TogglableButtonWidget(this.x + x + 145, this.y + y + 8 + 11, 12, 12,
                     0, 32, INVENTORY_TEXTURE, () -> carrier.phantasm_getPolyppie().isPaused(),
                     button -> PolyppieInventory.Handler.onButtonClick(player, 0)));
-            this.addDrawableChild(new TexturedButtonWidget(this.x + x + 145 + 12, this.y + y + 8 + 11, 12, 12,
+            this.addDrawableChild(this.phantasm_play = new TexturedButtonWidget(this.x + x + 145 + 12, this.y + y + 8 + 11, 12, 12,
                     24, 32, INVENTORY_TEXTURE,
                     button -> PolyppieInventory.Handler.onButtonClick(player, 1)));
-            this.addDrawableChild(new TogglableButtonWidget(this.x + x + 145, this.y + y, 8, 8,
-                    0, 0, INVENTORY_TEXTURE, self::phantasm_isVisible,
-                    button -> self.phantasm_toggleVisibility()));
+
+            this.addDrawableChild(new TogglableButtonWidget(this.x + x + 145 + 12 + 4, this.y + y + 11, 8, 8,
+                    0, 56, INVENTORY_TEXTURE, () -> !self.phantasm_isVisible(), button -> {
+                        self.phantasm_toggleVisibility();
+
+                        this.backgroundHeight = self.phantasm_isVisible() ? 166 - 5 + 27 : 166;
+                        this.y = (this.height - this.backgroundHeight) / 2;
+                        this.phantasm_play.active = self.phantasm_isVisible();
+                        this.phantasm_stop.active = self.phantasm_isVisible();
+            }));
+
+            this.phantasm_play.active = self.phantasm_isVisible();
+            this.phantasm_stop.active = self.phantasm_isVisible();
         }
+    }
+
+    @Definition(id = "backgroundHeight", field = "Lnet/minecraft/client/gui/screen/ingame/InventoryScreen;backgroundHeight:I")
+    @Expression("this.backgroundHeight")
+    @ModifyExpressionValue(method = "drawBackground", at = @At("MIXINEXTRAS:EXPRESSION"))
+    private int fixRenderHeight(int original) {
+        if (this.handler instanceof PolyppieInventory.Handler self && self.phantasm_isVisible())
+            return original + 5 - 27;
+        return original;
     }
 
     @Inject(method = "drawBackground", at = @At("TAIL"))

@@ -21,7 +21,7 @@ public class ModTags {
     }
 
     public static class Blocks {
-        public static final TagKey<Block> PREAM_BLOCKS = create("pream_blocks");
+        public static final TagKey<Block> PREAM_LOGS = create("pream_logs");
         public static final TagKey<Block> END_CRYSTAL_PLACEABLE_ON = create("end_crystal_placeable_on");
         public static final TagKey<Block> HANGING_PREAM_LEAVES_GROWABLE_ON = create("hanging_pream_leaves_growable_on");
 

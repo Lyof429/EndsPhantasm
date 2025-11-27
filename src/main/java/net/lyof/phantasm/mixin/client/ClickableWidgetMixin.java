@@ -12,11 +12,10 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(ClickableWidget.class)
 public abstract class ClickableWidgetMixin {
     @Shadow private int y;
-
     @Shadow private int x;
 
     /**
-     * @author Lyof (End's Phantasm
+     * @author Lyof (End's Phantasm)
      * @reason No idea why but regular mixins do not work
      */
     @Overwrite

@@ -13,17 +13,21 @@ import org.spongepowered.asm.mixin.Shadow;
 public abstract class ClickableWidgetMixin {
     @Shadow private int y;
 
+    @Shadow private int x;
+
     /**
      * @author Lyof (End's Phantasm
      * @reason No idea why but regular mixins do not work
      */
     @Overwrite
     public int getY() {
-        //Phantasm.log("Why");
         if (
             MinecraftClient.getInstance().currentScreen instanceof HandledScreen<?> handled
-            && ((HandledScreenAccessor) handled).getHandler() instanceof PolyppieInventory.Handler handler
+            && handled instanceof HandledScreenAccessor accessor
+            && accessor.getHandler() instanceof PolyppieInventory.Handler handler
             && handler.phantasm_isVisible()
+            && accessor.getX() <= this.x && accessor.getX() + accessor.getBackgroundWidth() >= this.x
+            && accessor.getY() <= this.y && accessor.getY() + accessor.getBackgroundHeight() >= this.y
         ) {
             return this.y - 11;
         }

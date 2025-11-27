@@ -27,9 +27,8 @@ public abstract class ClickableWidgetMixin {
             && handler.phantasm_isVisible()
             && accessor.getX() <= this.x && accessor.getX() + accessor.getBackgroundWidth() >= this.x
             && accessor.getY() <= this.y && accessor.getY() + accessor.getBackgroundHeight() >= this.y
-        ) {
+        )
             return this.y - 11;
-        }
         return this.y;
     }
 }

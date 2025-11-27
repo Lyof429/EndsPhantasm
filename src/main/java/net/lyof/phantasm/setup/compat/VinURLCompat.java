@@ -1,8 +1,8 @@
 package net.lyof.phantasm.setup.compat;
 
-import com.vinurl.client.SoundManager;
 import com.vinurl.client.FileSound;
 import com.vinurl.client.KeyListener;
+import com.vinurl.client.SoundManager;
 import com.vinurl.client.VinURLClient;
 import com.vinurl.exe.Executable;
 import com.vinurl.util.Constants;

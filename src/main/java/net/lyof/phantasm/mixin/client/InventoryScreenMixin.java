@@ -3,6 +3,8 @@ package net.lyof.phantasm.mixin.client;
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.screen.DiscVisuals;
@@ -39,6 +41,7 @@ public abstract class InventoryScreenMixin extends AbstractInventoryScreen<Playe
 
     @Unique private ButtonWidget phantasm_stop;
     @Unique private ButtonWidget phantasm_play;
+    @Unique private ButtonWidget phantasm_hide;
 
     @Inject(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ingame/AbstractInventoryScreen;init()V"))
     private void initHeight(CallbackInfo ci) {
@@ -47,23 +50,31 @@ public abstract class InventoryScreenMixin extends AbstractInventoryScreen<Playe
         else this.backgroundHeight = 166;
     }
 
+    @WrapOperation(method = "init", at = @At(value = "NEW", target = "(IIIIIIILnet/minecraft/util/Identifier;Lnet/minecraft/client/gui/widget/ButtonWidget$PressAction;)Lnet/minecraft/client/gui/widget/TexturedButtonWidget;"))
+    private TexturedButtonWidget moveButtons(int x, int y, int width, int height, int u, int v, int hoveredVOffset,
+                                             Identifier texture, ButtonWidget.PressAction pressAction, Operation<TexturedButtonWidget> original) {
+        return original.call(x, y, width, height, u, v, hoveredVOffset, texture, (ButtonWidget.PressAction) button -> {
+            pressAction.onPress(button);
+            this.phantasm_play.setX(this.x + 145);
+            this.phantasm_stop.setX(this.x + 157);
+            this.phantasm_hide.setX(this.x + 161);
+        });
+    }
+
     @Inject(method = "init", at = @At("TAIL"))
     private void init(CallbackInfo ci) {
         PlayerEntity player = MinecraftClient.getInstance().player;
         if (this.handler instanceof PolyppieInventory.Handler self && self.phantasm_isEnabled()
                 && player instanceof PolyppieCarrier carrier) {
-            int x = 0;
-            int y = 166 - 5;
-            if (!self.phantasm_isVisible()) y -= 11;
 
-            this.addDrawableChild(this.phantasm_stop = new TogglableButtonWidget(this.x + x + 145, this.y + y + 8 + 11, 12, 12,
+            this.addDrawableChild(this.phantasm_stop = new TogglableButtonWidget(this.x + 145, this.y + 180 + (self.phantasm_isVisible() ? 0 : -11), 12, 12,
                     0, 32, INVENTORY_TEXTURE, () -> carrier.phantasm_getPolyppie().isPaused(),
                     button -> PolyppieInventory.Handler.onButtonClick(player, 0)));
-            this.addDrawableChild(this.phantasm_play = new TexturedButtonWidget(this.x + x + 145 + 12, this.y + y + 8 + 11, 12, 12,
+            this.addDrawableChild(this.phantasm_play = new TexturedButtonWidget(this.x + 157, this.y + 180 + (self.phantasm_isVisible() ? 0 : -11), 12, 12,
                     24, 32, INVENTORY_TEXTURE,
                     button -> PolyppieInventory.Handler.onButtonClick(player, 1)));
 
-            this.addDrawableChild(new TogglableButtonWidget(this.x + x + 145 + 12 + 4, this.y + y + 11, 8, 8,
+            this.addDrawableChild(this.phantasm_hide = new TogglableButtonWidget(this.x + 161, this.y + 172 + (self.phantasm_isVisible() ? 0 : -11), 8, 8,
                     0, 56, INVENTORY_TEXTURE, () -> !self.phantasm_isVisible(), button -> {
                         self.phantasm_toggleVisibility();
 

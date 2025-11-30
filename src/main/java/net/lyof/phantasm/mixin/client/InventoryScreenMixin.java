@@ -55,6 +55,7 @@ public abstract class InventoryScreenMixin extends AbstractInventoryScreen<Playe
                                              Identifier texture, ButtonWidget.PressAction pressAction, Operation<TexturedButtonWidget> original) {
         return original.call(x, y, width, height, u, v, hoveredVOffset, texture, (ButtonWidget.PressAction) button -> {
             pressAction.onPress(button);
+
             this.phantasm_play.setX(this.x + 145);
             this.phantasm_stop.setX(this.x + 157);
             this.phantasm_hide.setX(this.x + 161);

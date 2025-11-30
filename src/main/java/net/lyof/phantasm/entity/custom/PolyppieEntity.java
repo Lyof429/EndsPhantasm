@@ -8,6 +8,7 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
+import net.lyof.phantasm.entity.goal.SilentWanderAroundGoal;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.setup.compat.VinURLCompat;
 import net.lyof.phantasm.sound.SongHandler;
@@ -16,25 +17,25 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.VariantHolder;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.passive.AllayEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.MusicDiscItem;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -69,6 +70,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     protected int ticksThisSecond;
 
     protected int soundKey;
+    protected Band band = null;
 
     public PolyppieEntity(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
@@ -82,12 +84,17 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     @Override
     protected void initGoals() {
         super.initGoals();
+        this.goalSelector.add(1, new EscapeDangerGoal(this, 2.0));
+        this.goalSelector.add(3, new TemptGoal(this, 1.25, Ingredient.ofItems(Items.AMETHYST_SHARD), false));
+        this.goalSelector.add(5, new SilentWanderAroundGoal(this, 1.0));
+        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.add(7, new LookAroundGoal(this));
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 16)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.1)
                 .add(EntityAttributes.GENERIC_ARMOR, 4);
     }
 
@@ -192,6 +199,12 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
     public void togglePaused() {
         this.setPaused(!this.isPaused());
+    }
+
+    public Band getBand() {
+        if (this.band == null)
+            this.band = new Band(this);
+        return this.band;
     }
 
     public boolean isValidDisc(ItemStack stack) {
@@ -391,9 +404,9 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         }
 
         else if (this.tickCount % 20 == 0 && !this.hasVehicle()) {
-            Band band = new Band(this);
-            if (band.getPlaying() == null)
-                band.startRandom(this.getRandom());
+            this.band = new Band(this);
+            if (this.band.getPlaying() == null)
+                this.band.startRandom(this.getRandom());
         }
 
         this.tickCount++;
@@ -429,6 +442,15 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
                     return polyppie;
             }
             return null;
+        }
+
+        public boolean canMove() {
+            if (this.members.size() > 1) return false;
+            for (PolyppieEntity polyppie : this.members) {
+                if (!polyppie.getStack().isEmpty())
+                    return false;
+            }
+            return true;
         }
     }
 

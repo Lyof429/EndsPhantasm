@@ -82,7 +82,12 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 
 	@Override
 	public PolyppieEntity phantasm_getPolyppie() {
-		if (!this.getDataTracker().get(POLYPPIE).isEmpty() && this.polyppie == null && this.getWorld() != null) {
+		if (!this.getDataTracker().get(POLYPPIE).isEmpty() && this.getWorld() != null
+				&& (this.polyppie == null || this.polyppie.getWorld() != this.getWorld())) {
+
+			if (this.polyppie != null && this.polyppie.getWorld() != this.getWorld())
+				this.phantasm_setPolyppie(this.polyppie);
+
 			this.polyppie = ModEntities.POLYPPIE.create(this.getWorld());
 			this.polyppie.readNbt(this.getDataTracker().get(POLYPPIE));
 			this.polyppie.setOwner((PlayerEntity) (Object) this);

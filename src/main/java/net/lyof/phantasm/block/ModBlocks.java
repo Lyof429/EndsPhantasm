@@ -85,7 +85,7 @@ public class ModBlocks {
             copy(Blocks.DIAMOND_ORE).luminance(4).emissiveLighting((a, b, c) -> true)
                     .nonOpaque();
     private static final FabricBlockSettings crystalGlassMaterial =
-            FabricBlockSettings.create().emissiveLighting((a, b, c) -> true).hardness(0.75f).luminance(4)
+            FabricBlockSettings.create().emissiveLighting(Blocks::always).hardness(0.75f).luminance(4)
             .nonOpaque().mapColor(MapColor.LIGHT_BLUE).sounds(BlockSoundGroup.GLASS)
             .allowsSpawning(Blocks::never).solidBlock(Blocks::never).suffocates(Blocks::never).blockVision(Blocks::never);
 

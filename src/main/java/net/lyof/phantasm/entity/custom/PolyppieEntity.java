@@ -94,7 +94,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     public static DefaultAttributeContainer.Builder createAttributes() {
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 16)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.1)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.15)
                 .add(EntityAttributes.GENERIC_ARMOR, 4);
     }
 

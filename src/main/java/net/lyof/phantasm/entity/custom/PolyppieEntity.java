@@ -45,6 +45,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.EntityView;
@@ -157,6 +158,16 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         return this.getHeight();
     }
 
+    @Override
+    public EntityView method_48926() {
+        return this.getWorld();
+    }
+
+    @Override
+    public void setWorld(World world) {
+        super.setWorld(world);
+    }
+
     public ItemStack getStack() {
         return this.getDataTracker().get(ITEM_STACK);
     }
@@ -218,11 +229,10 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     protected void sendSongPacket(boolean start) {
         if (this.getWorld() instanceof ServerWorld serverWorld) {
             this.initSoundKey();
-            boolean isCarried = this.getRemovalReason() == RemovalReason.UNLOADED_WITH_PLAYER;
 
             PacketByteBuf buf = PacketByteBufs.create();
             buf.writeNbt(start ? this.getStack().writeNbt(new NbtCompound()) : new NbtCompound());
-            buf.writeInt(isCarried && this.getOwner() != null ? this.getOwner().getId() : this.getId());
+            buf.writeInt(this.isCarried() ? this.getOwner().getId() : this.getId());
             buf.writeInt(this.getSoundKey());
 
             for (ServerPlayerEntity player : serverWorld.getServer().getPlayerManager().getPlayerList())
@@ -324,6 +334,10 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         return ActionResult.PASS;
     }
 
+    public boolean isCarried() {
+        return this.getRemovalReason() == RemovalReason.UNLOADED_WITH_PLAYER && this.getOwner() != null;
+    }
+
     public boolean canBeCarriedBy(PlayerEntity player) {
         return player instanceof PolyppieCarrier carrier && carrier.phantasm_getPolyppie() == null;
     }
@@ -375,12 +389,6 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         }
     }
 
-
-    @Override
-    public EntityView method_48926() {
-        return this.getWorld();
-    }
-
     @Override
     public boolean canAttackWithOwner(LivingEntity target, LivingEntity owner) {
         return false;
@@ -389,6 +397,9 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
     @Override
     public void tick() {
+        if (this.age % 10 == 0 && this.isCarried())
+            this.setPosition(this.getOwner().getPos().add(0, 1, 0));
+
         super.tick();
 
         if (this.isPlayingRecord() && this.getStack().getItem() instanceof MusicDiscItem) {

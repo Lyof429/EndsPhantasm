@@ -82,12 +82,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 
 	@Override
 	public PolyppieEntity phantasm_getPolyppie() {
-		if (!this.getDataTracker().get(POLYPPIE).isEmpty() && this.getWorld() != null
-				&& (this.polyppie == null || this.polyppie.getWorld() != this.getWorld())) {
-
-			if (this.polyppie != null && this.polyppie.getWorld() != this.getWorld())
-				this.phantasm_setPolyppie(this.polyppie);
-
+		if (!this.getDataTracker().get(POLYPPIE).isEmpty() && this.getWorld() != null && this.polyppie == null) {
 			this.polyppie = ModEntities.POLYPPIE.create(this.getWorld());
 			this.polyppie.readNbt(this.getDataTracker().get(POLYPPIE));
 			this.polyppie.setOwner((PlayerEntity) (Object) this);
@@ -112,8 +107,9 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 	@Inject(method = "tick", at = @At("TAIL"))
 	private void tickCarriedPolyppie(CallbackInfo ci) {
 		if (this.phantasm_getPolyppie() != null) {
-			if (this.age % 5 == 0)
-				this.polyppie.setPosition(this.getPos().add(0, 1, 0));
+			if (this.polyppie.getWorld() != this.getWorld())
+				this.polyppie.setWorld(this.getWorld());
+
 			this.polyppie.tick();
 		}
 	}

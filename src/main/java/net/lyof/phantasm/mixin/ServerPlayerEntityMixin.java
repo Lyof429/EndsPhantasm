@@ -94,7 +94,8 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
     private void copySeenBeginning(ServerPlayerEntity old, boolean alive, CallbackInfo ci) {
         this.seenBeginning = ((MixinAccess<Boolean>) old).getMixinValue();
 
-        if (this.getWorld().getGameRules().getBoolean(GameRules.KEEP_INVENTORY) && old instanceof PolyppieCarrier oldCarrier
+        if ((alive || this.getWorld().getGameRules().getBoolean(GameRules.KEEP_INVENTORY))
+                && old instanceof PolyppieCarrier oldCarrier
                 && this instanceof PolyppieCarrier carrier && oldCarrier.phantasm_getPolyppie() != null) {
             //oldCarrier.getCarriedPolyppie().stopPlaying();
             carrier.phantasm_setPolyppie(oldCarrier.phantasm_getPolyppie());

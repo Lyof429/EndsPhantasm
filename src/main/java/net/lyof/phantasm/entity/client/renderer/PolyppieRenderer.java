@@ -55,7 +55,7 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
 
         matrices.translate(0, self.getHeight()*this.model.getPart().yScale*0.5f, 0);
         matrices.multiply(getRotation(0,
-                rad*(180 - MathHelper.lerpAngleDegrees(tickDelta, self.prevBodyYaw, self.bodyYaw)),
+                rad*(180 - self.bodyYaw),
                 self.isPlayingRecord() ? 0.5f*MathHelper.sin(0.05f*(tickDelta + self.tickCount - self.recordStartTick)) : 0));
         matrices.translate(0, 0, -self.getWidth()*this.model.getPart().zScale*0.5f);
 

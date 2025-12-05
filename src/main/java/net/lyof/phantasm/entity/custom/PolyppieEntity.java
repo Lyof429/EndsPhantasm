@@ -8,12 +8,11 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
-import net.lyof.phantasm.entity.goal.SilentWanderAroundGoal;
+import net.lyof.phantasm.entity.goal.PolyppieTowerGoal;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.setup.compat.VinURLCompat;
 import net.lyof.phantasm.sound.SongHandler;
 import net.lyof.phantasm.sound.custom.PolyppieSoundInstance;
-import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -25,7 +24,6 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.passive.AllayEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -39,7 +37,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -47,7 +44,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.EntityView;
@@ -87,10 +83,11 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     @Override
     protected void initGoals() {
         super.initGoals();
-        this.goalSelector.add(1, new EscapeDangerGoal(this, 2.0));
+        this.goalSelector.add(1, new EscapeDangerGoal(this, 1.25));
         this.goalSelector.add(3, new TemptGoal(this, 1.25, Ingredient.ofItems(Items.AMETHYST_SHARD), false));
-        this.goalSelector.add(5, new SilentWanderAroundGoal(this, 1.0));
-        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.add(4, new PolyppieTowerGoal(this, 1));
+        this.goalSelector.add(5, new WanderAroundGoal(this, 1));
+        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 6));
         this.goalSelector.add(7, new LookAroundGoal(this));
     }
 
@@ -153,6 +150,11 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
             PolyppieSoundInstance soundInstance = SongHandler.instance.get(this.getSoundKey());
             if (soundInstance != null) soundInstance.update(this);
         }
+    }
+
+    @Override
+    public float getMovementSpeed() {
+        return this.getBand().canMove() ? super.getMovementSpeed() : 0;
     }
 
     @Override
@@ -286,7 +288,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
     @Override
     public boolean isPersistent() {
-        return super.isPersistent() || !this.getStack().isEmpty();
+        return true;
     }
 
     @Override
@@ -334,6 +336,14 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
             return ActionResult.success(player.getWorld().isClient());
         }
         return ActionResult.PASS;
+    }
+
+    public void joinBand(PolyppieEntity target) {
+        while (target.getFirstPassenger() instanceof PolyppieEntity it)
+            target = it;
+        if (!target.hasPassengers() && target != this) {
+            this.startRiding(target);
+        }
     }
 
     public boolean isCarried() {
@@ -432,10 +442,14 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         public Band(PolyppieEntity base) {
             this.members = base.getRootVehicle().streamPassengersAndSelf().filter(e -> e instanceof PolyppieEntity)
                     .map(e -> (PolyppieEntity) e).toList();
+            this.members.forEach(e -> e.band = this);
         }
 
-        public void add(PolyppieEntity polyppie) {
-            this.members.add(polyppie);
+        public boolean contains(int id) {
+            for (PolyppieEntity polyppie : this.members) {
+                if (polyppie.getId() == id) return true;
+            }
+            return false;
         }
 
         public void startRandom(Random random) {

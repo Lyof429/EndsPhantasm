@@ -4,15 +4,13 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.custom.PolyppieEntity;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumSet;
-import java.util.Iterator;
 import java.util.List;
 
-public class PolyppieTowerGoal extends Goal {
+public class FindBandGoal extends Goal {
     private static final TargetPredicate VALID_MATE_PREDICATE = TargetPredicate.createNonAttackable().setBaseMaxDistance(8.0).ignoreVisibility();
     protected final PolyppieEntity polyppie;
     protected final World world;
@@ -20,7 +18,7 @@ public class PolyppieTowerGoal extends Goal {
     private int timer;
     private final double speed;
 
-    public PolyppieTowerGoal(PolyppieEntity polyppie, double speed) {
+    public FindBandGoal(PolyppieEntity polyppie, double speed) {
         this.polyppie = polyppie;
         this.world = polyppie.getWorld();
         this.speed = speed;

@@ -8,7 +8,7 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
-import net.lyof.phantasm.entity.goal.PolyppieTowerGoal;
+import net.lyof.phantasm.entity.goal.FindBandGoal;
 import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.setup.compat.VinURLCompat;
 import net.lyof.phantasm.sound.SongHandler;
@@ -27,7 +27,10 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.MusicDiscItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ClientPlayPacketListener;
@@ -85,7 +88,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         super.initGoals();
         this.goalSelector.add(1, new EscapeDangerGoal(this, 1.25));
         this.goalSelector.add(3, new TemptGoal(this, 1.25, Ingredient.ofItems(Items.AMETHYST_SHARD), false));
-        this.goalSelector.add(4, new PolyppieTowerGoal(this, 1));
+        this.goalSelector.add(4, new FindBandGoal(this, 1));
         this.goalSelector.add(5, new WanderAroundGoal(this, 1));
         this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 6));
         this.goalSelector.add(7, new LookAroundGoal(this));
@@ -458,8 +461,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
                 if (!polyppie.getStack().isEmpty() && !polyppie.isPaused())
                     singers.add(polyppie);
             }
-            if (singers.isEmpty())
-                return;
+            if (singers.isEmpty()) return;
             singers.get(random.nextInt(singers.size())).startPlaying();
         }
 

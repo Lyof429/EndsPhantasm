@@ -121,10 +121,8 @@ public class Phantasm implements ModInitializer {
 		});
 
 		ServerPlayerEvents.AFTER_RESPAWN.register((old, self, alive) -> {
-			if (self instanceof PolyppieCarrier carrier && carrier.phantasm_getPolyppie() != null) {
-				Phantasm.log("Stopping sound");
+			if (self instanceof PolyppieCarrier carrier && carrier.phantasm_getPolyppie() != null)
 				carrier.phantasm_getPolyppie().stopPlaying();
-			}
 		});
 	}
 

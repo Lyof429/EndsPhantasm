@@ -48,7 +48,6 @@ public class FindBandGoal extends Goal {
         if (this.timer >= this.getTickCount(60) && this.polyppie.squaredDistanceTo(this.target) < 9.0) {
             this.polyppie.joinBand(this.target);
             this.target = null;
-            Phantasm.log("Joined");
         }
     }
 

@@ -54,7 +54,7 @@ public class FindBandGoal extends Goal {
     @Nullable
     private PolyppieEntity findMate() {
         List<? extends PolyppieEntity> list = this.world.getTargets(PolyppieEntity.class, VALID_MATE_PREDICATE, this.polyppie, this.polyppie.getBoundingBox().expand(8.0));
-        double d = Double.MAX_VALUE;
+        double d = 64;
         PolyppieEntity target = null;
 
         for (PolyppieEntity it : list) {

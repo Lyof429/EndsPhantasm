@@ -1,0 +1,31 @@
+{
+  "type": "farmersdelight:cooking",
+  "recipe_book_tab": "meals",
+  "ingredients": [
+    {
+      "item": "minecraft:dragon_egg"
+    },
+    {
+      "item": "phantasm:fallen_star"
+    },
+    {
+      "item": "phantasm:oblifruit"
+    },
+    {
+      "item": "phantasm:oblifruit"
+    },
+    {
+      "item": "phantasm:oblifruit"
+    },
+    {
+      "item": "phantasm:oblifruit"
+    }
+  ],
+  "result": {
+    "item": "phantasm:eggs_nihilo"
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "cookingtime": 200
+}

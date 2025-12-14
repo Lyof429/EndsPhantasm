@@ -590,6 +590,6 @@ public class ModBlocks {
 
 
     public static final Block EGGS_NIHILO = ModRegistry.ofBlock("eggs_nihilo",
-                    new EggsNihiloBlock(copy(Blocks.CAKE).mapColor(MapColor.BLACK).ticksRandomly()), null)
-            .build();
+                    new EggsNihiloBlock(copy(Blocks.CAKE).strength(10, -1).mapColor(MapColor.BLACK).ticksRandomly()), null)
+            .cutout().build();
 }

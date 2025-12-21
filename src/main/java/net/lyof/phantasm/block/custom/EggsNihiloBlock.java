@@ -23,13 +23,8 @@ import net.minecraft.world.WorldView;
 public class EggsNihiloBlock extends Block {
     public static final IntProperty SERVINGS = IntProperty.of("servings", 0, 4);
 
-    protected static final VoxelShape[] SHAPES = new VoxelShape[]{
-            Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 1.0D, 14.0D),
-            Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D),
-            Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D),
-            Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D),
-            Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D),
-    };
+    protected static final VoxelShape SHAPE =
+            Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 90.0D, 13.0D);
 
     public EggsNihiloBlock(Settings settings) {
         super(settings);
@@ -54,7 +49,7 @@ public class EggsNihiloBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPES[state.get(SERVINGS)];
+        return SHAPE;
     }
 
     @Override

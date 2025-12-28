@@ -24,7 +24,7 @@ public class EggsNihiloBlock extends Block {
     public static final IntProperty SERVINGS = IntProperty.of("servings", 0, 4);
 
     protected static final VoxelShape SHAPE =
-            Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 90.0D, 13.0D);
+            Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 9.0D, 13.0D);
 
     public EggsNihiloBlock(Settings settings) {
         super(settings);

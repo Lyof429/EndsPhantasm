@@ -412,9 +412,6 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
     @Override
     public void tick() {
-        if (this.age % 10 == 0 && this.isCarried())
-            this.setPosition(this.getOwner().getPos().add(0, 1, 0));
-
         super.tick();
 
         if (this.isPlayingRecord() && this.getStack().getItem() instanceof MusicDiscItem) {

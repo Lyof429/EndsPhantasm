@@ -47,7 +47,6 @@
     "defaultRequire": 1
   },
   "client": [
-    "access.ClickableWidgetAccessor",
     "access.HandledScreenAccessor",
     "client.ButtonPositionHintMixin",
     "client.ClickableWidgetMixin",

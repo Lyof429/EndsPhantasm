@@ -110,7 +110,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 			if (this.polyppie.getWorld() != this.getWorld())
 				this.polyppie.setWorld(this.getWorld());
 
-			if (this.polyppie.age % 10 == 0)
+			if (this.polyppie.tickCount % 10 == 0)
 				this.polyppie.setPosition(this.getPos().add(0, 1, 0));
 
 			this.polyppie.tick();

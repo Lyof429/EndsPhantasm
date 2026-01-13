@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "pop_rock_candy",
+  "ingredients": [
+    {
+      "item": "phantasm:pomb_slice"
+    },
+    {
+      "item": "phantasm:cirite"
+    },
+    {
+      "item": "phantasm:acidic_mass"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "phantasm:pop_rock_candy"
+  }
+}

@@ -341,6 +341,17 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         offerFoodCookingRecipe(exporter, "campfire", CookingRecipeSerializer.CAMPFIRE_COOKING, 500,
                 ModItems.BEHEMOTH_MEAT, ModItems.BEHEMOTH_STEAK, 5);
 
+        // Pomb
+        offerCompactingRecipe(exporter, RecipeCategory.FOOD, ModBlocks.POMB, ModItems.POMB_SLICE);
+        // Pop Rock Candy
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.POP_ROCK_CANDY, 2)
+                .input(ModItems.POMB_SLICE)
+                .input(ModBlocks.CIRITE)
+                .input(ModBlocks.ACIDIC_MASS)
+                .input(Items.SUGAR)
+                .criterion(hasItem(ModItems.POMB_SLICE), conditionsFromItem(ModItems.POMB_SLICE))
+                .group("pop_rock_candy").offerTo(exporter, Phantasm.makeID("pop_rock_candy"));
+
         // Cirite Bricks
         createCondensingRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CIRITE_BRICKS,
                 Ingredient.ofItems(ModBlocks.CIRITE))
@@ -378,9 +389,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(ModBlocks.DRALGAE), conditionsFromItem(ModBlocks.DRALGAE))
                 .criterion(hasItem(Blocks.OBSIDIAN), conditionsFromItem(Blocks.OBSIDIAN))
                 .group("obsidian").offerTo(exporter, Phantasm.makeID("obsidian"));
-
-        // Pomb
-        offerCompactingRecipe(exporter, RecipeCategory.FOOD, ModBlocks.POMB, ModItems.POMB_SLICE);
 
         // Choral Blocks
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHORAL_BLOCK, ModBlocks.CHORAL_FAN);

@@ -18,8 +18,11 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -105,7 +108,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 	}
 
 	@Inject(method = "tick", at = @At("TAIL"))
-	private void tickCarriedPolyppie(CallbackInfo ci) {
+	private void tickMixins(CallbackInfo ci) {
 		if (this.phantasm_getPolyppie() != null) {
 			if (this.polyppie.getWorld() != this.getWorld())
 				this.polyppie.setWorld(this.getWorld());
@@ -114,6 +117,11 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 				this.polyppie.setPosition(this.getPos().add(0, 1, 0));
 
 			this.polyppie.tick();
+		}
+
+		if (this.age % 20 == 0 && this.getChallengeRune() != null && this.getWorld() instanceof ServerWorld server) {
+			ChunkPos chunk = server.getChunk(this.getChallengeRune().getPos()).getPos();
+			server.setChunkForced(chunk.x, chunk.z, Phantasm.log(this.getChallengeRune().isChallengeRunning()));
 		}
 	}
 

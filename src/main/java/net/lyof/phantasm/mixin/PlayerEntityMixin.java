@@ -22,7 +22,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -121,7 +120,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 
 		if (this.age % 20 == 0 && this.getChallengeRune() != null && this.getWorld() instanceof ServerWorld server) {
 			ChunkPos chunk = server.getChunk(this.getChallengeRune().getPos()).getPos();
-			server.setChunkForced(chunk.x, chunk.z, Phantasm.log(this.getChallengeRune().isChallengeRunning()));
+			server.setChunkForced(chunk.x, chunk.z, this.getChallengeRune().isChallengeRunning());
 		}
 	}
 

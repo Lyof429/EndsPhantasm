@@ -243,6 +243,10 @@ public class ModRegistry {
 
         public static final FoodComponent POMB_SLICE = new FoodComponent.Builder().alwaysEdible()
                 .hunger(4).saturationModifier(1.3f)
+                .build();
+
+        public static final FoodComponent POP_ROCK_CANDY = new FoodComponent.Builder().alwaysEdible()
+                .hunger(3).saturationModifier(2f)
                 .snack()
                 .build();
 

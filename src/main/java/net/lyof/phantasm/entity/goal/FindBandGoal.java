@@ -1,6 +1,5 @@
 package net.lyof.phantasm.entity.goal;
 
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.custom.PolyppieEntity;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.goal.Goal;

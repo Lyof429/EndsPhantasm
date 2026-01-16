@@ -30,6 +30,7 @@ public class BehemothModel<T extends BehemothEntity> extends SinglePartEntityMod
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
+
 		ModelPartData body = modelPartData.addChild("body", ModelPartBuilder.create().uv(0, 0).cuboid(-9.0F, -28.0F, -9.0F, 18.0F, 28.0F, 18.0F, new Dilation(0.0F))
 		.uv(0, 87).cuboid(-8.0F, -27.0F, -7.0F, 16.0F, 27.0F, 14.0F, new Dilation(0.0F))
 		.uv(0, 47).cuboid(-9.0F, 0.0F, -9.0F, 18.0F, 2.0F, 18.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 18.0F, 0.0F));

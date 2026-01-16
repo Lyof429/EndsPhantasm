@@ -37,7 +37,7 @@ public class ModEntities {
 
     public static final EntityType<PolyppieEntity> POLYPPIE = Registry.register(Registries.ENTITY_TYPE,
             Phantasm.makeID("polyppie"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, PolyppieEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.8f, 1f)).build());
+                    .dimensions(EntityDimensions.fixed(0.8f, 0.775f)).build());
 
     public static final EntityType<ChoralArrowEntity> CHORAL_ARROW = Registry.register(Registries.ENTITY_TYPE,
             Phantasm.makeID("choral_arrow"), FabricEntityTypeBuilder.create(SpawnGroup.MISC, ChoralArrowEntity::new)

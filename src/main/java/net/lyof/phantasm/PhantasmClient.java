@@ -12,6 +12,7 @@ import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.client.ModModelLayers;
 import net.lyof.phantasm.entity.client.model.BehemothModel;
 import net.lyof.phantasm.entity.client.model.CrystieModel;
+import net.lyof.phantasm.entity.client.model.PolyppieModel;
 import net.lyof.phantasm.entity.client.renderer.*;
 import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.particle.custom.ZzzParticle;
@@ -48,7 +49,8 @@ public class PhantasmClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.BEHEMOTH, BehemothModel::getTexturedModelData);
 
         EntityRendererRegistry.register(ModEntities.POLYPPIE, PolyppieRenderer::new);
-        //EntityModelLayerRegistry.registerModelLayer(ModModelLayers.BEHEMOTH, BehemothModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.POLYPPIE, PolyppieModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.POLYPPIE_TRANSPARENT, PolyppieModel::getTransparentModelData);
 
         EntityRendererRegistry.register(ModEntities.CHORAL_ARROW, ChoralArrowRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.CHALLENGE_RUNE, ChallengeRuneBlockEntityRenderer::new);

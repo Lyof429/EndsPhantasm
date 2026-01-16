@@ -492,7 +492,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
         public static Variant getDefault() {
             if (DEFAULT == null)
-                DEFAULT = new Variant(DEFAULT_ID, ModBlocks.CHORAL_BLOCK.asItem(), Phantasm.makeID("textures/entity/crystie.png"));
+                DEFAULT = new Variant(DEFAULT_ID, ModBlocks.CHORAL_BLOCK.asItem(), Phantasm.makeID("textures/entity/polyppie/polyppie.png"));
             return DEFAULT;
         }
 

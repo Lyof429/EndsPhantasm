@@ -2,6 +2,7 @@ package net.lyof.phantasm.block.entity;
 
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.ModBlockEntities;
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.block.challenge.Challenge;
@@ -25,6 +26,7 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -32,6 +34,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -201,6 +204,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
                 10, 1);
         this.bossbar.setPercent(1);
 
+        this.getWorld().getChunkManager().setChunkForced(world.getChunk(this.getPos()).getPos(), true);
         markDirty(world, pos, this.getCachedState());
     }
 
@@ -227,6 +231,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
             packet.writeBoolean(success);
 
             for (PlayerEntity player : this.getWorld().getPlayers()) {
+                Phantasm.log("sending stop packet");
                 ServerPlayNetworking.send((ServerPlayerEntity) player, ModPackets.CHALLENGE_ENDS, packet);
                 this.bossbar.removePlayer((ServerPlayerEntity) player);
             }
@@ -242,6 +247,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         }
 
         this.challengerUuids.clear();
+        this.getWorld().getChunkManager().setChunkForced(world.getChunk(this.getPos()).getPos(), false);
         markDirty(world, pos, this.getCachedState());
     }
 

@@ -117,11 +117,11 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 
 			this.polyppie.tick();
 		}
-
+/*
 		if (this.age % 20 == 0 && this.getChallengeRune() != null && this.getWorld() instanceof ServerWorld server) {
 			ChunkPos chunk = server.getChunk(this.getChallengeRune().getPos()).getPos();
 			server.setChunkForced(chunk.x, chunk.z, this.getChallengeRune().isChallengeRunning());
-		}
+		}*/
 	}
 
 	@Inject(method = "dropInventory", at = @At("HEAD"))

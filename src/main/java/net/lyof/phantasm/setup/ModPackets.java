@@ -109,19 +109,19 @@ public class ModPackets {
             BlockPos pos = buf.readBlockPos();
             boolean success = buf.readBoolean();
             client.execute(() -> {
-                if (client.world.getBlockEntity(pos) instanceof ChallengeRuneBlockEntity rune) {
-                    if (((Challenger) client.player).getChallengeRune() == rune) {
-                        client.inGameHud.setTitle(Text.empty());
-                        client.inGameHud.setSubtitle(Text.translatable(success ?
-                                        "block.phantasm.challenge_rune.success" :
-                                        "block.phantasm.challenge_rune.fail")
-                                .formatted(Formatting.LIGHT_PURPLE));
-                    }
+                ChallengeRuneBlockEntity rune = ((Challenger) client.player).getChallengeRune();
+
+                if (rune != null && rune.getPos().equals(pos)) {
+                    client.inGameHud.setTitle(Text.empty());
+                    client.inGameHud.setSubtitle(Text.translatable(success ?
+                                    "block.phantasm.challenge_rune.success" :
+                                    "block.phantasm.challenge_rune.fail")
+                            .formatted(Formatting.LIGHT_PURPLE));
 
                     rune.stopChallenge(success);
-
-                    client.worldRenderer.playSong(null, pos);
                 }
+
+                client.worldRenderer.playSong(null, pos);
             });
         }
 

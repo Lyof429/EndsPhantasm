@@ -3,10 +3,7 @@ package net.lyof.phantasm.entity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.lyof.phantasm.Phantasm;
-import net.lyof.phantasm.entity.custom.BehemothEntity;
-import net.lyof.phantasm.entity.custom.ChoralArrowEntity;
-import net.lyof.phantasm.entity.custom.CrystieEntity;
-import net.lyof.phantasm.entity.custom.PolyppieEntity;
+import net.lyof.phantasm.entity.custom.*;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -24,6 +21,7 @@ public class ModEntities {
         FabricDefaultAttributeRegistry.register(CRYSTIE, CrystieEntity.createAttributes());
         FabricDefaultAttributeRegistry.register(BEHEMOTH, BehemothEntity.createAttributes());
         FabricDefaultAttributeRegistry.register(POLYPPIE, PolyppieEntity.createAttributes());
+        FabricDefaultAttributeRegistry.register(BRONSTED_BLOB, BronstedBlobEntity.createAttributes());
     }
 
 
@@ -36,8 +34,12 @@ public class ModEntities {
                     .dimensions(EntityDimensions.changing(1f, 2f)).build());
 
     public static final EntityType<PolyppieEntity> POLYPPIE = Registry.register(Registries.ENTITY_TYPE,
-            Phantasm.makeID("polyppie"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, PolyppieEntity::new)
+            Phantasm.makeID("polyppie"), FabricEntityTypeBuilder.create(SpawnGroup.MISC, PolyppieEntity::new)
                     .dimensions(EntityDimensions.fixed(0.8f, 0.775f)).build());
+
+    public static final EntityType<BronstedBlobEntity> BRONSTED_BLOB = Registry.register(Registries.ENTITY_TYPE,
+            Phantasm.makeID("bronsted_blob"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, BronstedBlobEntity::new)
+                    .dimensions(EntityDimensions.changing(2.04f, 2.04f)).build());
 
     public static final EntityType<ChoralArrowEntity> CHORAL_ARROW = Registry.register(Registries.ENTITY_TYPE,
             Phantasm.makeID("choral_arrow"), FabricEntityTypeBuilder.create(SpawnGroup.MISC, ChoralArrowEntity::new)

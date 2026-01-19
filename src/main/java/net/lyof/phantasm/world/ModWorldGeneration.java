@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.ModEntities;
+import net.lyof.phantasm.entity.custom.BronstedBlobEntity;
 import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.lyof.phantasm.world.feature.ModPlacedFeatures;
@@ -54,9 +55,15 @@ public class ModWorldGeneration {
                 SpawnGroup.MONSTER,
                 ModEntities.BEHEMOTH,
                 7, 1, 1);
+
+        BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
+                SpawnGroup.MONSTER,
+                ModEntities.BRONSTED_BLOB,
+                7, 4, 6);
     }
 
     private static void generateSpawnRestrictions() {
         SpawnRestriction.register(ModEntities.BEHEMOTH, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
+        SpawnRestriction.register(ModEntities.BRONSTED_BLOB, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BronstedBlobEntity::canMobSpawn);
     }
 }

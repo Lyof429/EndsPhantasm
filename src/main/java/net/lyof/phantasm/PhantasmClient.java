@@ -23,6 +23,7 @@ import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
+import net.minecraft.client.render.entity.SlimeEntityRenderer;
 import net.minecraft.resource.ResourceType;
 
 public class PhantasmClient implements ClientModInitializer {
@@ -51,6 +52,8 @@ public class PhantasmClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.POLYPPIE, PolyppieRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.POLYPPIE, PolyppieModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.POLYPPIE_TRANSPARENT, PolyppieModel::getTransparentModelData);
+
+        EntityRendererRegistry.register(ModEntities.BRONSTED_BLOB, SlimeEntityRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.CHORAL_ARROW, ChoralArrowRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.CHALLENGE_RUNE, ChallengeRuneBlockEntityRenderer::new);

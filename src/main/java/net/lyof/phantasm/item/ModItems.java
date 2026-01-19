@@ -124,4 +124,7 @@ public class ModItems {
     public static final Item POLYPPIE_SPAWN_EGG = ModRegistry.ofItem("polyppie_spawn_egg",
                     new SpawnEggItem(ModEntities.POLYPPIE, 0xCD98BC, 0xF6EAEA, new FabricItemSettings()))
             .build();
+    public static final Item BRONSTED_BLOB_SPAWN_EGG = ModRegistry.ofItem("bronsted_blob_spawn_egg",
+                    new SpawnEggItem(ModEntities.BRONSTED_BLOB, 0xca2656, 0x5d2a4d, new FabricItemSettings()))
+            .build();
 }

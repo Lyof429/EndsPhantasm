@@ -156,6 +156,7 @@ public class ModItemGroups {
                         entries.add(ModItems.CRYSTIE_SPAWN_EGG);
                         entries.add(ModItems.BEHEMOTH_SPAWN_EGG);
                         entries.add(ModItems.POLYPPIE_SPAWN_EGG);
+                        entries.add(ModItems.BRONSTED_BLOB_SPAWN_EGG);
 
                         //entries.add(ModItems.REALITY_BREAKER);
 
@@ -316,6 +317,7 @@ public class ModItemGroups {
             entries.addAfter(Items.CREEPER_SPAWN_EGG, ModItems.CRYSTIE_SPAWN_EGG);
             entries.addAfter(Items.BEE_SPAWN_EGG, ModItems.BEHEMOTH_SPAWN_EGG);
             entries.addAfter(Items.POLAR_BEAR_SPAWN_EGG, ModItems.POLYPPIE_SPAWN_EGG);
+            entries.addAfter(Items.BLAZE_SPAWN_EGG, ModItems.BRONSTED_BLOB_SPAWN_EGG);
         });
     }
 }

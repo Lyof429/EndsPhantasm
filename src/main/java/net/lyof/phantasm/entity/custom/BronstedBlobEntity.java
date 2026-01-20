@@ -17,6 +17,8 @@ import net.minecraft.world.WorldView;
 public class BronstedBlobEntity extends SlimeEntity {
     private static ParticleEffect particles = null;
 
+    protected float bounceDistance;
+
     public BronstedBlobEntity(EntityType<? extends SlimeEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -67,9 +69,19 @@ public class BronstedBlobEntity extends SlimeEntity {
 
     @Override
     public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
-        Vec3d v = this.getVelocity();
-        this.setVelocity(v.x, fallDistance*this.getSize(), v.z);
-        this.velocityDirty = true;
+        this.bounceDistance = fallDistance;
         return false;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+
+        if (this.bounceDistance > 3) {
+            Vec3d v = this.getVelocity();
+            this.setVelocity(v.x, Math.log(this.bounceDistance - 2) * 0.5, v.z);
+            this.velocityDirty = true;
+            this.bounceDistance = 0;
+        }
     }
 }

@@ -7,8 +7,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageSources;
-import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.HostileEntity;
@@ -16,18 +14,17 @@ import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
-public class BronstedBlobEntity extends SlimeEntity {
+public class SourSludgeEntity extends SlimeEntity {
     private static ParticleEffect particles = null;
 
     protected float bounceDistance;
 
-    public BronstedBlobEntity(EntityType<? extends SlimeEntity> entityType, World world) {
+    public SourSludgeEntity(EntityType<? extends SlimeEntity> entityType, World world) {
         super(entityType, world);
     }
 

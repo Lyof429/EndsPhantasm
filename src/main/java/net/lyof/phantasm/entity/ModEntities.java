@@ -21,7 +21,7 @@ public class ModEntities {
         FabricDefaultAttributeRegistry.register(CRYSTIE, CrystieEntity.createAttributes());
         FabricDefaultAttributeRegistry.register(BEHEMOTH, BehemothEntity.createAttributes());
         FabricDefaultAttributeRegistry.register(POLYPPIE, PolyppieEntity.createAttributes());
-        FabricDefaultAttributeRegistry.register(BRONSTED_BLOB, BronstedBlobEntity.createAttributes());
+        FabricDefaultAttributeRegistry.register(SOUR_SLUDGE, SourSludgeEntity.createAttributes());
     }
 
 
@@ -37,8 +37,8 @@ public class ModEntities {
             Phantasm.makeID("polyppie"), FabricEntityTypeBuilder.create(SpawnGroup.MISC, PolyppieEntity::new)
                     .dimensions(EntityDimensions.fixed(0.8f, 0.775f)).build());
 
-    public static final EntityType<BronstedBlobEntity> BRONSTED_BLOB = Registry.register(Registries.ENTITY_TYPE,
-            Phantasm.makeID("bronsted_blob"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, BronstedBlobEntity::new)
+    public static final EntityType<SourSludgeEntity> SOUR_SLUDGE = Registry.register(Registries.ENTITY_TYPE,
+            Phantasm.makeID("sour_sludge"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SourSludgeEntity::new)
                     .dimensions(EntityDimensions.changing(2.04f, 2.04f)).build());
 
     public static final EntityType<ChoralArrowEntity> CHORAL_ARROW = Registry.register(Registries.ENTITY_TYPE,

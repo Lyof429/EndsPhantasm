@@ -119,6 +119,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.DRALGAE);
                         entries.add(ModBlocks.POMB);
                         entries.add(ModItems.POMB_SLICE);
+                        entries.add(ModItems.POP_ROCK_CANDY);
 
                         entries.add(ModBlocks.ACIDIC_MASS);
 
@@ -156,7 +157,7 @@ public class ModItemGroups {
                         entries.add(ModItems.CRYSTIE_SPAWN_EGG);
                         entries.add(ModItems.BEHEMOTH_SPAWN_EGG);
                         entries.add(ModItems.POLYPPIE_SPAWN_EGG);
-                        entries.add(ModItems.BRONSTED_BLOB_SPAWN_EGG);
+                        entries.add(ModItems.SOUR_SLUDGE_SPAWN_EGG);
 
                         //entries.add(ModItems.REALITY_BREAKER);
 
@@ -182,6 +183,7 @@ public class ModItemGroups {
             entries.addAfter(ModItems.BEHEMOTH_MEAT, ModItems.BEHEMOTH_STEAK);
 
             entries.addAfter(ModItems.CHORUS_FRUIT_SALAD, ModItems.POMB_SLICE);
+            entries.addAfter(ModItems.POMB_SLICE, ModItems.POP_ROCK_CANDY);
 
             entries.addAfter(Items.PUMPKIN_PIE, ModItems.EGGS_NIHILO);
         });
@@ -317,7 +319,7 @@ public class ModItemGroups {
             entries.addAfter(Items.CREEPER_SPAWN_EGG, ModItems.CRYSTIE_SPAWN_EGG);
             entries.addAfter(Items.BEE_SPAWN_EGG, ModItems.BEHEMOTH_SPAWN_EGG);
             entries.addAfter(Items.POLAR_BEAR_SPAWN_EGG, ModItems.POLYPPIE_SPAWN_EGG);
-            entries.addAfter(Items.BLAZE_SPAWN_EGG, ModItems.BRONSTED_BLOB_SPAWN_EGG);
+            entries.addAfter(Items.BLAZE_SPAWN_EGG, ModItems.SOUR_SLUDGE_SPAWN_EGG);
         });
     }
 }

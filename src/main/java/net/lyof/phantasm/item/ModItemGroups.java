@@ -319,7 +319,7 @@ public class ModItemGroups {
             entries.addAfter(Items.CREEPER_SPAWN_EGG, ModItems.CRYSTIE_SPAWN_EGG);
             entries.addAfter(Items.BEE_SPAWN_EGG, ModItems.BEHEMOTH_SPAWN_EGG);
             entries.addAfter(Items.POLAR_BEAR_SPAWN_EGG, ModItems.POLYPPIE_SPAWN_EGG);
-            entries.addAfter(Items.BLAZE_SPAWN_EGG, ModItems.SOUR_SLUDGE_SPAWN_EGG);
+            entries.addAfter(Items.SNOW_GOLEM_SPAWN_EGG, ModItems.SOUR_SLUDGE_SPAWN_EGG);
         });
     }
 }

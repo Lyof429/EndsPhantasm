@@ -58,6 +58,7 @@ public class SourSludgeEntity extends SlimeEntity {
         super.setSize(size, heal);
         this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue((3+size)*size);
         this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(2+size);
+        this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(0.34 + 0.08 * size);
         if (heal) this.setHealth(this.getMaxHealth());
     }
 
@@ -73,7 +74,7 @@ public class SourSludgeEntity extends SlimeEntity {
 
     @Override
     protected float getJumpVelocity() {
-        return super.getJumpVelocity() + 0.07f*this.getSize();
+        return super.getJumpVelocity() + (this.getRandom().nextFloat()*0.08f + 0.05f)*this.getSize();
     }
 
     @Override
@@ -91,7 +92,7 @@ public class SourSludgeEntity extends SlimeEntity {
     public boolean damage(DamageSource source, float amount) {
         boolean b = super.damage(source, amount);
         Random random = this.getRandom();
-        if (b && source.isOf(DamageTypes.DROWN) && random.nextFloat() < 0.1) {
+        if (b && source.isOf(DamageTypes.DROWN) && random.nextFloat() < 0.2) {
             AreaEffectCloudEntity cloud = EntityType.AREA_EFFECT_CLOUD.create(this.getWorld());
             cloud.addEffect(new StatusEffectInstance(ModEffects.CORROSION, random.nextBetween(100, 400), random.nextInt(3)));
             cloud.setOwner(this);
@@ -116,7 +117,7 @@ public class SourSludgeEntity extends SlimeEntity {
     public void tick() {
         super.tick();
 
-        if (this.bounceDistance > 3) {
+        if (this.bounceDistance > 5) {
             Vec3d v = this.getVelocity();
             this.setVelocity(v.x, Math.log(this.bounceDistance - 2) * 0.5, v.z);
             this.velocityDirty = true;

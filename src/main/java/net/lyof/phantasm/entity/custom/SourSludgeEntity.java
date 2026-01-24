@@ -4,7 +4,9 @@ import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.effect.ModEffects;
 import net.lyof.phantasm.entity.access.Corrosive;
 import net.minecraft.entity.AreaEffectCloudEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -20,7 +22,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
-public class SourSludgeEntity extends SlimeEntity implements Corrosive {
+public class SourSludgeEntity extends SlimeEntity {
     private static ParticleEffect particles = null;
 
     protected float bounceDistance;
@@ -123,10 +125,16 @@ public class SourSludgeEntity extends SlimeEntity implements Corrosive {
     }
 
     @Override
-    public void setCorrosiveTicks(int ticks) {}
-
-    @Override
-    public boolean isCorrosive() {
-        return true;
+    public void applyDamageEffects(LivingEntity attacker, Entity target) {
+        super.applyDamageEffects(attacker, target);
+        if (target instanceof LivingEntity living) {
+            int duration = 60, amplifier = Math.random() < 0.2 ? 1 : 0;
+            StatusEffectInstance effect = living.getStatusEffect(ModEffects.CORROSION);
+            if (effect != null) {
+                duration += effect.getDuration();
+                amplifier += effect.getAmplifier();
+            }
+            living.addStatusEffect(new StatusEffectInstance(ModEffects.CORROSION, duration, amplifier));
+        }
     }
 }

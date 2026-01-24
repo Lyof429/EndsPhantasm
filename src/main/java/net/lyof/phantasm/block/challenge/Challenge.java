@@ -32,13 +32,13 @@ public class Challenge {
 
     public final Identifier id;
     public final Identifier lootTable;
-    private final List<Monster> monsters;
+    private final List<ChallengeMonster> monsters;
     public final int monsterObjective;
     public final int levelCost;
     public final boolean postDragon;
     private final int totalWeight;
 
-    public Challenge(Identifier id, Identifier lootTable, List<Monster> monsters, int monsterObjective,
+    public Challenge(Identifier id, Identifier lootTable, List<ChallengeMonster> monsters, int monsterObjective,
                      int levelCost, boolean postDragon) {
         this.id = id;
         this.lootTable = lootTable;
@@ -56,7 +56,7 @@ public class Challenge {
 
     public void spawnMonster(ChallengeRuneBlockEntity rune) {
         int select = rune.getWorld().getRandom().nextInt(this.totalWeight);
-        for (Monster monster : this.monsters) {
+        for (ChallengeMonster monster : this.monsters) {
             select -= monster.weight;
             if (select < 0) {
                 LivingEntity entity = monster.create(rune);
@@ -82,9 +82,9 @@ public class Challenge {
         if (json.has("loot_table") && json.has("monsters") && json.has("objective")
                 && json.has("level_cost") && json.has("post_dragon")) {
 
-            List<Monster> monsters = new ArrayList<>();
+            List<ChallengeMonster> monsters = new ArrayList<>();
             for (JsonElement elmt : json.getAsJsonArray("monsters"))
-                Monster.read(elmt.getAsJsonObject(), monsters);
+                ChallengeMonster.read(elmt.getAsJsonObject(), monsters);
 
             ChallengeRegistry.register(id, new Challenge(
                     id,
@@ -94,68 +94,6 @@ public class Challenge {
                     json.get("level_cost").getAsInt(),
                     json.get("post_dragon").getAsBoolean()
             ).setDataDriven(true));
-        }
-    }
-
-
-    public static class Monster {
-        public final int weight;
-
-        private final EntityType<? extends LivingEntity> entityType;
-        private final Map<EntityAttribute, Float> attributeMultipliers;
-
-        public Monster(int weight, EntityType<? extends LivingEntity> entityType, Map<EntityAttribute, Float> attributeMultipliers) {
-            this.weight = weight;
-            this.entityType = entityType;
-            this.attributeMultipliers = attributeMultipliers;
-        }
-
-        public LivingEntity create(ChallengeRuneBlockEntity rune) {
-            LivingEntity entity = this.entityType.create(rune.getWorld());
-            entity.setPosition(rune.getPos().up().toCenterPos().add(0, -0.5, 0));
-
-            for (Map.Entry<EntityAttribute, Float> entry : this.attributeMultipliers.entrySet())
-                entity.getAttributeInstance(entry.getKey()).addPersistentModifier(new EntityAttributeModifier(
-                        "Challenge bonus", entry.getValue(), EntityAttributeModifier.Operation.MULTIPLY_BASE));
-            entity.setHealth(entity.getMaxHealth());
-
-            entity.addCommandTag(Phantasm.MOD_ID + ".challenge");
-            ((Challenger) entity).setChallengeRune(rune);
-            if (entity instanceof MobEntity mob)
-                mob.setPersistent();
-            if (entity instanceof VexEntity vex)
-                vex.setBounds(rune.getPos().up(5));
-
-            return entity;
-        }
-
-        @SuppressWarnings("unchecked")
-        public static void read(JsonObject json, List<Monster> monsters) {
-            if (json.has("entity")) {
-                EntityType<?> entity = Registries.ENTITY_TYPE.get(new Identifier(json.get("entity").getAsString()));
-                if (entity == EntityType.PIG && !json.get("entity").getAsString().equals("minecraft:pig")) return;
-                try { EntityType<? extends LivingEntity> e = (EntityType<? extends LivingEntity>) entity; }
-                catch (Exception ignored) { return; }
-
-                JsonObject attributesObject = json.has("attributes")
-                        ? json.getAsJsonObject("attributes") : new JsonObject();
-                Map<EntityAttribute, Float> attributes = new HashMap<>();
-                for (Map.Entry<String, JsonElement> entry : attributesObject.entrySet()) {
-                    if (!entry.getValue().isJsonPrimitive() || !entry.getValue().getAsJsonPrimitive().isNumber())
-                        continue;
-
-                    EntityAttribute attr = Registries.ATTRIBUTE.get(new Identifier(entry.getKey()));
-                    if (attr == null) continue;
-
-                    attributes.putIfAbsent(attr, entry.getValue().getAsFloat());
-                }
-
-                monsters.add(new Monster(
-                        json.has("weight") ? json.get("weight").getAsInt() : 1,
-                        (EntityType<? extends LivingEntity>) entity,
-                        attributes
-                ));
-            }
         }
     }
 }

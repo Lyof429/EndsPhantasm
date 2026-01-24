@@ -14,11 +14,13 @@ import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SlimeEntity;
+import net.minecraft.loot.condition.EntityPropertiesLootCondition;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.util.math.random.RandomSequence;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
@@ -58,7 +60,7 @@ public class SourSludgeEntity extends SlimeEntity {
         super.setSize(size, heal);
         this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue((3+size)*size);
         this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(2+size);
-        this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(0.34 + 0.08 * size);
+        this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(0.44 + 0.04 * size);
         if (heal) this.setHealth(this.getMaxHealth());
     }
 
@@ -74,7 +76,7 @@ public class SourSludgeEntity extends SlimeEntity {
 
     @Override
     protected float getJumpVelocity() {
-        return super.getJumpVelocity() + (this.getRandom().nextFloat()*0.08f + 0.05f)*this.getSize();
+        return super.getJumpVelocity() + 0.05f*this.getSize() + 0.025f;
     }
 
     @Override

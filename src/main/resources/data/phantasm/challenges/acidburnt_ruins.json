@@ -10,6 +10,13 @@
       "attributes": {
         "minecraft:generic.max_health": 4
       }
+    },
+    {
+      "weight": 5,
+      "entity": "phantasm:sour_sludge",
+      "attributes": {
+        "minecraft:generic.armor": 2
+      }
     }
   ]
 }

@@ -25,10 +25,10 @@ import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class ChallengeRuneBlockEntityRenderer implements BlockEntityRenderer<ChallengeRuneBlockEntity> {
+public class ChallengeRuneRenderer implements BlockEntityRenderer<ChallengeRuneBlockEntity> {
     private final BlockRenderManager blockRenderer;
 
-    public ChallengeRuneBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
+    public ChallengeRuneRenderer(BlockEntityRendererFactory.Context context) {
         this.blockRenderer = context.getRenderManager();
     }
 

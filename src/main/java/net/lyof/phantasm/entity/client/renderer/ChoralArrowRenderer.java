@@ -9,7 +9,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class ChoralArrowRenderer extends ProjectileEntityRenderer<ChoralArrowEntity> {
-    private static final Identifier TEXTURE = Phantasm.makeID("textures/entity/choral_arrow.png");
+    private static final Identifier TEXTURE = Phantasm.makeID("textures/entity/choral_arrow/choral_arrow.png");
 
     public ChoralArrowRenderer(EntityRendererFactory.Context context) {
         super(context);

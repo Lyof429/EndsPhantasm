@@ -2,6 +2,7 @@ package net.lyof.phantasm.entity.custom;
 
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.effect.ModEffects;
+import net.lyof.phantasm.entity.access.Corrosive;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -19,7 +20,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
-public class SourSludgeEntity extends SlimeEntity {
+public class SourSludgeEntity extends SlimeEntity implements Corrosive {
     private static ParticleEffect particles = null;
 
     protected float bounceDistance;
@@ -119,5 +120,13 @@ public class SourSludgeEntity extends SlimeEntity {
             this.velocityDirty = true;
             this.bounceDistance = 0;
         }
+    }
+
+    @Override
+    public void setCorrosiveTicks(int ticks) {}
+
+    @Override
+    public boolean isCorrosive() {
+        return true;
     }
 }

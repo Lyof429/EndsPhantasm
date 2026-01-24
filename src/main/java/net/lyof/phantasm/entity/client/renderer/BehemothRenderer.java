@@ -11,8 +11,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class BehemothRenderer extends MobEntityRenderer<BehemothEntity, BehemothModel<BehemothEntity>> {
-    private static final Identifier TEXTURE = Phantasm.makeID("textures/entity/behemoth.png");
-    private static final Identifier TEXTURE_ANGRY = Phantasm.makeID("textures/entity/behemoth_angry.png");
+    private static final Identifier TEXTURE = Phantasm.makeID("textures/entity/behemoth/behemoth.png");
+    private static final Identifier TEXTURE_ANGRY = Phantasm.makeID("textures/entity/behemoth/behemoth_angry.png");
 
     public BehemothRenderer(EntityRendererFactory.Context context) {
         super(context, new BehemothModel<>(context.getPart(ModModelLayers.BEHEMOTH)), 0.6f);

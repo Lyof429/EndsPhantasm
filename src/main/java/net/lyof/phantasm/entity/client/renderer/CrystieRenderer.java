@@ -13,7 +13,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class CrystieRenderer extends MobEntityRenderer<CrystieEntity, CrystieModel<CrystieEntity>> {
-    private static final Identifier TEXTURE = Phantasm.makeID("textures/entity/crystie.png");
+    private static final Identifier TEXTURE = Phantasm.makeID("textures/entity/crystie/crystie.png");
 
     public CrystieRenderer(EntityRendererFactory.Context context) {
         super(context, new CrystieModel<>(context.getPart(ModModelLayers.CRYSTIE)), 0.6f);

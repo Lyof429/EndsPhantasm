@@ -2,7 +2,6 @@ package net.lyof.phantasm.entity.custom;
 
 import net.lyof.phantasm.block.ModBlocks;
 import net.lyof.phantasm.effect.ModEffects;
-import net.lyof.phantasm.entity.access.Corrosive;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -14,13 +13,11 @@ import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SlimeEntity;
-import net.minecraft.loot.condition.EntityPropertiesLootCondition;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.math.random.RandomSequence;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 

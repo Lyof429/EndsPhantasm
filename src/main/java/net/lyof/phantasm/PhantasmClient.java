@@ -23,7 +23,6 @@ import net.lyof.phantasm.setup.datagen.config.ConfiguredData;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
-import net.minecraft.client.render.entity.SlimeEntityRenderer;
 import net.minecraft.resource.ResourceType;
 
 public class PhantasmClient implements ClientModInitializer {

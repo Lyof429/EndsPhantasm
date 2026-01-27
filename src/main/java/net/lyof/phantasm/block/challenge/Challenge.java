@@ -2,28 +2,18 @@ package net.lyof.phantasm.block.challenge;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
-import net.lyof.phantasm.entity.access.Challenger;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Challenge {
     public static float R = 15.99f;

@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(VexEntityRenderer.class)
 public class VexEntityRendererMixin {
-    private static final Identifier TEXTURE = Phantasm.makeID("textures/entity/ender_vex.png");
-    private static final Identifier CHARGING_TEXTURE = Phantasm.makeID("textures/entity/ender_vex_charging.png");
+    private static final Identifier TEXTURE = Phantasm.makeID("textures/entity/vex/ender_vex.png");
+    private static final Identifier CHARGING_TEXTURE = Phantasm.makeID("textures/entity/vex/ender_vex_charging.png");
 
     @Inject(method = "getTexture(Lnet/minecraft/entity/mob/VexEntity;)Lnet/minecraft/util/Identifier;", at = @At("HEAD"), cancellable = true)
     public void enderTowerTexture(VexEntity vex, CallbackInfoReturnable<Identifier> cir) {

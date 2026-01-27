@@ -3,12 +3,8 @@ package net.lyof.phantasm.entity.client.model;
 import net.lyof.phantasm.entity.custom.PolyppieEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.SlimeEntityRenderer;
-import net.minecraft.client.render.entity.feature.SlimeOverlayFeatureRenderer;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
-import net.minecraft.client.render.entity.model.SlimeEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.predicate.entity.SlimePredicate;
 
 public class PolyppieModel<T extends PolyppieEntity> extends SinglePartEntityModel<T> {
 	private final ModelPart root;

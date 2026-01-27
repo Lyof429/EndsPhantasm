@@ -10,6 +10,7 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -17,31 +18,34 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(AnvilScreenHandler.class)
 public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     @Shadow @Final private Property levelCost;
-
     @Shadow private int repairItemUsage;
-
     @Shadow @Nullable private String newItemName;
 
     public AnvilScreenHandlerMixin(@Nullable ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
         super(type, syncId, playerInventory, context);
     }
 
+    @Unique private static final int oblivionRepair = 200;
+    @Unique private static final int acidicRepair = 30;
+
     @Inject(method = "updateResult", at = @At(value = "HEAD"), cancellable = true)
-    public void oblivionRepair(CallbackInfo ci) {
-        ItemStack stack = this.input.getStack(0);
-        if (!stack.isEmpty() && stack.getDamage() > 0 && this.input.getStack(1).isOf(ModBlocks.OBLIVION.asItem())) {
-            int dura = Math.min((stack.getDamage() + 199) / 200, this.input.getStack(1).getCount());
-            ItemStack output = stack.copy();
-            output.setDamage(output.getDamage() - 200*dura);
+    public void customAnvilRecipes(CallbackInfo ci) {
+        ItemStack input = this.input.getStack(0);
+        ItemStack add = this.input.getStack(1);
+
+        if (!input.isEmpty() && input.getDamage() > 0 && add.isOf(ModBlocks.OBLIVION.asItem())) {
+            int dura = Math.min((input.getDamage() + oblivionRepair - 1) / oblivionRepair, add.getCount());
+            ItemStack output = input.copy();
+            output.setDamage(Math.min(0, output.getDamage() - oblivionRepair*dura));
 
             this.repairItemUsage = dura;
 
             if (this.newItemName != null && !Util.isBlank(this.newItemName)) {
-                if (!this.newItemName.equals(stack.getName().getString())) {
+                if (!this.newItemName.equals(input.getName().getString())) {
                     dura += 1;
                     output.setCustomName(Text.literal(this.newItemName));
                 }
-            } else if (stack.hasCustomName()) {
+            } else if (input.hasCustomName()) {
                 dura += 1;
                 output.removeCustomName();
             }

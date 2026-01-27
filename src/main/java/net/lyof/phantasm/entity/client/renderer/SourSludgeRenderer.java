@@ -2,13 +2,10 @@ package net.lyof.phantasm.entity.client.renderer;
 
 import net.lyof.phantasm.Phantasm;
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MagmaCubeEntityRenderer;
 import net.minecraft.client.render.entity.SlimeEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.RotationAxis;
-import org.joml.Quaternionf;
 
 public class SourSludgeRenderer extends SlimeEntityRenderer {
     private static final Identifier TEXTURE = Phantasm.makeID("textures/entity/sour_sludge/sour_sludge.png");

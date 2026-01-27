@@ -90,6 +90,7 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
         nbt.putBoolean(SEEN_BEGINNING_KEY, this.seenBeginning);
     }
 
+    @SuppressWarnings("unchecked")
     @Inject(method = "copyFrom", at = @At("HEAD"))
     private void copySeenBeginning(ServerPlayerEntity old, boolean alive, CallbackInfo ci) {
         this.seenBeginning = ((MixinAccess<Boolean>) old).getMixinValue();

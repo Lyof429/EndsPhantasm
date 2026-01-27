@@ -343,6 +343,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
         // Pomb
         offerCompactingRecipe(exporter, RecipeCategory.FOOD, ModBlocks.POMB, ModItems.POMB_SLICE);
+
         // Pop Rock Candy
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.POP_ROCK_CANDY, 2)
                 .input(ModItems.POMB_SLICE)

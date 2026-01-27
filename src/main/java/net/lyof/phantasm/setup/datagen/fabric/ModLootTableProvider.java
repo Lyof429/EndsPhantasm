@@ -64,8 +64,6 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
         addDrop(ModBlocks.DRAGON_MINT, dropsWithShears(ModBlocks.DRAGON_MINT));
 
-        addSelfDropOr(ModBlocks.POMB, ModItems.POMB_SLICE, UniformLootNumberProvider.create(3, 6));
-
         addSelfDropOr(ModBlocks.CIRITE_IRON_ORE, Items.IRON_NUGGET, UniformLootNumberProvider.create(1, 4));
         addDrop(ModBlocks.RAW_PURPUR_COAL_ORE,
                 dropsWithSilkTouch(ModBlocks.RAW_PURPUR_COAL_ORE,

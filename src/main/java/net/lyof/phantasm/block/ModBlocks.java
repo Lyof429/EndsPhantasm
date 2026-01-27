@@ -521,7 +521,7 @@ public class ModBlocks {
 
     public static final Block POMB = ModRegistry.ofBlock("pomb",
                     new PombBlock(pombMaterial))
-            .tool("_axe")
+            .tool("_axe").tag(BlockTags.SWORD_EFFICIENT)
             .build();
 
 

@@ -89,6 +89,7 @@ public class EggsNihiloBlock extends Block {
             return ActionResult.PASS;
 
         player.eatFood(world, this.asItem().getDefaultStack());
+        world.addBlockBreakParticles(pos, state);
         world.setBlockState(pos, state.with(SERVINGS, state.get(SERVINGS) - 1), 3);
 
         return ActionResult.SUCCESS;

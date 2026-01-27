@@ -154,13 +154,13 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         if (this.isChallengeRunning() || reason == ChallengeRuneBlock.Condition.RUNNING)
             message = "";
         else if (this.hasCompleted(player) || reason == ChallengeRuneBlock.Condition.COMPLETED)
-            message = ".completed" + world.random.nextInt(5);
+            message = ".completed" + this.getWorld().random.nextInt(5);
         else if (reason == ChallengeRuneBlock.Condition.CRYSTAL)
-            message = ".crystal" + world.random.nextInt(5);
+            message = ".crystal" + this.getWorld().random.nextInt(5);
         else if (reason == ChallengeRuneBlock.Condition.DRAGON)
-            message = ".dragon" + world.random.nextInt(5);
+            message = ".dragon" + this.getWorld().random.nextInt(5);
         else if (reason == ChallengeRuneBlock.Condition.EXPERIENCE)
-            message = ".experience" + world.random.nextInt(5);
+            message = ".experience" + this.getWorld().random.nextInt(5);
 
         player.sendMessage(Text.translatable("block.phantasm.challenge_rune.hint" + message).formatted(Formatting.LIGHT_PURPLE),
                 true);
@@ -202,8 +202,8 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
                 10, 1);
         this.bossbar.setPercent(1);
 
-        this.getWorld().getChunkManager().setChunkForced(world.getChunk(this.getPos()).getPos(), true);
-        markDirty(world, pos, this.getCachedState());
+        this.getWorld().getChunkManager().setChunkForced(this.getWorld().getChunk(this.getPos()).getPos(), true);
+        markDirty(this.getWorld(), pos, this.getCachedState());
     }
 
     public void stopChallenge(boolean success) {
@@ -235,7 +235,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
             }
         }
 
-        for (Entity entity : world.getOtherEntities(null, Box.from(this.getPos().up((int) Challenge.R/2)
+        for (Entity entity : this.getWorld().getOtherEntities(null, Box.from(this.getPos().up((int) Challenge.R/2)
                         .toCenterPos()).expand(Challenge.R * 2),
                 e -> e instanceof Challenger challenger && challenger.getChallengeRune() == this)) {
 
@@ -245,8 +245,8 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
         }
 
         this.challengerUuids.clear();
-        this.getWorld().getChunkManager().setChunkForced(world.getChunk(this.getPos()).getPos(), false);
-        markDirty(world, pos, this.getCachedState());
+        this.getWorld().getChunkManager().setChunkForced(this.getWorld().getChunk(this.getPos()).getPos(), false);
+        markDirty(this.getWorld(), pos, this.getCachedState());
     }
 
     public boolean isChallengeRunning() {

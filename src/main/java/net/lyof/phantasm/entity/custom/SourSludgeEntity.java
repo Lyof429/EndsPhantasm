@@ -73,6 +73,11 @@ public class SourSludgeEntity extends SlimeEntity {
 
     @Override
     protected float getJumpVelocity() {
+        if (this.bounceDistance > 5) {
+            float v = (float) (Math.log(this.bounceDistance - 2) * 0.5);
+            this.bounceDistance = 0;
+            return v;
+        }
         return super.getJumpVelocity() + 0.05f*this.getSize() + 0.025f;
     }
 

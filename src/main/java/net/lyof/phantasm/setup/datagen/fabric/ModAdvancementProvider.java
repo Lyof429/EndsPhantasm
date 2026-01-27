@@ -122,6 +122,21 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 .rewards(AdvancementRewards.NONE).build(Phantasm.makeID("find_acidburnt_abysses"));
                 //.build(consumer, "phantasm:find_acidburnt_abysses");
 
+        Advancement SOUR_SLUDGE = Advancement.Builder.create()
+                .display(ModBlocks.ACIDIC_MASS,
+                        Text.translatable(BASE + "kill_sour_sludge"),
+                        Text.translatable(BASE + "kill_sour_sludge" + DESC),
+                        null,
+                        AdvancementFrame.TASK,
+                        true, true, false)
+                .criterion("killed_sour_sludge", OnKilledCriterion.Conditions.createPlayerKilledEntity(
+                        EntityPredicate.Builder.create().type(ModEntities.SOUR_SLUDGE),
+                        DamageSourcePredicate.EMPTY
+                ))
+                .rewards(AdvancementRewards.NONE)
+                .parent(ACIDBURNT_ABYSSES)
+                .build(consumer, "phantasm:kill_sour_sludge");
+
         Advancement CHORAL_RIFF = Advancement.Builder.create()
                 .display(ModBlocks.CHORAL_BLOCK,
                         Text.translatable(BASE + "find_choral_riff"),

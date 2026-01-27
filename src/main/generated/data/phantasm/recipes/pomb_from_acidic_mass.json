@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "pomb",
+  "key": {
+    "#": [
+      {
+        "item": "minecraft:melon"
+      },
+      {
+        "item": "minecraft:pumpkin"
+      }
+    ],
+    "A": {
+      "item": "phantasm:acidic_mass"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "A#A",
+    "AAA"
+  ],
+  "result": {
+    "item": "phantasm:pomb"
+  },
+  "show_notification": true
+}

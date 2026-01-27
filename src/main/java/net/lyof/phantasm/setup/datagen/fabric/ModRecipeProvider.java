@@ -343,6 +343,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
         // Pomb
         offerCompactingRecipe(exporter, RecipeCategory.FOOD, ModBlocks.POMB, ModItems.POMB_SLICE);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModBlocks.POMB)
+                .pattern("AAA")
+                .pattern("A#A")
+                .pattern("AAA")
+                .input('A', ModBlocks.ACIDIC_MASS)
+                .input('#', Ingredient.ofItems(Items.MELON, Items.PUMPKIN))
+                .criterion(hasItem(ModBlocks.ACIDIC_MASS), conditionsFromItem(ModBlocks.ACIDIC_MASS))
+                .group("pomb").offerTo(exporter, Phantasm.makeID("pomb_from_acidic_mass"));
 
         // Pop Rock Candy
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.POP_ROCK_CANDY, 2)

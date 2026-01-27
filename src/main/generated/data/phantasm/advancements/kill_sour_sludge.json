@@ -1,0 +1,40 @@
+{
+  "parent": "phantasm:find_acidburnt_abysses",
+  "criteria": {
+    "killed_sour_sludge": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "phantasm:sour_sludge"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.phantasm.kill_sour_sludge.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "phantasm:acidic_mass"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.phantasm.kill_sour_sludge"
+    }
+  },
+  "requirements": [
+    [
+      "killed_sour_sludge"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

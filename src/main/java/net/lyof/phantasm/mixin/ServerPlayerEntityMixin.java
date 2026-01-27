@@ -78,7 +78,7 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
         return original.call(destination);
     }
 
-    @Unique private static final String SEEN_BEGINNING_KEY = Phantasm.MOD_ID + "_SeenBeginning";
+    @Unique private static final String SEEN_BEGINNING_KEY = Phantasm.MOD_ID + "_seenBeginning";
 
     @Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
     private void readData(NbtCompound nbt, CallbackInfo ci) {

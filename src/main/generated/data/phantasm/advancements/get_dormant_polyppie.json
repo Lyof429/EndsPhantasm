@@ -19,7 +19,7 @@
     "description": {
       "translate": "advancement.phantasm.get_dormant_polyppie.desc"
     },
-    "frame": "task",
+    "frame": "goal",
     "hidden": false,
     "icon": {
       "item": "phantasm:dormant_polyppie"

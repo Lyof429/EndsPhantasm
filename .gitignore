@@ -39,6 +39,7 @@ replay_*.log
 *.hprof
 *.jfr
 
-*.bbmodel
+**.bbmodel
 promo/
-*.lnk
+**.lnk
+**.old.*

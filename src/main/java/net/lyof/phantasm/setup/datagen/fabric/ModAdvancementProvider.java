@@ -170,7 +170,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         Text.translatable(BASE + "get_dormant_polyppie"),
                         Text.translatable(BASE + "get_dormant_polyppie" + DESC),
                         null,
-                        AdvancementFrame.TASK,
+                        AdvancementFrame.GOAL,
                         true, true, false)
                 .criterion("has_dormant_polyppie", InventoryChangedCriterion.Conditions.items(ModBlocks.DORMANT_POLYPPIE))
                 .rewards(AdvancementRewards.NONE)

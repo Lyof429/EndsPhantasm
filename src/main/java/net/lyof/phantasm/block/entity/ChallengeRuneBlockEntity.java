@@ -136,7 +136,9 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
 
     public ChallengeRuneBlock.Condition getStartingCondition(ServerPlayerEntity player) {
         if (this.challenge.monsterObjective <= 0) return ChallengeRuneBlock.Condition.EMPTY;
-        if (this.isChallengeRunning()) return ChallengeRuneBlock.Condition.RUNNING;
+        ChallengeRuneBlockEntity rune = ((Challenger) player).getChallengeRune();
+        if (this.isChallengeRunning() || (rune != null && !rune.getPos().equals(this.getPos())))
+            return ChallengeRuneBlock.Condition.RUNNING;
         if (this.hasCompleted(player)) return ChallengeRuneBlock.Condition.COMPLETED;
         if (player.experienceLevel < this.challenge.levelCost) return ChallengeRuneBlock.Condition.EXPERIENCE;
         Advancement advc = player.getServer().getAdvancementLoader().get(DRAGON);

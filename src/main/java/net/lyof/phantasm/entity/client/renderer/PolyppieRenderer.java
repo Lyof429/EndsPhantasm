@@ -38,12 +38,10 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
         return rotationCache.get(key);
     }
 
-    private final ItemRenderer itemRenderer;
-
     public PolyppieRenderer(EntityRendererFactory.Context context) {
         super(context, new PolyppieModel<>(context.getPart(ModModelLayers.POLYPPIE)), 0.6f);
-        this.itemRenderer = context.getItemRenderer();
         this.addFeature(new TransparentRenderer(this, context.getModelLoader()));
+        this.addFeature(new DiscRenderer(this, context.getItemRenderer()));
 
         instance = this;
     }
@@ -51,22 +49,6 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
     @Override
     public Identifier getTexture(PolyppieEntity entity) {
         return entity.getVariant().texture;
-    }
-
-    @Override
-    public void render(PolyppieEntity self, float tickDelta, float animationProgress, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
-        matrices.push();
-
-        matrices.translate(0, self.getHeight()*this.model.getPart().yScale*0.5f, 0);
-        matrices.multiply(getRotation(0,
-                rad*(180 - self.bodyYaw),
-                self.isPlayingRecord() ? 0.5f*MathHelper.sin(0.05f*(tickDelta + self.tickCount - self.recordStartTick)) : 0));
-        matrices.translate(0, 0, -self.getWidth()*this.model.getPart().zScale*0.5f);
-
-        this.itemRenderer.renderItem(self.getStack(), ModelTransformationMode.FIXED, light, 0, matrices, vertexConsumers, self.getWorld(), 0);
-        matrices.pop();
-
-        super.render(self, tickDelta, animationProgress, matrices, vertexConsumers, light);
     }
 
 
@@ -86,6 +68,23 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
             this.model.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
             this.model.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(this.getTexture(entity))), light, LivingEntityRenderer.getOverlay(entity, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
 
+        }
+    }
+
+
+    public static class DiscRenderer extends FeatureRenderer<PolyppieEntity, PolyppieModel<PolyppieEntity>> {
+        private final ItemRenderer itemRenderer;
+
+        public DiscRenderer(FeatureRendererContext<PolyppieEntity, PolyppieModel<PolyppieEntity>> context, ItemRenderer itemRenderer) {
+            super(context);
+            this.itemRenderer = itemRenderer;
+        }
+
+        @Override
+        public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, PolyppieEntity entity,
+                           float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+
+            this.itemRenderer.renderItem(entity.getStack(), ModelTransformationMode.FIXED, light, 0, matrices, vertexConsumers, entity.getWorld(), 0);
         }
     }
 

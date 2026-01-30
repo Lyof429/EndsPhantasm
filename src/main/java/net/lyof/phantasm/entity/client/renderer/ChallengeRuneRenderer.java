@@ -116,7 +116,7 @@ public class ChallengeRuneRenderer implements BlockEntityRenderer<ChallengeRuneB
 
                 float radius = Challenge.R * Math.min(40, self.tick + tickDelta) / 40f;
 
-                if (ConfigEntries.accessibilityChallengeBarrier) {
+                if (ConfigEntries.altChallengeBarrier) {
                     matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(self.tick + tickDelta));
 
                     RenderHelper.renderCube(matrices, vertexConsumers.getBuffer(RenderLayer.getEyes(RUNE_BARRIER_TEXTURE)), light,

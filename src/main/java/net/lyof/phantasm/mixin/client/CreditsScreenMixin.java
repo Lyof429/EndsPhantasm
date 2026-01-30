@@ -7,6 +7,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.util.MixinAccess;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.LogoDrawer;
@@ -33,7 +34,7 @@ public abstract class CreditsScreenMixin implements MixinAccess<Boolean> {
     @Shadow protected abstract void load(String id, CreditsScreen.CreditsReader reader);
     @Shadow protected abstract void readPoem(Reader reader) throws IOException;
 
-    @Unique protected final Identifier BACKGROUND_TEXTURE = new Identifier("textures/gui/credits_background.png");
+    @Unique protected final Identifier BACKGROUND_TEXTURE = Phantasm.makeID("textures/gui/credits_background.png");
 
     @Unique private boolean beginningCredits = false;
 

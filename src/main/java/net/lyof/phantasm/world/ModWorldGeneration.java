@@ -38,10 +38,10 @@ public class ModWorldGeneration {
     }
 
     private static void generateBiomes() {
-        if (ConfigEntries.doDreamingDenBiome)
+        if (ConfigEntries.dreamingDenWeight > 0)
             TheEndBiomes.addHighlandsBiome(ModBiomes.DREAMING_DEN, ConfigEntries.dreamingDenWeight);
 
-        if (ConfigEntries.doAcidburntAbyssesBiome)
+        if (ConfigEntries.acidburntAbyssesWeight > 0)
             TheEndBiomes.addHighlandsBiome(ModBiomes.ACIDBURNT_ABYSSES, ConfigEntries.acidburntAbyssesWeight);
     }
 

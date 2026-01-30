@@ -20,7 +20,7 @@ public abstract class DragonFireballEntityMixin extends ExplosiveProjectileEntit
 
     @Inject(method = "onCollision", at = @At("TAIL"))
     public void explode(HitResult hitResult, CallbackInfo ci) {
-        if (!(hitResult instanceof EntityHitResult entityHitResult) || !this.isOwner(entityHitResult.getEntity()) && ConfigEntries.explosiveDragonFireballs)
+        if (!(hitResult instanceof EntityHitResult entityHitResult) || !this.isOwner(entityHitResult.getEntity()) && ConfigEntries.explosiveFireballs)
             this.getWorld().createExplosion((DragonFireballEntity) (Object) this, this.getX(), this.getY() + 0.5, this.getZ(),
                     3, true, World.ExplosionSourceType.MOB);
     }

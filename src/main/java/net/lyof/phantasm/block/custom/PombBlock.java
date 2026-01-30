@@ -1,5 +1,6 @@
 package net.lyof.phantasm.block.custom;
 
+import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.effect.ModEffects;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -39,8 +40,8 @@ public class PombBlock extends FallingBlock {
     public void onDestroyedOnLanding(World world, BlockPos pos, FallingBlockEntity fallingBlockEntity) {
         for (Entity entity : world.getOtherEntities(null, new Box(pos).expand(5))) {
             if (entity instanceof LivingEntity living) {
-                living.damage(living.getDamageSources().dragonBreath(), 5);
-                living.addStatusEffect(new StatusEffectInstance(ModEffects.CORROSION, 200, 0));
+                living.damage(living.getDamageSources().dragonBreath(), (float) ConfigEntries.fallingPombDamage);
+                living.addStatusEffect(new StatusEffectInstance(ModEffects.CORROSION, ConfigEntries.fallingPombDuration, ConfigEntries.fallingPombAmplifier));
                 entity.setVelocity(entity.getPos().add(0, 0.5, 0).subtract(pos.toCenterPos()).normalize().multiply(3));
             }
         }

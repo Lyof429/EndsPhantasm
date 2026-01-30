@@ -15,12 +15,12 @@ public class EndSpikeFeatureSpikeMixin {
 
     @Inject(method = "getHeight", at = @At("HEAD"), cancellable = true)
     public void increaseHeight(CallbackInfoReturnable<Integer> cir) {
-        cir.setReturnValue(this.height + ConfigEntries.extraSpiresHeight);
+        cir.setReturnValue(this.height + ConfigEntries.extraTowerHeight);
     }
 
     @Inject(method = "isGuarded", at = @At("HEAD"), cancellable = true)
     public void removeGuard(CallbackInfoReturnable<Boolean> cir) {
-        if (ConfigEntries.noCrystalCages)
+        if (ConfigEntries.noCrystalCage)
             cir.setReturnValue(false);
     }
 }

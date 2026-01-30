@@ -32,7 +32,7 @@ public abstract class EntityMixin {
 
     @ModifyReturnValue(method = "getTeleportTarget", at = @At("RETURN"))
     public TeleportTarget spawnInOuterEnd(TeleportTarget original, ServerWorld destination) {
-        if (destination.getRegistryKey() == World.END && ConfigEntries.outerEndIntegration) {
+        if (destination.getRegistryKey() == World.END && ConfigEntries.outerEndFirst) {
             TeleportTarget result = original;
             BlockPos p = new BlockPos(1280, 60, 0);
 

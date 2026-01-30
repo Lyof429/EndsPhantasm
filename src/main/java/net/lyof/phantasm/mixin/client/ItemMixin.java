@@ -23,7 +23,7 @@ public class ItemMixin {
     public void showCrystalBonus(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {
         if (stack.isIn(ModTags.Items.XP_BOOSTED) && MinecraftClient.getInstance().player != null) {
             tooltip.add(Text.translatable("tooltip.xp_boosted").formatted(Formatting.GREEN));
-            String bonus = Math.round((float) ConfigEntries.crystalXPBoost * MinecraftClient.getInstance().player.experienceLevel) + "%";
+            String bonus = Math.round((float) ConfigEntries.crystallineXpBoost * MinecraftClient.getInstance().player.experienceLevel) + "%";
             tooltip.add(Text.translatable("tooltip.xp_boosted.value", bonus).formatted(Formatting.GREEN));
         }
     }

@@ -53,7 +53,8 @@ public class ChoralArrowEntity extends ArrowEntity {
         if (!this.shotByCrossbow) {
             super.onHit(target);
             if (!target.getType().isIn(ConventionalEntityTypeTags.BOSSES))
-                target.addStatusEffect(new StatusEffectInstance(ModEffects.CHARM, target instanceof PlayerEntity ? 20 : 40, 0));
+                target.addStatusEffect(new StatusEffectInstance(ModEffects.CHARM, target instanceof PlayerEntity ?
+                        ConfigEntries.choralArrowCharmPlayer : ConfigEntries.choralArrowCharm, 0));
         }
     }
 
@@ -98,7 +99,7 @@ public class ChoralArrowEntity extends ArrowEntity {
 
             Vec3d direction = this.getVelocity().normalize();
             Vec3d position = this.getPos();
-            int range = ConfigEntries.subwooferRange * 2;
+            int range = ConfigEntries.choralArrowCrossbowRange;
 
             List<UUID> affected = new ArrayList<>();
 

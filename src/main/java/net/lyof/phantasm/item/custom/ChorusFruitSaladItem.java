@@ -15,7 +15,7 @@ public class ChorusFruitSaladItem extends DescribedItem {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (world instanceof ServerWorld server && user.canUsePortals() && !user.isSneaking() && ConfigEntries.chorusSaladTp) {
+        if (world instanceof ServerWorld server && user.canUsePortals() && !user.isSneaking() && ConfigEntries.chorusSaladTeleportation) {
             RegistryKey<World> registryKey = world.getRegistryKey() == World.END ? World.OVERWORLD : World.END;
             ServerWorld serverWorld = server.getServer().getWorld(registryKey);
             if (serverWorld == null) {

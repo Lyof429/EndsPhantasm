@@ -9,7 +9,6 @@
     "ActiveTargetGoalMixin",
     "AnvilScreenHandlerMixin",
     "BlockEntityTypeMixin",
-    "BlockMixin",
     "BlockRotStructureProcessorMixin",
     "ChorusFlowerBlockMixin",
     "ChorusPlantBlockMixin",

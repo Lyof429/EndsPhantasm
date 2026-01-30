@@ -190,12 +190,13 @@ public class ConfiguredData {
                     double pMin = point.isJsonArray() ? point.getAsJsonArray().get(0).getAsDouble() : -1;
                     double pMax = point.isJsonArray() ? point.getAsJsonArray().get(1).getAsDouble() : 1;
 
-                    double highlandsRange = (pMax - pMin) * (1 - ConfigEntries.customBiomesWeight);
-                    double highlandsStep = customCount == 1 ? highlandsRange : highlandsRange / (customCount - 1);
-                    double customRange = (pMax - pMin) * ConfigEntries.customBiomesWeight;
                     double customStep = 0;
                     for (Pair<Identifier, Double> entry : EndDataCompat.getEnabledWeightedBiomes())
                         customStep += entry.getSecond();
+                    double highlandsRange = (pMax - pMin) * (ConfigEntries.endHighlandsWeight / (customStep + ConfigEntries.endHighlandsWeight));
+                    double highlandsStep = customCount == 1 ? highlandsRange : highlandsRange / (customCount - 1);
+                    double customRange = (pMax - pMin) * (customStep / (customStep + ConfigEntries.endHighlandsWeight));
+
 
                     double min = pMin;
                     double max = pMin;

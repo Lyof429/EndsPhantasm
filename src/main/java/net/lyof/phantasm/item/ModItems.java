@@ -96,10 +96,10 @@ public class ModItems {
             .model().build();
 
     public static final Item POMB_SLICE = ModRegistry.ofItem("pomb_slice",
-            new CorrosiveFoodItem(60, new FabricItemSettings().food(ModRegistry.Foods.POMB_SLICE)))
+            new CorrosiveFoodItem(ConfigEntries.pombSliceCorrosive, new FabricItemSettings().food(ModRegistry.Foods.POMB_SLICE)))
             .tag(ConventionalItemTags.FOODS).model().build();
     public static final Item POP_ROCK_CANDY = ModRegistry.ofItem("pop_rock_candy",
-                    new CorrosiveFoodItem(120, new FabricItemSettings().food(ModRegistry.Foods.POP_ROCK_CANDY)))
+                    new CorrosiveFoodItem(ConfigEntries.popRockCandyCorrosive, new FabricItemSettings().food(ModRegistry.Foods.POP_ROCK_CANDY)))
             .tag(ConventionalItemTags.FOODS).model().build();
 
     public static final Item MUSIC_DISC_ABRUPTION = ModRegistry.ofItem("music_disc_abruption",

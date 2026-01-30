@@ -33,7 +33,7 @@ public class BehemothEventListener implements GameEventListener {
         if (event.isIn(ModTags.GameEvents.BEHEMOTH_CAN_LISTEN) && !(emitter.sourceEntity() instanceof BehemothEntity)) {
             if (emitter.sourceEntity() instanceof PlayerEntity player && !player.isCreative() && !player.isSpectator()) {
                 if (player.isSneaking()) {
-                    if (player.distanceTo(behemoth) < ConfigEntries.behemothAggroRangeSneaking)
+                    if (player.distanceTo(behemoth) < ConfigEntries.behemothSneakAggroRange)
                         behemoth.setTarget(player);
                 } else
                     behemoth.setTarget(player);

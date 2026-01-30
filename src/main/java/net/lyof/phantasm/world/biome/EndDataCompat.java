@@ -15,13 +15,13 @@ import java.util.function.Supplier;
 public class EndDataCompat {
     public static void register() {
         add(ModBiomes.DREAMING_DEN.getValue(),
-                () -> ConfigEntries.doDreamingDenBiome ? ConfigEntries.dreamingDenWeight : 0);
+                () -> Math.max(ConfigEntries.dreamingDenWeight, 0));
         add(ModBiomes.ACIDBURNT_ABYSSES.getValue(),
-                () -> ConfigEntries.doAcidburntAbyssesBiome ? ConfigEntries.acidburntAbyssesWeight : 0);
+                () -> Math.max(ConfigEntries.acidburntAbyssesWeight, 0));
     }
 
     public static EndDataCompat.Mode getCompatibilityMode() {
-        return switch (ConfigEntries.dataCompatMode) {
+        return switch (ConfigEntries.datapackMode) {
             case "automatic" -> {
                 if (FabricLoader.getInstance().isModLoaded("nullscape"))
                     yield Mode.NULLSCAPE;

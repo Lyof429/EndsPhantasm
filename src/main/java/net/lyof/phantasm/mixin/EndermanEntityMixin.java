@@ -27,6 +27,6 @@ public abstract class EndermanEntityMixin extends HostileEntity {
         List<EnderDragonEntity> list = player.getWorld().getEntitiesByType(TypeFilter.instanceOf(EnderDragonEntity.class),
                 new Box(player.getBlockPos()).expand(100),
                 a -> true);
-        if (ConfigEntries.noEndermenFight && !list.isEmpty()) cir.setReturnValue(false);
+        if (ConfigEntries.passiveEndermen && !list.isEmpty()) cir.setReturnValue(false);
     }
 }

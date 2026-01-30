@@ -6,6 +6,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.block.entity.ChallengeRuneBlockEntity;
+import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.effect.ModEffects;
 import net.lyof.phantasm.entity.access.Challenger;
 import net.lyof.phantasm.entity.access.Corrosive;
@@ -56,18 +57,18 @@ public abstract class LivingEntityMixin extends Entity implements Challenger, Co
         if (!this.hasStatusEffect(ModEffects.CORROSION)) return original;
 
         int i = this.getStatusEffect(ModEffects.CORROSION).getAmplifier() + 1;
-        return original * (1 + 0.2f * i);
+        return original * (1 + (float) ConfigEntries.corrosionMultiplier * i);
     }
 
     @WrapMethod(method = "damage")
-    public boolean cancelDamage(DamageSource source, float amount, Operation<Boolean> original) {
+    public boolean doAttackEffects(DamageSource source, float amount, Operation<Boolean> original) {
         if (source.getAttacker() instanceof LivingEntity attacker && attacker.hasStatusEffect(ModEffects.CHARM))
             return false;
 
         boolean v = original.call(source, amount);
 
         if (source.getAttacker() instanceof Corrosive corrosive && corrosive.isCorrosive())
-            this.addStatusEffect(new StatusEffectInstance(ModEffects.CORROSION, 80, 0));
+            this.addStatusEffect(new StatusEffectInstance(ModEffects.CORROSION, ConfigEntries.corrosiveDuration, ConfigEntries.corrosiveAmplifier));
         return v;
     }
 

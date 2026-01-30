@@ -26,21 +26,21 @@ public class ModMaterialRules {
 
     public static MaterialRules.MaterialRule createPhantasmRules() {
 
-        int raw_purpur_offset = ConfigEntries.rawPurpurOffset;
+        int start = ConfigEntries.rawPurpurStart;
         MaterialRules.MaterialCondition band_y_below = MaterialRules.verticalGradient("raw_purpur_stripes_below1",
-                YOffset.fixed(raw_purpur_offset + 40), YOffset.fixed(raw_purpur_offset + 42));
+                YOffset.fixed(start + 21), YOffset.fixed(start + 23));
         MaterialRules.MaterialCondition band_y_above = MaterialRules.not(MaterialRules.verticalGradient("raw_purpur_stripes_above1",
-                YOffset.fixed(raw_purpur_offset + 35), YOffset.fixed(raw_purpur_offset + 37)));
+                YOffset.fixed(start + 16), YOffset.fixed(start + 18)));
 
         MaterialRules.MaterialCondition band_y_below2 = MaterialRules.verticalGradient("raw_purpur_stripes_below2",
-                YOffset.fixed(raw_purpur_offset + 32), YOffset.fixed(raw_purpur_offset + 34));
+                YOffset.fixed(start + 13), YOffset.fixed(start + 15));
         MaterialRules.MaterialCondition band_y_above2 = MaterialRules.not(MaterialRules.verticalGradient("raw_purpur_stripes_above2",
-                YOffset.fixed(raw_purpur_offset + 27), YOffset.fixed(raw_purpur_offset + 29)));
+                YOffset.fixed(start + 8), YOffset.fixed(start + 10)));
 
         MaterialRules.MaterialCondition band_y_below3 = MaterialRules.verticalGradient("raw_purpur_stripes_below3",
-                YOffset.fixed(raw_purpur_offset + 24), YOffset.fixed(raw_purpur_offset + 26));
+                YOffset.fixed(start + 5), YOffset.fixed(start + 7));
         MaterialRules.MaterialCondition band_y_above3 = MaterialRules.not(MaterialRules.verticalGradient("raw_purpur_stripes_above3",
-                YOffset.fixed(raw_purpur_offset + 19), YOffset.fixed(raw_purpur_offset + 21)));
+                YOffset.fixed(start), YOffset.fixed(start + 2)));
 
 
         // RAW PURPUR RULES

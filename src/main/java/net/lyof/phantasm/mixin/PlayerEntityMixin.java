@@ -40,7 +40,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Challeng
 		ItemStack stack = self.getMainHandStack();
 		if (!stack.isIn(ModTags.Items.XP_BOOSTED) || !stack.getItem().isSuitableFor(state)) return original;
 
-		float bonus = 1 + (float) ConfigEntries.crystalXPBoost * self.experienceLevel / 100f;
+		float bonus = 1 + (float) ConfigEntries.crystallineXpBoost * self.experienceLevel / 100f;
 
 		return original * bonus;
 	}

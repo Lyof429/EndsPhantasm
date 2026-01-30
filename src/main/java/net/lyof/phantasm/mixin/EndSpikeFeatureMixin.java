@@ -25,7 +25,7 @@ public abstract class EndSpikeFeatureMixin {
                                   EndSpikeFeature.Spike spike) {
 
         double crying = (pos.getY() - 70) / (spike.getHeight() - 70d);
-        if (state.isOf(Blocks.OBSIDIAN) && ConfigEntries.improveEndSpires) {
+        if (state.isOf(Blocks.OBSIDIAN) && ConfigEntries.prettyTowers) {
             if (Math.random() < crying * crying * crying)
                 state = Blocks.CRYING_OBSIDIAN.getDefaultState();
             else if (Math.random() < 0.35)

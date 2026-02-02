@@ -1,6 +1,8 @@
 package net.lyof.phantasm.item.custom;
 
 import net.lyof.phantasm.config.ConfigEntries;
+import net.minecraft.block.EndPortalBlock;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -18,22 +20,22 @@ public class ChorusFruitSaladItem extends DescribedItem {
         if (world instanceof ServerWorld server && user.canUsePortals() && !user.isSneaking() && ConfigEntries.chorusSaladTeleportation) {
             RegistryKey<World> registryKey = world.getRegistryKey() == World.END ? World.OVERWORLD : World.END;
             ServerWorld serverWorld = server.getServer().getWorld(registryKey);
-            if (serverWorld == null) {
+            if (serverWorld == null)
                 return super.finishUsing(stack, world, user);
-            }
             user.moveToWorld(serverWorld);
         }
 
         super.finishUsing(stack, world, user);
+        ItemStack remainder = this.getRecipeRemainder(stack);
         if (user instanceof PlayerEntity player) {
             if (stack.isEmpty()) {
-                if (player.getInventory().contains(this.getRecipeRemainder(stack)))
-                    player.giveItemStack(this.getRecipeRemainder(stack));
+                if (player.getInventory().contains(remainder))
+                    player.giveItemStack(remainder);
                 else
-                    return this.getRecipeRemainder(stack);
+                    return remainder;
             }
             else if (!player.isCreative())
-                player.giveItemStack(this.getRecipeRemainder(stack));
+                player.giveItemStack(remainder);
         }
         return stack;
     }

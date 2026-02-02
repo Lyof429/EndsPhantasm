@@ -40,6 +40,7 @@ public abstract class CreditsScreenMixin implements MixinAccess<Boolean> {
 
     @Inject(method = "init", at = @At("HEAD"), cancellable = true)
     private void initBeginning(CallbackInfo ci) {
+        Phantasm.log("init screen");
         if (this.beginningCredits && this.credits == null) {
             this.credits = Lists.newArrayList();
             this.centeredLines = new IntOpenHashSet();
@@ -48,6 +49,12 @@ public abstract class CreditsScreenMixin implements MixinAccess<Boolean> {
             this.creditsHeight = this.credits.size() * 12 - 200;
             ci.cancel();
         }
+    }
+
+    @Inject(method = "removed", at = @At("HEAD"))
+    private void onRemove(CallbackInfo ci) {
+        Phantasm.log("screen removed");
+        Thread.dumpStack();
     }
 
     @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/LogoDrawer;draw(Lnet/minecraft/client/gui/DrawContext;IFI)V"))

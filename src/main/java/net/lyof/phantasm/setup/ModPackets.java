@@ -130,9 +130,11 @@ public class ModPackets {
                 CreditsScreen creditsScreen = new CreditsScreen(true, () -> {
                     ClientPlayNetworking.send(ModPackets.BEGIN_CUTSCENE_ENDS, PacketByteBufs.empty());
                     client.setScreen(null);
+                    Phantasm.log("credit ended");
                 });
                 ((MixinAccess<Boolean>) creditsScreen).setMixinValue(true);
 
+                Phantasm.log("set screen");
                 client.setScreen(creditsScreen);
             });
         }

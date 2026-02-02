@@ -12,6 +12,7 @@ import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.util.MixinAccess;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.NbtCompound;
@@ -38,6 +39,10 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
     @Shadow public abstract PlayerAdvancementTracker getAdvancementTracker();
     @Shadow private boolean seenCredits;
 
+    @Shadow private boolean inTeleportationState;
+
+    @Shadow public boolean notInAnyWorld;
+
     @WrapOperation(method = "moveToWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;createEndSpawnPlatform(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;)V"))
     public void noPlatform(ServerPlayerEntity instance, ServerWorld world, BlockPos centerPos, Operation<Void> original) {
         original.call(instance, world, ServerWorld.END_SPAWN_POS.mutableCopy());
@@ -53,13 +58,17 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
         self.notInAnyWorld = false;
 
         if (destination.getRegistryKey() == World.END && !this.seenBeginning) {
-            this.seenBeginning = true;
-
             if (ConfigEntries.beginCutscene) {
+                this.inTeleportationState = true;
                 self.detach();
                 this.getServerWorld().removePlayer(self, RemovalReason.CHANGED_DIMENSION);
-                self.notInAnyWorld = true;
-                ServerPlayNetworking.send(self, ModPackets.BEGIN_CUTSCENE_STARTS, PacketByteBufs.empty());
+
+                if (!this.notInAnyWorld) {
+                    Phantasm.log("sending packet");
+                    self.notInAnyWorld = true;
+                    ServerPlayNetworking.send(self, ModPackets.BEGIN_CUTSCENE_STARTS, PacketByteBufs.empty());
+                    this.seenBeginning = true;
+                }
 
                 return this;
             }
@@ -82,7 +91,7 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
 
     @Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
     private void readData(NbtCompound nbt, CallbackInfo ci) {
-        if (nbt.contains(SEEN_BEGINNING_KEY)) this.seenBeginning = nbt.getBoolean(SEEN_BEGINNING_KEY);
+        //if (nbt.contains(SEEN_BEGINNING_KEY)) this.seenBeginning = nbt.getBoolean(SEEN_BEGINNING_KEY);
     }
 
     @Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
@@ -93,7 +102,7 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
     @SuppressWarnings("unchecked")
     @Inject(method = "copyFrom", at = @At("HEAD"))
     private void copySeenBeginning(ServerPlayerEntity old, boolean alive, CallbackInfo ci) {
-        this.seenBeginning = ((MixinAccess<Boolean>) old).getMixinValue();
+        //this.seenBeginning = ((MixinAccess<Boolean>) old).getMixinValue();
 
         if ((alive || this.getWorld().getGameRules().getBoolean(GameRules.KEEP_INVENTORY))
                 && old instanceof PolyppieCarrier oldCarrier

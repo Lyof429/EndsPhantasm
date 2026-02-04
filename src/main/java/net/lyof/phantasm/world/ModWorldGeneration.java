@@ -59,7 +59,7 @@ public class ModWorldGeneration {
         BiomeModifications.addSpawn(BiomeSelectors.tag(ModTags.Biomes.ACIDBURNT_ABYSSES),
                 SpawnGroup.MONSTER,
                 ModEntities.SOUR_SLUDGE,
-                7, 4, 6);
+                10, 4, 6);
     }
 
     private static void generateSpawnRestrictions() {

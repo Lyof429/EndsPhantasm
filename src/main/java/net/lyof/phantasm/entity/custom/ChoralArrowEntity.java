@@ -17,6 +17,7 @@ import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -115,10 +116,10 @@ public class ChoralArrowEntity extends ArrowEntity {
                 pos = new BlockPos((int) Math.round(position.x - 0.5), (int) Math.round(position.y - 0.5), (int) Math.round(position.z - 0.5));
                 List<Entity> entities = world.getOtherEntities(shooter, new Box(pos).expand(1), SubwooferBlock::canPush);
 
-                // TODO: packet mess
-                world.addImportantParticle(ParticleTypes.SONIC_BOOM,
-                        position.x, position.y, position.z,
-                        0, 0, 0);
+                if (world instanceof ServerWorld serverWorld) {
+                    serverWorld.spawnParticles(ParticleTypes.SONIC_BOOM, position.x, position.y, position.z,
+                            1, 0, 0, 0, 0);
+                }
                 world.playSound(null, pos, SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS, 0.2f, 1.5f);
 
                 for (Entity e : entities) {

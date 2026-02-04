@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.ModEntities;
+import net.lyof.phantasm.entity.custom.BehemothEntity;
 import net.lyof.phantasm.entity.custom.SourSludgeEntity;
 import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.world.biome.ModBiomes;
@@ -63,7 +64,7 @@ public class ModWorldGeneration {
     }
 
     private static void generateSpawnRestrictions() {
-        SpawnRestriction.register(ModEntities.BEHEMOTH, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
-        SpawnRestriction.register(ModEntities.SOUR_SLUDGE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SourSludgeEntity::canMobSpawn);
+        SpawnRestriction.register(ModEntities.BEHEMOTH, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BehemothEntity::canMobSpawn);
+        SpawnRestriction.register(ModEntities.SOUR_SLUDGE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
     }
 }

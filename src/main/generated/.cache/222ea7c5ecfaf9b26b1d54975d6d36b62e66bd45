@@ -1,4 +1,4 @@
-// 1.20.1	2026-01-29T19:02:05.0952906	End's Phantasm/World Gen
+// 1.20.1	2026-02-04T17:44:29.7113549	End's Phantasm/World Gen
 c3f096bf8dcfa29224be557ff555348136df5400 data\phantasm\worldgen\configured_feature\crystal_spike.json
 03aa949b0dfae5f4735f4630f0831b8b02449d5f data\phantasm\worldgen\biome\dreaming_den.json
 20f0fe1197b1ccaaaca1c0eb00569f84ddfed11b data\phantasm\worldgen\placed_feature\fallen_star.json
@@ -8,8 +8,8 @@ c8fbb58208b8fc78c35895f7ea15850170689292 data\phantasm\worldgen\placed_feature\p
 6881ce4be6f25567414d4ad3c0f9dc78d40da925 data\phantasm\worldgen\configured_feature\patch_tall_acidic_nihilis.json
 5b03a3c80edbb566993eca6cb29f372bd40abf66 data\phantasm\worldgen\configured_feature\patch_dragon_mint.json
 f3cbb3e87ef69839a6959d37da1c5935fa2be644 data\phantasm\worldgen\configured_feature\patch_vivid_nihilis.json
-6900d06f932bee16bfa2b52a6ea77c4a9d411bd3 data\phantasm\worldgen\configured_feature\patch_oblivine.json
 b83c72945e89d096335d33bda4e5779979f4860e data\phantasm\worldgen\configured_feature\raw_purpur_coal_ore.json
+6900d06f932bee16bfa2b52a6ea77c4a9d411bd3 data\phantasm\worldgen\configured_feature\patch_oblivine.json
 39246f2f509ea9642ff6db1234c4af4cb9389f4b data\phantasm\worldgen\configured_feature\patch_acidic_nihilis.json
 bdd6c073b496ff5a92fc8d5adb0ffde965090e6c data\phantasm\worldgen\placed_feature\patch_choral_fan.json
 1ccfbfa6cdcb6a49199279861ae358a07d6d3214 data\phantasm\worldgen\configured_feature\tall_dralgae.json

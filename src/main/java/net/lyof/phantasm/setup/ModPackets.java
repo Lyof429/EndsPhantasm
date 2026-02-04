@@ -56,8 +56,10 @@ public class ModPackets {
     public static class Server {
         public static void beginCutsceneEnds(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,
                                              PacketByteBuf buf, PacketSender responseSender) {
-            ((MixinAccess<Boolean>) player).setMixinValue(true);
-            player.moveToWorld(server.getWorld(World.END));
+            server.execute(() -> {
+                ((MixinAccess<Boolean>) player).setMixinValue(true);
+                player.moveToWorld(server.getWorld(World.END));
+            });
         }
 
         public static void polyppieClientUpdate(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,
@@ -127,14 +129,14 @@ public class ModPackets {
 
         public static void beginCutsceneStarts(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
             client.execute(() -> {
+                if (client.currentScreen instanceof CreditsScreen) return;
+
                 CreditsScreen creditsScreen = new CreditsScreen(true, () -> {
                     ClientPlayNetworking.send(ModPackets.BEGIN_CUTSCENE_ENDS, PacketByteBufs.empty());
                     client.setScreen(null);
-                    Phantasm.log("credit ended");
                 });
                 ((MixinAccess<Boolean>) creditsScreen).setMixinValue(true);
 
-                Phantasm.log("set screen");
                 client.setScreen(creditsScreen);
             });
         }

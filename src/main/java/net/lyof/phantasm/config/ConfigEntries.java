@@ -1,7 +1,6 @@
 package net.lyof.phantasm.config;
 
 import net.lyof.phantasm.block.challenge.Challenge;
-import net.lyof.phantasm.entity.access.Challenger;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class ConfigEntries {
         acidburntAbyssesWeight = new ConfigEntry<>("generation.biomes.weights.acidburnt_abysses", 1.2).get();
 
         outerEndFirst = new ConfigEntry<>("general.outer_end_before_dragon", true).get();
-        beginCutscene = new ConfigEntry<>("general.show_cutscene", true).get();
+        beginCutscene = outerEndFirst && new ConfigEntry<>("general.show_cutscene", true).get();
 
         darkEnd = new ConfigEntry<>("general.dark_end", false).get();
 

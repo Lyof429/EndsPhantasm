@@ -1,8 +1,6 @@
 package net.lyof.phantasm.item.custom;
 
 import net.lyof.phantasm.config.ConfigEntries;
-import net.minecraft.block.EndPortalBlock;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

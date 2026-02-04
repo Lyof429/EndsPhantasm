@@ -3,7 +3,6 @@ package net.lyof.phantasm.setup.datagen.fabric;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.lyof.phantasm.block.ModBlocks;
-import net.lyof.phantasm.item.ModItems;
 import net.lyof.phantasm.setup.ModRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantments;

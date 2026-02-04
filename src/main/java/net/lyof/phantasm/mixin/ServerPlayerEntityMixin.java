@@ -12,8 +12,6 @@ import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.util.MixinAccess;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
-import net.minecraft.block.EndPortalBlock;
-import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.NbtCompound;

@@ -73,6 +73,10 @@ dependencies {
 	modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
 	modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
 
+	modLocalRuntime "maven.modrinth:emi-plus-backport:tbcT7hXz"
+	modLocalRuntime "net.fabricmc:fabric-language-kotlin:1.13.9+kotlin.2.3.10"
+	modLocalRuntime "maven.modrinth:forge-config-api-port:v8.0.3-1.20.1-Fabric"
+
 	// Inventory Profiles Next
 	modCompileOnly "maven.modrinth:inventory-profiles-next:fabric-1.20.1-1.10.19"
 }

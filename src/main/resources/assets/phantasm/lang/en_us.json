@@ -6,11 +6,13 @@
   "block.phantasm.tall_vivid_nihilis": "Tall Vivid Nihilis",
 
   "block.phantasm.starflower": "Starflower",
+  "tag.item.phantasm.crystal_flowers": "Crystal Flowers",
 
   "block.phantasm.pream_log": "Pream Log",
   "block.phantasm.pream_wood": "Pream Wood",
   "block.phantasm.stripped_pream_log": "Stripped Pream Log",
   "block.phantasm.stripped_pream_wood": "Stripped Pream Wood",
+  "tag.item.phantasm.pream_logs": "Pream Logs",
   "block.phantasm.pream_leaves": "Pream Leaves",
   "block.phantasm.hanging_pream_leaves": "Hanging Pream Leaves",
   "block.phantasm.pream_sapling": "Pream Sapling",
@@ -48,6 +50,7 @@
   "item.phantasm.crystalline_axe": "Crystalline Axe",
   "item.phantasm.crystalline_hoe": "Crystalline Hoe",
   "item.phantasm.crystalline_knife": "Crystalline Knife",
+  "tag.item.phantasm.has_xp_boost": "Experience Boosted",
 
   "block.phantasm.crystal_block": "Crystal Block",
   "block.phantasm.crystal_tiles": "Crystal Tiles",

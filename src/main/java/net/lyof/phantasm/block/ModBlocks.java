@@ -151,10 +151,14 @@ public class ModBlocks {
 
     public static final Block CRYSTAL_SHARD = ModRegistry.ofBlock("crystal_shard",
             new CrystalShardBlock(copy(crystalMaterial).luminance(7).sounds(BlockSoundGroup.GLASS)))
-            .model(Models.GENERATED).tool("_pickaxe").drop().cutout().build();
+            .model(Models.GENERATED).tool("_pickaxe")
+            .tagitem(ConventionalItemTags.GEMS)
+            .drop().cutout().build();
     public static final Block VOID_CRYSTAL_SHARD = ModRegistry.ofBlock("void_crystal_shard",
             new CrystalShardBlock(copy(crystalMaterial).sounds(BlockSoundGroup.GLASS)))
-            .model(Models.GENERATED).tool("_pickaxe").drop().cutout().build();
+            .model(Models.GENERATED).tool("_pickaxe")
+            .tagitem(ConventionalItemTags.GEMS)
+            .drop().cutout().build();
 
 
     // Crystal Blockset
@@ -251,6 +255,7 @@ public class ModBlocks {
     public static final Block PREAM_LEAVES = ModRegistry.ofBlock("pream_leaves",
             new LeavesBlock(preamLeafMaterial))
             .tag(BlockTags.LEAVES, ModTags.Blocks.HANGING_PREAM_LEAVES_GROWABLE_ON)
+            .tagitem(ItemTags.LEAVES)
             .tool("_hoe").flammable(5, 30)
             .model().cutout().build();
     public static final Block HANGING_PREAM_LEAVES = ModRegistry.ofBlock("hanging_pream_leaves",
@@ -259,6 +264,7 @@ public class ModBlocks {
                     ModTags.Blocks.HANGING_PREAM_LEAVES_GROWABLE_ON,
                     Block.createCuboidShape(0, 8, 0, 16, 16, 16)))
             .tag(BlockTags.LEAVES)
+            .tagitem(ItemTags.FLOWERS)
             .tool("_hoe").flammable(5, 30)
             .cutout().build();
 
@@ -357,7 +363,7 @@ public class ModBlocks {
 
     public static final Block TALL_VIVID_NIHILIS = ModRegistry.ofBlock("tall_vivid_nihilis",
                     new TallPlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.TEAL).replaceable()))
-            .tagitem(ItemTags.FLOWERS).end_plant()
+            .end_plant()
             .cutout().build();
 
     public static final Block VIVID_NIHILIS = ModRegistry.ofBlock("vivid_nihilis",
@@ -368,7 +374,6 @@ public class ModBlocks {
                         TallPlantBlock.placeAt(world, TALL_VIVID_NIHILIS.getDefaultState(), pos, 2);
                 }
             })
-            .tagitem(ItemTags.FLOWERS)
             .model(ModRegistry.Models.CROSS).end_plant()
             .cutout().build();
 
@@ -390,6 +395,7 @@ public class ModBlocks {
     public static final Block RAW_PURPUR_COAL_ORE = ModRegistry.ofBlock("raw_purpur_coal_ore",
                     new Block(copy(rawPurpurMaterial).mapColor(MapColor.DEEPSLATE_GRAY)))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.COAL_ORES)
+            .tagitem(ItemTags.COAL_ORES)
             .model().build();
 
     public static final Block RAW_PURPUR_BRICKS = ModRegistry.ofBlock("raw_purpur_bricks",
@@ -457,7 +463,7 @@ public class ModBlocks {
                             ModTags.Blocks.OBLIVINE_GROWABLE_ON,
                             Block.createCuboidShape(0, 8, 0, 16, 16, 16)))
             .drop().cutout()
-            .tagitem(ModTags.Items.CRYSTAL_FLOWERS)
+            .tagitem(ModTags.Items.CRYSTAL_FLOWERS, ItemTags.FLOWERS)
             .build();
 
 
@@ -484,13 +490,12 @@ public class ModBlocks {
                                 TallPlantBlock.placeAt(world, TALL_ACIDIC_NIHILIS.getDefaultState(), pos, 2);
                         }
                     })
-            .tagitem(ItemTags.FLOWERS)
             .model(ModRegistry.Models.CROSS).end_plant()
             .cutout().build();
 
     public static final Block TALL_ACIDIC_NIHILIS = ModRegistry.ofBlock("tall_acidic_nihilis",
                     new TallPlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.DARK_DULL_PINK).replaceable()))
-            .tagitem(ItemTags.FLOWERS).end_plant()
+            .end_plant()
             .cutout().build();
 
     public static final Block DRAGON_MINT = ModRegistry.ofBlock("dragon_mint",

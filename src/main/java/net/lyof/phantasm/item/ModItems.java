@@ -69,12 +69,12 @@ public class ModItems {
 
     public static final Item PREAM_SIGN = ModRegistry.ofItem("pream_sign",
             new SignItem(new FabricItemSettings(), ModBlocks.PREAM_SIGN, ModBlocks.PREAM_WALL_SIGN))
-            .fuel(200)
-            .build();
+            .tag(ItemTags.SIGNS)
+            .fuel(200).build();
     public static final Item PREAM_HANGING_SIGN = ModRegistry.ofItem("pream_hanging_sign",
             new HangingSignItem(ModBlocks.PREAM_HANGING_SIGN, ModBlocks.PREAM_WALL_HANGING_SIGN, new FabricItemSettings()))
-            .fuel(200)
-            .build();
+            .tag(ItemTags.HANGING_SIGNS)
+            .fuel(200).build();
 
     public static final Item CHORUS_FRUIT_SALAD = ModRegistry.ofItem("chorus_fruit_salad",
             new ChorusFruitSaladItem(new FabricItemSettings().food(ModRegistry.Foods.CHORUS_SALAD).recipeRemainder(Items.BOWL)

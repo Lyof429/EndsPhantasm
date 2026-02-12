@@ -13,10 +13,7 @@ import net.lyof.phantasm.setup.ModPackets;
 import net.lyof.phantasm.setup.compat.VinURLCompat;
 import net.lyof.phantasm.sound.SongHandler;
 import net.lyof.phantasm.sound.custom.PolyppieSoundInstance;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.VariantHolder;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -162,7 +159,12 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
     @Override
     public double getMountedHeightOffset() {
-        return this.getHeight();
+        return this.getHeight() * 0.6;
+    }
+
+    @Override
+    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
+        return dimensions.height * 0.2f;
     }
 
     @Override

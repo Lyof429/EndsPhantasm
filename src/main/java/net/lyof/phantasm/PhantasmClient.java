@@ -50,7 +50,6 @@ public class PhantasmClient implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.POLYPPIE, PolyppieRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.POLYPPIE, PolyppieModel::getTexturedModelData);
-        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.POLYPPIE_TRANSPARENT, PolyppieModel::getTransparentModelData);
 
         EntityRendererRegistry.register(ModEntities.SOUR_SLUDGE, SourSludgeRenderer::new);
 

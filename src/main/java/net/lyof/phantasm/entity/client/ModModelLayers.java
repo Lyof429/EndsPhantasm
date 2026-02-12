@@ -8,5 +8,4 @@ public class ModModelLayers {
     public static final EntityModelLayer BEHEMOTH = new EntityModelLayer(Phantasm.makeID("behemoth"), "primary");
 
     public static final EntityModelLayer POLYPPIE = new EntityModelLayer(Phantasm.makeID("polyppie"), "primary");
-    public static final EntityModelLayer POLYPPIE_TRANSPARENT = new EntityModelLayer(Phantasm.makeID("polyppie"), "secondary");
 }

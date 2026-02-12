@@ -38,8 +38,7 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
     }
 
     public PolyppieRenderer(EntityRendererFactory.Context context) {
-        super(context, new PolyppieModel<>(context.getPart(ModModelLayers.POLYPPIE)), 0.6f);
-        this.addFeature(new TransparentRenderer(this, context.getModelLoader()));
+        super(context, new PolyppieModel<>(context.getPart(ModModelLayers.POLYPPIE)), 0.4f);
         this.addFeature(new DiscRenderer(this, context.getItemRenderer()));
 
         instance = this;
@@ -48,26 +47,6 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
     @Override
     public Identifier getTexture(PolyppieEntity entity) {
         return entity.getVariant().texture;
-    }
-
-
-    public static class TransparentRenderer extends FeatureRenderer<PolyppieEntity, PolyppieModel<PolyppieEntity>> {
-        private final PolyppieModel<PolyppieEntity> model;
-
-        public TransparentRenderer(FeatureRendererContext<PolyppieEntity, PolyppieModel<PolyppieEntity>> context, EntityModelLoader loader) {
-            super(context);
-            this.model = new PolyppieModel<>(loader.getModelPart(ModModelLayers.POLYPPIE_TRANSPARENT));
-        }
-
-        @Override
-        public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, PolyppieEntity entity,
-                           float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-            this.getContextModel().copyStateTo(this.model);
-            this.model.animateModel(entity, limbAngle, limbDistance, tickDelta);
-            this.model.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-            this.model.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(this.getTexture(entity))), light, LivingEntityRenderer.getOverlay(entity, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
-
-        }
     }
 
 
@@ -83,7 +62,7 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
         public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, PolyppieEntity entity,
                            float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
 
-            this.itemRenderer.renderItem(entity.getStack(), ModelTransformationMode.FIXED, light, 0, matrices, vertexConsumers, entity.getWorld(), 0);
+            this.itemRenderer.renderItem(entity.getStack(), ModelTransformationMode.GROUND, light, 0, matrices, vertexConsumers, entity.getWorld(), 0);
         }
     }
 

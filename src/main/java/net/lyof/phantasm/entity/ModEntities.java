@@ -35,7 +35,7 @@ public class ModEntities {
 
     public static final EntityType<PolyppieEntity> POLYPPIE = Registry.register(Registries.ENTITY_TYPE,
             Phantasm.makeID("polyppie"), FabricEntityTypeBuilder.create(SpawnGroup.MISC, PolyppieEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.8f, 0.775f)).build());
+                    .dimensions(EntityDimensions.fixed(0.7f, 0.6f)).build());
 
     public static final EntityType<SourSludgeEntity> SOUR_SLUDGE = Registry.register(Registries.ENTITY_TYPE,
             Phantasm.makeID("sour_sludge"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SourSludgeEntity::new)

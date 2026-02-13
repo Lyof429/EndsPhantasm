@@ -430,7 +430,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
         else if (this.tickCount % 20 == 0 && !this.hasVehicle()) {
             this.band = new Band(this);
-            if (this.band.getPlaying() == null)
+            if (this.band.getPlaying() == null && !this.getWorld().isClient())
                 this.band.startRandom(this.getRandom());
         }
 

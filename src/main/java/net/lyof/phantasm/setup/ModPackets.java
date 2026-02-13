@@ -165,6 +165,8 @@ public class ModPackets {
 
                 if (polyppie != null) {
                     polyppie.setSoundKey(soundKey);
+                    if (stack.isEmpty()) polyppie.stopPlaying();
+                    else polyppie.startPlaying();
                     if (polyppie.isDead()) return;
 
                     if (Phantasm.isVinURLLoaded() && VinURLCompat.isVinURLDisc(stack)) {

@@ -19,6 +19,7 @@ import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 import org.joml.Quaternionf;
 
 import java.util.HashMap;
@@ -62,7 +63,12 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
         public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, PolyppieEntity entity,
                            float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
 
+            matrices.push();
+            matrices.translate(0, 1.15, entity.isPlayingRecord() ?
+                    -0.05 - 0.1*MathHelper.cos((entity.tickCount - entity.recordStartTick + tickDelta) * 0.08f) : -0.15);
+            matrices.multiply(getRotation(-pi/2, 0, 0));
             this.itemRenderer.renderItem(entity.getStack(), ModelTransformationMode.GROUND, light, 0, matrices, vertexConsumers, entity.getWorld(), 0);
+            matrices.pop();
         }
     }
 
@@ -81,7 +87,7 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
 
                 ModelPart torso = this.getContextModel().body;
                 matrices.scale(torso.xScale, torso.yScale, torso.zScale);
-                matrices.translate(0, torso.yScale * 0.7, torso.zScale * (self.isInSneakingPose() ? 0.5 : 0.45));
+                matrices.translate(0, torso.yScale * 0.6, torso.zScale * (self.isInSneakingPose() ? 0.6 : 0.35));
                 matrices.multiply(getRotation(torso.pitch + pi, 0, torso.roll));
 
                 instance.render(carrier.phantasm_getPolyppie(), tickDelta, animationProgress, matrices, vertexConsumers, light);

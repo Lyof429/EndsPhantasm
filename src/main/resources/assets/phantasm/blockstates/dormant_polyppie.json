@@ -1,0 +1,29 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "phantasm:block/dormant_polyppie"
+    },
+    "facing=up": {
+      "model": "phantasm:block/dormant_polyppie",
+      "x": 180
+    },
+    "facing=north": {
+      "model": "phantasm:block/dormant_polyppie",
+      "x": -90
+    },
+    "facing=south": {
+      "model": "phantasm:block/dormant_polyppie",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "phantasm:block/dormant_polyppie",
+      "x": -90,
+      "y": 90
+    },
+    "facing=west": {
+      "model": "phantasm:block/dormant_polyppie",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

@@ -134,6 +134,7 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.CHORAL_BLOCK);
                         entries.add(ModBlocks.CHORAL_FAN);
+                        entries.add(ModBlocks.DORMANT_POLYPPIE);
                         entries.add(ModBlocks.SUBWOOFER_BLOCK);
 
                         entries.add(ModItems.CHORAL_ARROW);
@@ -221,6 +222,7 @@ public class ModItemGroups {
 
             entries.addAfter(Blocks.HORN_CORAL_BLOCK, ModBlocks.CHORAL_BLOCK);
             entries.addAfter(Blocks.HORN_CORAL_WALL_FAN, ModBlocks.CHORAL_FAN);
+            entries.addAfter(ModBlocks.CHORAL_FAN, ModBlocks.DORMANT_POLYPPIE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
             entries.addAfter(Items.WARPED_BUTTON, ModBlocks.PREAM_LOG);
@@ -282,6 +284,7 @@ public class ModItemGroups {
             entries.addAfter(ModItems.PREAM_SIGN, ModItems.PREAM_HANGING_SIGN);
 
             entries.addAfter(Items.JUKEBOX, ModBlocks.SUBWOOFER_BLOCK);
+            entries.addAfter(ModBlocks.SUBWOOFER_BLOCK, ModBlocks.DORMANT_POLYPPIE);
 
             entries.addAfter(Items.ENDER_EYE, ModBlocks.CHALLENGE_RUNE);
         });

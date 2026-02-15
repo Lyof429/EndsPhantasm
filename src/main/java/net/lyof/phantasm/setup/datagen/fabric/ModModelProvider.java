@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Model;
+import net.minecraft.data.client.Models;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
@@ -105,13 +106,12 @@ public class ModModelProvider extends FabricModelProvider {
         for (Map.Entry<Item, Model> entry : ModRegistry.ITEM_MODELS.entrySet())
             generator.register(entry.getKey(), entry.getValue());
 
-        generator.register(ModItems.CRYSTIE_SPAWN_EGG, new Model(Optional.of(Identifier.of("minecraft", "item/template_spawn_egg")),
-                Optional.empty()));
-        generator.register(ModItems.BEHEMOTH_SPAWN_EGG, new Model(Optional.of(Identifier.of("minecraft", "item/template_spawn_egg")),
-                Optional.empty()));
-        generator.register(ModItems.POLYPPIE_SPAWN_EGG, new Model(Optional.of(Identifier.of("minecraft", "item/template_spawn_egg")),
-                Optional.empty()));
-        generator.register(ModItems.SOUR_SLUDGE_SPAWN_EGG, new Model(Optional.of(Identifier.of("minecraft", "item/template_spawn_egg")),
-                Optional.empty()));
+        generator.register(ModBlocks.DORMANT_POLYPPIE.asItem(), Models.GENERATED);
+
+        Optional<Identifier> spawnEgg = Optional.of(Identifier.of("minecraft", "item/template_spawn_egg"));
+        generator.register(ModItems.CRYSTIE_SPAWN_EGG, new Model(spawnEgg, Optional.empty()));
+        generator.register(ModItems.BEHEMOTH_SPAWN_EGG, new Model(spawnEgg, Optional.empty()));
+        generator.register(ModItems.POLYPPIE_SPAWN_EGG, new Model(spawnEgg, Optional.empty()));
+        generator.register(ModItems.SOUR_SLUDGE_SPAWN_EGG, new Model(spawnEgg, Optional.empty()));
     }
 }

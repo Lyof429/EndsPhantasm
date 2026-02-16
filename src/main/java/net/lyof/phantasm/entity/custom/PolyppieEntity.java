@@ -14,6 +14,7 @@ import net.lyof.phantasm.setup.compat.VinURLCompat;
 import net.lyof.phantasm.sound.SongHandler;
 import net.lyof.phantasm.sound.custom.PolyppieSoundInstance;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.control.LookControl;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -49,11 +50,9 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PolyppieEntity extends TameableEntity implements VariantHolder<PolyppieEntity.Variant> {
     private static final TrackedData<ItemStack> ITEM_STACK = DataTracker.registerData(PolyppieEntity.class,
@@ -88,7 +87,9 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         this.goalSelector.add(4, new FindBandGoal(this, 1));
         this.goalSelector.add(5, new WanderAroundGoal(this, 1));
         this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 6));
-        this.goalSelector.add(7, new LookAroundGoal(this));
+        Goal look = new LookAroundGoal(this);
+        look.setControls(EnumSet.of(Goal.Control.LOOK));
+        this.goalSelector.add(7, look);
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
@@ -163,8 +164,14 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     }
 
     @Override
+    protected void updateGoalControls() {
+        super.updateGoalControls();
+        this.goalSelector.setControlEnabled(Goal.Control.LOOK, true);
+    }
+
+    @Override
     protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return dimensions.height * 0.2f;
+        return dimensions.height * 0.25f;
     }
 
     @Override

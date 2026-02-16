@@ -44,7 +44,7 @@ public class FindBandGoal extends Goal {
         this.polyppie.getLookControl().lookAt(this.target, 10.0F, (float) this.polyppie.getMaxLookPitchChange());
         this.polyppie.getNavigation().startMovingTo(this.target, this.speed);
         this.timer++;
-        if (this.timer >= this.getTickCount(60) && this.polyppie.squaredDistanceTo(this.target) < 9.0) {
+        if (this.timer >= this.getTickCount(60) && this.polyppie.squaredDistanceTo(this.target) < 9) {
             this.polyppie.joinBand(this.target);
             this.target = null;
         }
@@ -53,7 +53,7 @@ public class FindBandGoal extends Goal {
     @Nullable
     private PolyppieEntity findMate() {
         List<? extends PolyppieEntity> list = this.world.getTargets(PolyppieEntity.class, VALID_MATE_PREDICATE, this.polyppie, this.polyppie.getBoundingBox().expand(8.0));
-        double d = 64;
+        double d = 32;
         PolyppieEntity target = null;
 
         for (PolyppieEntity it : list) {

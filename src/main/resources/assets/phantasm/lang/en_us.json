@@ -121,8 +121,10 @@
 
   "item.phantasm.crystie_spawn_egg": "Crystie Spawn Egg",
   "entity.phantasm.crystie": "Crystie",
+  "entity.phantasm.crystie.description": "These fairies fly around the Dreaming Den. Be careful not to anger them, or the volatile nature of Crystals might come back.",
   "item.phantasm.behemoth_spawn_egg": "Behemoth Spawn Egg",
   "entity.phantasm.behemoth": "Behemoth",
+  "entity.phantasm.behemoth.description": "This gentle giant sleeps peacefully... That is, until you come too close and disturb its rest.",
 
   "item.phantasm.behemoth_meat": "Behemoth Meat",
   "item.phantasm.behemoth_steak": "Behemoth Steak",
@@ -181,8 +183,10 @@
 
   "item.phantasm.polyppie_spawn_egg": "Polyppie Spawn Egg",
   "entity.phantasm.polyppie": "Polyppie",
+  "entity.phantasm.polyppie.description": "These cute creatures form huge Choral Riffs below islands. They love music, and will happily play any disc you give them.",
   "item.phantasm.sour_sludge_spawn_egg": "Sour Sludge Spawn Egg",
   "entity.phantasm.sour_sludge": "Sour Sludge",
+  "entity.phantasm.sour_sludge.description": "A subspecies of Slimes, born from living draconic acid. They are quite corrosive to the touch, but dissolve quickly in water.",
 
 
   "itemgroup.phantasm": "Phantasm",

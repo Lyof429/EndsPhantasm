@@ -64,7 +64,7 @@ public class PolyppieRenderer extends MobEntityRenderer<PolyppieEntity, Polyppie
                            float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
 
             matrices.push();
-            matrices.translate(0, 1.15, entity.isPlayingRecord() ?
+            matrices.translate(0.015, 1.15, entity.isPlayingRecord() ?
                     -0.05 - 0.1*MathHelper.cos((entity.tickCount - entity.recordStartTick + tickDelta) * 0.08f) : -0.15);
             matrices.multiply(getRotation(-pi/2, 0, 0));
             this.itemRenderer.renderItem(entity.getStack(), ModelTransformationMode.GROUND, light, 0, matrices, vertexConsumers, entity.getWorld(), 0);

@@ -61,8 +61,9 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
             ModEntities.TRACKED_IDENTIFIER);
     private static final TrackedData<Boolean> PAUSED = DataTracker.registerData(PolyppieEntity.class,
             TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> PLAYING = DataTracker.registerData(PolyppieEntity.class,
+            TrackedDataHandlerRegistry.BOOLEAN);
 
-    protected boolean isPlaying;
     public long tickCount;
     public long recordStartTick;
     protected int ticksThisSecond;
@@ -105,6 +106,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         this.getDataTracker().startTracking(ITEM_STACK, ItemStack.EMPTY);
         this.getDataTracker().startTracking(VARIANT, Variant.DEFAULT_ID);
         this.getDataTracker().startTracking(PAUSED, false);
+        this.getDataTracker().startTracking(PLAYING, false);
     }
 
     @Override
@@ -114,7 +116,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
             nbt.put("RecordItem", this.getStack().writeNbt(new NbtCompound()));
         }
 
-        nbt.putBoolean("IsPlaying", this.isPlaying);
+        nbt.putBoolean("IsPlaying", this.isPlayingRecord());
         nbt.putLong("TickCount", this.tickCount - this.recordStartTick);
 
         nbt.putInt("SoundKey", this.getSoundKey());
@@ -128,7 +130,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         if (nbt.contains("RecordItem", 10))
             this.setStack(ItemStack.fromNbt(nbt.getCompound("RecordItem")));
 
-        this.isPlaying = nbt.getBoolean("IsPlaying");
+        this.setPlaying(nbt.getBoolean("IsPlaying"));
         this.recordStartTick = 0;
         this.tickCount = nbt.getLong("TickCount");
 
@@ -228,6 +230,11 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         this.setPaused(!this.isPaused());
     }
 
+    public void setPlaying(boolean paused) {
+        this.getDataTracker().set(PLAYING, paused);
+        if (this.isPaused()) this.stopPlaying();
+    }
+
     public Band getBand() {
         if (this.band == null)
             this.band = new Band(this);
@@ -239,7 +246,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
     }
 
     public boolean isPlayingRecord() {
-        return !this.getStack().isEmpty() && this.isPlaying;
+        return !this.getStack().isEmpty() && this.getDataTracker().get(PLAYING);
     }
 
     protected void sendSongPacket(boolean start) {
@@ -258,14 +265,14 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
     public void startPlaying() {
         this.recordStartTick = this.tickCount;
-        this.isPlaying = true;
+        this.setPlaying(true);
         this.getWorld().emitGameEvent(GameEvent.JUKEBOX_PLAY, this.getPos(), GameEvent.Emitter.of(this));
 
         this.sendSongPacket(true);
     }
 
     public void stopPlaying() {
-        this.isPlaying = false;
+        this.setPlaying(false);
         this.getWorld().emitGameEvent(GameEvent.JUKEBOX_STOP_PLAY, this.getPos(), GameEvent.Emitter.of(this));
 
         this.sendSongPacket(false);
@@ -281,7 +288,7 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
 
     public float getSongProgress() {
         if (!(this.getStack().getItem() instanceof MusicDiscItem disc)) return 0;
-        if (!this.isPlaying) return 0;
+        if (!this.isPlayingRecord()) return 0;
 
         if (Phantasm.isVinURLLoaded() && VinURLCompat.isVinURLDisc(this.getStack())) {
             NbtCompound nbt = getStack().getOrCreateNbt();

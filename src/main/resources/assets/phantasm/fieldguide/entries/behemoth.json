@@ -1,5 +1,6 @@
 {
   "scale": 0.75,
+  "x_offset": -0.5,
   "spawn_biomes": [
     "phantasm:dreaming_den"
   ]

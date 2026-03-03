@@ -137,7 +137,7 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
     public ChallengeRuneBlock.Condition getStartingCondition(ServerPlayerEntity player) {
         if (this.challenge.monsterObjective <= 0) return ChallengeRuneBlock.Condition.EMPTY;
         ChallengeRuneBlockEntity rune = ((Challenger) player).getChallengeRune();
-        if (this.isChallengeRunning() || (rune != null && !rune.getPos().equals(this.getPos())))
+        if (this.isChallengeRunning() || (rune != null && !rune.getPos().equals(this.getPos()) && rune.isChallengeRunning()))
             return ChallengeRuneBlock.Condition.RUNNING;
         if (this.hasCompleted(player)) return ChallengeRuneBlock.Condition.COMPLETED;
         if (player.experienceLevel < this.challenge.levelCost) return ChallengeRuneBlock.Condition.EXPERIENCE;

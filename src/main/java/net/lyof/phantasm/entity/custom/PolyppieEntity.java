@@ -230,9 +230,8 @@ public class PolyppieEntity extends TameableEntity implements VariantHolder<Poly
         this.setPaused(!this.isPaused());
     }
 
-    public void setPlaying(boolean paused) {
-        this.getDataTracker().set(PLAYING, paused);
-        if (this.isPaused()) this.stopPlaying();
+    public void setPlaying(boolean playing) {
+        this.getDataTracker().set(PLAYING, playing);
     }
 
     public Band getBand() {

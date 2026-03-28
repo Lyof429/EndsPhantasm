@@ -126,11 +126,11 @@ public class ModBlocks {
             .tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON).tool("iron_pickaxe").drop().build();
     public static final Block POLISHED_OBSIDIAN_BRICK_STAIRS = ModRegistry.ofBlock("polished_obsidian_brick_stairs",
             new StairsBlock(POLISHED_OBSIDIAN_BRICKS.getDefaultState(), polishedObsidianMaterial))
-            .tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON, BlockTags.STAIRS).tagitem(ItemTags.STAIRS)
+            .tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON, BlockTags.STAIRS).tagItem(ItemTags.STAIRS)
             .tool("iron_pickaxe").drop().cutout().build();
     public static final Block POLISHED_OBSIDIAN_BRICK_SLAB = ModRegistry.ofBlock("polished_obsidian_brick_slab",
             new SlabBlock(polishedObsidianMaterial))
-            .tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON, BlockTags.SLABS).tagitem(ItemTags.SLABS)
+            .tag(BlockTags.DRAGON_IMMUNE, ModTags.Blocks.END_CRYSTAL_PLACEABLE_ON, BlockTags.SLABS).tagItem(ItemTags.SLABS)
             .tool("iron_pickaxe").drop().cutout().build();
 
     public static final Block POLISHED_OBSIDIAN_PILLAR = ModRegistry.ofBlock("polished_obsidian_pillar",
@@ -152,12 +152,12 @@ public class ModBlocks {
     public static final Block CRYSTAL_SHARD = ModRegistry.ofBlock("crystal_shard",
             new CrystalShardBlock(copy(crystalMaterial).luminance(7).sounds(BlockSoundGroup.GLASS)))
             .model(Models.GENERATED).tool("_pickaxe")
-            .tagitem(ConventionalItemTags.GEMS)
+            .tagItem(ConventionalItemTags.GEMS)
             .drop().cutout().build();
     public static final Block VOID_CRYSTAL_SHARD = ModRegistry.ofBlock("void_crystal_shard",
             new CrystalShardBlock(copy(crystalMaterial).sounds(BlockSoundGroup.GLASS)))
             .model(Models.GENERATED).tool("_pickaxe")
-            .tagitem(ConventionalItemTags.GEMS)
+            .tagItem(ConventionalItemTags.GEMS)
             .drop().cutout().build();
 
 
@@ -170,11 +170,11 @@ public class ModBlocks {
     public static final Block CRYSTAL_TILE_STAIRS = ModRegistry.ofBlock("crystal_tile_stairs",
             new StairsBlock(CRYSTAL_TILES.getDefaultState(), crystalMaterial))
             .tool("_pickaxe").drop()
-            .tag(BlockTags.STAIRS).tagitem(ItemTags.STAIRS).cutout().build();
+            .tag(BlockTags.STAIRS).tagItem(ItemTags.STAIRS).cutout().build();
     public static final Block CRYSTAL_TILE_SLAB = ModRegistry.ofBlock("crystal_tile_slab",
             new SlabBlock(crystalMaterial))
             .tool("_pickaxe").drop()
-            .tag(BlockTags.SLABS).tagitem(ItemTags.SLABS).cutout().build();
+            .tag(BlockTags.SLABS).tagItem(ItemTags.SLABS).cutout().build();
     public static final Block CRYSTAL_PILLAR = ModRegistry.ofBlock("crystal_pillar",
             new PillarBlock(crystalMaterial))
             .tool("_pickaxe").drop().build();
@@ -182,12 +182,12 @@ public class ModBlocks {
     public static final Block CRYSTAL_GLASS = ModRegistry.ofBlock("crystal_glass",
             new GlassBlock(crystalGlassMaterial))
             .tag(ConventionalBlockTags.GLASS_BLOCKS)
-            .tagitem(ConventionalItemTags.GLASS_BLOCKS)
+            .tagItem(ConventionalItemTags.GLASS_BLOCKS)
             .cutout().drop().build();
     public static final Block CRYSTAL_GLASS_PANE = ModRegistry.ofBlock("crystal_glass_pane",
             new PaneBlock(crystalGlassMaterial))
             .tag(ConventionalBlockTags.GLASS_PANES)
-            .tagitem(ConventionalItemTags.GLASS_PANES)
+            .tagItem(ConventionalItemTags.GLASS_PANES)
             .cutout().model(ModRegistry.Models.PANE).drop().build();
 
     // Void Crystal Blockset
@@ -199,11 +199,11 @@ public class ModBlocks {
     public static final Block VOID_CRYSTAL_TILE_STAIRS = ModRegistry.ofBlock("void_crystal_tile_stairs",
             new StairsBlock(VOID_CRYSTAL_TILES.getDefaultState(), crystalMaterial))
             .tool("_pickaxe").drop()
-            .tag(BlockTags.STAIRS).tagitem(ItemTags.STAIRS).cutout().build();
+            .tag(BlockTags.STAIRS).tagItem(ItemTags.STAIRS).cutout().build();
     public static final Block VOID_CRYSTAL_TILE_SLAB = ModRegistry.ofBlock("void_crystal_tile_slab",
             new SlabBlock(crystalMaterial))
             .tool("_pickaxe").drop()
-            .tag(BlockTags.SLABS).tagitem(ItemTags.SLABS).cutout().build();
+            .tag(BlockTags.SLABS).tagItem(ItemTags.SLABS).cutout().build();
     public static final Block VOID_CRYSTAL_PILLAR = ModRegistry.ofBlock("void_crystal_pillar",
             new PillarBlock(crystalMaterial))
             .tool("_pickaxe").drop().build();
@@ -211,12 +211,12 @@ public class ModBlocks {
     public static final Block VOID_CRYSTAL_GLASS = ModRegistry.ofBlock("void_crystal_glass",
             new GlassBlock(crystalGlassMaterial))
             .tag(ConventionalBlockTags.GLASS_BLOCKS)
-            .tagitem(ConventionalItemTags.GLASS_BLOCKS)
+            .tagItem(ConventionalItemTags.GLASS_BLOCKS)
             .cutout().drop().build();
     public static final Block VOID_CRYSTAL_GLASS_PANE = ModRegistry.ofBlock("void_crystal_glass_pane",
             new PaneBlock(crystalGlassMaterial))
             .tag(ConventionalBlockTags.GLASS_PANES)
-            .tagitem(ConventionalItemTags.GLASS_PANES)
+            .tagItem(ConventionalItemTags.GLASS_PANES)
             .cutout().model(ModRegistry.Models.PANE).drop().build();
 
     // Crystal Redstone Components
@@ -233,29 +233,29 @@ public class ModBlocks {
     public static final Block STRIPPED_PREAM_LOG = ModRegistry.ofBlock("stripped_pream_log",
             new PillarBlock(preamWoodMaterial))
             .tool("_axe")
-            .tag(BlockTags.LOGS_THAT_BURN, ModTags.Blocks.PREAM_LOGS).tagitem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
+            .tag(BlockTags.LOGS_THAT_BURN, ModTags.Blocks.PREAM_LOGS).tagItem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
             .flammable(5, 5).fuel(300).drop().build();
     public static final Block PREAM_LOG = ModRegistry.ofBlock("pream_log",
             new PillarBlock(preamWoodMaterial))
             .tool("_axe").strip(STRIPPED_PREAM_LOG)
-            .tag(BlockTags.LOGS_THAT_BURN, ModTags.Blocks.PREAM_LOGS).tagitem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
+            .tag(BlockTags.LOGS_THAT_BURN, ModTags.Blocks.PREAM_LOGS).tagItem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
             .flammable(5, 5).fuel(300).drop().build();
 
     public static final Block STRIPPED_PREAM_WOOD = ModRegistry.ofBlock("stripped_pream_wood",
             new PillarBlock(preamWoodMaterial))
             .tool("_axe")
-            .tag(BlockTags.LOGS_THAT_BURN, ModTags.Blocks.PREAM_LOGS).tagitem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
+            .tag(BlockTags.LOGS_THAT_BURN, ModTags.Blocks.PREAM_LOGS).tagItem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
             .flammable(5, 5).fuel(300).drop().build();
     public static final Block PREAM_WOOD = ModRegistry.ofBlock("pream_wood",
             new PillarBlock(preamWoodMaterial))
             .tool("_axe").strip(STRIPPED_PREAM_WOOD)
-            .tag(BlockTags.LOGS_THAT_BURN, ModTags.Blocks.PREAM_LOGS).tagitem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
+            .tag(BlockTags.LOGS_THAT_BURN, ModTags.Blocks.PREAM_LOGS).tagItem(ItemTags.LOGS_THAT_BURN, ModTags.Items.PREAM_LOGS)
             .flammable(5, 5).fuel(300).drop().build();
 
     public static final Block PREAM_LEAVES = ModRegistry.ofBlock("pream_leaves",
             new LeavesBlock(preamLeafMaterial))
             .tag(BlockTags.LEAVES, ModTags.Blocks.HANGING_PREAM_LEAVES_GROWABLE_ON)
-            .tagitem(ItemTags.LEAVES)
+            .tagItem(ItemTags.LEAVES)
             .tool("_hoe").flammable(5, 30)
             .model().cutout().build();
     public static final Block HANGING_PREAM_LEAVES = ModRegistry.ofBlock("hanging_pream_leaves",
@@ -264,62 +264,62 @@ public class ModBlocks {
                     ModTags.Blocks.HANGING_PREAM_LEAVES_GROWABLE_ON,
                     Block.createCuboidShape(0, 8, 0, 16, 16, 16)))
             .tag(BlockTags.LEAVES)
-            .tagitem(ItemTags.FLOWERS)
+            .tagItem(ItemTags.FLOWERS)
             .tool("_hoe").flammable(5, 30)
             .cutout().build();
 
     public static final Block PREAM_PLANKS = ModRegistry.ofBlock("pream_planks",
             new Block(preamPlankMaterial))
             .tool("_axe")
-            .tag(BlockTags.PLANKS).tagitem(ItemTags.PLANKS)
+            .tag(BlockTags.PLANKS).tagItem(ItemTags.PLANKS)
             .flammable(5, 20).fuel(300).drop().build();
     public static final Block PREAM_STAIRS = ModRegistry.ofBlock("pream_stairs",
             new StairsBlock(PREAM_PLANKS.getDefaultState(), preamPlankMaterial))
             .tool("_axe")
-            .tag(BlockTags.WOODEN_STAIRS).tagitem(ItemTags.WOODEN_STAIRS)
+            .tag(BlockTags.WOODEN_STAIRS).tagItem(ItemTags.WOODEN_STAIRS)
             .flammable(5, 20).fuel(300).drop().build();
     public static final Block PREAM_SLAB = ModRegistry.ofBlock("pream_slab",
             new SlabBlock(preamPlankMaterial))
             .tool("_axe")
-            .tag(BlockTags.WOODEN_SLABS).tagitem(ItemTags.WOODEN_SLABS)
+            .tag(BlockTags.WOODEN_SLABS).tagItem(ItemTags.WOODEN_SLABS)
             .flammable(5, 20).fuel(300).drop().build();
 
     public static final Block PREAM_PRESSURE_PLATE = ModRegistry.ofBlock("pream_pressure_plate",
             new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, preamPassableMaterial, BlockSetType.OAK))
             .tool("_axe")
             .tag(BlockTags.WOODEN_PRESSURE_PLATES, BlockTags.WALL_POST_OVERRIDE)
-            .tagitem(ItemTags.WOODEN_PRESSURE_PLATES)
+            .tagItem(ItemTags.WOODEN_PRESSURE_PLATES)
             .fuel(300).drop().build();
     public static final Block PREAM_BUTTON = ModRegistry.ofBlock("pream_button",
             new ButtonBlock(preamPassableMaterial, BlockSetType.OAK, 10, true))
             .tool("_axe")
-            .tag(BlockTags.WOODEN_BUTTONS).tagitem(ItemTags.WOODEN_BUTTONS)
+            .tag(BlockTags.WOODEN_BUTTONS).tagItem(ItemTags.WOODEN_BUTTONS)
             .fuel(100).drop().build();
 
     public static final Block PREAM_FENCE = ModRegistry.ofBlock("pream_fence",
             new FenceBlock(preamPlankMaterial))
             .tool("_axe")
-            .tag(BlockTags.WOODEN_FENCES).tagitem(ItemTags.WOODEN_FENCES)
+            .tag(BlockTags.WOODEN_FENCES).tagItem(ItemTags.WOODEN_FENCES)
             .flammable(5, 5).fuel(300).drop().build();
     public static final Block PREAM_FENCE_GATE = ModRegistry.ofBlock("pream_fence_gate",
             new FenceGateBlock(preamPlankMaterial, PREAM))
             .tool("_axe")
             .tag(BlockTags.WOODEN_FENCES, BlockTags.FENCE_GATES, BlockTags.UNSTABLE_BOTTOM_CENTER)
-            .tagitem(ItemTags.WOODEN_FENCES, ItemTags.FENCE_GATES)
+            .tagItem(ItemTags.WOODEN_FENCES, ItemTags.FENCE_GATES)
             .flammable(5, 5).fuel(300).drop().build();
 
     public static final Block PREAM_DOOR = ModRegistry.ofBlock("pream_door",
             new DoorBlock(copy(Blocks.OAK_DOOR).mapColor(MapColor.TERRACOTTA_YELLOW), BlockSetType.OAK))
             .tool("_axe")
             .tag(BlockTags.WOODEN_DOORS)
-            .tagitem(ItemTags.WOODEN_DOORS)
+            .tagItem(ItemTags.WOODEN_DOORS)
             .model(ModRegistry.Models.DOOR).cutout()
             .drop().build();
     public static final Block PREAM_TRAPDOOR = ModRegistry.ofBlock("pream_trapdoor",
             new TrapdoorBlock(copy(Blocks.OAK_TRAPDOOR).mapColor(MapColor.TERRACOTTA_YELLOW), BlockSetType.OAK))
             .tool("_axe")
             .tag(BlockTags.WOODEN_TRAPDOORS)
-            .tagitem(ItemTags.WOODEN_TRAPDOORS)
+            .tagItem(ItemTags.WOODEN_TRAPDOORS)
             .model(ModRegistry.Models.TRAPDOOR).cutout()
             .drop().build();
 
@@ -345,8 +345,8 @@ public class ModBlocks {
             new SaplingBlock(new PreamSaplingGenerator(), copy(Blocks.OAK_SAPLING).mapColor(MapColor.PURPLE).hardness(0)))
             //.model(ModRegistry.Models.CROSS)
             .cutout()
-            .tag(BlockTags.SAPLINGS).tagitem(ItemTags.SAPLINGS)
-            .end_plant().fuel(100).drop().build();
+            .tag(BlockTags.SAPLINGS).tagItem(ItemTags.SAPLINGS)
+            .endPlant().fuel(100).drop().build();
 
     public static final Block POTTED_PREAM_SAPLING = ModRegistry.ofBlock("potted_pream_sapling",
             Blocks.createFlowerPotBlock(PREAM_SAPLING), null)
@@ -358,12 +358,12 @@ public class ModBlocks {
     // Vivid Nihilium
     public static final Block VIVID_NIHILIUM = ModRegistry.ofBlock("vivid_nihilium",
             new NihiliumBlock(copy(Blocks.END_STONE).mapColor(MapColor.TEAL).ticksRandomly()))
-            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE).end_soil()
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE).endSoil()
             .cutout().build();
 
     public static final Block TALL_VIVID_NIHILIS = ModRegistry.ofBlock("tall_vivid_nihilis",
                     new TallPlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.TEAL).replaceable()))
-            .end_plant()
+            .endPlant()
             .cutout().build();
 
     public static final Block VIVID_NIHILIS = ModRegistry.ofBlock("vivid_nihilis",
@@ -374,15 +374,15 @@ public class ModBlocks {
                         TallPlantBlock.placeAt(world, TALL_VIVID_NIHILIS.getDefaultState(), pos, 2);
                 }
             })
-            .model(ModRegistry.Models.CROSS).end_plant()
+            .model(ModRegistry.Models.CROSS).endPlant()
             .cutout().build();
 
 
     public static final Block STARFLOWER = ModRegistry.ofBlock("starflower",
                     new FlowerBlock(StatusEffects.NIGHT_VISION, 100, copy(Blocks.WARPED_ROOTS).mapColor(MapColor.LIGHT_BLUE).breakInstantly().luminance(5).emissiveLighting((a, b, c) -> true)))
             .drop().cutout()
-            .tagitem(ModTags.Items.CRYSTAL_FLOWERS, ItemTags.SMALL_FLOWERS)
-            .end_plant()
+            .tagItem(ModTags.Items.CRYSTAL_FLOWERS, ItemTags.SMALL_FLOWERS)
+            .endPlant()
             .build();
 
 
@@ -390,12 +390,12 @@ public class ModBlocks {
     public static final Block RAW_PURPUR = ModRegistry.ofBlock("raw_purpur",
                     new Block(rawPurpurMaterial))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
-            .tagitem(ItemTags.STONE_CRAFTING_MATERIALS, ItemTags.STONE_TOOL_MATERIALS)
+            .tagItem(ItemTags.STONE_CRAFTING_MATERIALS, ItemTags.STONE_TOOL_MATERIALS)
             .drop().model().build();
     public static final Block RAW_PURPUR_COAL_ORE = ModRegistry.ofBlock("raw_purpur_coal_ore",
                     new Block(copy(rawPurpurMaterial).mapColor(MapColor.DEEPSLATE_GRAY)))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.COAL_ORES)
-            .tagitem(ItemTags.COAL_ORES)
+            .tagItem(ItemTags.COAL_ORES)
             .model().build();
 
     public static final Block RAW_PURPUR_BRICKS = ModRegistry.ofBlock("raw_purpur_bricks",
@@ -405,17 +405,17 @@ public class ModBlocks {
     public static final Block RAW_PURPUR_BRICK_STAIRS = ModRegistry.ofBlock("raw_purpur_brick_stairs",
                     new StairsBlock(RAW_PURPUR_BRICKS.getDefaultState(), rawPurpurMaterial))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.STAIRS)
-            .tagitem(ItemTags.STAIRS)
+            .tagItem(ItemTags.STAIRS)
             .drop().build();
     public static final Block RAW_PURPUR_BRICK_SLAB = ModRegistry.ofBlock("raw_purpur_brick_slab",
                     new SlabBlock(rawPurpurMaterial))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.SLABS)
-            .tagitem(ItemTags.SLABS)
+            .tagItem(ItemTags.SLABS)
             .drop().build();
     public static final Block RAW_PURPUR_BRICK_WALL = ModRegistry.ofBlock("raw_purpur_brick_wall",
                     new WallBlock(rawPurpurMaterial))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.WALLS)
-            .tagitem(ItemTags.WALLS)
+            .tagItem(ItemTags.WALLS)
             .drop().build();
 
     public static final Block RAW_PURPUR_TILES = ModRegistry.ofBlock("raw_purpur_tiles",
@@ -432,7 +432,7 @@ public class ModBlocks {
     public static final Block PURPUR_WALL = ModRegistry.ofBlock("purpur_wall",
                     new WallBlock(copy(Blocks.PURPUR_BLOCK)))
             .tool("_pickaxe").tag(BlockTags.WALLS)
-            .tagitem(ItemTags.WALLS)
+            .tagItem(ItemTags.WALLS)
             .drop().build();
     public static final Block PURPUR_LAMP = ModRegistry.ofBlock("purpur_lamp",
                     new Block(copy(Blocks.PURPUR_BLOCK).luminance(15)))
@@ -463,7 +463,7 @@ public class ModBlocks {
                             ModTags.Blocks.OBLIVINE_GROWABLE_ON,
                             Block.createCuboidShape(0, 8, 0, 16, 16, 16)))
             .drop().cutout()
-            .tagitem(ModTags.Items.CRYSTAL_FLOWERS, ItemTags.FLOWERS)
+            .tagItem(ModTags.Items.CRYSTAL_FLOWERS, ItemTags.FLOWERS)
             .build();
 
 
@@ -479,7 +479,7 @@ public class ModBlocks {
     // Acidic Nihilium
     public static final Block ACIDIC_NIHILIUM = ModRegistry.ofBlock("acidic_nihilium",
                     new NihiliumBlock(copy(Blocks.END_STONE).mapColor(MapColor.DARK_DULL_PINK).ticksRandomly()))
-            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE).end_soil()
+            .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE).endSoil()
             .cutout().build();
 
     public static final Block ACIDIC_NIHILIS = ModRegistry.ofBlock("acidic_nihilis",
@@ -490,19 +490,19 @@ public class ModBlocks {
                                 TallPlantBlock.placeAt(world, TALL_ACIDIC_NIHILIS.getDefaultState(), pos, 2);
                         }
                     })
-            .model(ModRegistry.Models.CROSS).end_plant()
+            .model(ModRegistry.Models.CROSS).endPlant()
             .cutout().build();
 
     public static final Block TALL_ACIDIC_NIHILIS = ModRegistry.ofBlock("tall_acidic_nihilis",
                     new TallPlantBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.DARK_DULL_PINK).replaceable()))
-            .end_plant()
+            .endPlant()
             .cutout().build();
 
     public static final Block DRAGON_MINT = ModRegistry.ofBlock("dragon_mint",
                     new DragonMintBlock(copy(Blocks.WARPED_ROOTS).mapColor(MapColor.DULL_PINK).sounds(BlockSoundGroup.CHERRY_LEAVES)
                             .offset(AbstractBlock.OffsetType.NONE)
                             .luminance(state -> state.get(HangingFruitBlock.HAS_FRUIT) ? 9 : 0).ticksRandomly()))
-            .tagitem(ItemTags.FLOWERS).end_plant()
+            .tagItem(ItemTags.FLOWERS).endPlant()
             .cutout().build();
 
     public static final Block ACIDIC_MASS = ModRegistry.ofBlock("acidic_mass",
@@ -517,7 +517,7 @@ public class ModBlocks {
                             super.onSteppedOn(world, pos, state, entity);
                         }
                     })
-            .tool("_hoe").tag(BlockTags.DRAGON_IMMUNE).end_soil()
+            .tool("_hoe").tag(BlockTags.DRAGON_IMMUNE).endSoil()
             .model(ModRegistry.Models.ROTATABLE).drop().build();
 
 
@@ -538,14 +538,14 @@ public class ModBlocks {
     public static final Block CIRITE = ModRegistry.ofBlock("cirite",
                     new Block(ciriteMaterial))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE)
-            .tagitem(ItemTags.STONE_CRAFTING_MATERIALS, ItemTags.STONE_TOOL_MATERIALS)
+            .tagItem(ItemTags.STONE_CRAFTING_MATERIALS, ItemTags.STONE_TOOL_MATERIALS)
             .drop()
             .model().build();
 
     public static final Block CIRITE_IRON_ORE = ModRegistry.ofBlock("cirite_iron_ore",
                     new ExperienceDroppingBlock(ciriteMaterial, UniformIntProvider.create(1, 4)) )
             .tool("stone_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.IRON_ORES)
-            .tagitem(ItemTags.IRON_ORES)
+            .tagItem(ItemTags.IRON_ORES)
             .model().build();
 
     public static final Block CIRITE_BRICKS = ModRegistry.ofBlock("cirite_bricks",
@@ -555,17 +555,17 @@ public class ModBlocks {
     public static final Block CIRITE_BRICK_STAIRS = ModRegistry.ofBlock("cirite_brick_stairs",
                     new StairsBlock(CIRITE_BRICKS.getDefaultState(), ciriteMaterial))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.STAIRS)
-            .tagitem(ItemTags.STAIRS)
+            .tagItem(ItemTags.STAIRS)
             .drop().build();
     public static final Block CIRITE_BRICK_SLAB = ModRegistry.ofBlock("cirite_brick_slab",
                     new SlabBlock(ciriteMaterial))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.SLABS)
-            .tagitem(ItemTags.SLABS)
+            .tagItem(ItemTags.SLABS)
             .drop().build();
     public static final Block CIRITE_BRICK_WALL = ModRegistry.ofBlock("cirite_brick_wall",
                     new WallBlock(ciriteMaterial))
             .tool("_pickaxe").tag(BlockTags.DRAGON_IMMUNE, BlockTags.WALLS)
-            .tagitem(ItemTags.WALLS)
+            .tagItem(ItemTags.WALLS)
             .drop().build();
 
     public static final Block CIRITE_PILLAR = ModRegistry.ofBlock("cirite_pillar",

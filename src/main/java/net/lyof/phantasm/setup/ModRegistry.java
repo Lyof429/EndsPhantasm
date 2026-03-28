@@ -73,16 +73,16 @@ public class ModRegistry {
             return this;
         }
 
-        public BlockBuilder tagitem(TagKey<Item> tagname) {
+        public BlockBuilder tagItem(TagKey<Item> tagname) {
             ITEM_TAGS.putIfAbsent(tagname, new ArrayList<>());
             ITEM_TAGS.get(tagname).add(this.block.asItem());
             return this;
         }
 
         @SafeVarargs
-        public final BlockBuilder tagitem(TagKey<Item>... tags) {
+        public final BlockBuilder tagItem(TagKey<Item>... tags) {
             for (TagKey<Item> tagname : tags) {
-                this.tagitem(tagname);
+                this.tagItem(tagname);
             }
             return this;
         }
@@ -103,11 +103,11 @@ public class ModRegistry {
             return this;
         }
 
-        public BlockBuilder end_plant() {
+        public BlockBuilder endPlant() {
             return this.tag(ModTags.Blocks.END_PLANTS);
         }
 
-        public BlockBuilder end_soil() {
+        public BlockBuilder endSoil() {
             return this.tag(ModTags.Blocks.END_PLANTS_GROWABLE_ON);
         }
 

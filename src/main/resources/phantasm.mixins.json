@@ -49,6 +49,7 @@
     "access.HandledScreenAccessor",
     "client.ButtonPositionHintMixin",
     "client.ClickableWidgetMixin",
+    "client.CreativeInventoryScreenMixin",
     "client.CreditsScreenMixin",
     "client.DimensionEffectsMixin",
     "client.InGameHudMixin",

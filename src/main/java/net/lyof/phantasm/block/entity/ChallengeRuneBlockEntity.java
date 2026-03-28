@@ -231,7 +231,6 @@ public class ChallengeRuneBlockEntity extends BlockEntity {
             packet.writeBoolean(success);
 
             for (PlayerEntity player : this.getWorld().getPlayers()) {
-                Phantasm.log("sending stop packet");
                 ServerPlayNetworking.send((ServerPlayerEntity) player, ModPackets.CHALLENGE_ENDS, packet);
                 this.bossbar.removePlayer((ServerPlayerEntity) player);
             }

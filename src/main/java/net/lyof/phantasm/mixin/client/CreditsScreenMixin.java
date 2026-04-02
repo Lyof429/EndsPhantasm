@@ -3,6 +3,7 @@ package net.lyof.phantasm.mixin.client;
 import com.google.common.collect.Lists;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
@@ -38,15 +39,16 @@ public abstract class CreditsScreenMixin implements MixinAccess<Boolean> {
 
     @Unique private boolean beginningCredits = false;
 
-    @Inject(method = "init", at = @At("HEAD"), cancellable = true)
-    private void initBeginning(CallbackInfo ci) {
+    @WrapMethod(method = "init")
+    private void initBeginning(Operation<Void> original) {
+        original.call();
+
         if (this.beginningCredits && this.credits == null) {
             this.credits = Lists.newArrayList();
             this.centeredLines = new IntOpenHashSet();
             this.load("phantasm:texts/begin.txt", this::readPoem);
 
             this.creditsHeight = this.credits.size() * 12 - 200;
-            ci.cancel();
         }
     }
 

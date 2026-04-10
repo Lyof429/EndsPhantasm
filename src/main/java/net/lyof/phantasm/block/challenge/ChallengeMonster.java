@@ -44,8 +44,11 @@ public class ChallengeMonster {
         ((Challenger) entity).setChallengeRune(rune);
         if (entity instanceof MobEntity mob)
             mob.setPersistent();
-        if (entity instanceof VexEntity vex)
+        if (entity instanceof VexEntity vex) {
             vex.setBounds(rune.getPos().up(5));
+            // So Dungeons & Taverns doesn't break it
+            entity.addCommandTag("vex");
+        }
         if (entity instanceof SlimeEntity slime)
             slime.setSize((int) Math.pow(2, rune.getWorld().getRandom().nextInt(3)), true);
 

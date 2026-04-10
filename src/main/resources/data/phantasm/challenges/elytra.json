@@ -8,7 +8,7 @@
       "weight": 10,
       "entity": "minecraft:vex",
       "attributes": {
-        "minecraft:generic.max_health": 1.5
+        "minecraft:generic.max_health": 0.8
       }
     }
   ]

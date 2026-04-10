@@ -14,5 +14,20 @@
         "stream": true
       }
     ]
+  },
+  "entity.behemoth.dying": {
+    "subtitle": "sound.phantasm.entity.behemoth.dying",
+    "sounds": [
+      "phantasm:entity/behemoth/dying0",
+      "phantasm:entity/behemoth/dying1"
+    ]
+  },
+  "entity.behemoth.ambient": {
+    "subtitle": "sound.phantasm.entity.behemoth.ambient",
+    "sounds": [
+      "phantasm:entity/behemoth/ambient0",
+      "phantasm:entity/behemoth/ambient1",
+      "phantasm:entity/behemoth/ambient2"
+    ]
   }
 }

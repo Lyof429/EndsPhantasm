@@ -3,12 +3,14 @@ package net.lyof.phantasm.entity.custom;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.client.animation.BehemothAnimation;
 import net.lyof.phantasm.entity.goal.BehemothAttackGoal;
 import net.lyof.phantasm.entity.goal.SleepGoal;
 import net.lyof.phantasm.entity.listener.BehemothEventListener;
 import net.lyof.phantasm.particle.ModParticles;
 import net.lyof.phantasm.setup.ModPackets;
+import net.lyof.phantasm.sound.ModSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -85,13 +87,8 @@ public class BehemothEntity extends HostileEntity implements Monster {
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
-        return super.getHurtSound(source);
-    }
-
-    @Override
     protected SoundEvent getDeathSound() {
-        return super.getDeathSound();
+        return ModSounds.BEHEMOTH_DYING;
     }
 
     @Override
@@ -106,6 +103,11 @@ public class BehemothEntity extends HostileEntity implements Monster {
     public static boolean canMobSpawn(EntityType<? extends MobEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
         BlockPos blockPos = pos.down();
         return spawnReason == SpawnReason.SPAWNER || world.getBlockState(blockPos).allowsSpawning(world, blockPos, type);
+    }
+
+    @Override
+    public boolean isPushable() {
+        return false;
     }
 
     @Override
@@ -166,7 +168,7 @@ public class BehemothEntity extends HostileEntity implements Monster {
             this.setTarget(null);
 
         if (!this.isAngry() && this.age % 20 == 0) {
-            this.playSound(SoundEvents.ENTITY_SNIFFER_SNIFFING, 1, 1);
+            this.playSound(ModSounds.BEHEMOTH_AMBIENT, (float) ConfigEntries.behemothSnoringVolume, 1);
             if (this.getWorld().isClient() && this.getRandom().nextInt(2) == 0)
                 this.getWorld().addParticle(ModParticles.ZZZ,
                         this.getX() - Math.sin(-this.getYaw() * Math.PI / 180), this.getY() + 0.3,

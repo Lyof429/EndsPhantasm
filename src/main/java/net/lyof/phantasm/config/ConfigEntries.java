@@ -41,6 +41,7 @@ public class ConfigEntries {
 
         behemothAggroRange = new ConfigEntry<>("dreaming_den.entities.behemoth.aggro_range", 6).get();
         behemothSneakAggroRange = new ConfigEntry<>("dreaming_den.entities.behemoth.sneaking_aggro_range", 0).get();
+        behemothSnoringVolume = new ConfigEntry<>("dreaming_den.entities.behemoth.snoring_volume", 1).get();
 
         chorusSaladTeleportation = new ConfigEntry<>("dreaming_den.equipment.chorus_fruit_salad.teleportation", true).get();
         chorusSaladStack = new ConfigEntry<>("dreaming_den.equipment.chorus_fruit_salad.stack_size", 4).get();
@@ -100,6 +101,7 @@ public class ConfigEntries {
 
     public static int behemothAggroRange;
     public static int behemothSneakAggroRange;
+    public static double behemothSnoringVolume;
 
     public static boolean chorusSaladTeleportation;
     public static int chorusSaladStack;

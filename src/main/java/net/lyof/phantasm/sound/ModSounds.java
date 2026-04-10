@@ -17,4 +17,7 @@ public class ModSounds {
 
     public static final SoundEvent MUSIC_DISC_ABRUPTION = register("music_disc_abruption");
     public static final SoundEvent CHALLENGE = register("challenge");
+
+    public static final SoundEvent BEHEMOTH_AMBIENT = register("entity.behemoth.ambient");
+    public static final SoundEvent BEHEMOTH_DYING = register("entity.behemoth.dying");
 }

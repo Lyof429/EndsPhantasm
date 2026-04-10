@@ -209,7 +209,9 @@ public class ModConfig {
          // Distance (in blocks) at which walking close to a Behemoth will aggro it
          "aggro_range": 6,
          // Distance (in blocks) at which walking close to a Behemoth while sneaking will aggro it
-         "sneaking_aggro_range": 0
+         "sneaking_aggro_range": 0,
+         // Snoring sound volume
+         "snoring_volume": 1
        }
      },
 

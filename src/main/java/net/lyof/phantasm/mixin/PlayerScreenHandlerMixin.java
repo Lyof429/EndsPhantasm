@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerScreenHandler.class)
 public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements PolyppieInventory.Handler {
@@ -36,9 +37,8 @@ public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements 
 
             this.phantasm_slot = this.addSlot(new Slot(new PolyppieInventory(carrier), this.slots.size(), x, y) {
                 @Override
-                public void onQuickTransfer(ItemStack newItem, ItemStack original) {
-                    super.onQuickTransfer(newItem, original);
-                    this.inventory.markDirty();
+                public boolean canInsert(ItemStack stack) {
+                    return this.inventory.isValid(this.id, stack);
                 }
 
                 @Override
@@ -47,6 +47,20 @@ public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements 
                             && PlayerScreenHandlerMixin.this.phantasm_visible;
                 }
             });
+        }
+    }
+
+    @Inject(method = "quickMove", at = @At("HEAD"), cancellable = true)
+    public void quickPolyppieMove(PlayerEntity player, int slotid, CallbackInfoReturnable<ItemStack> cir) {
+        Slot slot = this.getSlot(slotid);
+        ItemStack stack = slot.getStack();
+
+        if (slot == this.phantasm_slot && this.insertItem(stack, 6, 42, true)) {
+            cir.setReturnValue(ItemStack.EMPTY);
+            this.phantasm_slot.markDirty();
+        } else if (this.phantasm_slot.insertStack(stack).isEmpty()) {
+            cir.setReturnValue(ItemStack.EMPTY);
+            this.phantasm_slot.markDirty();
         }
     }
 

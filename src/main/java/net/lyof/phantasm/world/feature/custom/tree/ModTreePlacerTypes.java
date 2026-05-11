@@ -11,7 +11,6 @@ public class ModTreePlacerTypes {
     public static void register() {
     }
 
-
     public static final TrunkPlacerType<?> PREAM_TRUNK_PLACER = TrunkPlacerTypeInvoker.callRegister("pream_trunk_placer",
             PreamTrunkPlacer.CODEC);
 

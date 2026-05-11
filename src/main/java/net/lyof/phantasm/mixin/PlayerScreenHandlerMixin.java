@@ -27,18 +27,15 @@ public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements 
         super(type, syncId);
     }
 
-    @Unique private Inventory polyppieInventory = null;
     @Unique private Slot phantasm_slot = null;
     @Unique private boolean phantasm_visible = true;
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void initPolyppieScreenHandler(PlayerInventory inventory, boolean onServer, PlayerEntity owner, CallbackInfo ci) {
         if (this.owner instanceof PolyppieCarrier carrier) {
-            this.polyppieInventory = new PolyppieInventory(carrier);
-
             int x = 8, y = 166 - 10 + 8;
 
-            this.phantasm_slot = this.addSlot(new Slot(this.polyppieInventory, this.slots.size(), x, y) {
+            this.phantasm_slot = this.addSlot(new Slot(new PolyppieInventory(carrier), this.slots.size(), x, y) {
                 @Override
                 public void onQuickTransfer(ItemStack newItem, ItemStack original) {
                     super.onQuickTransfer(newItem, original);

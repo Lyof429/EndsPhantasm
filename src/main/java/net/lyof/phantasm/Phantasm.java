@@ -56,23 +56,19 @@ public class Phantasm implements ModInitializer {
 		ModItems.register();
 		ModBlocks.register();
 		ModItemGroups.register();
-
 		ModEntities.register();
 		ModBlockEntities.register();
-
 		ModParticles.register();
 		ModSounds.register();
-
 		ModEffects.register();
 		ModPotions.register();
-
-		ModTreePlacerTypes.register();
 
 		ModDataGenerator.registerBurnable();
 		ModDataGenerator.registerFuels();
 		ModDataGenerator.registerStripped();
 
 		EndDataCompat.register();
+		ModTreePlacerTypes.register();
 		ModFeatures.register();
 		ModDensityFunctions.register();
 		ModProcessorTypes.register();

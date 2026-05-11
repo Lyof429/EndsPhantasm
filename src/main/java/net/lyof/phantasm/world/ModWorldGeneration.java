@@ -6,7 +6,6 @@ import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.ModEntities;
 import net.lyof.phantasm.entity.custom.BehemothEntity;
-import net.lyof.phantasm.entity.custom.SourSludgeEntity;
 import net.lyof.phantasm.setup.ModTags;
 import net.lyof.phantasm.world.biome.ModBiomes;
 import net.lyof.phantasm.world.feature.ModPlacedFeatures;

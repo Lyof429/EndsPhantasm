@@ -4,7 +4,6 @@ import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.screen.access.PolyppieInventory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.screen.ScreenHandler;

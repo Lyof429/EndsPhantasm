@@ -41,7 +41,7 @@ public abstract class CreditsScreenMixin implements MixinAccess<Boolean> {
     private void initBeginning(Operation<Void> original) {
         original.call();
 
-        if (this.beginningCredits && this.credits == null) {
+        if (this.beginningCredits) {
             this.credits = Lists.newArrayList();
             this.centeredLines = new IntOpenHashSet();
             this.load("phantasm:texts/begin.txt", this::readPoem);

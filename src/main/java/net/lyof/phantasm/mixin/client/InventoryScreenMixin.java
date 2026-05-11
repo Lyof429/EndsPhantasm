@@ -108,11 +108,8 @@ public abstract class InventoryScreenMixin extends AbstractInventoryScreen<Playe
                 context.drawText(this.textRenderer, carrier.phantasm_getPolyppie().getName(),
                         this.x + x + 32, this.y + y + 8, 0x373737, false);
 
-                context.getMatrices().push();
-                context.getMatrices().translate(0, 0, 600);
-                context.drawTexture(visuals.notes, this.x + x, this.y + y,
+                context.drawTexture(visuals.notes, this.x + x, this.y + y, 400,
                         0, 0, 32, 32, 32, 32);
-                context.getMatrices().pop();
 
                 context.drawTexture(visuals.progressBar, this.x + x + 32, this.y + y + 17, 0, 0,
                         96, 7,

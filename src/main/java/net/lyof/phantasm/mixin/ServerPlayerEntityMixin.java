@@ -5,6 +5,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.loader.api.FabricLoader;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.config.ConfigEntries;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
@@ -42,12 +43,13 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
 
     @WrapOperation(method = "moveToWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;createEndSpawnPlatform(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;)V"))
     public void noPlatform(ServerPlayerEntity instance, ServerWorld world, BlockPos centerPos, Operation<Void> original) {
-        original.call(instance, world, ServerWorld.END_SPAWN_POS.mutableCopy());
+        original.call(instance, world, FabricLoader.getInstance().isModLoaded("betterendisland") && !ConfigEntries.outerEndFirst
+                ? ServerWorld.END_SPAWN_POS.down() : ServerWorld.END_SPAWN_POS);
     }
 
     @Unique private static final Identifier CREDITS_ADVANCEMENT = new Identifier("minecraft", "end/kill_dragon");
 
-    @Unique private boolean seenBeginning = false;
+    @Unique private boolean phantasm_seenBeginning = false;
 
     @WrapMethod(method = "moveToWorld")
     public Entity cancelCredits(ServerWorld destination, Operation<Entity> original) {
@@ -55,7 +57,7 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
         this.notInAnyWorld = false;
 
         if (destination.getRegistryKey() == World.END) {
-            if (!this.seenBeginning && ConfigEntries.beginCutscene) {
+            if (!this.phantasm_seenBeginning && ConfigEntries.beginCutscene) {
                 this.inTeleportationState = true;
                 self.detach();
                 this.getServerWorld().removePlayer(self, RemovalReason.CHANGED_DIMENSION);
@@ -86,18 +88,18 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
 
     @Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
     private void readData(NbtCompound nbt, CallbackInfo ci) {
-        if (nbt.contains(SEEN_BEGINNING_KEY)) this.seenBeginning = nbt.getBoolean(SEEN_BEGINNING_KEY);
+        if (nbt.contains(SEEN_BEGINNING_KEY)) this.phantasm_seenBeginning = nbt.getBoolean(SEEN_BEGINNING_KEY);
     }
 
     @Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
     private void writeData(NbtCompound nbt, CallbackInfo ci) {
-        nbt.putBoolean(SEEN_BEGINNING_KEY, this.seenBeginning);
+        nbt.putBoolean(SEEN_BEGINNING_KEY, this.phantasm_seenBeginning);
     }
 
     @SuppressWarnings("unchecked")
     @Inject(method = "copyFrom", at = @At("HEAD"))
     private void copySeenBeginning(ServerPlayerEntity old, boolean alive, CallbackInfo ci) {
-        this.seenBeginning = ((MixinAccess<Boolean>) old).getMixinValue();
+        this.phantasm_seenBeginning = ((MixinAccess<Boolean>) old).getMixinValue();
 
         if ((alive || this.getWorld().getGameRules().getBoolean(GameRules.KEEP_INVENTORY))
                 && old instanceof PolyppieCarrier oldCarrier
@@ -109,11 +111,11 @@ public abstract class ServerPlayerEntityMixin extends Entity implements MixinAcc
 
     @Override
     public void setMixinValue(Boolean value) {
-        this.seenBeginning = value;
+        this.phantasm_seenBeginning = value;
     }
 
     @Override
     public Boolean getMixinValue() {
-        return this.seenBeginning;
+        return this.phantasm_seenBeginning;
     }
 }

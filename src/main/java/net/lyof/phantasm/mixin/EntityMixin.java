@@ -21,32 +21,33 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Set;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin {
-    @Shadow public abstract World getWorld();
-
     @Shadow public abstract Set<String> getCommandTags();
+    @Shadow public abstract Vec3d getVelocity();
+    @Shadow public abstract float getYaw();
+    @Shadow public abstract float getPitch();
 
-    @ModifyReturnValue(method = "getTeleportTarget", at = @At("RETURN"))
-    public TeleportTarget spawnInOuterEnd(TeleportTarget original, ServerWorld destination) {
+    @Inject(method = "getTeleportTarget", at = @At("HEAD"), cancellable = true)
+    public void spawnInOuterEnd(ServerWorld destination, CallbackInfoReturnable<TeleportTarget> cir) {
         if (destination.getRegistryKey() == World.END && ConfigEntries.outerEndFirst) {
-            TeleportTarget result = original;
             BlockPos p = new BlockPos(1280, 60, 0);
 
-            BlockPos pos = EndGatewayBlockEntityAccessor.getExitPos(destination, p).up(2);
-            if (destination.getBlockState(pos.down(3)).isAir()) {
+            BlockPos pos = EndGatewayBlockEntityAccessor.getExitPos(destination, p);
+            if (destination.getBlockState(pos.down()).isAir()) {
                 destination.getRegistryManager().getOptional(RegistryKeys.CONFIGURED_FEATURE).flatMap(registry ->
                         registry.getEntry(EndConfiguredFeatures.END_ISLAND)).ifPresent(reference ->
                     reference.value().generate(destination, destination.getChunkManager().getChunkGenerator(),
-                            Random.create(pos.asLong()), pos.down(2)));
+                            Random.create(pos.asLong()), pos));
             }
 
-            original = new TeleportTarget(new Vec3d(pos.getX(), pos.getY(), pos.getZ()), result.velocity, result.yaw, result.pitch);
+            cir.setReturnValue(new TeleportTarget(new Vec3d(pos.getX() + 0.5, pos.getY() + 2, pos.getZ() + 0.5),
+                    this.getVelocity(), this.getYaw(), this.getPitch()));
         }
-        return original;
     }
 
     @Inject(method = "changeLookDirection", at = @At("HEAD"), cancellable = true)

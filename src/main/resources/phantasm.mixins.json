@@ -33,6 +33,7 @@
     "PlayerEntityMixin",
     "PlayerGeneratesContainerLootCriterionConditionsMixin",
     "PlayerScreenHandlerMixin",
+    "PlayerScreenHandlerMixinSquared",
     "ServerPlayerEntityMixin",
     "ServerPlayerInteractionManagerMixin",
     "TheEndBiomesMixin",

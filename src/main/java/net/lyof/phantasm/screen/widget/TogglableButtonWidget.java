@@ -1,4 +1,4 @@
-package net.lyof.phantasm.screen.custom;
+package net.lyof.phantasm.screen.widget;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;

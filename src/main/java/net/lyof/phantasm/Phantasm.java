@@ -45,7 +45,7 @@ public class Phantasm implements ModInitializer {
 	public static final String MOD_ID = "phantasm";
     public static final Logger LOGGER = LoggerFactory.getLogger("End's Phantasm");
 
-	@Override
+    @Override
 	public void onInitialize() {
 		ModConfig.register();
 		ConfiguredData.register();
@@ -78,6 +78,8 @@ public class Phantasm implements ModInitializer {
 		registerPackets();
 		registerEvents();
 		registerModules();
+
+		//TrinketsApi.registerTrinket(Items.DIAMOND, new Trinket() {});
 
 		if (!FabricLoader.getInstance().isDevelopmentEnvironment()) ModRegistry.clear();
 	}
@@ -155,4 +157,6 @@ public class Phantasm implements ModInitializer {
 	public static boolean isVinURLLoaded() {
 		return FabricLoader.getInstance().isModLoaded("vinurl");
 	}
+
+	public static boolean isTrinketsLoaded() { return FabricLoader.getInstance().isModLoaded("trinkets"); }
 }

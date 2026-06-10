@@ -9,7 +9,7 @@ import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.screen.DiscVisuals;
 import net.lyof.phantasm.screen.access.PolyppieInventory;
-import net.lyof.phantasm.screen.custom.TogglableButtonWidget;
+import net.lyof.phantasm.screen.widget.TogglableButtonWidget;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;

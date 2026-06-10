@@ -1,9 +1,8 @@
 package net.lyof.phantasm.mixin;
 
-import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
+import net.lyof.phantasm.screen.access.PlayerScreenHandlerHelper;
 import net.lyof.phantasm.screen.access.PolyppieInventory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -22,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = PlayerScreenHandler.class, priority = 0)
+@Mixin(PlayerScreenHandler.class)
 public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements PolyppieInventory.Handler {
     @Shadow @Final private PlayerEntity owner;
 
@@ -35,22 +34,8 @@ public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements 
 
     @Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/PlayerScreenHandler;addSlot(Lnet/minecraft/screen/slot/Slot;)Lnet/minecraft/screen/slot/Slot;", ordinal = 5, shift = At.Shift.AFTER))
     private void initPolyppieScreenHandler(PlayerInventory inventory, boolean onServer, PlayerEntity owner, CallbackInfo ci) {
-        if (owner instanceof PolyppieCarrier carrier) {
-            int x = 8, y = 166 - 10 + 8;
-
-            this.phantasm_slot = this.addSlot(new Slot(new PolyppieInventory(carrier), 0, x, y) {
-                @Override
-                public boolean canInsert(ItemStack stack) {
-                    return this.inventory.isValid(this.id, stack);
-                }
-
-                @Override
-                public boolean isEnabled() {
-                    return PlayerScreenHandlerMixin.this.phantasm_isEnabled()
-                            && PlayerScreenHandlerMixin.this.phantasm_visible;
-                }
-            });
-        }
+        if (!Phantasm.isTrinketsLoaded())
+            this.phantasm_slot = PlayerScreenHandlerHelper.make(owner, this::addSlot, this::phantasm_isVisible);
     }
 
     @Inject(method = "quickMove", at = @At("HEAD"), cancellable = true)
@@ -79,12 +64,16 @@ public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements 
 
     @Override
     public boolean phantasm_isEnabled() {
-        return PlayerScreenHandlerMixin.this.owner instanceof PolyppieCarrier carrier
-                && carrier.phantasm_getPolyppie() != null;
+        return this.owner instanceof PolyppieCarrier carrier && carrier.phantasm_getPolyppie() != null;
     }
 
     @Override
     public Slot phantasm_getSlot() {
         return this.phantasm_slot;
+    }
+
+    @Override
+    public void phantasm_setSlot(Slot slot) {
+        this.phantasm_slot = slot;
     }
 }

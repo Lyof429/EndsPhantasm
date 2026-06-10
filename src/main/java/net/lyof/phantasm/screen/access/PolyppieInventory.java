@@ -94,6 +94,7 @@ public class PolyppieInventory implements Inventory {
         boolean phantasm_isEnabled();
 
         Slot phantasm_getSlot();
+        void phantasm_setSlot(Slot slot);
 
         static void onButtonClick(PlayerEntity player, int id) {
             if (player.getWorld().isClient()) {

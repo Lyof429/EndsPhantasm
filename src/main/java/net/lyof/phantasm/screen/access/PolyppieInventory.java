@@ -9,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.screen.slot.Slot;
 
 public class PolyppieInventory implements Inventory {
     private final PolyppieCarrier owner;
@@ -92,8 +93,7 @@ public class PolyppieInventory implements Inventory {
 
         boolean phantasm_isEnabled();
 
-        int phantasm_getSlotX();
-        int phantasm_getSlotY();
+        Slot phantasm_getSlot();
 
         static void onButtonClick(PlayerEntity player, int id) {
             if (player.getWorld().isClient()) {

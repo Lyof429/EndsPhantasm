@@ -102,8 +102,8 @@ public abstract class InventoryScreenMixin extends AbstractInventoryScreen<Playe
                         0, 0, 176, 27);
 
                 DiscVisuals visuals = DiscVisuals.get(carrier.phantasm_getPolyppie().getStack());
-                x = self.phantasm_getSlotX() - 8;
-                y = self.phantasm_getSlotY() - 8;
+                x = self.phantasm_getSlot().x - 8;
+                y = self.phantasm_getSlot().y - 8;
 
                 context.drawText(this.textRenderer, carrier.phantasm_getPolyppie().getName(),
                         this.x + x + 32, this.y + y + 8, 0x373737, false);

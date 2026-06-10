@@ -1,5 +1,8 @@
 package net.lyof.phantasm.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.entity.access.PolyppieCarrier;
 import net.lyof.phantasm.screen.access.PolyppieInventory;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(PlayerScreenHandler.class)
+@Mixin(value = PlayerScreenHandler.class, priority = 0)
 public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements PolyppieInventory.Handler {
     @Shadow @Final private PlayerEntity owner;
 
@@ -30,12 +33,12 @@ public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements 
     @Unique private Slot phantasm_slot = null;
     @Unique private boolean phantasm_visible = true;
 
-    @Inject(method = "<init>", at = @At("TAIL"))
+    @Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/PlayerScreenHandler;addSlot(Lnet/minecraft/screen/slot/Slot;)Lnet/minecraft/screen/slot/Slot;", ordinal = 5, shift = At.Shift.AFTER))
     private void initPolyppieScreenHandler(PlayerInventory inventory, boolean onServer, PlayerEntity owner, CallbackInfo ci) {
-        if (this.owner instanceof PolyppieCarrier carrier) {
+        if (owner instanceof PolyppieCarrier carrier) {
             int x = 8, y = 166 - 10 + 8;
 
-            this.phantasm_slot = this.addSlot(new Slot(new PolyppieInventory(carrier), this.slots.size(), x, y) {
+            this.phantasm_slot = this.addSlot(new Slot(new PolyppieInventory(carrier), 0, x, y) {
                 @Override
                 public boolean canInsert(ItemStack stack) {
                     return this.inventory.isValid(this.id, stack);
@@ -81,12 +84,7 @@ public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements 
     }
 
     @Override
-    public int phantasm_getSlotX() {
-        return this.phantasm_slot.x;
-    }
-
-    @Override
-    public int phantasm_getSlotY() {
-        return this.phantasm_slot.y;
+    public Slot phantasm_getSlot() {
+        return this.phantasm_slot;
     }
 }

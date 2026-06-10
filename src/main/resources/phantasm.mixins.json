@@ -40,6 +40,7 @@
     "access.ChunkGeneratorSettingsAccessor",
     "access.EndGatewayBlockEntityAccessor",
     "access.FoliagePlacerTypeInvoker",
+    "access.ScreenHandlerAccessor",
     "access.ServerPlayerEntityAccessor",
     "access.TrunkPlacerTypeInvoker"
   ],

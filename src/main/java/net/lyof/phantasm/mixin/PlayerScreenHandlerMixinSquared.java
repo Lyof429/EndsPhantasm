@@ -3,8 +3,8 @@ package net.lyof.phantasm.mixin;
 import com.bawnorton.mixinsquared.TargetHandler;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import dev.emi.trinkets.mixin.accessor.ScreenHandlerAccessor;
 import net.lyof.phantasm.Phantasm;
+import net.lyof.phantasm.mixin.access.ScreenHandlerAccessor;
 import net.lyof.phantasm.screen.access.PlayerScreenHandlerHelper;
 import net.lyof.phantasm.screen.access.PolyppieInventory;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,7 +33,6 @@ public abstract class PlayerScreenHandlerMixinSquared extends ScreenHandler {
     @WrapMethod(method = "@MixinSquared:Handler")
     private void initTrinketsPolyppieSlot(boolean slotsChanged, Operation<Void> original) {
         if (this instanceof PolyppieInventory.Handler handler) {
-            Phantasm.log("Fired MixinSquared");
             Slot slot = handler.phantasm_getSlot();
             if (slot != null)
                 phantasm_removeSlot(this, slot.id);
@@ -46,7 +45,6 @@ public abstract class PlayerScreenHandlerMixinSquared extends ScreenHandler {
 
     @Unique
     private static void phantasm_removeSlot(ScreenHandler handler, int id) {
-        Phantasm.log("Removing slot " + id);
         handler.slots.remove(id);
         ((ScreenHandlerAccessor) handler).getTrackedStacks().remove(id);
         ((ScreenHandlerAccessor) handler).getPreviousTrackedStacks().remove(id);

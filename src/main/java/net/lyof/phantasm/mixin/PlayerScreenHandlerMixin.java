@@ -32,7 +32,7 @@ public abstract class PlayerScreenHandlerMixin extends ScreenHandler implements 
     @Unique private Slot phantasm_slot = null;
     @Unique private boolean phantasm_visible = true;
 
-    @Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/PlayerScreenHandler;addSlot(Lnet/minecraft/screen/slot/Slot;)Lnet/minecraft/screen/slot/Slot;", ordinal = 5, shift = At.Shift.AFTER))
+    @Inject(method = "<init>", at = @At(value = "RETURN"))
     private void initPolyppieScreenHandler(PlayerInventory inventory, boolean onServer, PlayerEntity owner, CallbackInfo ci) {
         if (!Phantasm.isTrinketsLoaded())
             this.phantasm_slot = PlayerScreenHandlerHelper.make(owner, this::addSlot, this::phantasm_isVisible);

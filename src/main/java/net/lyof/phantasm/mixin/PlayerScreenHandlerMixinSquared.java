@@ -3,7 +3,6 @@ package net.lyof.phantasm.mixin;
 import com.bawnorton.mixinsquared.TargetHandler;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import net.lyof.phantasm.Phantasm;
 import net.lyof.phantasm.mixin.access.ScreenHandlerAccessor;
 import net.lyof.phantasm.screen.access.PlayerScreenHandlerHelper;
 import net.lyof.phantasm.screen.access.PolyppieInventory;

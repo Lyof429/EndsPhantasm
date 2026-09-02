@@ -134,9 +134,9 @@
   "item.phantasm.shattered_pendant": "Pingente de Estilhaço",
   "item.phantasm.shattered_pendant.desc": "Permite teletransportar-se de volta para o seu último refúgio.\nAtiva automaticamente ao cair no vazio",
 
-  "block.phantasm.acidic_nihilium": "Niélio Ácido",
-  "block.phantasm.acidic_nihilis": "Niílis Ácida",
-  "block.phantasm.tall_acidic_nihilis": "Niílis Ácida Alta",
+  "block.phantasm.acidic_nihilium": "Naiélio Ácido",
+  "block.phantasm.acidic_nihilis": "Naiílis Ácida",
+  "block.phantasm.tall_acidic_nihilis": "Naiílis Ácida Alta",
   "block.phantasm.dragon_mint": "Dragortelã",
   "block.phantasm.acidic_mass": "Massa Ácida",
 
@@ -145,7 +145,7 @@
   "item.phantasm.pomb_slice": "Fatia de Pomor",
   "item.phantasm.pomb_slice.desc": "Ao comer:\nTorna os seus ataques corrosivos.",
 
-  "item.phantasm.pop_rock_candy": "Pirulito Rochoso de Estalo",
+  "item.phantasm.pop_rock_candy": "Pirulistalo Rochoso",
 
   "block.phantasm.cirite": "Cirito",
   "block.phantasm.cirite_iron_ore": "Minério de Ferro de Cirito",
